@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLYR Health — Start Your Journey</title>
+<meta name="description" content="Complete your health profile to see if GLP-1 treatment is right for you. Provider-supervised, FDA-compliant compounded medications.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white: #FFFFFF;
+    --black: #0A0A0A;
+    --dark: #1A1A1A;
+    --teal: #00B4C5;
+    --teal-dark: #009BAA;
+    --teal-light: #E0F7FA;
+    --teal-glow: rgba(0, 180, 197, 0.12);
+    --gray-50: #F8FAFB;
+    --gray-100: #F1F4F6;
+    --gray-200: #E2E7EB;
+    --gray-400: #94A3B0;
+    --gray-500: #6B7C8A;
+    --gray-600: #4A5568;
+    --red: #E53E3E;
+    --red-light: #FFF5F5;
+    --green: #22C55E;
+    --serif: 'Instrument Serif', Georgia, serif;
+    --sans: 'DM Sans', -apple-system, sans-serif;
+    --radius: 16px;
+    --radius-sm: 10px;
+    --radius-lg: 24px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 20px rgba(0,0,0,0.06);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.08);
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { -webkit-font-smoothing: antialiased; }
+  body {
+    font-family: var(--sans);
+    color: var(--dark);
+    background: var(--gray-50);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+  .header {
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-100);
+    padding: 0 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-logo {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    text-decoration: none;
+  }
+  .header-logo .cl { color: var(--dark); }
+  .header-logo .yr { color: var(--teal); }
+  .header-help {
+    font-size: 13px;
+    color: var(--gray-500);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .header-help a {
+    color: var(--teal);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .progress-bar {
+    height: 3px;
+    background: var(--gray-100);
+    position: relative;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--teal), var(--teal-dark));
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 0 4px 4px 0;
+  }
+  .main {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 40px 24px 120px;
+  }
+  .step { display: none; animation: fadeIn 0.4s ease-out; }
+  .step.active { display: block; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .step-label {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--teal);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .step-label span {
+    background: var(--teal-light);
+    color: var(--teal);
+    padding: 2px 10px;
+    border-radius: 100px;
+    font-size: 12px;
+  }
+  .step-title {
+    font-size: clamp(28px, 4vw, 36px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: var(--dark);
+    margin-bottom: 8px;
+  }
+  .step-title .serif-word {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--teal);
+  }
+  .step-subtitle {
+    font-size: 16px;
+    color: var(--gray-500);
+    margin-bottom: 36px;
+    line-height: 1.55;
+  }
+  .treatment-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .treatment-card {
+    background: var(--white);
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    padding: 28px 24px;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+  }
+  .treatment-card:hover {
+    border-color: rgba(0,180,197,0.3);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+  .treatment-card.selected {
+    border-color: var(--teal);
+    background: linear-gradient(180deg, rgba(0,180,197,0.03) 0%, var(--white) 100%);
+    box-shadow: 0 0 0 1px var(--teal), var(--shadow-md);
+  }
+  .treatment-card-tag {
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background: var(--teal);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 3px 12px;
+    border-radius: 100px;
+  }
+  .treatment-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .treatment-card-name {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--dark);
+    letter-spacing: -0.02em;
+  }
+  .treatment-card-price { text-align: right; }
+  .treatment-card-price .from {
+    font-size: 12px;
+    color: var(--gray-400);
+    display: block;
+  }
+  .treatment-card-price .amount {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--dark);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .treatment-card-price .period {
+    font-size: 14px;
+    color: var(--gray-400);
+    font-weight: 400;
+  }
+  .treatment-card-compound {
+    font-size: 14px;
+    color: var(--gray-500);
+    margin-bottom: 16px;
+  }
+  .treatment-card-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .treatment-feature {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    color: var(--gray-600);
+    background: var(--gray-50);
+    padding: 5px 12px;
+    border-radius: 100px;
+  }
+  .treatment-feature svg { color: var(--teal); flex-shrink: 0; }
+  .treatment-radio {
+    position: absolute;
+    top: 28px;
+    right: 24px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid var(--gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+  .treatment-card.selected .treatment-radio {
+    border-color: var(--teal);
+    background: var(--teal);
+  }
+  .treatment-radio::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--white);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .treatment-card.selected .treatment-radio::after { opacity: 1; }
+  .screening-notice {
+    background: var(--teal-light);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .screening-notice svg { flex-shrink: 0; color: var(--teal); margin-top: 2px; }
+  .screening-notice p {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.55;
+  }
+  .screening-notice strong { color: var(--dark); }
+  .checkbox-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .checkbox-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 18px;
+    background: var(--white);
+    border: 1.5px solid var(--gray-200);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .checkbox-item:hover {
+    border-color: var(--gray-400);
+    background: var(--gray-50);
+  }
+  .checkbox-item.checked {
+    border-color: var(--red);
+    background: var(--red-light);
+  }
+  .checkbox-box {
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--gray-200);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+    transition: all 0.2s;
+  }
+  .checkbox-item.checked .checkbox-box {
+    background: var(--red);
+    border-color: var(--red);
+  }
+  .checkbox-box svg { opacity: 0; transition: opacity 0.2s; }
+  .checkbox-item.checked .checkbox-box svg { opacity: 1; }
+  .checkbox-label {
+    font-size: 15px;
+    color: var(--dark);
+    line-height: 1.45;
+  }
+  .screening-footer {
+    margin-top: 24px;
+    padding: 20px 24px;
+    background: var(--white);
+    border: 1.5px solid var(--gray-200);
+    border-radius: var(--radius);
+  }
+  .none-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+  }
+  .none-checkbox .checkbox-box { border-color: var(--teal); }
+  .none-checkbox.checked .checkbox-box {
+    background: var(--teal);
+    border-color: var(--teal);
+  }
+  .none-checkbox .checkbox-label {
+    font-weight: 600;
+    color: var(--teal);
+  }
+  .screening-blocked {
+    display: none;
+    margin-top: 20px;
+    padding: 20px 24px;
+    background: var(--red-light);
+    border: 1.5px solid var(--red);
+    border-radius: var(--radius);
+  }
+  .screening-blocked.visible { display: flex; }
+  .screening-blocked svg { flex-shrink: 0; color: var(--red); margin-top: 2px; }
+  .screening-blocked p { font-size: 14px; color: var(--dark); line-height: 1.55; margin-left: 14px; }
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .form-group.full-width { grid-column: 1 / -1; }
+  .form-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-600);
+    letter-spacing: 0.01em;
+  }
+  .form-input {
+    padding: 14px 16px;
+    border: 1.5px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    font-family: var(--sans);
+    font-size: 15px;
+    color: var(--dark);
+    background: var(--white);
+    transition: all 0.2s;
+    outline: none;
+  }
+  .form-input:focus {
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px var(--teal-glow);
+  }
+  .form-input::placeholder { color: var(--gray-400); }
+  .form-input.error { border-color: var(--red); }
+  .form-row { display: flex; gap: 16px; }
+  .form-row .form-group { flex: 1; }
+  select.form-input {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%2394A3B0' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+  }
+  .dob-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+  .consent-section {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid var(--gray-100);
+  }
+  .consent-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 16px;
+  }
+  .consent-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    cursor: pointer;
+  }
+  .consent-item .checkbox-box { width: 20px; height: 20px; border-radius: 5px; }
+  .consent-item .checkbox-label { font-size: 14px; color: var(--gray-600); line-height: 1.5; }
+  .consent-item .checkbox-label a { color: var(--teal); text-decoration: underline; }
+  .nav-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border-top: 1px solid var(--gray-100);
+    padding: 16px 24px;
+    z-index: 100;
+  }
+  .nav-footer-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--gray-500);
+    cursor: pointer;
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s;
+  }
+  .btn-back:hover { color: var(--dark); background: var(--gray-50); }
+  .btn-continue {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--teal);
+    color: var(--white);
+    border: none;
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 600;
+    padding: 14px 36px;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.3s;
+    letter-spacing: -0.01em;
+  }
+  .btn-continue:hover { background: var(--teal-dark); transform: translateY(-1px); box-shadow: 0 8px 30px rgba(0,180,197,0.2); }
+  .btn-continue:disabled { background: var(--gray-200); color: var(--gray-400); cursor: not-allowed; transform: none; box-shadow: none; }
+  .btn-continue svg { transition: transform 0.3s; }
+  .btn-continue:hover svg { transform: translateX(3px); }
+  .review-card {
+    background: var(--white);
+    border: 1.5px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    padding: 28px 24px;
+    margin-bottom: 16px;
+  }
+  .review-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .review-card-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .review-edit {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--teal);
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: var(--sans);
+  }
+  .review-edit:hover { text-decoration: underline; }
+  .review-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+  }
+  .review-label { font-size: 14px; color: var(--gray-500); }
+  .review-value { font-size: 14px; font-weight: 600; color: var(--dark); text-align: right; }
+  .review-treatment-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 4px;
+  }
+  .review-treatment-detail { font-size: 14px; color: var(--gray-500); }
+  .review-disclaimer {
+    font-size: 12px;
+    color: var(--gray-400);
+    line-height: 1.65;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--gray-100);
+  }
+  @media (max-width: 600px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .form-row { flex-direction: column; }
+    .treatment-card-header { flex-direction: column; gap: 8px; }
+    .treatment-card-price { text-align: left; }
+    .treatment-radio { top: 24px; right: 20px; }
+    .nav-footer-inner { gap: 12px; }
+    .btn-continue { padding: 14px 24px; flex: 1; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <a href="https://www.clyr.health" class="header-logo">
+      <span class="cl">CLY</span><span class="yr">R</span>
+    </a>
+    <div class="header-help">
+      Need help? <a href="mailto:support@clyr.health">Contact us</a>
+    </div>
+  </div>
+</header>
+<!-- PROGRESS BAR -->
+<div class="progress-bar">
+  <div class="progress-fill" id="progressFill" style="width: 20%"></div>
+</div>
+<!-- MAIN CONTENT -->
+<main class="main">
+  <!-- STEP 1: CHOOSE TREATMENT -->
+  <div class="step active" id="step1">
+    <div class="step-label"><span>Step 1 of 5</span></div>
+    <h1 class="step-title">Choose your <span class="serif-word">treatment</span></h1>
+    <p class="step-subtitle">Select the medication that's right for your goals. Your provider will confirm eligibility after reviewing your health profile.</p>
+    <div class="treatment-cards">
+      <div class="treatment-card" onclick="selectTreatment(this, 'semaglutide')" data-treatment="semaglutide">
+        <div class="treatment-card-tag">Most Popular</div>
+        <div class="treatment-radio"></div>
+        <div class="treatment-card-header">
+          <div>
+            <div class="treatment-card-name">Semaglutide + B12</div>
+            <div class="treatment-card-compound">Compounded GLP-1 receptor agonist with Vitamin B12</div>
+          </div>
+        </div>
+        <div class="treatment-card-price" style="margin-bottom: 16px;">
+          <span class="from">Starting at</span>
+          <span class="amount">$150</span><span class="period">/mo</span>
+        </div>
+        <div class="treatment-card-features">
+          <span class="treatment-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Provider visits</span>
+          <span class="treatment-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Free shipping</span>
+          <span class="treatment-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Ongoing support</span>
+          <span class="treatment-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg> B12 included</span>
+        </div>
+      </div>
+      <div class="treatment-card" onclick="selectTreatment(this, 'tirzepatide')" data-treatment="tirzepatide">
+        <div class="treatment-card-tag" style="background: var(--dark);">Dual Action</div>
+        <div class="treatment-radio"></div>
+        <div class="treatment-card-header">
+          <div>
+            <div class="treatment-card-name">Tirzepatide + B12</div>
+            <div class="treatment-card-compound">Compounded dual GLP-1/GIP receptor agonist with Vitamin B12</div>
+          </div>
+        </div>
+        <div class="treatment-card-price" style="margin-bottom: 16px;">
+          <span class="from">Starting at</span>
+          <span class="amount">$240</span><span class="period">/mo</span>
+        </div>
+        <div class="treatment-card-features">
+          <span class="treatment-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Provider visits</span>
+          <span class="treatment-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Free shipping</span>
+          <span class="treatment-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Dual-action formula</span>
+          <span class="treatment-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg> B12 included</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- STEP 2: HEALTH SCREENING -->
+  <div class="step" id="step2">
+    <div class="step-label"><span>Step 2 of 5</span></div>
+    <h1 class="step-title">Health <span class="serif-word">screening</span></h1>
+    <p class="step-subtitle">Your safety is our priority. Please indicate if any of the following apply to you.</p>
+    <div class="screening-notice">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+      <p><strong>Select all that apply.</strong> Some conditions may require additional provider review. Checking a box does not automatically disqualify you.</p>
+    </div>
+    <div class="checkbox-list" id="screeningList">
+      <div class="checkbox-item" onclick="toggleCheckbox(this)">
+        <div class="checkbox-box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+        <span class="checkbox-label">End-stage liver disease (cirrhosis)</span>
+      </div>
+      <div class="checkbox-item" onclick="toggleCheckbox(this)">
+        <div class="checkbox-box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+        <span class="checkbox-label">Current or prior eating disorder (anorexia or bulimia)</span>
+      </div>
+      <div class="checkbox-item" onclick="toggleCheckbox(this)">
+        <div class="checkbox-box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+        <span class="checkbox-label">Current suicidal thoughts or prior suicide attempt</span>
+      </div>
+      <div class="checkbox-item" onclick="toggleCheckbox(this)">
+        <div class="checkbox-box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+        <span class="checkbox-label">Cancer (active diagnosis or currently in treatment)</span>
+      </div>
+      <div class="checkbox-item" onclick="toggleCheckbox(this)">
+        <div class="checkbox-box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+        <span class="checkbox-label">History of organ transplant or taking anti-rejection medications</span>
+      </div>
+      <div class="checkbox-item" onclick="toggleCheckbox(this)">
+        <div class="checkbox-box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+        <span class="checkbox-label">Severe GI condition (gastroparesis, inflammatory bowel disease)</span>
+      </div>
+      <div class="checkbox-item" onclick="toggleCheckbox(this)">
+        <div class="checkbox-box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+        <span class="checkbox-label">Untreated opioid, alcohol, or substance dependence</span>
+      </div>
+      <div class="checkbox-item" onclick="toggleCheckbox(this)">
+        <div class="checkbox-box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+        <span class="checkbox-label">Personal or family history of medullary thyroid cancer (MTC) or MEN2</span>
+      </div>
+      <div class="checkbox-item" onclick="toggleCheckbox(this)">
+        <div class="checkbox-box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+        <span class="checkbox-label">Type 2 diabetes on insulin or A1c greater than 10%</span>
+      </div>
+      <div class="checkbox-item" onclick="toggleCheckbox(this)">
+        <div class="checkbox-box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+        <span class="checkbox-label">Type 1 diabetes</span>
+      </div>
+      <div class="checkbox-item" onclick="toggleCheckbox(this)">
+        <div class="checkbox-box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+        <span class="checkbox-label">Diabetic retinopathy, optic nerve damage, or blindness</span>
+      </div>
+      <div class="checkbox-item" onclick="toggleCheckbox(this)">
+        <div class="checkbox-box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+        <span class="checkbox-label">Currently taking Warfarin (Coumadin/Jantoven)</span>
+      </div>
+      <div class="checkbox-item" onclick="toggleCheckbox(this)">
+        <div class="checkbox-box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+        <span class="checkbox-label">History of or current pancreatitis</span>
+      </div>
+      <div class="checkbox-item" onclick="toggleCheckbox(this)">
+        <div class="checkbox-box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+        <span class="checkbox-label">Currently pregnant, breastfeeding, or planning pregnancy within 2 months</span>
+      </div>
+    </div>
+    <div class="screening-footer" style="margin-top: 16px;">
+      <div class="none-checkbox" id="noneApply" onclick="toggleNone()">
+        <div class="checkbox-box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+        <span class="checkbox-label">None of the above apply to me</span>
+      </div>
+    </div>
+    <div class="screening-blocked" id="screeningBlocked">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+      <p><strong>Based on your responses, you may not be eligible for GLP-1 treatment at this time.</strong> We recommend speaking with your primary care physician. If you believe this is an error, please contact us at support@clyr.health.</p>
+    </div>
+  </div>
+  <!-- STEP 3: PERSONAL DETAILS -->
+  <div class="step" id="step3">
+    <div class="step-label"><span>Step 3 of 5</span></div>
+    <h1 class="step-title">Your <span class="serif-word">details</span></h1>
+    <p class="step-subtitle">We'll use this to set up your account and connect you with a licensed provider in your state.</p>
+    <div class="form-grid">
+      <div class="form-group">
+        <label class="form-label">First name *</label>
+        <input type="text" class="form-input" id="firstName" placeholder="First name" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Last name *</label>
+        <input type="text" class="form-input" id="lastName" placeholder="Last name" required>
+      </div>
+      <div class="form-group full-width">
+        <label class="form-label">Email address *</label>
+        <input type="email" class="form-input" id="email" placeholder="you@example.com" required>
+      </div>
+      <div class="form-group full-width">
+        <label class="form-label">Phone number *</label>
+        <input type="tel" class="form-input" id="phone" placeholder="(555) 123-4567" required>
+      </div>
+      <div class="form-group full-width">
+        <label class="form-label">Date of birth *</label>
+        <div class="dob-row">
+          <select class="form-input" id="dobMonth">
+            <option value="">Month</option>
+            <option>January</option><option>February</option><option>March</option>
+            <option>April</option><option>May</option><option>June</option>
+            <option>July</option><option>August</option><option>September</option>
+            <option>October</option><option>November</option><option>December</option>
+          </select>
+          <select class="form-input" id="dobDay">
+            <option value="">Day</option>
+          </select>
+          <select class="form-input" id="dobYear">
+            <option value="">Year</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group full-width">
+        <label class="form-label">Biological sex *</label>
+        <select class="form-input" id="sex">
+          <option value="">Select</option>
+          <option>Male</option>
+          <option>Female</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Height *</label>
+        <div style="display: flex; gap: 8px;">
+          <select class="form-input" id="heightFt" style="flex:1;">
+            <option value="">Ft</option>
+            <option>4</option><option>5</option><option>6</option><option>7</option>
+          </select>
+          <select class="form-input" id="heightIn" style="flex:1;">
+            <option value="">In</option>
+            <option>0</option><option>1</option><option>2</option><option>3</option>
+            <option>4</option><option>5</option><option>6</option><option>7</option>
+            <option>8</option><option>9</option><option>10</option><option>11</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Current weight (lbs) *</label>
+        <input type="number" class="form-input" id="weight" placeholder="180">
+      </div>
+    </div>
+  </div>
+  <!-- STEP 4: SHIPPING -->
+  <div class="step" id="step4">
+    <div class="step-label"><span>Step 4 of 5</span></div>
+    <h1 class="step-title">Shipping <span class="serif-word">address</span></h1>
+    <p class="step-subtitle">Your medication will be shipped directly to you from our licensed compounding pharmacy.</p>
+    <div class="form-grid">
+      <div class="form-group full-width">
+        <label class="form-label">Street address *</label>
+        <input type="text" class="form-input" id="address" placeholder="123 Main St" required>
+      </div>
+      <div class="form-group full-width">
+        <label class="form-label">Apartment, suite, etc.</label>
+        <input type="text" class="form-input" id="apt" placeholder="Apt 4B (optional)">
+      </div>
+      <div class="form-group">
+        <label class="form-label">City *</label>
+        <input type="text" class="form-input" id="city" placeholder="City" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">State *</label>
+        <select class="form-input" id="state">
+          <option value="">Select state</option>
+          <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">ZIP code *</label>
+        <input type="text" class="form-input" id="zip" placeholder="33914" required>
+      </div>
+    </div>
+    <div class="consent-section">
+      <div class="consent-title">Consent & Agreements</div>
+      <div class="consent-item" onclick="toggleConsent(this)">
+        <div class="checkbox-box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+        <span class="checkbox-label">I agree to the <a href="#">Terms of Service</a>, <a href="#">Privacy Policy</a>, and <a href="#">Telehealth Consent</a>.</span>
+      </div>
+      <div class="consent-item" onclick="toggleConsent(this)">
+        <div class="checkbox-box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+        <span class="checkbox-label">I understand that compounded medications are not FDA-approved and my provider will determine if treatment is appropriate for me.</span>
+      </div>
+      <div class="consent-item" onclick="toggleConsent(this)">
+        <div class="checkbox-box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+        <span class="checkbox-label">I consent to receive SMS updates about my treatment. Message and data rates may apply.</span>
+      </div>
+    </div>
+  </div>
+  <!-- STEP 5: REVIEW -->
+  <div class="step" id="step5">
+    <div class="step-label"><span>Step 5 of 5</span></div>
+    <h1 class="step-title">Review & <span class="serif-word">continue</span></h1>
+    <p class="step-subtitle">Please confirm your information below. You'll select your plan and complete payment on the next page.</p>
+    <div class="review-card">
+      <div class="review-card-header">
+        <span class="review-card-title">Treatment</span>
+        <button class="review-edit" onclick="goToStep(1)">Edit</button>
+      </div>
+      <div class="review-treatment-name" id="reviewTreatment">—</div>
+      <div class="review-treatment-detail" id="reviewCompound">—</div>
+    </div>
+    <div class="review-card">
+      <div class="review-card-header">
+        <span class="review-card-title">Personal Information</span>
+        <button class="review-edit" onclick="goToStep(3)">Edit</button>
+      </div>
+      <div class="review-row">
+        <span class="review-label">Name</span>
+        <span class="review-value" id="reviewName">—</span>
+      </div>
+      <div class="review-row">
+        <span class="review-label">Email</span>
+        <span class="review-value" id="reviewEmail">—</span>
+      </div>
+      <div class="review-row">
+        <span class="review-label">Phone</span>
+        <span class="review-value" id="reviewPhone">—</span>
+      </div>
+      <div class="review-row">
+        <span class="review-label">Date of Birth</span>
+        <span class="review-value" id="reviewDOB">—</span>
+      </div>
+      <div class="review-row">
+        <span class="review-label">Biological Sex</span>
+        <span class="review-value" id="reviewSex">—</span>
+      </div>
+      <div class="review-row">
+        <span class="review-label">Height / Weight</span>
+        <span class="review-value" id="reviewBody">—</span>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-card-header">
+        <span class="review-card-title">Shipping Address</span>
+        <button class="review-edit" onclick="goToStep(4)">Edit</button>
+      </div>
+      <div class="review-value" id="reviewAddress" style="text-align: left;">—</div>
+    </div>
+    <div class="review-disclaimer">
+      By clicking "Continue to Checkout," your information will be sent to a licensed provider for review. If your provider determines you are not eligible for treatment, you will receive a full refund. Compounded medications have not been evaluated or approved by the FDA for safety, efficacy, or quality.
+    </div>
+  </div>
+</main>
+<!-- NAVIGATION FOOTER -->
+<div class="nav-footer">
+  <div class="nav-footer-inner">
+    <button class="btn-back" id="btnBack" onclick="prevStep()" style="visibility: hidden;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      Back
+    </button>
+    <button class="btn-continue" id="btnContinue" onclick="nextStep()" disabled>
+      Continue
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </button>
+  </div>
+</div>
+<script>
+  // STATE
+  let currentStep = 1;
+  const totalSteps = 5;
+  let formData = {
+    treatment: null,
+    screeningClear: false,
+    flaggedConditions: [],
+    firstName: '', lastName: '', email: '', phone: '',
+    dobMonth: '', dobDay: '', dobYear: '', sex: '',
+    heightFt: '', heightIn: '', weight: '',
+    address: '', apt: '', city: '', state: '', zip: '',
+    consents: [false, false, false]
+  };
+
+  // POPULATE SELECTS
+  const daySelect = document.getElementById('dobDay');
+  for (let i = 1; i <= 31; i++) {
+    const opt = document.createElement('option');
+    opt.textContent = i;
+    daySelect.appendChild(opt);
+  }
+  const yearSelect = document.getElementById('dobYear');
+  const currentYear = new Date().getFullYear();
+  for (let y = currentYear - 18; y >= currentYear - 90; y--) {
+    const opt = document.createElement('option');
+    opt.textContent = y;
+    yearSelect.appendChild(opt);
+  }
+
+  // NAVIGATION
+  function goToStep(step) {
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.getElementById('step' + step).classList.add('active');
+    currentStep = step;
+    updateUI();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function nextStep() {
+    if (currentStep < totalSteps) {
+      if (currentStep === 5) {
+        const product = formData.treatment === 'semaglutide' ? 'semaglutide-b12' : 'tirzepatide-b12';
+        window.location.href = 'https://clyr.health/products/' + product;
+        return;
+      }
+      goToStep(currentStep + 1);
+    } else {
+      const product = formData.treatment === 'semaglutide' ? 'semaglutide-b12' : 'tirzepatide-b12';
+      window.location.href = 'https://clyr.health/products/' + product;
+    }
+  }
+
+  function prevStep() {
+    if (currentStep > 1) goToStep(currentStep - 1);
+  }
+
+  function updateUI() {
+    const progress = (currentStep / totalSteps) * 100;
+    document.getElementById('progressFill').style.width = progress + '%';
+    document.getElementById('btnBack').style.visibility = currentStep > 1 ? 'visible' : 'hidden';
+    const btn = document.getElementById('btnContinue');
+    if (currentStep === totalSteps) {
+      btn.innerHTML = 'Continue to Checkout <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"><\/polyline><\/svg>';
+    } else {
+      btn.innerHTML = 'Continue <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"><\/polyline><\/svg>';
+    }
+    validateStep();
+    if (currentStep === 5) populateReview();
+  }
+
+  // VALIDATION
+  function validateStep() {
+    const btn = document.getElementById('btnContinue');
+    let valid = false;
+    switch (currentStep) {
+      case 1:
+        valid = formData.treatment !== null;
+        break;
+      case 2:
+        valid = formData.screeningClear || formData.flaggedConditions.length > 0;
+        const noneChecked = document.getElementById('noneApply').classList.contains('checked');
+        const anyChecked = document.querySelectorAll('#screeningList .checkbox-item.checked').length > 0;
+        valid = noneChecked || anyChecked;
+        break;
+      case 3:
+        valid = document.getElementById('firstName').value.trim() &&
+                document.getElementById('lastName').value.trim() &&
+                document.getElementById('email').value.trim() &&
+                document.getElementById('phone').value.trim() &&
+                document.getElementById('dobMonth').value &&
+                document.getElementById('dobDay').value &&
+                document.getElementById('dobYear').value &&
+                document.getElementById('sex').value &&
+                document.getElementById('heightFt').value &&
+                document.getElementById('heightIn').value &&
+                document.getElementById('weight').value;
+        break;
+      case 4:
+        const consents = document.querySelectorAll('#step4 .consent-item');
+        const requiredConsents = [consents[0], consents[1]];
+        const allRequired = requiredConsents.every(c => c.classList.contains('checked'));
+        valid = document.getElementById('address').value.trim() &&
+                document.getElementById('city').value.trim() &&
+                document.getElementById('state').value &&
+                document.getElementById('zip').value.trim() &&
+                allRequired;
+        break;
+      case 5:
+        valid = true;
+        break;
+    }
+    btn.disabled = !valid;
+  }
+
+  // STEP 1: TREATMENT SELECTION
+  function selectTreatment(card, treatment) {
+    document.querySelectorAll('.treatment-card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    formData.treatment = treatment;
+    validateStep();
+  }
+
+  // STEP 2: HEALTH SCREENING
+  function toggleCheckbox(item) {
+    item.classList.toggle('checked');
+    if (item.classList.contains('checked')) {
+      document.getElementById('noneApply').classList.remove('checked');
+      formData.screeningClear = false;
+    }
+    updateScreeningState();
+    validateStep();
+  }
+
+  function toggleNone() {
+    const none = document.getElementById('noneApply');
+    none.classList.toggle('checked');
+    if (none.classList.contains('checked')) {
+      document.querySelectorAll('#screeningList .checkbox-item').forEach(item => {
+        item.classList.remove('checked');
+      });
+      formData.screeningClear = true;
+      formData.flaggedConditions = [];
+      document.getElementById('screeningBlocked').classList.remove('visible');
+    } else {
+      formData.screeningClear = false;
+    }
+    validateStep();
+  }
+
+  function updateScreeningState() {
+    const checked = document.querySelectorAll('#screeningList .checkbox-item.checked');
+    formData.flaggedConditions = Array.from(checked).map(c => c.querySelector('.checkbox-label').textContent);
+    const blocked = document.getElementById('screeningBlocked');
+    if (checked.length >= 3) {
+      blocked.classList.add('visible');
+    } else {
+      blocked.classList.remove('visible');
+    }
+  }
+
+  // STEP 4: CONSENTS
+  function toggleConsent(item) {
+    item.classList.toggle('checked');
+    const box = item.querySelector('.checkbox-box');
+    if (item.classList.contains('checked')) {
+      box.style.background = 'var(--teal)';
+      box.style.borderColor = 'var(--teal)';
+    } else {
+      box.style.background = '';
+      box.style.borderColor = '';
+    }
+    validateStep();
+  }
+
+  // STEP 5: REVIEW
+  function populateReview() {
+    const treatmentNames = {
+      semaglutide: 'Semaglutide + B12',
+      tirzepatide: 'Tirzepatide + B12'
+    };
+    const compoundNames = {
+      semaglutide: 'Compounded GLP-1 with Vitamin B12',
+      tirzepatide: 'Compounded dual GLP-1/GIP with Vitamin B12'
+    };
+    document.getElementById('reviewTreatment').textContent = treatmentNames[formData.treatment] || '\u2014';
+    document.getElementById('reviewCompound').textContent = compoundNames[formData.treatment] || '\u2014';
+    const fn = document.getElementById('firstName').value;
+    const ln = document.getElementById('lastName').value;
+    document.getElementById('reviewName').textContent = fn && ln ? fn + ' ' + ln : '\u2014';
+    document.getElementById('reviewEmail').textContent = document.getElementById('email').value || '\u2014';
+    document.getElementById('reviewPhone').textContent = document.getElementById('phone').value || '\u2014';
+    const m = document.getElementById('dobMonth').value;
+    const d = document.getElementById('dobDay').value;
+    const y = document.getElementById('dobYear').value;
+    document.getElementById('reviewDOB').textContent = m && d && y ? m + ' ' + d + ', ' + y : '\u2014';
+    document.getElementById('reviewSex').textContent = document.getElementById('sex').value || '\u2014';
+    const ft = document.getElementById('heightFt').value;
+    const inch = document.getElementById('heightIn').value;
+    const wt = document.getElementById('weight').value;
+    document.getElementById('reviewBody').textContent = ft && inch && wt ? ft + "'" + inch + '" / ' + wt + ' lbs' : '\u2014';
+    const addr = document.getElementById('address').value;
+    const apt = document.getElementById('apt').value;
+    const city = document.getElementById('city').value;
+    const state = document.getElementById('state').value;
+    const zip = document.getElementById('zip').value;
+    let fullAddr = addr;
+    if (apt) fullAddr += ', ' + apt;
+    if (city) fullAddr += '\n' + city;
+    if (state) fullAddr += ', ' + state;
+    if (zip) fullAddr += ' ' + zip;
+    document.getElementById('reviewAddress').innerHTML = fullAddr.replace('\n', '<br>') || '\u2014';
+  }
+
+  // INPUT LISTENERS
+  document.querySelectorAll('.form-input').forEach(input => {
+    input.addEventListener('input', validateStep);
+    input.addEventListener('change', validateStep);
+  });
+
+  // Initial state
+  updateUI();
+<\/script>
+</body>
+</html>
