@@ -928,9 +928,9 @@
     document.getElementById('btnBack').style.visibility = currentStep > 1 ? 'visible' : 'hidden';
     const btn = document.getElementById('btnContinue');
     if (currentStep === totalSteps) {
-      btn.innerHTML = 'Continue to Checkout <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"><\/polyline><\/svg>';
+      btn.innerHTML = 'Continue to Checkout <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"></polyline></svg>';
     } else {
-      btn.innerHTML = 'Continue <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"><\/polyline><\/svg>';
+      btn.innerHTML = 'Continue <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"></polyline></svg>';
     }
     validateStep();
     if (currentStep === 5) populateReview();
@@ -1087,6 +1087,6 @@
 
   // Initial state
   updateUI();
-<\/script>
+</script>
 </body>
 </html>
