@@ -905,6 +905,7 @@
   }
 
   function nextStep() {
+    console.log('nextStep called, currentStep:', currentStep, 'totalSteps:', totalSteps);
     if (currentStep < totalSteps) {
       goToStep(currentStep + 1);
     } else {
@@ -914,69 +915,71 @@
 
   async function submitIntake() {
     const btn = document.getElementById('btnContinue');
-    btn.disabled = true;
-    btn.textContent = 'Submitting...';
-
-    // Gather all form data
-    const payload = {
-      firstName: document.getElementById('firstName').value.trim(),
-      lastName: document.getElementById('lastName').value.trim(),
-      email: document.getElementById('email').value.trim(),
-      phone: document.getElementById('phone').value.trim(),
-      dobMonth: document.getElementById('dobMonth').value,
-      dobDay: document.getElementById('dobDay').value,
-      dobYear: document.getElementById('dobYear').value,
-      sex: document.getElementById('sex').value,
-      heightFt: document.getElementById('heightFt').value,
-      heightIn: document.getElementById('heightIn').value,
-      weight: document.getElementById('weight').value,
-      treatment: formData.treatment,
-      screeningClear: formData.screeningClear,
-      flaggedConditions: formData.flaggedConditions,
-      consents: formData.consents,
-      address: document.getElementById('address').value.trim(),
-      apt: document.getElementById('apt').value.trim(),
-      city: document.getElementById('city').value.trim(),
-      state: document.getElementById('state').value,
-      zip: document.getElementById('zip').value.trim(),
-      visitor_id: localStorage.getItem('clyr_vid') || null,
-      utm_source: new URLSearchParams(window.location.search).get('utm_source'),
-      utm_medium: new URLSearchParams(window.location.search).get('utm_medium'),
-      utm_campaign: new URLSearchParams(window.location.search).get('utm_campaign')
-    };
-
     try {
+      btn.disabled = true;
+      btn.innerHTML = 'Submitting...';
+
+      // Gather all form data
+      const payload = {
+        firstName: document.getElementById('firstName').value.trim(),
+        lastName: document.getElementById('lastName').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        phone: document.getElementById('phone').value.trim(),
+        dobMonth: document.getElementById('dobMonth').value,
+        dobDay: document.getElementById('dobDay').value,
+        dobYear: document.getElementById('dobYear').value,
+        sex: document.getElementById('sex').value,
+        heightFt: document.getElementById('heightFt').value,
+        heightIn: document.getElementById('heightIn').value,
+        weight: document.getElementById('weight').value,
+        treatment: formData.treatment,
+        screeningClear: formData.screeningClear,
+        flaggedConditions: formData.flaggedConditions,
+        consents: Array.from(document.querySelectorAll('#step4 .consent-item')).map(c => c.classList.contains('checked')),
+        address: document.getElementById('address').value.trim(),
+        apt: document.getElementById('apt') ? document.getElementById('apt').value.trim() : '',
+        city: document.getElementById('city').value.trim(),
+        state: document.getElementById('state').value,
+        zip: document.getElementById('zip').value.trim(),
+        visitor_id: localStorage.getItem('clyr_vid') || null,
+        utm_source: new URLSearchParams(window.location.search).get('utm_source'),
+        utm_medium: new URLSearchParams(window.location.search).get('utm_medium'),
+        utm_campaign: new URLSearchParams(window.location.search).get('utm_campaign')
+      };
+
+      console.log('CLYR Intake payload:', JSON.stringify(payload));
+
       const response = await fetch('https://clyr-backend.onrender.com/api/intake', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       });
       const result = await response.json();
+      console.log('CLYR Intake response:', JSON.stringify(result));
 
       if (result.success) {
-        // Track funnel event
         fetch('https://clyr-backend.onrender.com/api/track', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ event: 'intake_completed', visitor_id: payload.visitor_id, page: '/intake' })
-        }).catch(() => {});
+        }).catch(function(){});
 
-        // For now, show success. Later this will redirect to Stripe checkout.
-        btn.textContent = 'Submitted ✓';
+        btn.innerHTML = 'Submitted ✓';
         btn.style.background = '#34d399';
-        setTimeout(() => {
-          alert('Thank you, ' + payload.firstName + '! Your intake has been submitted. A licensed provider will review your information. We will reach out via email at ' + payload.email + '.');
+        setTimeout(function() {
+          alert('Thank you, ' + payload.firstName + '! Your intake has been submitted. A licensed provider will review your information.');
           window.location.href = '/';
         }, 500);
       } else {
         btn.disabled = false;
-        btn.textContent = 'Continue to Checkout';
-        alert('Error: ' + (result.error || 'Something went wrong. Please try again.'));
+        btn.innerHTML = 'Continue to Checkout <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"></polyline></svg>';
+        alert('Server error: ' + (result.error || 'Something went wrong.'));
       }
     } catch (err) {
+      console.error('CLYR Intake error:', err);
       btn.disabled = false;
-      btn.textContent = 'Continue to Checkout';
-      alert('Connection error. Please check your internet and try again.');
+      btn.innerHTML = 'Continue to Checkout <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"></polyline></svg>';
+      alert('Error submitting intake: ' + err.message);
     }
   }
 
