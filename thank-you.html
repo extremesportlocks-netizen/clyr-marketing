@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome to CLYR Health</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes checkDraw{from{stroke-dashoffset:50}to{stroke-dashoffset:0}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@keyframes slideRight{from{width:0}to{width:33%}}
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--teal:#00B4C5;--teal-dark:#009BA8;--dark:#1a1a2e;--gray-50:#f8fafb;--gray-100:#f1f4f7;--gray-400:#9ca3af;--gray-600:#4b5563;--radius:16px}
+body{font-family:'DM Sans',sans-serif;background:var(--gray-50);color:var(--dark);min-height:100vh;display:flex;flex-direction:column}
+
+/* NAV */
+.nav{background:#fff;border-bottom:1px solid rgba(0,0,0,0.06);padding:18px 32px;display:flex;justify-content:center}
+.nav-logo{font-size:24px;font-weight:700;letter-spacing:-0.5px;color:var(--dark)}
+.nav-logo span{color:var(--teal)}
+
+/* MAIN */
+.main{flex:1;display:flex;align-items:center;justify-content:center;padding:40px 24px}
+.card{max-width:620px;width:100%;animation:fadeUp 0.8s ease}
+
+/* SUCCESS CIRCLE */
+.success-badge{width:100px;height:100px;margin:0 auto 32px;position:relative;animation:float 4s ease-in-out infinite}
+.success-circle{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,#00B4C5,#00d4a8);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 40px rgba(0,180,197,0.25),0 0 0 12px rgba(0,180,197,0.06),0 0 0 24px rgba(0,180,197,0.03)}
+.success-circle svg{width:44px;height:44px;stroke:#fff;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.success-circle svg polyline{stroke-dasharray:50;animation:checkDraw 0.6s ease 0.3s both}
+
+/* CONTENT */
+.card-content{text-align:center;background:#fff;border-radius:24px;padding:48px 40px;box-shadow:0 1px 3px rgba(0,0,0,0.04),0 8px 40px rgba(0,0,0,0.03);border:1px solid rgba(0,0,0,0.04)}
+.title{font-family:'Instrument Serif',serif;font-size:36px;font-weight:400;line-height:1.2;margin-bottom:8px;color:var(--dark);letter-spacing:-0.5px}
+.title em{font-style:italic;color:var(--teal)}
+.subtitle{font-size:16px;color:var(--gray-600);line-height:1.6;margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto}
+
+/* PROGRESS STEPS */
+.journey{background:var(--gray-50);border-radius:16px;padding:28px 32px;margin-bottom:32px;border:1px solid rgba(0,0,0,0.04)}
+.journey-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--gray-400);margin-bottom:20px}
+.steps{display:flex;flex-direction:column;gap:0}
+.step{display:flex;align-items:flex-start;gap:16px;position:relative;padding-bottom:20px}
+.step:last-child{padding-bottom:0}
+.step:not(:last-child)::after{content:'';position:absolute;left:15px;top:32px;bottom:0;width:1px;background:rgba(0,0,0,0.08)}
+.step-dot{width:30px;height:30px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;position:relative;z-index:1}
+.step-dot.done{background:var(--teal);color:#fff;box-shadow:0 2px 8px rgba(0,180,197,0.3)}
+.step-dot.active{background:#fff;color:var(--teal);border:2px solid var(--teal);animation:pulse 2s ease infinite}
+.step-dot.pending{background:var(--gray-100);color:var(--gray-400);border:1px solid rgba(0,0,0,0.08)}
+.step-info{padding-top:4px}
+.step-label{font-size:14px;font-weight:600;color:var(--dark);margin-bottom:2px}
+.step-desc{font-size:12px;color:var(--gray-400);line-height:1.5}
+.step.done .step-label{color:var(--gray-400);text-decoration:line-through;text-decoration-color:rgba(0,0,0,0.15)}
+
+/* WHAT TO EXPECT */
+.expect{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:32px}
+.expect-item{background:var(--gray-50);border:1px solid rgba(0,0,0,0.04);border-radius:14px;padding:18px 20px;text-align:left;display:flex;gap:14px;align-items:flex-start}
+.expect-icon{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,rgba(0,180,197,0.1),rgba(0,180,197,0.05));display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
+.expect-label{font-size:13px;font-weight:600;color:var(--dark);margin-bottom:2px}
+.expect-desc{font-size:11px;color:var(--gray-400);line-height:1.5}
+
+/* EMAIL NOTICE */
+.email-notice{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,rgba(0,180,197,0.06),rgba(0,212,168,0.04));border:1px solid rgba(0,180,197,0.12);border-radius:14px;padding:18px 24px;margin-bottom:32px;text-align:left}
+.email-notice-icon{width:40px;height:40px;border-radius:50%;background:rgba(0,180,197,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px}
+.email-notice-text{font-size:13px;color:var(--gray-600);line-height:1.6}
+.email-notice-text strong{color:var(--dark)}
+
+/* CTA */
+.home-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:var(--teal);color:#fff;border:none;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;cursor:pointer;text-decoration:none;transition:all 0.3s}
+.home-btn:hover{background:var(--teal-dark);transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,180,197,0.2)}
+.home-btn svg{transition:transform 0.3s}
+.home-btn:hover svg{transform:translateX(3px)}
+
+/* FOOTER */
+.footer{text-align:center;padding:24px;font-size:12px;color:var(--gray-400)}
+.footer a{color:var(--teal);text-decoration:none}
+
+/* CONFETTI-LIKE DECORATIVE DOTS */
+.decor{position:fixed;pointer-events:none;z-index:0}
+.decor-1{top:15%;left:8%;width:6px;height:6px;border-radius:50%;background:var(--teal);opacity:0.15;animation:float 5s ease-in-out infinite}
+.decor-2{top:25%;right:12%;width:8px;height:8px;border-radius:50%;background:var(--teal);opacity:0.1;animation:float 6s ease-in-out infinite 1s}
+.decor-3{bottom:20%;left:15%;width:5px;height:5px;border-radius:50%;background:var(--teal);opacity:0.12;animation:float 4s ease-in-out infinite 0.5s}
+.decor-4{top:40%;right:6%;width:10px;height:10px;border-radius:2px;background:var(--teal);opacity:0.06;transform:rotate(45deg);animation:float 7s ease-in-out infinite 2s}
+.decor-5{bottom:30%;right:20%;width:4px;height:4px;border-radius:50%;background:#00d4a8;opacity:0.15;animation:float 5s ease-in-out infinite 1.5s}
+
+@media(max-width:600px){
+  .main{padding:24px 16px}.card-content{padding:36px 24px}.title{font-size:28px}
+  .expect{grid-template-columns:1fr}.subtitle{font-size:14px}
+}
+</style>
+</head>
+<body>
+<div class="decor decor-1"></div><div class="decor decor-2"></div><div class="decor decor-3"></div><div class="decor decor-4"></div><div class="decor decor-5"></div>
+
+<nav class="nav">
+  <div class="nav-logo">CLY<span>R</span></div>
+</nav>
+
+<main class="main">
+  <div class="card">
+    <div class="success-badge">
+      <div class="success-circle">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      </div>
+    </div>
+    <div class="card-content">
+      <h1 class="title">Thank you for choosing<br>CLYR <em>Health</em></h1>
+      <p class="subtitle">Your intake has been submitted successfully. You're in our queue and will be notified as soon as possible to schedule your provider consultation.</p>
+
+      <div class="journey">
+        <div class="journey-title">Your journey</div>
+        <div class="steps">
+          <div class="step done">
+            <div class="step-dot done">✓</div>
+            <div class="step-info">
+              <div class="step-label">Intake completed</div>
+              <div class="step-desc">Your health profile is on file</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-dot active">2</div>
+            <div class="step-info">
+              <div class="step-label">Provider review</div>
+              <div class="step-desc">A licensed provider will review your information</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-dot pending">3</div>
+            <div class="step-info">
+              <div class="step-label">Consultation scheduled</div>
+              <div class="step-desc">You'll receive a link to schedule your visit</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-dot pending">4</div>
+            <div class="step-info">
+              <div class="step-label">Prescription & shipping</div>
+              <div class="step-desc">Medication shipped directly to your door</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="expect">
+        <div class="expect-item">
+          <div class="expect-icon">📧</div>
+          <div>
+            <div class="expect-label">Check your email</div>
+            <div class="expect-desc">Confirmation and next steps sent to your inbox</div>
+          </div>
+        </div>
+        <div class="expect-item">
+          <div class="expect-icon">⏱️</div>
+          <div>
+            <div class="expect-label">Fast turnaround</div>
+            <div class="expect-desc">Most consultations are scheduled within 24–48 hours</div>
+          </div>
+        </div>
+        <div class="expect-item">
+          <div class="expect-icon">🔒</div>
+          <div>
+            <div class="expect-label">Secure & private</div>
+            <div class="expect-desc">Your health data is encrypted and HIPAA-compliant</div>
+          </div>
+        </div>
+        <div class="expect-item">
+          <div class="expect-icon">💬</div>
+          <div>
+            <div class="expect-label">Questions?</div>
+            <div class="expect-desc">Reach us anytime at support@clyr.health</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="email-notice">
+        <div class="email-notice-icon">✉️</div>
+        <div class="email-notice-text">
+          <strong>Keep an eye on your inbox.</strong> We'll send your consultation details and any follow-up questions from your provider to the email you provided.
+        </div>
+      </div>
+
+      <a href="/" class="home-btn">
+        Back to CLYR Health
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </a>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  © 2026 CLYR Health. All rights reserved. <a href="/">clyr.health</a>
+</footer>
+
+<!-- CLYR Analytics Tracker -->
+<script>
+(function(){
+  var vid = localStorage.getItem('clyr_vid');
+  if (!vid) { vid = crypto.randomUUID(); localStorage.setItem('clyr_vid', vid); }
+  fetch('https://clyr-backend.onrender.com/api/track', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ page: '/thank-you', referrer: document.referrer, visitor_id: vid })
+  }).catch(function(){});
+})();
+</script>
+</body>
+</html>

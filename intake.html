@@ -967,9 +967,8 @@
         btn.innerHTML = 'Submitted ✓';
         btn.style.background = '#34d399';
         setTimeout(function() {
-          alert('Thank you, ' + payload.firstName + '! Your intake has been submitted. A licensed provider will review your information.');
-          window.location.href = '/';
-        }, 500);
+          window.location.href = '/thank-you.html';
+        }, 600);
       } else {
         btn.disabled = false;
         btn.innerHTML = 'Continue to Checkout <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"></polyline></svg>';
