@@ -8,7 +8,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<script>function initAutocomplete(){try{var ac=new google.maps.places.Autocomplete(document.getElementById('address'),{componentRestrictions:{country:'us'},types:['address'],fields:['address_components']});ac.addListener('place_changed',function(){var p=ac.getPlace();if(!p.address_components)return;var st='',ci='',sa='',zi='';p.address_components.forEach(function(c){var t=c.types;if(t.includes('street_number'))st=c.long_name+' ';if(t.includes('route'))st+=c.long_name;if(t.includes('locality')||t.includes('sublocality_level_1'))ci=c.long_name;if(t.includes('administrative_area_level_1'))sa=c.short_name;if(t.includes('postal_code'))zi=c.long_name});document.getElementById('address').value=st.trim();document.getElementById('city').value=ci;if(sa)document.getElementById('state').value=sa;document.getElementById('zip').value=zi;['address','city','zip'].forEach(function(id){document.getElementById(id).classList.add('ok')});if(sa)document.getElementById('state').classList.add('ok');document.getElementById('addrHint').innerHTML='&#10003; Address auto-filled';document.getElementById('addrHint').style.color='#22C55E';validateStep()})}catch(e){console.log('Places API error',e)}}</script>
 <style>
   :root {
     --white: #FFFFFF;
@@ -368,9 +367,6 @@
     font-weight: 600;
     color: var(--gray-600);
     letter-spacing: 0.01em;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
   }
   .form-input {
     padding: 14px 16px;
@@ -531,26 +527,7 @@
     padding-top: 16px;
     border-top: 1px solid var(--gray-100);
   }
-  @keyframes checkPop{0%{transform:scale(0)}50%{transform:scale(1.3)}100%{transform:scale(1)}}
-  @keyframes bmiPulse{0%,100%{box-shadow:0 0 0 0 rgba(0,180,197,0.15)}50%{box-shadow:0 0 0 8px rgba(0,180,197,0)}}
-  .fi-ok{color:#22C55E;font-size:11px;font-weight:700;display:none;align-items:center;gap:3px}.fi-ok.vis{display:inline-flex}.fi-ok svg{animation:checkPop .3s ease}
-  .form-input.ok{border-color:#22C55E}
-  .form-input.err{border-color:var(--red);animation:shake .3s ease}
-  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
-  .fi-errmsg{font-size:12px;color:var(--red);margin-top:2px;display:none}.fi-errmsg.vis{display:block}
-  .bmi-card{margin-top:20px;padding:18px 20px;border-radius:var(--radius);border:1.5px solid var(--gray-200);background:var(--white);display:none;align-items:center;gap:16px;animation:fadeIn .4s ease}
-  .bmi-card.vis{display:flex}
-  .bmi-circle{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:17px;font-weight:800;animation:bmiPulse 2s ease infinite}
-  .bmi-info{flex:1}.bmi-val{font-size:14px;font-weight:700}.bmi-cat{font-size:12px;color:var(--gray-500);margin-top:2px}
-  .bmi-bar{height:5px;background:var(--gray-100);border-radius:3px;margin-top:8px;overflow:hidden}.bmi-fill{height:100%;border-radius:3px;transition:width .8s cubic-bezier(.23,1,.32,1)}
-  .addr-hint{font-size:11px;color:var(--gray-400);margin-top:4px;display:flex;align-items:center;gap:4px}
-  .pac-container{border-radius:12px!important;border:1.5px solid var(--gray-200)!important;box-shadow:0 4px 20px rgba(0,0,0,0.06)!important;margin-top:4px!important;font-family:var(--sans)!important;z-index:10000!important}
-  .pac-item{padding:12px 16px!important;font-family:var(--sans)!important;font-size:14px!important;cursor:pointer!important;border-top:1px solid var(--gray-100)!important}
-  .pac-item:first-child{border-top:none!important}.pac-item:hover{background:var(--teal-light)!important}
-  .pac-item-query{font-weight:600!important;color:var(--dark)!important}.pac-icon{display:none!important}
-  .hw-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-  .ht-row{display:flex;gap:8px}.ht-row select{flex:1}
-  @media (max-width:600px){.hw-row{grid-template-columns:1fr}}
+  @media (max-width: 600px) {
     .form-grid { grid-template-columns: 1fr; }
     .form-row { flex-direction: column; }
     .treatment-card-header { flex-direction: column; gap: 8px; }
@@ -712,24 +689,23 @@
     <p class="step-subtitle">We'll use this to set up your account and connect you with a licensed provider in your state.</p>
     <div class="form-grid">
       <div class="form-group">
-        <label class="form-label">First name * <span class="fi-ok" id="okFn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span></label>
+        <label class="form-label">First name *</label>
         <input type="text" class="form-input" id="firstName" placeholder="First name" required>
       </div>
       <div class="form-group">
-        <label class="form-label">Last name * <span class="fi-ok" id="okLn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span></label>
+        <label class="form-label">Last name *</label>
         <input type="text" class="form-input" id="lastName" placeholder="Last name" required>
       </div>
       <div class="form-group full-width">
-        <label class="form-label">Email address * <span class="fi-ok" id="okEmail"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span></label>
-        <input type="email" class="form-input" id="email" placeholder="you@example.com" autocomplete="email" required>
-        <div class="fi-errmsg" id="errEmail">Please enter a valid email address</div>
+        <label class="form-label">Email address *</label>
+        <input type="email" class="form-input" id="email" placeholder="you@example.com" required>
       </div>
       <div class="form-group full-width">
-        <label class="form-label">Phone number * <span class="fi-ok" id="okPhone"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span></label>
-        <input type="tel" class="form-input" id="phone" placeholder="(555) 123-4567" autocomplete="tel" maxlength="14" required>
+        <label class="form-label">Phone number *</label>
+        <input type="tel" class="form-input" id="phone" placeholder="(555) 123-4567" required>
       </div>
       <div class="form-group full-width">
-        <label class="form-label">Date of birth * <span class="fi-ok" id="okDob"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span></label>
+        <label class="form-label">Date of birth *</label>
         <div class="dob-row">
           <select class="form-input" id="dobMonth">
             <option value="">Month</option>
@@ -747,30 +723,31 @@
         </div>
       </div>
       <div class="form-group full-width">
-        <label class="form-label">Biological sex * <span class="fi-ok" id="okSex"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span></label>
+        <label class="form-label">Biological sex *</label>
         <select class="form-input" id="sex">
           <option value="">Select</option>
           <option>Male</option>
           <option>Female</option>
         </select>
       </div>
-      <div class="form-group full-width">
-        <label class="form-label">Height & weight * <span class="fi-ok" id="okHw"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span></label>
-        <div class="hw-row">
-          <div class="ht-row">
-            <select class="form-input" id="heightFt">
-              <option value="">Ft</option><option>4</option><option>5</option><option>6</option><option>7</option>
-            </select>
-            <select class="form-input" id="heightIn">
-              <option value="">In</option><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option>
-            </select>
-          </div>
-          <input type="number" class="form-input" id="weight" placeholder="Weight (lbs)" min="80" max="700">
+      <div class="form-group">
+        <label class="form-label">Height *</label>
+        <div style="display: flex; gap: 8px;">
+          <select class="form-input" id="heightFt" style="flex:1;">
+            <option value="">Ft</option>
+            <option>4</option><option>5</option><option>6</option><option>7</option>
+          </select>
+          <select class="form-input" id="heightIn" style="flex:1;">
+            <option value="">In</option>
+            <option>0</option><option>1</option><option>2</option><option>3</option>
+            <option>4</option><option>5</option><option>6</option><option>7</option>
+            <option>8</option><option>9</option><option>10</option><option>11</option>
+          </select>
         </div>
-        <div class="bmi-card" id="bmiCard">
-          <div class="bmi-circle" id="bmiCircle">--</div>
-          <div class="bmi-info"><div class="bmi-val" id="bmiVal">BMI: --</div><div class="bmi-cat" id="bmiCat">Enter height & weight</div><div class="bmi-bar"><div class="bmi-fill" id="bmiFill" style="width:0"></div></div></div>
-        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Current weight (lbs) *</label>
+        <input type="number" class="form-input" id="weight" placeholder="180">
       </div>
     </div>
   </div>
@@ -781,9 +758,8 @@
     <p class="step-subtitle">Your medication will be shipped directly to you from our licensed compounding pharmacy.</p>
     <div class="form-grid">
       <div class="form-group full-width">
-        <label class="form-label">Street address * <span class="fi-ok" id="okAddr"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span></label>
-        <input type="text" class="form-input" id="address" placeholder="Start typing your address..." autocomplete="off" required>
-        <div class="addr-hint" id="addrHint">&#128269; Start typing for address suggestions</div>
+        <label class="form-label">Street address *</label>
+        <input type="text" class="form-input" id="address" placeholder="123 Main St" required>
       </div>
       <div class="form-group full-width">
         <label class="form-label">Apartment, suite, etc.</label>
@@ -797,10 +773,8 @@
         <label class="form-label">State *</label>
         <select class="form-input" id="state">
           <option value="">Select state</option>
-          </select>
-          <script>
-          (function(){var states=[["AL","Alabama"],["AK","Alaska"],["AZ","Arizona"],["AR","Arkansas"],["CA","California"],["CO","Colorado"],["CT","Connecticut"],["DE","Delaware"],["FL","Florida"],["GA","Georgia"],["HI","Hawaii"],["ID","Idaho"],["IL","Illinois"],["IN","Indiana"],["IA","Iowa"],["KS","Kansas"],["KY","Kentucky"],["LA","Louisiana"],["ME","Maine"],["MD","Maryland"],["MA","Massachusetts"],["MI","Michigan"],["MN","Minnesota"],["MS","Mississippi"],["MO","Missouri"],["MT","Montana"],["NE","Nebraska"],["NV","Nevada"],["NH","New Hampshire"],["NJ","New Jersey"],["NM","New Mexico"],["NY","New York"],["NC","North Carolina"],["ND","North Dakota"],["OH","Ohio"],["OK","Oklahoma"],["OR","Oregon"],["PA","Pennsylvania"],["RI","Rhode Island"],["SC","South Carolina"],["SD","South Dakota"],["TN","Tennessee"],["TX","Texas"],["UT","Utah"],["VT","Vermont"],["VA","Virginia"],["WA","Washington"],["WV","West Virginia"],["WI","Wisconsin"],["WY","Wyoming"]];var s=document.getElementById('state');states.forEach(function(st){var o=document.createElement('option');o.value=st[0];o.textContent=st[1];s.appendChild(o)})})();
-          </script>
+          <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option>
+        </select>
       </div>
       <div class="form-group">
         <label class="form-label">ZIP code *</label>
@@ -862,7 +836,7 @@
         <span class="review-value" id="reviewSex">—</span>
       </div>
       <div class="review-row">
-        <span class="review-label">Height / Weight / BMI</span>
+        <span class="review-label">Height / Weight</span>
         <span class="review-value" id="reviewBody">—</span>
       </div>
     </div>
@@ -895,109 +869,35 @@
   // STATE
   let currentStep = 1;
   const totalSteps = 5;
-  let formData = { treatment: null, screeningClear: false, flaggedConditions: [] };
+  let formData = {
+    treatment: null,
+    screeningClear: false,
+    flaggedConditions: [],
+    firstName: '', lastName: '', email: '', phone: '',
+    dobMonth: '', dobDay: '', dobYear: '', sex: '',
+    heightFt: '', heightIn: '', weight: '',
+    address: '', apt: '', city: '', state: '', zip: '',
+    consents: [false, false, false]
+  };
 
   // POPULATE SELECTS
   const daySelect = document.getElementById('dobDay');
-  for (let i = 1; i <= 31; i++) { const opt = document.createElement('option'); opt.textContent = i; opt.value = i; daySelect.appendChild(opt); }
+  for (let i = 1; i <= 31; i++) {
+    const opt = document.createElement('option');
+    opt.textContent = i;
+    daySelect.appendChild(opt);
+  }
   const yearSelect = document.getElementById('dobYear');
   const currentYear = new Date().getFullYear();
-  for (let y = currentYear - 18; y >= currentYear - 90; y--) { const opt = document.createElement('option'); opt.textContent = y; opt.value = y; yearSelect.appendChild(opt); }
-
-  // ─── PHONE AUTO-FORMAT ─────────────────────
-  document.getElementById('phone').addEventListener('input', function(e) {
-    var x = e.target.value.replace(/\D/g, '').substring(0, 10);
-    var f = '';
-    if (x.length > 0) f = '(' + x.substring(0, 3);
-    if (x.length >= 3) f += ') ' + x.substring(3, 6);
-    if (x.length >= 6) f += '-' + x.substring(6, 10);
-    e.target.value = f;
-    var ok = x.length === 10;
-    e.target.classList.toggle('ok', ok);
-    document.getElementById('okPhone').classList.toggle('vis', ok);
-    validateStep();
-  });
-
-  // ─── EMAIL VALIDATION ─────────────────────
-  document.getElementById('email').addEventListener('blur', function() {
-    var v = this.value.trim();
-    var ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
-    this.classList.toggle('ok', ok && v.length > 0);
-    this.classList.toggle('err', !ok && v.length > 3);
-    document.getElementById('errEmail').classList.toggle('vis', !ok && v.length > 3);
-    document.getElementById('okEmail').classList.toggle('vis', ok);
-  });
-  document.getElementById('email').addEventListener('input', function() { validateStep(); });
-
-  // ─── NAME FIELD VALIDATION ────────────────
-  ['firstName', 'lastName'].forEach(function(id) {
-    document.getElementById(id).addEventListener('input', function() {
-      var ok = this.value.trim().length >= 2;
-      this.classList.toggle('ok', ok);
-      document.getElementById(id === 'firstName' ? 'okFn' : 'okLn').classList.toggle('vis', ok);
-      validateStep();
-    });
-  });
-
-  // ─── DOB & SEX VALIDATION ─────────────────
-  ['dobMonth', 'dobDay', 'dobYear', 'sex'].forEach(function(id) {
-    document.getElementById(id).addEventListener('change', function() {
-      this.classList.toggle('ok', !!this.value);
-      var m = document.getElementById('dobMonth').value;
-      var d = document.getElementById('dobDay').value;
-      var yr = document.getElementById('dobYear').value;
-      if (m && d && yr) document.getElementById('okDob').classList.add('vis');
-      if (document.getElementById('sex').value) document.getElementById('okSex').classList.add('vis');
-      validateStep();
-    });
-  });
-
-  // ─── BMI CALCULATOR ───────────────────────
-  ['heightFt', 'heightIn', 'weight'].forEach(function(id) {
-    document.getElementById(id).addEventListener('change', calcBMI);
-    document.getElementById(id).addEventListener('input', calcBMI);
-  });
-
-  function calcBMI() {
-    var ft = parseInt(document.getElementById('heightFt').value) || 0;
-    var inc = parseInt(document.getElementById('heightIn').value) || 0;
-    var wt = parseInt(document.getElementById('weight').value) || 0;
-    var card = document.getElementById('bmiCard');
-    if (ft && wt) {
-      var ti = ft * 12 + inc;
-      var bmi = (wt / (ti * ti) * 703).toFixed(1);
-      var cat = '', color = '', pct = 0;
-      if (bmi < 18.5) { cat = 'Underweight'; color = '#3b82f6'; pct = 15; }
-      else if (bmi < 25) { cat = 'Normal weight'; color = '#22c55e'; pct = 35; }
-      else if (bmi < 30) { cat = 'Overweight'; color = '#f59e0b'; pct = 55; }
-      else if (bmi < 35) { cat = 'Obese (Class I)'; color = '#f97316'; pct = 70; }
-      else if (bmi < 40) { cat = 'Obese (Class II)'; color = '#ef4444'; pct = 85; }
-      else { cat = 'Obese (Class III)'; color = '#dc2626'; pct = 95; }
-      document.getElementById('bmiCircle').textContent = bmi;
-      document.getElementById('bmiCircle').style.background = color + '18';
-      document.getElementById('bmiCircle').style.color = color;
-      document.getElementById('bmiVal').textContent = 'BMI: ' + bmi;
-      document.getElementById('bmiCat').textContent = cat;
-      document.getElementById('bmiFill').style.width = pct + '%';
-      document.getElementById('bmiFill').style.background = color;
-      card.classList.add('vis');
-      document.getElementById('okHw').classList.add('vis');
-    } else {
-      card.classList.remove('vis');
-      document.getElementById('okHw').classList.remove('vis');
-    }
-    validateStep();
+  for (let y = currentYear - 18; y >= currentYear - 90; y--) {
+    const opt = document.createElement('option');
+    opt.textContent = y;
+    yearSelect.appendChild(opt);
   }
-
-  // ─── ZIP FORMAT ───────────────────────────
-  document.getElementById('zip').addEventListener('input', function(e) {
-    e.target.value = e.target.value.replace(/[^\d-]/g, '').substring(0, 10);
-    validateStep();
-  });
 
   // NAVIGATION
   function goToStep(step) {
-    document.querySelectorAll('.step').forEach(function(s) { s.classList.remove('active'); });
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
     document.getElementById('step' + step).classList.add('active');
     currentStep = step;
     updateUI();
@@ -1005,22 +905,96 @@
   }
 
   function nextStep() {
-    if (currentStep < totalSteps) goToStep(currentStep + 1);
-    else submitIntake();
+    console.log('nextStep called, currentStep:', currentStep, 'totalSteps:', totalSteps);
+    if (currentStep < totalSteps) {
+      goToStep(currentStep + 1);
+    } else {
+      submitIntake();
+    }
   }
 
-  function prevStep() { if (currentStep > 1) goToStep(currentStep - 1); }
+  async function submitIntake() {
+    const btn = document.getElementById('btnContinue');
+    try {
+      btn.disabled = true;
+      btn.innerHTML = 'Submitting...';
+
+      // Gather all form data
+      const payload = {
+        firstName: document.getElementById('firstName').value.trim(),
+        lastName: document.getElementById('lastName').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        phone: document.getElementById('phone').value.trim(),
+        dobMonth: document.getElementById('dobMonth').value,
+        dobDay: document.getElementById('dobDay').value,
+        dobYear: document.getElementById('dobYear').value,
+        sex: document.getElementById('sex').value,
+        heightFt: document.getElementById('heightFt').value,
+        heightIn: document.getElementById('heightIn').value,
+        weight: document.getElementById('weight').value,
+        treatment: formData.treatment,
+        screeningClear: formData.screeningClear,
+        flaggedConditions: formData.flaggedConditions,
+        consents: Array.from(document.querySelectorAll('#step4 .consent-item')).map(c => c.classList.contains('checked')),
+        address: document.getElementById('address').value.trim(),
+        apt: document.getElementById('apt') ? document.getElementById('apt').value.trim() : '',
+        city: document.getElementById('city').value.trim(),
+        state: document.getElementById('state').value,
+        zip: document.getElementById('zip').value.trim(),
+        visitor_id: localStorage.getItem('clyr_vid') || null,
+        utm_source: new URLSearchParams(window.location.search).get('utm_source'),
+        utm_medium: new URLSearchParams(window.location.search).get('utm_medium'),
+        utm_campaign: new URLSearchParams(window.location.search).get('utm_campaign')
+      };
+
+      console.log('CLYR Intake payload:', JSON.stringify(payload));
+
+      const response = await fetch('https://clyr-backend.onrender.com/api/intake', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const result = await response.json();
+      console.log('CLYR Intake response:', JSON.stringify(result));
+
+      if (result.success) {
+        fetch('https://clyr-backend.onrender.com/api/track', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ event: 'intake_completed', visitor_id: payload.visitor_id, page: '/intake' })
+        }).catch(function(){});
+
+        btn.innerHTML = 'Submitted ✓';
+        btn.style.background = '#34d399';
+        setTimeout(function() {
+          window.location.href = '/thank-you.html';
+        }, 600);
+      } else {
+        btn.disabled = false;
+        btn.innerHTML = 'Continue to Checkout <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"></polyline></svg>';
+        alert('Server error: ' + (result.error || 'Something went wrong.'));
+      }
+    } catch (err) {
+      console.error('CLYR Intake error:', err);
+      btn.disabled = false;
+      btn.innerHTML = 'Continue to Checkout <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"></polyline></svg>';
+      alert('Error submitting intake: ' + err.message);
+    }
+  }
+
+  function prevStep() {
+    if (currentStep > 1) goToStep(currentStep - 1);
+  }
 
   function updateUI() {
-    var progress = (currentStep / totalSteps) * 100;
+    const progress = (currentStep / totalSteps) * 100;
     document.getElementById('progressFill').style.width = progress + '%';
     document.getElementById('btnBack').style.visibility = currentStep > 1 ? 'visible' : 'hidden';
-    var btn = document.getElementById('btnContinue');
-    var arrow = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"></polyline></svg>';
+    const btn = document.getElementById('btnContinue');
     if (currentStep === totalSteps) {
-      btn.innerHTML = 'Submit Intake ' + arrow;
+      btn.innerHTML = 'Continue to Checkout <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"></polyline></svg>';
     } else {
-      btn.innerHTML = 'Continue ' + arrow;
+      btn.innerHTML = 'Continue <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"></polyline></svg>';
     }
     validateStep();
     if (currentStep === 5) populateReview();
@@ -1028,54 +1002,57 @@
 
   // VALIDATION
   function validateStep() {
-    var btn = document.getElementById('btnContinue');
-    var valid = false;
+    const btn = document.getElementById('btnContinue');
+    let valid = false;
     switch (currentStep) {
       case 1:
         valid = formData.treatment !== null;
         break;
       case 2:
-        var noneChecked = document.getElementById('noneApply').classList.contains('checked');
-        var anyChecked = document.querySelectorAll('#screeningList .checkbox-item.checked').length > 0;
+        valid = formData.screeningClear || formData.flaggedConditions.length > 0;
+        const noneChecked = document.getElementById('noneApply').classList.contains('checked');
+        const anyChecked = document.querySelectorAll('#screeningList .checkbox-item.checked').length > 0;
         valid = noneChecked || anyChecked;
         break;
       case 3:
-        valid = document.getElementById('firstName').value.trim().length >= 2 &&
-                document.getElementById('lastName').value.trim().length >= 2 &&
-                /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.getElementById('email').value.trim()) &&
-                document.getElementById('phone').value.replace(/\D/g, '').length === 10 &&
+        valid = document.getElementById('firstName').value.trim() &&
+                document.getElementById('lastName').value.trim() &&
+                document.getElementById('email').value.trim() &&
+                document.getElementById('phone').value.trim() &&
                 document.getElementById('dobMonth').value &&
                 document.getElementById('dobDay').value &&
                 document.getElementById('dobYear').value &&
                 document.getElementById('sex').value &&
                 document.getElementById('heightFt').value &&
                 document.getElementById('heightIn').value &&
-                parseInt(document.getElementById('weight').value) >= 80;
+                document.getElementById('weight').value;
         break;
       case 4:
-        var consents = document.querySelectorAll('#step4 .consent-item');
-        var requiredConsents = [consents[0], consents[1]];
-        var allRequired = requiredConsents.every(function(c) { return c.classList.contains('checked'); });
+        const consents = document.querySelectorAll('#step4 .consent-item');
+        const requiredConsents = [consents[0], consents[1]];
+        const allRequired = requiredConsents.every(c => c.classList.contains('checked'));
         valid = document.getElementById('address').value.trim() &&
                 document.getElementById('city').value.trim() &&
                 document.getElementById('state').value &&
-                document.getElementById('zip').value.trim().length >= 5 &&
+                document.getElementById('zip').value.trim() &&
                 allRequired;
         break;
-      case 5: valid = true; break;
+      case 5:
+        valid = true;
+        break;
     }
     btn.disabled = !valid;
   }
 
-  // STEP 1: TREATMENT
+  // STEP 1: TREATMENT SELECTION
   function selectTreatment(card, treatment) {
-    document.querySelectorAll('.treatment-card').forEach(function(c) { c.classList.remove('selected'); });
+    document.querySelectorAll('.treatment-card').forEach(c => c.classList.remove('selected'));
     card.classList.add('selected');
     formData.treatment = treatment;
     validateStep();
   }
 
-  // STEP 2: SCREENING
+  // STEP 2: HEALTH SCREENING
   function toggleCheckbox(item) {
     item.classList.toggle('checked');
     if (item.classList.contains('checked')) {
@@ -1087,112 +1064,93 @@
   }
 
   function toggleNone() {
-    var none = document.getElementById('noneApply');
+    const none = document.getElementById('noneApply');
     none.classList.toggle('checked');
     if (none.classList.contains('checked')) {
-      document.querySelectorAll('#screeningList .checkbox-item').forEach(function(item) { item.classList.remove('checked'); });
+      document.querySelectorAll('#screeningList .checkbox-item').forEach(item => {
+        item.classList.remove('checked');
+      });
       formData.screeningClear = true;
       formData.flaggedConditions = [];
       document.getElementById('screeningBlocked').classList.remove('visible');
-    } else { formData.screeningClear = false; }
+    } else {
+      formData.screeningClear = false;
+    }
     validateStep();
   }
 
   function updateScreeningState() {
-    var checked = document.querySelectorAll('#screeningList .checkbox-item.checked');
-    formData.flaggedConditions = Array.from(checked).map(function(c) { return c.querySelector('.checkbox-label').textContent; });
-    document.getElementById('screeningBlocked').classList.toggle('visible', checked.length >= 3);
+    const checked = document.querySelectorAll('#screeningList .checkbox-item.checked');
+    formData.flaggedConditions = Array.from(checked).map(c => c.querySelector('.checkbox-label').textContent);
+    const blocked = document.getElementById('screeningBlocked');
+    if (checked.length >= 3) {
+      blocked.classList.add('visible');
+    } else {
+      blocked.classList.remove('visible');
+    }
   }
 
   // STEP 4: CONSENTS
   function toggleConsent(item) {
     item.classList.toggle('checked');
-    var box = item.querySelector('.checkbox-box');
-    if (item.classList.contains('checked')) { box.style.background = 'var(--teal)'; box.style.borderColor = 'var(--teal)'; }
-    else { box.style.background = ''; box.style.borderColor = ''; }
+    const box = item.querySelector('.checkbox-box');
+    if (item.classList.contains('checked')) {
+      box.style.background = 'var(--teal)';
+      box.style.borderColor = 'var(--teal)';
+    } else {
+      box.style.background = '';
+      box.style.borderColor = '';
+    }
     validateStep();
   }
 
   // STEP 5: REVIEW
   function populateReview() {
-    var treatmentNames = { semaglutide: 'Semaglutide + B12', tirzepatide: 'Tirzepatide + B12' };
-    var compoundNames = { semaglutide: 'Compounded GLP-1 with Vitamin B12', tirzepatide: 'Compounded dual GLP-1/GIP with Vitamin B12' };
-    document.getElementById('reviewTreatment').textContent = treatmentNames[formData.treatment] || '—';
-    document.getElementById('reviewCompound').textContent = compoundNames[formData.treatment] || '—';
-    document.getElementById('reviewName').textContent = document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value;
-    document.getElementById('reviewEmail').textContent = document.getElementById('email').value;
-    document.getElementById('reviewPhone').textContent = document.getElementById('phone').value;
-    var m = document.getElementById('dobMonth').value, d = document.getElementById('dobDay').value, y = document.getElementById('dobYear').value;
-    document.getElementById('reviewDOB').textContent = m + ' ' + d + ', ' + y;
-    document.getElementById('reviewSex').textContent = document.getElementById('sex').value;
-    var ft = document.getElementById('heightFt').value, inch = document.getElementById('heightIn').value, wt = document.getElementById('weight').value;
-    var bmi = (wt / Math.pow(ft * 12 + parseInt(inch), 2) * 703).toFixed(1);
-    document.getElementById('reviewBody').textContent = ft + "'" + inch + '" / ' + wt + ' lbs (BMI ' + bmi + ')';
-    var addr = document.getElementById('address').value, apt = document.getElementById('apt').value;
-    var city = document.getElementById('city').value, state = document.getElementById('state').value, zip = document.getElementById('zip').value;
-    var full = addr + (apt ? ', ' + apt : '');
-    document.getElementById('reviewAddress').innerHTML = full + '<br>' + city + ', ' + state + ' ' + zip;
-  }
-
-  // SUBMIT
-  function submitIntake() {
-    var btn = document.getElementById('btnContinue');
-    btn.disabled = true;
-    btn.innerHTML = 'Submitting...';
-    var payload = {
-      firstName: document.getElementById('firstName').value.trim(),
-      lastName: document.getElementById('lastName').value.trim(),
-      email: document.getElementById('email').value.trim(),
-      phone: document.getElementById('phone').value.trim(),
-      dobMonth: document.getElementById('dobMonth').value,
-      dobDay: document.getElementById('dobDay').value,
-      dobYear: document.getElementById('dobYear').value,
-      sex: document.getElementById('sex').value,
-      heightFt: document.getElementById('heightFt').value,
-      heightIn: document.getElementById('heightIn').value,
-      weight: document.getElementById('weight').value,
-      treatment: formData.treatment,
-      screeningClear: formData.screeningClear,
-      flaggedConditions: formData.flaggedConditions,
-      consents: Array.from(document.querySelectorAll('#step4 .consent-item')).map(function(c) { return c.classList.contains('checked'); }),
-      address: document.getElementById('address').value.trim(),
-      apt: document.getElementById('apt') ? document.getElementById('apt').value.trim() : '',
-      city: document.getElementById('city').value.trim(),
-      state: document.getElementById('state').value,
-      zip: document.getElementById('zip').value.trim(),
-      visitor_id: localStorage.getItem('clyr_vid') || null,
-      utm_source: new URLSearchParams(window.location.search).get('utm_source'),
-      utm_medium: new URLSearchParams(window.location.search).get('utm_medium'),
-      utm_campaign: new URLSearchParams(window.location.search).get('utm_campaign')
+    const treatmentNames = {
+      semaglutide: 'Semaglutide + B12',
+      tirzepatide: 'Tirzepatide + B12'
     };
-    fetch('https://clyr-backend.onrender.com/api/intake', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
-    }).then(function(r) { return r.json(); }).then(function(result) {
-      if (result.success) {
-        fetch('https://clyr-backend.onrender.com/api/track', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ event: 'intake_completed', visitor_id: payload.visitor_id, page: '/intake' }) }).catch(function(){});
-        btn.innerHTML = 'Submitted ✓';
-        btn.style.background = '#22c55e';
-        setTimeout(function() { window.location.href = '/thank-you.html'; }, 600);
-      } else {
-        btn.disabled = false;
-        btn.innerHTML = 'Submit Intake <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"></polyline></svg>';
-        alert('Error: ' + (result.error || result.detail || 'Please try again.'));
-      }
-    }).catch(function(err) {
-      btn.disabled = false;
-      btn.innerHTML = 'Submit Intake <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"></polyline></svg>';
-      alert('Connection error: ' + err.message);
-    });
+    const compoundNames = {
+      semaglutide: 'Compounded GLP-1 with Vitamin B12',
+      tirzepatide: 'Compounded dual GLP-1/GIP with Vitamin B12'
+    };
+    document.getElementById('reviewTreatment').textContent = treatmentNames[formData.treatment] || '\u2014';
+    document.getElementById('reviewCompound').textContent = compoundNames[formData.treatment] || '\u2014';
+    const fn = document.getElementById('firstName').value;
+    const ln = document.getElementById('lastName').value;
+    document.getElementById('reviewName').textContent = fn && ln ? fn + ' ' + ln : '\u2014';
+    document.getElementById('reviewEmail').textContent = document.getElementById('email').value || '\u2014';
+    document.getElementById('reviewPhone').textContent = document.getElementById('phone').value || '\u2014';
+    const m = document.getElementById('dobMonth').value;
+    const d = document.getElementById('dobDay').value;
+    const y = document.getElementById('dobYear').value;
+    document.getElementById('reviewDOB').textContent = m && d && y ? m + ' ' + d + ', ' + y : '\u2014';
+    document.getElementById('reviewSex').textContent = document.getElementById('sex').value || '\u2014';
+    const ft = document.getElementById('heightFt').value;
+    const inch = document.getElementById('heightIn').value;
+    const wt = document.getElementById('weight').value;
+    document.getElementById('reviewBody').textContent = ft && inch && wt ? ft + "'" + inch + '" / ' + wt + ' lbs' : '\u2014';
+    const addr = document.getElementById('address').value;
+    const apt = document.getElementById('apt').value;
+    const city = document.getElementById('city').value;
+    const state = document.getElementById('state').value;
+    const zip = document.getElementById('zip').value;
+    let fullAddr = addr;
+    if (apt) fullAddr += ', ' + apt;
+    if (city) fullAddr += '\n' + city;
+    if (state) fullAddr += ', ' + state;
+    if (zip) fullAddr += ' ' + zip;
+    document.getElementById('reviewAddress').innerHTML = fullAddr.replace('\n', '<br>') || '\u2014';
   }
 
   // INPUT LISTENERS
-  document.querySelectorAll('.form-input').forEach(function(input) {
+  document.querySelectorAll('.form-input').forEach(input => {
     input.addEventListener('input', validateStep);
     input.addEventListener('change', validateStep);
   });
 
+  // Initial state
   updateUI();
 </script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbGFvSdVYBihEpzPE3Zr3MRQGE-DLFLM0&libraries=places&callback=initAutocomplete"></script>
 </body>
 </html>
