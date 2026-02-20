@@ -1598,5 +1598,5 @@
   });
 </script>
 
-</body>
+<!-- CLYR Analytics Tracker --> <script> (function(){   var vid = localStorage.getItem('clyr_vid');   if (!vid) { vid = crypto.randomUUID(); localStorage.setItem('clyr_vid', vid); }   fetch('https://clyr-backend.onrender.com/api/track', {     method: 'POST',     headers: {'Content-Type': 'application/json'},     body: JSON.stringify({ page: location.pathname, referrer: document.referrer, visitor_id: vid })   }).catch(function(){}); })(); </script> </body>
 </html>
