@@ -9,76 +9,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <script>
-// Google Places Autocomplete - disabled pending API key fix
-// The address field works as a normal text input
-function initAutocomplete(){
-  try{
-    var addrInput = document.getElementById('address');
-    // Try new PlaceAutocompleteElement API first
-    if(google.maps.places.PlaceAutocompleteElement){
-      var placeEl = new google.maps.places.PlaceAutocompleteElement({
-        componentRestrictions:{country:'us'},
-        types:['address']
-      });
-      // Create styled wrapper matching our form inputs
-      var wrap = document.createElement('div');
-      wrap.className='fi addr-ac-wrap';
-      wrap.style.cssText='padding:0;display:flex;align-items:center;overflow:hidden;';
-      addrInput.parentNode.insertBefore(wrap,addrInput);
-      addrInput.style.display='none';
-      // Style the shadow DOM input
-      var style = document.createElement('style');
-      style.textContent='.addr-ac-wrap gmp-place-autocomplete{width:100%;--gmp-mat-input-border:none;--gmp-mat-input-padding:14px 16px;--gmp-mat-font-family:var(--sans);--gmp-mat-font-size:15px;}';
-      document.head.appendChild(style);
-      wrap.appendChild(placeEl);
-      // Focus styles on wrapper
-      wrap.addEventListener('focusin',function(){wrap.style.borderColor='var(--teal)';wrap.style.boxShadow='0 0 0 3px rgba(0,180,197,0.12)';});
-      wrap.addEventListener('focusout',function(){wrap.style.borderColor='';wrap.style.boxShadow='';});
-      // Place selected
-      placeEl.addEventListener('gmp-placeselect',async function(e){
-        var place=e.place;
-        await place.fetchFields({fields:['addressComponents','formattedAddress']});
-        if(!place.addressComponents)return;
-        var st='',ci='',sa='',zi='';
-        place.addressComponents.forEach(function(c){
-          if(c.types.includes('street_number'))st=c.longText+' ';
-          if(c.types.includes('route'))st+=c.longText;
-          if(c.types.includes('locality')||c.types.includes('sublocality_level_1'))ci=c.longText;
-          if(c.types.includes('administrative_area_level_1'))sa=c.shortText;
-          if(c.types.includes('postal_code'))zi=c.longText;
-        });
-        addrInput.value=st.trim();
-        document.getElementById('city').value=ci;
-        if(sa)document.getElementById('state').value=sa;
-        document.getElementById('zip').value=zi;
-        ['city','zip'].forEach(function(id){document.getElementById(id).classList.add('ok')});
-        if(sa)document.getElementById('state').classList.add('ok');
-        wrap.style.borderColor='#22C55E';
-        document.getElementById('addrHint').innerHTML='&#10003; Address auto-filled';
-        document.getElementById('addrHint').style.color='#22C55E';
-        if(typeof validate==='function')validate();
-      });
-      document.getElementById('addrHint').innerHTML='&#128269; Powered by Google — start typing for suggestions';
-    }
-  }catch(e){
-    console.log('Places API fallback:',e.message);
-    // Show regular input as fallback
-    var addrInput=document.getElementById('address');
-    addrInput.style.display='';
-    addrInput.autocomplete='street-address';
-    var w=document.getElementById('address').parentNode.querySelector('.addr-ac-wrap');
-    if(w)w.remove();
-    document.getElementById('addrHint').innerHTML='&#128269; Type your full street address';
-  }
-}
-// If Google API fails to load entirely, make sure address field still works
-window.addEventListener('load',function(){
-  var addrInput=document.getElementById('address');
-  if(addrInput.style.display==='none'&&!document.querySelector('.addr-ac-wrap')){
-    addrInput.style.display='';
-    addrInput.autocomplete='street-address';
-  }
-});
+// Google Places removed — API key invalid (InvalidKeyMapError)
+// Plain text address input with browser autocomplete enabled
+// TODO: Re-enable Google Places once API key is fixed in Google Cloud Console
 </script>
 <style>
   :root {
@@ -853,8 +786,8 @@ window.addEventListener('load',function(){
     <div class="form-grid">
       <div class="form-group full-width">
         <label class="form-label">Street address * <span class="fi-ok" id="okAddr"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span></label>
-        <input type="text" class="form-input" id="address" placeholder="Start typing your address..." autocomplete="off" required>
-        <div class="addr-hint" id="addrHint">&#128269; Start typing for address suggestions</div>
+        <input type="text" class="form-input" id="address" placeholder="Start typing your address..." autocomplete="street-address" required>
+        <div class="addr-hint" id="addrHint">Enter your full street address</div>
       </div>
       <div class="form-group full-width">
         <label class="form-label">Apartment, suite, etc.</label>
@@ -1264,6 +1197,7 @@ window.addEventListener('load',function(){
 
   updateUI();
 </script>
-<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbGFvSdVYBihEpzPE3Zr3MRQGE-DLFLM0&libraries=places&loading=async&callback=initAutocomplete"></script>
+<!-- Google Places API removed - re-enable once API key is fixed -->
+
 </body>
 </html>
