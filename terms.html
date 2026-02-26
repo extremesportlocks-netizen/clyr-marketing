@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service — CLYR Health</title>
+<meta name="description" content="CLYR Health Terms of Service. Review the terms governing your use of our platform and services.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --teal: #2bbcb3; --teal-dark: #229e96; --teal-light: #e6f9f7;
+    --dark: #1a1a2e; --gray-900: #111827; --gray-700: #374151;
+    --gray-600: #4b5563; --gray-500: #6b7280; --gray-400: #9ca3af;
+    --gray-300: #d1d5db; --gray-200: #e5e7eb; --gray-100: #f3f4f6;
+    --gray-50: #f9fafb; --white: #ffffff;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --max-w: 1200px;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-sans); color: var(--gray-700); line-height: 1.6; background: var(--white); -webkit-font-smoothing: antialiased; }
+  a { text-decoration: none; color: inherit; }
+  .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+  .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--gray-200); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+  .nav-logo { font-size: 1.5rem; font-weight: 800; color: var(--dark); letter-spacing: -0.5px; }
+  .nav-logo span { color: var(--teal); }
+  .nav-links { display: flex; align-items: center; gap: 32px; }
+  .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--gray-600); transition: color 0.2s; }
+  .nav-links a:hover { color: var(--teal); }
+  .nav-cta { background: var(--dark); color: var(--white) !important; padding: 10px 24px; border-radius: 50px; font-size: 0.9rem; font-weight: 600; transition: all 0.3s; }
+  .nav-cta:hover { background: var(--teal); transform: translateY(-1px); }
+  .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+  .mobile-toggle span { display: block; width: 24px; height: 2px; background: var(--dark); margin: 5px 0; transition: 0.3s; }
+  .legal-hero { padding: 120px 0 40px; background: var(--gray-50); border-bottom: 1px solid var(--gray-200); }
+  .legal-hero h1 { font-size: 2.5rem; font-weight: 800; color: var(--dark); letter-spacing: -1px; margin-bottom: 8px; }
+  .legal-hero .last-updated { font-size: 0.9rem; color: var(--gray-500); }
+  .legal-content { padding: 48px 0 80px; max-width: 800px; margin: 0 auto; }
+  .legal-content h2 { font-size: 1.4rem; font-weight: 700; color: var(--dark); margin: 40px 0 16px; padding-top: 16px; border-top: 1px solid var(--gray-200); }
+  .legal-content h2:first-of-type { border-top: none; margin-top: 0; padding-top: 0; }
+  .legal-content h3 { font-size: 1.1rem; font-weight: 600; color: var(--dark); margin: 24px 0 12px; }
+  .legal-content p { font-size: 0.95rem; color: var(--gray-600); line-height: 1.8; margin-bottom: 16px; }
+  .legal-content ul, .legal-content ol { margin: 12px 0 20px 24px; }
+  .legal-content li { font-size: 0.95rem; color: var(--gray-600); line-height: 1.8; margin-bottom: 8px; }
+  .legal-content a { color: var(--teal); text-decoration: underline; }
+  .legal-content a:hover { color: var(--teal-dark); }
+  .legal-content .caps-block { font-size: 0.88rem; color: var(--gray-600); line-height: 1.8; margin-bottom: 16px; }
+  .legal-content .contact-block { background: var(--gray-50); border-radius: 12px; padding: 24px; margin: 24px 0; border: 1px solid var(--gray-200); }
+  .legal-content .contact-block p { margin-bottom: 4px; }
+  .legal-content .warning-block { background: #fef3c7; border: 1px solid #f59e0b; border-radius: 12px; padding: 20px 24px; margin: 24px 0; }
+  .legal-content .warning-block p { color: #92400e; margin-bottom: 0; font-weight: 500; }
+  .footer { background: var(--gray-900); color: var(--gray-400); padding: 64px 0 32px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+  .footer-brand-name { font-size: 1.5rem; font-weight: 800; color: var(--white); margin-bottom: 12px; }
+  .footer-brand-name span { color: var(--teal); }
+  .footer-brand p { font-size: 0.9rem; line-height: 1.7; }
+  .footer-col h4 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gray-300); margin-bottom: 16px; }
+  .footer-col a { display: block; font-size: 0.9rem; color: var(--gray-400); margin-bottom: 10px; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--teal); }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; }
+  .footer-copy { font-size: 0.85rem; }
+  .footer-disclaimer { font-size: 0.8rem; color: var(--gray-500); line-height: 1.6; margin-top: 24px; max-width: 900px; }
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .mobile-toggle { display: block; }
+    .legal-hero h1 { font-size: 1.8rem; }
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+  @media (max-width: 768px) {
+    .nav-links.show {
+      display: flex !important; flex-direction: column; position: absolute;
+      top: 72px; left: 0; right: 0; background: white; padding: 24px;
+      gap: 16px; border-bottom: 1px solid var(--gray-200); box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">CLYR<span>.</span></a>
+    <div class="nav-links">
+      <a href="/#how-it-works">How It Works</a>
+      <a href="/#treatments">Treatments</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="/#faq">FAQ</a>
+      <a href="/intake.html" class="nav-cta">Get Started</a>
+    </div>
+    <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<section class="legal-hero">
+  <div class="container">
+    <h1>Terms of Service</h1>
+    <p class="last-updated">Last Updated: February 2026</p>
+  </div>
+</section>
+
+<div class="container">
+  <div class="legal-content">
+
+    <div class="warning-block">
+      <p>IF YOU ARE EXPERIENCING A LIFE-THREATENING EMERGENCY, CALL 911 IMMEDIATELY.</p>
+    </div>
+
+    <h2>Service Not Intended for Emergencies</h2>
+    <p>The Service is not designed to provide emergency or urgent medical care. If you believe you are experiencing a medical emergency or require immediate attention, seek in-person emergency or urgent care services right away or call 911. The Service may not be appropriate for every medical condition or concern.</p>
+
+    <h2>Agreement to Terms</h2>
+    <p>By clicking "I Agree," checking an acceptance box, using the Service, or otherwise indicating your consent through any method provided, you confirm that you have read, understood, and agreed to be bound by these Terms and Conditions. If you do not agree, you must not create an account or use the Service. You further acknowledge that any individual who accepts these Terms on your behalf has the authority to do so.</p>
+
+    <h2>Arbitration Notice</h2>
+    <p>Except where you timely opt out as described below, any dispute arising out of or relating to these Terms or your use of the Service will be resolved through binding, individual arbitration. By agreeing, you waive the right to a jury trial and the right to participate in a class action or class-wide arbitration. Limited exceptions and opt-out procedures are described later in these Terms.</p>
+
+    <h2>Clyr Health and the Service</h2>
+    <p>Clyr Health, LLC, together with its affiliates ("Clyr Health," "we," "us," or "our"), owns and operates the website located at <a href="https://www.clyr.health">www.clyr.health</a> (the "Website"). These Terms govern your access to and use of the Website, all related content, products, services, applications, and software operated or made available by Clyr Health (collectively, the "Service").</p>
+    <p>Please review these Terms carefully. In this Agreement, "you" and "your" refer to the individual using the Service. The Service is intended for individuals who are at least eighteen (18) years old or the minimum age required under applicable state law. Individuals under 18 may not use the Service under any circumstances.</p>
+    <p>If you believe a minor has used the Service without appropriate consent, please contact us at <a href="mailto:contact@clyr.health">contact@clyr.health</a>.</p>
+
+    <h2>Acceptance and Modifications</h2>
+    <p>Your use of the Service is subject to these Terms and all applicable laws and regulations. If you do not agree to these Terms in full, you may not access or use the Service except to review this Agreement. The Service may change over time, and we reserve the right to modify these Terms or any aspect of the Service at our discretion. Updates become effective once posted. Continued use of the Service after changes are posted constitutes acceptance of the revised Terms.</p>
+
+    <h2>Relationship Between You and Clyr Health</h2>
+    <p>Clyr Health provides a technology platform that allows users ("Users") to access certain non-clinical services, as well as services provided by independent third parties, including licensed medical providers, medical groups, pharmacies, and other vendors.</p>
+    <p>Prescriptions obtained through the Service may be fulfilled by partner pharmacies (collectively, the "Pharmacies"). By using the Service, you authorize prescriptions to be routed, transferred, and filled by these Pharmacies as appropriate.</p>
+    <p>Clyr Health may also facilitate access to MD Integrations, PC (the "Medical Group"), whose licensed clinicians and allied professionals (the "Providers") deliver healthcare or mental health services via telehealth. Services provided by the Medical Group, Providers, and Pharmacies are governed by these Terms, and those entities are intended third-party beneficiaries of this Agreement.</p>
+    <p>Clyr Health does not practice medicine or pharmacy and does not interfere with clinical decision-making. Providers are solely responsible for medical judgment and patient care, and Pharmacies are solely responsible for pharmacy services. Use of the Service does not create a provider–patient relationship between you and Clyr Health, though it may create such a relationship with the Medical Group or a Provider.</p>
+
+    <h2>Communications and Responsibility</h2>
+    <p>By using the Service, you consent to receiving communications from Providers and/or the Medical Group through electronic means, including audio, video, messaging, or email, related to your care. You acknowledge that Clyr Health does not control the security of your personal email or messaging services and is not responsible for missed, delayed, or unreviewed communications. You are solely responsible for monitoring and responding to messages and following treatment instructions.</p>
+
+    <h2>Customer Relationship with Clyr Health</h2>
+    <p>Although Clyr Health is not your healthcare provider, you enter into a direct customer relationship with Clyr Health for access to and use of the Service and for any non-prescription products or non-medical services purchased directly from us. Information you provide in connection with this relationship is handled in accordance with our <a href="/privacy.html">Privacy Policy</a>.</p>
+
+    <h2>Pharmacy Partners</h2>
+    <div class="contact-block">
+      <p><strong>The Pharmacy Hub</strong></p>
+      <p>15600 NW 15th Ave, Suite C</p>
+      <p>Miami, FL 33169</p>
+      <p>United States</p>
+      <p>(888) 958-1382</p>
+    </div>
+
+    <h2>Medical Partners</h2>
+    <p>Clyr Health utilizes MD Integrations as its medical provider network partner. Learn more at <a href="https://mdintegrations.com/" target="_blank" rel="noopener">mdintegrations.com</a>.</p>
+
+    <h2>Telehealth Consent</h2>
+    <p>The Service utilizes telehealth, which involves healthcare services delivered remotely through electronic communication technologies. Telehealth has both benefits and limitations and may not be suitable in all circumstances. Use of the Service requires your acceptance of a separate <a href="/telehealth-consent.html">Telehealth Consent</a>, which will be provided through the platform. Clyr Health, the Medical Group, Providers, and Pharmacies are third-party beneficiaries of the Telehealth Consent.</p>
+
+    <h2>Subscription Products and Services</h2>
+    <p>Certain offerings are provided on an automatically renewing subscription basis. Subscription charges will recur at the interval disclosed at checkout until canceled. To avoid interruptions, renewals or shipments may occur slightly early. You may cancel or manage subscriptions through your account or by contacting <a href="mailto:contact@clyr.health">contact@clyr.health</a>. Cancellations must be requested 48 hours prior to renewal date and take effect at the end of the current billing period.</p>
+    <p>Subscription fees are non-refundable for partially used periods, except where required by law or granted at our discretion. Subscription pricing or terms may change with advance notice.</p>
+    <p>To simplify billing, you will see a single total price that may include platform access fees, Provider fees, and pharmacy costs, which Clyr Health collects on behalf of applicable third parties.</p>
+
+    <h2>Order Cancellation and Refund Policy</h2>
+    <p>Once an initial order has been submitted for clinical review, it cannot be canceled. Future refills or subscriptions may be managed through your account. All fees are non-refundable due to the nature of the services and products provided.</p>
+
+    <h2>Prescription Products</h2>
+    <p>Prescription products require a consultation with a licensed Provider, who independently determines medical appropriateness and issues prescriptions where clinically indicated. Prescriptions are fulfilled by partner pharmacies. Packaging may not be child-resistant, and you are responsible for safe storage.</p>
+
+    <h2>Financial Responsibility Notice</h2>
+    <p>Clyr Health and the Medical Group do not participate in Medicare, Medicaid, or other government healthcare programs for services provided through the Service. All services are offered on a self-pay basis. By using the Service, you acknowledge that no claims will be submitted to government programs and that you are fully responsible for all costs.</p>
+
+    <h2>Eligibility, Availability, and Use Restrictions</h2>
+    <p>The Service is available only in certain states and to individuals who meet applicable age and legal requirements. Some products or services may be subject to additional restrictions or availability limitations. Telehealth may not be appropriate for all conditions, and Providers may require in-person care where necessary.</p>
+
+    <h2>User Responsibilities and Technical Requirements</h2>
+    <p>You are responsible for maintaining the equipment, internet access, and software needed to use the Service, as well as for providing accurate and complete information. Failure to do so may result in suspension or termination of access.</p>
+
+    <h2>Privacy and Protected Information</h2>
+    <p>Personal information collected through account creation is handled in accordance with our <a href="/privacy.html">Privacy Policy</a>. Certain medical information may be subject to additional protections under state law or HIPAA when applicable. Clyr Health is not a HIPAA covered entity, though it may act as a business associate in limited circumstances. Medical Groups and Providers maintain their own Notices of Privacy Practices.</p>
+
+    <h2>Intellectual Property and License</h2>
+    <p>The Service and all associated content are owned by Clyr Health or its licensors and are protected by intellectual property laws. You are granted a limited, revocable license for personal, non-commercial use only.</p>
+
+    <h2>User Submissions</h2>
+    <p>Any information you submit through the Service may be used by Clyr Health to operate and improve the Service, subject to applicable law and privacy obligations. You retain responsibility for your submissions.</p>
+
+    <h2>Prohibited Conduct</h2>
+    <p>You may not misuse the Service, interfere with its operation, violate laws, infringe rights, upload harmful content, or attempt unauthorized access. Violations may result in account suspension, termination, or legal action.</p>
+
+    <h2>Accounts and Security</h2>
+    <p>You are responsible for safeguarding your login credentials and for all activity under your account. Notify us immediately of any unauthorized use.</p>
+
+    <h2>Third-Party Services and Indemnification</h2>
+    <p>Third parties provide certain goods and services through the Service. Clyr Health is not responsible for third-party actions or products. You agree to indemnify and hold Clyr Health and its partners harmless from claims arising from your use of the Service.</p>
+
+    <h2>Right to Monitor</h2>
+    <p>Clyr Health reserves the right, but does not assume the obligation, to monitor general use of the Service at any time as it deems appropriate. We may remove or restrict access to any content or materials that, in our sole discretion, are unlawful, may expose Clyr Health to liability, violate these Terms, or are otherwise inconsistent with the intended purpose of the Service.</p>
+
+    <h2>Terms of Sale</h2>
+    <p>All products and services made available through the Service are subject to availability. We reserve the right to limit quantities, refuse or cancel any order, or discontinue products at any time without prior notice. In the event of a pricing, product description, or availability error, we may correct the error, revise your order (including charging the correct amount), or cancel the order and issue a refund of amounts charged.</p>
+    <p>Prices are subject to change at any time. You are responsible for all applicable sales, use, value-added, customs, or other governmental taxes, duties, or fees ("Taxes") associated with your purchase. We may collect Taxes where required or deemed appropriate, and estimated Taxes may be displayed at checkout. Actual Taxes charged may vary based on applicable laws, rates, or processing systems.</p>
+    <p>Only payment methods approved by us may be used to complete purchases. You represent that you are authorized to use the payment method provided and authorize us to charge your selected payment method for the full amount of your order, including applicable Taxes, shipping, and handling charges. If a payment is declined, we may reattempt processing.</p>
+    <p>If any portion of an order is unavailable, you will be charged only for items that are shipped. In connection with purchases, you may be required to provide billing, shipping, and contact information. By submitting such information, you authorize Clyr Health to share it with third parties (such as payment processors, pharmacies, or fulfillment partners) solely as necessary to complete and administer the transaction.</p>
+    <p>All payment transactions are processed through third-party payment service providers. These providers act independently and are not agents, partners, or fiduciaries of Clyr Health.</p>
+    <p>Shipping and handling fees, if applicable, will be disclosed at checkout. Delivery dates are estimates only and not guaranteed. Unless otherwise stated in writing, risk of loss passes to you upon delivery of the product to the carrier.</p>
+
+    <h2>No-Show and Late Cancellation Policy</h2>
+    <p>Patients must cancel or reschedule appointments at least 24 hours in advance. Failure to do so, including missing a scheduled in-person or telehealth appointment, will be considered a no-show.</p>
+    <p>A no-show or late cancellation fee of $25 will be charged. This fee represents a missed business opportunity and is not a medical service. No-show fees are not billed to insurance and are the sole responsibility of the patient.</p>
+    <p>By accepting these Terms of Service, patients authorize Clyr Health to charge the applicable fee to the credit card on file or other payment method on record.</p>
+
+    <h2>Termination</h2>
+    <p>Clyr Health may suspend or terminate your access to the Service, in whole or in part, at any time and for any reason, including for violation of these Terms, termination of agreements with Medical Groups, Providers, or Pharmacies, or discontinuation of the Service. Upon termination, your right to use the Service immediately ceases.</p>
+    <p>Provisions relating to security, prohibited conduct, intellectual property, user submissions, disclaimers, limitation of liability, arbitration, dispute resolution, indemnification, and governing law shall survive termination.</p>
+
+    <h2>Disclaimers</h2>
+    <p>Content and information available through the Service are provided for convenience only. Reliance on any content is at your own risk.</p>
+    <p class="caps-block">THE SERVICE IS PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS. TO THE FULLEST EXTENT PERMITTED BY LAW, CLYR HEALTH, THE MEDICAL GROUP, PROVIDERS, PHARMACIES, AND ALL THIRD PARTIES DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, AND ACCURACY. WE DO NOT GUARANTEE THAT THE SERVICE WILL BE UNINTERRUPTED, ERROR-FREE, OR FREE FROM HARMFUL COMPONENTS SUCH AS VIRUSES OR SECURITY BREACHES.</p>
+
+    <h2>Limitation of Liability</h2>
+    <p>To the maximum extent permitted by applicable law, Clyr Health shall not be liable for any indirect, incidental, special, consequential, or exemplary damages, including personal injury, emotional distress, lost profits, or loss of data, arising out of or related to your use of or inability to use the Service, even if advised of the possibility of such damages. Clyr Health's total liability shall not exceed one thousand two hundred fifty U.S. dollars (US $1,250).</p>
+    <p>Any claim arising from your use of the Service must be brought within one (1) year of the event giving rise to the claim.</p>
+
+    <h2>Dispute Resolution and Arbitration</h2>
+    <p><strong>PLEASE READ THIS SECTION CAREFULLY. IT AFFECTS YOUR LEGAL RIGHTS.</strong></p>
+    <p>Except for limited exceptions, disputes between you and Clyr Health must be resolved through binding, individual arbitration following a mandatory informal resolution process. This section includes a class action waiver and jury trial waiver and survives termination.</p>
+    <p>Before initiating arbitration, either party must provide written notice of the dispute and participate in good-faith informal resolution efforts, including a settlement conference if requested. If unresolved within sixty (60) days, arbitration may proceed.</p>
+    <p>Arbitration shall be conducted on an individual basis under the Federal Arbitration Act and administered by the American Arbitration Association in accordance with its consumer rules, as modified by this Agreement. Relief may be awarded only on an individual basis. Class, collective, representative, or consolidated actions are prohibited.</p>
+    <p>You may reject future changes to the arbitration provisions by written notice, in which case this version will apply.</p>
+
+    <h2>Governing Law; Venue; Severability</h2>
+    <p>This Agreement is governed by the laws of the State of Florida, without regard to conflict-of-law principles. If any provision is found unenforceable, it will be modified to reflect the parties' intent to the extent permitted by law, and the remaining provisions will remain in effect.</p>
+
+    <h2>Third-Party Beneficiaries</h2>
+    <p>Medical Groups, Providers, Pharmacies, and other expressly identified parties are intended third-party beneficiaries of this Agreement where stated. Otherwise, no third party has enforcement rights under this Agreement.</p>
+
+    <h2>No Agency Relationship</h2>
+    <p>Nothing in this Agreement creates a partnership, joint venture, employment, or agency relationship between you and Clyr Health, the Medical Group, Providers, or Pharmacies.</p>
+
+    <h2>Entire Agreement</h2>
+    <p>These Terms, together with any additional policies or agreements referenced herein, constitute the entire agreement between you and Clyr Health regarding use of the Service and supersede all prior agreements.</p>
+
+    <h2>Assignment</h2>
+    <p>You may not assign this Agreement without our prior written consent. Clyr Health may assign this Agreement in connection with a merger, sale of assets, or corporate restructuring.</p>
+
+    <h2>Contact Us</h2>
+    <p>If you have questions regarding these Terms, please contact:</p>
+    <div class="contact-block">
+      <p><strong>Clyr Health, LLC</strong></p>
+      <p>Email: <a href="mailto:contact@clyr.health">contact@clyr.health</a></p>
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-name">CLYR<span>.</span></div>
+        <p>Compounded GLP-1 medications with B12, prescribed by licensed providers. Delivered to your door.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Treatments</h4>
+        <a href="/#treatments">Semaglutide + B12</a>
+        <a href="/#treatments">Tirzepatide + B12</a>
+        <a href="/#pricing">Pricing</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About CLYR</a>
+        <a href="/#faq">FAQ</a>
+        <a href="#">Contact Us</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
+        <a href="#">HIPAA Notice</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 CLYR Health. All rights reserved.</div>
+    </div>
+    <div class="footer-disclaimer">The information provided on this website is for informational purposes only and does not constitute medical advice. Compounded medications are not FDA-approved but are prepared by licensed pharmacies in compliance with applicable regulations. Individual results may vary. All treatments require a valid prescription from a licensed healthcare provider. Not all patients will qualify for treatment.</div>
+  </div>
+</footer>
+</body>
+</html>

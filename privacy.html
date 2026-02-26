@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — CLYR Health</title>
+<meta name="description" content="CLYR Health Privacy Policy. Learn how we collect, use, and protect your personal information.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --teal: #2bbcb3; --teal-dark: #229e96; --teal-light: #e6f9f7;
+    --dark: #1a1a2e; --gray-900: #111827; --gray-700: #374151;
+    --gray-600: #4b5563; --gray-500: #6b7280; --gray-400: #9ca3af;
+    --gray-300: #d1d5db; --gray-200: #e5e7eb; --gray-100: #f3f4f6;
+    --gray-50: #f9fafb; --white: #ffffff;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --max-w: 1200px;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-sans); color: var(--gray-700); line-height: 1.6; background: var(--white); -webkit-font-smoothing: antialiased; }
+  a { text-decoration: none; color: inherit; }
+  .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+
+  /* NAV — matches live site exactly */
+  .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--gray-200); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+  .nav-logo { font-size: 1.5rem; font-weight: 800; color: var(--dark); letter-spacing: -0.5px; }
+  .nav-logo span { color: var(--teal); }
+  .nav-links { display: flex; align-items: center; gap: 32px; }
+  .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--gray-600); transition: color 0.2s; }
+  .nav-links a:hover { color: var(--teal); }
+  .nav-cta { background: var(--dark); color: var(--white) !important; padding: 10px 24px; border-radius: 50px; font-size: 0.9rem; font-weight: 600; transition: all 0.3s; }
+  .nav-cta:hover { background: var(--teal); transform: translateY(-1px); }
+  .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+  .mobile-toggle span { display: block; width: 24px; height: 2px; background: var(--dark); margin: 5px 0; transition: 0.3s; }
+
+  /* LEGAL PAGE CONTENT */
+  .legal-hero { padding: 120px 0 40px; background: var(--gray-50); border-bottom: 1px solid var(--gray-200); }
+  .legal-hero h1 { font-size: 2.5rem; font-weight: 800; color: var(--dark); letter-spacing: -1px; margin-bottom: 8px; }
+  .legal-hero .last-updated { font-size: 0.9rem; color: var(--gray-500); }
+  .legal-content { padding: 48px 0 80px; max-width: 800px; margin: 0 auto; }
+  .legal-content h2 { font-size: 1.4rem; font-weight: 700; color: var(--dark); margin: 40px 0 16px; padding-top: 16px; border-top: 1px solid var(--gray-200); }
+  .legal-content h2:first-of-type { border-top: none; margin-top: 0; padding-top: 0; }
+  .legal-content h3 { font-size: 1.1rem; font-weight: 600; color: var(--dark); margin: 24px 0 12px; }
+  .legal-content p { font-size: 0.95rem; color: var(--gray-600); line-height: 1.8; margin-bottom: 16px; }
+  .legal-content ul, .legal-content ol { margin: 12px 0 20px 24px; }
+  .legal-content li { font-size: 0.95rem; color: var(--gray-600); line-height: 1.8; margin-bottom: 8px; }
+  .legal-content a { color: var(--teal); text-decoration: underline; }
+  .legal-content a:hover { color: var(--teal-dark); }
+  .legal-content .caps-block { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.3px; }
+  .legal-content .contact-block { background: var(--gray-50); border-radius: 12px; padding: 24px; margin: 24px 0; border: 1px solid var(--gray-200); }
+  .legal-content .contact-block p { margin-bottom: 4px; }
+
+  /* FOOTER — matches live site exactly */
+  .footer { background: var(--gray-900); color: var(--gray-400); padding: 64px 0 32px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+  .footer-brand-name { font-size: 1.5rem; font-weight: 800; color: var(--white); margin-bottom: 12px; }
+  .footer-brand-name span { color: var(--teal); }
+  .footer-brand p { font-size: 0.9rem; line-height: 1.7; }
+  .footer-col h4 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gray-300); margin-bottom: 16px; }
+  .footer-col a { display: block; font-size: 0.9rem; color: var(--gray-400); margin-bottom: 10px; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--teal); }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; }
+  .footer-copy { font-size: 0.85rem; }
+  .footer-disclaimer { font-size: 0.8rem; color: var(--gray-500); line-height: 1.6; margin-top: 24px; max-width: 900px; }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .mobile-toggle { display: block; }
+    .legal-hero h1 { font-size: 1.8rem; }
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+  @media (max-width: 768px) {
+    .nav-links.show {
+      display: flex !important; flex-direction: column; position: absolute;
+      top: 72px; left: 0; right: 0; background: white; padding: 24px;
+      gap: 16px; border-bottom: 1px solid var(--gray-200); box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">CLYR<span>.</span></a>
+    <div class="nav-links">
+      <a href="/#how-it-works">How It Works</a>
+      <a href="/#treatments">Treatments</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="/#faq">FAQ</a>
+      <a href="/intake.html" class="nav-cta">Get Started</a>
+    </div>
+    <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="legal-hero">
+  <div class="container">
+    <h1>Privacy Policy</h1>
+    <p class="last-updated">Last Updated: February 2026</p>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<div class="container">
+  <div class="legal-content">
+
+    <h2>Introduction</h2>
+    <p>Clyr Health, LLC ("Clyr Health," "we," "us," or "our") operates the website located at <a href="https://www.clyr.health">www.clyr.health</a> and any related sites or applications (collectively, the "Platform"). Your access to and use of the Platform, including all associated content, features, products, or services (collectively, the "Service"), is governed by this Privacy Policy unless expressly stated otherwise.</p>
+    <p>Capitalized terms not defined in this Privacy Policy have the meanings assigned to them in the Clyr Health Terms and Conditions.</p>
+    <p>We respect your privacy and are committed to protecting the personal information you share with us. This Privacy Policy explains how Clyr Health collects, uses, stores, and discloses information in connection with providing the Service.</p>
+    <p>By accessing, registering for, or using the Service, you acknowledge and agree to the practices described in the most current version of this Privacy Policy. Updates will be posted on this page, and the "Last Updated" date will be revised accordingly.</p>
+    <p>If you access the Service on behalf of another individual, you confirm that you are authorized to do so and that the individual has reviewed and agreed to this Privacy Policy.</p>
+
+    <h2>Use by Minors</h2>
+    <p>The Service is intended for individuals who are at least eighteen (18) years old or the minimum age required under applicable state law. The Platform is not designed to attract or be used by children under 18. If we learn that we have collected personal information from a minor, we will take reasonable steps to discontinue use and retention of that information, unless retention is required by law.</p>
+    <p>Certain information may be retained when legally required, when maintained as part of a medical record by providers, when posted or stored by third parties, when anonymized, or when compensation has been provided for the content.</p>
+
+    <h2>Protected Health Information</h2>
+    <p>Certain information collected or processed through the Service may constitute Protected Health Information ("PHI") as defined under the Health Insurance Portability and Accountability Act of 1996 ("HIPAA") and applicable state laws.</p>
+    <p>Clyr Health, LLC is not a healthcare provider and does not independently provide medical care. However, in certain circumstances, Clyr Health may receive, maintain, transmit, or process PHI on behalf of affiliated medical providers, medical groups, or pharmacies. In those circumstances, Clyr Health acts as a Business Associate under HIPAA and handles PHI in accordance with applicable Business Associate Agreements ("BAAs"), HIPAA regulations, and applicable state laws.</p>
+    <p>PHI may include individually identifiable information relating to an individual's health condition, healthcare services, or payment for healthcare services, whether past, present, or future, when such information is created, received, maintained, or transmitted on behalf of a covered entity.</p>
+    <p>Information that has been properly de-identified in accordance with HIPAA standards is not considered PHI and is not subject to HIPAA requirements.</p>
+    <p>Where Clyr Health processes PHI as a Business Associate, the use and disclosure of that PHI is governed by applicable BAAs and the Notice of Privacy Practices of the applicable healthcare provider or pharmacy, not by this Privacy Policy except as required by law.</p>
+
+    <h2>Information We Collect</h2>
+    <p>The personal data we collect depends on how you interact with Clyr Health and the services you use.</p>
+
+    <h3>Information You Provide Directly</h3>
+    <p>This may include:</p>
+    <ul>
+      <li>Name, contact details, and addresses</li>
+      <li>Demographic information such as date of birth or ZIP code</li>
+      <li>Payment and billing information</li>
+      <li>Uploaded content, documents, images, or communications</li>
+      <li>Account credentials and access information</li>
+      <li>Government-issued identification</li>
+      <li>Health and medical information</li>
+    </ul>
+
+    <h3>Information Collected Automatically</h3>
+    <p>When you use the Platform, we may automatically collect:</p>
+    <ul>
+      <li>IP address and device identifiers</li>
+      <li>Browser and operating system details</li>
+      <li>Usage activity, page views, session duration, and referring URLs</li>
+    </ul>
+
+    <h3>Information From Third Parties</h3>
+    <p>We may receive information from:</p>
+    <ul>
+      <li>Social media platforms you connect with</li>
+      <li>Co-marketing partners</li>
+      <li>Analytics and service providers</li>
+      <li>Publicly available sources</li>
+    </ul>
+    <p>You may choose not to provide certain information, but doing so may limit access to features or services.</p>
+
+    <h2>Cookies and Tracking Technologies</h2>
+    <p>We use cookies, pixels, mobile identifiers, and similar technologies to operate our Platform, remember preferences, analyze performance, and support advertising and security efforts.</p>
+    <p>You may control cookies through your browser or device settings. Additional opt-out tools are available through industry organizations such as the Network Advertising Initiative and Digital Advertising Alliance.</p>
+    <p>We honor Global Privacy Control (GPC) signals where required by law. We do not respond to Do Not Track (DNT) signals.</p>
+
+    <h2>How We Use Information</h2>
+    <p>We use collected information to:</p>
+    <ul>
+      <li>Provide and manage the Service</li>
+      <li>Process payments and transactions</li>
+      <li>Verify identity and prevent fraud</li>
+      <li>Improve products, services, and user experience</li>
+      <li>Communicate service-related and promotional messages</li>
+      <li>Support marketing and advertising efforts</li>
+      <li>Comply with legal obligations</li>
+    </ul>
+
+    <h3>Use of PHI</h3>
+    <p>Clyr Health does not use PHI for advertising, marketing, or behavioral profiling. PHI is used solely for purposes permitted under HIPAA, including supporting treatment, payment, healthcare operations, and related administrative functions, as authorized by applicable covered entities and BAAs.</p>
+    <p>PHI is not shared with advertising networks, social media platforms, or data brokers, and tracking technologies are not used in connection with workflows involving PHI where prohibited by law.</p>
+    <p>We may aggregate or de-identify data and use it for lawful business purposes.</p>
+
+    <h2>Disclosure of Information</h2>
+    <p>Clyr Health may disclose personal information and, where applicable, PHI as follows:</p>
+    <ul>
+      <li>To service providers and vendors performing services on our behalf</li>
+      <li>To payment processors for transaction processing</li>
+      <li>To affiliated medical providers, medical groups, and pharmacies in connection with care delivery and operations</li>
+      <li>To regulators, courts, or law enforcement where required by law</li>
+      <li>As otherwise permitted or required under HIPAA, applicable BAAs, or state law</li>
+    </ul>
+    <p>When acting as a Business Associate, Clyr Health discloses PHI only as permitted by HIPAA and applicable BAAs.</p>
+    <p>We do not sell PHI and do not disclose PHI for targeted advertising purposes.</p>
+
+    <h2>Your Rights and Choices</h2>
+    <p>Depending on your location, you may have rights to:</p>
+    <ul>
+      <li>Access, correct, or delete personal information</li>
+      <li>Opt out of certain data sharing or advertising</li>
+      <li>Limit use of sensitive personal information</li>
+      <li>Designate an authorized agent</li>
+    </ul>
+    <p>Requests may require identity verification.</p>
+
+    <h2>Data Retention</h2>
+    <p>Clyr Health retains information as long as reasonably necessary to provide services, comply with legal obligations, resolve disputes, and enforce agreements. Retention periods may vary for affiliated providers and third parties.</p>
+
+    <h2>Payments and Transactions</h2>
+    <p>Payment processing is handled by Stripe. Clyr Health does not control Stripe's data practices. Stripe's privacy policies apply to payment transactions.</p>
+
+    <h2>Jurisdiction</h2>
+    <p>The Service is governed by U.S. law and may only be used in states where services are offered.</p>
+
+    <h2>California Privacy Rights</h2>
+    <p>California residents have rights under the California Consumer Privacy Act (CCPA), including rights to access, delete, correct, and opt out of certain data sharing. We do not knowingly sell or share the personal information of minors under 16.</p>
+
+    <h2>Security</h2>
+    <p>We use reasonable administrative, technical, and physical safeguards to protect information. You are responsible for maintaining the confidentiality of your account credentials.</p>
+
+    <h2>Updates to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. Material changes will be posted and may require acknowledgment.</p>
+
+    <h2>HIPAA Notice of Privacy Practices (Business Associate)</h2>
+    <p>This Notice applies only to circumstances in which Clyr Health, LLC acts as a Business Associate under HIPAA on behalf of a covered healthcare provider or pharmacy.</p>
+    <p>In those circumstances, Clyr Health may use and disclose PHI solely as permitted by applicable Business Associate Agreements, HIPAA regulations, and other applicable laws.</p>
+    <p>Individuals' rights regarding PHI — including rights to access, amend, receive an accounting of disclosures, request restrictions, request confidential communications, and receive breach notifications — are governed by the Notice of Privacy Practices of the applicable healthcare provider or pharmacy, not directly by Clyr Health.</p>
+    <p>Clyr Health supports covered entities in fulfilling HIPAA obligations but does not independently determine patient rights outside the scope of applicable BAAs.</p>
+
+    <h2>Contact Us</h2>
+    <p>If you have questions about this Privacy Policy or our data practices, contact us at:</p>
+    <div class="contact-block">
+      <p><strong>Clyr Health, LLC</strong></p>
+      <p>Email: <a href="mailto:contact@clyr.health">contact@clyr.health</a></p>
+    </div>
+    <p>State-specific protections, including California, New York, Texas, Florida, Illinois, and Massachusetts, are honored as required by law.</p>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-name">CLYR<span>.</span></div>
+        <p>Compounded GLP-1 medications with B12, prescribed by licensed providers. Delivered to your door.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Treatments</h4>
+        <a href="/#treatments">Semaglutide + B12</a>
+        <a href="/#treatments">Tirzepatide + B12</a>
+        <a href="/#pricing">Pricing</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About CLYR</a>
+        <a href="/#faq">FAQ</a>
+        <a href="#">Contact Us</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
+        <a href="#">HIPAA Notice</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 CLYR Health. All rights reserved.</div>
+    </div>
+    <div class="footer-disclaimer">The information provided on this website is for informational purposes only and does not constitute medical advice. Compounded medications are not FDA-approved but are prepared by licensed pharmacies in compliance with applicable regulations. Individual results may vary. All treatments require a valid prescription from a licensed healthcare provider. Not all patients will qualify for treatment.</div>
+  </div>
+</footer>
+</body>
+</html>
