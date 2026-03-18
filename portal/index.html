@@ -8,427 +8,393 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
 @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
-@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--teal:#00B4C5;--teal-dark:#009BA8;--teal-light:rgba(0,180,197,0.08);--dark:#1a1a2e;--gray-50:#f8fafb;--gray-100:#f1f4f7;--gray-200:#e5e7eb;--gray-400:#9ca3af;--gray-500:#6b7280;--gray-600:#4b5563;--green:#22c55e;--red:#ef4444;--orange:#f59e0b;--radius:14px}
 body{font-family:'DM Sans',sans-serif;background:var(--gray-50);color:var(--dark);min-height:100vh;-webkit-font-smoothing:antialiased}
-
-/* ── Nav ── */
-.nav{background:#fff;border-bottom:1px solid rgba(0,0,0,0.06);padding:16px 24px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:50}
-.nav-logo{font-size:22px;font-weight:800;letter-spacing:-0.5px;color:var(--dark);text-decoration:none}
-.nav-logo span{color:var(--teal)}
-.nav-right{display:flex;align-items:center;gap:12px}
+.nav{background:#fff;border-bottom:1px solid rgba(0,0,0,0.06);padding:14px 24px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:50}
+.nav-logo{font-size:22px;font-weight:800;letter-spacing:-0.5px;color:var(--dark);text-decoration:none}.nav-logo span{color:var(--teal)}
+.nav-right{display:flex;align-items:center;gap:10px}
 .nav-name{font-size:13px;font-weight:600;color:var(--gray-500)}
-.nav-btn{padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:none;font-family:inherit;transition:all 0.2s}
-.nav-btn-ghost{background:none;color:var(--gray-500)}
-.nav-btn-ghost:hover{color:var(--dark);background:var(--gray-100)}
-.nav-btn-teal{background:var(--teal);color:#fff}
-.nav-btn-teal:hover{background:var(--teal-dark)}
+.nav-btn{padding:7px 14px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:none;font-family:inherit;transition:all 0.2s;background:none;color:var(--gray-500)}
+.nav-btn:hover{color:var(--dark);background:var(--gray-100)}
 
-/* ── Page container ── */
-.page{display:none;max-width:680px;margin:0 auto;padding:32px 20px 80px;animation:fadeUp 0.4s ease}
+/* Tabs */
+.tabs{display:none;background:#fff;border-bottom:1px solid rgba(0,0,0,0.06);padding:0 24px;overflow-x:auto}
+.tabs-inner{max-width:680px;margin:0 auto;display:flex;gap:4px}
+.tab{padding:12px 18px;font-size:13px;font-weight:600;color:var(--gray-400);cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;white-space:nowrap;position:relative}
+.tab:hover{color:var(--dark)}
+.tab.active{color:var(--teal);border-bottom-color:var(--teal)}
+.tab-badge{position:absolute;top:8px;right:4px;width:8px;height:8px;background:var(--red);border-radius:50%;display:none}
+
+/* Pages */
+.page{display:none;max-width:680px;margin:0 auto;padding:28px 20px 80px;animation:fadeUp 0.3s ease}
 .page.active{display:block}
 
-/* ── Login page ── */
-.login-card{background:#fff;border-radius:20px;padding:48px 36px;box-shadow:0 1px 3px rgba(0,0,0,0.04),0 8px 40px rgba(0,0,0,0.03);border:1px solid rgba(0,0,0,0.04);text-align:center;margin-top:40px}
-.login-title{font-family:'Instrument Serif',serif;font-size:32px;font-weight:400;margin-bottom:8px}
-.login-title em{font-style:italic;color:var(--teal)}
+/* Login */
+.login-wrap{display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 60px);padding:20px}
+.login-card{background:#fff;border-radius:20px;padding:48px 36px;box-shadow:0 1px 3px rgba(0,0,0,0.04),0 8px 40px rgba(0,0,0,0.03);border:1px solid rgba(0,0,0,0.04);text-align:center;max-width:420px;width:100%}
+.login-title{font-family:'Instrument Serif',serif;font-size:32px;font-weight:400;margin-bottom:8px}.login-title em{font-style:italic;color:var(--teal)}
 .login-sub{font-size:15px;color:var(--gray-500);line-height:1.6;margin-bottom:32px}
 .input-group{margin-bottom:20px;text-align:left}
 .input-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--gray-400);margin-bottom:8px;display:block}
 .input{width:100%;padding:14px 18px;border:1.5px solid var(--gray-200);border-radius:10px;font-family:inherit;font-size:15px;outline:none;transition:border 0.2s}
 .input:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,180,197,0.1)}
 .input-code{text-align:center;font-size:28px;font-weight:700;letter-spacing:8px;font-family:monospace}
-.btn{width:100%;padding:15px;border-radius:12px;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;border:none;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:8px}
-.btn-primary{background:var(--teal);color:#fff}
-.btn-primary:hover{background:var(--teal-dark);transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,180,197,0.25)}
-.btn-primary:disabled{opacity:0.5;cursor:not-allowed;transform:none;box-shadow:none}
-.btn-secondary{background:var(--gray-100);color:var(--dark)}
-.btn-secondary:hover{background:var(--gray-200)}
+.btn{width:100%;padding:14px;border-radius:12px;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;border:none;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-primary{background:var(--teal);color:#fff}.btn-primary:hover{background:var(--teal-dark)}
+.btn-primary:disabled{opacity:0.5;cursor:not-allowed}
+.btn-secondary{background:var(--gray-100);color:var(--dark)}.btn-secondary:hover{background:var(--gray-200)}
+.btn-sm{width:auto;padding:10px 20px;font-size:13px}
 .login-error{background:rgba(239,68,68,0.08);color:var(--red);padding:12px 16px;border-radius:10px;font-size:13px;margin-bottom:16px;display:none}
-.login-back{font-size:13px;color:var(--gray-400);margin-top:16px;cursor:pointer}
-.login-back:hover{color:var(--teal)}
+.login-back{font-size:13px;color:var(--gray-400);margin-top:16px;cursor:pointer}.login-back:hover{color:var(--teal)}
+.spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin 0.6s linear infinite;display:inline-block}
 
-/* ── Dashboard ── */
-.greeting{font-family:'Instrument Serif',serif;font-size:28px;margin-bottom:4px}
-.greeting em{font-style:italic;color:var(--teal)}
-.greeting-sub{font-size:14px;color:var(--gray-400);margin-bottom:28px}
-.stage-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:100px;font-size:12px;font-weight:700;margin-bottom:24px}
-.stage-active{background:rgba(0,180,197,0.1);color:var(--teal)}
-.stage-shipped{background:rgba(34,197,94,0.1);color:var(--green)}
-.stage-cancelled{background:rgba(239,68,68,0.1);color:var(--red)}
-.stage-pending{background:rgba(245,158,11,0.1);color:var(--orange)}
+/* Dashboard */
+.greeting{font-family:'Instrument Serif',serif;font-size:28px;margin-bottom:4px}.greeting em{font-style:italic;color:var(--teal)}
+.greeting-sub{font-size:14px;color:var(--gray-400);margin-bottom:24px}
+.stage-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:100px;font-size:12px;font-weight:700;margin-bottom:20px}
+.stage-active{background:rgba(0,180,197,0.1);color:var(--teal)}.stage-shipped{background:rgba(34,197,94,0.1);color:var(--green)}.stage-cancelled{background:rgba(239,68,68,0.1);color:var(--red)}.stage-pending{background:rgba(245,158,11,0.1);color:var(--orange)}
 
-/* ── Timeline ── */
-.timeline{background:#fff;border-radius:var(--radius);padding:28px;border:1px solid rgba(0,0,0,0.04);margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,0.02)}
-.timeline-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--gray-400);margin-bottom:20px}
-.tl-step{display:flex;gap:16px;position:relative;padding-bottom:20px}
-.tl-step:last-child{padding-bottom:0}
-.tl-step:not(:last-child)::after{content:'';position:absolute;left:15px;top:34px;bottom:0;width:1px;background:var(--gray-200)}
-.tl-dot{width:30px;height:30px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;position:relative;z-index:1}
-.tl-dot-done{background:var(--teal);color:#fff;box-shadow:0 2px 8px rgba(0,180,197,0.3)}
-.tl-dot-active{background:#fff;color:var(--teal);border:2px solid var(--teal);animation:pulse 2s ease infinite}
-.tl-dot-pending{background:var(--gray-100);color:var(--gray-400);border:1px solid var(--gray-200)}
-.tl-dot-cancelled{background:var(--red);color:#fff}
-.tl-info{padding-top:4px;flex:1}
-.tl-label{font-size:14px;font-weight:600;margin-bottom:2px}
-.tl-desc{font-size:12px;color:var(--gray-400);line-height:1.5}
-.tl-time{font-size:11px;color:var(--gray-400);margin-top:4px}
-.tl-step.done .tl-label{color:var(--gray-400);text-decoration:line-through;text-decoration-color:rgba(0,0,0,0.1)}
-
-/* ── Cards ── */
+/* Timeline */
 .card{background:#fff;border-radius:var(--radius);padding:24px;border:1px solid rgba(0,0,0,0.04);margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,0.02)}
 .card-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--gray-400);margin-bottom:16px}
-.card-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--gray-100)}
-.card-row:last-child{border-bottom:none}
-.card-row-label{font-size:13px;color:var(--gray-500)}
-.card-row-value{font-size:14px;font-weight:600;color:var(--dark)}
-.tracking-link{color:var(--teal);text-decoration:none;font-weight:600}
-.tracking-link:hover{text-decoration:underline}
-
-/* ── Quick actions ── */
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.card-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--gray-100)}.card-row:last-child{border-bottom:none}
+.card-row-label{font-size:13px;color:var(--gray-500)}.card-row-value{font-size:14px;font-weight:600;color:var(--dark)}
+.tl-step{display:flex;gap:16px;position:relative;padding-bottom:20px}.tl-step:last-child{padding-bottom:0}
+.tl-step:not(:last-child)::after{content:'';position:absolute;left:15px;top:34px;bottom:0;width:1px;background:var(--gray-200)}
+.tl-dot{width:30px;height:30px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;position:relative;z-index:1}
+.tl-dot-done{background:var(--teal);color:#fff}.tl-dot-active{background:#fff;color:var(--teal);border:2px solid var(--teal);animation:pulse 2s ease infinite}.tl-dot-pending{background:var(--gray-100);color:var(--gray-400);border:1px solid var(--gray-200)}
+.tl-info{padding-top:4px;flex:1}.tl-label{font-size:14px;font-weight:600;margin-bottom:2px}.tl-desc{font-size:12px;color:var(--gray-400);line-height:1.5}.tl-time{font-size:11px;color:var(--gray-400);margin-top:4px}
+.tl-step.done .tl-label{color:var(--gray-400);text-decoration:line-through;text-decoration-color:rgba(0,0,0,0.1)}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
 .action-btn{background:#fff;border:1px solid var(--gray-200);border-radius:12px;padding:20px 16px;text-align:center;cursor:pointer;transition:all 0.2s;text-decoration:none;color:var(--dark)}
 .action-btn:hover{border-color:var(--teal);background:var(--teal-light)}
-.action-icon{font-size:24px;margin-bottom:8px}
-.action-label{font-size:13px;font-weight:600}
-.action-desc{font-size:11px;color:var(--gray-400);margin-top:2px}
+.action-icon{font-size:22px;margin-bottom:6px}.action-label{font-size:13px;font-weight:600}.action-desc{font-size:11px;color:var(--gray-400);margin-top:2px}
+.tracking-link{color:var(--teal);text-decoration:none;font-weight:600}.tracking-link:hover{text-decoration:underline}
 
-/* ── Loading ── */
+/* Messages */
+.msg-empty{text-align:center;padding:40px;color:var(--gray-400);font-size:14px}
+.msg-list{display:flex;flex-direction:column;gap:12px;margin-bottom:20px;max-height:500px;overflow-y:auto;padding:4px}
+.msg-bubble{max-width:85%;padding:14px 18px;border-radius:16px;font-size:14px;line-height:1.6;position:relative}
+.msg-patient{align-self:flex-end;background:var(--teal);color:#fff;border-bottom-right-radius:4px}
+.msg-provider{align-self:flex-start;background:#fff;border:1px solid var(--gray-200);border-bottom-left-radius:4px}
+.msg-meta{font-size:11px;margin-top:6px;opacity:0.7}
+.msg-input-wrap{display:flex;gap:10px;margin-top:12px}
+.msg-input{flex:1;padding:14px 18px;border:1.5px solid var(--gray-200);border-radius:12px;font-family:inherit;font-size:14px;outline:none;resize:none;min-height:48px;max-height:120px}
+.msg-input:focus{border-color:var(--teal)}
+.msg-send{padding:14px 20px;background:var(--teal);color:#fff;border:none;border-radius:12px;font-family:inherit;font-weight:700;cursor:pointer;font-size:14px;transition:background 0.2s}
+.msg-send:hover{background:var(--teal-dark)}.msg-send:disabled{opacity:0.5;cursor:not-allowed}
+
+/* Refill */
+.q-item{background:#fff;border:1px solid var(--gray-200);border-radius:12px;padding:20px;margin-bottom:14px}
+.q-label{font-size:14px;font-weight:600;margin-bottom:10px;color:var(--dark)}
+.q-select{width:100%;padding:12px 14px;border:1.5px solid var(--gray-200);border-radius:8px;font-family:inherit;font-size:14px;outline:none;background:#fff;cursor:pointer}
+.q-select:focus{border-color:var(--teal)}
+.q-input{width:100%;padding:12px 14px;border:1.5px solid var(--gray-200);border-radius:8px;font-family:inherit;font-size:14px;outline:none}
+.q-input:focus{border-color:var(--teal)}
+.q-required::after{content:" *";color:var(--red)}
+.refill-success{text-align:center;padding:40px;animation:fadeUp 0.4s ease}
+.refill-success h2{font-family:'Instrument Serif',serif;font-size:26px;margin-bottom:8px}
+
+/* Plans */
+.plan-card{border:1.5px solid var(--gray-200);border-radius:12px;padding:20px;margin-bottom:12px;cursor:pointer;transition:all 0.2s;display:flex;justify-content:space-between;align-items:center}
+.plan-card:hover{border-color:var(--teal);background:var(--teal-light)}
+.plan-card.current{border-color:var(--teal);background:var(--teal-light)}
+.plan-card.current::after{content:"Current";font-size:11px;font-weight:700;color:var(--teal);background:rgba(0,180,197,0.15);padding:4px 10px;border-radius:100px}
+.plan-name{font-size:15px;font-weight:700}.plan-detail{font-size:12px;color:var(--gray-400);margin-top:2px}
+.plan-price{font-size:18px;font-weight:800;text-align:right}.plan-period{font-size:12px;color:var(--gray-400);font-weight:400}
+
+/* Loading */
 .loading{text-align:center;padding:60px 20px}
 .loading-spinner{width:32px;height:32px;border:3px solid var(--gray-200);border-top-color:var(--teal);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 16px}
 .loading-text{font-size:14px;color:var(--gray-400)}
+.footer{text-align:center;padding:20px;font-size:12px;color:var(--gray-400)}.footer a{color:var(--teal);text-decoration:none}
 
-/* ── Footer ── */
-.footer{text-align:center;padding:24px;font-size:12px;color:var(--gray-400)}
-.footer a{color:var(--teal);text-decoration:none}
-
-/* ── Responsive ── */
-@media(max-width:600px){
-  .login-card{padding:36px 24px;margin-top:20px}
-  .login-title{font-size:26px}
-  .greeting{font-size:24px}
-  .actions{grid-template-columns:1fr}
-}
+@media(max-width:600px){.login-card{padding:32px 24px}.greeting{font-size:22px}.actions{grid-template-columns:1fr}.tabs-inner{padding:0 4px}.tab{padding:10px 14px;font-size:12px}}
 </style>
 </head>
 <body>
-
-<!-- ═══ NAV ═══ -->
 <nav class="nav" id="portalNav">
   <a href="/portal/" class="nav-logo">CLY<span>R</span></a>
   <div class="nav-right" id="navRight" style="display:none">
     <span class="nav-name" id="navName"></span>
-    <button class="nav-btn nav-btn-ghost" onclick="logout()">Sign out</button>
+    <button class="nav-btn" onclick="logout()">Sign out</button>
   </div>
 </nav>
+<div class="tabs" id="tabBar">
+  <div class="tabs-inner">
+    <div class="tab active" onclick="showTab('dashboard')">Overview</div>
+    <div class="tab" onclick="showTab('messages')">Messages <span class="tab-badge" id="msgBadge"></span></div>
+    <div class="tab" onclick="showTab('refill')">Refill</div>
+    <div class="tab" onclick="showTab('plans')">My Plan</div>
+  </div>
+</div>
 
-<!-- ═══ LOGIN PAGE ═══ -->
+<!-- ═══ LOGIN ═══ -->
 <div class="page active" id="loginPage">
-  <div class="login-card">
-    <!-- Step 1: Email -->
-    <div id="loginStep1">
-      <h1 class="login-title">Your <em>health portal</em></h1>
-      <p class="login-sub">Check your treatment status, track shipments, and manage your subscription.</p>
-      <div class="login-error" id="loginError1"></div>
-      <div class="input-group">
-        <label class="input-label">Email address</label>
-        <input class="input" type="email" id="loginEmail" placeholder="you@example.com" autocomplete="email">
+  <div class="login-wrap">
+    <div class="login-card">
+      <div id="loginStep1">
+        <h1 class="login-title">Your <em>health portal</em></h1>
+        <p class="login-sub">Check treatment status, message your provider, request refills, and manage your subscription.</p>
+        <div class="login-error" id="loginError1"></div>
+        <div class="input-group"><label class="input-label">Email address</label><input class="input" type="email" id="loginEmail" placeholder="you@example.com" autocomplete="email"></div>
+        <button class="btn btn-primary" id="btnSendCode" onclick="sendCode()">Send verification code</button>
       </div>
-      <button class="btn btn-primary" id="btnSendCode" onclick="sendCode()">Send verification code</button>
-    </div>
-    <!-- Step 2: Code -->
-    <div id="loginStep2" style="display:none">
-      <h1 class="login-title">Check your <em>inbox</em></h1>
-      <p class="login-sub">We sent a 6-digit code to <strong id="codeEmail"></strong></p>
-      <div class="login-error" id="loginError2"></div>
-      <div class="input-group">
-        <label class="input-label">Verification code</label>
-        <input class="input input-code" type="text" id="loginCode" placeholder="------" maxlength="6" autocomplete="one-time-code" inputmode="numeric">
+      <div id="loginStep2" style="display:none">
+        <h1 class="login-title">Check your <em>inbox</em></h1>
+        <p class="login-sub">We sent a 6-digit code to <strong id="codeEmail"></strong></p>
+        <div class="login-error" id="loginError2"></div>
+        <div class="input-group"><label class="input-label">Verification code</label><input class="input input-code" type="text" id="loginCode" placeholder="------" maxlength="6" autocomplete="one-time-code" inputmode="numeric"></div>
+        <button class="btn btn-primary" id="btnVerify" onclick="verifyCode()">Verify &amp; sign in</button>
+        <div class="login-back" onclick="backToEmail()">&#8592; Use a different email</div>
       </div>
-      <button class="btn btn-primary" id="btnVerify" onclick="verifyCode()">Verify &amp; sign in</button>
-      <div class="login-back" onclick="backToEmail()">&#8592; Use a different email</div>
     </div>
   </div>
 </div>
 
-<!-- ═══ DASHBOARD PAGE ═══ -->
+<!-- ═══ DASHBOARD ═══ -->
 <div class="page" id="dashboardPage">
-  <div id="dashLoading" class="loading">
-    <div class="loading-spinner"></div>
-    <div class="loading-text">Loading your portal...</div>
-  </div>
+  <div id="dashLoading" class="loading"><div class="loading-spinner"></div><div class="loading-text">Loading your portal...</div></div>
   <div id="dashContent" style="display:none">
     <h1 class="greeting">Hi <em id="dashName">there</em></h1>
-    <div class="greeting-sub" id="dashSub">Here's your treatment overview</div>
+    <div class="greeting-sub">Here's your treatment overview</div>
     <div id="dashStage"></div>
-
-    <!-- Timeline -->
-    <div class="timeline" id="dashTimeline">
-      <div class="timeline-title">Treatment journey</div>
-      <div id="timelineSteps"></div>
-    </div>
-
-    <!-- Quick Actions -->
+    <div class="card" id="dashTimeline"><div class="card-title">Treatment journey</div><div id="timelineSteps"></div></div>
     <div class="actions">
-      <a class="action-btn" href="mailto:contact@clyr.health">
-        <div class="action-icon">&#128172;</div>
-        <div class="action-label">Contact support</div>
-        <div class="action-desc">We're here to help</div>
-      </a>
-      <div class="action-btn" onclick="manageSubscription()">
-        <div class="action-icon">&#128179;</div>
-        <div class="action-label">Manage billing</div>
-        <div class="action-desc">Update payment method</div>
-      </div>
+      <div class="action-btn" onclick="showTab('messages')"><div class="action-icon">&#128172;</div><div class="action-label">Messages</div><div class="action-desc">Talk to your provider</div></div>
+      <div class="action-btn" onclick="showTab('refill')"><div class="action-icon">&#128138;</div><div class="action-label">Request refill</div><div class="action-desc">Schedule next consultation</div></div>
+      <div class="action-btn" onclick="manageSubscription()"><div class="action-icon">&#128179;</div><div class="action-label">Manage billing</div><div class="action-desc">Update payment method</div></div>
+      <div class="action-btn" onclick="showTab('plans')"><div class="action-icon">&#9889;</div><div class="action-label">Change plan</div><div class="action-desc">Upgrade or switch treatment</div></div>
     </div>
+    <div class="card" id="subCard" style="display:none"><div class="card-title">Subscription</div><div id="subDetails"></div></div>
+    <div class="card" id="shipCard" style="display:none"><div class="card-title">Shipping</div><div id="shipDetails"></div></div>
+    <div class="card" style="background:var(--teal-light);border-color:rgba(0,180,197,0.15)"><div style="display:flex;gap:12px;align-items:flex-start"><span style="font-size:20px">&#128176;</span><div><div style="font-size:14px;font-weight:600;margin-bottom:4px">Full refund guarantee</div><div style="font-size:13px;color:var(--gray-500);line-height:1.5">Not eligible? You pay nothing — full refund, no questions asked.</div></div></div></div>
+  </div>
+</div>
 
-    <!-- Subscription card -->
-    <div class="card" id="subCard" style="display:none">
-      <div class="card-title">Your subscription</div>
-      <div id="subDetails"></div>
-    </div>
-
-    <!-- Shipping card -->
-    <div class="card" id="shipCard" style="display:none">
-      <div class="card-title">Shipping</div>
-      <div id="shipDetails"></div>
-    </div>
-
-    <!-- Refund notice -->
-    <div class="card" style="background:var(--teal-light);border-color:rgba(0,180,197,0.15)">
-      <div style="display:flex;gap:12px;align-items:flex-start">
-        <span style="font-size:20px">&#128176;</span>
-        <div>
-          <div style="font-size:14px;font-weight:600;margin-bottom:4px">Full refund guarantee</div>
-          <div style="font-size:13px;color:var(--gray-500);line-height:1.5">If your provider determines you're not eligible for treatment, you'll receive a full refund — no questions asked.</div>
-        </div>
-      </div>
+<!-- ═══ MESSAGES ═══ -->
+<div class="page" id="messagesPage">
+  <h2 style="font-size:20px;font-weight:700;margin-bottom:4px">Messages</h2>
+  <p style="font-size:13px;color:var(--gray-400);margin-bottom:20px">Communicate with your provider about your treatment</p>
+  <div id="msgLoading" class="loading"><div class="loading-spinner"></div><div class="loading-text">Loading messages...</div></div>
+  <div id="msgContent" style="display:none">
+    <div id="msgList" class="msg-list"></div>
+    <div class="msg-input-wrap">
+      <textarea class="msg-input" id="msgInput" placeholder="Type a message to your provider..." rows="1"></textarea>
+      <button class="msg-send" id="btnSendMsg" onclick="sendMessage()">Send</button>
     </div>
   </div>
 </div>
 
-<footer class="footer">&copy; 2026 CLYR Health. <a href="https://www.clyr.health/privacy.html">Privacy</a> &middot; <a href="https://www.clyr.health/terms.html">Terms</a> &middot; <a href="mailto:contact@clyr.health">contact@clyr.health</a></footer>
+<!-- ═══ REFILL ═══ -->
+<div class="page" id="refillPage">
+  <div id="refillForm">
+    <h2 style="font-size:20px;font-weight:700;margin-bottom:4px">Request a refill</h2>
+    <p style="font-size:13px;color:var(--gray-400);margin-bottom:20px">Complete this questionnaire so your provider can evaluate your next prescription. Same provider, no new intake needed.</p>
+    <div id="refillQuestions"></div>
+    <button class="btn btn-primary" id="btnRefill" onclick="submitRefill()" style="margin-top:8px">Submit refill request</button>
+  </div>
+  <div id="refillDone" style="display:none" class="refill-success">
+    <div style="font-size:48px;margin-bottom:16px">&#10003;</div>
+    <h2>Refill submitted</h2>
+    <p style="color:var(--gray-500);margin-bottom:24px">Your provider will review within 1 hour. We'll email you when there's an update.</p>
+    <button class="btn btn-secondary btn-sm" onclick="showTab('dashboard')" style="margin:0 auto">Back to overview</button>
+  </div>
+</div>
+
+<!-- ═══ MY PLAN ═══ -->
+<div class="page" id="plansPage">
+  <h2 style="font-size:20px;font-weight:700;margin-bottom:4px">My plan</h2>
+  <p style="font-size:13px;color:var(--gray-400);margin-bottom:20px">Switch treatments or change your billing plan</p>
+  <div id="currentPlan" class="card" style="display:none"><div class="card-title">Current plan</div><div id="currentPlanDetails"></div></div>
+  <div class="card"><div class="card-title">Available plans</div><div id="plansList"></div></div>
+  <div id="planChangeMsg" style="display:none;text-align:center;padding:20px;color:var(--green);font-weight:600"></div>
+</div>
+
+<footer class="footer">&copy; 2026 CLYR Health. <a href="https://www.clyr.health/privacy.html">Privacy</a> &middot; <a href="https://www.clyr.health/terms.html">Terms</a></footer>
 
 <script>
-const API = 'https://clyr-backend.onrender.com';
-let authToken = localStorage.getItem('clyr_portal_token');
-let patientData = null;
+const API='https://clyr-backend.onrender.com';
+let authToken=localStorage.getItem('clyr_portal_token'),patientData=null,currentTab='dashboard';
 
-// ── AUTO-LOGIN ──
-if (authToken) { showDashboard(); }
+if(authToken){showDashboard();}
 
-// ═══ AUTH: Send Code ═══
-async function sendCode() {
-  const email = document.getElementById('loginEmail').value.trim();
-  if (!email) return showError('loginError1', 'Please enter your email address.');
-
-  const btn = document.getElementById('btnSendCode');
-  btn.disabled = true;
-  btn.innerHTML = '<div style="width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin 0.6s linear infinite"></div> Sending...';
-
-  try {
-    const res = await fetch(API + '/api/portal/auth/send-code', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email })
-    });
-    const data = await res.json();
-
-    document.getElementById('codeEmail').textContent = email;
-    document.getElementById('loginStep1').style.display = 'none';
-    document.getElementById('loginStep2').style.display = 'block';
-    document.getElementById('loginCode').focus();
-  } catch (err) {
-    showError('loginError1', 'Something went wrong. Please try again.');
-  } finally {
-    btn.disabled = false;
-    btn.innerHTML = 'Send verification code';
-  }
+// ═══ TAB NAVIGATION ═══
+function showTab(tab){
+  currentTab=tab;
+  document.querySelectorAll('.tab').forEach((t,i)=>{t.classList.toggle('active',['dashboard','messages','refill','plans'][i]===tab)});
+  document.querySelectorAll('.page:not(#loginPage)').forEach(p=>p.classList.remove('active'));
+  var pageMap={dashboard:'dashboardPage',messages:'messagesPage',refill:'refillPage',plans:'plansPage'};
+  var el=document.getElementById(pageMap[tab]);
+  if(el)el.classList.add('active');
+  if(tab==='messages')loadMessages();
+  if(tab==='refill')loadRefillQuestions();
+  if(tab==='plans')loadPlans();
 }
 
-// ═══ AUTH: Verify Code ═══
-async function verifyCode() {
-  const email = document.getElementById('loginEmail').value.trim();
-  const code = document.getElementById('loginCode').value.trim();
-  if (!code || code.length < 6) return showError('loginError2', 'Please enter the 6-digit code.');
-
-  const btn = document.getElementById('btnVerify');
-  btn.disabled = true;
-  btn.innerHTML = '<div style="width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin 0.6s linear infinite"></div> Verifying...';
-
-  try {
-    const res = await fetch(API + '/api/portal/auth/verify', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, code })
-    });
-    const data = await res.json();
-
-    if (!res.ok) {
-      showError('loginError2', data.error || 'Invalid code.');
-      btn.disabled = false;
-      btn.innerHTML = 'Verify &amp; sign in';
-      return;
-    }
-
-    // Store token and show dashboard
-    authToken = data.token;
-    localStorage.setItem('clyr_portal_token', authToken);
-    showDashboard();
-  } catch (err) {
-    showError('loginError2', 'Verification failed. Please try again.');
-    btn.disabled = false;
-    btn.innerHTML = 'Verify &amp; sign in';
-  }
+// ═══ AUTH ═══
+async function sendCode(){
+  var email=document.getElementById('loginEmail').value.trim();
+  if(!email)return showError('loginError1','Please enter your email.');
+  var btn=document.getElementById('btnSendCode');btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Sending...';
+  try{await fetch(API+'/api/portal/auth/send-code',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email})});
+    document.getElementById('codeEmail').textContent=email;document.getElementById('loginStep1').style.display='none';document.getElementById('loginStep2').style.display='block';document.getElementById('loginCode').focus();
+  }catch(e){showError('loginError1','Something went wrong.');}
+  finally{btn.disabled=false;btn.innerHTML='Send verification code';}
 }
-
-function backToEmail() {
-  document.getElementById('loginStep1').style.display = 'block';
-  document.getElementById('loginStep2').style.display = 'none';
-  document.getElementById('loginCode').value = '';
-  hideError('loginError2');
+async function verifyCode(){
+  var email=document.getElementById('loginEmail').value.trim(),code=document.getElementById('loginCode').value.trim();
+  if(!code||code.length<6)return showError('loginError2','Enter the 6-digit code.');
+  var btn=document.getElementById('btnVerify');btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Verifying...';
+  try{var r=await fetch(API+'/api/portal/auth/verify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,code})});
+    var d=await r.json();if(!r.ok){showError('loginError2',d.error||'Invalid code.');btn.disabled=false;btn.innerHTML='Verify &amp; sign in';return;}
+    authToken=d.token;localStorage.setItem('clyr_portal_token',authToken);showDashboard();
+  }catch(e){showError('loginError2','Verification failed.');btn.disabled=false;btn.innerHTML='Verify &amp; sign in';}
 }
+function backToEmail(){document.getElementById('loginStep1').style.display='block';document.getElementById('loginStep2').style.display='none';document.getElementById('loginCode').value='';hideError('loginError2');}
 
 // ═══ DASHBOARD ═══
-async function showDashboard() {
-  document.getElementById('loginPage').classList.remove('active');
-  document.getElementById('dashboardPage').classList.add('active');
-  document.getElementById('navRight').style.display = 'flex';
-  document.getElementById('dashLoading').style.display = 'block';
-  document.getElementById('dashContent').style.display = 'none';
-
-  try {
-    // Fetch patient data + timeline in parallel
-    const [meRes, tlRes] = await Promise.all([
-      fetch(API + '/api/portal/me', { headers: { 'Authorization': 'Bearer ' + authToken } }),
-      fetch(API + '/api/portal/timeline', { headers: { 'Authorization': 'Bearer ' + authToken } })
-    ]);
-
-    if (meRes.status === 401) { logout(); return; }
-
-    const meData = await meRes.json();
-    const tlData = await tlRes.json();
-    patientData = meData;
-
-    // Populate header
-    const name = meData.patient?.firstName || 'there';
-    document.getElementById('dashName').textContent = name;
-    document.getElementById('navName').textContent = name;
-    document.title = 'My Portal — CLYR Health';
-
-    // Stage badge
-    const stageEl = document.getElementById('dashStage');
-    const stageConfig = {
-      intake_complete: { label: 'Intake complete', cls: 'stage-pending' },
-      paid: { label: 'Payment received', cls: 'stage-active' },
-      under_review: { label: 'Under physician review', cls: 'stage-active' },
-      info_needed: { label: 'Provider needs info', cls: 'stage-pending' },
-      approved: { label: 'Treatment approved', cls: 'stage-active' },
-      prescribed: { label: 'Prescribed', cls: 'stage-active' },
-      pharmacy_processing: { label: 'Pharmacy preparing', cls: 'stage-active' },
-      shipped: { label: 'Shipped', cls: 'stage-shipped' },
-      delivered: { label: 'Delivered', cls: 'stage-shipped' },
-      cancelled: { label: 'Cancelled', cls: 'stage-cancelled' }
-    };
-    const s = stageConfig[meData.stage] || { label: meData.stage, cls: 'stage-active' };
-    stageEl.innerHTML = '<div class="stage-badge ' + s.cls + '">' + s.label + '</div>';
-
-    // Timeline
-    const stepsEl = document.getElementById('timelineSteps');
-    stepsEl.innerHTML = '';
-    if (tlData.events) {
-      tlData.events.forEach(function(ev) {
-        var dotCls = ev.status === 'done' ? 'tl-dot-done' : ev.status === 'active' ? 'tl-dot-active' : ev.status === 'cancelled' ? 'tl-dot-cancelled' : 'tl-dot-pending';
-        var stepCls = ev.status === 'done' ? 'done' : '';
-        var icon = ev.status === 'done' ? '&#10003;' : ev.status === 'cancelled' ? '&#10007;' : ev.step;
-        var time = ev.timestamp ? '<div class="tl-time">' + formatDate(ev.timestamp) + '</div>' : '';
-        stepsEl.innerHTML += '<div class="tl-step ' + stepCls + '"><div class="tl-dot ' + dotCls + '">' + icon + '</div><div class="tl-info"><div class="tl-label">' + ev.label + '</div><div class="tl-desc">' + ev.description + '</div>' + time + '</div></div>';
-      });
-    }
-
-    // Subscription card
-    if (meData.subscription) {
-      var sub = meData.subscription;
-      document.getElementById('subCard').style.display = 'block';
-      document.getElementById('subDetails').innerHTML =
-        '<div class="card-row"><span class="card-row-label">Plan</span><span class="card-row-value">' + formatTreatment(sub.product) + ' — ' + formatPlan(sub.plan) + '</span></div>' +
-        '<div class="card-row"><span class="card-row-label">Status</span><span class="card-row-value" style="color:' + (sub.status === 'active' ? 'var(--green)' : 'var(--orange)') + '">' + sub.status.charAt(0).toUpperCase() + sub.status.slice(1) + '</span></div>' +
-        (sub.currentPeriodEnd ? '<div class="card-row"><span class="card-row-label">Next billing</span><span class="card-row-value">' + formatDate(sub.currentPeriodEnd) + '</span></div>' : '') +
-        '<div style="margin-top:16px"><button class="btn btn-secondary" onclick="manageSubscription()" style="width:auto;padding:10px 20px;font-size:13px">Manage subscription</button></div>';
-    }
-
-    // Shipping card
-    if (meData.encounter?.trackingNumber || meData.patient?.shippingAddress?.street) {
-      document.getElementById('shipCard').style.display = 'block';
-      var shipHtml = '';
-      if (meData.encounter?.trackingNumber) {
-        shipHtml += '<div class="card-row"><span class="card-row-label">Tracking</span><span class="card-row-value"><a class="tracking-link" href="https://tools.usps.com/go/TrackConfirmAction?tLabels=' + meData.encounter.trackingNumber + '" target="_blank">' + meData.encounter.trackingNumber + ' &#8599;</a></span></div>';
-      }
-      if (meData.encounter?.pharmacyStatus) {
-        shipHtml += '<div class="card-row"><span class="card-row-label">Pharmacy status</span><span class="card-row-value">' + meData.encounter.pharmacyStatus.charAt(0).toUpperCase() + meData.encounter.pharmacyStatus.slice(1) + '</span></div>';
-      }
-      var addr = meData.patient?.shippingAddress;
-      if (addr?.street) {
-        shipHtml += '<div class="card-row"><span class="card-row-label">Ship to</span><span class="card-row-value">' + addr.street + ', ' + addr.city + ', ' + addr.state + ' ' + addr.zip + '</span></div>';
-      }
-      document.getElementById('shipDetails').innerHTML = shipHtml;
-    }
-
-    document.getElementById('dashLoading').style.display = 'none';
-    document.getElementById('dashContent').style.display = 'block';
-
-  } catch (err) {
-    console.error('Dashboard load error:', err);
-    document.getElementById('dashLoading').innerHTML = '<div style="color:var(--red);font-size:14px">Failed to load. <span style="color:var(--teal);cursor:pointer;text-decoration:underline" onclick="showDashboard()">Retry</span></div>';
-  }
-}
-
-// ═══ Stripe Portal ═══
-async function manageSubscription() {
-  try {
-    const res = await fetch(API + '/api/portal/subscription/manage', {
-      method: 'POST',
-      headers: { 'Authorization': 'Bearer ' + authToken, 'Content-Type': 'application/json' }
+async function showDashboard(){
+  document.getElementById('loginPage').classList.remove('active');document.getElementById('dashboardPage').classList.add('active');
+  document.getElementById('navRight').style.display='flex';document.getElementById('tabBar').style.display='block';
+  document.getElementById('dashLoading').style.display='block';document.getElementById('dashContent').style.display='none';
+  try{
+    var[meR,tlR]=await Promise.all([apiFetch('/api/portal/me'),apiFetch('/api/portal/timeline')]);
+    if(meR._status===401){logout();return;}
+    patientData=meR;
+    var name=meR.patient?.firstName||'there';
+    document.getElementById('dashName').textContent=name;document.getElementById('navName').textContent=name;
+    var stageMap={intake_complete:{l:'Intake complete',c:'stage-pending'},paid:{l:'Payment received',c:'stage-active'},under_review:{l:'Under physician review',c:'stage-active'},info_needed:{l:'Provider needs info',c:'stage-pending'},approved:{l:'Treatment approved',c:'stage-active'},prescribed:{l:'Prescribed',c:'stage-active'},pharmacy_processing:{l:'Pharmacy preparing',c:'stage-active'},shipped:{l:'Shipped',c:'stage-shipped'},delivered:{l:'Delivered',c:'stage-shipped'},cancelled:{l:'Cancelled',c:'stage-cancelled'}};
+    var s=stageMap[meR.stage]||{l:meR.stage,c:'stage-active'};
+    document.getElementById('dashStage').innerHTML='<div class="stage-badge '+s.c+'">'+s.l+'</div>';
+    var stepsEl=document.getElementById('timelineSteps');stepsEl.innerHTML='';
+    if(tlR.events)tlR.events.forEach(function(ev){
+      var dc=ev.status==='done'?'tl-dot-done':ev.status==='active'?'tl-dot-active':'tl-dot-pending';
+      var sc=ev.status==='done'?'done':'';var ic=ev.status==='done'?'&#10003;':ev.step;
+      var tm=ev.timestamp?'<div class="tl-time">'+fmtDate(ev.timestamp)+'</div>':'';
+      stepsEl.innerHTML+='<div class="tl-step '+sc+'"><div class="tl-dot '+dc+'">'+ic+'</div><div class="tl-info"><div class="tl-label">'+ev.label+'</div><div class="tl-desc">'+ev.description+'</div>'+tm+'</div></div>';
     });
-    const data = await res.json();
-    if (data.url) window.location.href = data.url;
-    else alert('Unable to open billing portal. Contact support@clyr.health');
-  } catch (err) {
-    alert('Error opening billing portal.');
-  }
+    if(meR.subscription){var sub=meR.subscription;document.getElementById('subCard').style.display='block';
+      document.getElementById('subDetails').innerHTML='<div class="card-row"><span class="card-row-label">Plan</span><span class="card-row-value">'+fmtTx(sub.product)+' — '+fmtPlan(sub.plan)+'</span></div><div class="card-row"><span class="card-row-label">Status</span><span class="card-row-value" style="color:'+(sub.status==='active'?'var(--green)':'var(--orange)')+'">'+cap(sub.status)+'</span></div>'+(sub.currentPeriodEnd?'<div class="card-row"><span class="card-row-label">Next billing</span><span class="card-row-value">'+fmtDate(sub.currentPeriodEnd)+'</span></div>':'');}
+    if(meR.encounter?.trackingNumber||meR.patient?.shippingAddress?.street){document.getElementById('shipCard').style.display='block';var sh='';
+      if(meR.encounter?.trackingNumber)sh+='<div class="card-row"><span class="card-row-label">Tracking</span><span class="card-row-value"><a class="tracking-link" href="https://tools.usps.com/go/TrackConfirmAction?tLabels='+meR.encounter.trackingNumber+'" target="_blank">'+meR.encounter.trackingNumber+' &#8599;</a></span></div>';
+      var a=meR.patient?.shippingAddress;if(a?.street)sh+='<div class="card-row"><span class="card-row-label">Ship to</span><span class="card-row-value">'+a.street+', '+a.city+', '+a.state+' '+a.zip+'</span></div>';
+      document.getElementById('shipDetails').innerHTML=sh;}
+    document.getElementById('dashLoading').style.display='none';document.getElementById('dashContent').style.display='block';
+  }catch(e){console.error(e);document.getElementById('dashLoading').innerHTML='<div style="color:var(--red)">Failed to load. <span style="color:var(--teal);cursor:pointer;text-decoration:underline" onclick="showDashboard()">Retry</span></div>';}
 }
 
-// ═══ Logout ═══
-function logout() {
-  localStorage.removeItem('clyr_portal_token');
-  authToken = null;
-  patientData = null;
-  document.getElementById('dashboardPage').classList.remove('active');
-  document.getElementById('loginPage').classList.add('active');
-  document.getElementById('navRight').style.display = 'none';
-  // Reset login form
-  document.getElementById('loginStep1').style.display = 'block';
-  document.getElementById('loginStep2').style.display = 'none';
-  document.getElementById('loginEmail').value = '';
-  document.getElementById('loginCode').value = '';
+// ═══ MESSAGES ═══
+async function loadMessages(){
+  document.getElementById('msgLoading').style.display='block';document.getElementById('msgContent').style.display='none';
+  try{var d=await apiFetch('/api/portal/messages');
+    var list=document.getElementById('msgList');list.innerHTML='';
+    if(!d.messages||d.messages.length===0){list.innerHTML='<div class="msg-empty">'+(d.note||'No messages yet. Send a message to start a conversation with your provider.')+'</div>';}
+    else{d.messages.forEach(function(m){
+      var isMe=m.senderType==='patient';
+      list.innerHTML+='<div class="msg-bubble '+(isMe?'msg-patient':'msg-provider')+'">'+esc(m.text)+'<div class="msg-meta">'+(isMe?'You':m.senderName)+' &middot; '+fmtDate(m.createdAt)+'</div></div>';
+      if(!isMe&&!m.read)try{fetch(API+'/api/portal/messages/'+m.id+'/read',{method:'POST',headers:{'Authorization':'Bearer '+authToken}}).catch(()=>{});}catch(e){}
+    });list.scrollTop=list.scrollHeight;}
+    document.getElementById('msgLoading').style.display='none';document.getElementById('msgContent').style.display='block';
+  }catch(e){document.getElementById('msgLoading').innerHTML='<div style="color:var(--red)">Failed to load messages.</div>';}
+}
+async function sendMessage(){
+  var input=document.getElementById('msgInput'),text=input.value.trim();if(!text)return;
+  var btn=document.getElementById('btnSendMsg');btn.disabled=true;btn.textContent='Sending...';
+  try{await fetch(API+'/api/portal/messages',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+authToken},body:JSON.stringify({text})});
+    input.value='';loadMessages();
+  }catch(e){alert('Failed to send message.');}
+  finally{btn.disabled=false;btn.textContent='Send';}
 }
 
-// ═══ Helpers ═══
-function showError(id, msg) { var el = document.getElementById(id); el.textContent = msg; el.style.display = 'block'; }
-function hideError(id) { document.getElementById(id).style.display = 'none'; }
-function formatDate(d) { if (!d) return ''; var dt = new Date(d); return dt.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
-function formatTreatment(t) { return ({ tirzepatide: 'Tirzepatide + B12', semaglutide: 'Semaglutide + B12' })[t] || t || 'Treatment'; }
-function formatPlan(p) { return ({ monthly: 'Monthly', '3month': '3-Month', '6month': '6-Month' })[p] || p || ''; }
+// ═══ REFILL ═══
+var refillQs=[];
+async function loadRefillQuestions(){
+  if(refillQs.length)return;
+  try{var d=await apiFetch('/api/portal/refill/questions');refillQs=d.questions||[];
+    var html='';refillQs.forEach(function(q){
+      html+='<div class="q-item"><label class="q-label'+(q.required?' q-required':'')+'">'+q.question+'</label>';
+      if(q.type==='select')html+='<select class="q-select" id="q_'+q.id+'"><option value="">Select...</option>'+q.options.map(function(o){return'<option value="'+o+'">'+o+'</option>';}).join('')+'</select>';
+      else if(q.type==='number')html+='<input class="q-input" type="number" id="q_'+q.id+'" placeholder="Enter number">';
+      else html+='<input class="q-input" type="text" id="q_'+q.id+'" placeholder="Type your answer...">';
+      html+='</div>';
+    });document.getElementById('refillQuestions').innerHTML=html;
+  }catch(e){document.getElementById('refillQuestions').innerHTML='<div style="color:var(--red)">Failed to load questions.</div>';}
+}
+async function submitRefill(){
+  var answers=[];var missing=false;
+  refillQs.forEach(function(q){
+    var el=document.getElementById('q_'+q.id);var val=el?el.value.trim():'';
+    if(q.required&&!val){missing=true;el.style.borderColor='var(--red)';}
+    else if(el)el.style.borderColor='';
+    if(val)answers.push({question:q.question,answer:val,type:q.type,label:q.id});
+  });
+  if(missing)return alert('Please fill in all required fields.');
+  // Pregnancy check
+  var pregAnswer=answers.find(function(a){return a.label==='pregnancy';});
+  if(pregAnswer&&pregAnswer.answer==='Yes'){return alert('For your safety, we cannot process a refill if you are pregnant, breastfeeding, or planning pregnancy. Please contact your provider directly.');}
+  var btn=document.getElementById('btnRefill');btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Submitting...';
+  try{var r=await fetch(API+'/api/portal/refill',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+authToken},body:JSON.stringify({answers})});
+    var d=await r.json();if(!r.ok)throw new Error(d.error||'Failed');
+    document.getElementById('refillForm').style.display='none';document.getElementById('refillDone').style.display='block';
+  }catch(e){alert('Error: '+(e.message||'Failed to submit refill'));btn.disabled=false;btn.innerHTML='Submit refill request';}
+}
 
-// Enter key handlers
-document.getElementById('loginEmail').addEventListener('keydown', function(e) { if (e.key === 'Enter') sendCode(); });
-document.getElementById('loginCode').addEventListener('keydown', function(e) { if (e.key === 'Enter') verifyCode(); });
-// Auto-advance when 6 digits entered
-document.getElementById('loginCode').addEventListener('input', function(e) { if (e.target.value.length === 6) verifyCode(); });
+// ═══ PLANS ═══
+async function loadPlans(){
+  try{var d=await apiFetch('/api/portal/plans');var plans=d.plans||[];
+    var currentTx=patientData?.patient?.treatment,currentPlan=patientData?.patient?.plan;
+    if(currentTx){document.getElementById('currentPlan').style.display='block';
+      document.getElementById('currentPlanDetails').innerHTML='<div class="card-row"><span class="card-row-label">Treatment</span><span class="card-row-value">'+fmtTx(currentTx)+'</span></div><div class="card-row"><span class="card-row-label">Plan</span><span class="card-row-value">'+fmtPlan(currentPlan)+'</span></div>';}
+    var html='';plans.forEach(function(p){
+      var isCurrent=(p.productType===currentTx&&p.planType===currentPlan);
+      html+='<div class="plan-card'+(isCurrent?' current':'')+'" onclick="'+(isCurrent?'':'changePlan(\''+p.priceId+'\',\''+p.productType+'\',\''+p.planType+'\')')+'"><div><div class="plan-name">'+p.name+'</div><div class="plan-detail">'+p.planName+'</div></div><div class="plan-price">'+p.price+'</div></div>';
+    });document.getElementById('plansList').innerHTML=html;
+  }catch(e){document.getElementById('plansList').innerHTML='<div style="color:var(--red)">Failed to load plans.</div>';}
+}
+async function changePlan(priceId,productType,planType){
+  if(!confirm('Switch to '+fmtTx(productType)+' '+fmtPlan(planType)+'? Changes will apply on your next billing cycle.'))return;
+  try{var r=await fetch(API+'/api/portal/subscription/change',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+authToken},body:JSON.stringify({newPriceId:priceId,newProductType:productType,newPlanType:planType})});
+    var d=await r.json();
+    if(d.checkoutUrl){window.location.href=d.checkoutUrl;return;}
+    if(d.success){var msg=document.getElementById('planChangeMsg');msg.style.display='block';msg.textContent='&#10003; '+d.message;setTimeout(function(){showTab('dashboard');showDashboard();},2000);}
+    else throw new Error(d.error||'Failed');
+  }catch(e){alert('Error: '+(e.message||'Failed to change plan'));}
+}
+
+// ═══ SUBSCRIPTION PORTAL ═══
+async function manageSubscription(){
+  try{var r=await fetch(API+'/api/portal/subscription/manage',{method:'POST',headers:{'Authorization':'Bearer '+authToken,'Content-Type':'application/json'}});
+    var d=await r.json();if(d.url)window.location.href=d.url;else alert('Unable to open billing portal.');}
+  catch(e){alert('Error opening billing portal.');}
+}
+
+// ═══ LOGOUT ═══
+function logout(){localStorage.removeItem('clyr_portal_token');authToken=null;patientData=null;
+  document.getElementById('dashboardPage').classList.remove('active');document.getElementById('messagesPage').classList.remove('active');
+  document.getElementById('refillPage').classList.remove('active');document.getElementById('plansPage').classList.remove('active');
+  document.getElementById('loginPage').classList.add('active');document.getElementById('navRight').style.display='none';document.getElementById('tabBar').style.display='none';
+  document.getElementById('loginStep1').style.display='block';document.getElementById('loginStep2').style.display='none';
+  document.getElementById('loginEmail').value='';document.getElementById('loginCode').value='';currentTab='dashboard';
+}
+
+// ═══ HELPERS ═══
+async function apiFetch(path){var r=await fetch(API+path,{headers:{'Authorization':'Bearer '+authToken}});var d=await r.json();d._status=r.status;return d;}
+function showError(id,m){var e=document.getElementById(id);e.textContent=m;e.style.display='block';}
+function hideError(id){document.getElementById(id).style.display='none';}
+function fmtDate(d){if(!d)return'';return new Date(d).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}
+function fmtTx(t){return({tirzepatide:'Tirzepatide + B12',semaglutide:'Semaglutide + B12'})[t]||t||'Treatment';}
+function fmtPlan(p){return({monthly:'Monthly','3month':'3-Month','6month':'6-Month'})[p]||p||'';}
+function cap(s){return s?s.charAt(0).toUpperCase()+s.slice(1):'';}
+function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+document.getElementById('loginEmail').addEventListener('keydown',function(e){if(e.key==='Enter')sendCode();});
+document.getElementById('loginCode').addEventListener('keydown',function(e){if(e.key==='Enter')verifyCode();});
+document.getElementById('loginCode').addEventListener('input',function(e){if(e.target.value.length===6)verifyCode();});
+document.getElementById('msgInput').addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}});
 </script>
 </body>
 </html>
