@@ -260,6 +260,74 @@
     transition: opacity 0.2s;
   }
   .treatment-card.selected .treatment-radio::after { opacity: 1; }
+
+  /* PLAN SELECTION CARDS */
+  .plan-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 22px;
+    border: 2px solid var(--gray-100);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    background: var(--white);
+  }
+  .plan-card:hover { border-color: var(--gray-200); background: var(--gray-50); }
+  .plan-card.selected { border-color: var(--teal); background: rgba(43,188,179,0.04); }
+  .plan-card-best {
+    position: absolute;
+    top: -10px;
+    right: 16px;
+    background: var(--teal);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+  .plan-card-left { display: flex; align-items: center; gap: 14px; }
+  .plan-card-radio {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+  .plan-card.selected .plan-card-radio { border-color: var(--teal); background: var(--teal); }
+  .plan-card-radio::after {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: white;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .plan-card.selected .plan-card-radio::after { opacity: 1; }
+  .plan-card-name { font-size: 14px; font-weight: 700; color: var(--dark); }
+  .plan-card-desc { font-size: 12px; color: var(--gray-500); margin-top: 2px; }
+  .plan-card-right { text-align: right; }
+  .plan-card-price { font-size: 20px; font-weight: 800; color: var(--dark); }
+  .plan-card-period { font-size: 12px; color: var(--gray-400); }
+  .plan-card-savings {
+    display: inline-block;
+    margin-top: 4px;
+    padding: 2px 8px;
+    border-radius: 100px;
+    background: rgba(52,211,153,0.1);
+    color: #059669;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
   .screening-notice {
     background: var(--teal-light);
     border-radius: var(--radius);
@@ -541,6 +609,7 @@
   .form-input.ok{border-color:#22C55E}
   .form-input.err{border-color:var(--red);animation:shake .3s ease}
   @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+  @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
   .fi-errmsg{font-size:12px;color:var(--red);margin-top:2px;display:none}.fi-errmsg.vis{display:block}
   .bmi-card{margin-top:20px;padding:18px 20px;border-radius:var(--radius);border:1.5px solid var(--gray-200);background:var(--white);display:none;align-items:center;gap:16px;animation:fadeIn .4s ease}
   .bmi-card.vis{display:flex}
@@ -628,6 +697,13 @@
           <span class="treatment-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg> B12 included</span>
         </div>
       </div>
+    </div>
+
+    <!-- PLAN SELECTION (appears after treatment choice) -->
+    <div id="planSelection" style="display:none;margin-top:28px;">
+      <h3 style="font-size:16px;font-weight:700;color:#1a1a2e;margin-bottom:4px;">Choose your plan</h3>
+      <p style="font-size:13px;color:#6b7280;margin-bottom:16px;">All plans include provider consultation, prescription, medication, supplies, and free shipping.</p>
+      <div style="display:flex;flex-direction:column;gap:10px;" id="planCards"></div>
     </div>
   </div>
   <!-- STEP 2: HEALTH SCREENING -->
@@ -829,15 +905,19 @@
   <!-- STEP 5: REVIEW -->
   <div class="step" id="step5">
     <div class="step-label"><span>Step 5 of 5</span></div>
-    <h1 class="step-title">Review & <span class="serif-word">continue</span></h1>
-    <p class="step-subtitle">Please confirm your information below. You'll select your plan and complete payment on the next page.</p>
+    <h1 class="step-title">Review & <span class="serif-word">checkout</span></h1>
+    <p class="step-subtitle">Please confirm your information below. You'll complete payment securely via Stripe.</p>
     <div class="review-card">
       <div class="review-card-header">
-        <span class="review-card-title">Treatment</span>
+        <span class="review-card-title">Treatment & Plan</span>
         <button class="review-edit" onclick="goToStep(1)">Edit</button>
       </div>
       <div class="review-treatment-name" id="reviewTreatment">—</div>
       <div class="review-treatment-detail" id="reviewCompound">—</div>
+      <div class="review-row" style="margin-top:12px;padding-top:12px;border-top:1px solid var(--gray-100);">
+        <span class="review-label">Selected Plan</span>
+        <span class="review-value" id="reviewPlan" style="font-weight:700;color:var(--teal);">—</span>
+      </div>
     </div>
     <div class="review-card">
       <div class="review-card-header">
@@ -898,7 +978,7 @@
   // STATE
   let currentStep = 1;
   const totalSteps = 5;
-  let formData = { treatment: null, screeningClear: false, flaggedConditions: [] };
+  let formData = { treatment: null, plan: null, screeningClear: false, flaggedConditions: [] };
 
   // POPULATE SELECTS
   const daySelect = document.getElementById('dobDay');
@@ -1021,7 +1101,7 @@
     var btn = document.getElementById('btnContinue');
     var arrow = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"></polyline></svg>';
     if (currentStep === totalSteps) {
-      btn.innerHTML = 'Submit Intake ' + arrow;
+      btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" style="margin-right:4px"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> Continue to Checkout';
     } else {
       btn.innerHTML = 'Continue ' + arrow;
     }
@@ -1035,7 +1115,7 @@
     var valid = false;
     switch (currentStep) {
       case 1:
-        valid = formData.treatment !== null;
+        valid = formData.treatment !== null && formData.plan !== null;
         break;
       case 2:
         var noneChecked = document.getElementById('noneApply').classList.contains('checked');
@@ -1075,6 +1155,44 @@
     document.querySelectorAll('.treatment-card').forEach(function(c) { c.classList.remove('selected'); });
     card.classList.add('selected');
     formData.treatment = treatment;
+    formData.plan = null; // Reset plan when treatment changes
+    showPlanCards(treatment);
+    validateStep();
+  }
+
+  var planData = {
+    tirzepatide: [
+      { type: 'monthly', name: 'Monthly', desc: 'Auto-refill, cancel anytime', price: '$320', period: '/mo', total: null },
+      { type: '3month', name: '3-Month Starter', desc: 'One-time payment of $777', price: '$259', period: '/mo', total: '$777', savings: 'Save $183', best: true },
+      { type: '6month', name: '6-Month Plan', desc: 'One-time payment of $1,350', price: '$225', period: '/mo', total: '$1,350', savings: 'Save $570' }
+    ],
+    semaglutide: [
+      { type: 'monthly', name: 'Monthly', desc: 'Auto-refill, cancel anytime', price: '$225', period: '/mo', total: null },
+      { type: '3month', name: '3-Month Starter', desc: 'One-time payment of $537', price: '$179', period: '/mo', total: '$537', savings: 'Save $138', best: true },
+      { type: '6month', name: '6-Month Plan', desc: 'One-time payment of $894', price: '$149', period: '/mo', total: '$894', savings: 'Save $456' }
+    ]
+  };
+
+  function showPlanCards(treatment) {
+    var container = document.getElementById('planCards');
+    var section = document.getElementById('planSelection');
+    var plans = planData[treatment];
+    if (!plans) { section.style.display = 'none'; return; }
+    section.style.display = 'block';
+    container.innerHTML = plans.map(function(p) {
+      return '<div class="plan-card" onclick="selectPlan(this, \'' + p.type + '\')" data-plan="' + p.type + '">' +
+        (p.best ? '<div class="plan-card-best">Best Value</div>' : '') +
+        '<div class="plan-card-left"><div class="plan-card-radio"></div><div><div class="plan-card-name">' + p.name + '</div><div class="plan-card-desc">' + p.desc + '</div></div></div>' +
+        '<div class="plan-card-right"><div class="plan-card-price">' + p.price + '<span class="plan-card-period">' + p.period + '</span></div>' +
+        (p.savings ? '<div class="plan-card-savings">' + p.savings + '</div>' : '') +
+        '</div></div>';
+    }).join('');
+  }
+
+  function selectPlan(card, plan) {
+    document.querySelectorAll('.plan-card').forEach(function(c) { c.classList.remove('selected'); });
+    card.classList.add('selected');
+    formData.plan = plan;
     validateStep();
   }
 
@@ -1122,6 +1240,13 @@
     var compoundNames = { semaglutide: 'Compounded GLP-1 with Vitamin B12', tirzepatide: 'Compounded dual GLP-1/GIP with Vitamin B12' };
     document.getElementById('reviewTreatment').textContent = treatmentNames[formData.treatment] || '—';
     document.getElementById('reviewCompound').textContent = compoundNames[formData.treatment] || '—';
+    // Show selected plan
+    var plans = planData[formData.treatment] || [];
+    var selectedPlan = plans.find(function(p) { return p.type === formData.plan; });
+    var planEl = document.getElementById('reviewPlan');
+    if (planEl && selectedPlan) {
+      planEl.textContent = selectedPlan.name + ' — ' + selectedPlan.price + selectedPlan.period + (selectedPlan.total ? ' (' + selectedPlan.total + ' total)' : '');
+    } else if (planEl) { planEl.textContent = '—'; }
     document.getElementById('reviewName').textContent = document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value;
     document.getElementById('reviewEmail').textContent = document.getElementById('email').value;
     document.getElementById('reviewPhone').textContent = document.getElementById('phone').value;
@@ -1141,7 +1266,8 @@
   function submitIntake() {
     var btn = document.getElementById('btnContinue');
     btn.disabled = true;
-    btn.innerHTML = 'Submitting...';
+    btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="animation:spin 1s linear infinite"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> Connecting to checkout...';
+
     var payload = {
       firstName: document.getElementById('firstName').value.trim(),
       lastName: document.getElementById('lastName').value.trim(),
@@ -1168,23 +1294,45 @@
       utm_medium: new URLSearchParams(window.location.search).get('utm_medium'),
       utm_campaign: new URLSearchParams(window.location.search).get('utm_campaign')
     };
-    fetch('https://clyr-backend.onrender.com/api/intake', {
+
+    var API = 'https://clyr-backend.onrender.com';
+
+    // Step 1: Save intake data
+    fetch(API + '/api/intake', {
       method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
-    }).then(function(r) { return r.json(); }).then(function(result) {
-      if (result.success) {
-        fetch('https://clyr-backend.onrender.com/api/track', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ event: 'intake_completed', visitor_id: payload.visitor_id, page: '/intake' }) }).catch(function(){});
-        btn.innerHTML = 'Submitted ✓';
+    }).then(function(r) { return r.json(); }).then(function(intakeResult) {
+      if (!intakeResult.success) {
+        throw new Error(intakeResult.error || intakeResult.detail || 'Failed to save intake');
+      }
+
+      // Track funnel event
+      fetch(API + '/api/track', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ event: 'checkout_started', visitor_id: payload.visitor_id, page: '/intake', metadata: { treatment: formData.treatment, plan: formData.plan } }) }).catch(function(){});
+
+      // Step 2: Create Stripe Checkout session
+      return fetch(API + '/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: payload.email,
+          productType: formData.treatment,
+          planType: formData.plan,
+          firstName: payload.firstName,
+          lastName: payload.lastName
+        })
+      });
+    }).then(function(r) { return r.json(); }).then(function(checkoutResult) {
+      if (checkoutResult.url) {
+        // Redirect to Stripe Checkout
+        btn.innerHTML = '&#10003; Redirecting to checkout...';
         btn.style.background = '#22c55e';
-        setTimeout(function() { window.location.href = '/thank-you.html'; }, 600);
+        window.location.href = checkoutResult.url;
       } else {
-        btn.disabled = false;
-        btn.innerHTML = 'Submit Intake <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"></polyline></svg>';
-        alert('Error: ' + (result.error || result.detail || 'Please try again.'));
+        throw new Error(checkoutResult.error || 'Failed to create checkout session');
       }
     }).catch(function(err) {
       btn.disabled = false;
-      btn.innerHTML = 'Submit Intake <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"></polyline></svg>';
-      alert('Connection error: ' + err.message);
+      btn.innerHTML = 'Continue to Checkout <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"></polyline></svg>';
+      alert('Error: ' + err.message + '\n\nPlease try again. If the issue persists, contact us at contact@clyr.health');
     });
   }
 
