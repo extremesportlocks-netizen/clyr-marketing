@@ -632,6 +632,94 @@
     .nav-footer-inner { gap: 12px; }
     .btn-continue { padding: 14px 24px; flex: 1; justify-content: center; }
   }
+
+  /* ── YES/NO CARD SELECTOR ─────────────── */
+  .yn-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .yn-card {
+    padding: 18px 20px; border: 2px solid var(--gray-200); border-radius: var(--radius);
+    cursor: pointer; text-align: center; transition: all 0.25s; background: var(--white);
+    font-size: 15px; font-weight: 600; color: var(--dark); user-select: none;
+  }
+  .yn-card:hover { border-color: rgba(0,180,197,0.4); background: var(--gray-50); transform: translateY(-1px); }
+  .yn-card.selected { border-color: var(--teal); background: linear-gradient(180deg, rgba(0,180,197,0.06), var(--white)); box-shadow: 0 0 0 1px var(--teal); color: var(--teal-dark); }
+  .yn-card.selected-no { border-color: var(--red); background: var(--red-light); color: var(--red); }
+  .yn-card .yn-icon { font-size: 24px; margin-bottom: 4px; display: block; }
+
+  /* ── MULTI-CHOICE CARDS ───────────────── */
+  .mc-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+  .mc-card {
+    display: flex; align-items: center; gap: 14px; padding: 16px 18px;
+    border: 2px solid var(--gray-200); border-radius: var(--radius); cursor: pointer;
+    transition: all 0.25s; background: var(--white);
+  }
+  .mc-card:hover { border-color: rgba(0,180,197,0.4); background: var(--gray-50); }
+  .mc-card.selected { border-color: var(--teal); background: rgba(0,180,197,0.04); }
+  .mc-dot {
+    width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--gray-200);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s;
+  }
+  .mc-card.selected .mc-dot { border-color: var(--teal); background: var(--teal); }
+  .mc-dot::after { content:''; width:7px; height:7px; border-radius:50%; background:white; opacity:0; transition:opacity 0.2s; }
+  .mc-card.selected .mc-dot::after { opacity: 1; }
+  .mc-label { font-size: 15px; color: var(--dark); font-weight: 500; }
+
+  /* ── QUESTION BLOCK ───────────────────── */
+  .q-block { margin-bottom: 28px; }
+  .q-label { font-size: 15px; font-weight: 600; color: var(--dark); margin-bottom: 12px; line-height: 1.45; }
+  .q-sublabel { font-size: 13px; color: var(--gray-500); margin-top: -8px; margin-bottom: 12px; }
+
+  /* ── RANGE SLIDER ─────────────────────── */
+  .range-wrap { position: relative; margin-bottom: 20px; }
+  .range-labels { display: flex; justify-content: space-between; font-size: 12px; color: var(--gray-400); margin-bottom: 8px; }
+  .range-val { text-align: center; font-size: 28px; font-weight: 800; color: var(--teal); margin-bottom: 12px; }
+  input[type="range"].q-range {
+    -webkit-appearance: none; width: 100%; height: 8px; border-radius: 4px;
+    background: linear-gradient(90deg, var(--teal-light), var(--teal)); outline: none;
+  }
+  input[type="range"].q-range::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 28px; height: 28px; border-radius: 50%;
+    background: var(--teal); border: 3px solid var(--white); box-shadow: 0 2px 8px rgba(0,180,197,0.3); cursor: pointer;
+  }
+
+  /* ── TOGGLE GRID ──────────────────────── */
+  .toggle-grid { display: flex; flex-direction: column; gap: 0; border: 1.5px solid var(--gray-200); border-radius: var(--radius); overflow: hidden; margin-bottom: 20px; }
+  .toggle-item {
+    display: flex; align-items: center; justify-content: space-between; padding: 16px 18px;
+    border-bottom: 1px solid var(--gray-100); cursor: pointer; transition: background 0.15s; user-select: none;
+  }
+  .toggle-item:last-child { border-bottom: none; }
+  .toggle-item:hover { background: var(--gray-50); }
+  .toggle-text { font-size: 14px; color: var(--dark); flex: 1; padding-right: 16px; line-height: 1.4; }
+  .toggle-switch {
+    width: 48px; height: 28px; border-radius: 14px; background: var(--gray-200);
+    position: relative; flex-shrink: 0; transition: background 0.25s;
+  }
+  .toggle-switch::after {
+    content: ''; position: absolute; top: 3px; left: 3px; width: 22px; height: 22px;
+    border-radius: 50%; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.15); transition: transform 0.25s;
+  }
+  .toggle-item.on .toggle-switch { background: var(--teal); }
+  .toggle-item.on .toggle-switch::after { transform: translateX(20px); }
+
+  /* ── CONSENT READ BOX ─────────────────── */
+  .consent-read {
+    background: var(--white); border: 1.5px solid var(--gray-200); border-radius: var(--radius);
+    padding: 24px; margin-bottom: 24px; max-height: 200px; overflow-y: auto;
+    font-size: 13px; color: var(--gray-600); line-height: 1.7;
+  }
+  .consent-read::-webkit-scrollbar { width: 4px; }
+  .consent-read::-webkit-scrollbar-thumb { background: var(--gray-200); border-radius: 2px; }
+  .consent-read h4 { font-size: 14px; color: var(--dark); margin-bottom: 8px; }
+
+  /* ── DOCTOR MESSAGE TEXTAREA ──────────── */
+  .doctor-textarea {
+    width: 100%; min-height: 120px; padding: 16px; border: 1.5px solid var(--gray-200);
+    border-radius: var(--radius-sm); font-family: var(--sans); font-size: 15px;
+    color: var(--dark); background: var(--white); resize: vertical; outline: none; transition: all 0.2s;
+  }
+  .doctor-textarea:focus { border-color: var(--teal); box-shadow: 0 0 0 3px var(--teal-glow); }
+  .doctor-textarea::placeholder { color: var(--gray-400); }
+  .char-count { text-align: right; font-size: 12px; color: var(--gray-400); margin-top: 6px; }
 </style>
 </head>
 <body>
@@ -654,7 +742,7 @@
 <main class="main">
   <!-- STEP 1: CHOOSE TREATMENT -->
   <div class="step active" id="step1">
-    <div class="step-label"><span>Step 1 of 5</span></div>
+    <div class="step-label"><span>Step 1 of 8</span></div>
     <h1 class="step-title">Choose your <span class="serif-word">treatment</span></h1>
     <p class="step-subtitle">Select the medication that's right for your goals. Your provider will confirm eligibility after reviewing your health profile.</p>
     <div class="treatment-cards">
@@ -708,7 +796,7 @@
   </div>
   <!-- STEP 2: HEALTH SCREENING -->
   <div class="step" id="step2">
-    <div class="step-label"><span>Step 2 of 5</span></div>
+    <div class="step-label"><span>Step 2 of 8</span></div>
     <h1 class="step-title">Health <span class="serif-word">screening</span></h1>
     <p class="step-subtitle">Your safety is our priority. Please indicate if any of the following apply to you.</p>
     <div class="screening-notice">
@@ -786,7 +874,7 @@
   </div>
   <!-- STEP 3: PERSONAL DETAILS -->
   <div class="step" id="step3">
-    <div class="step-label"><span>Step 3 of 5</span></div>
+    <div class="step-label"><span>Step 3 of 8</span></div>
     <h1 class="step-title">Your <span class="serif-word">details</span></h1>
     <p class="step-subtitle">We'll use this to set up your account and connect you with a licensed provider in your state.</p>
     <div class="form-grid">
@@ -853,9 +941,151 @@
       </div>
     </div>
   </div>
-  <!-- STEP 4: SHIPPING -->
+  <!-- STEP 4: MEDICAL HISTORY -->
   <div class="step" id="step4">
-    <div class="step-label"><span>Step 4 of 5</span></div>
+    <div class="step-label"><span>Step 4 of 8</span></div>
+    <h1 class="step-title">Medical <span class="serif-word">history</span></h1>
+    <p class="step-subtitle">Help your provider understand your background so they can create the best treatment plan for you.</p>
+
+    <div class="q-block">
+      <div class="q-label">Have you ever attempted to lose weight in a weight management program?</div>
+      <div class="yn-row">
+        <div class="yn-card" onclick="selectYN(this,'q10','yes')"><span class="yn-icon">✓</span> Yes</div>
+        <div class="yn-card" onclick="selectYN(this,'q10','no')"><span class="yn-icon">—</span> No, first time</div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Are you willing to reduce your caloric intake alongside medication?</div>
+      <div class="yn-row">
+        <div class="yn-card" onclick="selectYN(this,'q20','yes')"><span class="yn-icon">👍</span> Yes</div>
+        <div class="yn-card" onclick="selectYN(this,'q20','no')"><span class="yn-icon">👎</span> No</div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Are you willing to increase your physical activity alongside medication?</div>
+      <div class="yn-row">
+        <div class="yn-card" onclick="selectYN(this,'q30','yes')"><span class="yn-icon">🏃</span> Yes</div>
+        <div class="yn-card" onclick="selectYN(this,'q30','no')"><span class="yn-icon">✗</span> No</div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Are you CURRENTLY taking any prescription medications for weight loss?</div>
+      <div class="mc-list">
+        <div class="mc-card" onclick="selectMC(this,'q36','none')"><div class="mc-dot"></div><div class="mc-label">None at this time</div></div>
+        <div class="mc-card" onclick="selectMC(this,'q36','branded')"><div class="mc-dot"></div><div class="mc-label">Wegovy / Zepbound / Mounjaro / Ozempic / Trulicity / Saxenda</div></div>
+        <div class="mc-card" onclick="selectMC(this,'q36','compounded_sema')"><div class="mc-dot"></div><div class="mc-label">Compounded Semaglutide</div></div>
+        <div class="mc-card" onclick="selectMC(this,'q36','compounded_tirz')"><div class="mc-dot"></div><div class="mc-label">Compounded Tirzepatide</div></div>
+        <div class="mc-card" onclick="selectMC(this,'q36','other')"><div class="mc-dot"></div><div class="mc-label">Other medication not listed</div></div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">What is your goal weight? (lbs)</div>
+      <input type="number" class="form-input" id="goalWeight" placeholder="e.g. 175" min="80" max="500" oninput="validateStep()">
+      <div style="font-size:12px;color:var(--gray-400);margin-top:6px;" id="goalHint"></div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">When was the last time you had an in-person medical evaluation?</div>
+      <div class="mc-list">
+        <div class="mc-card" onclick="selectMC(this,'q70','less_year')"><div class="mc-dot"></div><div class="mc-label">Less than a year ago</div></div>
+        <div class="mc-card" onclick="selectMC(this,'q70','1_2_years')"><div class="mc-dot"></div><div class="mc-label">1 to 2 years ago</div></div>
+        <div class="mc-card" onclick="selectMC(this,'q70','more_2_years')"><div class="mc-dot"></div><div class="mc-label">More than 2 years ago</div></div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Have you had any lab tests completed within the last 6 months?</div>
+      <div class="yn-row">
+        <div class="yn-card" onclick="selectYN(this,'q72','yes')"><span class="yn-icon">🔬</span> Yes</div>
+        <div class="yn-card" onclick="selectYN(this,'q72','no')"><span class="yn-icon">—</span> No, not at this time</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 5: TREATMENT PREFERENCES -->
+  <div class="step" id="step5">
+    <div class="step-label"><span>Step 5 of 8</span></div>
+    <h1 class="step-title">Treatment <span class="serif-word">preferences</span></h1>
+    <p class="step-subtitle">These help your provider personalize your treatment plan and manage potential side effects.</p>
+
+    <div class="q-block">
+      <div class="q-label">Would you like a prescription for nausea medication sent to your local pharmacy?</div>
+      <div class="q-sublabel">This is separate from your GLP-1 treatment and may require a co-pay or out-of-pocket cost.</div>
+      <div class="yn-row">
+        <div class="yn-card" onclick="selectYN(this,'q140','yes')"><span class="yn-icon">💊</span> Yes, please</div>
+        <div class="yn-card" onclick="selectYN(this,'q140','no')"><span class="yn-icon">—</span> No, thank you</div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">How sensitive are you to nausea or motion sickness?</div>
+      <div class="range-val" id="rangeVal">5</div>
+      <div class="range-wrap">
+        <input type="range" class="q-range" id="q150range" min="1" max="10" value="5" oninput="formData.mdiAnswers.q150=this.value;document.getElementById('rangeVal').textContent=this.value;validateStep()">
+        <div class="range-labels"><span>1 — Not sensitive</span><span>10 — Extremely sensitive</span></div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Tell us about your preferences</div>
+      <div class="q-sublabel">Toggle the options that apply to you. These help your doctor customize your treatment.</div>
+      <div class="toggle-grid">
+        <div class="toggle-item on" onclick="toggleItem(this,'q151')" data-key="q151"><div class="toggle-text">If I had significant nausea or GI side effects, it would impact my willingness to continue treatment</div><div class="toggle-switch"></div></div>
+        <div class="toggle-item on" onclick="toggleItem(this,'q152')" data-key="q152"><div class="toggle-text">Minimizing nausea and GI side effects during treatment is important to me</div><div class="toggle-switch"></div></div>
+        <div class="toggle-item" onclick="toggleItem(this,'q153')" data-key="q153"><div class="toggle-text">In prior weight loss attempts, I experienced loss of muscle mass</div><div class="toggle-switch"></div></div>
+        <div class="toggle-item on" onclick="toggleItem(this,'q154')" data-key="q154"><div class="toggle-text">Losing weight while conserving or improving muscle mass is important to me</div><div class="toggle-switch"></div></div>
+        <div class="toggle-item" onclick="toggleItem(this,'q155')" data-key="q155"><div class="toggle-text">I have been diagnosed with anemia</div><div class="toggle-switch"></div></div>
+        <div class="toggle-item" onclick="toggleItem(this,'q156')" data-key="q156"><div class="toggle-text">I have experienced fatigue or low energy</div><div class="toggle-switch"></div></div>
+        <div class="toggle-item" onclick="toggleItem(this,'q157')" data-key="q157"><div class="toggle-text">I have had issues with low vitamin levels or taken vitamin supplements</div><div class="toggle-switch"></div></div>
+        <div class="toggle-item on" onclick="toggleItem(this,'q158')" data-key="q158"><div class="toggle-text">I want control over how forcefully and fast the medication is injected</div><div class="toggle-switch"></div></div>
+        <div class="toggle-item on" onclick="toggleItem(this,'q159')" data-key="q159"><div class="toggle-text">I want my doctor to tailor my dosage to my personalized needs and goals</div><div class="toggle-switch"></div></div>
+        <div class="toggle-item on" onclick="toggleItem(this,'q160')" data-key="q160"><div class="toggle-text">I want my doctor to tailor my dosing frequency to my personalized needs and goals</div><div class="toggle-switch"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 6: GLP-1 CONSENT & DOCTOR MESSAGE -->
+  <div class="step" id="step6">
+    <div class="step-label"><span>Step 6 of 8</span></div>
+    <h1 class="step-title">Almost <span class="serif-word">there</span></h1>
+    <p class="step-subtitle">Review important information about GLP-1 treatment, sign your name, and introduce yourself to your provider.</p>
+
+    <div class="q-block">
+      <div class="q-label">Please read the following about GLP-1 medications</div>
+      <div class="consent-read">
+        <h4>Important Information About GLP-1 Agonist Treatment</h4>
+        <p>GLP-1 receptor agonists (such as Semaglutide and Tirzepatide) are medications that mimic the GLP-1 hormone to regulate appetite and blood sugar. Common side effects include nausea, vomiting, diarrhea, constipation, and decreased appetite. Serious but rare side effects may include pancreatitis, gallbladder problems, kidney issues, and allergic reactions.</p>
+        <p style="margin-top:8px;">GLP-1 medications should NOT be used if you have a personal or family history of medullary thyroid carcinoma (MTC) or Multiple Endocrine Neoplasia syndrome type 2 (MEN 2). These medications have caused thyroid C-cell tumors in rodents. It is unknown whether they cause thyroid tumors in humans.</p>
+        <p style="margin-top:8px;">You should inform your provider about all medications you are currently taking. These medications may affect how other drugs work, particularly insulin and sulfonylureas. Do not use if pregnant or planning to become pregnant.</p>
+        <p style="margin-top:8px;">By consenting below, you acknowledge that you have read and understood the above information, including the potential risks, benefits, and alternatives to GLP-1 treatment.</p>
+      </div>
+      <div class="yn-row">
+        <div class="yn-card" onclick="selectYN(this,'q130','yes')" style="padding:22px;"><span class="yn-icon">✓</span> YES, I CONSENT to GLP-1 treatment</div>
+        <div class="yn-card" onclick="selectYN(this,'q130','no')" style="padding:22px;"><span class="yn-icon">✗</span> No, I do not consent</div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Please type your FULL LEGAL NAME as your electronic signature</div>
+      <div class="q-sublabel">By typing your name, you certify that the information provided is accurate and complete.</div>
+      <input type="text" class="form-input" id="legalName" placeholder="Your full legal name" oninput="validateStep()" autocomplete="name">
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Send a message to your doctor</div>
+      <div class="q-sublabel">Introduce yourself and share anything you'd like your provider to know about your health goals, concerns, or medical history.</div>
+      <textarea class="doctor-textarea" id="doctorMessage" placeholder="Hi, I'm interested in starting GLP-1 treatment for weight management. My main goals are..." oninput="updateCharCount()" maxlength="1000"></textarea>
+      <div class="char-count"><span id="charCount">0</span> / 1,000</div>
+    </div>
+  </div>
+
+  <!-- STEP 7: SHIPPING -->
+  <div class="step" id="step7">
+    <div class="step-label"><span>Step 7 of 8</span></div>
     <h1 class="step-title">Shipping <span class="serif-word">address</span></h1>
     <p class="step-subtitle">Your medication will be shipped directly to you from our licensed compounding pharmacy.</p>
     <div class="form-grid">
@@ -907,8 +1137,8 @@
     </div>
   </div>
   <!-- STEP 5: REVIEW -->
-  <div class="step" id="step5">
-    <div class="step-label"><span>Step 5 of 5</span></div>
+  <div class="step" id="step8">
+    <div class="step-label"><span>Step 8 of 8</span></div>
     <h1 class="step-title">Review & <span class="serif-word">checkout</span></h1>
     <p class="step-subtitle">Please confirm your information below. You'll complete payment securely via Stripe.</p>
     <div class="review-card">
@@ -956,9 +1186,45 @@
     <div class="review-card">
       <div class="review-card-header">
         <span class="review-card-title">Shipping Address</span>
-        <button class="review-edit" onclick="goToStep(4)">Edit</button>
+        <button class="review-edit" onclick="goToStep(7)">Edit</button>
       </div>
       <div class="review-value" id="reviewAddress" style="text-align: left;">—</div>
+    </div>
+    <div class="review-card">
+      <div class="review-card-header">
+        <span class="review-card-title">Medical History</span>
+        <button class="review-edit" onclick="goToStep(4)">Edit</button>
+      </div>
+      <div class="review-row">
+        <span class="review-label">Prior weight management</span>
+        <span class="review-value" id="reviewQ10">—</span>
+      </div>
+      <div class="review-row">
+        <span class="review-label">Current weight loss Rx</span>
+        <span class="review-value" id="reviewQ36">—</span>
+      </div>
+      <div class="review-row">
+        <span class="review-label">Goal weight</span>
+        <span class="review-value" id="reviewGoal">—</span>
+      </div>
+      <div class="review-row">
+        <span class="review-label">Last medical evaluation</span>
+        <span class="review-value" id="reviewQ70">—</span>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-card-header">
+        <span class="review-card-title">Treatment Consent</span>
+        <button class="review-edit" onclick="goToStep(6)">Edit</button>
+      </div>
+      <div class="review-row">
+        <span class="review-label">GLP-1 Consent</span>
+        <span class="review-value" id="reviewConsent" style="color:var(--green);font-weight:700;">—</span>
+      </div>
+      <div class="review-row">
+        <span class="review-label">Legal signature</span>
+        <span class="review-value" id="reviewSignature">—</span>
+      </div>
     </div>
     <div class="review-disclaimer">
       By clicking "Continue to Checkout," your information will be sent to a licensed provider for review. If your provider determines you are not eligible for treatment, you will receive a full refund. Compounded medications have not been evaluated or approved by the FDA for safety, efficacy, or quality.
@@ -981,8 +1247,17 @@
 <script>
   // STATE
   let currentStep = 1;
-  const totalSteps = 5;
-  let formData = { treatment: null, plan: null, screeningClear: false, flaggedConditions: [] };
+  const totalSteps = 8;
+  let formData = {
+    treatment: null, plan: null, screeningClear: false, flaggedConditions: [],
+    mdiAnswers: {
+      q10: null, q20: null, q30: null, q36: null, q60: null, q70: null, q72: null,
+      q130: null, q140: null, q150: '5',
+      q151: 'yes', q152: 'yes', q153: 'no', q154: 'yes', q155: 'no', q156: 'no', q157: 'no',
+      q158: 'yes', q159: 'yes', q160: 'yes',
+      q176: '', q195: ''
+    }
+  };
 
   // POPULATE SELECTS
   const daySelect = document.getElementById('dobDay');
@@ -1110,7 +1385,8 @@
       btn.innerHTML = 'Continue ' + arrow;
     }
     validateStep();
-    if (currentStep === 5) populateReview();
+    if (currentStep === 6) syncLegalName();
+    if (currentStep === 8) populateReview();
   }
 
   // VALIDATION
@@ -1139,8 +1415,8 @@
                 document.getElementById('heightIn').value &&
                 parseInt(document.getElementById('weight').value) >= 80;
         break;
-      case 4:
-        var consents = document.querySelectorAll('#step4 .consent-item');
+      case 7:
+        var consents = document.querySelectorAll('#step7 .consent-item');
         var requiredConsents = [consents[0], consents[1], consents[2]];
         var allRequired = requiredConsents.every(function(c) { return c.classList.contains('checked'); });
         var selectedState = document.getElementById('state').value;
@@ -1166,7 +1442,16 @@
                 document.getElementById('zip').value.trim().length >= 5 &&
                 allRequired;
         break;
-      case 5: valid = true; break;
+      case 4: // Medical History
+        valid = formData.mdiAnswers.q10 && formData.mdiAnswers.q20 && formData.mdiAnswers.q30 && formData.mdiAnswers.q36 && document.getElementById('goalWeight').value && formData.mdiAnswers.q70 && formData.mdiAnswers.q72;
+        break;
+      case 5: // Treatment Preferences
+        valid = formData.mdiAnswers.q140 && formData.mdiAnswers.q150;
+        break;
+      case 6: // GLP-1 Consent
+        valid = formData.mdiAnswers.q130 === 'yes' && document.getElementById('legalName').value.trim().length >= 3;
+        break;
+      case 8: valid = true; break;
     }
     btn.disabled = !valid;
   }
@@ -1281,6 +1566,17 @@
     var city = document.getElementById('city').value, state = document.getElementById('state').value, zip = document.getElementById('zip').value;
     var full = addr + (apt ? ', ' + apt : '');
     document.getElementById('reviewAddress').innerHTML = full + '<br>' + city + ', ' + state + ' ' + zip;
+
+    // Medical history review
+    var q10Map = { yes: 'Yes', no: 'No, first time' };
+    var q36Map = { none: 'None', branded: 'Brand-name GLP-1', compounded_sema: 'Compounded Sema', compounded_tirz: 'Compounded Tirz', other: 'Other' };
+    var q70Map = { less_year: '< 1 year ago', '1_2_years': '1-2 years ago', more_2_years: '> 2 years ago' };
+    document.getElementById('reviewQ10').textContent = q10Map[formData.mdiAnswers.q10] || '—';
+    document.getElementById('reviewQ36').textContent = q36Map[formData.mdiAnswers.q36] || '—';
+    document.getElementById('reviewGoal').textContent = (document.getElementById('goalWeight').value || '—') + ' lbs';
+    document.getElementById('reviewQ70').textContent = q70Map[formData.mdiAnswers.q70] || '—';
+    document.getElementById('reviewConsent').textContent = formData.mdiAnswers.q130 === 'yes' ? '✓ Consented' : '—';
+    document.getElementById('reviewSignature').textContent = document.getElementById('legalName').value || '—';
   }
 
   // SUBMIT
@@ -1304,7 +1600,7 @@
       treatment: formData.treatment,
       screeningClear: formData.screeningClear,
       flaggedConditions: formData.flaggedConditions,
-      consents: Array.from(document.querySelectorAll('#step4 .consent-item')).map(function(c) {
+      consents: Array.from(document.querySelectorAll('#step7 .consent-item')).map(function(c) {
         return {
           text: c.querySelector('.checkbox-label').textContent.trim(),
           accepted: c.classList.contains('checked'),
@@ -1319,7 +1615,11 @@
       visitor_id: localStorage.getItem('clyr_vid') || null,
       utm_source: new URLSearchParams(window.location.search).get('utm_source'),
       utm_medium: new URLSearchParams(window.location.search).get('utm_medium'),
-      utm_campaign: new URLSearchParams(window.location.search).get('utm_campaign')
+      utm_campaign: new URLSearchParams(window.location.search).get('utm_campaign'),
+      mdiAnswers: formData.mdiAnswers,
+      goalWeight: document.getElementById('goalWeight') ? document.getElementById('goalWeight').value : null,
+      legalName: document.getElementById('legalName') ? document.getElementById('legalName').value.trim() : null,
+      doctorMessage: document.getElementById('doctorMessage') ? document.getElementById('doctorMessage').value.trim() : null
     };
 
     var API = 'https://clyr-backend.onrender.com';
@@ -1361,6 +1661,55 @@
       btn.innerHTML = 'Continue to Checkout <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"></polyline></svg>';
       alert('Error: ' + err.message + '\n\nPlease try again. If the issue persists, contact us at contact@clyr.health');
     });
+  }
+
+  // ─── MDI QUESTION HELPERS ──────────────
+  function selectYN(card, key, value) {
+    var row = card.parentNode;
+    row.querySelectorAll('.yn-card').forEach(function(c) { c.classList.remove('selected', 'selected-no'); });
+    card.classList.add(value === 'no' ? 'selected-no' : 'selected');
+    formData.mdiAnswers[key] = value;
+    validateStep();
+  }
+
+  function selectMC(card, key, value) {
+    var list = card.parentNode;
+    list.querySelectorAll('.mc-card').forEach(function(c) { c.classList.remove('selected'); });
+    card.classList.add('selected');
+    formData.mdiAnswers[key] = value;
+    validateStep();
+  }
+
+  function toggleItem(item, key) {
+    item.classList.toggle('on');
+    formData.mdiAnswers[key] = item.classList.contains('on') ? 'yes' : 'no';
+    validateStep();
+  }
+
+  function updateCharCount() {
+    var msg = document.getElementById('doctorMessage');
+    document.getElementById('charCount').textContent = msg.value.length;
+    formData.mdiAnswers.q195 = msg.value;
+  }
+
+  // Auto-suggest goal weight when weight is entered
+  document.getElementById('weight').addEventListener('input', function() {
+    var wt = parseInt(this.value);
+    var hint = document.getElementById('goalHint');
+    var goalInput = document.getElementById('goalWeight');
+    if (wt && wt >= 80 && hint) {
+      var suggested = Math.round(wt * 0.85);
+      hint.textContent = 'Based on your current weight, a healthy target might be around ' + suggested + ' lbs';
+      if (!goalInput.value) goalInput.value = suggested;
+    }
+  });
+
+  // Sync legal name from step 3
+  function syncLegalName() {
+    var fn = document.getElementById('firstName').value.trim();
+    var ln = document.getElementById('lastName').value.trim();
+    var legal = document.getElementById('legalName');
+    if (legal && !legal.value && fn && ln) legal.value = fn + ' ' + ln;
   }
 
   // INPUT LISTENERS
