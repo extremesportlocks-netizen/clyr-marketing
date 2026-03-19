@@ -1143,9 +1143,26 @@
         var consents = document.querySelectorAll('#step4 .consent-item');
         var requiredConsents = [consents[0], consents[1], consents[2]];
         var allRequired = requiredConsents.every(function(c) { return c.classList.contains('checked'); });
+        var selectedState = document.getElementById('state').value;
+        var excludedStates = ['AK', 'MS', 'LA'];
+        var stateExcluded = excludedStates.indexOf(selectedState) !== -1;
+        var stateMsg = document.getElementById('stateExcludedMsg');
+        if (stateExcluded) {
+          if (!stateMsg) {
+            stateMsg = document.createElement('div');
+            stateMsg.id = 'stateExcludedMsg';
+            stateMsg.style.cssText = 'background:#fff0f0;border:1px solid #ff4444;border-radius:12px;padding:16px 20px;margin:12px 0;color:#cc0000;font-size:14px;line-height:1.5;';
+            stateMsg.innerHTML = '<strong>We\'re sorry, we cannot service your state at this time.</strong><br>CLYR Health is not currently available in Alaska, Mississippi, or Louisiana. We are actively working to expand coverage. Please check back soon or <a href="/contact.html" style="color:#2bbcb3;">contact us</a> for updates.';
+            document.getElementById('state').parentNode.insertAdjacentElement('afterend', stateMsg);
+          }
+          stateMsg.style.display = 'block';
+        } else if (stateMsg) {
+          stateMsg.style.display = 'none';
+        }
         valid = document.getElementById('address').value.trim() &&
                 document.getElementById('city').value.trim() &&
-                document.getElementById('state').value &&
+                selectedState &&
+                !stateExcluded &&
                 document.getElementById('zip').value.trim().length >= 5 &&
                 allRequired;
         break;
