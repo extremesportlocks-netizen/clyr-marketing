@@ -898,6 +898,10 @@
       </div>
       <div class="consent-item" onclick="toggleConsent(this)">
         <div class="checkbox-box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+        <span class="checkbox-label">By proceeding, I consent to a telehealth consultation with an independent licensed clinician. I understand a professional medical fee applies and is included in the amount paid.</span>
+      </div>
+      <div class="consent-item" onclick="toggleConsent(this)">
+        <div class="checkbox-box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
         <span class="checkbox-label">I consent to receive SMS text messages from CLYR Health regarding my treatment status, shipping updates, and appointment reminders at the phone number provided. Up to 10 messages per month. Message and data rates may apply. Reply STOP to opt out at any time. Reply HELP for help. See our <a href="/privacy.html">Privacy Policy</a>.</span>
       </div>
     </div>
@@ -1137,7 +1141,7 @@
         break;
       case 4:
         var consents = document.querySelectorAll('#step4 .consent-item');
-        var requiredConsents = [consents[0], consents[1]];
+        var requiredConsents = [consents[0], consents[1], consents[2]];
         var allRequired = requiredConsents.every(function(c) { return c.classList.contains('checked'); });
         valid = document.getElementById('address').value.trim() &&
                 document.getElementById('city').value.trim() &&
@@ -1283,7 +1287,13 @@
       treatment: formData.treatment,
       screeningClear: formData.screeningClear,
       flaggedConditions: formData.flaggedConditions,
-      consents: Array.from(document.querySelectorAll('#step4 .consent-item')).map(function(c) { return c.classList.contains('checked'); }),
+      consents: Array.from(document.querySelectorAll('#step4 .consent-item')).map(function(c) {
+        return {
+          text: c.querySelector('.checkbox-label').textContent.trim(),
+          accepted: c.classList.contains('checked'),
+          timestamp: new Date().toISOString()
+        };
+      }),
       address: document.getElementById('address').value.trim(),
       apt: document.getElementById('apt') ? document.getElementById('apt').value.trim() : '',
       city: document.getElementById('city').value.trim(),
