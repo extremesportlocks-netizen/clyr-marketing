@@ -1004,6 +1004,16 @@
         <div class="yn-card" onclick="selectYN(this,'q72','no')"><span class="yn-icon">—</span> No, not at this time</div>
       </div>
     </div>
+
+    <div class="q-block">
+      <div class="q-label">Are you currently taking any medications? (Include name and dosage)</div>
+      <textarea class="form-input" id="currentMedications" placeholder="e.g. Lisinopril 10mg daily, Metformin 500mg twice daily — or type 'None'" oninput="validateStep()" rows="2" style="resize:vertical;min-height:60px;font-family:inherit;padding:14px 16px;"></textarea>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Do you have any drug allergies or intolerances?</div>
+      <textarea class="form-input" id="drugAllergies" placeholder="e.g. Penicillin (hives), Sulfa drugs (rash) — or type 'None'" oninput="validateStep()" rows="2" style="resize:vertical;min-height:60px;font-family:inherit;padding:14px 16px;"></textarea>
+    </div>
   </div>
 
   <!-- STEP 5: TREATMENT PREFERENCES -->
@@ -1443,7 +1453,7 @@
                 allRequired;
         break;
       case 4: // Medical History
-        valid = formData.mdiAnswers.q10 && formData.mdiAnswers.q20 && formData.mdiAnswers.q30 && formData.mdiAnswers.q36 && document.getElementById('goalWeight').value && formData.mdiAnswers.q70 && formData.mdiAnswers.q72;
+        valid = formData.mdiAnswers.q10 && formData.mdiAnswers.q20 && formData.mdiAnswers.q30 && formData.mdiAnswers.q36 && document.getElementById('goalWeight').value && formData.mdiAnswers.q70 && formData.mdiAnswers.q72 && document.getElementById('currentMedications').value.trim() && document.getElementById('drugAllergies').value.trim();
         break;
       case 5: // Treatment Preferences
         valid = formData.mdiAnswers.q140 && formData.mdiAnswers.q150;
@@ -1619,7 +1629,9 @@
       mdiAnswers: formData.mdiAnswers,
       goalWeight: document.getElementById('goalWeight') ? document.getElementById('goalWeight').value : null,
       legalName: document.getElementById('legalName') ? document.getElementById('legalName').value.trim() : null,
-      doctorMessage: document.getElementById('doctorMessage') ? document.getElementById('doctorMessage').value.trim() : null
+      doctorMessage: document.getElementById('doctorMessage') ? document.getElementById('doctorMessage').value.trim() : null,
+      currentMedications: document.getElementById('currentMedications') ? document.getElementById('currentMedications').value.trim() : null,
+      drugAllergies: document.getElementById('drugAllergies') ? document.getElementById('drugAllergies').value.trim() : null
     };
 
     var API = 'https://clyr-backend.onrender.com';
