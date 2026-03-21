@@ -1006,13 +1006,25 @@
     </div>
 
     <div class="q-block">
-      <div class="q-label">Are you currently taking any medications? (Include name and dosage)</div>
-      <textarea class="form-input" id="currentMedications" placeholder="e.g. Lisinopril 10mg daily, Metformin 500mg twice daily — or type 'None'" oninput="validateStep()" rows="2" style="resize:vertical;min-height:60px;font-family:inherit;padding:14px 16px;"></textarea>
+      <div class="q-label">Are you currently taking any medications?</div>
+      <div class="yn-row">
+        <div class="yn-card" onclick="toggleMedsField(this,'yes')"><span class="yn-icon">💊</span> Yes</div>
+        <div class="yn-card" onclick="toggleMedsField(this,'no')"><span class="yn-icon">—</span> No medications</div>
+      </div>
+      <div id="medsDetailWrap" style="display:none;margin-top:12px;">
+        <textarea class="form-input" id="currentMedications" placeholder="e.g. Lisinopril 10mg daily, Metformin 500mg twice daily" oninput="validateStep()" rows="2" style="resize:vertical;min-height:60px;font-family:inherit;padding:14px 16px;"></textarea>
+      </div>
     </div>
 
     <div class="q-block">
       <div class="q-label">Do you have any drug allergies or intolerances?</div>
-      <textarea class="form-input" id="drugAllergies" placeholder="e.g. Penicillin (hives), Sulfa drugs (rash) — or type 'None'" oninput="validateStep()" rows="2" style="resize:vertical;min-height:60px;font-family:inherit;padding:14px 16px;"></textarea>
+      <div class="yn-row">
+        <div class="yn-card" onclick="toggleAllergyField(this,'yes')"><span class="yn-icon">⚠️</span> Yes</div>
+        <div class="yn-card" onclick="toggleAllergyField(this,'no')"><span class="yn-icon">—</span> No allergies</div>
+      </div>
+      <div id="allergyDetailWrap" style="display:none;margin-top:12px;">
+        <textarea class="form-input" id="drugAllergies" placeholder="e.g. Penicillin (hives), Sulfa drugs (rash)" oninput="validateStep()" rows="2" style="resize:vertical;min-height:60px;font-family:inherit;padding:14px 16px;"></textarea>
+      </div>
     </div>
   </div>
 
@@ -1453,7 +1465,7 @@
                 allRequired;
         break;
       case 4: // Medical History
-        valid = formData.mdiAnswers.q10 && formData.mdiAnswers.q20 && formData.mdiAnswers.q30 && formData.mdiAnswers.q36 && document.getElementById('goalWeight').value && formData.mdiAnswers.q70 && formData.mdiAnswers.q72 && document.getElementById('currentMedications').value.trim() && document.getElementById('drugAllergies').value.trim();
+        valid = formData.mdiAnswers.q10 && formData.mdiAnswers.q20 && formData.mdiAnswers.q30 && formData.mdiAnswers.q36 && document.getElementById('goalWeight').value && formData.mdiAnswers.q70 && formData.mdiAnswers.q72 && medsToggle !== null && allergyToggle !== null && document.getElementById('currentMedications').value.trim() && document.getElementById('drugAllergies').value.trim();
         break;
       case 5: // Treatment Preferences
         valid = formData.mdiAnswers.q140 && formData.mdiAnswers.q150;
@@ -1689,6 +1701,44 @@
     list.querySelectorAll('.mc-card').forEach(function(c) { c.classList.remove('selected'); });
     card.classList.add('selected');
     formData.mdiAnswers[key] = value;
+    validateStep();
+  }
+
+  var medsToggle = null, allergyToggle = null;
+
+  function toggleMedsField(card, value) {
+    var row = card.parentNode;
+    row.querySelectorAll('.yn-card').forEach(function(c) { c.classList.remove('selected', 'selected-no'); });
+    card.classList.add(value === 'no' ? 'selected-no' : 'selected');
+    medsToggle = value;
+    var wrap = document.getElementById('medsDetailWrap');
+    var field = document.getElementById('currentMedications');
+    if (value === 'no') {
+      wrap.style.display = 'none';
+      field.value = 'None';
+    } else {
+      wrap.style.display = 'block';
+      field.value = '';
+      field.focus();
+    }
+    validateStep();
+  }
+
+  function toggleAllergyField(card, value) {
+    var row = card.parentNode;
+    row.querySelectorAll('.yn-card').forEach(function(c) { c.classList.remove('selected', 'selected-no'); });
+    card.classList.add(value === 'no' ? 'selected-no' : 'selected');
+    allergyToggle = value;
+    var wrap = document.getElementById('allergyDetailWrap');
+    var field = document.getElementById('drugAllergies');
+    if (value === 'no') {
+      wrap.style.display = 'none';
+      field.value = 'None';
+    } else {
+      wrap.style.display = 'block';
+      field.value = '';
+      field.focus();
+    }
     validateStep();
   }
 
