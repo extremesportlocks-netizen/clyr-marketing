@@ -720,7 +720,23 @@
   .doctor-textarea:focus { border-color: var(--teal); box-shadow: 0 0 0 3px var(--teal-glow); }
   .doctor-textarea::placeholder { color: var(--gray-400); }
   .char-count { text-align: right; font-size: 12px; color: var(--gray-400); margin-top: 6px; }
+
+  /* Embedded Checkout */
+  #checkout-step { display: none; }
+  #checkout-step.active { display: block; }
+  #checkout-mount { min-height: 350px; }
+  .checkout-header { text-align: center; margin-bottom: 28px; }
+  .checkout-header h2 { font-family: 'Instrument Serif', serif; font-size: 28px; font-weight: 400; color: var(--dark); margin-bottom: 6px; }
+  .checkout-header p { font-size: 14px; color: var(--gray-400); }
+  .checkout-order-summary { background: var(--gray-50); border: 1px solid var(--gray-100); border-radius: 16px; padding: 20px 24px; margin-bottom: 24px; }
+  .checkout-order-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; }
+  .checkout-order-label { font-size: 14px; color: var(--gray-600); }
+  .checkout-order-value { font-size: 14px; font-weight: 600; color: var(--dark); }
+  .checkout-order-total { border-top: 1px solid var(--gray-200); margin-top: 8px; padding-top: 12px; }
+  .checkout-order-total .checkout-order-value { font-size: 18px; color: var(--teal); }
+  .checkout-secure { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 20px; font-size: 12px; color: var(--gray-400); }
 </style>
+<script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
 <!-- HEADER -->
@@ -742,7 +758,7 @@
 <main class="main">
   <!-- STEP 1: CHOOSE TREATMENT -->
   <div class="step active" id="step1">
-    <div class="step-label"><span>Step 1 of 8</span></div>
+    <div class="step-label"><span>Step 1 of 9</span></div>
     <h1 class="step-title">Choose your <span class="serif-word">treatment</span></h1>
     <p class="step-subtitle">Select the medication that's right for your goals. Your provider will confirm eligibility after reviewing your health profile.</p>
     <div class="treatment-cards">
@@ -796,7 +812,7 @@
   </div>
   <!-- STEP 2: HEALTH SCREENING -->
   <div class="step" id="step2">
-    <div class="step-label"><span>Step 2 of 8</span></div>
+    <div class="step-label"><span>Step 2 of 9</span></div>
     <h1 class="step-title">Health <span class="serif-word">screening</span></h1>
     <p class="step-subtitle">Your safety is our priority. Please indicate if any of the following apply to you.</p>
     <div class="screening-notice">
@@ -874,7 +890,7 @@
   </div>
   <!-- STEP 3: PERSONAL DETAILS -->
   <div class="step" id="step3">
-    <div class="step-label"><span>Step 3 of 8</span></div>
+    <div class="step-label"><span>Step 3 of 9</span></div>
     <h1 class="step-title">Your <span class="serif-word">details</span></h1>
     <p class="step-subtitle">We'll use this to set up your account and connect you with a licensed provider in your state.</p>
     <div class="form-grid">
@@ -943,7 +959,7 @@
   </div>
   <!-- STEP 4: MEDICAL HISTORY -->
   <div class="step" id="step4">
-    <div class="step-label"><span>Step 4 of 8</span></div>
+    <div class="step-label"><span>Step 4 of 9</span></div>
     <h1 class="step-title">Medical <span class="serif-word">history</span></h1>
     <p class="step-subtitle">Help your provider understand your background so they can create the best treatment plan for you.</p>
 
@@ -1030,7 +1046,7 @@
 
   <!-- STEP 5: TREATMENT PREFERENCES -->
   <div class="step" id="step5">
-    <div class="step-label"><span>Step 5 of 8</span></div>
+    <div class="step-label"><span>Step 5 of 9</span></div>
     <h1 class="step-title">Treatment <span class="serif-word">preferences</span></h1>
     <p class="step-subtitle">These help your provider personalize your treatment plan and manage potential side effects.</p>
 
@@ -1072,7 +1088,7 @@
 
   <!-- STEP 6: GLP-1 CONSENT & DOCTOR MESSAGE -->
   <div class="step" id="step6">
-    <div class="step-label"><span>Step 6 of 8</span></div>
+    <div class="step-label"><span>Step 6 of 9</span></div>
     <h1 class="step-title">Almost <span class="serif-word">there</span></h1>
     <p class="step-subtitle">Review important information about GLP-1 treatment, sign your name, and introduce yourself to your provider.</p>
 
@@ -1107,7 +1123,7 @@
 
   <!-- STEP 7: SHIPPING -->
   <div class="step" id="step7">
-    <div class="step-label"><span>Step 7 of 8</span></div>
+    <div class="step-label"><span>Step 7 of 9</span></div>
     <h1 class="step-title">Shipping <span class="serif-word">address</span></h1>
     <p class="step-subtitle">Your medication will be shipped directly to you from our licensed compounding pharmacy.</p>
     <div class="form-grid">
@@ -1160,7 +1176,7 @@
   </div>
   <!-- STEP 5: REVIEW -->
   <div class="step" id="step8">
-    <div class="step-label"><span>Step 8 of 8</span></div>
+    <div class="step-label"><span>Step 8 of 9</span></div>
     <h1 class="step-title">Review & <span class="serif-word">checkout</span></h1>
     <p class="step-subtitle">Please confirm your information below. You'll complete payment securely via Stripe.</p>
     <div class="review-card">
@@ -1252,6 +1268,30 @@
       By clicking "Continue to Checkout," your information will be sent to a licensed provider for review. If your provider determines you are not eligible for treatment, you will receive a full refund. Compounded medications have not been evaluated or approved by the FDA for safety, efficacy, or quality.
     </div>
   </div>
+
+  <!-- STEP 9: EMBEDDED CHECKOUT -->
+  <div class="step" id="step9">
+    <div class="step-label"><span>Step 9 of 9</span></div>
+    <div class="checkout-header">
+      <h2>Complete <em style="font-style:italic;color:var(--teal);">payment</em></h2>
+      <p>Secure checkout powered by Stripe</p>
+    </div>
+    <div class="checkout-order-summary" id="checkoutSummary">
+      <div class="checkout-order-row">
+        <span class="checkout-order-label" id="checkoutTreatmentLabel">—</span>
+        <span class="checkout-order-value" id="checkoutPlanLabel">—</span>
+      </div>
+      <div class="checkout-order-row checkout-order-total">
+        <span class="checkout-order-label">Total</span>
+        <span class="checkout-order-value" id="checkoutTotal">—</span>
+      </div>
+    </div>
+    <div id="checkout-mount"></div>
+    <div class="checkout-secure">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+      256-bit SSL encrypted &bull; HIPAA compliant &bull; PCI DSS Level 1
+    </div>
+  </div>
 </main>
 <!-- NAVIGATION FOOTER -->
 <div class="nav-footer">
@@ -1269,7 +1309,7 @@
 <script>
   // STATE
   let currentStep = 1;
-  const totalSteps = 8;
+  const totalSteps = 9;
   let formData = {
     treatment: null, plan: null, screeningClear: false, flaggedConditions: [],
     mdiAnswers: {
@@ -1389,8 +1429,8 @@
   }
 
   function nextStep() {
+    if (currentStep === 8) { submitIntake(); return; }
     if (currentStep < totalSteps) goToStep(currentStep + 1);
-    else submitIntake();
   }
 
   function prevStep() { if (currentStep > 1) goToStep(currentStep - 1); }
@@ -1401,14 +1441,18 @@
     document.getElementById('btnBack').style.visibility = currentStep > 1 ? 'visible' : 'hidden';
     var btn = document.getElementById('btnContinue');
     var arrow = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"></polyline></svg>';
-    if (currentStep === totalSteps) {
+    if (currentStep === 8) {
       btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" style="margin-right:4px"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> Continue to Checkout';
     } else {
       btn.innerHTML = 'Continue ' + arrow;
     }
+    // Hide nav footer on checkout step (Stripe handles payment)
+    var navFooter = document.querySelector('.nav-footer');
+    if (navFooter) navFooter.style.display = currentStep === 9 ? 'none' : '';
     validateStep();
     if (currentStep === 6) syncLegalName();
     if (currentStep === 8) populateReview();
+    if (currentStep === 9) populateCheckoutSummary();
   }
 
   // VALIDATION
@@ -1474,6 +1518,7 @@
         valid = formData.mdiAnswers.q130 === 'yes' && document.getElementById('legalName').value.trim().length >= 3;
         break;
       case 8: valid = true; break;
+      case 9: valid = false; break; // Stripe handles payment on step 9
     }
     btn.disabled = !valid;
   }
@@ -1602,10 +1647,41 @@
   }
 
   // SUBMIT
+  // Stripe instance — initialized after fetching publishable key from backend
+  var stripe = null;
+  var embeddedCheckout = null;
+
+  (function initStripe() {
+    fetch('https://clyr-backend.onrender.com/api/config')
+      .then(function(r) { return r.json(); })
+      .then(function(config) {
+        if (config.publishableKey) {
+          stripe = Stripe(config.publishableKey);
+        }
+      })
+      .catch(function() {});
+  })();
+
+  function populateCheckoutSummary() {
+    var prices = {
+      'tirzepatide_monthly': { label: 'Tirzepatide + B12 — Monthly', total: '$320/mo' },
+      'tirzepatide_3month': { label: 'Tirzepatide + B12 — 3-Month', total: '$777' },
+      'tirzepatide_6month': { label: 'Tirzepatide + B12 — 6-Month', total: '$1,350' },
+      'semaglutide_monthly': { label: 'Semaglutide + B12 — Monthly', total: '$225/mo' },
+      'semaglutide_3month': { label: 'Semaglutide + B12 — 3-Month', total: '$537' },
+      'semaglutide_6month': { label: 'Semaglutide + B12 — 6-Month', total: '$894' },
+    };
+    var key = formData.treatment + '_' + formData.plan;
+    var info = prices[key] || { label: '—', total: '—' };
+    document.getElementById('checkoutTreatmentLabel').textContent = info.label;
+    document.getElementById('checkoutPlanLabel').textContent = formData.plan === 'monthly' ? 'Subscription' : 'One-time';
+    document.getElementById('checkoutTotal').textContent = info.total;
+  }
+
   function submitIntake() {
     var btn = document.getElementById('btnContinue');
     btn.disabled = true;
-    btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="animation:spin 1s linear infinite"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> Connecting to checkout...';
+    btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="animation:spin 1s linear infinite"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> Preparing checkout...';
 
     var payload = {
       firstName: document.getElementById('firstName').value.trim(),
@@ -1659,7 +1735,7 @@
       // Track funnel event
       fetch(API + '/api/track', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ event: 'checkout_started', visitor_id: payload.visitor_id, page: '/intake', metadata: { treatment: formData.treatment, plan: formData.plan } }) }).catch(function(){});
 
-      // Step 2: Create Stripe Checkout session
+      // Step 2: Create embedded Checkout session
       return fetch(API + '/api/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -1672,18 +1748,42 @@
         })
       });
     }).then(function(r) { return r.json(); }).then(function(checkoutResult) {
-      if (checkoutResult.url) {
-        // Redirect to Stripe Checkout
-        btn.innerHTML = '&#10003; Redirecting to checkout...';
-        btn.style.background = '#22c55e';
-        window.location.href = checkoutResult.url;
-      } else {
+      if (!checkoutResult.clientSecret) {
         throw new Error(checkoutResult.error || 'Failed to create checkout session');
       }
+
+      // Go to step 9 (checkout)
+      goToStep(9);
+
+      // Mount Stripe Embedded Checkout
+      mountEmbeddedCheckout(checkoutResult.clientSecret);
+
     }).catch(function(err) {
       btn.disabled = false;
-      btn.innerHTML = 'Continue to Checkout <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"></polyline></svg>';
+      btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" style="margin-right:4px"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> Continue to Checkout';
       alert('Error: ' + err.message + '\n\nPlease try again. If the issue persists, contact us at contact@clyr.health');
+    });
+  }
+
+  function mountEmbeddedCheckout(clientSecret) {
+    // Destroy previous instance if exists (e.g. user went back and retried)
+    if (embeddedCheckout) {
+      embeddedCheckout.destroy();
+      embeddedCheckout = null;
+    }
+
+    stripe.initEmbeddedCheckout({
+      clientSecret: clientSecret
+    }).then(function(checkout) {
+      embeddedCheckout = checkout;
+      checkout.mount('#checkout-mount');
+    }).catch(function(err) {
+      document.getElementById('checkout-mount').innerHTML =
+        '<div style="text-align:center;padding:40px;color:var(--gray-600);">' +
+        '<p style="font-size:16px;margin-bottom:12px;">Unable to load payment form.</p>' +
+        '<p style="font-size:14px;color:var(--gray-400);">' + (err.message || 'Please try again.') + '</p>' +
+        '<button onclick="goToStep(8)" style="margin-top:16px;padding:10px 24px;background:var(--teal);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:14px;">Go Back</button>' +
+        '</div>';
     });
   }
 
