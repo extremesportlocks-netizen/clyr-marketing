@@ -112,6 +112,28 @@
     from { opacity: 0; transform: translateY(12px); }
     to { opacity: 1; transform: translateY(0); }
   }
+  .progress-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .progress-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gray-200);
+    transition: all 0.3s ease;
+  }
+  .progress-dot.active {
+    background: var(--teal);
+    width: 24px;
+    border-radius: 4px;
+  }
+  .progress-dot.done {
+    background: var(--teal);
+  }
   .step-label {
     font-size: 13px;
     font-weight: 600;
@@ -458,6 +480,11 @@
     color: var(--dark);
     background: var(--white);
     transition: all 0.2s;
+    outline: none;
+  }
+  .form-input:focus {
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(0,180,197,0.1);
     outline: none;
   }
   .form-input:focus {
@@ -1190,7 +1217,7 @@
     
     <div style="background:#fff;border:1px solid var(--gray-200);border-radius:16px;padding:32px 24px;text-align:center;margin-bottom:16px;">
       <!-- Upload area -->
-      <div id="photoUploadArea" style="border:2px dashed var(--gray-300);border-radius:12px;padding:40px 24px;cursor:pointer;transition:all 0.2s;" onclick="document.getElementById('photoInput').click()" ondragover="event.preventDefault();this.style.borderColor='var(--teal)';this.style.background='rgba(43,188,179,0.04)'" ondragleave="this.style.borderColor='var(--gray-300)';this.style.background='transparent'" ondrop="event.preventDefault();handlePhotoDrop(event);this.style.borderColor='var(--gray-300)';this.style.background='transparent'">
+      <div id="photoUploadArea" style="border:2px dashed var(--gray-300);background:linear-gradient(135deg,rgba(43,188,179,0.02),rgba(43,188,179,0.01));border-radius:12px;padding:40px 24px;cursor:pointer;transition:all 0.2s;" onclick="document.getElementById('photoInput').click()" ondragover="event.preventDefault();this.style.borderColor='var(--teal)';this.style.background='rgba(43,188,179,0.04)'" ondragleave="this.style.borderColor='var(--gray-300)';this.style.background='transparent'" ondrop="event.preventDefault();handlePhotoDrop(event);this.style.borderColor='var(--gray-300)';this.style.background='transparent'">
         <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,rgba(43,188,179,0.1),rgba(43,188,179,0.05));display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
         </div>
@@ -1329,6 +1356,17 @@
         <span class="checkout-order-label">Total</span>
         <span class="checkout-order-value" id="checkoutTotal">—</span>
       </div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:16px;padding:10px 0;">
+      <span style="font-size:11px;color:var(--gray-400);margin-right:2px;">Accepted:</span>
+      <img src="https://www.google.com/s2/favicons?domain=visa.com&sz=64" alt="Visa" style="width:22px;height:22px;border-radius:4px;background:#fff;padding:1px;border:1px solid #e5e7eb;">
+      <img src="https://www.google.com/s2/favicons?domain=mastercard.com&sz=64" alt="Mastercard" style="width:22px;height:22px;border-radius:4px;background:#fff;padding:1px;border:1px solid #e5e7eb;">
+      <img src="https://www.google.com/s2/favicons?domain=amex.com&sz=64" alt="Amex" style="width:22px;height:22px;border-radius:4px;background:#fff;padding:1px;border:1px solid #e5e7eb;">
+      <img src="https://www.google.com/s2/favicons?domain=apple.com&sz=64" alt="Apple Pay" style="width:22px;height:22px;border-radius:4px;background:#fff;padding:1px;border:1px solid #e5e7eb;">
+      <img src="https://www.google.com/s2/favicons?domain=pay.google.com&sz=64" alt="Google Pay" style="width:22px;height:22px;border-radius:4px;background:#fff;padding:1px;border:1px solid #e5e7eb;">
+      <img src="https://www.google.com/s2/favicons?domain=klarna.com&sz=64" alt="Klarna" style="width:22px;height:22px;border-radius:4px;background:#fff;padding:1px;border:1px solid #e5e7eb;">
+      <img src="https://www.google.com/s2/favicons?domain=affirm.com&sz=64" alt="Affirm" style="width:22px;height:22px;border-radius:4px;background:#fff;padding:1px;border:1px solid #e5e7eb;">
+      <img src="https://www.google.com/s2/favicons?domain=cash.app&sz=64" alt="Cash App" style="width:22px;height:22px;border-radius:4px;background:#fff;padding:1px;border:1px solid #e5e7eb;">
     </div>
     <div id="checkout-mount"></div>
     <div class="checkout-secure">
@@ -1482,6 +1520,22 @@
   function updateUI() {
     var progress = (currentStep / totalSteps) * 100;
     document.getElementById('progressFill').style.width = progress + '%';
+    // Update progress dots
+    document.querySelectorAll('.step .progress-dots').forEach(function(pd) { pd.remove(); });
+    var currentStepEl = document.getElementById('step' + currentStep);
+    if (currentStepEl) {
+      var labelEl = currentStepEl.querySelector('.step-label');
+      if (labelEl) {
+        var dotsDiv = document.createElement('div');
+        dotsDiv.className = 'progress-dots';
+        for (var i = 1; i <= totalSteps; i++) {
+          var dot = document.createElement('div');
+          dot.className = 'progress-dot' + (i === currentStep ? ' active' : '') + (i < currentStep ? ' done' : '');
+          dotsDiv.appendChild(dot);
+        }
+        labelEl.parentNode.insertBefore(dotsDiv, labelEl);
+      }
+    }
     document.getElementById('btnBack').style.visibility = currentStep > 1 ? 'visible' : 'hidden';
     var btn = document.getElementById('btnContinue');
     var arrow = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"></polyline></svg>';
