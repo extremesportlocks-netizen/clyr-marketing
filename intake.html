@@ -739,6 +739,7 @@
 </style>
 <script src="https://js.stripe.com/v3/">
 </script>
+<!-- CLYR Intake v3.1 - 2026-03-25T00:46:32.909239 -->
 </head>
 <body>
 <!-- HEADER -->
@@ -1557,7 +1558,6 @@
       case 6: // GLP-1 Consent
         valid = formData.mdiAnswers.q130 === 'yes' && document.getElementById('legalName').value.trim().length >= 3;
         break;
-      case 8: valid = true; break;
       case 9: valid = true; break; // Review — all info already filled
       case 10: valid = false; break; // Stripe handles payment on step 10
     }
@@ -1688,20 +1688,42 @@
   }
 
   // SUBMIT
-  // Stripe instance — initialized after fetching publishable key from backend
+  // Stripe instance — lazy-loaded with retry
   var stripe = null;
   var embeddedCheckout = null;
+  var stripeReady = false;
 
+  // Initialize Stripe on page load
   (function initStripe() {
+    if (typeof Stripe === 'undefined') {
+      console.error('[CLYR] Stripe.js not loaded');
+      return;
+    }
     fetch('https://clyr-backend.onrender.com/api/config')
       .then(function(r) { return r.json(); })
       .then(function(config) {
         if (config.publishableKey) {
           stripe = Stripe(config.publishableKey);
+          stripeReady = true;
+          console.log('[CLYR] Stripe initialized with pk_live key');
         }
       })
-      .catch(function() {});
+      .catch(function(e) { console.warn('[CLYR] Stripe pre-warm failed (non-blocking):', e.message); });
   })();
+
+  function showCheckoutStatus(msg) {
+    var el = document.getElementById('checkoutStatusMsg');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'checkoutStatusMsg';
+      el.style.cssText = 'text-align:center;padding:12px;font-size:14px;color:var(--gray-600);margin-top:8px;';
+      var btn = document.getElementById('btnContinue');
+      if (btn && btn.parentNode) btn.parentNode.appendChild(el);
+    }
+    el.textContent = msg;
+    el.style.display = msg ? 'block' : 'none';
+    console.log('[CLYR Checkout] ' + msg);
+  }
 
   function populateCheckoutSummary() {
     var prices = {
@@ -1714,118 +1736,153 @@
     };
     var key = formData.treatment + '_' + formData.plan;
     var info = prices[key] || { label: '—', total: '—' };
-    document.getElementById('checkoutTreatmentLabel').textContent = info.label;
-    document.getElementById('checkoutPlanLabel').textContent = formData.plan === 'monthly' ? 'Subscription' : 'One-time';
-    document.getElementById('checkoutTotal').textContent = info.total;
+    var el1 = document.getElementById('checkoutTreatmentLabel');
+    var el2 = document.getElementById('checkoutPlanLabel');
+    var el3 = document.getElementById('checkoutTotal');
+    if (el1) el1.textContent = info.label;
+    if (el2) el2.textContent = formData.plan === 'monthly' ? 'Subscription' : 'One-time';
+    if (el3) el3.textContent = info.total;
   }
 
   function submitIntake() {
     var btn = document.getElementById('btnContinue');
     btn.disabled = true;
+    showCheckoutStatus('Preparing checkout...');
     btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="animation:spin 1s linear infinite"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> Preparing checkout...';
-
-    var payload = {
-      firstName: document.getElementById('firstName').value.trim(),
-      lastName: document.getElementById('lastName').value.trim(),
-      email: document.getElementById('email').value.trim(),
-      phone: document.getElementById('phone').value.trim(),
-      dobMonth: document.getElementById('dobMonth').value,
-      dobDay: document.getElementById('dobDay').value,
-      dobYear: document.getElementById('dobYear').value,
-      sex: document.getElementById('sex').value,
-      heightFt: document.getElementById('heightFt').value,
-      heightIn: document.getElementById('heightIn').value,
-      weight: document.getElementById('weight').value,
-      treatment: formData.treatment,
-      screeningClear: formData.screeningClear,
-      flaggedConditions: formData.flaggedConditions,
-      consents: Array.from(document.querySelectorAll('#step7 .consent-item')).map(function(c) {
-        return {
-          text: c.querySelector('.checkbox-label').textContent.trim(),
-          accepted: c.classList.contains('checked'),
-          timestamp: new Date().toISOString()
-        };
-      }),
-      address: document.getElementById('address').value.trim(),
-      apt: document.getElementById('apt') ? document.getElementById('apt').value.trim() : '',
-      city: document.getElementById('city').value.trim(),
-      state: document.getElementById('state').value,
-      zip: document.getElementById('zip').value.trim(),
-      visitor_id: localStorage.getItem('clyr_vid') || null,
-      utm_source: new URLSearchParams(window.location.search).get('utm_source'),
-      utm_medium: new URLSearchParams(window.location.search).get('utm_medium'),
-      utm_campaign: new URLSearchParams(window.location.search).get('utm_campaign'),
-      mdiAnswers: formData.mdiAnswers,
-      goalWeight: document.getElementById('goalWeight') ? document.getElementById('goalWeight').value : null,
-      legalName: document.getElementById('legalName') ? document.getElementById('legalName').value.trim() : null,
-      doctorMessage: document.getElementById('doctorMessage') ? document.getElementById('doctorMessage').value.trim() : null,
-      photoBase64: photoBase64 || null,
-      currentMedications: document.getElementById('currentMedications') ? document.getElementById('currentMedications').value.trim() : null,
-      drugAllergies: document.getElementById('drugAllergies') ? document.getElementById('drugAllergies').value.trim() : null
-    };
 
     var API = 'https://clyr-backend.onrender.com';
 
-    // Step 1: Save intake data
-    fetch(API + '/api/intake', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
-    }).then(function(r) { return r.json(); }).then(function(intakeResult) {
-      if (!intakeResult.success) {
-        throw new Error(intakeResult.error || intakeResult.detail || 'Failed to save intake');
-      }
-
-      // Track funnel event
-      fetch(API + '/api/track', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ event: 'checkout_started', visitor_id: payload.visitor_id, page: '/intake', metadata: { treatment: formData.treatment, plan: formData.plan } }) }).catch(function(){});
-
-      // Step 2: Create embedded Checkout session
-      return fetch(API + '/api/checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email: payload.email,
-          productType: formData.treatment,
-          planType: formData.plan,
-          firstName: payload.firstName,
-          lastName: payload.lastName
-        })
-      });
-    }).then(function(r) { return r.json(); }).then(function(checkoutResult) {
-      if (!checkoutResult.clientSecret) {
-        throw new Error(checkoutResult.error || 'Failed to create checkout session');
-      }
-
-      // Go to step 10 (checkout)
-      goToStep(10);
-
-      // Mount Stripe Embedded Checkout
-      mountEmbeddedCheckout(checkoutResult.clientSecret);
-
-    }).catch(function(err) {
-      btn.disabled = false;
-      btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" style="margin-right:4px"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> Continue to Checkout';
-      alert('Error: ' + err.message + '\n\nPlease try again. If the issue persists, contact us at contact@clyr.health');
-    });
-  }
-
-  function mountEmbeddedCheckout(clientSecret) {
-    // Destroy previous instance if exists (e.g. user went back and retried)
-    if (embeddedCheckout) {
-      embeddedCheckout.destroy();
-      embeddedCheckout = null;
+    // ── Step 1: Ensure Stripe is ready ──
+    var stripePromise;
+    if (stripe && stripeReady) {
+      stripePromise = Promise.resolve(stripe);
+    } else {
+      showCheckoutStatus('Connecting to payment system...');
+      stripePromise = fetch(API + '/api/config')
+        .then(function(r) { return r.json(); })
+        .then(function(config) {
+          if (!config.publishableKey) throw new Error('Payment system unavailable. Please refresh.');
+          stripe = Stripe(config.publishableKey);
+          stripeReady = true;
+          return stripe;
+        });
     }
 
-    stripe.initEmbeddedCheckout({
-      clientSecret: clientSecret
-    }).then(function(checkout) {
-      embeddedCheckout = checkout;
-      checkout.mount('#checkout-mount');
+    stripePromise.then(function() {
+      showCheckoutStatus('Saving your information...');
+
+      // ── Step 2: Save intake data ──
+      var payload = {
+        firstName: document.getElementById('firstName').value.trim(),
+        lastName: document.getElementById('lastName').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        phone: document.getElementById('phone').value.trim(),
+        dobMonth: document.getElementById('dobMonth').value,
+        dobDay: document.getElementById('dobDay').value,
+        dobYear: document.getElementById('dobYear').value,
+        sex: document.getElementById('sex').value,
+        heightFt: document.getElementById('heightFt').value,
+        heightIn: document.getElementById('heightIn').value,
+        weight: document.getElementById('weight').value,
+        treatment: formData.treatment,
+        screeningClear: formData.screeningClear,
+        flaggedConditions: formData.flaggedConditions,
+        consents: Array.from(document.querySelectorAll('#step7 .consent-item')).map(function(c) {
+          return {
+            text: c.querySelector('.checkbox-label').textContent.trim(),
+            accepted: c.classList.contains('checked'),
+            timestamp: new Date().toISOString()
+          };
+        }),
+        address: document.getElementById('address').value.trim(),
+        apt: document.getElementById('apt') ? document.getElementById('apt').value.trim() : '',
+        city: document.getElementById('city').value.trim(),
+        state: document.getElementById('state').value,
+        zip: document.getElementById('zip').value.trim(),
+        visitor_id: localStorage.getItem('clyr_vid') || null,
+        utm_source: new URLSearchParams(window.location.search).get('utm_source'),
+        utm_medium: new URLSearchParams(window.location.search).get('utm_medium'),
+        utm_campaign: new URLSearchParams(window.location.search).get('utm_campaign'),
+        mdiAnswers: formData.mdiAnswers,
+        goalWeight: document.getElementById('goalWeight') ? document.getElementById('goalWeight').value : null,
+        legalName: document.getElementById('legalName') ? document.getElementById('legalName').value.trim() : null,
+        doctorMessage: document.getElementById('doctorMessage') ? document.getElementById('doctorMessage').value.trim() : null,
+        photoBase64: photoBase64 || null,
+        currentMedications: document.getElementById('currentMedications') ? document.getElementById('currentMedications').value.trim() : null,
+        drugAllergies: document.getElementById('drugAllergies') ? document.getElementById('drugAllergies').value.trim() : null
+      };
+
+      return fetch(API + '/api/intake', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).then(function(r) {
+        if (!r.ok) return r.json().then(function(d) { throw new Error(d.error || 'Server error ' + r.status); });
+        return r.json();
+      }).then(function(intakeResult) {
+        if (!intakeResult.success && !intakeResult.customerId) {
+          throw new Error(intakeResult.error || 'Failed to save your information');
+        }
+        console.log('[CLYR] Intake saved, customerId:', intakeResult.customerId);
+
+        // Fire and forget tracking
+        fetch(API + '/api/track', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ event: 'checkout_started', visitor_id: payload.visitor_id, page: '/intake', metadata: { treatment: formData.treatment, plan: formData.plan } }) }).catch(function(){});
+
+        // ── Step 3: Create Stripe checkout session ──
+        showCheckoutStatus('Creating secure payment session...');
+        return fetch(API + '/api/checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: payload.email,
+            productType: formData.treatment,
+            planType: formData.plan,
+            firstName: payload.firstName,
+            lastName: payload.lastName
+          })
+        });
+      }).then(function(r) {
+        if (!r.ok) return r.json().then(function(d) { throw new Error(d.error || 'Checkout error ' + r.status); });
+        return r.json();
+      }).then(function(checkoutResult) {
+        if (!checkoutResult.clientSecret) {
+          throw new Error(checkoutResult.error || 'Unable to create payment session');
+        }
+        console.log('[CLYR] Checkout session created, mounting Stripe...');
+        showCheckoutStatus('Loading payment form...');
+
+        // ── Step 4: Navigate to payment step ──
+        goToStep(10);
+
+        // ── Step 5: Mount Stripe embedded checkout ──
+        if (embeddedCheckout) {
+          try { embeddedCheckout.destroy(); } catch(e) {}
+          embeddedCheckout = null;
+        }
+
+        return stripe.initEmbeddedCheckout({ clientSecret: checkoutResult.clientSecret });
+      }).then(function(checkout) {
+        embeddedCheckout = checkout;
+        checkout.mount('#checkout-mount');
+        showCheckoutStatus('');
+        console.log('[CLYR] Stripe checkout mounted successfully');
+      });
     }).catch(function(err) {
-      document.getElementById('checkout-mount').innerHTML =
-        '<div style="text-align:center;padding:40px;color:var(--gray-600);">' +
-        '<p style="font-size:16px;margin-bottom:12px;">Unable to load payment form.</p>' +
-        '<p style="font-size:14px;color:var(--gray-400);">' + (err.message || 'Please try again.') + '</p>' +
-        '<button onclick="goToStep(9)" style="margin-top:16px;padding:10px 24px;background:var(--teal);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:14px;">Go Back</button>' +
-        '</div>';
+      console.error('[CLYR Checkout Error]', err);
+      showCheckoutStatus('');
+
+      if (currentStep === 10) {
+        document.getElementById('checkout-mount').innerHTML =
+          '<div style="text-align:center;padding:40px;color:var(--gray-600);">' +
+          '<p style="font-size:16px;margin-bottom:12px;color:#ef4444;">Unable to load payment form</p>' +
+          '<p style="font-size:14px;color:var(--gray-400);margin-bottom:16px;">' + (err.message || 'Please try again.') + '</p>' +
+          '<button onclick="goToStep(9)" style="padding:10px 24px;background:var(--teal);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:14px;">Go Back & Retry</button>' +
+          '</div>';
+      } else {
+        btn.disabled = false;
+        btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" style="margin-right:4px"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> Continue to Checkout';
+        showCheckoutStatus('Error: ' + (err.message || 'Something went wrong. Please try again.'));
+      }
     });
   }
 
