@@ -1794,8 +1794,8 @@
         throw new Error(checkoutResult.error || 'Failed to create checkout session');
       }
 
-      // Go to step 9 (checkout)
-      goToStep(9);
+      // Go to step 10 (checkout)
+      goToStep(10);
 
       // Mount Stripe Embedded Checkout
       mountEmbeddedCheckout(checkoutResult.clientSecret);
@@ -1824,7 +1824,7 @@
         '<div style="text-align:center;padding:40px;color:var(--gray-600);">' +
         '<p style="font-size:16px;margin-bottom:12px;">Unable to load payment form.</p>' +
         '<p style="font-size:14px;color:var(--gray-400);">' + (err.message || 'Please try again.') + '</p>' +
-        '<button onclick="goToStep(8)" style="margin-top:16px;padding:10px 24px;background:var(--teal);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:14px;">Go Back</button>' +
+        '<button onclick="goToStep(9)" style="margin-top:16px;padding:10px 24px;background:var(--teal);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:14px;">Go Back</button>' +
         '</div>';
     });
   }
