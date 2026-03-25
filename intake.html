@@ -1558,7 +1558,8 @@
         valid = formData.mdiAnswers.q130 === 'yes' && document.getElementById('legalName').value.trim().length >= 3;
         break;
       case 8: valid = true; break;
-      case 9: valid = false; break; // Stripe handles payment on step 9
+      case 9: valid = true; break; // Review — all info already filled
+      case 10: valid = false; break; // Stripe handles payment on step 10
     }
     btn.disabled = !valid;
   }
