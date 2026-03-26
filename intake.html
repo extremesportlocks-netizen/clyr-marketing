@@ -487,10 +487,6 @@
     box-shadow: 0 0 0 3px rgba(0,180,197,0.1);
     outline: none;
   }
-  .form-input:focus {
-    border-color: var(--teal);
-    box-shadow: 0 0 0 3px var(--teal-glow);
-  }
   .form-input::placeholder { color: var(--gray-400); }
   .form-input.error { border-color: var(--red); }
   .form-row { display: flex; gap: 16px; }
@@ -656,6 +652,7 @@
   .hw-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
   .ht-row{display:flex;gap:8px}.ht-row select{flex:1}
   @media (max-width:600px){.hw-row{grid-template-columns:1fr}}
+  @media (max-width:768px) {
     .form-grid { grid-template-columns: 1fr; }
     .form-row { flex-direction: column; }
     .treatment-card-header { flex-direction: column; gap: 8px; }
