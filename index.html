@@ -1027,6 +1027,133 @@
     .section-heading { font-size: 28px; }
     .announcement { font-size: 12px; }
   }
+
+  /* ============================================
+     SCROLL REVEAL ANIMATIONS
+     ============================================ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ============================================
+     ANIMATED STATS BAR
+     ============================================ */
+  .stats-bar {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    padding: 48px 24px;
+    background: var(--gray-50);
+    border-top: 1px solid var(--gray-100);
+    border-bottom: 1px solid var(--gray-100);
+    flex-wrap: wrap;
+  }
+  .stat-item { text-align: center; }
+  .stat-number {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--teal);
+    letter-spacing: -1px;
+    line-height: 1.1;
+  }
+  .stat-label {
+    font-size: 14px;
+    color: var(--gray-500);
+    font-weight: 500;
+    margin-top: 4px;
+  }
+
+  /* ============================================
+     PAYMENT METHOD LOGOS
+     ============================================ */
+  .payment-methods {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 16px 0;
+  }
+  .payment-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 8px;
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gray-600);
+    transition: all 0.2s;
+  }
+  .payment-chip img {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    object-fit: contain;
+  }
+  .payment-chip:hover {
+    border-color: var(--teal);
+    background: var(--teal-light);
+  }
+
+  /* ============================================
+     TRUST BADGES — GLASSMORPHISM CHIPS
+     ============================================ */
+  .trust-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.75);
+    transition: all 0.25s;
+  }
+  .trust-chip:hover {
+    background: rgba(0,180,197,0.08);
+    border-color: rgba(0,180,197,0.2);
+    color: rgba(255,255,255,0.95);
+  }
+  .trust-chip svg {
+    width: 14px;
+    height: 14px;
+    color: var(--teal);
+    flex-shrink: 0;
+  }
+
+  /* ============================================
+     CARD HOVER + BUTTON POLISH
+     ============================================ */
+  .step-card, .feature-card, .tier-card, .product-card {
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .step-card:hover, .feature-card:hover, .tier-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+  }
+
+  @media (max-width: 768px) {
+    .stats-bar { gap: 24px; padding: 32px 20px; }
+    .stat-number { font-size: 28px; }
+    .payment-methods { gap: 8px; }
+    .payment-chip { padding: 4px 10px; font-size: 11px; }
+    .trust-chip { padding: 6px 12px; font-size: 11px; }
+  }
 </style>
 </head>
 <body>
