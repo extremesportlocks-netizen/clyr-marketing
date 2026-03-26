@@ -1,9 +1,7 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://www.clyr.health/sitemap.xml
-
-# Block admin and portal pages from indexing
 Disallow: /portal/
 Disallow: /intake-backup.html
 Disallow: /intake-old.html
+
+Sitemap: https://www.clyr.health/sitemap.xml
