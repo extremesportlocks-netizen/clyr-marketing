@@ -448,136 +448,155 @@
   .products-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 28px;
-    max-width: 920px;
+    gap: 24px;
+    max-width: 880px;
     margin: 0 auto;
   }
   .product-card {
-    background: var(--white);
-    border-radius: var(--radius-lg);
-    padding: 44px 36px;
-    border: 1px solid var(--gray-200);
-    transition: all 0.35s;
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 20px;
+    padding: 36px 32px 32px;
+    border: 1px solid rgba(0, 180, 197, 0.1);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
     overflow: hidden;
   }
   .product-card:hover {
-    border-color: rgba(0,180,197,0.25);
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-4px);
+    border-color: rgba(0,180,197,0.3);
+    box-shadow: 0 20px 60px rgba(0, 180, 197, 0.12), 0 4px 16px rgba(0,0,0,0.04);
+    transform: translateY(-6px);
   }
-  .product-card::after {
+  .product-card::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0; left: 0; right: 0;
     height: 3px;
-    background: linear-gradient(90deg, var(--teal), var(--teal-dark));
+    background: linear-gradient(90deg, var(--teal), #0088cc, var(--teal-dark));
     opacity: 0;
-    transition: opacity 0.35s;
+    transition: opacity 0.4s;
   }
-  .product-card:hover::after { opacity: 1; }
+  .product-card:hover::before { opacity: 1; }
 
   .product-tag {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--teal);
-    background: var(--teal-light);
-    padding: 5px 12px;
-    border-radius: 6px;
-    margin-bottom: 20px;
+    letter-spacing: 1.5px;
+    color: #fff;
+    background: linear-gradient(135deg, var(--teal), #0088cc);
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 2px 8px rgba(0, 180, 197, 0.3);
   }
   .product-name {
-    font-size: 26px;
-    font-weight: 700;
+    font-size: 24px;
+    font-weight: 800;
     color: var(--dark);
-    letter-spacing: -0.02em;
-    margin-bottom: 6px;
+    letter-spacing: -0.03em;
+    margin-bottom: 4px;
   }
   .product-compound {
-    font-size: 15px;
-    color: var(--gray-500);
-    margin-bottom: 24px;
+    font-size: 13px;
+    color: var(--gray-400);
+    margin-bottom: 20px;
+    font-weight: 500;
   }
 
   .product-includes {
-    border-top: 1px solid var(--gray-100);
-    padding-top: 20px;
-    margin-bottom: 28px;
+    border-top: 1px solid rgba(0, 180, 197, 0.08);
+    padding-top: 18px;
+    margin-bottom: 24px;
   }
   .product-includes-title {
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 10px;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--gray-400);
-    margin-bottom: 12px;
+    letter-spacing: 1.5px;
+    color: var(--teal);
+    margin-bottom: 14px;
   }
   .product-includes li {
     list-style: none;
-    font-size: 14px;
+    font-size: 13.5px;
     color: var(--gray-600);
-    padding: 5px 0;
-    padding-left: 22px;
+    padding: 6px 0;
+    padding-left: 26px;
     position: relative;
+    font-weight: 500;
   }
   .product-includes li::before {
-    content: '';
+    content: '✓';
     position: absolute;
     left: 0;
-    top: 12px;
-    width: 6px;
-    height: 6px;
+    top: 6px;
+    width: 18px;
+    height: 18px;
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--teal);
+    background: rgba(0, 180, 197, 0.08);
     border-radius: 50%;
-    background: var(--teal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 18px;
+    text-align: center;
   }
 
   .product-pricing {
     display: flex;
     align-items: baseline;
-    gap: 8px;
-    margin-bottom: 24px;
+    gap: 6px;
+    margin-bottom: 20px;
   }
   .product-price {
-    font-size: 40px;
-    font-weight: 700;
+    font-size: 42px;
+    font-weight: 800;
     color: var(--dark);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
     line-height: 1;
   }
   .product-price-period {
-    font-size: 16px;
+    font-size: 15px;
     color: var(--gray-400);
-    font-weight: 400;
+    font-weight: 500;
   }
   .product-price-note {
-    font-size: 13px;
-    color: var(--gray-500);
+    font-size: 12px;
+    color: var(--gray-400);
+    font-weight: 500;
   }
 
   .product-cta {
     display: block;
     width: 100%;
-    padding: 15px;
-    background: var(--dark);
+    padding: 16px;
+    background: linear-gradient(135deg, var(--teal), #009BAA);
     color: var(--white);
     border: none;
-    border-radius: var(--radius);
+    border-radius: 14px;
     font-size: 15px;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
-    transition: all 0.3s;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     font-family: var(--sans);
+    letter-spacing: 0.01em;
+    margin-top: 20px;
+    box-shadow: 0 4px 14px rgba(0, 180, 197, 0.25);
   }
-  .product-cta:hover { background: var(--black); transform: translateY(-1px); box-shadow: var(--shadow-md); }
-  .product-card:first-child .product-cta { background: var(--teal); }
-  .product-card:first-child .product-cta:hover { background: var(--teal-dark); box-shadow: var(--shadow-teal); }
+  .product-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 180, 197, 0.35);
+    background: linear-gradient(135deg, #00c4d6, var(--teal-dark));
+  }
 
   /* ============================================
      PRICING TIERS
@@ -1028,6 +1047,11 @@
     .trust-divider { display: none; }
     .how-it-works, .treatments, .pricing, .features, .faq, .cta-section { padding: 60px 20px; }
     .steps-grid, .products-grid, .pricing-tiers, .features-grid { grid-template-columns: 1fr; }
+    .products-grid { gap: 16px; max-width: 440px; }
+    .product-card { padding: 28px 24px 24px; border-radius: 16px; }
+    .product-name { font-size: 22px; }
+    .product-price { font-size: 36px; }
+    .product-cta { padding: 14px; font-size: 14px; border-radius: 12px; }
     .footer { padding: 40px 20px 28px; }
     .footer-top { grid-template-columns: 1fr; gap: 28px; }
     .footer-bottom { flex-direction: column; text-align: center; }
@@ -1162,7 +1186,7 @@
   /* ============================================
      CARD HOVER + BUTTON POLISH
      ============================================ */
-  .step-card, .feature-card, .tier-card, .product-card {
+  .step-card, .feature-card, .tier-card {
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .step-card:hover, .feature-card:hover, .tier-card:hover {
@@ -1428,7 +1452,7 @@
       </div>
 
       <div class="product-card reveal">
-        <h3 class="product-name" style="margin-top:12px;">Semaglutide + B12</h3>
+        <h3 class="product-name">Semaglutide + B12</h3>
         <p class="product-compound">Compounded GLP-1 receptor agonist</p>
         <div class="product-includes">
           <div class="product-includes-title">Includes</div>
