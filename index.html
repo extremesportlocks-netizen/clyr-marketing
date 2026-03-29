@@ -644,7 +644,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    max-width: 1080px;
+    max-width: 880px;
     margin: 0 auto;
   }
   .tier-card {
@@ -653,10 +653,13 @@
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(0, 180, 197, 0.1);
     border-radius: 20px;
-    padding: 32px 24px;
+    padding: 32px 24px 28px;
     text-align: center;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   .tier-card:hover { border-color: rgba(0,180,197,0.3); box-shadow: 0 16px 48px rgba(0,180,197,0.1); transform: translateY(-5px); }
   .tier-card.popular {
@@ -697,7 +700,8 @@
     font-size: 13px;
     color: var(--gray-400);
     margin-top: 6px;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
+    flex-grow: 1;
   }
   .tier-savings {
     display: inline-block;
@@ -707,7 +711,7 @@
     background: #F0FDF4;
     padding: 4px 12px;
     border-radius: 100px;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
   }
   .tier-cta {
     display: block;
@@ -1763,12 +1767,12 @@
     const container = document.getElementById('pricing-tiers');
     const data = pricingData[currentPricing];
     container.innerHTML = data.map(tier => `
-      <div class="tier-card ${tier.popular ? 'popular' : ''}">
+      <div class="tier-card ${tier.popular ? 'popular' : ''} reveal visible">
         ${tier.popular ? '<div class="tier-popular-badge">Most Popular</div>' : ''}
         <div class="tier-name">${tier.name}</div>
         <div class="tier-price">$${tier.price}<span>${tier.period}</span></div>
         <div class="tier-billing">${tier.billing}</div>
-        ${tier.savings ? `<div class="tier-savings">${tier.savings}</div>` : '<div style="height:28px"></div>'}
+        ${tier.savings ? `<div class="tier-savings">${tier.savings}</div>` : ''}
         <a href="/intake.html" class="tier-cta">Get Started</a>
       </div>
     `).join('');
