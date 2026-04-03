@@ -140,7 +140,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--gray-50);color:var(--dark
   }
 
   // Verify the checkout session with Stripe
-  fetch('https://clyr-backend.onrender.com/api/checkout/session-status?session_id=' + sid)
+  fetch('https://clyr-backend.onrender.com/api/session-status?session_id=' + sid)
     .then(function(r) { return r.json(); })
     .then(function(data) {
       if (data.status === 'complete' && data.payment_status === 'paid') {
