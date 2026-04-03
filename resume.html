@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Complete Your Checkout — CLYR Health</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--teal:#00B4C5;--teal-dark:#009BA8;--dark:#1a1a2e;--gray-50:#f8fafb;--gray-100:#f1f4f7;--gray-400:#9ca3af;--gray-600:#4b5563}
+body{font-family:'DM Sans',sans-serif;background:var(--gray-50);color:var(--dark);min-height:100vh;display:flex;flex-direction:column}
+.nav{background:#fff;border-bottom:1px solid rgba(0,0,0,0.06);padding:18px 32px;display:flex;justify-content:center}
+.nav-logo{font-size:24px;font-weight:700;letter-spacing:-0.5px;color:var(--dark)}
+.nav-logo span{color:var(--teal)}
+.main{flex:1;display:flex;align-items:flex-start;justify-content:center;padding:40px 24px}
+.card{max-width:620px;width:100%}
+.card-content{background:#fff;border-radius:24px;padding:40px 36px;box-shadow:0 1px 3px rgba(0,0,0,0.04),0 8px 40px rgba(0,0,0,0.03);border:1px solid rgba(0,0,0,0.04)}
+.title{font-family:'Instrument Serif',serif;font-size:32px;font-weight:400;line-height:1.2;margin-bottom:8px;color:var(--dark);letter-spacing:-0.5px;text-align:center}
+.title em{font-style:italic;color:var(--teal)}
+.subtitle{font-size:15px;color:var(--gray-600);line-height:1.6;text-align:center;margin-bottom:28px}
+.plan-badge{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(0,180,197,0.08),rgba(0,180,197,0.03));border:1px solid rgba(0,180,197,0.15);border-radius:12px;padding:14px 20px;margin-bottom:28px;width:100%;justify-content:center}
+.plan-badge-label{font-size:13px;color:var(--gray-400)}
+.plan-badge-value{font-size:15px;font-weight:700;color:var(--dark)}
+#checkout-mount{min-height:300px;display:flex;align-items:center;justify-content:center}
+.loading{text-align:center;padding:60px 20px}
+.loading-spinner{width:32px;height:32px;border:3px solid rgba(0,180,197,0.15);border-top-color:var(--teal);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 16px}
+.loading-text{font-size:14px;color:var(--gray-400)}
+.error-box{text-align:center;padding:40px 20px}
+.error-box h3{font-size:18px;color:#ef4444;margin-bottom:8px}
+.error-box p{font-size:14px;color:var(--gray-600);margin-bottom:20px}
+.btn{display:inline-block;padding:14px 32px;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;cursor:pointer;text-decoration:none;border:none;transition:all 0.3s}
+.btn-teal{background:var(--teal);color:#fff}.btn-teal:hover{background:var(--teal-dark)}
+.btn-outline{background:transparent;color:var(--dark);border:1px solid rgba(0,0,0,0.1)}.btn-outline:hover{background:var(--gray-50)}
+.footer{text-align:center;padding:24px;font-size:12px;color:var(--gray-400)}
+.footer a{color:var(--teal);text-decoration:none}
+.security{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:16px;font-size:12px;color:var(--gray-400)}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:600px){.main{padding:24px 16px}.card-content{padding:32px 20px}.title{font-size:26px}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="nav-logo">CLY<span>R</span></div></nav>
+<main class="main">
+  <div class="card">
+    <div class="card-content">
+      <h1 class="title" id="pageTitle">Complete your <em>checkout</em></h1>
+      <p class="subtitle" id="pageSubtitle">Your information is saved. Just complete payment to get started.</p>
+      <div class="plan-badge" id="planBadge" style="display:none">
+        <span class="plan-badge-label">Your plan:</span>
+        <span class="plan-badge-value" id="planText"></span>
+      </div>
+      <div id="checkout-mount">
+        <div class="loading">
+          <div class="loading-spinner"></div>
+          <div class="loading-text" id="loadingText">Loading checkout...</div>
+        </div>
+      </div>
+      <div class="security">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Secure checkout powered by Stripe
+      </div>
+    </div>
+  </div>
+</main>
+<footer class="footer">&copy; 2026 CLYR Health. All rights reserved. <a href="/">clyr.health</a></footer>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+(function() {
+  var API = 'https://clyr-backend.onrender.com';
+  var params = new URLSearchParams(window.location.search);
+  var email = params.get('email');
+  var customerId = params.get('cid');
+
+  if (!email && !customerId) {
+    showError('No account information provided.', 'Please start from the intake form.');
+    return;
+  }
+
+  // Fetch Stripe publishable key
+  var stripePromise = fetch(API + '/api/config')
+    .then(function(r) { return r.json(); })
+    .then(function(cfg) {
+      if (!cfg.publishableKey) throw new Error('Payment system unavailable');
+      return Stripe(cfg.publishableKey);
+    });
+
+  // Resume checkout session
+  document.getElementById('loadingText').textContent = 'Preparing your checkout...';
+
+  fetch(API + '/api/checkout/resume', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: email, customerId: customerId ? parseInt(customerId) : undefined })
+  })
+  .then(function(r) { return r.json().then(function(d) { return { ok: r.ok, data: d }; }); })
+  .then(function(result) {
+    if (!result.ok) {
+      if (result.data.status === 'already_paid') {
+        showAlreadyPaid();
+      } else {
+        showError('Unable to resume checkout', result.data.error || 'Please try the intake form.');
+      }
+      return;
+    }
+
+    var data = result.data;
+
+    // Show plan info
+    if (data.customer) {
+      var treatName = data.customer.treatment === 'tirzepatide' ? 'Tirzepatide' : 'Semaglutide';
+      var planName = data.customer.plan === 'monthly' ? 'Monthly' : data.customer.plan === '3month' ? '3-Month Starter' : '6-Month Plan';
+      document.getElementById('planText').textContent = treatName + ' — ' + planName;
+      document.getElementById('planBadge').style.display = 'flex';
+      if (data.customer.firstName) {
+        document.getElementById('pageTitle').innerHTML = 'Welcome back, <em>' + data.customer.firstName + '</em>';
+        document.getElementById('pageSubtitle').textContent = 'Your information is saved. Just complete payment to get started.';
+      }
+    }
+
+    // Mount Stripe embedded checkout
+    stripePromise.then(function(stripe) {
+      var checkout = stripe.initEmbeddedCheckout({ clientSecret: data.clientSecret });
+      checkout.then(function(co) {
+        document.getElementById('checkout-mount').innerHTML = '';
+        co.mount('#checkout-mount');
+      });
+    }).catch(function(err) {
+      showError('Payment form unavailable', err.message);
+    });
+  })
+  .catch(function(err) {
+    showError('Connection error', 'Please check your internet connection and try again.');
+  });
+
+  function showError(title, message) {
+    document.getElementById('checkout-mount').innerHTML =
+      '<div class="error-box">' +
+      '<h3>' + title + '</h3>' +
+      '<p>' + message + '</p>' +
+      '<a href="/intake.html" class="btn btn-teal" style="margin-right:8px">Start Intake</a>' +
+      '<a href="/" class="btn btn-outline">Back to Home</a>' +
+      '</div>';
+  }
+
+  function showAlreadyPaid() {
+    document.getElementById('pageTitle').innerHTML = 'You\'re <em>all set!</em>';
+    document.getElementById('pageSubtitle').textContent = 'You already have an active CLYR Health account.';
+    document.getElementById('planBadge').style.display = 'none';
+    document.getElementById('checkout-mount').innerHTML =
+      '<div style="text-align:center;padding:40px 20px">' +
+      '<div style="font-size:48px;margin-bottom:16px">✅</div>' +
+      '<p style="font-size:15px;color:var(--gray-600);margin-bottom:24px">Log into your patient portal to manage your treatment, view your prescription status, and more.</p>' +
+      '<a href="/portal/" class="btn btn-teal">Go to Patient Portal</a>' +
+      '</div>';
+  }
+})();
+</script>
+</body>
+</html>
