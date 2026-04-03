@@ -159,9 +159,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--gray-50);color:var(--dark
       }
     })
     .catch(function() {
-      // API error — show success as fallback (don't block real customers)
-      if (cardContent) cardContent.style.opacity = '1';
-      if (successBadge) successBadge.style.opacity = '1';
+      // API error (Render cold start, timeout) — don't show false success
+      // Show verification state with retry button
+      showFailed('We\'re having trouble verifying your payment. If you completed payment, please check your email for a confirmation. If not, you can try again below.', null);
     });
 
   function showFailed(message, customerEmail) {
