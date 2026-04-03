@@ -1507,9 +1507,9 @@
           body: JSON.stringify(leadData)
         }).then(function(r) { return r.json(); }).then(function(data) {
           if (data.status === 'existing_active') {
-            showReturningCustomerModal(data.firstName || leadData.firstName, true);
+            showReturningCustomerModal(data.firstName || leadData.firstName, true, leadData.email);
           } else if (data.status === 'existing_incomplete') {
-            showReturningCustomerModal(data.firstName || leadData.firstName, false);
+            showReturningCustomerModal(data.firstName || leadData.firstName, false, leadData.email);
           }
           // For new leads, continue silently
         }).catch(function() {}); // Non-blocking
@@ -1519,19 +1519,25 @@
     if (currentStep < totalSteps) goToStep(currentStep + 1);
   }
 
-  function showReturningCustomerModal(firstName, isActive) {
+  function showReturningCustomerModal(firstName, isActive, email) {
     var overlay = document.createElement('div');
     overlay.id = 'returningModal';
     overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:999;display:flex;align-items:center;justify-content:center;padding:24px;animation:fadeUp 0.3s ease';
-    var msg = isActive
-      ? '<p style="color:#4b5563;font-size:15px;line-height:1.6;margin-bottom:24px;">It looks like you already have an active CLYR Health account. Log into your patient portal to manage your treatment, view your prescription status, and more.</p>'
-      : '<p style="color:#4b5563;font-size:15px;line-height:1.6;margin-bottom:24px;">Welcome back! It looks like you started checkout before but didn\'t finish. Your information is saved — you can pick up right where you left off.</p>';
+    var resumeUrl = email ? '/resume.html?email=' + encodeURIComponent(email) : '/intake.html';
+    var msg, buttons;
+    if (isActive) {
+      msg = '<p style="color:#4b5563;font-size:15px;line-height:1.6;margin-bottom:24px;">It looks like you already have an active CLYR Health account. Log into your patient portal to manage your treatment, view your prescription status, and more.</p>';
+      buttons = '<a href="/portal/" style="display:inline-block;background:#2bbcb3;color:#fff;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:600;font-size:15px;margin-bottom:12px;width:100%;box-sizing:border-box;">Go to Patient Portal</a><br>' +
+        '<button onclick="document.getElementById(\'returningModal\').remove()" style="background:none;border:none;color:#9ca3af;font-size:14px;cursor:pointer;padding:8px 16px;margin-top:4px;">Continue as new patient</button>';
+    } else {
+      msg = '<p style="color:#4b5563;font-size:15px;line-height:1.6;margin-bottom:24px;">It looks like you already started your consultation. Your information is saved — you can go straight to checkout or continue updating your details.</p>';
+      buttons = '<a href="' + resumeUrl + '" style="display:inline-block;background:#2bbcb3;color:#fff;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:600;font-size:15px;margin-bottom:12px;width:100%;box-sizing:border-box;">Go to Checkout</a><br>' +
+        '<button onclick="document.getElementById(\'returningModal\').remove()" style="background:none;border:none;color:#9ca3af;font-size:14px;cursor:pointer;padding:8px 16px;margin-top:4px;">Update my details first</button>';
+    }
     overlay.innerHTML = '<div style="background:#fff;border-radius:20px;padding:36px 32px;max-width:440px;width:100%;text-align:center;box-shadow:0 24px 80px rgba(0,0,0,0.15)">' +
       '<div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,rgba(43,188,179,0.15),rgba(43,188,179,0.05));display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:24px;">👋</div>' +
       '<h2 style="font-size:22px;font-weight:700;color:#1a1a2e;margin-bottom:8px;">Welcome back' + (firstName ? ', ' + firstName : '') + '!</h2>' +
-      msg +
-      (isActive ? '<a href="/portal/" style="display:inline-block;background:#2bbcb3;color:#fff;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:600;font-size:15px;margin-bottom:12px;width:100%;box-sizing:border-box;">Go to Patient Portal</a><br>' : '') +
-      '<button onclick="document.getElementById(\'returningModal\').remove()" style="background:none;border:none;color:#9ca3af;font-size:14px;cursor:pointer;padding:8px 16px;margin-top:4px;">' + (isActive ? 'Continue as new patient' : 'Continue checkout') + '</button>' +
+      msg + buttons +
       '</div>';
     document.body.appendChild(overlay);
   }
