@@ -1517,6 +1517,9 @@
     currentStep = step;
     updateUI();
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    // SMS terms: visible on step 1 (TCR verification) and step 7 (consent checkbox)
+    var smsTerms = document.getElementById('sms-terms');
+    if (smsTerms) smsTerms.style.display = (step === 1 || step === 7) ? 'block' : 'none';
   }
 
   function nextStep() {
