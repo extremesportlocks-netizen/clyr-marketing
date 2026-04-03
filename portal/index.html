@@ -285,6 +285,10 @@ async function showDashboard(){
     var stageMap={intake_complete:{l:'Intake complete',c:'stage-pending'},paid:{l:'Payment received',c:'stage-active'},under_review:{l:'Under physician review',c:'stage-active'},info_needed:{l:'Provider needs info',c:'stage-pending'},approved:{l:'Treatment approved',c:'stage-active'},prescribed:{l:'Prescribed',c:'stage-active'},pharmacy_processing:{l:'Pharmacy preparing',c:'stage-active'},shipped:{l:'Shipped',c:'stage-shipped'},delivered:{l:'Delivered',c:'stage-shipped'},cancelled:{l:'Cancelled',c:'stage-cancelled'}};
     var s=stageMap[meR.stage]||{l:meR.stage,c:'stage-active'};
     document.getElementById('dashStage').innerHTML='<div class="stage-badge '+s.c+'">'+s.l+'</div>';
+    // Gate: if customer hasn't paid, show checkout prompt instead of full dashboard
+    if(meR.stage==='intake_complete'){
+      document.getElementById('dashStage').innerHTML+='<div style="background:linear-gradient(135deg,#1a1a2e 0%,#2d2d4e 100%);border-radius:16px;padding:28px 24px;margin:20px 0;text-align:center"><div style="font-size:32px;margin-bottom:12px">💳</div><h3 style="color:#fff;font-size:18px;font-weight:700;margin-bottom:8px">Complete your checkout</h3><p style="color:rgba(255,255,255,0.6);font-size:14px;line-height:1.6;margin-bottom:20px">Your intake is complete! Finish payment to connect with a licensed provider and start your treatment.</p><a href="/resume.html?email='+encodeURIComponent(meR.patient?.email||'')+'" style="display:inline-block;background:#2bbcb3;color:#fff;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:600;font-size:15px">Complete Checkout</a></div>';
+    }
     var stepsEl=document.getElementById('timelineSteps');stepsEl.innerHTML='';
     if(tlR.events)tlR.events.forEach(function(ev){
       var dc=ev.status==='done'?'tl-dot-done':ev.status==='active'?'tl-dot-active':'tl-dot-pending';
