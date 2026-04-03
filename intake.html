@@ -1507,10 +1507,11 @@
           body: JSON.stringify(leadData)
         }).then(function(r) { return r.json(); }).then(function(data) {
           if (data.status === 'existing_active') {
-            // Show returning active customer modal
             showReturningCustomerModal(data.firstName || leadData.firstName, true);
+          } else if (data.status === 'existing_incomplete') {
+            showReturningCustomerModal(data.firstName || leadData.firstName, false);
           }
-          // For existing_incomplete or new, continue silently
+          // For new leads, continue silently
         }).catch(function() {}); // Non-blocking
       }
     }
