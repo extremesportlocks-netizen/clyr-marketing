@@ -167,6 +167,16 @@ body{font-family:'DM Sans',sans-serif;background:var(--gray-50);color:var(--dark
     <h1 class="greeting">Hi <em id="dashName">there</em></h1>
     <div class="greeting-sub">Here's your treatment overview</div>
     <div id="dashStage"></div>
+    <div id="trackBanner" style="display:none;background:linear-gradient(135deg,#1a1a2e 0%,#2d2d4e 100%);border-radius:16px;padding:20px 24px;margin-bottom:20px;cursor:pointer" onclick="window.open(document.getElementById('trackBanner').dataset.url,'_blank')">
+      <div style="display:flex;align-items:center;gap:16px">
+        <div style="font-size:28px">📦</div>
+        <div style="flex:1">
+          <div style="color:#fff;font-size:15px;font-weight:700;margin-bottom:2px">Track My Package</div>
+          <div id="trackBannerSub" style="color:rgba(255,255,255,0.6);font-size:13px">Your medication is on its way</div>
+        </div>
+        <div style="color:#2bbcb3;font-size:24px;font-weight:700">&#8599;</div>
+      </div>
+    </div>
     <div class="card" id="dashTimeline"><div class="card-title">Treatment journey</div><div id="timelineSteps"></div></div>
     <div class="actions">
       <div class="action-btn" onclick="showTab('messages')"><div class="action-icon">&#128172;</div><div class="action-label">Messages</div><div class="action-desc">Talk to your provider</div></div>
@@ -285,7 +295,10 @@ async function showDashboard(){
     if(meR.subscription){var sub=meR.subscription;document.getElementById('subCard').style.display='block';
       document.getElementById('subDetails').innerHTML='<div class="card-row"><span class="card-row-label">Plan</span><span class="card-row-value">'+fmtTx(sub.product)+' — '+fmtPlan(sub.plan)+'</span></div><div class="card-row"><span class="card-row-label">Status</span><span class="card-row-value" style="color:'+(sub.status==='active'?'var(--green)':'var(--orange)')+'">'+cap(sub.status)+'</span></div>'+(sub.currentPeriodEnd?'<div class="card-row"><span class="card-row-label">Next billing</span><span class="card-row-value">'+fmtDate(sub.currentPeriodEnd)+'</span></div>':'');}
     if(meR.encounter?.trackingNumber||meR.patient?.shippingAddress?.street){document.getElementById('shipCard').style.display='block';var sh='';
-      if(meR.encounter?.trackingNumber){var tn=meR.encounter.trackingNumber,cr=(meR.encounter.carrier||'').toLowerCase(),tUrl='';if(cr.includes('ups'))tUrl='https://www.ups.com/track?tracknum='+tn;else if(cr.includes('fedex'))tUrl='https://www.fedex.com/fedextrack/?trknbr='+tn;else if(cr.includes('usps'))tUrl='https://tools.usps.com/go/TrackConfirmAction?tLabels='+tn;else tUrl='https://www.google.com/search?q='+tn+'+tracking';sh+='<div class="card-row"><span class="card-row-label">Tracking</span><span class="card-row-value"><a class="tracking-link" href="'+tUrl+'" target="_blank">'+tn+' &#8599;</a></span></div>';}
+      if(meR.encounter?.trackingNumber){var tn=meR.encounter.trackingNumber,cr=(meR.encounter.carrier||'').toLowerCase(),tUrl='';if(cr.includes('ups'))tUrl='https://www.ups.com/track?tracknum='+tn;else if(cr.includes('fedex'))tUrl='https://www.fedex.com/fedextrack/?trknbr='+tn;else if(cr.includes('usps'))tUrl='https://tools.usps.com/go/TrackConfirmAction?tLabels='+tn;else tUrl='https://www.google.com/search?q='+tn+'+tracking';sh+='<div class="card-row"><span class="card-row-label">Tracking</span><span class="card-row-value"><a class="tracking-link" href="'+tUrl+'" target="_blank">'+tn+' &#8599;</a></span></div>';
+        var tb=document.getElementById('trackBanner');tb.style.display='block';tb.dataset.url=tUrl;
+        var ps=meR.encounter?.pharmacyStatus||'';var subTxt='Your medication is on its way';if(ps==='delivered')subTxt='Your medication has been delivered';else if(ps==='shipped')subTxt='Shipped via '+(cr.includes('ups')?'UPS':cr.includes('fedex')?'FedEx':'carrier')+' — '+tn;else if(ps==='filled')subTxt='Medication prepared — shipping soon';
+        document.getElementById('trackBannerSub').textContent=subTxt;}
       var a=meR.patient?.shippingAddress;if(a?.street)sh+='<div class="card-row"><span class="card-row-label">Ship to</span><span class="card-row-value">'+a.street+', '+a.city+', '+a.state+' '+a.zip+'</span></div>';
       document.getElementById('shipDetails').innerHTML=sh;}
     document.getElementById('dashLoading').style.display='none';document.getElementById('dashContent').style.display='block';
