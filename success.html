@@ -147,7 +147,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--gray-50);color:var(--dark
         // Real successful payment — show success page
         if (cardContent) cardContent.style.opacity = '1';
         if (successBadge) successBadge.style.opacity = '1';
-        // Track confirmed checkout
+        // Track confirmed checkout (PostHog + internal DB)
+        if(window.clyrTrack)clyrTrack('CheckoutCompleted',{session_id:sid,value:data.amount_total?data.amount_total/100:0,currency:'USD'});
         fetch('https://clyr-backend.onrender.com/api/track', {
           method: 'POST', headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({ page: '/success', event: 'checkout_completed', referrer: document.referrer, visitor_id: vid, metadata: { session_id: sid } })
@@ -181,5 +182,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--gray-50);color:var(--dark
   }
 })();
 </script>
+<script src="/js/clyr-tracking.js"></script>
 </body>
 </html>

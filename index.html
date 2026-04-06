@@ -1773,6 +1773,7 @@
     document.querySelectorAll('.pricing-tab').forEach(t => t.classList.remove('active'));
     event.target.classList.add('active');
     renderPricing();
+    if(window.clyrTrack)clyrTrack('PricingToggled',{product:type});
   }
 
   function renderPricing() {
@@ -1797,7 +1798,7 @@
     const item = btn.parentElement;
     const wasOpen = item.classList.contains('open');
     document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    if (!wasOpen) item.classList.add('open');
+    if (!wasOpen) { item.classList.add('open'); if(window.clyrTrack)clyrTrack('FAQExpanded',{question:btn.textContent.trim().slice(0,80)}); }
   }
 
   // ===== SCROLL REVEAL =====
@@ -1843,5 +1844,16 @@
   });
 </script>
 
-<!-- CLYR Analytics Tracker --> <script> (function(){   var vid = localStorage.getItem('clyr_vid');   if (!vid) { vid = crypto.randomUUID(); localStorage.setItem('clyr_vid', vid); }   fetch('https://clyr-backend.onrender.com/api/track', {     method: 'POST',     headers: {'Content-Type': 'application/json'},     body: JSON.stringify({ page: location.pathname, referrer: document.referrer, visitor_id: vid })   }).catch(function(){}); })(); </script> </body>
+<script src="/js/clyr-tracking.js"></script>
+<script>
+document.addEventListener('click',function(e){
+  var a=e.target.closest('a[href*="intake.html"]');
+  if(a&&window.clyrTrack){
+    var label=a.textContent.trim().slice(0,60);
+    var section=a.closest('section,nav,footer');
+    clyrTrack('HomepageCTAClicked',{label:label,section:section?section.className||section.id||'unknown':'unknown'});
+  }
+});
+</script>
+</body>
 </html>

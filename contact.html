@@ -404,6 +404,7 @@
       if (res.ok) {
         document.getElementById('formFields').style.display = 'none';
         document.getElementById('formSuccess').style.display = 'block';
+        if(window.clyrTrack)clyrTrack('ContactFormSubmitted',{topic:selectedTopic});
       } else {
         throw new Error('Failed');
       }
@@ -417,5 +418,6 @@
     }
   }
 </script>
+<script src="/js/clyr-tracking.js"></script>
 </body>
 </html>

@@ -266,7 +266,9 @@ async function verifyCode(){
   var btn=document.getElementById('btnVerify');btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Verifying...';
   try{var r=await fetch(API+'/api/portal/auth/verify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,code})});
     var d=await r.json();if(!r.ok){showError('loginError2',d.error||'Invalid code.');btn.disabled=false;btn.innerHTML='Verify &amp; sign in';return;}
-    authToken=d.token;localStorage.setItem('clyr_portal_token',authToken);showDashboard();
+    authToken=d.token;localStorage.setItem('clyr_portal_token',authToken);
+    if(window.clyrIdentify)clyrIdentify(email);if(window.clyrTrack)clyrTrack('PortalLogin',{method:'magic_code'});
+    showDashboard();
   }catch(e){showError('loginError2','Verification failed.');btn.disabled=false;btn.innerHTML='Verify &amp; sign in';}
 }
 function backToEmail(){document.getElementById('loginStep1').style.display='block';document.getElementById('loginStep2').style.display='none';document.getElementById('loginCode').value='';hideError('loginError2');}
@@ -328,6 +330,7 @@ async function sendMessage(){
   var btn=document.getElementById('btnSendMsg');btn.disabled=true;btn.textContent='Sending...';
   try{await fetch(API+'/api/portal/messages',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+authToken},body:JSON.stringify({text})});
     input.value='';loadMessages();
+    if(window.clyrTrack)clyrTrack('PortalMessageSent');
   }catch(e){alert('Failed to send message.');}
   finally{btn.disabled=false;btn.textContent='Send';}
 }
@@ -362,6 +365,7 @@ async function submitRefill(){
   try{var r=await fetch(API+'/api/portal/refill',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+authToken},body:JSON.stringify({answers})});
     var d=await r.json();if(!r.ok)throw new Error(d.error||'Failed');
     document.getElementById('refillForm').style.display='none';document.getElementById('refillDone').style.display='block';
+    if(window.clyrTrack)clyrTrack('PortalRefillSubmitted');
   }catch(e){alert('Error: '+(e.message||'Failed to submit refill'));btn.disabled=false;btn.innerHTML='Submit refill request';}
 }
 
@@ -381,8 +385,8 @@ async function changePlan(priceId,productType,planType){
   if(!confirm('Switch to '+fmtTx(productType)+' '+fmtPlan(planType)+'? Changes will apply on your next billing cycle.'))return;
   try{var r=await fetch(API+'/api/portal/subscription/change',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+authToken},body:JSON.stringify({newPriceId:priceId,newProductType:productType,newPlanType:planType})});
     var d=await r.json();
-    if(d.checkoutUrl){window.location.href=d.checkoutUrl;return;}
-    if(d.success){var msg=document.getElementById('planChangeMsg');msg.style.display='block';msg.textContent='&#10003; '+d.message;setTimeout(function(){showTab('dashboard');showDashboard();},2000);}
+    if(d.checkoutUrl){if(window.clyrTrack)clyrTrack('PortalPlanChanged',{product:productType,plan:planType,flow:'new_checkout'});window.location.href=d.checkoutUrl;return;}
+    if(d.success){if(window.clyrTrack)clyrTrack('PortalPlanChanged',{product:productType,plan:planType,flow:'subscription_update'});var msg=document.getElementById('planChangeMsg');msg.style.display='block';msg.textContent='&#10003; '+d.message;setTimeout(function(){showTab('dashboard');showDashboard();},2000);}
     else throw new Error(d.error||'Failed');
   }catch(e){alert('Error: '+(e.message||'Failed to change plan'));}
 }
@@ -417,5 +421,6 @@ document.getElementById('loginCode').addEventListener('keydown',function(e){if(e
 document.getElementById('loginCode').addEventListener('input',function(e){if(e.target.value.length===6)verifyCode();});
 document.getElementById('msgInput').addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}});
 </script>
+<script src="/js/clyr-tracking.js"></script>
 </body>
 </html>

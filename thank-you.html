@@ -199,17 +199,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--gray-50);color:var(--dark
   © 2026 CLYR Health. All rights reserved. <a href="/">clyr.health</a>
 </footer>
 
-<!-- CLYR Analytics Tracker -->
-<script>
-(function(){
-  var vid = localStorage.getItem('clyr_vid');
-  if (!vid) { vid = crypto.randomUUID(); localStorage.setItem('clyr_vid', vid); }
-  fetch('https://clyr-backend.onrender.com/api/track', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({ page: '/thank-you', referrer: document.referrer, visitor_id: vid })
-  }).catch(function(){});
-})();
-</script>
+<script src="/js/clyr-tracking.js"></script>
+<script>if(window.clyrTrack)clyrTrack('IntakeSubmitted');</script>
 </body>
 </html>
