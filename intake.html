@@ -776,6 +776,18 @@
 <script src="https://js.stripe.com/v3/">
 </script>
 <!-- CLYR Intake v3.1 - 2026-03-25T00:46:32.909239 -->
+
+<!-- PostHog Analytics -->
+<script>
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug getPageviewId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
+    api_host: 'https://us.i.posthog.com',
+    person_profiles: 'identified_only',
+    capture_pageview: true,
+    capture_pageleave: true,
+    autocapture: true
+});
+</script>
 </head>
 <body>
 <!-- HEADER -->
@@ -1485,6 +1497,7 @@
     var smsTerms = document.getElementById('sms-terms');
     if (smsTerms) smsTerms.style.display = (step === 1 || step === 7) ? 'block' : 'none';
     if(window.clyrTrack)clyrTrack('IntakeStep',{step:step,stepName:stepNames[step]||'Step'+step,treatment:formData.treatment,plan:formData.plan});
+    if(window.posthog)posthog.capture('intake_step_viewed',{step:step,step_name:stepNames[step]||'Step'+step,treatment:formData.treatment,plan:formData.plan});
   }
 
   function nextStep() {
@@ -1504,6 +1517,7 @@
       if (leadData.email) {
         if(window.clyrIdentify)clyrIdentify(leadData.email,{firstName:leadData.firstName,lastName:leadData.lastName,treatment:leadData.treatment});
         if(window.clyrTrack)clyrTrack('LeadCaptured',{treatment:leadData.treatment,plan:leadData.planType});
+        if(window.posthog){posthog.identify(leadData.email,{first_name:leadData.firstName,last_name:leadData.lastName,treatment:leadData.treatment,plan:leadData.planType});posthog.capture('lead_captured',{treatment:leadData.treatment,plan:leadData.planType});}
         fetch('https://clyr-backend.onrender.com/api/intake/save-lead', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -1834,6 +1848,7 @@
   }
 
   function submitIntake() {
+    if(window.posthog)posthog.capture('checkout_started',{treatment:formData.treatment,plan:formData.plan});
     var btn = document.getElementById('btnContinue');
     btn.disabled = true;
     showCheckoutStatus('Preparing checkout...');
