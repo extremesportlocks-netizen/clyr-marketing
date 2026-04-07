@@ -118,6 +118,17 @@
     letter-spacing: 0.01em;
   }
   .nav-cta:hover { background: var(--teal-dark) !important; transform: translateY(-1px); box-shadow: var(--shadow-teal); }
+  .nav-portal {
+    border: 1.5px solid var(--teal) !important;
+    color: var(--teal) !important;
+    padding: 9px 22px !important;
+    border-radius: 100px !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    transition: all 0.2s;
+    text-decoration: none !important;
+  }
+  .nav-portal:hover { background: rgba(43, 188, 179, 0.08) !important; transform: translateY(-1px); }
 
   .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
   .mobile-menu-btn span { display: block; width: 22px; height: 2px; background: var(--dark); margin: 5px 0; transition: 0.3s; border-radius: 2px; }
@@ -1324,6 +1335,7 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
       <a href="/contact.html">Contact</a>
+      <a href="/portal/" class="nav-portal">Patient Portal</a>
       <a href="/intake.html" class="nav-cta">Get Started</a>
     </div>
     <button class="mobile-menu-btn" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('mobile-open')">
