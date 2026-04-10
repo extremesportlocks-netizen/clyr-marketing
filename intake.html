@@ -1343,6 +1343,7 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
         <span class="checkout-order-value" id="checkoutTotal">—</span>
       </div>
     </div>
+    <div id="intake-promo-banner"></div>
     <div style="display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:4px;padding:10px 0 4px;">
       <span style="font-size:11px;color:var(--gray-400);margin-right:2px;">Payments Accepted:</span>
       <img src="https://www.google.com/s2/favicons?domain=apple.com&sz=64" alt="Apple Pay" style="width:22px;height:22px;border-radius:4px;background:#fff;padding:1px;border:1px solid #e5e7eb;">
@@ -2117,5 +2118,22 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
 </div>
 <!-- Google Places API removed - re-enable once API key is fixed -->
 <script src="/js/clyr-tracking.js"></script>
+<script>
+(async function(){
+  try {
+    const r = await fetch('https://clyr-backend.onrender.com/api/promo/active');
+    const d = await r.json();
+    if (!d.active || !d.promo) return;
+    const p = d.promo;
+    const el = document.getElementById('intake-promo-banner');
+    if (el) {
+      el.innerHTML = '<div style="margin:12px 0 4px;padding:12px 16px;background:linear-gradient(135deg,rgba(0,180,197,0.1),rgba(0,180,197,0.03));border:1px solid rgba(0,180,197,0.2);border-radius:12px;text-align:center;font-size:13px;color:#1a1a2e;">'
+        + '<strong style="color:#00B4C5;">' + p.code + '</strong> — '
+        + (p.discount_type === 'percent' ? p.discount_value + '% off' : '$' + p.discount_value + ' off')
+        + ' · Enter the code below at checkout</div>';
+    }
+  } catch(e) {}
+})();
+</script>
 </body>
 </html>
