@@ -1054,6 +1054,13 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
       </div>
     </div>
 
+    <!-- Conditional dose dropdown — shown when q36 != none and != other -->
+    <div class="q-block" id="q36doseBlock" style="display:none;">
+      <div class="q-label">What dose are you currently on?</div>
+      <div style="font-size:12px;color:var(--gray-400);margin-bottom:12px;font-style:italic;">*Select the closest option to your current dosage</div>
+      <div class="mc-list" id="q36doseList"></div>
+    </div>
+
     <div class="q-block">
       <div class="q-label">What is your goal weight? (lbs)</div>
       <input type="number" class="form-input" id="goalWeight" placeholder="e.g. 175" min="80" max="500" oninput="validateStep()">
@@ -1386,7 +1393,7 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
   let formData = {
     treatment: null, plan: null, screeningClear: false, flaggedConditions: [],
     mdiAnswers: {
-      q10: null, q20: null, q30: null, q36: null, q60: null, q70: null, q72: null,
+      q10: null, q20: null, q30: null, q36: null, currentDoseTier: null, q60: null, q70: null, q72: null,
       q130: null, q140: null, q150: '5',
       q151: 'yes', q152: 'yes', q153: 'no', q154: 'yes', q155: 'no', q156: 'no', q157: 'no',
       q158: 'yes', q159: 'yes', q160: 'yes',
@@ -1657,7 +1664,8 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
                 allRequired;
         break;
       case 4: // Medical History
-        valid = formData.mdiAnswers.q10 && formData.mdiAnswers.q20 && formData.mdiAnswers.q30 && formData.mdiAnswers.q36 && document.getElementById('goalWeight').value && formData.mdiAnswers.q70 && formData.mdiAnswers.q72 && medsToggle !== null && allergyToggle !== null && document.getElementById('currentMedications').value.trim() && document.getElementById('drugAllergies').value.trim();
+        var doseRequired = formData.mdiAnswers.q36 && formData.mdiAnswers.q36 !== 'none' && formData.mdiAnswers.q36 !== 'other';
+        valid = formData.mdiAnswers.q10 && formData.mdiAnswers.q20 && formData.mdiAnswers.q30 && formData.mdiAnswers.q36 && (!doseRequired || formData.mdiAnswers.currentDoseTier) && document.getElementById('goalWeight').value && formData.mdiAnswers.q70 && formData.mdiAnswers.q72 && medsToggle !== null && allergyToggle !== null && document.getElementById('currentMedications').value.trim() && document.getElementById('drugAllergies').value.trim();
         break;
       case 5: // Treatment Preferences
         valid = formData.mdiAnswers.q140 && formData.mdiAnswers.q150;
@@ -2009,6 +2017,56 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
     list.querySelectorAll('.mc-card').forEach(function(c) { c.classList.remove('selected'); });
     card.classList.add('selected');
     formData.mdiAnswers[key] = value;
+    // Handle dose dropdown for q36
+    if (key === 'q36') {
+      updateDoseDropdown(value);
+    }
+    validateStep();
+  }
+
+  function updateDoseDropdown(q36Value) {
+    var block = document.getElementById('q36doseBlock');
+    var list = document.getElementById('q36doseList');
+    // Clear previous selection
+    formData.mdiAnswers.currentDoseTier = null;
+    // Show dropdown for GLP-1 options only
+    var showDose = (q36Value === 'compounded_tirz' || q36Value === 'compounded_sema' || q36Value === 'branded');
+    if (!showDose) {
+      block.style.display = 'none';
+      list.innerHTML = '';
+      return;
+    }
+    // Doses based on Step 1 treatment selection (what they're BUYING)
+    var doses;
+    if (formData.treatment === 'tirzepatide') {
+      doses = [
+        { tier: 'T1', label: '2.5 mg' },
+        { tier: 'T2', label: '5 mg' },
+        { tier: 'T3', label: '7.5 mg' },
+        { tier: 'T4', label: '10 mg' },
+        { tier: 'T5', label: '12.5 mg' },
+        { tier: 'T6', label: '15 mg' }
+      ];
+    } else {
+      doses = [
+        { tier: 'S1', label: '0.25 mg' },
+        { tier: 'S2', label: '0.5 mg' },
+        { tier: 'S3', label: '1 mg' },
+        { tier: 'S4', label: '1.5 mg' },
+        { tier: 'S5', label: '2.5 mg' }
+      ];
+    }
+    list.innerHTML = doses.map(function(d) {
+      return '<div class="mc-card" onclick="selectDose(this,\'' + d.tier + '\')"><div class="mc-dot"></div><div class="mc-label">' + d.label + '</div></div>';
+    }).join('');
+    block.style.display = 'block';
+    block.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function selectDose(card, tier) {
+    card.parentNode.querySelectorAll('.mc-card').forEach(function(c) { c.classList.remove('selected'); });
+    card.classList.add('selected');
+    formData.mdiAnswers.currentDoseTier = tier;
     validateStep();
   }
 
