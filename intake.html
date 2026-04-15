@@ -1541,7 +1541,8 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
           } else if (data.status === 'existing_incomplete') {
             showReturningCustomerModal(data.firstName || leadData.firstName, false, leadData.email);
           }
-          // For new leads, continue silently
+          // existing_lead: No modal — lead must complete full intake (patient safety)
+          // New leads also continue silently
         }).catch(function() {}); // Non-blocking
       }
     }
