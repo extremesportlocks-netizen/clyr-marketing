@@ -1239,6 +1239,259 @@
     .payment-methods { gap: 8px; }
     .payment-chip { padding: 4px 10px; font-size: 11px; }
     .trust-chip { padding: 6px 12px; font-size: 11px; }
+    .testimonials { padding: 60px 20px; }
+    .testimonial-card { width: 280px; padding: 24px 20px; }
+  }
+
+  /* ============================================
+     COMPARISON TABLE
+     ============================================ */
+  .compare-wrap {
+    margin-top: 72px;
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .compare-heading {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .compare-heading h3 {
+    font-size: clamp(26px, 3vw, 36px);
+    font-weight: 700;
+    color: var(--dark, #1a1a2e);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  .compare-heading h3 .serif-word {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--teal);
+  }
+  .compare-cols {
+    display: grid;
+    grid-template-columns: 180px 1fr 1fr;
+    gap: 0;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--gray-200, #E2E7EB);
+    background: var(--white);
+    box-shadow: 0 4px 32px rgba(0,0,0,0.04);
+  }
+  .compare-cols .col-header {
+    padding: 20px 24px;
+    font-size: 14px;
+    font-weight: 700;
+    background: var(--dark, #1a1a2e);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+  }
+  .compare-cols .col-header:first-child {
+    color: var(--teal);
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .compare-row {
+    display: contents;
+  }
+  .compare-row > div {
+    padding: 18px 24px;
+    font-size: 14px;
+    color: var(--gray-600, #4A5568);
+    border-bottom: 1px solid var(--gray-100, #F1F4F6);
+    line-height: 1.55;
+    transition: background 0.2s, color 0.2s;
+  }
+  .compare-row:last-child > div { border-bottom: none; }
+  .compare-row > div:first-child {
+    font-weight: 600;
+    color: var(--dark, #1a1a2e);
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    background: var(--gray-50, #F8FAFB);
+    border-right: 1px solid var(--gray-100, #F1F4F6);
+  }
+  .compare-row:hover > div {
+    background: rgba(43, 188, 179, 0.04);
+  }
+  .compare-row:hover > div:first-child {
+    background: rgba(43, 188, 179, 0.08);
+    color: var(--teal-dark, #009BAA);
+  }
+  .compare-row > div:nth-child(2) {
+    border-right: 1px solid var(--gray-100, #F1F4F6);
+  }
+  .compare-val-highlight {
+    font-weight: 600;
+    color: var(--teal);
+  }
+
+  /* Stacked mobile cards — hidden on desktop */
+  .compare-stacked { display: none; }
+  .compare-stack-card {
+    border: 1px solid var(--gray-200, #E2E7EB);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    background: var(--white);
+  }
+  .compare-stack-header {
+    background: var(--dark, #1a1a2e);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .compare-stack-header h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .compare-stack-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    font-size: 14px;
+    border-bottom: 1px solid var(--gray-100, #F1F4F6);
+  }
+  .compare-stack-row:last-child { border-bottom: none; }
+  .compare-stack-row > span:first-child {
+    font-weight: 600;
+    color: var(--dark, #1a1a2e);
+    font-size: 13px;
+  }
+  .compare-stack-row > span:last-child,
+  .compare-stack-row > strong {
+    text-align: right;
+    color: var(--gray-600, #4A5568);
+  }
+
+  @media (max-width: 768px) {
+    .compare-cols { grid-template-columns: 120px 1fr 1fr; border-radius: 14px; }
+    .compare-cols .col-header { padding: 16px 14px; font-size: 13px; }
+    .compare-row > div { padding: 14px 14px; font-size: 13px; }
+    .compare-wrap { margin-top: 48px; }
+  }
+  @media (max-width: 480px) {
+    .compare-cols { display: none; }
+    .compare-stacked { display: block; margin-top: 0; }
+  }
+
+  /* ============================================
+     SCROLLING TRUST MARQUEE
+     ============================================ */
+  .marquee-section {
+    padding: 28px 0;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    background: var(--gray-50);
+  }
+  .marquee-track {
+    display: flex;
+    gap: 12px;
+    animation: marquee-scroll 50s linear infinite;
+    width: max-content;
+  }
+  .marquee-track:hover { animation-play-state: paused; }
+  .marquee-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 100px;
+    background: var(--white);
+    border: 1px solid rgba(0,0,0,0.06);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-600);
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .marquee-chip:hover {
+    border-color: var(--teal);
+    box-shadow: 0 2px 12px rgba(0,180,197,0.12);
+  }
+  .marquee-chip svg { width: 16px; height: 16px; color: var(--teal); flex-shrink: 0; }
+  @keyframes marquee-scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ============================================
+     TESTIMONIALS
+     ============================================ */
+  .testimonials {
+    padding: 100px 40px;
+    background: var(--dark, #1a1a2e);
+    overflow: hidden;
+  }
+  .testimonials .section-inner { text-align: center; }
+  .testimonials .section-label { color: var(--teal); }
+  .testimonials .section-heading { color: #fff; }
+  .testimonials .section-heading .serif-word { color: var(--teal); }
+  .testimonials .section-subtext {
+    color: rgba(255,255,255,0.45);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .testimonial-marquee {
+    display: flex;
+    gap: 20px;
+    animation: testimonial-scroll 65s linear infinite;
+    width: max-content;
+    margin-top: 48px;
+  }
+  .testimonial-marquee:hover { animation-play-state: paused; }
+  .testimonial-card {
+    width: 360px;
+    padding: 32px 28px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    flex-shrink: 0;
+    text-align: left;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .testimonial-card:hover {
+    border-color: rgba(43,188,179,0.3);
+    background: rgba(255,255,255,0.06);
+  }
+  .testimonial-stars { display: flex; gap: 3px; margin-bottom: 16px; }
+  .testimonial-stars svg { width: 16px; height: 16px; }
+  .testimonial-text {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.78);
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+  .testimonial-author { display: flex; align-items: center; gap: 12px; }
+  .testimonial-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .testimonial-name { font-size: 14px; font-weight: 600; color: #fff; }
+  .testimonial-detail { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 2px; }
+  @keyframes testimonial-scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
   }
 </style>
 <script type="application/ld+json">
@@ -1417,6 +1670,29 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
   </div>
 </div>
 
+<!-- ========== SCROLLING TRUST MARQUEE ========== -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>HIPAA Compliant</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0 1 12 2.944a11.955 11.955 0 0 1-8.618 3.04A12.02 12.02 0 0 0 3 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>LegitScript Certified</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Licensed US Providers</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 12 15 16 10"/></svg>503A Licensed Pharmacy</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Secure Stripe Payments</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="m16 8 5 3-5 3z"/></svg>Telehealth Consultation</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Ships to 47 States</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>Eligibility Guarantee</div>
+    <!-- Duplicate for seamless loop -->
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>HIPAA Compliant</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0 1 12 2.944a11.955 11.955 0 0 1-8.618 3.04A12.02 12.02 0 0 0 3 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>LegitScript Certified</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Licensed US Providers</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 12 15 16 10"/></svg>503A Licensed Pharmacy</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Secure Stripe Payments</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="m16 8 5 3-5 3z"/></svg>Telehealth Consultation</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Ships to 47 States</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>Eligibility Guarantee</div>
+  </div>
+</div>
+
 <!-- ========== HOW IT WORKS ========== -->
 <section class="how-it-works" id="how-it-works">
   <div class="section-inner">
@@ -1528,6 +1804,64 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
         <a href="/intake.html" class="product-cta">Get Started with Semaglutide</a>
       </div>
     </div>
+
+    <!-- Comparison Table -->
+    <div class="compare-wrap reveal">
+      <div class="compare-heading">
+        <h3>Compare your <span class="serif-word">options.</span></h3>
+      </div>
+      <div class="compare-cols">
+        <div class="col-header">Feature</div>
+        <div class="col-header">Compounded Tirzepatide <span class="product-tag" style="margin:0 0 0 auto">Most Popular</span></div>
+        <div class="col-header">Compounded Semaglutide <span class="product-tag" style="margin:0 0 0 auto">Best Value</span></div>
+
+        <div class="compare-row">
+          <div>Avg. Weight Loss</div>
+          <div><span class="compare-val-highlight">20–21%</span></div>
+          <div>13–15%</div>
+        </div>
+        <div class="compare-row">
+          <div>Delivery</div>
+          <div>Weekly injection</div>
+          <div>Weekly injection</div>
+        </div>
+        <div class="compare-row">
+          <div>Receptors</div>
+          <div><span class="compare-val-highlight">GLP-1 &amp; GIP (dual agonist)</span></div>
+          <div>GLP-1 (single agonist)</div>
+        </div>
+        <div class="compare-row">
+          <div>Dosages</div>
+          <div>2.5 mg – 15 mg</div>
+          <div>0.25 mg – 2.5 mg</div>
+        </div>
+      </div>
+
+      <!-- Mobile stacked version -->
+      <div class="compare-stacked">
+        <div class="compare-stack-card">
+          <div class="compare-stack-header">
+            <span class="product-tag" style="margin:0">Most Popular</span>
+            <h4>Compounded Tirzepatide</h4>
+          </div>
+          <div class="compare-stack-row"><span>Avg. Weight Loss</span><strong style="color:var(--teal)">20–21%</strong></div>
+          <div class="compare-stack-row"><span>Delivery</span><span>Weekly injection</span></div>
+          <div class="compare-stack-row"><span>Receptors</span><strong style="color:var(--teal)">GLP-1 &amp; GIP (dual)</strong></div>
+          <div class="compare-stack-row"><span>Dosages</span><span>2.5 mg – 15 mg</span></div>
+        </div>
+        <div class="compare-stack-card">
+          <div class="compare-stack-header">
+            <span class="product-tag" style="margin:0">Best Value</span>
+            <h4>Compounded Semaglutide</h4>
+          </div>
+          <div class="compare-stack-row"><span>Avg. Weight Loss</span><span>13–15%</span></div>
+          <div class="compare-stack-row"><span>Delivery</span><span>Weekly injection</span></div>
+          <div class="compare-stack-row"><span>Receptors</span><span>GLP-1 (single)</span></div>
+          <div class="compare-stack-row"><span>Dosages</span><span>0.25 mg – 2.5 mg</span></div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1566,49 +1900,54 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
   </div>
 </section>
 
-<!-- ========== FEATURES ========== -->
-<section class="features">
+<!-- ========== TESTIMONIALS ========== -->
+<section class="testimonials" id="reviews">
   <div class="section-inner">
-    <div class="section-label reveal">What's Included</div>
-    <h2 class="section-heading">More than just<br><span class="serif-word">medication.</span></h2>
-    <p class="section-subtext">Every CLYR plan comes with the full support system you need to succeed — not just a prescription.</p>
-
-    <div class="features-grid">
-      <div class="feature-card reveal">
-        <div class="feature-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        </div>
-        <h3>Licensed Providers</h3>
-        <p>Board-certified physicians and nurse practitioners review your health history and prescribe your treatment.</p>
-      </div>
-      <div class="feature-card reveal">
-        <div class="feature-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-        </div>
-        <h3>Ongoing Care</h3>
-        <p>Message your care team anytime. Get dosing adjustments, check-ins, and medical guidance throughout your journey.</p>
-      </div>
-      <div class="feature-card reveal">
-        <div class="feature-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
-        </div>
-        <h3>Vitamin B12 Included</h3>
-        <p>Every compound includes B12 to support energy levels, metabolism, and overall wellbeing during your weight loss.</p>
-      </div>
-      <div class="feature-card reveal">
-        <div class="feature-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        </div>
-        <h3>Free Discreet Shipping</h3>
-        <p>Temperature-controlled packaging, shipped in plain boxes. Fast delivery, always free.</p>
-      </div>
-      <div class="feature-card reveal">
-        <div class="feature-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <h3>Eligibility Guarantee</h3>
-        <p>If our provider determines you're not eligible after payment, you'll receive a full refund. Zero risk to start.</p>
-      </div>
+    <div class="section-label reveal">Real Patients, Real Results</div>
+    <h2 class="section-heading reveal">There's a reason patients<br>trust <span class="serif-word">CLYR.</span></h2>
+    <p class="section-subtext reveal">Hear from real patients who've started their GLP-1 journey with us.</p>
+  </div>
+  <div class="testimonial-marquee">
+    <div class="testimonial-card">
+      <div class="testimonial-stars"><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></div>
+      <p class="testimonial-text">"I was previously ordering from another telehealth company and switched to CLYR Health. I'm so happy. My medicine actually came cold and on ice! Best packaging I've ever seen for refrigerated medicine."</p>
+      <div class="testimonial-author"><div class="testimonial-avatar">D</div><div><div class="testimonial-name">David S.</div><div class="testimonial-detail">Verified CLYR patient</div></div></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars"><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></div>
+      <p class="testimonial-text">"I was hesitant about switching from a name-brand medicine to a compounded medicine because I had a bad experience before. However, CLYR's process and quality of the product is so good, I'm very pleased with my decision."</p>
+      <div class="testimonial-author"><div class="testimonial-avatar">B</div><div><div class="testimonial-name">Barrett L.</div><div class="testimonial-detail">Verified CLYR patient</div></div></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars"><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></div>
+      <p class="testimonial-text">"Super easy and much more affordable than what I was previously paying. Highly recommend."</p>
+      <div class="testimonial-author"><div class="testimonial-avatar">S</div><div><div class="testimonial-name">Shawn S.</div><div class="testimonial-detail">Verified CLYR patient</div></div></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars"><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></div>
+      <p class="testimonial-text">"The process couldn't have been easier. From order to my doorstep in days."</p>
+      <div class="testimonial-author"><div class="testimonial-avatar">W</div><div><div class="testimonial-name">Wendy M.</div><div class="testimonial-detail">Verified CLYR patient</div></div></div>
+    </div>
+    <!-- Duplicates for seamless loop -->
+    <div class="testimonial-card">
+      <div class="testimonial-stars"><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></div>
+      <p class="testimonial-text">"I was previously ordering from another telehealth company and switched to CLYR Health. I'm so happy. My medicine actually came cold and on ice! Best packaging I've ever seen for refrigerated medicine."</p>
+      <div class="testimonial-author"><div class="testimonial-avatar">D</div><div><div class="testimonial-name">David S.</div><div class="testimonial-detail">Verified CLYR patient</div></div></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars"><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></div>
+      <p class="testimonial-text">"I was hesitant about switching from a name-brand medicine to a compounded medicine because I had a bad experience before. However, CLYR's process and quality of the product is so good, I'm very pleased with my decision."</p>
+      <div class="testimonial-author"><div class="testimonial-avatar">B</div><div><div class="testimonial-name">Barrett L.</div><div class="testimonial-detail">Verified CLYR patient</div></div></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars"><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></div>
+      <p class="testimonial-text">"Super easy and much more affordable than what I was previously paying. Highly recommend."</p>
+      <div class="testimonial-author"><div class="testimonial-avatar">S</div><div><div class="testimonial-name">Shawn S.</div><div class="testimonial-detail">Verified CLYR patient</div></div></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars"><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></div>
+      <p class="testimonial-text">"The process couldn't have been easier. From order to my doorstep in days."</p>
+      <div class="testimonial-author"><div class="testimonial-avatar">W</div><div><div class="testimonial-name">Wendy M.</div><div class="testimonial-detail">Verified CLYR patient</div></div></div>
     </div>
   </div>
 </section>
@@ -1692,6 +2031,53 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
         <div class="faq-answer">
           <p>Our compounding pharmacy may occasionally substitute Vitamin B6 (Pyridoxine) for B12 (Methylcobalamin) based on ingredient availability. Both vitamins support energy and metabolism during your weight loss journey. Your medication's active ingredient — Tirzepatide or Semaglutide — remains exactly the same regardless of which vitamin is included. You will always be notified if there is any change to your prescription.</p>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FEATURES ========== -->
+<section class="features">
+  <div class="section-inner">
+    <div class="section-label reveal">What's Included</div>
+    <h2 class="section-heading">More than just<br><span class="serif-word">medication.</span></h2>
+    <p class="section-subtext">Every CLYR plan comes with the full support system you need to succeed — not just a prescription.</p>
+
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="feature-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3>Licensed Providers</h3>
+        <p>Board-certified physicians and nurse practitioners review your health history and prescribe your treatment.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+        </div>
+        <h3>Ongoing Care</h3>
+        <p>Message your care team anytime. Get dosing adjustments, check-ins, and medical guidance throughout your journey.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+        </div>
+        <h3>Vitamin B12 Included</h3>
+        <p>Every compound includes B12 to support energy levels, metabolism, and overall wellbeing during your weight loss.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        </div>
+        <h3>Free Discreet Shipping</h3>
+        <p>Temperature-controlled packaging, shipped in plain boxes. Fast delivery, always free.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Eligibility Guarantee</h3>
+        <p>If our provider determines you're not eligible after payment, you'll receive a full refund. Zero risk to start.</p>
       </div>
     </div>
   </div>
