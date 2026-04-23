@@ -1171,7 +1171,7 @@
   }
   @keyframes press-scroll {
     0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    100% { transform: translateX(-33.33%); }
   }
 
   /* ============================================
@@ -1512,7 +1512,7 @@
   .marquee-chip svg { width: 16px; height: 16px; color: var(--teal); flex-shrink: 0; }
   @keyframes marquee-scroll {
     0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    100% { transform: translateX(-33.33%); }
   }
 
   /* ============================================
@@ -1583,7 +1583,7 @@
   .testimonial-detail { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 2px; }
   @keyframes testimonial-scroll {
     0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    100% { transform: translateX(-33.33%); }
   }
 </style>
 <script type="application/ld+json">
@@ -1764,7 +1764,7 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
 
 <!-- ========== SCROLLING TRUST MARQUEE ========== -->
 <div class="marquee-section">
-  <div class="marquee-track">
+    <div class="marquee-track">
     <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>HIPAA Compliant</div>
     <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0 1 12 2.944a11.955 11.955 0 0 1-8.618 3.04A12.02 12.02 0 0 0 3 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>LegitScript Certified</div>
     <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Licensed US Providers</div>
@@ -1773,7 +1773,6 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
     <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="m16 8 5 3-5 3z"/></svg>Telehealth Consultation</div>
     <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Ships to 47 States</div>
     <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>Eligibility Guarantee</div>
-    <!-- Duplicate for seamless loop -->
     <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>HIPAA Compliant</div>
     <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0 1 12 2.944a11.955 11.955 0 0 1-8.618 3.04A12.02 12.02 0 0 0 3 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>LegitScript Certified</div>
     <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Licensed US Providers</div>
@@ -1782,7 +1781,15 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
     <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="m16 8 5 3-5 3z"/></svg>Telehealth Consultation</div>
     <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Ships to 47 States</div>
     <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>Eligibility Guarantee</div>
-  </div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>HIPAA Compliant</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0 1 12 2.944a11.955 11.955 0 0 1-8.618 3.04A12.02 12.02 0 0 0 3 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>LegitScript Certified</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Licensed US Providers</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 12 15 16 10"/></svg>503A Licensed Pharmacy</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Secure Stripe Payments</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="m16 8 5 3-5 3z"/></svg>Telehealth Consultation</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Ships to 47 States</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>Eligibility Guarantee</div>
+  </div></div>
 </div>
 
 <!-- ========== HOW IT WORKS ========== -->
@@ -1828,7 +1835,13 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
     <div class="press-chip"><img src="https://www.google.com/s2/favicons?domain=businessinsider.com&sz=64" alt="Business Insider">Business Insider</div>
     <div class="press-chip"><img src="https://www.google.com/s2/favicons?domain=bloomberg.com&sz=64" alt="Bloomberg">Bloomberg</div>
     <div class="press-chip"><img src="https://www.google.com/s2/favicons?domain=menshealth.com&sz=64" alt="Men's Health">Men's Health</div>
-    <!-- Duplicate for seamless loop -->
+    <div class="press-chip"><img src="https://www.google.com/s2/favicons?domain=forbes.com&sz=64" alt="Forbes">Forbes Health</div>
+    <div class="press-chip"><img src="https://www.google.com/s2/favicons?domain=healthline.com&sz=64" alt="Healthline">Healthline</div>
+    <div class="press-chip"><img src="https://www.google.com/s2/favicons?domain=usatoday.com&sz=64" alt="USA Today">USA Today</div>
+    <div class="press-chip"><img src="https://www.google.com/s2/favicons?domain=webmd.com&sz=64" alt="WebMD">WebMD</div>
+    <div class="press-chip"><img src="https://www.google.com/s2/favicons?domain=businessinsider.com&sz=64" alt="Business Insider">Business Insider</div>
+    <div class="press-chip"><img src="https://www.google.com/s2/favicons?domain=bloomberg.com&sz=64" alt="Bloomberg">Bloomberg</div>
+    <div class="press-chip"><img src="https://www.google.com/s2/favicons?domain=menshealth.com&sz=64" alt="Men's Health">Men's Health</div>
     <div class="press-chip"><img src="https://www.google.com/s2/favicons?domain=forbes.com&sz=64" alt="Forbes">Forbes Health</div>
     <div class="press-chip"><img src="https://www.google.com/s2/favicons?domain=healthline.com&sz=64" alt="Healthline">Healthline</div>
     <div class="press-chip"><img src="https://www.google.com/s2/favicons?domain=usatoday.com&sz=64" alt="USA Today">USA Today</div>
@@ -2027,7 +2040,7 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
     <h2 class="section-heading reveal">There's a reason patients<br>trust <span class="serif-word">CLYR.</span></h2>
     <p class="section-subtext reveal">Hear from real patients who've started their GLP-1 journey with us.</p>
   </div>
-  <div class="testimonial-marquee">
+    <div class="testimonial-marquee">
     <div class="testimonial-card">
       <div class="testimonial-stars"><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></div>
       <p class="testimonial-text">"I was previously ordering from another telehealth company and switched to CLYR Health. I'm so happy. My medicine actually came cold and on ice! Best packaging I've ever seen for refrigerated medicine."</p>
@@ -2048,7 +2061,26 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
       <p class="testimonial-text">"The process couldn't have been easier. From order to my doorstep in days."</p>
       <div class="testimonial-author"><div class="testimonial-avatar">W</div><div><div class="testimonial-name">Wendy M.</div><div class="testimonial-detail">Verified CLYR patient</div></div></div>
     </div>
-    <!-- Duplicates for seamless loop -->
+    <div class="testimonial-card">
+      <div class="testimonial-stars"><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></div>
+      <p class="testimonial-text">"I was previously ordering from another telehealth company and switched to CLYR Health. I'm so happy. My medicine actually came cold and on ice! Best packaging I've ever seen for refrigerated medicine."</p>
+      <div class="testimonial-author"><div class="testimonial-avatar">D</div><div><div class="testimonial-name">David S.</div><div class="testimonial-detail">Verified CLYR patient</div></div></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars"><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></div>
+      <p class="testimonial-text">"I was hesitant about switching from a name-brand medicine to a compounded medicine because I had a bad experience before. However, CLYR's process and quality of the product is so good, I'm very pleased with my decision."</p>
+      <div class="testimonial-author"><div class="testimonial-avatar">B</div><div><div class="testimonial-name">Barrett L.</div><div class="testimonial-detail">Verified CLYR patient</div></div></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars"><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></div>
+      <p class="testimonial-text">"Super easy and much more affordable than what I was previously paying. Highly recommend."</p>
+      <div class="testimonial-author"><div class="testimonial-avatar">S</div><div><div class="testimonial-name">Shawn S.</div><div class="testimonial-detail">Verified CLYR patient</div></div></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars"><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></div>
+      <p class="testimonial-text">"The process couldn't have been easier. From order to my doorstep in days."</p>
+      <div class="testimonial-author"><div class="testimonial-avatar">W</div><div><div class="testimonial-name">Wendy M.</div><div class="testimonial-detail">Verified CLYR patient</div></div></div>
+    </div>
     <div class="testimonial-card">
       <div class="testimonial-stars"><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></div>
       <p class="testimonial-text">"I was previously ordering from another telehealth company and switched to CLYR Health. I'm so happy. My medicine actually came cold and on ice! Best packaging I've ever seen for refrigerated medicine."</p>
