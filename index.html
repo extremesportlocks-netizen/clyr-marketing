@@ -1459,21 +1459,23 @@
     flex-shrink: 0;
     text-align: left;
     transition: border-color 0.3s, background 0.3s;
+    display: flex;
+    flex-direction: column;
   }
   .testimonial-card:hover {
     border-color: rgba(43,188,179,0.3);
     background: rgba(255,255,255,0.06);
   }
-  .testimonial-stars { display: flex; gap: 3px; margin-bottom: 16px; }
+  .testimonial-author { display: flex; align-items: center; gap: 12px; order: 1; margin-bottom: 14px; }
+  .testimonial-stars { display: flex; gap: 3px; order: 2; margin-bottom: 14px; }
   .testimonial-stars svg { width: 16px; height: 16px; }
   .testimonial-text {
     font-size: 15px;
     line-height: 1.7;
     color: rgba(255,255,255,0.78);
-    margin-bottom: 20px;
     font-style: italic;
+    order: 3;
   }
-  .testimonial-author { display: flex; align-items: center; gap: 12px; }
   .testimonial-avatar {
     width: 38px;
     height: 38px;
