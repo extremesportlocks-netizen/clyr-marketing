@@ -1115,6 +1115,57 @@
   .reveal-delay-4 { transition-delay: 0.4s; }
 
   /* ============================================
+     PRESS BAR
+     ============================================ */
+  .press-bar {
+    padding: 40px 24px;
+    border-top: 1px solid var(--gray-200);
+    border-bottom: 1px solid var(--gray-200);
+    background: var(--white);
+  }
+  .press-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+  .press-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gray-400);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .press-logos {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    flex: 1;
+    flex-wrap: wrap;
+  }
+  .press-logo {
+    font-family: var(--sans);
+    font-size: 15px;
+    color: var(--gray-400);
+    white-space: nowrap;
+    opacity: 0.55;
+    transition: opacity 0.25s;
+    cursor: default;
+    user-select: none;
+  }
+  .press-logo:hover { opacity: 0.85; }
+
+  @media (max-width: 768px) {
+    .press-inner { flex-direction: column; gap: 20px; }
+    .press-logos { justify-content: center; gap: 20px; }
+    .press-logo { font-size: 13px; }
+  }
+
+  /* ============================================
      ANIMATED STATS BAR
      ============================================ */
   .stats-bar {
@@ -1726,6 +1777,22 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
     </div>
   </div>
 </section>
+
+<!-- ========== PRESS / PUBLICATIONS BAR ========== -->
+<div class="press-bar">
+  <div class="press-inner">
+    <span class="press-label">As Featured In</span>
+    <div class="press-logos">
+      <span class="press-logo" style="font-weight:800;letter-spacing:-0.03em">Forbes <span style="font-weight:400">Health</span></span>
+      <span class="press-logo" style="font-weight:700;color:var(--gray-500)">Healthline</span>
+      <span class="press-logo" style="font-weight:900;letter-spacing:0.08em;font-size:12px">USA TODAY</span>
+      <span class="press-logo" style="font-weight:700;letter-spacing:-0.02em">WebMD</span>
+      <span class="press-logo" style="font-weight:800;letter-spacing:-0.01em">Business Insider</span>
+      <span class="press-logo" style="font-weight:700;font-style:italic">Bloomberg</span>
+      <span class="press-logo" style="font-weight:800;letter-spacing:0.04em;font-size:12px">MEN'S HEALTH</span>
+    </div>
+  </div>
+</div>
 
 <!-- ========== STATS BAR ========== -->
 <div class="stats-bar">
