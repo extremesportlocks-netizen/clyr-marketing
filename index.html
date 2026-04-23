@@ -1399,41 +1399,71 @@
   .compare-stacked { display: none; }
   .compare-stack-card {
     border: 1px solid var(--gray-200, #E2E7EB);
-    border-radius: 16px;
+    border-radius: 20px;
     overflow: hidden;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
     background: var(--white);
+    box-shadow: 0 2px 16px rgba(0,0,0,0.04);
   }
   .compare-stack-header {
     background: var(--dark, #1a1a2e);
-    padding: 16px 20px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    padding: 24px 20px;
+  }
+  .compare-stack-badge {
+    display: inline-block;
+    padding: 5px 14px;
+    border-radius: 100px;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #fff;
+    background: linear-gradient(135deg, var(--teal), #0088cc);
+    margin-bottom: 10px;
   }
   .compare-stack-header h4 {
-    font-size: 15px;
+    font-size: 20px;
     font-weight: 700;
     color: #fff;
+    letter-spacing: -0.02em;
   }
+  .compare-stack-body { padding: 4px 0; }
   .compare-stack-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 14px 20px;
-    font-size: 14px;
+    padding: 16px 20px;
+    font-size: 15px;
     border-bottom: 1px solid var(--gray-100, #F1F4F6);
   }
   .compare-stack-row:last-child { border-bottom: none; }
   .compare-stack-row > span:first-child {
     font-weight: 600;
     color: var(--dark, #1a1a2e);
-    font-size: 13px;
+    font-size: 14px;
   }
   .compare-stack-row > span:last-child,
   .compare-stack-row > strong {
     text-align: right;
     color: var(--gray-600, #4A5568);
+    font-size: 15px;
+  }
+  .compare-stack-cta {
+    display: block;
+    margin: 4px 20px 20px;
+    padding: 14px 24px;
+    border-radius: 100px;
+    background: var(--teal);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.25s, box-shadow 0.25s;
+  }
+  .compare-stack-cta:hover {
+    background: var(--teal-dark);
+    box-shadow: 0 6px 24px rgba(0,180,197,0.25);
   }
 
   @media (max-width: 768px) {
@@ -1928,23 +1958,29 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
       <div class="compare-stacked">
         <div class="compare-stack-card">
           <div class="compare-stack-header">
-            <span class="product-tag" style="margin:0">Most Popular</span>
+            <div class="compare-stack-badge">Most Popular</div>
             <h4>Compounded Tirzepatide</h4>
           </div>
-          <div class="compare-stack-row"><span>Avg. Weight Loss</span><strong style="color:var(--teal)">20–21%</strong></div>
-          <div class="compare-stack-row"><span>Delivery</span><span>Weekly injection</span></div>
-          <div class="compare-stack-row"><span>Receptors</span><strong style="color:var(--teal)">GLP-1 &amp; GIP (dual)</strong></div>
-          <div class="compare-stack-row"><span>Dosages</span><span>2.5 mg – 15 mg</span></div>
+          <div class="compare-stack-body">
+            <div class="compare-stack-row"><span>Avg. Weight Loss</span><strong style="color:var(--teal)">20–21%</strong></div>
+            <div class="compare-stack-row"><span>Delivery</span><span>Weekly injection</span></div>
+            <div class="compare-stack-row"><span>Receptors</span><strong style="color:var(--teal)">GLP-1 &amp; GIP (dual)</strong></div>
+            <div class="compare-stack-row"><span>Dosages</span><span>2.5 mg – 15 mg</span></div>
+          </div>
+          <a href="/intake.html" class="compare-stack-cta">Start Consultation</a>
         </div>
         <div class="compare-stack-card">
           <div class="compare-stack-header">
-            <span class="product-tag" style="margin:0">Best Value</span>
+            <div class="compare-stack-badge">Best Value</div>
             <h4>Compounded Semaglutide</h4>
           </div>
-          <div class="compare-stack-row"><span>Avg. Weight Loss</span><span>13–15%</span></div>
-          <div class="compare-stack-row"><span>Delivery</span><span>Weekly injection</span></div>
-          <div class="compare-stack-row"><span>Receptors</span><span>GLP-1 (single)</span></div>
-          <div class="compare-stack-row"><span>Dosages</span><span>0.25 mg – 2.5 mg</span></div>
+          <div class="compare-stack-body">
+            <div class="compare-stack-row"><span>Avg. Weight Loss</span><span>13–15%</span></div>
+            <div class="compare-stack-row"><span>Delivery</span><span>Weekly injection</span></div>
+            <div class="compare-stack-row"><span>Receptors</span><span>GLP-1 (single)</span></div>
+            <div class="compare-stack-row"><span>Dosages</span><span>0.25 mg – 2.5 mg</span></div>
+          </div>
+          <a href="/intake.html" class="compare-stack-cta">Start Consultation</a>
         </div>
       </div>
     </div>
