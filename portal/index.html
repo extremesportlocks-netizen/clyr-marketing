@@ -235,6 +235,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--gray-50);color:var(--dark
 const API='https://clyr-backend.onrender.com';
 let authToken=localStorage.getItem('clyr_portal_token'),patientData=null,currentTab='dashboard';
 
+// Admin deep-link: /portal/?token=<jwt> → stamp & strip param
+(function(){var u=new URL(location.href);var t=u.searchParams.get('token');if(t){authToken=t;localStorage.setItem('clyr_portal_token',t);u.searchParams.delete('token');history.replaceState({},'',u.pathname+(u.search||''));}})();
+
 if(authToken){showDashboard();}
 
 // ═══ TAB NAVIGATION ═══
