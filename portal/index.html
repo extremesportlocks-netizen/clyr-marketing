@@ -332,7 +332,45 @@ body{font-family:'DM Sans',sans-serif;background:var(--gray-50);color:var(--dark
       <textarea class="q-input" id="rq_q400" rows="4" placeholder="Tell your doctor how things are going..."></textarea>
     </div>
 
-    <button class="btn btn-primary" id="btnRefill" onclick="submitRefill()" style="margin-top:8px">Submit refill request</button>
+    <!-- Upgrade upsell — only visible for monthly subscribers -->
+    <div id="refillUpgrade" style="display:none;margin-top:16px;background:linear-gradient(135deg,#1a1a2e 0%,#2d2d4e 100%);border-radius:16px;padding:28px 24px;color:#fff">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+        <span style="font-size:22px">💎</span>
+        <span style="font-size:17px;font-weight:700">Save on your next supply</span>
+      </div>
+      <p style="font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:20px;line-height:1.5">You're on the monthly plan. Commit longer and save — use code <strong style="color:#2bbcb3">RENEW20</strong> for 20% off.</p>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px">
+        <div id="upgrade3mo" class="upgrade-option" style="background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.12);border-radius:12px;padding:16px;cursor:pointer;transition:all 0.2s" onmouseover="this.style.borderColor='#2bbcb3'" onmouseout="this.style.borderColor='rgba(255,255,255,0.12)'">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div style="font-size:15px;font-weight:700">3-Month Plan</div>
+              <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:2px">Save <span id="up3save"></span> vs monthly</div>
+            </div>
+            <div style="text-align:right">
+              <div style="font-size:12px;color:rgba(255,255,255,0.4);text-decoration:line-through"><span id="up3full"></span></div>
+              <div style="font-size:18px;font-weight:800;color:#2bbcb3"><span id="up3disc"></span></div>
+              <div style="font-size:11px;color:rgba(255,255,255,0.5)"><span id="up3mo"></span>/mo</div>
+            </div>
+          </div>
+        </div>
+        <div id="upgrade6mo" class="upgrade-option" style="background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.12);border-radius:12px;padding:16px;cursor:pointer;transition:all 0.2s" onmouseover="this.style.borderColor='#2bbcb3'" onmouseout="this.style.borderColor='rgba(255,255,255,0.12)'">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div style="font-size:15px;font-weight:700">6-Month Plan</div>
+              <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:2px">Best value — save <span id="up6save"></span></div>
+            </div>
+            <div style="text-align:right">
+              <div style="font-size:12px;color:rgba(255,255,255,0.4);text-decoration:line-through"><span id="up6full"></span></div>
+              <div style="font-size:18px;font-weight:800;color:#2bbcb3"><span id="up6disc"></span></div>
+              <div style="font-size:11px;color:rgba(255,255,255,0.5)"><span id="up6mo"></span>/mo</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p style="font-size:11px;color:rgba(255,255,255,0.35);text-align:center">Your refill will be submitted after checkout completes</p>
+    </div>
+
+    <button class="btn btn-primary" id="btnRefill" onclick="submitRefill()" style="margin-top:16px">Submit monthly refill</button>
   </div>
   <div id="refillDone" style="display:none" class="refill-success">
     <div style="font-size:48px;margin-bottom:16px">&#10003;</div>
@@ -512,7 +550,45 @@ async function loadRefillQuestions(){
   if(patientData&&patientData.refillWindow&&!patientData.refillWindow.isOpen){
     var rf=patientData.refillWindow;
     document.getElementById('refillForm').innerHTML='<div style="text-align:center;padding:40px"><div style="font-size:48px;margin-bottom:16px">📅</div><h2 style="font-family:Instrument Serif,serif;font-size:24px;margin-bottom:8px">Refill not yet available</h2><p style="color:var(--gray-500);font-size:14px;line-height:1.6">Your refill window opens <strong>'+fmtDate(rf.opensAt)+'</strong>.<br>'+rf.daysRemaining+' days remaining in your current supply.</p></div>';
+    return;
   }
+  // Populate upgrade card for monthly subscribers
+  if(patientData&&patientData.refillWindow&&patientData.refillWindow.upgradeOptions){
+    var uo=patientData.refillWindow.upgradeOptions;
+    document.getElementById('refillUpgrade').style.display='block';
+    document.getElementById('btnRefill').textContent='Submit monthly refill';
+    // 3-month
+    var t3=uo.threeMonth;
+    document.getElementById('up3full').textContent='$'+t3.price;
+    document.getElementById('up3disc').textContent='$'+t3.withDiscount;
+    document.getElementById('up3mo').textContent='$'+t3.perMonthWithDiscount;
+    document.getElementById('up3save').textContent='$'+(t3.price-t3.withDiscount);
+    document.getElementById('upgrade3mo').onclick=function(){upgradeFromRefill('3month');};
+    // 6-month
+    var t6=uo.sixMonth;
+    document.getElementById('up6full').textContent='$'+t6.price;
+    document.getElementById('up6disc').textContent='$'+t6.withDiscount;
+    document.getElementById('up6mo').textContent='$'+t6.perMonthWithDiscount;
+    document.getElementById('up6save').textContent='$'+(t6.price-t6.withDiscount);
+    document.getElementById('upgrade6mo').onclick=function(){upgradeFromRefill('6month');};
+  }
+}
+function upgradeFromRefill(planType){
+  // Auto-apply RENEW20 for refill upgrade
+  activePromo='RENEW20';
+  // Save refill form state so we can submit after checkout returns
+  var formState={q30:document.getElementById('rq_q30').value,q40:document.getElementById('rq_q40').value,q60:document.getElementById('rq_q60').value,q159:document.getElementById('rq_q159').value,q260:document.getElementById('rq_q260').value,q300:document.getElementById('rq_q300').value,q400:document.getElementById('rq_q400').value};
+  try{sessionStorage.setItem('clyr_refill_draft',JSON.stringify(formState));}catch(e){}
+  // Determine price ID based on treatment + plan
+  var tx=patientData.patient.treatment||'tirzepatide';
+  var plans=null;
+  // Fetch plans to get the right priceId
+  fetch(API+'/api/portal/plans',{headers:{'Authorization':'Bearer '+authToken}}).then(function(r){return r.json();}).then(function(d){
+    var match=(d.plans||[]).find(function(p){return p.productType===tx&&p.planType===planType;});
+    if(match){
+      changePlan(match.priceId,match.productType,match.planType);
+    }else{alert('Plan not found. Please try from the My Plan tab.');}
+  }).catch(function(){alert('Could not load plans.');});
 }
 async function submitRefill(){
   // Validate required fields
