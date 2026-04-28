@@ -671,7 +671,6 @@ function applyPromo(){
   var msg=document.getElementById('promoMsg');msg.style.display='block';msg.style.color='var(--green)';msg.textContent='✓ Code "'+code+'" will be applied at checkout.';
 }
 async function changePlan(priceId,productType,planType){
-  if(!confirm('Switch to '+fmtTx(productType)+' '+fmtPlan(planType)+'?'))return;
   try{
     var body={newPriceId:priceId,newProductType:productType,newPlanType:planType};
     if(activePromo)body.promoCode=activePromo;
