@@ -208,8 +208,112 @@ body{font-family:'DM Sans',sans-serif;background:var(--gray-50);color:var(--dark
 <div class="page" id="refillPage">
   <div id="refillForm">
     <h2 style="font-size:20px;font-weight:700;margin-bottom:4px">Request a refill</h2>
-    <p style="font-size:13px;color:var(--gray-400);margin-bottom:20px">Complete this questionnaire so your provider can evaluate your next prescription. Same provider, no new intake needed.</p>
-    <div id="refillQuestions"></div>
+    <p style="font-size:13px;color:var(--gray-400);margin-bottom:20px">Complete this questionnaire so your provider can evaluate your next prescription.</p>
+
+    <!-- Medical update prompt -->
+    <div class="card" id="medUpdateCard" style="margin-bottom:20px;border-left:3px solid var(--teal)">
+      <div class="card-title">Medical updates</div>
+      <p style="font-size:14px;color:var(--gray-600);margin-bottom:12px">Has anything changed in your medical conditions, allergies, or medications since your last visit?</p>
+      <div style="display:flex;gap:10px;margin-bottom:12px">
+        <button class="btn btn-sm btn-secondary" id="medNo" onclick="toggleMedUpdate(false)" style="flex:1;border:2px solid var(--teal);color:var(--teal);font-weight:700">No changes</button>
+        <button class="btn btn-sm btn-secondary" id="medYes" onclick="toggleMedUpdate(true)" style="flex:1">Yes, I have updates</button>
+      </div>
+      <div id="medUpdateFields" style="display:none">
+        <div class="q-item" style="border:none;padding:12px 0"><label class="q-label">Current medications</label><textarea class="q-input" id="medMeds" rows="2" placeholder="List any new or changed medications"></textarea></div>
+        <div class="q-item" style="border:none;padding:12px 0"><label class="q-label">Drug allergies</label><textarea class="q-input" id="medAllergies" rows="2" placeholder="List any new drug allergies"></textarea></div>
+        <div class="q-item" style="border:none;padding:12px 0"><label class="q-label">Medical conditions</label><textarea class="q-input" id="medConditions" rows="2" placeholder="List any new medical conditions"></textarea></div>
+      </div>
+    </div>
+
+    <!-- Q30: Pounds lost -->
+    <div class="q-item">
+      <label class="q-label q-required">Over the past 4 weeks, approximately how many pounds have you lost?</label>
+      <select class="q-select" id="rq_q30"><option value="">Select...</option><option>0-3 pounds</option><option>4-6 pounds</option><option>7-12 pounds</option><option>13-20 pounds</option><option>More than 20 pounds</option><option>I'm gaining weight</option></select>
+    </div>
+
+    <!-- Q40: Current weight -->
+    <div class="q-item">
+      <label class="q-label q-required">What is your current weight in pounds?</label>
+      <input class="q-input" type="number" id="rq_q40" placeholder="e.g. 185" min="80" max="600">
+    </div>
+
+    <!-- Q60: Appetite suppression -->
+    <div class="q-item">
+      <label class="q-label q-required">Are you having appetite suppression?</label>
+      <select class="q-select" id="rq_q60"><option value="">Select...</option><option>Yes, just where I want to be</option><option>Somewhat decreased appetite</option><option>Way too much appetite suppression! I can't eat anything</option><option>I'm always hungry!</option></select>
+    </div>
+
+    <!-- Q159/160: Medical history changes -->
+    <div class="q-item">
+      <label class="q-label q-required">Do you have any new changes/additions to your medical history?</label>
+      <select class="q-select" id="rq_q159" onchange="document.getElementById('q160wrap').style.display=this.value==='Yes I do'?'block':'none'"><option value="">Select...</option><option>No</option><option>Yes I do</option></select>
+      <div id="q160wrap" style="display:none;margin-top:12px"><label class="q-label">Please tell the doctor about any new medical history:</label><textarea class="q-input" id="rq_q160" rows="3" placeholder="Describe any changes..."></textarea></div>
+    </div>
+
+    <!-- Q200: Side effects (multi-select checkboxes) -->
+    <div class="q-item">
+      <label class="q-label q-required">Any major side effects which you are concerned about?</label>
+      <p style="font-size:12px;color:var(--gray-400);margin-bottom:10px">Select all that apply</p>
+      <div id="rq_q200" style="display:flex;flex-direction:column;gap:8px">
+        <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer"><input type="checkbox" value="Having side effects, but I can handle them"> Having side effects, but I can handle them</label>
+        <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer;color:var(--red);font-weight:600"><input type="checkbox" value="Significant vomiting"> Significant vomiting</label>
+        <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer"><input type="checkbox" value="Abdominal pain that concerns me"> Abdominal pain that concerns me</label>
+        <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer"><input type="checkbox" value="Dizziness that concerns me"> Dizziness that concerns me</label>
+        <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer;color:var(--red);font-weight:600"><input type="checkbox" value="Chest pain"> Chest pain</label>
+        <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer"><input type="checkbox" value="Fevers"> Fevers</label>
+        <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer;color:var(--red);font-weight:600"><input type="checkbox" value="Swelling in my neck"> Swelling in my neck</label>
+        <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer"><input type="checkbox" value="Other" onchange="document.getElementById('q200detailWrap').style.display=this.checked?'block':'none'"> Other</label>
+        <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer"><input type="checkbox" value="NONE of the above"> NONE of the above</label>
+      </div>
+      <div id="q200detailWrap" style="display:none;margin-top:12px"><textarea class="q-input" id="rq_q200_detail" rows="3" placeholder="Describe your symptoms..."></textarea></div>
+    </div>
+
+    <!-- Q260: Continue medication -->
+    <div class="q-item">
+      <label class="q-label q-required">I agree that I want to continue my current compounded medication.</label>
+      <div style="display:flex;gap:10px;margin-top:8px">
+        <button type="button" class="btn btn-sm" id="q260_agree" onclick="setQ260('I agree')" style="flex:1;border:2px solid var(--gray-200);background:#fff;color:var(--dark)">I agree</button>
+        <button type="button" class="btn btn-sm" id="q260_disagree" onclick="setQ260('I DO NOT agree')" style="flex:1;border:2px solid var(--gray-200);background:#fff;color:var(--dark)">I DO NOT agree</button>
+      </div>
+      <input type="hidden" id="rq_q260" value="">
+      <div id="q260warn" style="display:none;margin-top:10px;padding:12px;background:rgba(239,68,68,0.08);border-radius:8px;font-size:13px;color:var(--red)">⚠️ This will flag your case for discontinuation review. Your provider will follow up to discuss.</div>
+    </div>
+
+    <!-- Q285: Impact if discontinued (multi-select) -->
+    <div class="q-item">
+      <label class="q-label q-required">If I were to discontinue my treatment it would significantly impact my health because it would cause:</label>
+      <p style="font-size:12px;color:var(--gray-400);margin-bottom:10px">Select all that apply</p>
+      <div id="rq_q285" style="display:flex;flex-direction:column;gap:8px">
+        <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer"><input type="checkbox" value="Significant weight gain"> Significant weight gain</label>
+        <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer"><input type="checkbox" value="Depression"> Depression</label>
+        <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer"><input type="checkbox" value="Anxiety"> Anxiety</label>
+        <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer"><input type="checkbox" value="Increase in blood pressure"> Increase in blood pressure</label>
+        <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer"><input type="checkbox" value="Increase in blood sugar"> Increase in blood sugar</label>
+        <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer"><input type="checkbox" value="Increase in cholesterol"> Increase in cholesterol</label>
+        <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer"><input type="checkbox" value="Worsening of medical conditions I have"> Worsening of medical conditions</label>
+        <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer"><input type="checkbox" value="Other"> Other</label>
+      </div>
+    </div>
+
+    <!-- Q300: Dose direction -->
+    <div class="q-item" style="border-left:3px solid var(--teal)">
+      <label class="q-label q-required">With your next prescription, do you think you should be:</label>
+      <div style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap">
+        <button type="button" class="btn btn-sm q300-btn" onclick="setQ300('Stay at the same dose')" style="flex:1;min-width:120px;border:2px solid var(--gray-200);background:#fff;color:var(--dark)">Stay at same dose</button>
+        <button type="button" class="btn btn-sm q300-btn" onclick="setQ300('Increase')" style="flex:1;min-width:100px;border:2px solid var(--gray-200);background:#fff;color:var(--dark)">Increase</button>
+        <button type="button" class="btn btn-sm q300-btn" onclick="setQ300('Decrease')" style="flex:1;min-width:100px;border:2px solid var(--gray-200);background:#fff;color:var(--dark)">Decrease</button>
+      </div>
+      <input type="hidden" id="rq_q300" value="">
+      <p id="q300note" style="display:none;font-size:12px;color:var(--gray-500);margin-top:8px">Your physician will review and determine the appropriate dose adjustment.</p>
+    </div>
+
+    <!-- Q400: Message to doctor -->
+    <div class="q-item">
+      <label class="q-label">Message to your doctor</label>
+      <p style="font-size:12px;color:var(--gray-400);margin-bottom:8px">Share how your treatment is going, any questions, or anything else</p>
+      <textarea class="q-input" id="rq_q400" rows="4" placeholder="Tell your doctor how things are going..."></textarea>
+    </div>
+
     <button class="btn btn-primary" id="btnRefill" onclick="submitRefill()" style="margin-top:8px">Submit refill request</button>
   </div>
   <div id="refillDone" style="display:none" class="refill-success">
@@ -225,6 +329,21 @@ body{font-family:'DM Sans',sans-serif;background:var(--gray-50);color:var(--dark
   <h2 style="font-size:20px;font-weight:700;margin-bottom:4px">My plan</h2>
   <p style="font-size:13px;color:var(--gray-400);margin-bottom:20px">Switch treatments or change your billing plan</p>
   <div id="currentPlan" class="card" style="display:none"><div class="card-title">Current plan</div><div id="currentPlanDetails"></div></div>
+  <!-- Discount code -->
+  <div class="card" style="border-left:3px solid var(--teal)">
+    <div style="display:flex;align-items:center;gap:8px;cursor:pointer" onclick="document.getElementById('promoWrap').style.display=document.getElementById('promoWrap').style.display==='none'?'block':'none'">
+      <span style="font-size:16px">🏷️</span>
+      <span style="font-size:14px;font-weight:600;color:var(--teal)">Have a discount code?</span>
+      <span style="margin-left:auto;color:var(--gray-400);font-size:18px" id="promoChevron">+</span>
+    </div>
+    <div id="promoWrap" style="display:none;margin-top:12px">
+      <div style="display:flex;gap:8px">
+        <input class="q-input" type="text" id="promoCode" placeholder="Enter code" style="flex:1;text-transform:uppercase">
+        <button class="btn btn-sm btn-primary" onclick="applyPromo()" style="width:auto;padding:10px 18px">Apply</button>
+      </div>
+      <div id="promoMsg" style="display:none;margin-top:8px;font-size:13px"></div>
+    </div>
+  </div>
   <div class="card"><div class="card-title">Available plans</div><div id="plansList"></div></div>
   <div id="planChangeMsg" style="display:none;text-align:center;padding:20px;color:var(--green);font-weight:600"></div>
 </div>
@@ -339,41 +458,98 @@ async function sendMessage(){
 }
 
 // ═══ REFILL ═══
-var refillQs=[];
+var medUpdateNeeded=false;
+function toggleMedUpdate(show){
+  medUpdateNeeded=show;
+  document.getElementById('medUpdateFields').style.display=show?'block':'none';
+  document.getElementById('medYes').style.cssText=show?'flex:1;border:2px solid var(--teal);color:var(--teal);font-weight:700':'flex:1';
+  document.getElementById('medNo').style.cssText=show?'flex:1':'flex:1;border:2px solid var(--teal);color:var(--teal);font-weight:700';
+}
+function setQ260(v){
+  document.getElementById('rq_q260').value=v;
+  document.getElementById('q260_agree').style.cssText=v==='I agree'?'flex:1;border:2px solid var(--teal);background:var(--teal-light);color:var(--teal);font-weight:700':'flex:1;border:2px solid var(--gray-200);background:#fff;color:var(--dark)';
+  document.getElementById('q260_disagree').style.cssText=v==='I DO NOT agree'?'flex:1;border:2px solid var(--red);background:rgba(239,68,68,0.08);color:var(--red);font-weight:700':'flex:1;border:2px solid var(--gray-200);background:#fff;color:var(--dark)';
+  document.getElementById('q260warn').style.display=v==='I DO NOT agree'?'block':'none';
+}
+function setQ300(v){
+  document.getElementById('rq_q300').value=v;
+  document.querySelectorAll('.q300-btn').forEach(function(b){
+    var isActive=b.textContent.trim()===({
+      'Stay at the same dose':'Stay at same dose','Increase':'Increase','Decrease':'Decrease'
+    }[v]||v);
+    b.style.cssText=isActive?'flex:1;min-width:100px;border:2px solid var(--teal);background:var(--teal-light);color:var(--teal);font-weight:700':'flex:1;min-width:100px;border:2px solid var(--gray-200);background:#fff;color:var(--dark)';
+  });
+  document.getElementById('q300note').style.display=(v==='Increase'||v==='Decrease')?'block':'none';
+}
+function getChecked(containerId){
+  var checks=document.querySelectorAll('#'+containerId+' input[type="checkbox"]:checked');
+  return Array.from(checks).map(function(c){return c.value;});
+}
 async function loadRefillQuestions(){
-  if(refillQs.length)return;
-  try{var d=await apiFetch('/api/portal/refill/questions');refillQs=d.questions||[];
-    var html='';refillQs.forEach(function(q){
-      html+='<div class="q-item"><label class="q-label'+(q.required?' q-required':'')+'">'+q.question+'</label>';
-      if(q.type==='select')html+='<select class="q-select" id="q_'+q.id+'"><option value="">Select...</option>'+q.options.map(function(o){return'<option value="'+o+'">'+o+'</option>';}).join('')+'</select>';
-      else if(q.type==='number')html+='<input class="q-input" type="number" id="q_'+q.id+'" placeholder="Enter number">';
-      else html+='<input class="q-input" type="text" id="q_'+q.id+'" placeholder="Type your answer...">';
-      html+='</div>';
-    });document.getElementById('refillQuestions').innerHTML=html;
-  }catch(e){document.getElementById('refillQuestions').innerHTML='<div style="color:var(--red)">Failed to load questions.</div>';}
+  // Static form — already rendered in HTML. Just check refill window.
+  if(patientData&&patientData.refillWindow&&!patientData.refillWindow.isOpen){
+    var rf=patientData.refillWindow;
+    document.getElementById('refillForm').innerHTML='<div style="text-align:center;padding:40px"><div style="font-size:48px;margin-bottom:16px">📅</div><h2 style="font-family:Instrument Serif,serif;font-size:24px;margin-bottom:8px">Refill not yet available</h2><p style="color:var(--gray-500);font-size:14px;line-height:1.6">Your refill window opens <strong>'+fmtDate(rf.opensAt)+'</strong>.<br>'+rf.daysRemaining+' days remaining in your current supply.</p></div>';
+  }
 }
 async function submitRefill(){
-  var answers=[];var missing=false;
-  refillQs.forEach(function(q){
-    var el=document.getElementById('q_'+q.id);var val=el?el.value.trim():'';
-    if(q.required&&!val){missing=true;el.style.borderColor='var(--red)';}
-    else if(el)el.style.borderColor='';
-    if(val)answers.push({question:q.question,answer:val,type:q.type,label:q.id});
-  });
-  if(missing)return alert('Please fill in all required fields.');
-  // Pregnancy check
-  var pregAnswer=answers.find(function(a){return a.label==='pregnancy';});
-  if(pregAnswer&&pregAnswer.answer==='Yes'){return alert('For your safety, we cannot process a refill if you are pregnant, breastfeeding, or planning pregnancy. Please contact your provider directly.');}
+  // Validate required fields
+  var q30=document.getElementById('rq_q30').value;
+  var q40=document.getElementById('rq_q40').value;
+  var q60=document.getElementById('rq_q60').value;
+  var q159=document.getElementById('rq_q159').value;
+  var q200=getChecked('rq_q200');
+  var q260=document.getElementById('rq_q260').value;
+  var q285=getChecked('rq_q285');
+  var q300=document.getElementById('rq_q300').value;
+  var q400=document.getElementById('rq_q400').value.trim();
+
+  var missing=[];
+  if(!q30)missing.push('Weight loss');
+  if(!q40)missing.push('Current weight');
+  if(!q60)missing.push('Appetite');
+  if(!q159)missing.push('Medical history');
+  if(q200.length===0)missing.push('Side effects');
+  if(!q260)missing.push('Continue medication');
+  if(q285.length===0)missing.push('Discontinuation impact');
+  if(!q300)missing.push('Dose direction');
+  if(missing.length){return alert('Please complete: '+missing.join(', '));}
+
   var btn=document.getElementById('btnRefill');btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Submitting...';
-  try{var r=await fetch(API+'/api/portal/refill',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+authToken},body:JSON.stringify({answers})});
+
+  try{
+    // Step 1: Send medical update if needed
+    if(medUpdateNeeded){
+      var meds=document.getElementById('medMeds').value.trim();
+      var allergy=document.getElementById('medAllergies').value.trim();
+      var conds=document.getElementById('medConditions').value.trim();
+      if(meds||allergy||conds){
+        await fetch(API+'/api/portal/refill/medical-update',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+authToken},body:JSON.stringify({medications:meds||undefined,allergies:allergy||undefined,conditions:conds||undefined})});
+      }
+    }
+
+    // Step 2: Submit refill
+    var answers={
+      q30:q30,q40:q40,q60:q60,q159:q159,
+      q160:q159==='Yes I do'?(document.getElementById('rq_q160').value.trim()||''):'',
+      q200:q200,q200_detail:q200.includes('Other')?(document.getElementById('rq_q200_detail').value.trim()||''):'',
+      q260:q260,q285:q285,q300:q300,q400:q400
+    };
+    var r=await fetch(API+'/api/portal/refill',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+authToken},body:JSON.stringify({answers:answers})});
     var d=await r.json();if(!r.ok)throw new Error(d.error||'Failed');
     document.getElementById('refillForm').style.display='none';document.getElementById('refillDone').style.display='block';
-    if(window.clyrTrack)clyrTrack('PortalRefillSubmitted');
+    if(d.duplicate)document.querySelector('#refillDone p').textContent='Your refill is already being reviewed by your provider.';
+    if(window.clyrTrack)clyrTrack('PortalRefillSubmitted',{q300:q300});
   }catch(e){alert('Error: '+(e.message||'Failed to submit refill'));btn.disabled=false;btn.innerHTML='Submit refill request';}
 }
 
 // ═══ PLANS ═══
 async function loadPlans(){
+  // Auto-apply promo from URL param (e.g., from Day 25 email)
+  var urlPromo=new URLSearchParams(window.location.search).get('promo');
+  if(urlPromo&&!activePromo){activePromo=urlPromo.toUpperCase();document.getElementById('promoCode').value=activePromo;
+    var msg=document.getElementById('promoMsg');msg.style.display='block';msg.style.color='var(--green)';msg.textContent='✓ Code "'+activePromo+'" auto-applied.';
+    document.getElementById('promoWrap').style.display='block';}
   try{var d=await apiFetch('/api/portal/plans');var plans=d.plans||[];
     var currentTx=patientData?.patient?.treatment,currentPlan=patientData?.patient?.plan;
     if(currentTx){document.getElementById('currentPlan').style.display='block';
@@ -384,12 +560,25 @@ async function loadPlans(){
     });document.getElementById('plansList').innerHTML=html;
   }catch(e){document.getElementById('plansList').innerHTML='<div style="color:var(--red)">Failed to load plans.</div>';}
 }
+var activePromo='';
+function applyPromo(){
+  var code=document.getElementById('promoCode').value.trim().toUpperCase();
+  if(!code){document.getElementById('promoMsg').style.display='none';return;}
+  activePromo=code;
+  var msg=document.getElementById('promoMsg');msg.style.display='block';msg.style.color='var(--green)';msg.textContent='✓ Code "'+code+'" will be applied at checkout.';
+}
 async function changePlan(priceId,productType,planType){
-  if(!confirm('Switch to '+fmtTx(productType)+' '+fmtPlan(planType)+'? Changes will apply on your next billing cycle.'))return;
-  try{var r=await fetch(API+'/api/portal/subscription/change',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+authToken},body:JSON.stringify({newPriceId:priceId,newProductType:productType,newPlanType:planType})});
+  if(!confirm('Switch to '+fmtTx(productType)+' '+fmtPlan(planType)+'?'))return;
+  try{
+    var body={newPriceId:priceId,newProductType:productType,newPlanType:planType};
+    if(activePromo)body.promoCode=activePromo;
+    // Read promo from URL param if present
+    var urlPromo=new URLSearchParams(window.location.search).get('promo');
+    if(urlPromo&&!activePromo)body.promoCode=urlPromo;
+    var r=await fetch(API+'/api/portal/subscription/change',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+authToken},body:JSON.stringify(body)});
     var d=await r.json();
-    if(d.checkoutUrl){if(window.clyrTrack)clyrTrack('PortalPlanChanged',{product:productType,plan:planType,flow:'new_checkout'});window.location.href=d.checkoutUrl;return;}
-    if(d.success){if(window.clyrTrack)clyrTrack('PortalPlanChanged',{product:productType,plan:planType,flow:'subscription_update'});var msg=document.getElementById('planChangeMsg');msg.style.display='block';msg.textContent='&#10003; '+d.message;setTimeout(function(){showTab('dashboard');showDashboard();},2000);}
+    if(d.checkoutUrl){if(window.clyrTrack)clyrTrack('PortalPlanChanged',{product:productType,plan:planType,flow:'new_checkout',promo:body.promoCode||''});window.location.href=d.checkoutUrl;return;}
+    if(d.success){if(window.clyrTrack)clyrTrack('PortalPlanChanged',{product:productType,plan:planType,flow:'subscription_update'});var msg=document.getElementById('planChangeMsg');msg.style.display='block';msg.textContent='✓ '+d.message;setTimeout(function(){showTab('dashboard');showDashboard();},2000);}
     else throw new Error(d.error||'Failed');
   }catch(e){alert('Error: '+(e.message||'Failed to change plan'));}
 }
@@ -415,7 +604,7 @@ async function apiFetch(path){var r=await fetch(API+path,{headers:{'Authorizatio
 function showError(id,m){var e=document.getElementById(id);e.textContent=m;e.style.display='block';}
 function hideError(id){document.getElementById(id).style.display='none';}
 function fmtDate(d){if(!d)return'';return new Date(d).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}
-function fmtTx(t){return({tirzepatide:'Tirzepatide + B12',semaglutide:'Semaglutide + B12'})[t]||t||'Treatment';}
+function fmtTx(t){return({tirzepatide:'Tirzepatide + B6',semaglutide:'Semaglutide + B12'})[t]||t||'Treatment';}
 function fmtPlan(p){return({monthly:'Monthly','3month':'3-Month','6month':'6-Month'})[p]||p||'';}
 function cap(s){return s?s.charAt(0).toUpperCase()+s.slice(1):'';}
 function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
