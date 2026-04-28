@@ -228,7 +228,25 @@ body{font-family:'DM Sans',sans-serif;background:var(--gray-50);color:var(--dark
     <!-- Q30: Pounds lost -->
     <div class="q-item">
       <label class="q-label q-required">Over the past 4 weeks, approximately how many pounds have you lost?</label>
-      <select class="q-select" id="rq_q30"><option value="">Select...</option><option>0-3 pounds</option><option>4-6 pounds</option><option>7-12 pounds</option><option>13-20 pounds</option><option>More than 20 pounds</option><option>I'm gaining weight</option></select>
+      <select class="q-select" id="rq_q30" onchange="handleQ30Change(this.value)"><option value="">Select...</option><option>0-3 pounds</option><option>4-6 pounds</option><option>7-12 pounds</option><option>13-20 pounds</option><option>More than 20 pounds</option><option>I'm gaining weight</option></select>
+      <!-- Q31: Conditional on "I'm gaining weight" -->
+      <div id="q31wrap" style="display:none;margin-top:14px;padding:14px;background:var(--gray-50);border-radius:10px">
+        <label class="q-label q-required">Still gaining weight? What steps have you taken?</label>
+        <p style="font-size:12px;color:var(--gray-400);margin-bottom:8px">Select all that apply</p>
+        <div id="rq_q31" style="display:flex;flex-direction:column;gap:6px">
+          <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer"><input type="checkbox" value="Seen a dietician"> Seen a dietician</label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer"><input type="checkbox" value="Decreased my calorie intake"> Decreased my calorie intake</label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer"><input type="checkbox" value="Started an exercise program"> Started an exercise program</label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer"><input type="checkbox" value="Attempted to decrease stress from my life which can cause increase in cortisol levels"> Decreased stress levels</label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer"><input type="checkbox" value="None of the above"> None of the above</label>
+        </div>
+      </div>
+      <!-- Q32: Conditional on "More than 20 pounds" -->
+      <div id="q32wrap" style="display:none;margin-top:14px;padding:14px;background:rgba(245,158,11,0.08);border-radius:10px;border-left:3px solid var(--orange)">
+        <p style="font-size:14px;font-weight:600;color:var(--orange);margin-bottom:8px">⚠️ Significant weight loss detected</p>
+        <p style="font-size:13px;color:var(--gray-600);margin-bottom:10px">Losing more than 20 pounds in 4 weeks is significant. Your provider will review this closely.</p>
+        <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer"><input type="checkbox" id="rq_q32" value="Acknowledged"> I acknowledge and want my provider to review this</label>
+      </div>
     </div>
 
     <!-- Q40: Current weight -->
@@ -465,6 +483,10 @@ function toggleMedUpdate(show){
   document.getElementById('medYes').style.cssText=show?'flex:1;border:2px solid var(--teal);color:var(--teal);font-weight:700':'flex:1';
   document.getElementById('medNo').style.cssText=show?'flex:1':'flex:1;border:2px solid var(--teal);color:var(--teal);font-weight:700';
 }
+function handleQ30Change(val){
+  document.getElementById('q31wrap').style.display=val==="I'm gaining weight"?'block':'none';
+  document.getElementById('q32wrap').style.display=val==='More than 20 pounds'?'block':'none';
+}
 function setQ260(v){
   document.getElementById('rq_q260').value=v;
   document.getElementById('q260_agree').style.cssText=v==='I agree'?'flex:1;border:2px solid var(--teal);background:var(--teal-light);color:var(--teal);font-weight:700':'flex:1;border:2px solid var(--gray-200);background:#fff;color:var(--dark)';
@@ -535,6 +557,11 @@ async function submitRefill(){
       q200:q200,q200_detail:q200.includes('Other')?(document.getElementById('rq_q200_detail').value.trim()||''):'',
       q260:q260,q285:q285,q300:q300,q400:q400
     };
+    // Conditional Q31/Q32
+    if(q30==="I'm gaining weight"){answers.q31=getChecked('rq_q31').join(', ')||'None of the above';}
+    if(q30==='More than 20 pounds'){answers.q32=document.getElementById('rq_q32').checked?'Acknowledged':'';}
+    if(q30==='More than 20 pounds'&&!answers.q32){return alert('Please acknowledge the significant weight loss notice.');}
+    if(q30==="I'm gaining weight"&&getChecked('rq_q31').length===0){return alert('Please select at least one option for the weight gain question.');}
     var r=await fetch(API+'/api/portal/refill',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+authToken},body:JSON.stringify({answers:answers})});
     var d=await r.json();if(!r.ok)throw new Error(d.error||'Failed');
     document.getElementById('refillForm').style.display='none';document.getElementById('refillDone').style.display='block';
