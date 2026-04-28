@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zepbound® (Tirzepatide) — Starting at $299 | CLYR Health</title>
+<meta name="description" content="FDA-approved Zepbound® KwikPen starting at $299/month. All six doses available. Provider consultation, prescription, and free shipping included. No insurance needed.">
+<meta property="og:title" content="Zepbound® — Starting at $299/mo | CLYR Health">
+<meta property="og:description" content="FDA-approved tirzepatide KwikPen. Lose up to 20% body weight. All doses, one price. Free shipping.">
+<meta property="og:url" content="https://www.clyr.health/zepbound">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://www.clyr.health/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --white: #FFFFFF;
+  --black: #0A0A0A;
+  --dark: #1A1A1A;
+  --teal: #00B4C5;
+  --teal-dark: #009BAA;
+  --teal-light: #E0F7FA;
+  --teal-glow: rgba(0, 180, 197, 0.12);
+  --gray-50: #F8FAFB;
+  --gray-100: #F1F4F6;
+  --gray-200: #E2E7EB;
+  --gray-400: #94A3B0;
+  --gray-500: #6B7C8A;
+  --gray-600: #4A5568;
+  --gray-800: #2D3748;
+  --green: #10B981;
+  --red: #EF4444;
+  --orange: #F59E0B;
+  --serif: 'Instrument Serif', Georgia, serif;
+  --sans: 'DM Sans', -apple-system, sans-serif;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-lg: 24px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 20px rgba(0,0,0,0.06);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.08);
+  --shadow-teal: 0 8px 30px rgba(0,180,197,0.2);
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body { font-family: var(--sans); color: var(--dark); background: var(--white); overflow-x: hidden; line-height: 1.6; }
+
+/* NAV */
+.nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid rgba(0,0,0,0.05); padding: 0 40px; }
+.nav-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 72px; }
+.nav-logo { height: 32px; }
+.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-links a { font-size: 15px; font-weight: 500; color: var(--gray-600); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--dark); }
+.nav-cta { background: var(--teal) !important; color: var(--white) !important; padding: 10px 28px !important; border-radius: 100px !important; font-weight: 600 !important; font-size: 14px !important; transition: all 0.2s !important; }
+.nav-cta:hover { background: var(--teal-dark) !important; transform: translateY(-1px); box-shadow: var(--shadow-teal); }
+.nav-portal { color: var(--teal) !important; font-weight: 600 !important; }
+.mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+.mobile-menu-btn span { display: block; width: 22px; height: 2px; background: var(--dark); margin: 5px 0; transition: 0.3s; border-radius: 2px; }
+
+/* BREADCRUMB */
+.breadcrumb { max-width: 1200px; margin: 0 auto; padding: 16px 40px; font-size: 13px; color: var(--gray-400); }
+.breadcrumb a { color: var(--gray-500); text-decoration: none; }
+.breadcrumb a:hover { color: var(--teal); }
+
+/* PRODUCT HERO */
+.product-hero { max-width: 1200px; margin: 0 auto; padding: 0 40px 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+.product-image { background: linear-gradient(135deg, #f0fafb 0%, #e8f4f8 100%); border-radius: var(--radius-lg); aspect-ratio: 1; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.product-image-placeholder { font-size: 120px; opacity: 0.3; }
+.product-badge { position: absolute; top: 20px; left: 20px; background: var(--green); color: white; padding: 6px 14px; border-radius: 100px; font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+.product-info { padding-top: 20px; }
+.product-category { font-size: 13px; font-weight: 600; color: var(--teal); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
+.product-title { font-size: 42px; font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 8px; }
+.product-title .serif { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--teal); }
+.product-subtitle { font-size: 17px; color: var(--gray-500); margin-bottom: 24px; line-height: 1.5; }
+.product-price { display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px; }
+.product-price .amount { font-size: 48px; font-weight: 800; letter-spacing: -0.03em; color: var(--dark); }
+.product-price .period { font-size: 18px; color: var(--gray-400); font-weight: 500; }
+.product-price .compare { font-size: 14px; color: var(--gray-400); text-decoration: line-through; }
+.product-price-note { font-size: 13px; color: var(--gray-500); margin-bottom: 28px; }
+.product-cta { display: inline-flex; align-items: center; gap: 10px; background: var(--teal); color: white; padding: 16px 36px; border-radius: 100px; font-size: 16px; font-weight: 700; text-decoration: none; transition: all 0.2s; border: none; cursor: pointer; }
+.product-cta:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: var(--shadow-teal); }
+.product-cta svg { transition: transform 0.2s; }
+.product-cta:hover svg { transform: translateX(3px); }
+.product-includes { margin-top: 32px; display: flex; flex-direction: column; gap: 12px; }
+.product-includes-item { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--gray-600); }
+.product-includes-item svg { color: var(--teal); flex-shrink: 0; }
+
+/* COMPARISON BANNER */
+.comparison { background: linear-gradient(135deg, #0d1b2e 0%, #1a2d45 100%); padding: 60px 40px; color: white; margin-top: 20px; }
+.comparison-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+.comparison h2 { font-size: 28px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.02em; }
+.comparison h2 .serif { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--teal); }
+.comparison p { color: rgba(255,255,255,0.5); font-size: 15px; margin-bottom: 36px; }
+.comparison-grid { display: grid; grid-template-columns: 1fr 60px 1fr; gap: 0; align-items: center; }
+.comparison-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 32px; text-align: center; }
+.comparison-card.highlight { background: rgba(0,180,197,0.08); border-color: var(--teal); box-shadow: 0 0 40px rgba(0,180,197,0.15); }
+.comparison-card .label { font-size: 13px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
+.comparison-card .price { font-size: 36px; font-weight: 800; letter-spacing: -0.02em; }
+.comparison-card.highlight .price { color: var(--teal); }
+.comparison-card .note { font-size: 13px; color: rgba(255,255,255,0.4); margin-top: 8px; }
+.comparison-vs { font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.2); text-align: center; }
+.savings-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(16,185,129,0.12); color: var(--green); padding: 8px 20px; border-radius: 100px; font-size: 14px; font-weight: 700; margin-top: 28px; }
+
+/* BENEFITS */
+.benefits { padding: 80px 40px; max-width: 1200px; margin: 0 auto; }
+.section-label { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--teal); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 14px; }
+.section-heading { font-size: 36px; font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 14px; }
+.section-heading .serif { font-family: var(--serif); font-style: italic; font-weight: 400; }
+.section-sub { font-size: 16px; color: var(--gray-500); max-width: 560px; margin-bottom: 48px; line-height: 1.6; }
+.benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.benefit-card { background: var(--gray-50); border: 1px solid var(--gray-100); border-radius: var(--radius); padding: 32px 28px; transition: all 0.3s; }
+.benefit-card:hover { border-color: var(--teal); background: white; box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.benefit-icon { width: 44px; height: 44px; background: var(--teal-light); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 18px; color: var(--teal); }
+.benefit-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.01em; }
+.benefit-card p { font-size: 14px; color: var(--gray-500); line-height: 1.6; }
+
+/* WHAT'S INCLUDED */
+.included { padding: 80px 40px; background: var(--gray-50); }
+.included-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.included-list { display: flex; flex-direction: column; gap: 16px; }
+.included-item { display: flex; align-items: flex-start; gap: 14px; padding: 18px; background: white; border-radius: var(--radius-sm); border: 1px solid var(--gray-200); }
+.included-item .icon { width: 40px; height: 40px; background: var(--teal-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--teal); }
+.included-item h4 { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+.included-item p { font-size: 13px; color: var(--gray-500); line-height: 1.5; }
+
+/* QUALITY */
+.quality { padding: 80px 40px; max-width: 1200px; margin: 0 auto; }
+.quality-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 40px; }
+.quality-card { background: var(--gray-50); border: 1px solid var(--gray-100); border-radius: var(--radius); padding: 28px 24px; text-align: center; }
+.quality-card .status { display: inline-flex; align-items: center; gap: 6px; color: var(--green); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+.quality-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+.quality-card p { font-size: 13px; color: var(--gray-500); line-height: 1.5; }
+
+/* HOW IT WORKS */
+.how-it-works { padding: 80px 40px; background: var(--gray-50); }
+.how-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+.step { background: white; border-radius: var(--radius); padding: 36px 28px; border: 1px solid var(--gray-200); text-align: center; position: relative; }
+.step-num { width: 40px; height: 40px; background: var(--teal); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px; margin: 0 auto 18px; }
+.step h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+.step p { font-size: 14px; color: var(--gray-500); line-height: 1.6; }
+
+/* FAQ */
+.faq { padding: 80px 40px; max-width: 900px; margin: 0 auto; }
+.faq-item { border-bottom: 1px solid var(--gray-200); }
+.faq-q { width: 100%; background: none; border: none; padding: 22px 0; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-size: 16px; font-weight: 600; color: var(--dark); font-family: var(--sans); text-align: left; }
+.faq-q svg { flex-shrink: 0; transition: transform 0.3s; color: var(--gray-400); }
+.faq-q.open svg { transform: rotate(45deg); color: var(--teal); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; }
+.faq-a.open { max-height: 500px; padding-bottom: 22px; }
+.faq-a p { font-size: 15px; color: var(--gray-600); line-height: 1.7; }
+
+/* ISI BANNER */
+.isi-banner { background: var(--gray-50); border-top: 1px solid var(--gray-200); padding: 40px; }
+.isi-inner { max-width: 900px; margin: 0 auto; }
+.isi-inner h3 { font-size: 16px; font-weight: 700; margin-bottom: 12px; }
+.isi-inner p { font-size: 13px; color: var(--gray-500); line-height: 1.7; }
+
+/* CTA */
+.cta-section { background: linear-gradient(135deg, #0d1b2e 0%, #162a40 100%); padding: 80px 40px; text-align: center; color: white; }
+.cta-section h2 { font-size: 36px; font-weight: 700; margin-bottom: 14px; letter-spacing: -0.02em; }
+.cta-section h2 .serif { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--teal); }
+.cta-section p { color: rgba(255,255,255,0.5); font-size: 16px; margin-bottom: 32px; }
+.cta-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--teal); color: white; padding: 16px 40px; border-radius: 100px; font-size: 16px; font-weight: 700; text-decoration: none; transition: all 0.2s; }
+.cta-btn:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: var(--shadow-teal); }
+
+/* FOOTER */
+.footer { background: var(--dark); color: rgba(255,255,255,0.5); padding: 48px 40px 24px; font-size: 13px; }
+.footer-inner { max-width: 1200px; margin: 0 auto; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 36px; }
+.footer-brand p { margin-top: 12px; line-height: 1.6; max-width: 280px; }
+.footer-col h4 { color: white; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
+.footer-col a { display: block; color: rgba(255,255,255,0.5); text-decoration: none; margin-bottom: 8px; font-size: 13px; transition: color 0.2s; }
+.footer-col a:hover { color: var(--teal); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.footer-bottom a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 12px; }
+.footer-disclaimer { max-width: 1200px; margin: 24px auto 0; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 11px; line-height: 1.7; color: rgba(255,255,255,0.3); }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .product-hero { grid-template-columns: 1fr; gap: 40px; }
+  .included-inner { grid-template-columns: 1fr; }
+  .comparison-grid { grid-template-columns: 1fr; gap: 16px; }
+  .comparison-vs { display: none; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .nav { padding: 0 20px; }
+  .breadcrumb { padding: 12px 20px; }
+  .product-hero { padding: 0 20px 40px; }
+  .product-title { font-size: 32px; }
+  .product-price .amount { font-size: 40px; }
+  .benefits { padding: 60px 20px; }
+  .benefits-grid { grid-template-columns: 1fr; }
+  .included { padding: 60px 20px; }
+  .quality { padding: 60px 20px; }
+  .quality-grid { grid-template-columns: 1fr 1fr; }
+  .how-it-works { padding: 60px 20px; }
+  .steps { grid-template-columns: 1fr; }
+  .faq { padding: 60px 20px; }
+  .comparison { padding: 40px 20px; }
+  .cta-section { padding: 60px 20px; }
+  .footer { padding: 36px 20px 16px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+  .nav-links { display: none; }
+  .mobile-menu-btn { display: block; }
+  .nav.mobile-open .nav-links {
+    display: flex; flex-direction: column; position: absolute; top: 72px; left: 0; right: 0;
+    background: white; padding: 20px; border-bottom: 1px solid var(--gray-200); gap: 16px;
+    box-shadow: var(--shadow-md);
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="/">
+      <svg class="nav-logo" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <text x="0" y="26" font-family="DM Sans, sans-serif" font-weight="700" font-size="28" letter-spacing="-1">
+          <tspan fill="#1A1A1A">CLY</tspan><tspan fill="#00B4C5">R</tspan>
+        </text>
+      </svg>
+    </a>
+    <div class="nav-links">
+      <a href="/#treatments">Weight Loss</a>
+      <a href="/wellness.html">Daily Wellness</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/portal/" class="nav-portal">Patient Portal</a>
+      <a href="/intake.html" class="nav-cta">Get Started</a>
+    </div>
+    <button class="mobile-menu-btn" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('mobile-open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="/">CLYR Health</a> &nbsp;/&nbsp; <a href="/#treatments">Weight Loss</a> &nbsp;/&nbsp; Zepbound®
+</div>
+
+<!-- PRODUCT HERO -->
+<section class="product-hero">
+  <div class="product-image">
+    <div class="product-badge">FDA Approved</div>
+    <div class="product-image-placeholder">💉</div>
+  </div>
+  <div class="product-info">
+    <div class="product-category">Weight Management</div>
+    <h1 class="product-title">Zepbound<span class="serif">®</span></h1>
+    <p class="product-subtitle">FDA-approved tirzepatide KwikPen for weight loss. The same active ingredient as Mounjaro — clinically proven to help adults lose up to 20% of their body weight.</p>
+    <div class="product-price">
+      <span class="amount">$299</span>
+      <span class="period">/month</span>
+    </div>
+    <p class="product-price-note">All six doses available — same price. Includes provider consultation, prescription, and free shipping.</p>
+    <a href="/intake.html?product=zepbound" class="product-cta">
+      Start your consultation
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <div class="product-includes">
+      <div class="product-includes-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+        Zepbound® KwikPen — brand-name, factory sealed
+      </div>
+      <div class="product-includes-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+        Licensed provider consultation included
+      </div>
+      <div class="product-includes-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+        Free expedited shipping
+      </div>
+      <div class="product-includes-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+        Ongoing provider care and dose management
+      </div>
+      <div class="product-includes-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+        No insurance required — transparent pricing
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="comparison">
+  <div class="comparison-inner">
+    <h2>Why pay more for the <span class="serif">same medication?</span></h2>
+    <p>Zepbound® is the same brand-name tirzepatide everywhere. The difference is the price you pay.</p>
+    <div class="comparison-grid">
+      <div class="comparison-card highlight">
+        <div class="label">CLYR Health</div>
+        <div class="price">$299</div>
+        <div class="note">All doses included</div>
+      </div>
+      <div class="comparison-vs">VS</div>
+      <div class="comparison-card">
+        <div class="label">Other telehealth providers</div>
+        <div class="price">$1,299+</div>
+        <div class="note">Same medication</div>
+      </div>
+    </div>
+    <div class="savings-badge">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+      Save up to $1,000/month with CLYR
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="benefits">
+  <div class="section-label">Why Zepbound®</div>
+  <h2 class="section-heading">Clinically proven weight loss<br>with <span class="serif">dual-action</span> technology</h2>
+  <p class="section-sub">Zepbound targets both GLP-1 and GIP receptors — the only FDA-approved dual-action weight loss medication available. Clinical trials showed patients losing an average of 20% of their body weight.</p>
+  <div class="benefits-grid">
+    <div class="benefit-card">
+      <div class="benefit-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      </div>
+      <h3>Dual-action formula</h3>
+      <p>Targets both GLP-1 and GIP receptors for more effective appetite control than single-target medications.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3>FDA approved</h3>
+      <p>Fully reviewed and approved by the FDA for chronic weight management in adults with obesity or overweight.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M16 8l-8 8M8 8l8 8"/></svg>
+      </div>
+      <h3>Reduces cravings</h3>
+      <p>Significantly reduces appetite and food cravings, making it easier to maintain a calorie deficit naturally.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+      </div>
+      <h3>Proven results</h3>
+      <p>Clinical trials demonstrated an average of 20.9% body weight loss over 72 weeks when combined with diet and exercise.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      </div>
+      <h3>Once weekly</h3>
+      <p>One simple injection per week via the easy-to-use KwikPen. No mixing, no vials, no complicated dosing.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </div>
+      <h3>Metabolic support</h3>
+      <p>Improves blood sugar regulation and supports overall metabolic health beyond just weight loss.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INCLUDED -->
+<section class="included">
+  <div class="included-inner">
+    <div>
+      <div class="section-label">Everything Included</div>
+      <h2 class="section-heading">One price,<br><span class="serif">no surprises.</span></h2>
+      <p class="section-sub">Your $299/month includes everything — the medication, your provider consultation, ongoing care, and shipping. No membership fees, no hidden charges.</p>
+    </div>
+    <div class="included-list">
+      <div class="included-item">
+        <div class="icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div>
+          <h4>Zepbound® KwikPen</h4>
+          <p>Brand-name, factory-sealed tirzepatide injection pen. Available in all six FDA-approved doses.</p>
+        </div>
+      </div>
+      <div class="included-item">
+        <div class="icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg>
+        </div>
+        <div>
+          <h4>Provider consultation</h4>
+          <p>Licensed medical provider reviews your health profile and prescribes the right dose for you.</p>
+        </div>
+      </div>
+      <div class="included-item">
+        <div class="icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="m16 8 5 3-5 3z"/></svg>
+        </div>
+        <div>
+          <h4>Ongoing care</h4>
+          <p>Message your provider anytime through your patient portal. Dose adjustments handled seamlessly.</p>
+        </div>
+      </div>
+      <div class="included-item">
+        <div class="icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div>
+          <h4>Free expedited shipping</h4>
+          <p>Cold-chain shipping ensures your medication arrives safely. Discreet packaging, delivered to your door.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUALITY -->
+<section class="quality">
+  <div class="section-label">Quality & Safety</div>
+  <h2 class="section-heading">Brand-name medication,<br><span class="serif">verified quality.</span></h2>
+  <p class="section-sub">Zepbound® is manufactured by Eli Lilly and dispensed through licensed US pharmacies. Every unit is factory-sealed and verified.</p>
+  <div class="quality-grid">
+    <div class="quality-card">
+      <div class="status">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+        FDA Approved
+      </div>
+      <h4>Regulatory status</h4>
+      <p>Fully approved by the FDA for chronic weight management in adults.</p>
+    </div>
+    <div class="quality-card">
+      <div class="status">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+        Verified
+      </div>
+      <h4>Factory sealed</h4>
+      <p>Brand-name KwikPen from Eli Lilly. Not compounded. Not modified.</p>
+    </div>
+    <div class="quality-card">
+      <div class="status">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+        Licensed
+      </div>
+      <h4>US pharmacy</h4>
+      <p>Dispensed by a licensed US pharmacy within our verified network.</p>
+    </div>
+    <div class="quality-card">
+      <div class="status">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+        Cold-chain
+      </div>
+      <h4>Temperature controlled</h4>
+      <p>Shipped with temperature monitoring to ensure medication integrity.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works">
+  <div class="how-inner">
+    <div class="section-label">How It Works</div>
+    <h2 class="section-heading">Start in minutes.<br>Medication in <span class="serif">days.</span></h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Complete your consultation</h3>
+        <p>Answer a few health questions online. Takes about 5 minutes. No appointment needed.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Provider reviews your profile</h3>
+        <p>A licensed medical provider evaluates your health history and determines if Zepbound is right for you.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Medication ships to your door</h3>
+        <p>Once approved, your Zepbound KwikPen ships via cold-chain delivery within 3-5 business days.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="section-label" style="display:flex;justify-content:center;">Frequently Asked</div>
+  <h2 class="section-heading" style="text-align:center">Got questions about<br><span class="serif">Zepbound?</span></h2>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">What is Zepbound?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+    <div class="faq-a"><p>Zepbound (tirzepatide) is an FDA-approved prescription injection for chronic weight management in adults. It works by targeting both GLP-1 and GIP receptors to reduce appetite and improve metabolic health. It's manufactured by Eli Lilly and delivered via an easy-to-use KwikPen.</p></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">How is Zepbound different from compounded tirzepatide?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+    <div class="faq-a"><p>Zepbound is the brand-name, FDA-approved version manufactured by Eli Lilly. It comes in a pre-filled KwikPen — no mixing, no vials, no separate syringes. Compounded tirzepatide is prepared by a compounding pharmacy and has not been reviewed by the FDA. Both contain tirzepatide, but Zepbound has undergone full FDA clinical trials for safety and efficacy.</p></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">What doses are available?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+    <div class="faq-a"><p>All six FDA-approved doses are available: 2.5mg, 5mg, 7.5mg, 10mg, 12.5mg, and 15mg. Your provider will start you on the appropriate dose and adjust based on your response. All doses are the same price at CLYR.</p></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">Why is CLYR's price so much lower?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+    <div class="faq-a"><p>We work directly with our pharmacy partner to offer competitive pricing without the markups added by middlemen. The medication is the same brand-name Zepbound you'd get anywhere — we just don't believe you should pay $1,000+ per month for it.</p></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">Do I need insurance?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+    <div class="faq-a"><p>No. CLYR's pricing includes everything — medication, provider consultation, and shipping. No insurance needed, no copays, no prior authorizations. One transparent price.</p></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">What if I'm not approved?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+    <div class="faq-a"><p>If your provider determines that Zepbound is not appropriate for you, you will not be charged. You'll be notified with an explanation and may be offered alternative treatment options.</p></div>
+  </div>
+</section>
+
+<!-- ISI -->
+<section class="isi-banner">
+  <div class="isi-inner">
+    <h3>Important Safety Information</h3>
+    <p>Zepbound® (tirzepatide) is a prescription medication. It is indicated as an adjunct to a reduced calorie diet and increased physical activity for chronic weight management in adults with an initial BMI of 30 kg/m² or greater, or 27 kg/m² or greater with at least one weight-related comorbid condition. Zepbound contains a boxed warning regarding the risk of thyroid C-cell tumors. It is contraindicated in patients with a personal or family history of medullary thyroid carcinoma or Multiple Endocrine Neoplasia syndrome type 2. Common side effects include nausea, diarrhea, decreased appetite, vomiting, constipation, and abdominal pain. For full prescribing information, talk to your provider or visit the Eli Lilly website. Zepbound® is a registered trademark of Eli Lilly and Company. CLYR Health is not affiliated with Eli Lilly.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Ready to start your<br><span class="serif">Zepbound journey?</span></h2>
+  <p>Complete your free consultation in 5 minutes. If approved, your medication ships within days.</p>
+  <a href="/intake.html?product=zepbound" class="cta-btn">
+    Get started today
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <svg viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="90">
+          <text x="0" y="26" font-family="DM Sans, sans-serif" font-weight="700" font-size="28" letter-spacing="-1">
+            <tspan fill="#FFFFFF">CLY</tspan><tspan fill="#00B4C5">R</tspan>
+          </text>
+        </svg>
+        <p>Science-backed treatments prescribed by licensed providers. Delivered to your door.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Treatments</h4>
+        <a href="/#treatments">Compounded Tirzepatide</a>
+        <a href="/#treatments">Compounded Semaglutide</a>
+        <a href="/zepbound.html">Zepbound®</a>
+        <a href="/wellness.html">Daily Wellness</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/#how-it-works">How It Works</a>
+        <a href="/#faq">FAQ</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/portal/">Patient Portal</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
+        <a href="/telehealth-consent.html">Telehealth Consent</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Clyr Health, LLC. All rights reserved.</span>
+      <span>LegitScript Certified</span>
+    </div>
+    <div class="footer-disclaimer">
+      Zepbound® is a registered trademark of Eli Lilly and Company. CLYR Health is not affiliated with, endorsed by, or sponsored by Eli Lilly. Prescription medications are provided only after consultation with a licensed healthcare provider. Individual results may vary. This website does not provide medical advice. Always consult your healthcare provider before starting any new medication.
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleFaq(btn) {
+  var a = btn.nextElementSibling;
+  var wasOpen = a.classList.contains('open');
+  document.querySelectorAll('.faq-a').forEach(function(el) { el.classList.remove('open'); });
+  document.querySelectorAll('.faq-q').forEach(function(el) { el.classList.remove('open'); });
+  if (!wasOpen) { a.classList.add('open'); btn.classList.add('open'); }
+}
+</script>
+
+<!-- PostHog -->
+<script>
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+posthog.init('phc_placeholder',{api_host:'https://us.i.posthog.com'});
+posthog.capture('$pageview', { page: 'zepbound', product: 'zepbound' });
+</script>
+
+</body>
+</html>
