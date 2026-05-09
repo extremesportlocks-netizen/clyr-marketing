@@ -3,406 +3,65 @@
 <head>
 <meta charset="UTF-8">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Daily Wellness & Longevity — Sermorelin, NAD+, Glutathione | CLYR Health</title>
-<meta name="description" content="Medical-grade wellness treatments: Sermorelin for growth hormone support, NAD+ for cellular energy, Glutathione for immune defense. All prescribed by licensed providers.">
-<meta property="og:title" content="Daily Wellness & Longevity | CLYR Health">
-<meta property="og:description" content="Sermorelin, NAD+, Glutathione — prescribed by licensed providers. No insurance needed.">
-<meta property="og:url" content="https://www.clyr.health/wellness">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://www.clyr.health/og-image.png">
+<title>All Treatments — Weight Loss, Wellness, Sexual Health | CLYR Health</title>
+<meta name="description" content="Browse all CLYR Health treatments: GLP-1 weight loss, Sermorelin, NAD+, Glutathione, Tadalafil, Ivermectin. Licensed providers.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
-:root {
-  --white:#FFFFFF;--black:#0A0A0A;--dark:#1A1A1A;--teal:#00B4C5;--teal-dark:#009BAA;--teal-light:#E0F7FA;--teal-glow:rgba(0,180,197,0.12);
-  --gray-50:#F8FAFB;--gray-100:#F1F4F6;--gray-200:#E2E7EB;--gray-400:#94A3B0;--gray-500:#6B7C8A;--gray-600:#4A5568;--gray-800:#2D3748;
-  --green:#10B981;--serif:'Instrument Serif',Georgia,serif;--sans:'DM Sans',-apple-system,sans-serif;
-  --radius:16px;--radius-sm:10px;--radius-lg:24px;
-  --shadow-sm:0 1px 3px rgba(0,0,0,0.04);--shadow-md:0 4px 20px rgba(0,0,0,0.06);--shadow-lg:0 12px 40px rgba(0,0,0,0.08);--shadow-teal:0 8px 30px rgba(0,180,197,0.2);
-}
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
-body{font-family:var(--sans);color:var(--dark);background:var(--white);overflow-x:hidden;line-height:1.6}
-
-/* NAV */
-.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid rgba(0,0,0,0.05);padding:0 40px}
-.nav-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:72px}
-.nav-logo{height:32px}
-.nav-links{display:flex;align-items:center;gap:32px}
-.nav-links a{font-size:15px;font-weight:500;color:var(--gray-600);text-decoration:none;transition:color 0.2s}
-.nav-links a:hover{color:var(--dark)}
-.nav-links a.active{color:var(--teal);font-weight:600}
-.nav-cta{background:var(--teal)!important;color:var(--white)!important;padding:10px 28px!important;border-radius:100px!important;font-weight:600!important;font-size:14px!important;transition:all 0.2s!important}
-.nav-cta:hover{background:var(--teal-dark)!important;transform:translateY(-1px);box-shadow:var(--shadow-teal)}
-.nav-portal{color:var(--teal)!important;font-weight:600!important}
-.mobile-menu-btn{display:none;background:none;border:none;cursor:pointer;padding:8px}
-.mobile-menu-btn span{display:block;width:22px;height:2px;background:var(--dark);margin:5px 0;transition:0.3s;border-radius:2px}
-
-/* HERO */
-.wellness-hero{background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 50%,#0d2a35 100%);padding:100px 40px 80px;color:white;position:relative;overflow:hidden}
-.wellness-hero::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(0,180,197,0.08) 0%,transparent 70%);border-radius:50%}
-.wellness-hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1}
-.wellness-hero .section-label{color:var(--teal);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;display:block}
-.wellness-hero h1{font-size:52px;font-weight:700;line-height:1.1;letter-spacing:-0.03em;margin-bottom:18px;max-width:700px}
-.wellness-hero h1 .serif{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--teal)}
-.wellness-hero p{font-size:18px;color:rgba(255,255,255,0.55);max-width:560px;line-height:1.6;margin-bottom:36px}
-.wellness-hero .cta{display:inline-flex;align-items:center;gap:10px;background:var(--teal);color:white;padding:16px 36px;border-radius:100px;font-size:16px;font-weight:700;text-decoration:none;transition:all 0.2s}
-.wellness-hero .cta:hover{background:var(--teal-dark);transform:translateY(-2px);box-shadow:var(--shadow-teal)}
-.hero-tags{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
-.hero-tag{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);padding:8px 18px;border-radius:100px;font-size:13px;color:rgba(255,255,255,0.6);font-weight:500}
-
-/* PRODUCTS SECTION */
-.products{padding:80px 40px;max-width:1200px;margin:0 auto}
-.products-sub{font-size:13px;font-weight:600;color:var(--teal);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px}
-.products h2{font-size:36px;font-weight:700;letter-spacing:-0.02em;margin-bottom:10px;line-height:1.15}
-.products h2 .serif{font-family:var(--serif);font-style:italic;font-weight:400}
-.products-desc{font-size:16px;color:var(--gray-500);max-width:560px;margin-bottom:48px}
-.products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.product-card{background:white;border:1px solid var(--gray-200);border-radius:var(--radius);overflow:hidden;transition:all 0.3s;text-decoration:none;color:inherit;display:flex;flex-direction:column}
-.product-card:hover{border-color:var(--teal);box-shadow:var(--shadow-md);transform:translateY(-4px)}
-.product-card-image{background:linear-gradient(135deg,#f0fafb,#e8f4f8);height:200px;display:flex;align-items:center;justify-content:center;font-size:64px;position:relative}
-.product-card-badge{position:absolute;top:12px;right:12px;background:var(--teal);color:white;padding:4px 12px;border-radius:100px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em}
-.product-card-body{padding:24px;flex:1;display:flex;flex-direction:column}
-.product-card-category{font-size:11px;font-weight:600;color:var(--teal);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px}
-.product-card h3{font-size:20px;font-weight:700;margin-bottom:6px;letter-spacing:-0.01em}
-.product-card .desc{font-size:14px;color:var(--gray-500);line-height:1.5;margin-bottom:18px;flex:1}
-.product-card .price-row{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:16px}
-.product-card .price{font-size:24px;font-weight:800;color:var(--dark);letter-spacing:-0.02em}
-.product-card .price span{font-size:14px;color:var(--gray-400);font-weight:500}
-.product-card .card-cta{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--teal);color:white;padding:12px;border-radius:var(--radius-sm);font-size:14px;font-weight:700;text-decoration:none;transition:all 0.2s}
-.product-card .card-cta:hover{background:var(--teal-dark)}
-
-/* WHY SECTION */
-.why{padding:80px 40px;background:var(--gray-50)}
-.why-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-.why-content .section-label{font-size:13px;font-weight:600;color:var(--teal);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:14px;display:block}
-.why-content h2{font-size:36px;font-weight:700;letter-spacing:-0.02em;margin-bottom:16px;line-height:1.15}
-.why-content h2 .serif{font-family:var(--serif);font-style:italic;font-weight:400}
-.why-content p{font-size:16px;color:var(--gray-500);line-height:1.6;margin-bottom:32px}
-.why-list{display:flex;flex-direction:column;gap:14px}
-.why-item{display:flex;gap:12px;align-items:flex-start}
-.why-item svg{color:var(--teal);flex-shrink:0;margin-top:2px}
-.why-item div h4{font-size:15px;font-weight:700;margin-bottom:2px}
-.why-item div p{font-size:13px;color:var(--gray-500);line-height:1.5;margin:0}
-.why-visual{background:linear-gradient(135deg,#0d1b2e,#1a3045);border-radius:var(--radius-lg);padding:48px;color:white;display:flex;flex-direction:column;gap:20px}
-.why-stat{display:flex;align-items:baseline;gap:12px}
-.why-stat .num{font-size:48px;font-weight:800;color:var(--teal);letter-spacing:-0.03em}
-.why-stat .label{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.4}
-
-/* HOW IT WORKS */
-.how{padding:80px 40px;max-width:1200px;margin:0 auto;text-align:center}
-.how .section-label{font-size:13px;font-weight:600;color:var(--teal);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:14px;display:block}
-.how h2{font-size:36px;font-weight:700;letter-spacing:-0.02em;margin-bottom:48px;line-height:1.15}
-.how h2 .serif{font-family:var(--serif);font-style:italic;font-weight:400}
-.steps-row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.step-card{background:var(--gray-50);border:1px solid var(--gray-100);border-radius:var(--radius);padding:36px 28px;text-align:center}
-.step-num{width:40px;height:40px;background:var(--teal);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;margin:0 auto 18px}
-.step-card h3{font-size:17px;font-weight:700;margin-bottom:8px}
-.step-card p{font-size:14px;color:var(--gray-500);line-height:1.6}
-
-/* CTA */
-.cta-section{background:linear-gradient(135deg,#0d1b2e 0%,#162a40 100%);padding:80px 40px;text-align:center;color:white}
-.cta-section h2{font-size:36px;font-weight:700;margin-bottom:14px;letter-spacing:-0.02em}
-.cta-section h2 .serif{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--teal)}
-.cta-section p{color:rgba(255,255,255,0.5);font-size:16px;margin-bottom:32px}
-.cta-btn{display:inline-flex;align-items:center;gap:10px;background:var(--teal);color:white;padding:16px 40px;border-radius:100px;font-size:16px;font-weight:700;text-decoration:none;transition:all 0.2s}
-.cta-btn:hover{background:var(--teal-dark);transform:translateY(-2px);box-shadow:var(--shadow-teal)}
-
-/* FOOTER */
-.footer{background:var(--dark);color:rgba(255,255,255,0.5);padding:48px 40px 24px;font-size:13px}
-.footer-inner{max-width:1200px;margin:0 auto}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:36px}
-.footer-brand p{margin-top:12px;line-height:1.6;max-width:280px}
-.footer-col h4{color:white;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:14px}
-.footer-col a{display:block;color:rgba(255,255,255,0.5);text-decoration:none;margin-bottom:8px;font-size:13px;transition:color 0.2s}
-.footer-col a:hover{color:var(--teal)}
-.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-.footer-disclaimer{max-width:1200px;margin:24px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,0.05);font-size:11px;line-height:1.7;color:rgba(255,255,255,0.3)}
-
-/* RESPONSIVE */
-@media(max-width:1024px){
-  .products-grid{grid-template-columns:repeat(2,1fr)}
-  .why-inner{grid-template-columns:1fr}
-  .footer-grid{grid-template-columns:1fr 1fr}
-}
-@media(max-width:768px){
-  .nav{padding:0 20px}.wellness-hero{padding:60px 20px 50px}
-  .wellness-hero h1{font-size:34px}.products{padding:60px 20px}
-  .products-grid{grid-template-columns:1fr}.why{padding:60px 20px}
-  .how{padding:60px 20px}.steps-row{grid-template-columns:1fr}
-  .cta-section{padding:60px 20px}.footer{padding:36px 20px 16px}
-  .footer-grid{grid-template-columns:1fr;gap:24px}
-  .nav-links{display:none}.mobile-menu-btn{display:block}
-  .nav.mobile-open .nav-links{display:flex;flex-direction:column;position:absolute;top:72px;left:0;right:0;background:white;padding:20px;border-bottom:1px solid var(--gray-200);gap:16px;box-shadow:var(--shadow-md)}
-}
+:root{--white:#FFF;--dark:#1A1A1A;--teal:#00B4C5;--teal-dark:#009BAA;--teal-light:#E0F7FA;--gray-50:#F8FAFB;--gray-100:#F1F4F6;--gray-200:#E2E7EB;--gray-400:#94A3B0;--gray-500:#6B7C8A;--gray-600:#4A5568;--green:#10B981;--serif:'Instrument Serif',Georgia,serif;--sans:'DM Sans',-apple-system,sans-serif;--radius:16px;--radius-sm:10px;--shadow-md:0 4px 20px rgba(0,0,0,0.06);--shadow-teal:0 8px 30px rgba(0,180,197,0.2)}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}body{font-family:var(--sans);color:var(--dark);background:var(--white);overflow-x:hidden;line-height:1.6}
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid rgba(0,0,0,0.05);padding:0 40px}.nav-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:72px}.nav-links{display:flex;align-items:center;gap:32px}.nav-links a{font-size:15px;font-weight:500;color:var(--gray-600);text-decoration:none}.nav-links a.active{color:var(--teal);font-weight:600}.nav-cta{background:var(--teal)!important;color:var(--white)!important;padding:10px 28px!important;border-radius:100px!important;font-weight:600!important;font-size:14px!important}.nav-portal{color:var(--teal)!important;font-weight:600!important}.mobile-menu-btn{display:none;background:none;border:none;cursor:pointer;padding:8px}.mobile-menu-btn span{display:block;width:22px;height:2px;background:var(--dark);margin:5px 0;border-radius:2px}
+.hero{background:linear-gradient(135deg,#0d1b2e,#1a3045,#0d2a35);padding:100px 40px 60px;color:white;position:relative;overflow:hidden}.hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1}.hero .label{color:var(--teal);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;display:block}.hero h1{font-size:52px;font-weight:700;line-height:1.1;letter-spacing:-0.03em;margin-bottom:18px;max-width:700px}.hero h1 .serif{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--teal)}.hero p{font-size:18px;color:rgba(255,255,255,0.55);max-width:560px;line-height:1.6;margin-bottom:32px}
+.cat-pills{display:flex;gap:10px;flex-wrap:wrap}.cat-pill{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);padding:10px 22px;border-radius:100px;font-size:14px;color:rgba(255,255,255,0.7);font-weight:500;text-decoration:none;transition:all 0.2s;cursor:pointer}.cat-pill:hover,.cat-pill.active{background:rgba(0,180,197,0.15);border-color:var(--teal);color:white}
+.section{padding:80px 40px;max-width:1200px;margin:0 auto}.section.alt{background:var(--gray-50);max-width:100%;padding-left:40px;padding-right:40px}.section.alt .si{max-width:1200px;margin:0 auto}
+.section-sub{font-size:13px;font-weight:600;color:var(--teal);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px}.section h2{font-size:36px;font-weight:700;letter-spacing:-0.02em;margin-bottom:10px;line-height:1.15}.section h2 .serif{font-family:var(--serif);font-style:italic;font-weight:400}.section-desc{font-size:16px;color:var(--gray-500);max-width:600px;margin-bottom:48px}
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pc{background:white;border:1px solid var(--gray-200);border-radius:var(--radius);overflow:hidden;transition:all 0.3s;text-decoration:none;color:inherit;display:flex;flex-direction:column}.pc:hover{border-color:var(--teal);box-shadow:var(--shadow-md);transform:translateY(-4px)}.ci{background:linear-gradient(135deg,#f0fafb,#e8f4f8);height:180px;display:flex;align-items:center;justify-content:center;font-size:56px;position:relative}.cb{position:absolute;top:12px;right:12px;background:var(--teal);color:white;padding:4px 12px;border-radius:100px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em}.cd{padding:24px;flex:1;display:flex;flex-direction:column}.cc{font-size:11px;font-weight:600;color:var(--teal);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px}.cd h3{font-size:20px;font-weight:700;margin-bottom:6px}.cd .ds{font-size:14px;color:var(--gray-500);line-height:1.5;margin-bottom:18px;flex:1}.pr{font-size:24px;font-weight:800;color:var(--dark);margin-bottom:16px}.pr span{font-size:14px;color:var(--gray-400);font-weight:500}.ct{display:flex;align-items:center;justify-content:center;background:var(--teal);color:white;padding:12px;border-radius:var(--radius-sm);font-size:14px;font-weight:700}.ct:hover{background:var(--teal-dark)}
+.cta-section{background:linear-gradient(135deg,#0d1b2e,#162a40);padding:80px 40px;text-align:center;color:white}.cta-section h2{font-size:36px;font-weight:700;margin-bottom:14px}.cta-section h2 .serif{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--teal)}.cta-section p{color:rgba(255,255,255,0.5);font-size:16px;margin-bottom:32px}.cta-btn{display:inline-flex;align-items:center;gap:10px;background:var(--teal);color:white;padding:16px 40px;border-radius:100px;font-size:16px;font-weight:700;text-decoration:none}
+.footer{background:var(--dark);color:rgba(255,255,255,0.5);padding:48px 40px 24px;font-size:13px}.footer-inner{max-width:1200px;margin:0 auto}.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:36px}.footer-brand p{margin-top:12px;line-height:1.6;max-width:280px}.footer-col h4{color:white;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:14px}.footer-col a{display:block;color:rgba(255,255,255,0.5);text-decoration:none;margin-bottom:8px;font-size:13px}.footer-col a:hover{color:var(--teal)}.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}.footer-disclaimer{max-width:1200px;margin:24px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,0.05);font-size:11px;line-height:1.7;color:rgba(255,255,255,0.3)}
+@media(max-width:1024px){.pg{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){.nav{padding:0 20px}.hero{padding:60px 20px 40px}.hero h1{font-size:34px}.section{padding:60px 20px}.section.alt{padding:60px 20px}.pg{grid-template-columns:1fr}.cta-section{padding:60px 20px}.footer{padding:36px 20px 16px}.footer-grid{grid-template-columns:1fr;gap:24px}.nav-links{display:none}.mobile-menu-btn{display:block}.nav.mobile-open .nav-links{display:flex;flex-direction:column;position:absolute;top:72px;left:0;right:0;background:white;padding:20px;border-bottom:1px solid var(--gray-200);gap:16px;box-shadow:var(--shadow-md)}}
 </style>
 </head>
 <body>
+<nav class="nav" id="nav"><div class="nav-inner"><a href="/"><svg viewBox="0 0 120 32" fill="none" height="32"><text x="0" y="26" font-family="DM Sans,sans-serif" font-weight="700" font-size="28" letter-spacing="-1"><tspan fill="#1A1A1A">CLY</tspan><tspan fill="#00B4C5">R</tspan></text></svg></a><div class="nav-links"><a href="/wellness.html" class="active">All Treatments</a><a href="#weight-loss">Weight Loss</a><a href="#wellness">Wellness</a><a href="/contact.html">Contact</a><a href="/portal/" class="nav-portal">Patient Portal</a><a href="/intake.html" class="nav-cta">Get Started</a></div><button class="mobile-menu-btn" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('mobile-open')"><span></span><span></span><span></span></button></div></nav>
 
-<!-- NAV -->
-<nav class="nav" id="nav">
-  <div class="nav-inner">
-    <a href="/"><svg class="nav-logo" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="0" y="26" font-family="DM Sans, sans-serif" font-weight="700" font-size="28" letter-spacing="-1"><tspan fill="#1A1A1A">CLY</tspan><tspan fill="#00B4C5">R</tspan></text></svg></a>
-    <div class="nav-links">
-      <a href="/#treatments">Weight Loss</a>
-      <a href="/wellness.html" class="active">Daily Wellness</a>
-      <a href="/contact.html">Contact</a>
-      <a href="/portal/" class="nav-portal">Patient Portal</a>
-      <a href="/intake.html" class="nav-cta">Get Started</a>
-    </div>
-    <button class="mobile-menu-btn" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('mobile-open')"><span></span><span></span><span></span></button>
-  </div>
-</nav>
+<section class="hero"><div class="hero-inner"><span class="label">CLYR Health</span><h1>Every treatment.<br>One <span class="serif">place.</span></h1><p>Prescription medications prescribed by licensed providers, delivered to your door. No insurance needed, no hidden fees, no pharmacy visits.</p><div class="cat-pills"><a href="#weight-loss" class="cat-pill">Weight Loss</a><a href="#brand-glp1" class="cat-pill">Brand-Name GLP-1</a><a href="#wellness" class="cat-pill">Daily Wellness</a><a href="#sexual-health" class="cat-pill">Sexual Health</a><a href="#protocols" class="cat-pill">Protocols</a></div></div></section>
 
-<!-- HERO -->
-<section class="wellness-hero">
-  <div class="wellness-hero-inner">
-    <span class="section-label">Daily Wellness & Longevity</span>
-    <h1>Feel your best at<br>every <span class="serif">age.</span></h1>
-    <p>Medical-grade wellness treatments prescribed by licensed providers. Boost energy, support recovery, and invest in your long-term health — all from home.</p>
-    <div class="hero-tags">
-      <span class="hero-tag">Growth Hormone Support</span>
-      <span class="hero-tag">Cellular Energy</span>
-      <span class="hero-tag">Immune Defense</span>
-      <span class="hero-tag">Anti-Aging</span>
-    </div>
-    <a href="#products" class="cta">
-      Explore treatments
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
-  </div>
-</section>
+<section class="section" id="weight-loss"><div class="section-sub">Weight Loss — Compounded</div><h2>Compounded GLP-1 <span class="serif">treatments.</span></h2><p class="section-desc">Same active ingredients as brand-name, compounded by state-licensed 503A pharmacies. Includes B6 or B12 for metabolic support.</p><div class="pg">
+<a href="/intake.html?product=tirzepatide" class="pc"><div class="ci"><div class="cb">Most Popular</div>💉</div><div class="cd"><div class="cc">Compounded · Injectable</div><h3>Tirzepatide + B6</h3><p class="ds">Dual-action GLP-1/GIP receptor agonist. Up to 20% body weight loss. Weekly injection.</p><div class="pr">$320<span>/mo</span></div><div class="ct">Get started →</div></div></a>
+<a href="/intake.html?product=semaglutide" class="pc"><div class="ci">💉</div><div class="cd"><div class="cc">Compounded · Injectable</div><h3>Semaglutide + B12</h3><p class="ds">GLP-1 receptor agonist. Clinically proven appetite reduction and sustained weight loss.</p><div class="pr">$225<span>/mo</span></div><div class="ct">Get started →</div></div></a>
+</div></section>
 
-<!-- PRODUCTS -->
-<section class="products" id="products">
-  <div class="products-sub">Longevity</div>
-  <h2>Treatments designed for<br>how you want to <span class="serif">feel.</span></h2>
-  <p class="products-desc">Each treatment is prescribed by a licensed provider after reviewing your health profile. Shipped directly to your door with everything you need.</p>
+<section class="section alt" id="brand-glp1"><div class="si"><div class="section-sub">Weight Loss — Brand-Name FDA-Approved</div><h2>Brand-name <span class="serif">medications.</span></h2><p class="section-desc">Factory-sealed, FDA-approved medications from Eli Lilly and Novo Nordisk. Delivered to your door.</p><div class="pg">
+<a href="/foundayo.html" class="pc"><div class="ci"><div class="cb">NEW — No Needles</div>💊</div><div class="cd"><div class="cc">Eli Lilly · Oral GLP-1</div><h3>Foundayo® (Orforglipron)</h3><p class="ds">First daily oral GLP-1 tablet. No injections, no refrigeration. Brand-name from Eli Lilly.</p><div class="pr">$299<span>/mo</span></div><div class="ct">Learn more →</div></div></a>
+<a href="/zepbound.html" class="pc"><div class="ci"><div class="cb">FDA Approved</div>💉</div><div class="cd"><div class="cc">Eli Lilly · KwikPen</div><h3>Zepbound® (Tirzepatide)</h3><p class="ds">FDA-approved tirzepatide injection pen. Pre-filled, no mixing. All six doses.</p><div class="pr">$499<span>/mo</span></div><div class="ct">Learn more →</div></div></a>
+<a href="/wegovy-tablets.html" class="pc"><div class="ci"><div class="cb">No Needles</div>💊</div><div class="cd"><div class="cc">Novo Nordisk · Oral</div><h3>Wegovy® Tablets</h3><p class="ds">Daily oral semaglutide for weight management. No injections needed.</p><div class="pr">$299<span>/mo</span></div><div class="ct">Learn more →</div></div></a>
+<a href="/ozempic.html" class="pc"><div class="ci"><div class="cb">FDA Approved</div>💉</div><div class="cd"><div class="cc">Novo Nordisk · Pen</div><h3>Ozempic® (Semaglutide)</h3><p class="ds">The most prescribed GLP-1 in the world. Brand-name injectable pen.</p><div class="pr">$299<span>/mo</span></div><div class="ct">Learn more →</div></div></a>
+<a href="/wegovy-pens.html" class="pc"><div class="ci"><div class="cb">FDA Approved</div>💉</div><div class="cd"><div class="cc">Novo Nordisk · Auto-Injector</div><h3>Wegovy® Pens</h3><p class="ds">FDA-approved semaglutide for weight management. Pre-filled single-dose pens.</p><div class="pr">$299<span>/mo</span></div><div class="ct">Learn more →</div></div></a>
+<a href="/mounjaro.html" class="pc"><div class="ci"><div class="cb">Eli Lilly</div>💉</div><div class="cd"><div class="cc">Eli Lilly · 4-Pen Box</div><h3>Mounjaro® (Tirzepatide)</h3><p class="ds">Brand-name tirzepatide auto-injector. 4-pen monthly box, all doses.</p><div class="pr">$999<span>/mo</span></div><div class="ct">Learn more →</div></div></a>
+</div></div></section>
 
-  <div class="products-grid">
+<section class="section" id="wellness"><div class="section-sub">Daily Wellness & Longevity</div><h2>Invest in how you <span class="serif">feel.</span></h2><p class="section-desc">Medical-grade wellness treatments for energy, recovery, immune support, and healthy aging.</p><div class="pg">
+<a href="/sermorelin.html" class="pc"><div class="ci"><div class="cb">Popular</div>💉</div><div class="cd"><div class="cc">Growth Hormone Peptide</div><h3>Sermorelin</h3><p class="ds">Stimulates natural growth hormone production. Sleep, recovery, lean muscle, anti-aging.</p><div class="pr">$179<span>/mo</span></div><div class="ct">Learn more →</div></div></a>
+<a href="/nad.html" class="pc"><div class="ci"><div class="cb">Longevity</div>🧬</div><div class="cd"><div class="cc">Cellular Health</div><h3>NAD+ Injections</h3><p class="ds">Essential coenzyme for cellular energy, DNA repair, and cognitive function.</p><div class="pr">$199<span>/mo</span></div><div class="ct">Learn more →</div></div></a>
+<a href="/glutathione.html" class="pc"><div class="ci"><div class="cb">Immune</div>🛡️</div><div class="cd"><div class="cc">Antioxidant</div><h3>Glutathione</h3><p class="ds">The body\'s master antioxidant. Detoxification, immune function, skin health.</p><div class="pr">$129<span>/mo</span></div><div class="ct">Learn more →</div></div></a>
+</div></section>
 
-    <!-- Sermorelin -->
-    <a href="/sermorelin.html" class="product-card">
-      <div class="product-card-image">
-        <div class="product-card-badge">Popular</div>
-        💉
-      </div>
-      <div class="product-card-body">
-        <div class="product-card-category">Growth Hormone</div>
-        <h3>Sermorelin</h3>
-        <p class="desc">Stimulates natural growth hormone production. Supports sleep, recovery, lean muscle, and healthy aging.</p>
-        <div class="price-row">
-          <div class="price">$179<span>/mo</span></div>
-        </div>
-        <div class="card-cta">Learn more →</div>
-      </div>
-    </a>
+<section class="section alt" id="sexual-health"><div class="si"><div class="section-sub">Sexual Health</div><h2>Discreet treatments, delivered to your <span class="serif">door.</span></h2><p class="section-desc">Prescription ED treatment. No pharmacy visits, no awkward conversations. Plain packaging.</p><div class="pg">
+<a href="/tadalafil.html" class="pc"><div class="ci"><div class="cb">Dual-Action</div>💊</div><div class="cd"><div class="cc">ED Treatment</div><h3>Tadalafil + Vardenafil</h3><p class="ds">Dual PDE5 inhibitor. Effects last up to 36 hours. As-needed or daily dosing.</p><div class="pr">$99<span>/10-pack</span></div><div class="ct">Learn more →</div></div></a>
+</div></div></section>
 
-    <!-- NAD+ Injections -->
-    <a href="/nad.html" class="product-card">
-      <div class="product-card-image">
-        <div class="product-card-badge">Longevity</div>
-        🧬
-      </div>
-      <div class="product-card-body">
-        <div class="product-card-category">Cellular Health</div>
-        <h3>NAD+ Injections</h3>
-        <p class="desc">Essential coenzyme for cellular energy, DNA repair, and cognitive function. The foundation of biological aging.</p>
-        <div class="price-row">
-          <div class="price">$199<span>/mo</span></div>
-        </div>
-        <div class="card-cta">Learn more →</div>
-      </div>
-    </a>
+<section class="section" id="protocols"><div class="section-sub">Protocols</div><h2>FDA-approved <span class="serif">protocols.</span></h2><p class="section-desc">Prescription antiparasitic protocols. Complete packages with consultation, medication, and discreet shipping.</p><div class="pg">
+<a href="/ivermectin.html" class="pc"><div class="ci"><div class="cb">FDA Approved</div>💊</div><div class="cd"><div class="cc">Antiparasitic</div><h3>Ivermectin Protocol</h3><p class="ds">FDA-approved antiparasitic. 30-capsule protocol with consultation and shipping included.</p><div class="pr">$89<span>/protocol</span></div><div class="ct">Learn more →</div></div></a>
+<a href="/ivermectin.html" class="pc"><div class="ci"><div class="cb">Combo</div>💊</div><div class="cd"><div class="cc">Antiparasitic</div><h3>Mebendazole + Ivermectin</h3><p class="ds">Comprehensive dual antiparasitic. Broader coverage than Ivermectin alone.</p><div class="pr">$119<span>/protocol</span></div><div class="ct">Learn more →</div></div></a>
+</div></section>
 
-    <!-- Glutathione -->
-    <a href="/glutathione.html" class="product-card">
-      <div class="product-card-image">
-        <div class="product-card-badge">Immune</div>
-        🛡️
-      </div>
-      <div class="product-card-body">
-        <div class="product-card-category">Antioxidant</div>
-        <h3>Glutathione</h3>
-        <p class="desc">The body's master antioxidant. Supports detoxification, immune function, skin health, and inflammation control.</p>
-        <div class="price-row">
-          <div class="price">$129<span>/mo</span></div>
-        </div>
-        <div class="card-cta">Learn more →</div>
-      </div>
-    </a>
+<section class="cta-section"><h2>Not sure where to <span class="serif">start?</span></h2><p>Complete a free 5-minute questionnaire. Your provider will recommend the best treatment for your goals.</p><a href="/intake.html" class="cta-btn">Start your free consultation<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></section>
 
-  </div>
-</section>
+<footer class="footer"><div class="footer-inner"><div class="footer-grid"><div class="footer-brand"><svg viewBox="0 0 120 32" fill="none" width="90"><text x="0" y="26" font-family="DM Sans,sans-serif" font-weight="700" font-size="28" letter-spacing="-1"><tspan fill="#FFF">CLY</tspan><tspan fill="#00B4C5">R</tspan></text></svg><p>Science-backed treatments prescribed by licensed providers. Delivered to your door.</p></div><div class="footer-col"><h4>Weight Loss</h4><a href="/intake.html">Compounded Tirzepatide</a><a href="/intake.html">Compounded Semaglutide</a><a href="/zepbound.html">Zepbound®</a><a href="/foundayo.html">Foundayo®</a><a href="/wegovy-tablets.html">Wegovy® Tablets</a><a href="/ozempic.html">Ozempic®</a></div><div class="footer-col"><h4>Wellness & More</h4><a href="/sermorelin.html">Sermorelin</a><a href="/nad.html">NAD+ Injections</a><a href="/glutathione.html">Glutathione</a><a href="/tadalafil.html">Tadalafil</a><a href="/ivermectin.html">Ivermectin</a></div><div class="footer-col"><h4>Company</h4><a href="/contact.html">Contact</a><a href="/portal/">Patient Portal</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div></div><div class="footer-bottom"><span>© 2026 Clyr Health, LLC.</span><span>LegitScript Certified</span></div><div class="footer-disclaimer">Compounded medications are not FDA-approved. Brand-name medications are trademarks of their respective manufacturers. CLYR Health is not affiliated with Eli Lilly or Novo Nordisk. All medications prescribed by licensed providers. Individual results may vary.</div></div></footer>
 
-<!-- COMING SOON - more products -->
-<section class="products" style="padding-top:0">
-  <div class="products-sub">Coming Soon</div>
-  <h2>More treatments on the <span class="serif">way.</span></h2>
-  <p class="products-desc">We're expanding our wellness catalog. These treatments are in final preparation with our pharmacy partners.</p>
-
-  <div class="products-grid">
-    <!-- Tadalafil -->
-    <div class="product-card" style="opacity:0.7;pointer-events:none">
-      <div class="product-card-image" style="background:linear-gradient(135deg,#f5f5f5,#ebebeb)">
-        <div class="product-card-badge" style="background:var(--gray-400)">Coming Soon</div>
-        🌬️
-      </div>
-      <div class="product-card-body">
-        <div class="product-card-category">Cellular Health</div>
-        <h3>NAD+ Nasal Spray</h3>
-        <p class="desc">Needle-free NAD+ delivery through the nasal membrane. Same cellular benefits, no injections.</p>
-        <div class="price-row"><div class="price" style="color:var(--gray-400)">TBD</div></div>
-      </div>
-    </div>
-
-    <!-- Tadalafil -->
-    <div class="product-card" style="opacity:0.7;pointer-events:none">
-      <div class="product-card-image" style="background:linear-gradient(135deg,#f5f5f5,#ebebeb)">
-        <div class="product-card-badge" style="background:var(--gray-400)">Coming Soon</div>
-        💊
-      </div>
-      <div class="product-card-body">
-        <div class="product-card-category">Sexual Health</div>
-        <h3>Tadalafil</h3>
-        <p class="desc">Generic Cialis. Clinically proven erectile dysfunction treatment. As-needed or daily dosing options.</p>
-        <div class="price-row"><div class="price" style="color:var(--gray-400)">TBD</div></div>
-      </div>
-    </div>
-
-    <!-- Placeholder -->
-    <div class="product-card" style="opacity:0.5;pointer-events:none">
-      <div class="product-card-image" style="background:linear-gradient(135deg,#f5f5f5,#ebebeb)">
-        <div class="product-card-badge" style="background:var(--gray-400)">2026</div>
-        🔬
-      </div>
-      <div class="product-card-body">
-        <div class="product-card-category">Expanding</div>
-        <h3>More coming</h3>
-        <p class="desc">We're constantly working with our pharmacy partners to bring you more treatments at honest prices.</p>
-        <div class="price-row"><div class="price" style="color:var(--gray-400)">—</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WHY CLYR -->
-<section class="why">
-  <div class="why-inner">
-    <div class="why-content">
-      <span class="section-label">Why CLYR</span>
-      <h2>Wellness without the<br><span class="serif">markup.</span></h2>
-      <p>Most wellness clinics charge hundreds per visit for the same treatments we deliver to your door. We cut out the overhead and pass the savings to you.</p>
-      <div class="why-list">
-        <div class="why-item">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
-          <div><h4>Licensed providers</h4><p>Every treatment prescribed by a board-certified physician after reviewing your health profile.</p></div>
-        </div>
-        <div class="why-item">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
-          <div><h4>Transparent pricing</h4><p>No membership fees, no hidden charges. The price you see includes everything.</p></div>
-        </div>
-        <div class="why-item">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
-          <div><h4>Quality tested</h4><p>All medications sourced from FDA-regulated, state-licensed compounding pharmacies with third-party testing.</p></div>
-        </div>
-        <div class="why-item">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
-          <div><h4>Patient portal</h4><p>Track your treatment, message your provider, request refills — all from your phone.</p></div>
-        </div>
-      </div>
-    </div>
-    <div class="why-visual">
-      <div class="why-stat"><div class="num">20%</div><div class="label">less than<br>in-clinic pricing</div></div>
-      <div class="why-stat"><div class="num">100%</div><div class="label">online process<br>no office visits</div></div>
-      <div class="why-stat"><div class="num">3-5</div><div class="label">business days<br>to your door</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<section class="how">
-  <span class="section-label">How It Works</span>
-  <h2>Start in minutes,<br>feel the <span class="serif">difference</span> in weeks.</h2>
-  <div class="steps-row">
-    <div class="step-card">
-      <div class="step-num">1</div>
-      <h3>Choose your treatment</h3>
-      <p>Select the treatment that matches your wellness goals. Complete a quick health questionnaire.</p>
-    </div>
-    <div class="step-card">
-      <div class="step-num">2</div>
-      <h3>Provider reviews</h3>
-      <p>A licensed provider evaluates your health profile and prescribes the right treatment and dosage for you.</p>
-    </div>
-    <div class="step-card">
-      <div class="step-num">3</div>
-      <h3>Delivered to your door</h3>
-      <p>Your medication ships from a licensed pharmacy with everything you need. Free expedited shipping.</p>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-section">
-  <h2>Ready to invest in your<br><span class="serif">wellness?</span></h2>
-  <p>Complete your free consultation in 5 minutes. No commitment until your provider approves your treatment.</p>
-  <a href="/intake.html" class="cta-btn">
-    Start your consultation
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-  </a>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <svg viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="90"><text x="0" y="26" font-family="DM Sans, sans-serif" font-weight="700" font-size="28" letter-spacing="-1"><tspan fill="#FFFFFF">CLY</tspan><tspan fill="#00B4C5">R</tspan></text></svg>
-        <p>Science-backed treatments prescribed by licensed providers. Delivered to your door.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Treatments</h4>
-        <a href="/#treatments">Compounded Tirzepatide</a>
-        <a href="/#treatments">Compounded Semaglutide</a>
-        <a href="/zepbound.html">Zepbound®</a>
-        <a href="/sermorelin.html">Sermorelin</a>
-        <a href="/nad.html">NAD+ Injections</a>
-        <a href="/glutathione.html">Glutathione</a>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <a href="/#how-it-works">How It Works</a>
-        <a href="/#faq">FAQ</a>
-        <a href="/contact.html">Contact</a>
-        <a href="/portal/">Patient Portal</a>
-      </div>
-      <div class="footer-col">
-        <h4>Legal</h4>
-        <a href="/privacy.html">Privacy Policy</a>
-        <a href="/terms.html">Terms of Service</a>
-        <a href="/telehealth-consent.html">Telehealth Consent</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>&copy; 2026 Clyr Health, LLC. All rights reserved.</span>
-      <span>LegitScript Certified</span>
-    </div>
-    <div class="footer-disclaimer">
-      CLYR Health is not a pharmacy. All medications are prescribed by licensed healthcare providers and dispensed by state-licensed, FDA-regulated compounding pharmacies. Compounded medications are not reviewed or approved by the FDA for safety or effectiveness. Individual results may vary. This website does not provide medical advice.
-    </div>
-  </div>
-</footer>
-
-<script>
-!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-posthog.init('phc_placeholder',{api_host:'https://us.i.posthog.com'});
-posthog.capture('$pageview', { page: 'wellness' });
-</script>
-
-</body>
-</html>
+<script>document.querySelectorAll('.cat-pill').forEach(function(p){p.addEventListener('click',function(e){e.preventDefault();var t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'});document.querySelectorAll('.cat-pill').forEach(function(x){x.classList.remove('active')});this.classList.add('active')})});</script>
+</body></html>
