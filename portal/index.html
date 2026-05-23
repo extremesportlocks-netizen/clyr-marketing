@@ -17,7 +17,7 @@
 @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--teal:#00B4C5;--teal-dark:#009BA8;--teal-light:rgba(0,180,197,0.08);--dark:#1a1a2e;--gray-50:#f8fafb;--gray-100:#f1f4f7;--gray-200:#e5e7eb;--gray-400:#9ca3af;--gray-500:#6b7280;--gray-600:#4b5563;--green:#22c55e;--red:#ef4444;--orange:#f59e0b;--radius:14px}
-body{font-family:'DM Sans',sans-serif;background:var(--gray-50);color:var(--dark);min-height:100vh;-webkit-font-smoothing:antialiased}
+body{font-family:'DM Sans',sans-serif;background:var(--gray-50);color:var(--dark);min-height:100vh;min-height:100svh;-webkit-font-smoothing:antialiased}
 .nav{background:#fff;border-bottom:1px solid rgba(0,0,0,0.06);padding:14px 24px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:50}
 .nav-logo{font-size:22px;font-weight:800;letter-spacing:-0.5px;color:var(--dark);text-decoration:none}.nav-logo span{color:var(--teal)}
 .nav-right{display:flex;align-items:center;gap:10px}
@@ -38,7 +38,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--gray-50);color:var(--dark
 .page.active{display:block}
 
 /* Login */
-.login-wrap{display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 60px);padding:20px}
+.login-wrap{display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 60px);min-height:calc(100svh - 60px);padding:20px}
 .login-card{background:#fff;border-radius:20px;padding:48px 36px;box-shadow:0 1px 3px rgba(0,0,0,0.04),0 8px 40px rgba(0,0,0,0.03);border:1px solid rgba(0,0,0,0.04);text-align:center;max-width:420px;width:100%}
 .login-title{font-family:'Instrument Serif',serif;font-size:32px;font-weight:400;margin-bottom:8px}.login-title em{font-style:italic;color:var(--teal)}
 .login-sub{font-size:15px;color:var(--gray-500);line-height:1.6;margin-bottom:32px}
