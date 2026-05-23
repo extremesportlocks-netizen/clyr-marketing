@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <radialGradient id="tab_face" cx="0.35" cy="0.3" r="0.8">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="60%" stop-color="#FCA5A5"/>
+      <stop offset="100%" stop-color="#B91C1C"/>
+    </radialGradient>
+    <linearGradient id="tab_edge" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.6)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0.15)"/>
+    </linearGradient>
+    <radialGradient id="tab_floor" cx="0.5" cy="0.5" r="0.6">
+      <stop offset="0%" stop-color="rgba(0,0,0,0.18)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+    </radialGradient>
+  </defs>
+
+  <ellipse cx="200" cy="400" rx="120" ry="14" fill="url(#tab_floor)"/>
+
+  <!-- tablet (top-down view) -->
+  <circle cx="200" cy="250" r="120" fill="#B91C1C"/>
+  <circle cx="200" cy="245" r="120" fill="url(#tab_face)"/>
+  <circle cx="200" cy="245" r="120" fill="url(#tab_edge)" opacity="0.4"/>
+
+  <!-- score line -->
+  <line x1="80" y1="245" x2="320" y2="245" stroke="rgba(0,0,0,0.18)" stroke-width="1.5"/>
+
+  <!-- imprint -->
+  <text x="200" y="220" font-family="DM Sans, sans-serif" font-size="18" font-weight="700" letter-spacing="3" text-anchor="middle" fill="rgba(0,0,0,0.55)">
+    ORF
+  </text>
+  <text x="200" y="278" font-family="DM Sans, sans-serif" font-size="10" font-weight="600" letter-spacing="2" text-anchor="middle" fill="rgba(0,0,0,0.4)">
+    DAILY ORAL
+  </text>
+</svg>

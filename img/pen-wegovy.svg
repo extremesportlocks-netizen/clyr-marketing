@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <linearGradient id="pen_body" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#E5E7EB"/>
+      <stop offset="40%" stop-color="#FFFFFF"/>
+      <stop offset="60%" stop-color="#F8FAFB"/>
+      <stop offset="100%" stop-color="#D1D5DB"/>
+    </linearGradient>
+    <linearGradient id="pen_cap" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#404040"/>
+      <stop offset="50%" stop-color="#A3A3A3"/>
+      <stop offset="100%" stop-color="#404040"/>
+    </linearGradient>
+    <linearGradient id="pen_window" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F3F4F6"/>
+      <stop offset="50%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#E5E7EB"/>
+    </linearGradient>
+    <radialGradient id="pen_floor" cx="0.5" cy="0.5" r="0.6">
+      <stop offset="0%" stop-color="rgba(0,0,0,0.2)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+    </radialGradient>
+  </defs>
+
+  <ellipse cx="200" cy="460" rx="50" ry="10" fill="url(#pen_floor)"/>
+
+  <g transform="translate(200,260) rotate(15) translate(-200,-260)">
+    <!-- cap (top) -->
+    <rect x="170" y="60" width="60" height="120" rx="6" ry="6" fill="url(#pen_cap)"/>
+    <!-- cap highlight stripe -->
+    <rect x="178" y="70" width="4" height="100" rx="2" ry="2" fill="rgba(255,255,255,0.4)"/>
+    <!-- cap base lip -->
+    <rect x="168" y="178" width="64" height="6" rx="2" ry="2" fill="#404040"/>
+
+    <!-- pen body -->
+    <rect x="172" y="184" width="56" height="240" rx="4" ry="4" fill="url(#pen_body)"/>
+    <!-- body shadow on right edge -->
+    <rect x="218" y="184" width="10" height="240" fill="rgba(0,0,0,0.06)"/>
+    <!-- body highlight on left edge -->
+    <rect x="172" y="184" width="6" height="240" fill="rgba(255,255,255,0.7)"/>
+
+    <!-- dose window -->
+    <rect x="184" y="230" width="32" height="40" rx="3" ry="3" fill="url(#pen_window)" stroke="#9CA3AF" stroke-width="0.5"/>
+    <text x="200" y="257" font-family="DM Sans, sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#1A1A1A">2.4</text>
+
+    <!-- dose dial -->
+    <circle cx="200" cy="300" r="14" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.5"/>
+    <circle cx="200" cy="300" r="3" fill="#00B4C5"/>
+
+    <!-- brand band -->
+    <rect x="172" y="340" width="56" height="20" fill="#A3A3A3"/>
+    <rect x="172" y="340" width="56" height="3" fill="#404040"/>
+    <rect x="172" y="357" width="56" height="3" fill="#404040"/>
+    <text x="200" y="355" font-family="DM Sans, sans-serif" font-size="9" font-weight="700" letter-spacing="2" text-anchor="middle" fill="#FFFFFF">
+      SEMA
+    </text>
+
+    <!-- bottom (button/injection end) -->
+    <rect x="174" y="420" width="52" height="10" rx="2" ry="2" fill="#D1D5DB"/>
+  </g>
+</svg>
