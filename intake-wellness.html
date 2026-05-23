@@ -331,7 +331,8 @@ textarea{resize:vertical;min-height:80px;font-family:var(--sans)}
 
     <div id="checkoutPanel" style="display:none">
       <h3 style="font-size:14px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.08em;margin:32px 0 12px">Payment</h3>
-      <div id="checkout-mount"><div class="checkout-loading"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg><p style="margin-top:14px">Loading secure payment form…</p></div></div>
+      <div id="checkout-loading-state" class="checkout-loading"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg><p style="margin-top:14px">Loading secure payment form…</p></div>
+      <div id="checkout-mount"></div>
     </div>
 
     <div class="btn-row" id="step5Btns">
@@ -764,19 +765,21 @@ function initCheckout() {
         try { embeddedCheckout.destroy(); } catch(e) {}
         embeddedCheckout = null;
       }
-      // Stripe requires the mount target to contain no child nodes
-      var mountEl = document.getElementById('checkout-mount');
-      while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
       return stripe.initEmbeddedCheckout({clientSecret: checkoutResult.clientSecret});
     }).then(function(checkout) {
       embeddedCheckout = checkout;
+      // Hide loading state and mount into the (always empty) target
+      var loadingEl = document.getElementById('checkout-loading-state');
+      if (loadingEl) loadingEl.style.display = 'none';
       checkout.mount('#checkout-mount');
     });
   }).catch(function(err) {
     console.error('[CLYR Checkout]', err);
-    var mount = document.getElementById('checkout-mount');
-    if (mount) {
-      mount.innerHTML = '<div style="text-align:center;padding:32px 20px;color:var(--gray-600)"><p style="font-size:15px;color:var(--red);margin-bottom:8px;font-weight:600">Unable to load payment form</p><p style="font-size:13px;color:var(--gray-500);margin-bottom:16px">'+(err.message || 'Please try again.')+'</p><button onclick="location.reload()" style="padding:10px 24px;background:var(--teal);color:#fff;border:none;border-radius:100px;cursor:pointer;font-size:14px;font-weight:600">Try again</button></div>';
+    // Write error UI into the loading slot (never into mount target — Stripe requires it empty)
+    var loadingEl = document.getElementById('checkout-loading-state');
+    if (loadingEl) {
+      loadingEl.style.display = 'block';
+      loadingEl.innerHTML = '<div style="text-align:center;padding:32px 20px;color:var(--gray-600)"><p style="font-size:15px;color:var(--red);margin-bottom:8px;font-weight:600">Unable to load payment form</p><p style="font-size:13px;color:var(--gray-500);margin-bottom:16px">'+(err.message || 'Please try again.')+'</p><button onclick="location.reload()" style="padding:10px 24px;background:var(--teal);color:#fff;border:none;border-radius:100px;cursor:pointer;font-size:14px;font-weight:600">Try again</button></div>';
     }
     btn.disabled = false;
     btn.innerHTML = 'Continue to payment →';
