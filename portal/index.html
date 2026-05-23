@@ -180,7 +180,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--gray-50);color:var(--dark
     <div class="card" id="dashTimeline"><div class="card-title">Treatment journey</div><div id="timelineSteps"></div></div>
     <div class="actions">
       <div class="action-btn" onclick="showTab('messages')"><div class="action-icon">&#128172;</div><div class="action-label">Messages</div><div class="action-desc">Talk to your provider</div></div>
-      <div class="action-btn" onclick="showTab('refill')"><div class="action-icon">&#128138;</div><div class="action-label">Request refill</div><div class="action-desc">Schedule next consultation</div></div>
+      <div class="action-btn" id="actionRefill" onclick="showTab('refill')"><div class="action-icon">&#128138;</div><div class="action-label" id="actionRefillLabel">Request refill</div><div class="action-desc" id="actionRefillDesc">Schedule next consultation</div></div>
       <div class="action-btn" onclick="manageSubscription()"><div class="action-icon">&#128179;</div><div class="action-label">Manage billing</div><div class="action-desc">Update payment method</div></div>
       <div class="action-btn" onclick="showTab('plans')"><div class="action-icon">&#9889;</div><div class="action-label">Change plan</div><div class="action-desc">Upgrade or switch treatment</div></div>
     </div>
@@ -463,6 +463,16 @@ async function showDashboard(){
     patientData=meR;
     var name=meR.patient?.firstName||'there';
     document.getElementById('dashName').textContent=name;document.getElementById('navName').textContent=name;
+    // Refill action card: reflect refillWindow state
+    var rfw=meR.refillWindow;
+    if(rfw&&rfw.isOpen===false){
+      document.getElementById('actionRefillLabel').textContent='Refill unavailable';
+      document.getElementById('actionRefillDesc').textContent='Opens '+fmtDate(rfw.opensAt)+(typeof rfw.daysRemaining==='number'?' · '+rfw.daysRemaining+'d remaining':'');
+      document.getElementById('actionRefill').style.opacity='0.6';
+    }else if(rfw&&rfw.isOpen===true){
+      document.getElementById('actionRefillLabel').textContent='Request refill';
+      document.getElementById('actionRefillDesc').textContent='Available now — submit your refill';
+    }
     var stageMap={intake_complete:{l:'Intake complete',c:'stage-pending'},paid:{l:'Payment received',c:'stage-active'},under_review:{l:'Under physician review',c:'stage-active'},info_needed:{l:'Provider needs info',c:'stage-pending'},approved:{l:'Treatment approved',c:'stage-active'},prescribed:{l:'Prescribed',c:'stage-active'},pharmacy_processing:{l:'Pharmacy preparing',c:'stage-active'},shipped:{l:'Shipped',c:'stage-shipped'},delivered:{l:'Delivered',c:'stage-shipped'},cancelled:{l:'Cancelled',c:'stage-cancelled'}};
     var s=stageMap[meR.stage]||{l:meR.stage,c:'stage-active'};
     document.getElementById('dashStage').innerHTML='<div class="stage-badge '+s.c+'">'+s.l+'</div>';
@@ -592,6 +602,13 @@ function upgradeFromRefill(planType){
   }).catch(function(){alert('Could not load plans.');});
 }
 async function submitRefill(){
+  // Defense-in-depth: hard-block submission if the refill window is closed.
+  // The form is normally replaced with a 'not yet available' message in loadRefillQuestions,
+  // but this catches edge cases (cached form state, manual DOM manipulation, etc.).
+  if(patientData&&patientData.refillWindow&&patientData.refillWindow.isOpen===false){
+    var rfw=patientData.refillWindow;
+    return alert('Refill is not yet available. Your refill window opens '+fmtDate(rfw.opensAt)+'.');
+  }
   // Validate required fields
   var q30=document.getElementById('rq_q30').value;
   var q40=document.getElementById('rq_q40').value;
