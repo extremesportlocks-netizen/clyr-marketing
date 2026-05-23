@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <radialGradient id="o_disc" cx="0.4" cy="0.3" r="0.7">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="60%" stop-color="#C4B5FD"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </radialGradient>
+    <linearGradient id="o_edge" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.8)"/>
+      <stop offset="50%" stop-color="rgba(255,255,255,0.1)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0.2)"/>
+    </linearGradient>
+    <radialGradient id="o_floor" cx="0.5" cy="0.5" r="0.6">
+      <stop offset="0%" stop-color="rgba(0,0,0,0.18)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+    </radialGradient>
+  </defs>
+
+  <ellipse cx="200" cy="380" rx="130" ry="14" fill="url(#o_floor)"/>
+
+  <!-- ODT disc -->
+  <g transform="translate(200,260) rotate(-8) translate(-200,-260)">
+    <ellipse cx="200" cy="260" rx="130" ry="32" fill="#7C3AED"/>
+    <ellipse cx="200" cy="248" rx="130" ry="36" fill="url(#o_disc)"/>
+    <ellipse cx="200" cy="248" rx="130" ry="36" fill="url(#o_edge)"/>
+    <!-- score line -->
+    <line x1="80" y1="248" x2="320" y2="248" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+    <!-- imprint -->
+    <text x="140" y="244" font-family="DM Sans, sans-serif" font-size="16" font-weight="700" letter-spacing="3" text-anchor="middle" fill="#00B4C5">
+      CLY<tspan fill="#1A1A1A">R</tspan>
+    </text>
+    <text x="260" y="244" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" letter-spacing="2" text-anchor="middle" fill="#1A1A1A" opacity="0.7">
+      ODT
+    </text>
+    <text x="200" y="262" font-family="DM Sans, sans-serif" font-size="9" font-weight="600" letter-spacing="2" text-anchor="middle" fill="#1A1A1A" opacity="0.5">
+      TRIPLE ODT
+    </text>
+  </g>
+</svg>

@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <linearGradient id="v_glass" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.85)"/>
+      <stop offset="25%" stop-color="rgba(255,255,255,0.45)"/>
+      <stop offset="50%" stop-color="rgba(255,255,255,0.15)"/>
+      <stop offset="80%" stop-color="rgba(0,0,0,0.05)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0.12)"/>
+    </linearGradient>
+    <linearGradient id="v_liquid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FCA5A5" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#DC2626" stop-opacity="0.95"/>
+    </linearGradient>
+    <linearGradient id="v_cap" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#9CA3AF"/>
+      <stop offset="35%" stop-color="#F3F4F6"/>
+      <stop offset="65%" stop-color="#E5E7EB"/>
+      <stop offset="100%" stop-color="#9CA3AF"/>
+    </linearGradient>
+    <linearGradient id="v_label" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F8FAFB"/>
+    </linearGradient>
+    <radialGradient id="v_floor" cx="0.5" cy="0.5" r="0.6">
+      <stop offset="0%" stop-color="rgba(0,0,0,0.18)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+    </radialGradient>
+  </defs>
+
+  <!-- floor shadow -->
+  <ellipse cx="200" cy="460" rx="110" ry="14" fill="url(#v_floor)"/>
+
+  <!-- vial body (glass) -->
+  <rect x="120" y="140" width="160" height="310" rx="8" ry="8" fill="#FCA5A5" fill-opacity="0.10"/>
+  <rect x="120" y="140" width="160" height="310" rx="8" ry="8" fill="url(#v_liquid)"/>
+  <!-- glass highlight overlay -->
+  <rect x="120" y="140" width="160" height="310" rx="8" ry="8" fill="url(#v_glass)"/>
+
+  <!-- top neck of vial -->
+  <rect x="148" y="110" width="104" height="38" rx="3" ry="3" fill="#FCA5A5" fill-opacity="0.15"/>
+  <rect x="148" y="110" width="104" height="38" rx="3" ry="3" fill="url(#v_glass)"/>
+
+  <!-- aluminum crimp ring -->
+  <rect x="140" y="92" width="120" height="22" rx="3" ry="3" fill="url(#v_cap)"/>
+  <line x1="148" y1="98" x2="252" y2="98" stroke="#6B7280" stroke-width="0.5" opacity="0.5"/>
+  <line x1="148" y1="106" x2="252" y2="106" stroke="#6B7280" stroke-width="0.5" opacity="0.5"/>
+
+  <!-- accent ring under cap -->
+  <rect x="140" y="89" width="120" height="6" fill="#00B4C5"/>
+
+  <!-- rubber stopper (visible top section) -->
+  <rect x="158" y="70" width="84" height="22" rx="2" ry="2" fill="#1F2937"/>
+  <rect x="158" y="70" width="84" height="22" rx="2" ry="2" fill="url(#v_glass)" opacity="0.3"/>
+
+  <!-- aluminum cap top -->
+  <rect x="148" y="58" width="104" height="14" rx="2" ry="2" fill="url(#v_cap)"/>
+
+  <!-- label wrapping the lower section -->
+  <rect x="120" y="240" width="160" height="180" fill="url(#v_label)"/>
+  <rect x="120" y="240" width="160" height="180" fill="url(#v_glass)" opacity="0.15"/>
+
+  <!-- label top + bottom borders -->
+  <rect x="120" y="240" width="160" height="3" fill="#00B4C5"/>
+  <rect x="120" y="417" width="160" height="3" fill="#00B4C5" opacity="0.3"/>
+
+  <!-- CLYR brand mark on label -->
+  <text x="200" y="272" font-family="DM Sans, sans-serif" font-size="14" font-weight="700" letter-spacing="2" text-anchor="middle" fill="#1A1A1A">
+    CLY<tspan fill="#00B4C5">R</tspan>
+  </text>
+  <line x1="155" y1="282" x2="245" y2="282" stroke="#00B4C5" stroke-width="1" opacity="0.3"/>
+
+  <!-- product name -->
+  <text x="200" y="320" font-family="Instrument Serif, serif" font-style="italic" font-size="26" text-anchor="middle" fill="#1A1A1A">
+    Lipo-Mino
+  </text>
+
+  <!-- product sub -->
+  <text x="200" y="345" font-family="DM Sans, sans-serif" font-size="9" font-weight="500" letter-spacing="1.5" text-anchor="middle" fill="#6B7C8A" text-transform="uppercase">
+    MICC + B12
+  </text>
+
+  <!-- Rx mark -->
+  <text x="200" y="395" font-family="DM Sans, sans-serif" font-size="10" font-weight="600" letter-spacing="3" text-anchor="middle" fill="#94A3B0">
+    PRESCRIPTION ONLY ・ Rx
+  </text>
+
+  <!-- bottom curve hint (vial base) -->
+  <ellipse cx="200" cy="450" rx="80" ry="6" fill="rgba(0,0,0,0.18)"/>
+</svg>
