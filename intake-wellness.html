@@ -186,6 +186,28 @@ textarea{resize:vertical;min-height:80px;font-family:var(--sans)}
 
 <main class="intake">
 
+  <!-- ── COMING SOON SCREEN (shown for not-yet-launched products) ── -->
+  <section class="step" id="comingSoonScreen" style="display:none">
+    <div class="step-label" id="csLabel">Coming Soon</div>
+    <h1 class="step-title" id="csTitle">This treatment is launching <span class="serif">soon.</span></h1>
+    <p class="step-sub" id="csSub">We're putting the final touches on this offering. Sign up below and we'll email you the moment it goes live.</p>
+
+    <div class="card selected" style="padding:32px 28px">
+      <form id="csForm" onsubmit="event.preventDefault();csSubmit();">
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <input type="email" id="csEmail" placeholder="your@email.com" required style="flex:1;min-width:200px;padding:14px 18px;border:1px solid var(--gray-200);border-radius:12px;font-size:15px;font-family:inherit">
+          <button type="submit" class="btn btn-primary" id="csBtn" style="white-space:nowrap">Notify me →</button>
+        </div>
+        <p style="font-size:12px;color:var(--gray-400);margin-top:12px;line-height:1.5">By submitting your email you agree to receive launch updates from CLYR Health. We won't share it. Unsubscribe anytime.</p>
+      </form>
+      <div id="csDone" style="display:none;text-align:center;padding:24px 0"><div style="font-size:42px;margin-bottom:12px">✓</div><div style="font-size:18px;font-weight:700;margin-bottom:6px">You're on the list.</div><div style="color:var(--gray-500);font-size:14px">We'll email you the moment this launches.</div></div>
+    </div>
+
+    <div class="btn-row" style="margin-top:24px">
+      <a href="/wellness.html" class="btn btn-secondary">← Browse other treatments</a>
+    </div>
+  </section>
+
   <!-- ── STEP 1: Confirm product ── -->
   <section class="step active" id="step1">
     <div class="step-label">Step 1</div>
@@ -457,6 +479,23 @@ function init() {
   if (prod === 'sildenafil') prod = 'sildenafil_gummy';
   if (prod === 'bremelanotide' || prod === 'pt-141') prod = 'pt141';
 
+  // Coming-soon products: route to waitlist screen instead of silently falling back to Sermorelin.
+  // Ivermectin is pending MDI clinical questionnaire approval — checkout is intentionally not yet active.
+  var COMING_SOON = { ivermectin: { label: 'Ivermectin Protocol', title: 'Ivermectin protocol launching <span class="serif">soon.</span>', sub: "We're finalizing the clinical questionnaire with our medical partner. Drop your email below and we'll notify you the day this becomes available." } };
+  if (COMING_SOON[prod]) {
+    var cs = COMING_SOON[prod];
+    state.productKey = prod;
+    document.getElementById('csLabel').textContent = cs.label;
+    document.getElementById('csTitle').innerHTML = cs.title;
+    document.getElementById('csSub').textContent = cs.sub;
+    document.querySelectorAll('main.intake .step').forEach(function(s){ s.style.display = 'none'; s.classList.remove('active'); });
+    document.getElementById('comingSoonScreen').style.display = 'block';
+    // Hide progress bar if present
+    var pbar = document.querySelector('.progress-bar, .progress');
+    if (pbar) pbar.style.display = 'none';
+    return;
+  }
+
   if (!CATALOG[prod]) {
     // Default to Sermorelin if unknown (cleanest fallback that still works)
     prod = 'sermorelin';
@@ -471,6 +510,42 @@ function init() {
   renderProduct();
   renderScreening();
   attachListeners();
+}
+
+// ── COMING-SOON WAITLIST SUBMIT ────────────────────────────────────────
+function csSubmit() {
+  var emailEl = document.getElementById('csEmail');
+  var email = (emailEl.value || '').trim();
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    emailEl.focus();
+    return;
+  }
+  var btn = document.getElementById('csBtn');
+  btn.disabled = true;
+  btn.textContent = 'Adding you...';
+  var body = {
+    topic: 'waitlist-' + (state.productKey || 'unknown'),
+    first_name: 'Waitlist',
+    last_name: 'Signup',
+    email: email,
+    phone: '',
+    message: 'Waitlist signup for ' + (state.productKey || 'unknown product') + ' from intake-wellness page.'
+  };
+  fetch('https://clyr-backend.onrender.com/api/contact', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  }).then(function(r){ return r.ok ? r.json() : Promise.reject(r); })
+    .then(function(){
+      document.getElementById('csForm').style.display = 'none';
+      document.getElementById('csDone').style.display = 'block';
+      try { if (window.clyrTrack) window.clyrTrack('WaitlistSignup', { product: state.productKey }); } catch(e){}
+    })
+    .catch(function(){
+      btn.disabled = false;
+      btn.textContent = 'Notify me →';
+      alert('Something went wrong. Please try again or email contact@clyr.health.');
+    });
 }
 
 // ── PRODUCT RENDERING ──────────────────────────────────────────────────
