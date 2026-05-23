@@ -764,6 +764,9 @@ function initCheckout() {
         try { embeddedCheckout.destroy(); } catch(e) {}
         embeddedCheckout = null;
       }
+      // Stripe requires the mount target to contain no child nodes
+      var mountEl = document.getElementById('checkout-mount');
+      while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
       return stripe.initEmbeddedCheckout({clientSecret: checkoutResult.clientSecret});
     }).then(function(checkout) {
       embeddedCheckout = checkout;
