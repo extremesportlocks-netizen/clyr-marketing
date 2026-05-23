@@ -6,7 +6,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Start your consultation — CLYR Health</title>
+<title>Start your consultation, CLYR Health</title>
 <meta name="description" content="Complete your CLYR Health intake. Provider-supervised, HIPAA-compliant. Delivered to your door.">
 <meta name="robots" content="noindex,nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -181,7 +181,7 @@ textarea{resize:vertical;min-height:80px;font-family:var(--sans)}
 
 <div class="progress-wrap">
   <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:20%"></div></div>
-  <div class="progress-label" id="progressLabel">Step 1 of 5 — Confirm your treatment</div>
+  <div class="progress-label" id="progressLabel">Step 1 of 5, Confirm your treatment</div>
 </div>
 
 <main class="intake">
@@ -198,7 +198,7 @@ textarea{resize:vertical;min-height:80px;font-family:var(--sans)}
         <div class="product-meta">
           <div class="product-name" id="productName">Loading...</div>
           <div class="product-desc" id="productDesc"></div>
-          <div class="product-price"><span id="productPrice">—</span><span class="period" id="productPeriod"></span></div>
+          <div class="product-price"><span id="productPrice">, </span><span class="period" id="productPeriod"></span></div>
         </div>
       </div>
       <div class="plan-options" id="planOptions" style="display:none"></div>
@@ -296,17 +296,17 @@ textarea{resize:vertical;min-height:80px;font-family:var(--sans)}
 
     <div class="review-card">
       <h3>Your treatment</h3>
-      <div class="review-row"><span class="review-label">Product</span><span class="review-val" id="reviewProduct">—</span></div>
-      <div class="review-row"><span class="review-label">Plan</span><span class="review-val" id="reviewPlan">—</span></div>
-      <div class="review-total"><span>Total today</span><span class="total-amount" id="reviewTotal">—</span></div>
+      <div class="review-row"><span class="review-label">Product</span><span class="review-val" id="reviewProduct">, </span></div>
+      <div class="review-row"><span class="review-label">Plan</span><span class="review-val" id="reviewPlan">, </span></div>
+      <div class="review-total"><span>Total today</span><span class="total-amount" id="reviewTotal">, </span></div>
     </div>
 
     <div class="review-card">
       <h3>Your information</h3>
-      <div class="review-row"><span class="review-label">Name</span><span class="review-val" id="reviewName">—</span></div>
-      <div class="review-row"><span class="review-label">Email</span><span class="review-val" id="reviewEmail">—</span></div>
-      <div class="review-row"><span class="review-label">Phone</span><span class="review-val" id="reviewPhone">—</span></div>
-      <div class="review-row"><span class="review-label">Shipping to</span><span class="review-val" id="reviewShip">—</span></div>
+      <div class="review-row"><span class="review-label">Name</span><span class="review-val" id="reviewName">, </span></div>
+      <div class="review-row"><span class="review-label">Email</span><span class="review-val" id="reviewEmail">, </span></div>
+      <div class="review-row"><span class="review-label">Phone</span><span class="review-val" id="reviewPhone">, </span></div>
+      <div class="review-row"><span class="review-label">Shipping to</span><span class="review-val" id="reviewShip">, </span></div>
     </div>
 
     <h3 style="font-size:14px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.08em;margin:24px 0 12px">Please confirm</h3>
@@ -402,9 +402,9 @@ var SCREENING = {
     ]
   },
   sexual_health: {
-    sub:"These conditions matter for sexual health medications. Please be honest — your safety is our priority.",
+    sub:"These conditions matter for sexual health medications. Please be honest, your safety is our priority.",
     items:[
-      {key:'nitrates',label:'Take nitrates (nitroglycerin, isosorbide)',sub:'Common for chest pain — taking these with ED medications can be dangerous',critical:true},
+      {key:'nitrates',label:'Take nitrates (nitroglycerin, isosorbide)',sub:'Common for chest pain, taking these with ED medications can be dangerous',critical:true},
       {key:'cardiac',label:'Heart attack, stroke, or serious heart issue in the past 6 months',critical:true},
       {key:'hypertension',label:'Severe uncontrolled high blood pressure (over 170/100)'},
       {key:'priapism',label:'History of priapism (erection lasting over 4 hours)'},
@@ -452,7 +452,7 @@ function init() {
   var prod = (params.get('product') || '').toLowerCase().trim();
   var plan = (params.get('plan') || 'monthly').toLowerCase().trim();
 
-  // Handle alias for sildenafil — some marketing pages might pass "sildenafil"
+  // Handle alias for sildenafil, some marketing pages might pass "sildenafil"
   if (prod === 'sildenafil') prod = 'sildenafil_gummy';
   if (prod === 'bremelanotide' || prod === 'pt-141') prod = 'pt141';
 
@@ -538,10 +538,10 @@ function renderScreening() {
       var hasCritical = Array.from(list.querySelectorAll('.condition.checked')).some(function(c){return c.dataset.critical === '1'});
       if (hasCritical) {
         warningBox.classList.add('show');
-        document.getElementById('warningText').textContent = "One of your responses indicates a contraindication. Your provider will review carefully and may not approve this medication. You can continue — we'll let you know if there's an issue before charging you.";
+        document.getElementById('warningText').textContent = "One of your responses indicates a contraindication. Your provider will review carefully and may not approve this medication. You can continue, we'll let you know if there's an issue before charging you.";
       } else if (hasFlag) {
         warningBox.classList.add('show');
-        document.getElementById('warningText').textContent = "Based on your response, a licensed provider will review your case carefully. You can continue — your provider will follow up if any concerns arise.";
+        document.getElementById('warningText').textContent = "Based on your response, a licensed provider will review your case carefully. You can continue, your provider will follow up if any concerns arise.";
       } else {
         warningBox.classList.remove('show');
       }
@@ -634,7 +634,7 @@ function goToStep(n) {
   currentStep = n;
   document.getElementById('progressFill').style.width = (n / totalSteps * 100) + '%';
   var labels = ['','Confirm your treatment','Health screening','Your details','Shipping address','Review & checkout'];
-  document.getElementById('progressLabel').textContent = 'Step ' + n + ' of ' + totalSteps + ' — ' + labels[n];
+  document.getElementById('progressLabel').textContent = 'Step ' + n + ' of ' + totalSteps + ', ' + labels[n];
   window.scrollTo({top:0, behavior:'smooth'});
   if (n === 5) populateReview();
 }
