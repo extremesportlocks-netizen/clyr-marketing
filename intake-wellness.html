@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Start your consultation — CLYR Health</title>
+<meta name="description" content="Complete your CLYR Health intake. Provider-supervised, HIPAA-compliant. Delivered to your door.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<script src="https://js.stripe.com/v3/"></script>
+<style>
+:root{--white:#FFF;--black:#0A0A0A;--dark:#1A1A1A;--teal:#00B4C5;--teal-dark:#009BAA;--teal-light:#E0F7FA;--teal-glow:rgba(0,180,197,0.12);--gray-50:#F8FAFB;--gray-100:#F1F4F6;--gray-200:#E2E7EB;--gray-300:#CBD3DA;--gray-400:#94A3B0;--gray-500:#6B7C8A;--gray-600:#4A5568;--gray-700:#374151;--gray-800:#2D3748;--green:#10B981;--red:#EF4444;--amber:#F59E0B;--serif:'Instrument Serif',Georgia,serif;--sans:'DM Sans',-apple-system,sans-serif;--radius:16px;--radius-sm:10px;--radius-lg:24px;--shadow-sm:0 1px 3px rgba(0,0,0,0.04);--shadow-md:0 4px 20px rgba(0,0,0,0.06);--shadow-lg:0 12px 40px rgba(0,0,0,0.08);--shadow-teal:0 8px 30px rgba(0,180,197,0.2)}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:var(--sans);color:var(--dark);background:var(--gray-50);overflow-x:hidden;line-height:1.6;min-height:100vh}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid rgba(0,0,0,0.05);padding:0 40px}
+.nav-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{height:28px}
+.nav-help{font-size:14px;color:var(--gray-500);text-decoration:none}
+.nav-help:hover{color:var(--teal)}
+
+/* PROGRESS */
+.progress-wrap{max-width:720px;margin:0 auto;padding:24px 24px 0}
+.progress-bar{height:4px;background:var(--gray-200);border-radius:100px;overflow:hidden}
+.progress-fill{height:100%;background:var(--teal);transition:width 0.4s ease;border-radius:100px}
+.progress-label{font-size:13px;color:var(--gray-500);margin-top:10px;font-weight:500;letter-spacing:0.02em}
+
+/* INTAKE CONTAINER */
+.intake{max-width:720px;margin:0 auto;padding:40px 24px 80px}
+.step{display:none;animation:fadeUp 0.3s ease}
+.step.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.step-label{display:inline-block;font-size:12px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:14px;padding:6px 12px;background:var(--teal-light);border-radius:100px}
+.step-title{font-size:36px;font-weight:700;line-height:1.15;letter-spacing:-0.02em;margin-bottom:12px;color:var(--dark)}
+.step-title .serif{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--teal)}
+.step-sub{font-size:16px;color:var(--gray-500);line-height:1.6;margin-bottom:32px;max-width:560px}
+
+/* CARDS */
+.card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:24px;margin-bottom:16px;transition:all 0.2s;position:relative}
+.card.selectable{cursor:pointer}
+.card.selectable:hover{border-color:var(--teal);box-shadow:var(--shadow-md)}
+.card.selected{border-color:var(--teal);background:linear-gradient(180deg,#fff 0%,#f0fafb 100%);box-shadow:var(--shadow-teal)}
+.card.selected::after{content:'';position:absolute;top:16px;right:16px;width:24px;height:24px;background:var(--teal) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>") center/14px no-repeat;border-radius:50%}
+
+/* PRODUCT CARD */
+.product-card{display:flex;gap:16px;align-items:center}
+.product-card .product-thumb{width:72px;height:72px;background:linear-gradient(135deg,#f0fafb 0%,#e8f4f8 100%);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0}
+.product-card .product-meta{flex:1}
+.product-card .product-name{font-size:18px;font-weight:700;color:var(--dark);margin-bottom:2px}
+.product-card .product-desc{font-size:13px;color:var(--gray-500);line-height:1.5;margin-bottom:6px}
+.product-card .product-price{font-size:18px;font-weight:700;color:var(--dark)}
+.product-card .product-price .period{font-size:13px;color:var(--gray-400);font-weight:500;margin-left:2px}
+
+/* PLAN OPTIONS */
+.plan-options{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.plan-option{padding:16px;border:1.5px solid var(--gray-200);border-radius:12px;cursor:pointer;text-align:center;transition:all 0.2s;background:var(--white)}
+.plan-option:hover{border-color:var(--teal)}
+.plan-option.selected{border-color:var(--teal);background:var(--teal-light)}
+.plan-option .plan-name{font-size:14px;font-weight:700;margin-bottom:2px}
+.plan-option .plan-price{font-size:16px;font-weight:700;color:var(--dark)}
+.plan-option .plan-save{font-size:11px;color:var(--green);font-weight:700;text-transform:uppercase;letter-spacing:0.05em;margin-top:4px}
+
+/* CHECKBOX CONDITION CARDS */
+.condition-list{display:flex;flex-direction:column;gap:10px}
+.condition{display:flex;align-items:flex-start;gap:14px;padding:16px 18px;background:var(--white);border:1.5px solid var(--gray-200);border-radius:12px;cursor:pointer;transition:all 0.15s;user-select:none}
+.condition:hover{border-color:var(--gray-300);background:var(--gray-50)}
+.condition.checked{border-color:var(--amber);background:#FFFBEB}
+.condition .check-box{width:22px;height:22px;border:2px solid var(--gray-300);border-radius:6px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all 0.15s;background:var(--white)}
+.condition.checked .check-box{background:var(--amber);border-color:var(--amber)}
+.condition.checked .check-box::after{content:'';width:10px;height:6px;border-left:2.5px solid white;border-bottom:2.5px solid white;transform:rotate(-45deg) translate(2px,-1px)}
+.condition .check-label{font-size:15px;font-weight:500;color:var(--dark);line-height:1.4}
+.condition .check-label small{display:block;font-size:13px;font-weight:400;color:var(--gray-500);margin-top:2px}
+
+/* NONE OPTION */
+.condition.none-option{border-color:var(--green);background:#F0FDF4;margin-top:6px}
+.condition.none-option .check-box{border-color:var(--green)}
+.condition.none-option.checked .check-box{background:var(--green);border-color:var(--green)}
+
+/* INELIGIBLE WARNING */
+.warning-box{background:#FFFBEB;border:1px solid var(--amber);border-radius:12px;padding:18px;margin-top:20px;display:none}
+.warning-box.show{display:block;animation:fadeUp 0.3s}
+.warning-box h4{font-size:15px;font-weight:700;color:#92400E;margin-bottom:6px}
+.warning-box p{font-size:13px;color:#78350F;line-height:1.6}
+
+/* INPUTS */
+.input-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.input-grid.full{grid-template-columns:1fr}
+.input-grid.three{grid-template-columns:1fr 1fr 1fr}
+.input-grid.shipping{grid-template-columns:2fr 1fr}
+.input-grid.city-state{grid-template-columns:2fr 1fr 1fr}
+.input-wrap{position:relative}
+.input-wrap label{display:block;font-size:13px;font-weight:600;color:var(--gray-700);margin-bottom:6px}
+.input-wrap input,.input-wrap select,.input-wrap textarea{width:100%;padding:14px 16px;font-size:15px;font-family:var(--sans);background:var(--white);border:1.5px solid var(--gray-200);border-radius:10px;color:var(--dark);transition:all 0.15s;outline:none}
+.input-wrap input:focus,.input-wrap select:focus,.input-wrap textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px var(--teal-glow)}
+.input-wrap input.ok,.input-wrap select.ok{border-color:var(--green)}
+.input-wrap input.err{border-color:var(--red)}
+.input-wrap .err-msg{display:none;font-size:12px;color:var(--red);margin-top:5px}
+.input-wrap .err-msg.vis{display:block}
+.input-wrap select{appearance:none;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' stroke='%236B7C8A' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>") right 16px center no-repeat var(--white);padding-right:38px}
+textarea{resize:vertical;min-height:80px;font-family:var(--sans)}
+
+/* CONSENT */
+.consent-list{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+.consent-item{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;background:var(--white);border:1.5px solid var(--gray-200);border-radius:10px;cursor:pointer;transition:all 0.15s}
+.consent-item:hover{border-color:var(--gray-300)}
+.consent-item.checked{border-color:var(--teal);background:#F0FAFB}
+.consent-item .check-box{width:20px;height:20px;border:2px solid var(--gray-300);border-radius:5px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all 0.15s;background:var(--white)}
+.consent-item.checked .check-box{background:var(--teal);border-color:var(--teal)}
+.consent-item.checked .check-box::after{content:'';width:9px;height:5px;border-left:2px solid white;border-bottom:2px solid white;transform:rotate(-45deg) translate(2px,-1px)}
+.consent-item .check-label{font-size:13px;color:var(--gray-700);line-height:1.5}
+.consent-item .check-label a{color:var(--teal);text-decoration:none;font-weight:600}
+.consent-item .check-label a:hover{text-decoration:underline}
+
+/* REVIEW SUMMARY */
+.review-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:24px;margin-bottom:16px}
+.review-card h3{font-size:14px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:14px}
+.review-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed var(--gray-100);font-size:14px}
+.review-row:last-child{border-bottom:none}
+.review-row .review-label{color:var(--gray-500)}
+.review-row .review-val{color:var(--dark);font-weight:600;text-align:right;max-width:60%}
+.review-total{display:flex;justify-content:space-between;padding-top:14px;margin-top:6px;border-top:1.5px solid var(--gray-200);font-size:16px;font-weight:700}
+.review-total .total-amount{color:var(--teal);font-size:22px}
+
+/* BUTTONS */
+.btn-row{display:flex;gap:12px;margin-top:32px}
+.btn{padding:16px 28px;border-radius:100px;font-size:15px;font-weight:700;font-family:var(--sans);cursor:pointer;border:none;transition:all 0.2s;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn-primary{background:var(--teal);color:white;flex:1}
+.btn-primary:hover:not(:disabled){background:var(--teal-dark);transform:translateY(-1px);box-shadow:var(--shadow-teal)}
+.btn-primary:disabled{background:var(--gray-300);cursor:not-allowed;transform:none;box-shadow:none}
+.btn-secondary{background:var(--white);color:var(--gray-700);border:1.5px solid var(--gray-200)}
+.btn-secondary:hover{border-color:var(--gray-300);background:var(--gray-50)}
+
+/* TRUST STRIP */
+.trust-strip{display:flex;justify-content:center;align-items:center;gap:18px;padding:16px;font-size:12px;color:var(--gray-500);flex-wrap:wrap;border-top:1px solid var(--gray-100);margin-top:24px}
+.trust-strip span{display:inline-flex;align-items:center;gap:6px}
+.trust-strip svg{color:var(--green)}
+
+/* CHECKOUT */
+.checkout-step{padding-bottom:60px}
+#checkout-mount{min-height:400px;margin-top:8px}
+.checkout-loading{text-align:center;padding:40px 20px;color:var(--gray-500)}
+.checkout-loading svg{animation:spin 1s linear infinite}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+
+/* SUCCESS STATE */
+.success-card{text-align:center;padding:40px 24px;background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius)}
+.success-card .check-circle{width:64px;height:64px;background:var(--green);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
+
+/* RESPONSIVE */
+@media(max-width:640px){
+  .nav{padding:0 20px}
+  .progress-wrap{padding:18px 20px 0}
+  .intake{padding:32px 20px 60px}
+  .step-title{font-size:28px}
+  .input-grid{grid-template-columns:1fr;gap:12px}
+  .input-grid.three{grid-template-columns:1fr 1fr 1fr;gap:8px}
+  .input-grid.city-state{grid-template-columns:1fr 1fr 1fr}
+  .plan-options{grid-template-columns:1fr}
+  .product-card{flex-direction:column;align-items:flex-start}
+  .product-card .product-thumb{width:64px;height:64px}
+  .btn-row{flex-direction:column-reverse}
+  .btn{width:100%}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/"><svg class="nav-logo" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="0" y="26" font-family="DM Sans, sans-serif" font-weight="700" font-size="28" letter-spacing="-1"><tspan fill="#1A1A1A">CLY</tspan><tspan fill="#00B4C5">R</tspan></text></svg></a>
+    <a href="/contact.html" class="nav-help">Need help?</a>
+  </div>
+</nav>
+
+<div class="progress-wrap">
+  <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:20%"></div></div>
+  <div class="progress-label" id="progressLabel">Step 1 of 5 — Confirm your treatment</div>
+</div>
+
+<main class="intake">
+
+  <!-- ── STEP 1: Confirm product ── -->
+  <section class="step active" id="step1">
+    <div class="step-label">Step 1</div>
+    <h1 class="step-title">Confirm your <span class="serif">treatment.</span></h1>
+    <p class="step-sub">Review your selection. You can change plan length or switch products before checkout.</p>
+
+    <div class="card selected" id="productCard">
+      <div class="product-card">
+        <div class="product-thumb" id="productThumb">💊</div>
+        <div class="product-meta">
+          <div class="product-name" id="productName">Loading...</div>
+          <div class="product-desc" id="productDesc"></div>
+          <div class="product-price"><span id="productPrice">—</span><span class="period" id="productPeriod"></span></div>
+        </div>
+      </div>
+      <div class="plan-options" id="planOptions" style="display:none"></div>
+    </div>
+
+    <div class="btn-row">
+      <a href="/wellness.html" class="btn btn-secondary">View all treatments</a>
+      <button class="btn btn-primary" onclick="goToStep(2)">Continue →</button>
+    </div>
+  </section>
+
+  <!-- ── STEP 2: Vertical-specific screening ── -->
+  <section class="step" id="step2">
+    <div class="step-label">Step 2</div>
+    <h1 class="step-title">Health <span class="serif">screening.</span></h1>
+    <p class="step-sub" id="screeningSub">Your safety is our priority. Tell us if any of the following apply to you.</p>
+
+    <div class="condition-list" id="conditionList"></div>
+
+    <div class="warning-box" id="warningBox">
+      <h4>We need to review your case carefully</h4>
+      <p id="warningText">Based on your response, a licensed provider will review your eligibility before any medication is prescribed. You can continue and our team will follow up if any concerns arise.</p>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="goToStep(1)">← Back</button>
+      <button class="btn btn-primary" id="btnStep2Next" onclick="onStep2Continue()" disabled>Continue →</button>
+    </div>
+  </section>
+
+  <!-- ── STEP 3: Personal details ── -->
+  <section class="step" id="step3">
+    <div class="step-label">Step 3</div>
+    <h1 class="step-title">Your <span class="serif">details.</span></h1>
+    <p class="step-sub">We'll use this to set up your account and connect you with a licensed provider.</p>
+
+    <div class="input-grid">
+      <div class="input-wrap"><label for="firstName">First name</label><input id="firstName" type="text" autocomplete="given-name" required></div>
+      <div class="input-wrap"><label for="lastName">Last name</label><input id="lastName" type="text" autocomplete="family-name" required></div>
+    </div>
+    <div class="input-grid full">
+      <div class="input-wrap"><label for="email">Email</label><input id="email" type="email" autocomplete="email" required><div class="err-msg" id="errEmail">Please enter a valid email</div></div>
+    </div>
+    <div class="input-grid">
+      <div class="input-wrap"><label for="phone">Phone</label><input id="phone" type="tel" autocomplete="tel" placeholder="(555) 555-5555" required></div>
+      <div class="input-wrap"><label for="sex">Biological sex</label><select id="sex" required><option value="">Select…</option><option value="male">Male</option><option value="female">Female</option></select></div>
+    </div>
+    <div class="input-grid three">
+      <div class="input-wrap"><label for="dobMonth">Birth month</label><select id="dobMonth" required><option value="">MM</option><option value="1">January</option><option value="2">February</option><option value="3">March</option><option value="4">April</option><option value="5">May</option><option value="6">June</option><option value="7">July</option><option value="8">August</option><option value="9">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option></select></div>
+      <div class="input-wrap"><label for="dobDay">Day</label><select id="dobDay" required><option value="">DD</option></select></div>
+      <div class="input-wrap"><label for="dobYear">Year</label><select id="dobYear" required><option value="">YYYY</option></select></div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="goToStep(2)">← Back</button>
+      <button class="btn btn-primary" id="btnStep3Next" onclick="onStep3Continue()" disabled>Continue →</button>
+    </div>
+  </section>
+
+  <!-- ── STEP 4: Shipping ── -->
+  <section class="step" id="step4">
+    <div class="step-label">Step 4</div>
+    <h1 class="step-title">Shipping <span class="serif">address.</span></h1>
+    <p class="step-sub">Your medication ships directly to you from a licensed pharmacy. Discreet packaging, free expedited shipping.</p>
+
+    <div class="input-grid shipping">
+      <div class="input-wrap"><label for="address">Street address</label><input id="address" type="text" autocomplete="street-address" required></div>
+      <div class="input-wrap"><label for="apt">Apt / Suite (optional)</label><input id="apt" type="text" autocomplete="address-line2"></div>
+    </div>
+    <div class="input-grid city-state">
+      <div class="input-wrap"><label for="city">City</label><input id="city" type="text" autocomplete="address-level2" required></div>
+      <div class="input-wrap"><label for="state">State</label><select id="state" required><option value="">State</option><option value="AL">AL</option><option value="AZ">AZ</option><option value="AR">AR</option><option value="CA">CA</option><option value="CO">CO</option><option value="CT">CT</option><option value="DE">DE</option><option value="FL">FL</option><option value="GA">GA</option><option value="HI">HI</option><option value="ID">ID</option><option value="IL">IL</option><option value="IN">IN</option><option value="IA">IA</option><option value="KS">KS</option><option value="KY">KY</option><option value="ME">ME</option><option value="MD">MD</option><option value="MA">MA</option><option value="MI">MI</option><option value="MN">MN</option><option value="MO">MO</option><option value="MT">MT</option><option value="NE">NE</option><option value="NV">NV</option><option value="NH">NH</option><option value="NJ">NJ</option><option value="NM">NM</option><option value="NY">NY</option><option value="NC">NC</option><option value="ND">ND</option><option value="OH">OH</option><option value="OK">OK</option><option value="OR">OR</option><option value="PA">PA</option><option value="RI">RI</option><option value="SC">SC</option><option value="SD">SD</option><option value="TN">TN</option><option value="TX">TX</option><option value="UT">UT</option><option value="VT">VT</option><option value="VA">VA</option><option value="WA">WA</option><option value="WV">WV</option><option value="WI">WI</option><option value="WY">WY</option><option value="DC">DC</option></select></div>
+      <div class="input-wrap"><label for="zip">ZIP</label><input id="zip" type="text" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" required></div>
+    </div>
+    <p style="font-size:12px;color:var(--gray-500);margin-top:4px">CLYR ships to most states. Currently unavailable in AK, MS, LA, and PR.</p>
+
+    <div class="input-grid full" style="margin-top:24px">
+      <div class="input-wrap"><label for="currentMeds">Current medications <span style="color:var(--gray-400);font-weight:400">(optional but recommended)</span></label><textarea id="currentMeds" placeholder="List any prescription or over-the-counter medications you take regularly."></textarea></div>
+    </div>
+    <div class="input-grid full">
+      <div class="input-wrap"><label for="drugAllergies">Drug allergies <span style="color:var(--gray-400);font-weight:400">(optional)</span></label><textarea id="drugAllergies" placeholder="Any known drug allergies?"></textarea></div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="goToStep(3)">← Back</button>
+      <button class="btn btn-primary" id="btnStep4Next" onclick="onStep4Continue()" disabled>Continue →</button>
+    </div>
+  </section>
+
+  <!-- ── STEP 5: Review + Consent + Checkout ── -->
+  <section class="step checkout-step" id="step5">
+    <div class="step-label">Step 5</div>
+    <h1 class="step-title">Review & <span class="serif">checkout.</span></h1>
+    <p class="step-sub">Confirm your information, accept the consents, and complete payment securely via Stripe.</p>
+
+    <div class="review-card">
+      <h3>Your treatment</h3>
+      <div class="review-row"><span class="review-label">Product</span><span class="review-val" id="reviewProduct">—</span></div>
+      <div class="review-row"><span class="review-label">Plan</span><span class="review-val" id="reviewPlan">—</span></div>
+      <div class="review-total"><span>Total today</span><span class="total-amount" id="reviewTotal">—</span></div>
+    </div>
+
+    <div class="review-card">
+      <h3>Your information</h3>
+      <div class="review-row"><span class="review-label">Name</span><span class="review-val" id="reviewName">—</span></div>
+      <div class="review-row"><span class="review-label">Email</span><span class="review-val" id="reviewEmail">—</span></div>
+      <div class="review-row"><span class="review-label">Phone</span><span class="review-val" id="reviewPhone">—</span></div>
+      <div class="review-row"><span class="review-label">Shipping to</span><span class="review-val" id="reviewShip">—</span></div>
+    </div>
+
+    <h3 style="font-size:14px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.08em;margin:24px 0 12px">Please confirm</h3>
+    <div class="consent-list">
+      <label class="consent-item" data-consent="terms">
+        <span class="check-box"></span>
+        <span class="check-label">I agree to CLYR Health's <a href="/terms.html" target="_blank">Terms of Service</a> and <a href="/privacy.html" target="_blank">Privacy Policy</a>.</span>
+      </label>
+      <label class="consent-item" data-consent="telehealth">
+        <span class="check-box"></span>
+        <span class="check-label">I consent to a <a href="/telehealth-consent.html" target="_blank">telehealth evaluation</a> by a licensed provider. I understand medication is dispensed only if the provider determines it is appropriate.</span>
+      </label>
+      <label class="consent-item" data-consent="compound">
+        <span class="check-box"></span>
+        <span class="check-label">I understand my medication may be compounded by a state-licensed 503A pharmacy. Compounded medications are not FDA-approved.</span>
+      </label>
+      <label class="consent-item" data-consent="sms">
+        <span class="check-box"></span>
+        <span class="check-label">I agree to receive SMS messages from CLYR Health for treatment updates. Msg & data rates may apply. Reply STOP to opt out. See <a href="/sms-terms.html" target="_blank">SMS terms</a>.</span>
+      </label>
+    </div>
+
+    <div id="checkoutPanel" style="display:none">
+      <h3 style="font-size:14px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.08em;margin:32px 0 12px">Payment</h3>
+      <div id="checkout-mount"><div class="checkout-loading"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg><p style="margin-top:14px">Loading secure payment form…</p></div></div>
+    </div>
+
+    <div class="btn-row" id="step5Btns">
+      <button class="btn btn-secondary" onclick="goToStep(4)">← Back</button>
+      <button class="btn btn-primary" id="btnCheckout" onclick="initCheckout()" disabled>Continue to payment →</button>
+    </div>
+
+    <div class="trust-strip">
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Stripe secure checkout</span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>HIPAA-compliant</span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Cancel anytime</span>
+    </div>
+  </section>
+
+</main>
+
+<script>
+'use strict';
+var API = 'https://clyr-backend.onrender.com';
+
+// ── PRODUCT CATALOG (mirrors backend services/product-catalog.js) ─────
+var CATALOG = {
+  sermorelin: {
+    type:'wellness', name:'Sermorelin', emoji:'💉', priceCents:17900, plans:[{key:'monthly',label:'Monthly',priceCents:17900}],
+    desc:'Growth hormone peptide. Sleep, recovery, lean muscle, healthy aging.'
+  },
+  nad: {
+    type:'wellness', name:'NAD+ Injections', emoji:'🧬', priceCents:19900, plans:[{key:'monthly',label:'Monthly',priceCents:19900}],
+    desc:'Cellular energy, DNA repair, cognitive function.'
+  },
+  glutathione: {
+    type:'wellness', name:'Glutathione', emoji:'🛡️', priceCents:12900,
+    plans:[{key:'monthly',label:'Monthly',priceCents:12900},{key:'3month',label:'3-Month',priceCents:32900,save:'Save $58'}],
+    desc:'Master antioxidant. Detox, immune, skin health.'
+  },
+  micc: {
+    type:'wellness', name:'Lipo-Mino (MICC)', emoji:'💧', priceCents:14900, plans:[{key:'monthly',label:'Monthly',priceCents:14900}],
+    desc:'Fat-burning amino acid + B-vitamin blend. Pairs with GLP-1.'
+  },
+  tadalafil: {
+    type:'sexual_health', name:'Tadalafil + Vardenafil', emoji:'🔵', priceCents:9900, plans:[{key:'monthly',label:'Monthly',priceCents:9900}],
+    desc:'Dual PDE5 inhibitor. 30-count daily tablet.'
+  },
+  sildenafil_gummy: {
+    type:'sexual_health', name:'Sildenafil 50mg Gummy', emoji:'🍬', priceCents:8900, plans:[{key:'monthly',label:'Monthly',priceCents:8900}],
+    desc:'On-demand ED treatment. 10-count gummies.'
+  },
+  pt141: {
+    type:'sexual_health', name:'PT-141 + Oxytocin', emoji:'🌹', priceCents:14900, plans:[{key:'monthly',label:'Monthly',priceCents:14900}],
+    desc:'Libido and arousal support. 8-count ODT.'
+  },
+  sild_tadal_oxy: {
+    type:'sexual_health', name:'Sildenafil + Tadalafil + Oxytocin ODT', emoji:'⚡', priceCents:12900, plans:[{key:'monthly',label:'Monthly',priceCents:12900}],
+    desc:'Triple-action ODT for sexual performance.'
+  }
+};
+
+// ── SCREENING TEMPLATES PER VERTICAL ──────────────────────────────────
+var SCREENING = {
+  wellness: {
+    sub:"Your safety is our priority. Tell us if any of the following apply to you.",
+    items:[
+      {key:'pregnancy',label:'Currently pregnant, breastfeeding, or trying to conceive'},
+      {key:'cancer',label:'Active or recent cancer diagnosis',sub:'Includes hormone-sensitive cancers'},
+      {key:'liverkidney',label:'Severe liver or kidney disease'},
+      {key:'hormoneRx',label:'Currently taking hormone-related medications',sub:'HGH, steroids, hormone therapy'},
+      {key:'allergies',label:'Known allergy to peptide injections or any ingredient in this product'}
+    ]
+  },
+  sexual_health: {
+    sub:"These conditions matter for sexual health medications. Please be honest — your safety is our priority.",
+    items:[
+      {key:'nitrates',label:'Take nitrates (nitroglycerin, isosorbide)',sub:'Common for chest pain — taking these with ED medications can be dangerous',critical:true},
+      {key:'cardiac',label:'Heart attack, stroke, or serious heart issue in the past 6 months',critical:true},
+      {key:'hypertension',label:'Severe uncontrolled high blood pressure (over 170/100)'},
+      {key:'priapism',label:'History of priapism (erection lasting over 4 hours)'},
+      {key:'liver',label:'Severe liver or kidney disease'},
+      {key:'allergies',label:'Known allergy to sildenafil, tadalafil, vardenafil, or related medications'},
+      {key:'mood',label:'Severe mental health condition currently affecting daily life',sub:'Relevant for PT-141 / Bremelanotide'}
+    ]
+  },
+  protocol: {
+    sub:"A few quick questions before your provider reviews your case.",
+    items:[
+      {key:'pregnancy',label:'Currently pregnant or breastfeeding'},
+      {key:'liver',label:'Severe liver disease'},
+      {key:'bloodthinner',label:'Currently take warfarin or other blood-thinning medications'},
+      {key:'allergies',label:'Known allergy to ivermectin or mebendazole'}
+    ]
+  }
+};
+
+// ── STATE ─────────────────────────────────────────────────────────────
+var currentStep = 1;
+var totalSteps = 5;
+var state = {
+  productKey:null, planKey:null,
+  flaggedConditions:[],
+  details:{},
+  shipping:{},
+  consents:{terms:false,telehealth:false,compound:false,sms:false},
+  customerId:null
+};
+var stripe = null;
+var embeddedCheckout = null;
+
+// ── INIT ──────────────────────────────────────────────────────────────
+function init() {
+  // Populate day & year dropdowns
+  var dayEl = document.getElementById('dobDay');
+  for (var i = 1; i <= 31; i++) { var o = document.createElement('option'); o.value = i; o.textContent = i; dayEl.appendChild(o); }
+  var yearEl = document.getElementById('dobYear');
+  var thisYear = new Date().getFullYear();
+  for (var y = thisYear - 18; y >= thisYear - 90; y--) { var o2 = document.createElement('option'); o2.value = y; o2.textContent = y; yearEl.appendChild(o2); }
+
+  // Parse ?product= and optional ?plan=
+  var params = new URLSearchParams(window.location.search);
+  var prod = (params.get('product') || '').toLowerCase().trim();
+  var plan = (params.get('plan') || 'monthly').toLowerCase().trim();
+
+  // Handle alias for sildenafil — some marketing pages might pass "sildenafil"
+  if (prod === 'sildenafil') prod = 'sildenafil_gummy';
+  if (prod === 'bremelanotide' || prod === 'pt-141') prod = 'pt141';
+
+  if (!CATALOG[prod]) {
+    // Default to Sermorelin if unknown (cleanest fallback that still works)
+    prod = 'sermorelin';
+  }
+  state.productKey = prod;
+
+  // Validate plan
+  var product = CATALOG[prod];
+  var planExists = product.plans.some(function(p){return p.key === plan});
+  state.planKey = planExists ? plan : product.plans[0].key;
+
+  renderProduct();
+  renderScreening();
+  attachListeners();
+}
+
+// ── PRODUCT RENDERING ──────────────────────────────────────────────────
+function renderProduct() {
+  var p = CATALOG[state.productKey];
+  document.getElementById('productThumb').textContent = p.emoji;
+  document.getElementById('productName').textContent = p.name;
+  document.getElementById('productDesc').textContent = p.desc;
+  var planObj = p.plans.find(function(x){return x.key === state.planKey}) || p.plans[0];
+  document.getElementById('productPrice').textContent = '$' + (planObj.priceCents / 100).toFixed(0);
+  document.getElementById('productPeriod').textContent = planObj.key === 'monthly' ? '/month' : ' one-time';
+
+  // Render plan toggle if multiple plans
+  var planEl = document.getElementById('planOptions');
+  if (p.plans.length > 1) {
+    planEl.style.display = 'grid';
+    planEl.innerHTML = p.plans.map(function(pl) {
+      var sel = pl.key === state.planKey ? 'selected' : '';
+      var save = pl.save ? '<div class="plan-save">'+pl.save+'</div>' : '';
+      return '<div class="plan-option '+sel+'" data-plan="'+pl.key+'"><div class="plan-name">'+pl.label+'</div><div class="plan-price">$'+(pl.priceCents/100).toFixed(0)+'</div>'+save+'</div>';
+    }).join('');
+    planEl.querySelectorAll('.plan-option').forEach(function(el) {
+      el.addEventListener('click', function() {
+        state.planKey = el.dataset.plan;
+        renderProduct();
+      });
+    });
+  } else {
+    planEl.style.display = 'none';
+  }
+}
+
+// ── SCREENING RENDERING ────────────────────────────────────────────────
+function renderScreening() {
+  var p = CATALOG[state.productKey];
+  var template = SCREENING[p.type] || SCREENING.wellness;
+  document.getElementById('screeningSub').textContent = template.sub;
+  var list = document.getElementById('conditionList');
+  var html = template.items.map(function(item) {
+    var subTxt = item.sub ? '<small>'+item.sub+'</small>' : '';
+    return '<label class="condition" data-key="'+item.key+'" data-critical="'+(item.critical?'1':'0')+'"><span class="check-box"></span><span class="check-label">'+item.label+subTxt+'</span></label>';
+  }).join('');
+  html += '<label class="condition none-option" data-key="none"><span class="check-box"></span><span class="check-label">None of the above apply to me</span></label>';
+  list.innerHTML = html;
+
+  // Attach click handlers
+  list.querySelectorAll('.condition').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      e.preventDefault();
+      var key = el.dataset.key;
+      if (key === 'none') {
+        // Clear all others, toggle none
+        list.querySelectorAll('.condition').forEach(function(o){o.classList.remove('checked')});
+        el.classList.add('checked');
+        state.flaggedConditions = [];
+      } else {
+        // Uncheck none if any other is checked
+        list.querySelector('[data-key="none"]').classList.remove('checked');
+        el.classList.toggle('checked');
+        state.flaggedConditions = Array.from(list.querySelectorAll('.condition.checked:not([data-key="none"])')).map(function(c){return c.dataset.key});
+      }
+      var hasNone = list.querySelector('[data-key="none"].checked');
+      var hasFlag = state.flaggedConditions.length > 0;
+      document.getElementById('btnStep2Next').disabled = !(hasNone || hasFlag);
+      var warningBox = document.getElementById('warningBox');
+      var hasCritical = Array.from(list.querySelectorAll('.condition.checked')).some(function(c){return c.dataset.critical === '1'});
+      if (hasCritical) {
+        warningBox.classList.add('show');
+        document.getElementById('warningText').textContent = "One of your responses indicates a contraindication. Your provider will review carefully and may not approve this medication. You can continue — we'll let you know if there's an issue before charging you.";
+      } else if (hasFlag) {
+        warningBox.classList.add('show');
+        document.getElementById('warningText').textContent = "Based on your response, a licensed provider will review your case carefully. You can continue — your provider will follow up if any concerns arise.";
+      } else {
+        warningBox.classList.remove('show');
+      }
+    });
+  });
+}
+
+// ── VALIDATION & LISTENERS ─────────────────────────────────────────────
+function attachListeners() {
+  // Phone formatter
+  document.getElementById('phone').addEventListener('input', function(e) {
+    var x = e.target.value.replace(/\D/g, '').substring(0, 10);
+    var f = '';
+    if (x.length > 0) f = '(' + x.substring(0, 3);
+    if (x.length >= 3) f += ') ' + x.substring(3, 6);
+    if (x.length >= 6) f += '-' + x.substring(6, 10);
+    e.target.value = f;
+    validateStep3();
+  });
+
+  // Step 3 inputs
+  ['firstName','lastName','email','sex','dobMonth','dobDay','dobYear'].forEach(function(id) {
+    var el = document.getElementById(id);
+    el.addEventListener('input', validateStep3);
+    el.addEventListener('change', validateStep3);
+    el.addEventListener('blur', validateStep3);
+  });
+  // Email validation
+  document.getElementById('email').addEventListener('blur', function() {
+    var v = this.value.trim();
+    var ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    this.classList.toggle('err', !ok && v.length > 3);
+    document.getElementById('errEmail').classList.toggle('vis', !ok && v.length > 3);
+  });
+
+  // Step 4 inputs
+  ['address','city','state','zip'].forEach(function(id) {
+    var el = document.getElementById(id);
+    el.addEventListener('input', validateStep4);
+    el.addEventListener('change', validateStep4);
+  });
+  // Zip numeric-only
+  document.getElementById('zip').addEventListener('input', function(e) {
+    e.target.value = e.target.value.replace(/\D/g, '').substring(0, 5);
+    validateStep4();
+  });
+
+  // Consents
+  document.querySelectorAll('.consent-item').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      e.preventDefault();
+      el.classList.toggle('checked');
+      state.consents[el.dataset.consent] = el.classList.contains('checked');
+      validateConsents();
+    });
+  });
+}
+
+function validateStep3() {
+  var fn = document.getElementById('firstName').value.trim().length >= 2;
+  var ln = document.getElementById('lastName').value.trim().length >= 2;
+  var email = document.getElementById('email').value.trim();
+  var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  var phone = document.getElementById('phone').value.replace(/\D/g, '').length === 10;
+  var sex = document.getElementById('sex').value;
+  var dob = document.getElementById('dobMonth').value && document.getElementById('dobDay').value && document.getElementById('dobYear').value;
+  document.getElementById('btnStep3Next').disabled = !(fn && ln && emailOk && phone && sex && dob);
+}
+
+function validateStep4() {
+  var addr = document.getElementById('address').value.trim().length >= 5;
+  var city = document.getElementById('city').value.trim().length >= 2;
+  var state2 = document.getElementById('state').value;
+  var zip = document.getElementById('zip').value.length === 5;
+  // Block excluded states (AK/MS/LA/PR already not in dropdown but defensive)
+  var excluded = ['AK','MS','LA','PR'].indexOf(state2) >= 0;
+  document.getElementById('btnStep4Next').disabled = !(addr && city && state2 && zip && !excluded);
+}
+
+function validateConsents() {
+  var allOk = state.consents.terms && state.consents.telehealth && state.consents.compound;
+  // SMS is optional
+  document.getElementById('btnCheckout').disabled = !allOk;
+}
+
+// ── STEP TRANSITIONS ───────────────────────────────────────────────────
+function goToStep(n) {
+  document.querySelectorAll('.step').forEach(function(s){s.classList.remove('active')});
+  document.getElementById('step' + n).classList.add('active');
+  currentStep = n;
+  document.getElementById('progressFill').style.width = (n / totalSteps * 100) + '%';
+  var labels = ['','Confirm your treatment','Health screening','Your details','Shipping address','Review & checkout'];
+  document.getElementById('progressLabel').textContent = 'Step ' + n + ' of ' + totalSteps + ' — ' + labels[n];
+  window.scrollTo({top:0, behavior:'smooth'});
+  if (n === 5) populateReview();
+}
+
+function onStep2Continue() {
+  goToStep(3);
+}
+
+function onStep3Continue() {
+  state.details = {
+    firstName: document.getElementById('firstName').value.trim(),
+    lastName: document.getElementById('lastName').value.trim(),
+    email: document.getElementById('email').value.trim(),
+    phone: document.getElementById('phone').value.trim(),
+    sex: document.getElementById('sex').value,
+    dobMonth: document.getElementById('dobMonth').value,
+    dobDay: document.getElementById('dobDay').value,
+    dobYear: document.getElementById('dobYear').value
+  };
+  goToStep(4);
+}
+
+function onStep4Continue() {
+  state.shipping = {
+    address: document.getElementById('address').value.trim(),
+    apt: document.getElementById('apt').value.trim(),
+    city: document.getElementById('city').value.trim(),
+    state: document.getElementById('state').value,
+    zip: document.getElementById('zip').value.trim(),
+    currentMeds: document.getElementById('currentMeds').value.trim(),
+    drugAllergies: document.getElementById('drugAllergies').value.trim()
+  };
+  goToStep(5);
+}
+
+function populateReview() {
+  var p = CATALOG[state.productKey];
+  var plan = p.plans.find(function(x){return x.key === state.planKey}) || p.plans[0];
+  document.getElementById('reviewProduct').textContent = p.name;
+  document.getElementById('reviewPlan').textContent = plan.label + (plan.key === 'monthly' ? ' subscription' : ' (one-time)');
+  document.getElementById('reviewTotal').textContent = '$' + (plan.priceCents / 100).toFixed(0) + (plan.key === 'monthly' ? '/mo' : '');
+  document.getElementById('reviewName').textContent = state.details.firstName + ' ' + state.details.lastName;
+  document.getElementById('reviewEmail').textContent = state.details.email;
+  document.getElementById('reviewPhone').textContent = state.details.phone;
+  document.getElementById('reviewShip').textContent = state.shipping.address + (state.shipping.apt ? ', ' + state.shipping.apt : '') + ', ' + state.shipping.city + ', ' + state.shipping.state + ' ' + state.shipping.zip;
+}
+
+// ── CHECKOUT ──────────────────────────────────────────────────────────
+function initCheckout() {
+  var btn = document.getElementById('btnCheckout');
+  btn.disabled = true;
+  btn.innerHTML = 'Preparing checkout…';
+
+  // ── 1) Ensure Stripe ready ──
+  var stripePromise;
+  if (stripe) {
+    stripePromise = Promise.resolve(stripe);
+  } else {
+    stripePromise = fetch(API + '/api/config').then(function(r){return r.json()}).then(function(c) {
+      if (!c.publishableKey) throw new Error('Payment system unavailable');
+      stripe = Stripe(c.publishableKey);
+      return stripe;
+    });
+  }
+
+  stripePromise.then(function() {
+    // ── 2) POST /api/intake to save customer ──
+    var visitor_id = localStorage.getItem('clyr_vid') || null;
+    var params = new URLSearchParams(window.location.search);
+    var payload = {
+      firstName: state.details.firstName,
+      lastName: state.details.lastName,
+      email: state.details.email,
+      phone: state.details.phone,
+      dobMonth: state.details.dobMonth,
+      dobDay: state.details.dobDay,
+      dobYear: state.details.dobYear,
+      sex: state.details.sex,
+      treatment: state.productKey,
+      plan: state.planKey,
+      screeningClear: state.flaggedConditions.length === 0,
+      flaggedConditions: state.flaggedConditions,
+      consents: Object.keys(state.consents).map(function(k){return {text:k,accepted:state.consents[k],timestamp:new Date().toISOString()}}),
+      address: state.shipping.address,
+      apt: state.shipping.apt,
+      city: state.shipping.city,
+      state: state.shipping.state,
+      zip: state.shipping.zip,
+      currentMedications: state.shipping.currentMeds,
+      drugAllergies: state.shipping.drugAllergies,
+      visitor_id: visitor_id,
+      utm_source: params.get('utm_source'),
+      utm_medium: params.get('utm_medium'),
+      utm_campaign: params.get('utm_campaign')
+    };
+
+    return fetch(API + '/api/intake', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(payload)
+    }).then(function(r){
+      if (!r.ok) return r.json().then(function(d){throw new Error(d.error || 'Server error '+r.status)});
+      return r.json();
+    }).then(function(intakeResult) {
+      state.customerId = intakeResult.customerId;
+      // ── 3) Create Stripe checkout session ──
+      return fetch(API + '/api/checkout', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          email: state.details.email,
+          productType: state.productKey,
+          planType: state.planKey,
+          firstName: state.details.firstName,
+          lastName: state.details.lastName
+        })
+      });
+    }).then(function(r){
+      if (!r.ok) return r.json().then(function(d){throw new Error(d.error || 'Checkout error '+r.status)});
+      return r.json();
+    }).then(function(checkoutResult) {
+      if (!checkoutResult.clientSecret) throw new Error('Unable to create payment session');
+      // ── 4) Mount embedded checkout ──
+      document.getElementById('checkoutPanel').style.display = 'block';
+      document.getElementById('step5Btns').style.display = 'none';
+      if (embeddedCheckout) {
+        try { embeddedCheckout.destroy(); } catch(e) {}
+        embeddedCheckout = null;
+      }
+      return stripe.initEmbeddedCheckout({clientSecret: checkoutResult.clientSecret});
+    }).then(function(checkout) {
+      embeddedCheckout = checkout;
+      checkout.mount('#checkout-mount');
+    });
+  }).catch(function(err) {
+    console.error('[CLYR Checkout]', err);
+    var mount = document.getElementById('checkout-mount');
+    if (mount) {
+      mount.innerHTML = '<div style="text-align:center;padding:32px 20px;color:var(--gray-600)"><p style="font-size:15px;color:var(--red);margin-bottom:8px;font-weight:600">Unable to load payment form</p><p style="font-size:13px;color:var(--gray-500);margin-bottom:16px">'+(err.message || 'Please try again.')+'</p><button onclick="location.reload()" style="padding:10px 24px;background:var(--teal);color:#fff;border:none;border-radius:100px;cursor:pointer;font-size:14px;font-weight:600">Try again</button></div>';
+    }
+    btn.disabled = false;
+    btn.innerHTML = 'Continue to payment →';
+  });
+}
+
+// Boot
+init();
+</script>
+</body>
+</html>
