@@ -2147,6 +2147,16 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
     input.addEventListener('change', validateStep);
   });
 
+  // PREFILL TREATMENT FROM ?product= URL PARAM
+  // Lets flagship pages (tirzepatide.html, semaglutide.html) deep-link straight into intake with selection made.
+  try {
+    var preProduct = new URLSearchParams(window.location.search).get('product');
+    if (preProduct === 'tirzepatide' || preProduct === 'semaglutide') {
+      var card = document.querySelector('.treatment-card[data-treatment="' + preProduct + '"]');
+      if (card) selectTreatment(card, preProduct);
+    }
+  } catch(e) { /* no-op: param is optional */ }
+
   updateUI();
 
 
