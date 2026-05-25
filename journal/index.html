@@ -116,6 +116,8 @@ body{font-family:var(--sans);color:var(--dark);background:var(--white);overflow-
 .article-card[data-img="pennsylvania"] .article-card-img::before{background:linear-gradient(135deg,#e2e7eb 0%,#d0d8e0 100%)}
 .article-card[data-img="research"] .article-card-img::before{background:linear-gradient(135deg,#1a2a3f 0%,#0d1b2e 100%)}
 .article-card[data-img="longevity"] .article-card-img::before{background:linear-gradient(135deg,#f0fafb 0%,#e8f4f8 100%)}
+.feature-card[data-img="peptides"] .feature-card-img::before{background:linear-gradient(135deg,#f0ede5 0%,#e3dcc8 100%)}
+.article-card[data-img="peptides"] .article-card-img::before{background:linear-gradient(135deg,#f0ede5 0%,#e3dcc8 100%)}
 .feature-card-img>.cover-svg,.article-card-img>.cover-svg{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1}
 .feature-card-img,.article-card-img{position:relative}
 .article-card-body{padding:20px;display:flex;flex-direction:column;flex:1}
@@ -236,11 +238,11 @@ body{font-family:var(--sans);color:var(--dark);background:var(--white);overflow-
 <div class="filter-strip">
   <div class="filter-inner">
     <span class="filter-label">Browse</span>
-    <button class="filter-btn is-active" data-filter="all">All<span class="count">12</span></button>
+    <button class="filter-btn is-active" data-filter="all">All<span class="count">14</span></button>
     <button class="filter-btn" data-filter="longevity">Longevity<span class="count">1</span></button>
     <button class="filter-btn" data-filter="metabolic">Metabolic Health<span class="count">3</span></button>
     <button class="filter-btn" data-filter="nad">NAD+<span class="count">2</span></button>
-    <button class="filter-btn" data-filter="peptides">Peptides<span class="count">0</span></button>
+    <button class="filter-btn" data-filter="peptides">Peptides<span class="count">2</span></button>
     <button class="filter-btn" data-filter="research">Research<span class="count">2</span></button>
     <button class="filter-btn" data-filter="cost">Cost &amp; Access<span class="count">4</span></button>
   </div>
@@ -666,6 +668,97 @@ body{font-family:var(--sans);color:var(--dark);background:var(--white);overflow-
         <h3 class="article-card-title">SELECT and the Cardiovascular Case for Semaglutide.</h3>
         <p class="article-card-dek">The 17,604-patient trial that changed how cardiologists think about GLP-1s.</p>
         <span class="article-card-meta">10 min read &middot; Mar 2026</span>
+      </div>
+    </a>
+    <a href="/journal/sermorelin-explained" class="article-card" data-img="peptides" data-category="peptides">
+      <div class="article-card-img"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <!-- GHRH peptide node (left) -->
+  <g transform="translate(85 165)">
+    <circle cx="0" cy="0" r="38" fill="#00B4C5" opacity="0.18" stroke="#00B4C5" stroke-width="2"/>
+    <text x="0" y="-3" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" font-weight="700" fill="#007a8b">GHRH</text>
+    <text x="0" y="14" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" font-weight="500" fill="#007a8b" opacity="0.85">(1-29)</text>
+    <text x="0" y="-58" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" font-weight="600" fill="#8a6e3c" letter-spacing="1.2" opacity="0.85">SERMORELIN</text>
+  </g>
+  <!-- Arrow 1 -->
+  <line x1="128" y1="165" x2="194" y2="165" stroke="#007a8b" stroke-width="2.5" stroke-linecap="round"/>
+  <polygon points="200,165 188,159 188,171" fill="#007a8b"/>
+  <text x="161" y="155" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" font-weight="600" fill="#007a8b" opacity="0.7" letter-spacing="0.8">binds</text>
+  <!-- Pituitary node (center, slightly oval) -->
+  <g transform="translate(240 165)">
+    <ellipse cx="0" cy="0" rx="48" ry="36" fill="#00B4C5" opacity="0.3" stroke="#00B4C5" stroke-width="2"/>
+    <circle cx="-18" cy="-6" r="3.5" fill="#007a8b"/>
+    <circle cx="6" cy="2" r="3.5" fill="#007a8b"/>
+    <circle cx="22" cy="-8" r="3.5" fill="#007a8b"/>
+    <circle cx="-6" cy="14" r="3" fill="#007a8b" opacity="0.7"/>
+    <text x="0" y="60" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" font-weight="700" fill="#8a6e3c" letter-spacing="1.4" opacity="0.85">PITUITARY</text>
+  </g>
+  <!-- Arrow 2 -->
+  <line x1="294" y1="165" x2="356" y2="165" stroke="#007a8b" stroke-width="2.5" stroke-linecap="round"/>
+  <polygon points="362,165 350,159 350,171" fill="#007a8b"/>
+  <text x="325" y="155" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" font-weight="600" fill="#007a8b" opacity="0.7" letter-spacing="0.8">releases</text>
+  <!-- GH endogenous (right) -->
+  <g transform="translate(400 165)">
+    <circle cx="0" cy="0" r="34" fill="#00B4C5"/>
+    <text x="0" y="4" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="14" font-weight="700" fill="#fff">GH</text>
+    <text x="0" y="-54" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" font-weight="600" fill="#8a6e3c" letter-spacing="1.2" opacity="0.85">ENDOGENOUS</text>
+  </g>
+  <!-- Subtle pulse rings around pituitary -->
+  <ellipse cx="240" cy="165" rx="60" ry="46" fill="none" stroke="#00B4C5" stroke-width="1" opacity="0.3" stroke-dasharray="3 4"/>
+  <ellipse cx="240" cy="165" rx="74" ry="58" fill="none" stroke="#00B4C5" stroke-width="0.8" opacity="0.18" stroke-dasharray="3 5"/>
+  <!-- Top label -->
+  <text x="240" y="50" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" font-weight="600" fill="#8a6e3c" letter-spacing="2.4" opacity="0.85">GHRH(1-29)  ANALOG  ·  SECRETAGOGUE  PATHWAY</text>
+  <!-- Bottom strapline -->
+  <text x="240" y="296" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" font-weight="500" fill="#8a6e3c" opacity="0.65" letter-spacing="1">stimulates the body to release its own growth hormone</text>
+</svg></div>
+      <div class="article-card-body">
+        <div class="article-card-cat">Peptides</div>
+        <h3 class="article-card-title">What Sermorelin Actually Does (And Doesn't Do).</h3>
+        <p class="article-card-dek">A primer on the GHRH(1-29) analog, why it works upstream of growth hormone, and what the evidence supports.</p>
+        <span class="article-card-meta">10 min read &middot; May 2026</span>
+      </div>
+    </a>
+    <a href="/journal/glutathione-master-antioxidant" class="article-card" data-img="peptides" data-category="peptides">
+      <div class="article-card-img"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <!-- Three amino acid nodes, linked -->
+  <!-- CYS (left) — with thiol (-SH) callout -->
+  <g transform="translate(115 175)">
+    <circle cx="0" cy="0" r="40" fill="#00B4C5" opacity="0.22" stroke="#00B4C5" stroke-width="2"/>
+    <text x="0" y="-2" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="14" font-weight="700" fill="#007a8b">CYS</text>
+    <text x="0" y="14" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" font-weight="600" fill="#007a8b" opacity="0.75">cysteine</text>
+    <!-- thiol stem -->
+    <line x1="0" y1="40" x2="0" y2="60" stroke="#00B4C5" stroke-width="2"/>
+    <circle cx="0" cy="68" r="9" fill="#00B4C5"/>
+    <text x="0" y="72" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" font-weight="700" fill="#fff">SH</text>
+    <text x="0" y="92" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" font-weight="600" fill="#007a8b" opacity="0.8" letter-spacing="1">active site</text>
+  </g>
+  <!-- Bond 1 -->
+  <line x1="155" y1="175" x2="200" y2="175" stroke="#007a8b" stroke-width="2"/>
+  <!-- GLU (center) -->
+  <g transform="translate(240 175)">
+    <circle cx="0" cy="0" r="38" fill="#00B4C5" opacity="0.22" stroke="#00B4C5" stroke-width="2"/>
+    <text x="0" y="-2" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" font-weight="700" fill="#007a8b">GLU</text>
+    <text x="0" y="14" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" font-weight="600" fill="#007a8b" opacity="0.75">glutamate</text>
+  </g>
+  <!-- Bond 2 -->
+  <line x1="280" y1="175" x2="325" y2="175" stroke="#007a8b" stroke-width="2"/>
+  <!-- GLY (right) -->
+  <g transform="translate(365 175)">
+    <circle cx="0" cy="0" r="38" fill="#00B4C5" opacity="0.22" stroke="#00B4C5" stroke-width="2"/>
+    <text x="0" y="-2" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" font-weight="700" fill="#007a8b">GLY</text>
+    <text x="0" y="14" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" font-weight="600" fill="#007a8b" opacity="0.75">glycine</text>
+  </g>
+  <!-- Wrapping "γ-glutamyl" peptide-bond arc -->
+  <path d="M 240 137 Q 240 110, 290 110 Q 365 110, 365 137" stroke="#00B4C5" stroke-width="1.5" fill="none" opacity="0.5" stroke-dasharray="3 4"/>
+  <text x="305" y="100" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" font-weight="600" fill="#007a8b" opacity="0.7" letter-spacing="0.6">γ-glutamyl bond</text>
+  <!-- Top label -->
+  <text x="240" y="50" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" font-weight="600" fill="#8a6e3c" letter-spacing="2.4" opacity="0.85">TRIPEPTIDE  ·  THE  MASTER  ANTIOXIDANT</text>
+  <text x="240" y="290" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" font-weight="500" fill="#8a6e3c" opacity="0.65" letter-spacing="1">cysteine + glutamate + glycine = glutathione (GSH)</text>
+</svg></div>
+      <div class="article-card-body">
+        <div class="article-card-cat">Peptides</div>
+        <h3 class="article-card-title">Glutathione: The Master Antioxidant, Explained.</h3>
+        <p class="article-card-dek">What the research shows about the body's most important detoxification molecule, why oral supplements fail, and how injection compares.</p>
+        <span class="article-card-meta">9 min read &middot; May 2026</span>
       </div>
     </a>
     <a href="/journal/glp1-side-effects-management" class="article-card" data-img="metabolic" data-category="metabolic">
