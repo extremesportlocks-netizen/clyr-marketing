@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SURMOUNT-5: The Trial That Compared Tirzepatide and Semaglutide Head-to-Head | CLYR Health</title>
+<meta name="description" content="The first large randomized trial directly comparing tirzepatide and semaglutide for obesity. What the numbers actually showed, where the gap came from, and what it means for the next generation of GLP-1 prescribing.">
+<meta property="og:title" content="SURMOUNT-5: The Trial That Compared Tirzepatide and Semaglutide Head-to-Head">
+<meta property="og:description" content="The first large randomized trial directly comparing tirzepatide and semaglutide for obesity. What the numbers actually showed, where the gap came from, and what it means for the next generation of GLP-1 prescribing.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.clyr.health/journal/surmount-5-deep-dive">
+<meta property="og:image" content="https://www.clyr.health/ogimageclyrfinal.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SURMOUNT-5: The Trial That Compared Tirzepatide and Semaglutide Head-to-Head">
+<meta name="twitter:description" content="The first large randomized trial directly comparing tirzepatide and semaglutide for obesity. What the numbers actually showed, where the gap came from, and what it means for the next generation of GLP-1 prescribing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<script>
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug getPageviewId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR',{api_host:'https://us.i.posthog.com',person_profiles:'identified_only',capture_pageview:true,capture_pageleave:true,autocapture:true});
+posthog.register({article_slug:'surmount-5-deep-dive',article_category:'research'});
+</script>
+<style>
+:root{--white:#FFF;--dark:#1A1A1A;--teal:#00B4C5;--teal-dark:#009BAA;--teal-light:#E0F7FA;--teal-glow:rgba(0,180,197,0.12);--gray-50:#F8FAFB;--gray-100:#F1F4F6;--gray-200:#E2E7EB;--gray-400:#94A3B0;--gray-500:#6B7C8A;--gray-600:#4A5568;--gray-700:#2D3748;--green:#10B981;--serif:'Instrument Serif',Georgia,serif;--sans:'DM Sans',-apple-system,sans-serif;--radius:16px;--radius-sm:10px;--shadow-md:0 4px 20px rgba(0,0,0,0.06);--shadow-teal:0 8px 30px rgba(0,180,197,0.2)}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:var(--sans);color:var(--dark);background:var(--white);overflow-x:hidden;line-height:1.6;min-height:100vh;min-height:100svh}
+
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid rgba(0,0,0,0.05);padding:0 40px}
+.nav-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:72px}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{font-size:15px;font-weight:500;color:var(--gray-600);text-decoration:none;transition:color 0.2s}
+.nav-links a:hover{color:var(--dark)}
+.nav-links a.active{color:var(--teal);font-weight:600}
+.nav-cta{background:var(--teal)!important;color:var(--white)!important;padding:10px 28px!important;border-radius:100px!important;font-weight:600!important;font-size:14px!important;transition:all 0.2s!important}
+.nav-cta:hover{background:var(--teal-dark)!important}
+.nav-portal{color:var(--teal)!important;font-weight:600!important}
+.mobile-menu-btn{display:none;background:none;border:none;cursor:pointer;padding:8px}
+.mobile-menu-btn span{display:block;width:22px;height:2px;background:var(--dark);margin:5px 0;border-radius:2px;transition:0.3s}
+
+.read-progress{position:fixed;top:0;left:0;height:3px;background:var(--teal);width:0%;z-index:101;transition:width 0.1s}
+
+.article-hero{padding:60px 40px 40px;background:linear-gradient(180deg,#f8fafb 0%,#fff 100%)}
+.article-hero-inner{max-width:760px;margin:0 auto}
+.breadcrumb{font-size:13px;color:var(--gray-400);margin-bottom:28px}
+.breadcrumb a{color:var(--gray-500);text-decoration:none;transition:color 0.2s}
+.breadcrumb a:hover{color:var(--teal)}
+.breadcrumb .sep{margin:0 8px;color:var(--gray-200)}
+.article-cat{display:inline-block;font-size:11px;font-weight:600;color:var(--teal);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:18px;padding:6px 14px;background:var(--teal-light);border-radius:100px}
+.article-title{font-size:clamp(34px,5vw,52px);font-weight:700;line-height:1.1;letter-spacing:-0.025em;margin-bottom:20px}
+.article-title .serif{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--teal)}
+.article-deck{font-size:20px;color:var(--gray-500);line-height:1.5;margin-bottom:32px;font-weight:400}
+.article-meta{display:flex;align-items:center;gap:20px;font-size:13px;color:var(--gray-400);padding-bottom:8px;flex-wrap:wrap}
+.article-meta-item{display:flex;align-items:center;gap:6px}
+.article-meta svg{color:var(--teal)}
+.article-meta-divider{width:1px;height:14px;background:var(--gray-200)}
+
+.article-img{max-width:1100px;margin:0 auto 60px;padding:0 40px}
+.article-img-inner{aspect-ratio:16/8;border-radius:var(--radius);position:relative;overflow:hidden}
+.article-img[data-img="metabolic"] .article-img-inner{background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 50%,#0d2a35 100%)}
+.article-img[data-img="cost"] .article-img-inner{background:linear-gradient(135deg,#f1f4f6 0%,#e2e7eb 100%)}
+.article-img[data-img="nad"] .article-img-inner{background:linear-gradient(135deg,#e8f4f8 0%,#d4eef2 50%,#c0e8ec 100%)}
+.article-img[data-img="research"] .article-img-inner{background:linear-gradient(135deg,#1a2a3f 0%,#0d1b2e 100%)}
+.article-img[data-img="longevity"] .article-img-inner{background:linear-gradient(135deg,#f0fafb 0%,#e8f4f8 100%)}
+.article-img[data-img="pennsylvania"] .article-img-inner{background:linear-gradient(135deg,#e2e7eb 0%,#d0d8e0 100%)}
+.article-img[data-img="florida"] .article-img-inner{background:linear-gradient(180deg,#E0F7FA 0%,#f1f4f6 100%)}
+.article-img[data-img="texas"] .article-img-inner{background:linear-gradient(135deg,#f1ede4 0%,#e0d8c8 100%)}
+.article-img-decoration{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0.4}
+.article-img[data-img="metabolic"] .article-img-decoration,.article-img[data-img="research"] .article-img-decoration{opacity:0.18}
+
+.article-body{max-width:680px;margin:0 auto;padding:0 40px 60px;font-size:18px;line-height:1.75;color:var(--gray-700)}
+.article-body p{margin-bottom:24px}
+.article-body p:first-of-type::first-letter{font-family:var(--serif);font-size:64px;line-height:1;float:left;color:var(--teal);padding:6px 12px 0 0;font-weight:400}
+.article-body h2{font-size:30px;font-weight:700;letter-spacing:-0.02em;margin:56px 0 20px;color:var(--dark);line-height:1.2}
+.article-body h3{font-size:22px;font-weight:700;margin:36px 0 14px;color:var(--dark);line-height:1.3}
+.article-body strong{color:var(--dark);font-weight:700}
+.article-body em{font-style:italic}
+.article-body ul,.article-body ol{margin:0 0 24px 0;padding-left:28px}
+.article-body li{margin-bottom:10px}
+.article-body a{color:var(--teal);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1.5px;font-weight:500}
+.article-body a:hover{color:var(--teal-dark)}
+.article-body blockquote{border-left:3px solid var(--teal);padding:8px 0 8px 24px;margin:36px 0;font-family:var(--serif);font-style:italic;font-size:24px;line-height:1.4;color:var(--gray-600)}
+.article-body hr{border:none;margin:48px auto;width:60px;height:1px;background:var(--gray-200);display:block;position:relative}
+.article-body hr::before{content:"•";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);color:var(--gray-400);background:white;padding:0 10px;font-size:14px}
+
+/* MID-ARTICLE FIGURE */
+.article-figure{max-width:760px;margin:48px auto;padding:0 40px}
+.article-figure-inner{aspect-ratio:16/9;border-radius:var(--radius);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:32px}
+.article-figure[data-style="light"] .article-figure-inner{background:linear-gradient(135deg,#f0fafb 0%,#e8f4f8 50%,#d4eef2 100%)}
+.article-figure[data-style="dark"] .article-figure-inner{background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)}
+.article-figure[data-style="teal"] .article-figure-inner{background:linear-gradient(135deg,#E0F7FA 0%,#B2EBF2 100%)}
+.article-figure[data-style="cost"] .article-figure-inner{background:linear-gradient(135deg,#f1f4f6 0%,#e2e7eb 100%)}
+.article-figure[data-style="warm"] .article-figure-inner{background:linear-gradient(135deg,#fef3e2 0%,#ffe0b2 50%,#E0F7FA 100%)}
+.article-figure-caption{font-size:13px;color:var(--gray-400);text-align:center;margin-top:14px;font-style:italic;font-family:var(--serif)}
+
+.inline-cta{max-width:680px;margin:48px auto;padding:32px 36px;background:linear-gradient(135deg,var(--teal) 0%,var(--teal-dark) 100%);color:white;border-radius:var(--radius);box-shadow:var(--shadow-teal)}
+.inline-cta h3{font-size:22px;font-weight:700;margin-bottom:8px;line-height:1.25;color:white}
+.inline-cta p{font-size:15px;line-height:1.55;margin-bottom:18px;opacity:0.95}
+.inline-cta a{display:inline-flex;align-items:center;gap:8px;background:white;color:var(--teal-dark);padding:12px 22px;border-radius:100px;font-weight:600;font-size:14px;text-decoration:none;transition:all 0.2s}
+.inline-cta a:hover{transform:translateX(2px)}
+
+.article-sources{max-width:680px;margin:48px auto 0;padding:32px 40px 0;border-top:1px solid var(--gray-200)}
+.article-sources h3{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--gray-400);margin-bottom:18px}
+.article-sources ol{padding-left:20px;font-size:14px;color:var(--gray-500);line-height:1.6}
+.article-sources li{margin-bottom:10px}
+
+.article-related{max-width:1280px;margin:0 auto;padding:80px 40px 60px;border-top:1px solid var(--gray-100)}
+.related-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:32px}
+.related-title{font-size:22px;font-weight:700;letter-spacing:-0.01em}
+.related-title .serif{font-family:var(--serif);font-style:italic;font-weight:400}
+.related-back{font-size:14px;color:var(--teal);text-decoration:none;font-weight:600}
+.related-back:hover{color:var(--teal-dark)}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.related-card{text-decoration:none;color:inherit;display:flex;flex-direction:column;background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);overflow:hidden;transition:all 0.3s}
+.related-card:hover{border-color:var(--teal);box-shadow:var(--shadow-md);transform:translateY(-4px)}
+.related-card-img{aspect-ratio:16/11;position:relative;overflow:hidden}
+.related-card-img::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,#f0fafb 0%,#e8f4f8 100%)}
+.related-card[data-img="metabolic"] .related-card-img::before{background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)}
+.related-card[data-img="cost"] .related-card-img::before{background:linear-gradient(135deg,#f1f4f6 0%,#e2e7eb 100%)}
+.related-card[data-img="research"] .related-card-img::before{background:linear-gradient(135deg,#1a2a3f 0%,#0d1b2e 100%)}
+.related-card[data-img="nad"] .related-card-img::before{background:linear-gradient(135deg,#e8f4f8 0%,#d4eef2 100%)}
+.related-card[data-img="pennsylvania"] .related-card-img::before{background:linear-gradient(135deg,#e2e7eb 0%,#d0d8e0 100%)}
+.related-card[data-img="florida"] .related-card-img::before{background:linear-gradient(180deg,#E0F7FA 0%,#f1f4f6 100%)}
+.related-card[data-img="texas"] .related-card-img::before{background:linear-gradient(135deg,#f1ede4 0%,#e0d8c8 100%)}
+.related-card[data-img="longevity"] .related-card-img::before{background:linear-gradient(135deg,#f0fafb 0%,#e8f4f8 100%)}
+.related-card-body{padding:20px;display:flex;flex-direction:column;flex:1}
+.related-card-cat{font-size:11px;font-weight:600;color:var(--teal);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px}
+.related-card-title{font-size:17px;font-weight:700;line-height:1.3;margin-bottom:8px;transition:color 0.2s}
+.related-card:hover .related-card-title{color:var(--teal)}
+.related-card-meta{margin-top:auto;font-size:12px;color:var(--gray-400);padding-top:10px}
+
+.footer{background:var(--dark);color:rgba(255,255,255,0.5);padding:48px 40px 24px;font-size:13px}
+.footer-inner{max-width:1280px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:36px}
+.footer-brand p{margin-top:12px;line-height:1.6;max-width:280px}
+.footer-col h4{color:white;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:14px}
+.footer-col a{display:block;color:rgba(255,255,255,0.5);text-decoration:none;margin-bottom:8px;font-size:13px;transition:color 0.2s}
+.footer-col a:hover{color:var(--teal)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-disclaimer{max-width:1280px;margin:24px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,0.05);font-size:11px;line-height:1.7;color:rgba(255,255,255,0.3)}
+
+@media(max-width:1024px){.related-grid{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){
+  .nav{padding:0 20px}
+  .article-hero{padding:40px 20px 30px}
+  .article-img{padding:0 20px}
+  .article-img-inner{aspect-ratio:16/10}
+  .article-body{padding:0 20px 40px;font-size:17px;line-height:1.7}
+  .article-body h2{font-size:26px;margin:40px 0 16px}
+  .article-body h3{font-size:19px}
+  .article-body blockquote{font-size:20px;padding-left:18px}
+  .article-body p:first-of-type::first-letter{font-size:52px}
+  .article-figure{padding:0 20px;margin:36px auto}
+  .article-figure-inner{aspect-ratio:16/10;padding:24px}
+  .inline-cta{padding:26px 24px;margin:36px 20px}
+  .article-sources{padding:32px 20px 0}
+  .article-related{padding:60px 20px 40px}
+  .related-grid{grid-template-columns:1fr}
+  .footer{padding:36px 20px 16px}
+  .footer-grid{grid-template-columns:1fr;gap:24px}
+  .nav-links{display:none}
+  .mobile-menu-btn{display:block}
+  .nav.mobile-open .nav-links{display:flex;flex-direction:column;position:absolute;top:72px;left:0;right:0;background:white;padding:20px;border-bottom:1px solid var(--gray-200);gap:16px;box-shadow:var(--shadow-md)}
+}
+</style>
+</head>
+<body>
+
+<div class="read-progress" id="readProgress"></div>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="/"><svg viewBox="0 0 120 32" fill="none" height="32"><text x="0" y="26" font-family="DM Sans,sans-serif" font-weight="700" font-size="28" letter-spacing="-1"><tspan fill="#1A1A1A">CLY</tspan><tspan fill="#00B4C5">R</tspan></text></svg></a>
+    <div class="nav-links">
+      <a href="/weight-loss.html">Weight Loss</a>
+      <a href="/wellness.html">All Treatments</a>
+      <a href="/journal/" class="active">Journal</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/portal/" class="nav-portal">Patient Portal</a>
+      <a href="/intake.html" class="nav-cta">Get Started</a>
+    </div>
+    <button class="mobile-menu-btn" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('mobile-open')"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="article-hero">
+  <div class="article-hero-inner">
+    <div class="breadcrumb"><a href="/">CLYR</a><span class="sep">/</span><a href="/journal/">Journal</a><span class="sep">/</span>Research</div>
+    <div class="article-cat">Research</div>
+    <h1 class="article-title">SURMOUNT-5: <span class="serif">a head-to-head trial, decoded.</span></h1>
+    <p class="article-deck">The first large randomized trial directly comparing tirzepatide and semaglutide for obesity. What the numbers actually showed, where the gap came from, and what it means for the next generation of GLP-1 prescribing.</p>
+    <div class="article-meta">
+      <div class="article-meta-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>15 min read</div>
+      <div class="article-meta-divider"></div>
+      <div class="article-meta-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Published May 21, 2026</div>
+      <div class="article-meta-divider"></div>
+      <div class="article-meta-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>CLYR Editorial</div>
+    </div>
+  </div>
+</section>
+
+<div class="article-img" data-img="research">
+  <div class="article-img-inner">
+    <div class="article-img-decoration"><svg width="380" height="180" viewBox="0 0 380 180" fill="none">
+<path d="M40 60 L80 75 L120 95 L160 110 L200 122 L240 130 L280 138 L320 142 L340 144" stroke="#00B4C5" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.85"/>
+<path d="M40 60 L80 72 L120 85 L160 98 L200 108 L240 116 L280 122 L320 126 L340 128" stroke="#94A3B0" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.7"/>
+<circle cx="340" cy="144" r="4" fill="#00B4C5"/>
+<circle cx="340" cy="128" r="4" fill="#94A3B0" opacity="0.8"/>
+<text x="356" y="148" font-family="DM Sans" font-size="9" font-weight="700" fill="#00B4C5">TZP</text>
+<text x="356" y="132" font-family="DM Sans" font-size="9" font-weight="700" fill="#94A3B0">SEMA</text>
+<line x1="40" y1="60" x2="340" y2="60" stroke="#E2E7EB" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="40" y="50" font-family="DM Sans" font-size="9" fill="#94A3B0" font-weight="600">Week 0</text>
+<text x="320" y="50" font-family="DM Sans" font-size="9" fill="#94A3B0" font-weight="600">Week 72</text>
+</svg></div>
+  </div>
+</div>
+
+<article class="article-body">
+<p>SURMOUNT-5 was the first large randomized trial to compare tirzepatide and semaglutide head-to-head for obesity in adults without diabetes. Published in the New England Journal of Medicine in May 2025, it confirmed what indirect trial comparisons had been hinting at since 2022: tirzepatide produces more weight loss than semaglutide at the doses and durations studied. The headline number was 20.2 percent versus 13.7 percent over 72 weeks. Underneath the headline, the trial design and the subgroup data tell a more interesting story than the top-line difference alone.</p>
+
+<p>This piece walks through how SURMOUNT-5 was designed, what it found, what's been said about the result, and what it does and doesn't mean for clinical decisions.</p>
+
+<h2>The trial in 30 seconds</h2>
+
+<p>Eli Lilly enrolled 751 adults with obesity (BMI 30 or higher, or BMI 27 or higher with at least one weight-related complication) and no diabetes. Participants were randomized 1:1 to once-weekly tirzepatide titrated to the maximum tolerated dose (up to 15 mg) or once-weekly semaglutide titrated to 2.4 mg. Both arms followed the standard escalation schedule for their respective products. The primary endpoint was percent change in body weight from baseline at week 72. The trial was open-label (different injection devices made blinding impractical) but the primary outcome assessment was independent.</p>
+
+<p>This was a real head-to-head. Most prior comparisons relied on cross-trial inference, which is methodologically fragile because the populations enrolled in SURMOUNT-1 (tirzepatide) and STEP-1 (semaglutide) differed in baseline weight, age distribution, and other characteristics. SURMOUNT-5 took the same population, randomized within it, and let the doses run.</p>
+
+<h2>What the primary outcome showed</h2>
+
+<p>At 72 weeks, the tirzepatide arm averaged a 20.2 percent reduction in body weight from baseline. The semaglutide arm averaged 13.7 percent. The 6.5 percentage point absolute difference (95% confidence interval 5.1 to 7.8) represents a 47 percent greater relative weight loss with tirzepatide. The p-value for superiority was less than 0.001, meaning the result is statistically robust at any reasonable threshold.</p>
+
+<p>To translate the percentages: a 220-pound person at baseline lost an average of 44 pounds on tirzepatide and 30 pounds on semaglutide over 72 weeks. The tirzepatide arm contained more high-responders (patients losing 20 percent or more of body weight): 65 percent versus 32 percent. The semaglutide arm contained more low-responders (patients losing less than 5 percent): 13 percent versus 4 percent.</p>
+
+<h2>What's actually different about tirzepatide</h2>
+
+<p>Semaglutide is a GLP-1 receptor agonist. Tirzepatide is a dual agonist; it activates both GLP-1 receptors and GIP (glucose-dependent insulinotropic polypeptide) receptors. GIP was historically considered a less interesting target for obesity because GIP-receptor activation alone doesn't suppress appetite. The mechanism by which combined GLP-1 and GIP agonism produces more weight loss than GLP-1 alone is still being worked out, but several lines of evidence point in similar directions.</p>
+
+<h3>Stronger appetite suppression at tolerated doses</h3>
+
+<p>Phase 1 and phase 2 PK and food-intake studies suggest tirzepatide reduces caloric intake more than semaglutide at the doses studied. The mechanism may involve direct GIP receptor effects on the hypothalamus or indirect effects through enhanced GLP-1 signaling.</p>
+
+<h3>Mitigation of GLP-1 side effects</h3>
+
+<p>One of the more interesting hypotheses is the GIP buffering theory: GIP receptor activation may attenuate the nausea and GI side effects of strong GLP-1 stimulation, allowing patients to tolerate higher effective levels of appetite suppression. SURMOUNT-5 data supports this in a soft way; tirzepatide patients reported slightly less severe nausea overall, and discontinuation rates due to GI side effects were marginally lower.</p>
+
+<h3>Effects on energy expenditure</h3>
+
+<p>Preclinical data suggests tirzepatide may modestly increase resting energy expenditure in a way that semaglutide does not. The clinical relevance of this is debated, but it would help explain why the weight-loss gap widens over time rather than narrowing.</p>
+
+<h2>Secondary endpoints and subgroup data</h2>
+
+<h3>Cardiometabolic markers</h3>
+
+<p>Both arms improved cardiometabolic markers significantly versus baseline, with tirzepatide producing larger improvements consistent with its greater weight loss. Systolic blood pressure dropped more in the tirzepatide arm (mean reduction approximately 8 mmHg versus 6 mmHg). Triglycerides fell more (approximately 25 percent versus 17 percent). HbA1c reductions were similar in patients with elevated baseline values, though the trial excluded patients with diabetes.</p>
+
+<h3>Waist circumference</h3>
+
+<p>Waist circumference reduction tracked the percent body weight loss closely. Tirzepatide reduced mean waist circumference by approximately 18 cm; semaglutide by approximately 13 cm. Waist circumference is a relevant secondary measure because it correlates with visceral fat, the metabolically active fat depot most strongly associated with cardiovascular risk.</p>
+
+<h3>Body composition</h3>
+
+<p>The fat-to-lean ratio of the weight lost was similar in both arms. Roughly 83 to 85 percent of the weight lost was fat mass in both groups, with the remainder distributed across lean mass and water. The trial did not include DEXA scans for the full cohort, but the substudy that did include them suggested neither agent caused disproportionate lean mass loss compared to caloric restriction alone.</p>
+
+<h3>Quality-of-life outcomes</h3>
+
+<p>Patient-reported physical functioning scores improved more in the tirzepatide arm, consistent with the greater weight loss. Self-reported energy and mood scores improved comparably in both arms.</p>
+
+<h2>Side effects: what was actually different</h2>
+
+<p>Gastrointestinal adverse events were the dominant tolerability issue in both arms, as expected for the GLP-1 class. Nausea, vomiting, diarrhea, and constipation occurred at rates broadly consistent with prior phase 3 trials of each drug individually.</p>
+
+<p>The notable differences:</p>
+
+<ul>
+<li><strong>Nausea:</strong> 44 percent of tirzepatide patients reported nausea at least once during the trial, versus 50 percent of semaglutide patients. Most events were mild to moderate and most resolved within weeks of dose escalation.</li>
+<li><strong>Vomiting:</strong> 22 percent on tirzepatide versus 27 percent on semaglutide.</li>
+<li><strong>Constipation:</strong> 18 percent on tirzepatide versus 15 percent on semaglutide; the only category where tirzepatide showed slightly worse numbers.</li>
+<li><strong>Discontinuation due to adverse events:</strong> 5.8 percent on tirzepatide, 7.7 percent on semaglutide.</li>
+<li><strong>Serious adverse events:</strong> Low and similar in both arms, with no new safety signals for either drug.</li>
+</ul>
+
+<p>The trial was not powered to detect rare events like pancreatitis, medullary thyroid carcinoma, or gallbladder events. Those signals continue to be tracked through post-marketing surveillance for both medications.</p>
+
+<h2>Limitations of SURMOUNT-5</h2>
+
+<p>A few caveats worth holding onto.</p>
+
+<h3>Diabetes was excluded</h3>
+
+<p>The trial deliberately excluded patients with Type 2 diabetes. This was a clean design decision (it isolates the weight-loss comparison from the glycemic-control comparison) but it means the result doesn't directly inform the choice between Mounjaro and Ozempic in patients with diabetes. The SURPASS program addresses that comparison for diabetes care.</p>
+
+<h3>Open-label design</h3>
+
+<p>Different injection devices made placebo-blinding impractical. The trial used blinded outcome assessment, which mitigates but doesn't eliminate the risk of expectation effects on subjective endpoints (especially patient-reported quality-of-life outcomes). The primary endpoint (body weight) was objectively measured.</p>
+
+<h3>72 weeks is not lifetime</h3>
+
+<p>Weight loss trajectories tend to plateau on GLP-1 therapy. SURMOUNT-5 captured the dynamic period of weight loss but not the long-term maintenance phase. Whether the gap between tirzepatide and semaglutide widens, narrows, or stabilizes over 3 to 5 years of treatment is unknown from this trial. The extension data, when it publishes, will be informative.</p>
+
+<h3>Maximum-tolerated-dose protocol</h3>
+
+<p>Tirzepatide was titrated to maximum tolerated dose (up to 15 mg); semaglutide was titrated to its standard target dose of 2.4 mg. This was intentional (it reflects real-world prescribing) but it does mean the comparison is somewhat between the upper bound of one regimen and the standard target of the other. Whether 2.4 mg semaglutide can be safely pushed higher to close the gap is an open question; the prior STEP HFpEF and other trials suggest doses above 2.4 mg are not standard in obesity care.</p>
+
+<h2>How this changes prescribing</h2>
+
+<p>SURMOUNT-5 does not make tirzepatide the universally correct choice. It shifts the prior in tirzepatide's favor for the specific population studied (adults with obesity, no diabetes, no contraindications to either agent), but several factors continue to matter.</p>
+
+<ul>
+<li><strong>Availability and cost:</strong> The post-shortage compounding landscape (semaglutide shortage resolved February 2025, tirzepatide shortage resolved December 2024) and the manufacturer direct programs have produced different price points for the two molecules at different times. Patients should compare current pricing rather than assume the more effective drug is always more accessible.</li>
+<li><strong>Side effect profile:</strong> Some patients tolerate semaglutide better than tirzepatide and vice versa. The aggregate numbers in SURMOUNT-5 don't tell you which group a given individual will be in.</li>
+<li><strong>Cardiovascular indication:</strong> Semaglutide 2.4 mg has FDA approval for MACE reduction in adults with overweight or obesity and established CVD, based on SELECT. Tirzepatide does not yet have an FDA-approved CV indication, though SURPASS-CVOT is in progress for the diabetes formulation. For patients with documented ASCVD, the indication-level evidence still favors semaglutide.</li>
+<li><strong>Once-weekly compliance:</strong> Both agents are weekly subcutaneous injections, so compliance considerations are largely similar.</li>
+</ul>
+
+<h2>Frequently asked questions</h2>
+
+<p><strong>Does SURMOUNT-5 prove tirzepatide is "better" than semaglutide?</strong> It proves tirzepatide produces more weight loss in adults with obesity and no diabetes over 72 weeks at the doses studied. "Better" depends on what's being optimized. For weight loss, yes. For cardiovascular event prevention with proven outcome data, semaglutide currently leads. For minimizing GI side effects, tirzepatide is marginally better in the trial-level data. For cost, it depends on the specific time and pharmacy.</p>
+
+<p><strong>If I'm currently on semaglutide and tolerating it well, should I switch to tirzepatide?</strong> Not automatically. A 6.5 percentage point absolute weight loss difference at the group level is meaningful, but individual responders vary widely. If you're losing weight at a rate consistent with your goal and tolerating semaglutide well, there's no urgent reason to switch. If your weight loss has plateaued below your target, the SURMOUNT-5 data is a reasonable basis for a conversation with your prescriber about switching to tirzepatide.</p>
+
+<p><strong>Will compounded tirzepatide produce the same results as branded Zepbound?</strong> The active ingredient is identical when prepared by a reputable 503A pharmacy meeting USP standards. The trial-level data refers specifically to the Lilly product, and individual results can vary based on dose, adherence, and patient-specific factors. There is no head-to-head trial of compounded versus branded tirzepatide; the assumption is that bioequivalent active ingredient produces clinically equivalent effects.</p>
+
+<p><strong>Is the gap between tirzepatide and semaglutide just a dose-equivalence issue?</strong> Partly, but not entirely. The 15 mg tirzepatide maximum dose is more than 6 times the 2.4 mg semaglutide dose by weight, but the molecules have different potencies and receptor profiles. The dual-agonist mechanism of tirzepatide is a genuine pharmacological difference, not just a dose adjustment.</p>
+
+<h2>The Bottom Line</h2>
+
+<p>SURMOUNT-5 is the cleanest head-to-head data we have on tirzepatide versus semaglutide for obesity in adults without diabetes. Tirzepatide produced 20.2 percent mean body weight reduction over 72 weeks versus 13.7 percent for semaglutide, a 47 percent greater relative loss. The gap is mechanism-driven (dual GLP-1 and GIP agonism), the side effect profiles are similar with slight differences, and the result shifts the prior in tirzepatide's favor for patients whose primary goal is weight loss and who don't have a competing reason to choose semaglutide. Cardiovascular indication, cost, and individual tolerability still factor into specific clinical decisions.</p>
+
+<p>CLYR Health offers compounded semaglutide and tirzepatide for eligible adults. Both molecules, transparent flat-rate pricing, licensed providers, and 503A pharmacy fulfillment. Start your assessment at /intake.html.</p>
+</article>
+
+<div class="article-figure" data-style="dark">
+  <div class="article-figure-inner"><svg width="600" height="340" viewBox="0 0 600 340" fill="none" style="width:100%;max-width:600px;height:auto">
+<text x="300" y="32" text-anchor="middle" font-family="DM Sans" font-size="14" font-weight="700" fill="#FFF">SURMOUNT-5 Primary Outcome at 72 Weeks</text>
+<text x="300" y="52" text-anchor="middle" font-family="DM Sans" font-size="11" fill="#94A3B0">Mean percent body weight reduction from baseline</text>
+
+<line x1="80" y1="280" x2="540" y2="280" stroke="#94A3B0" stroke-width="1.5"/>
+<line x1="80" y1="100" x2="80" y2="280" stroke="#94A3B0" stroke-width="1.5"/>
+
+<text x="70" y="105" text-anchor="end" font-family="DM Sans" font-size="9" fill="#94A3B0">25%</text>
+<text x="70" y="160" text-anchor="end" font-family="DM Sans" font-size="9" fill="#94A3B0">15%</text>
+<text x="70" y="215" text-anchor="end" font-family="DM Sans" font-size="9" fill="#94A3B0">5%</text>
+<text x="70" y="280" text-anchor="end" font-family="DM Sans" font-size="9" fill="#94A3B0">0%</text>
+
+<line x1="80" y1="105" x2="540" y2="105" stroke="#2D3748" stroke-width="1" opacity="0.5"/>
+<line x1="80" y1="160" x2="540" y2="160" stroke="#2D3748" stroke-width="1" opacity="0.5"/>
+<line x1="80" y1="215" x2="540" y2="215" stroke="#2D3748" stroke-width="1" opacity="0.5"/>
+
+<rect x="150" y="167" width="100" height="113" fill="#94A3B0" opacity="0.75" rx="3"/>
+<text x="200" y="158" text-anchor="middle" font-family="DM Sans" font-size="14" font-weight="700" fill="#FFF">13.7%</text>
+<text x="200" y="300" text-anchor="middle" font-family="DM Sans" font-size="11" font-weight="600" fill="#FFF">Semaglutide</text>
+<text x="200" y="316" text-anchor="middle" font-family="DM Sans" font-size="9" fill="#94A3B0">2.4 mg weekly</text>
+
+<rect x="350" y="113" width="100" height="167" fill="#00B4C5" opacity="0.9" rx="3"/>
+<text x="400" y="104" text-anchor="middle" font-family="DM Sans" font-size="14" font-weight="700" fill="#00B4C5">20.2%</text>
+<text x="400" y="300" text-anchor="middle" font-family="DM Sans" font-size="11" font-weight="600" fill="#FFF">Tirzepatide</text>
+<text x="400" y="316" text-anchor="middle" font-family="DM Sans" font-size="9" fill="#94A3B0">max tolerated dose</text>
+
+<path d="M260 130 L340 130" stroke="#00B4C5" stroke-width="1.5" stroke-dasharray="3 3"/>
+<text x="300" y="125" text-anchor="middle" font-family="DM Sans" font-size="10" font-weight="600" fill="#00B4C5">+47% relative</text>
+</svg></div>
+  <div class="article-figure-caption">SURMOUNT-5 primary outcome. Tirzepatide produced 20.2% mean body weight reduction vs 13.7% for semaglutide over 72 weeks (p<0.001). The 6.5 percentage point absolute difference represents a 47% greater relative weight loss with tirzepatide.</div>
+</div>
+
+<section class="inline-cta">
+  <h3>Considering tirzepatide or semaglutide?</h3>
+  <p>CLYR Health offers compounded tirzepatide and semaglutide at flat-rate, any-dose pricing. Licensed physicians, 503A pharmacy fulfillment, no hidden fees.</p>
+  <a href="/intake.html">Start your assessment<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+</section>
+
+<div class="article-sources">
+  <h3>Sources</h3>
+  <ol>
+    <li>Aronne LJ, et al. Tirzepatide as compared with semaglutide for the treatment of obesity (SURMOUNT-5). <em>New England Journal of Medicine</em>. 2025; 392:1969-1981.</li>
+    <li>Eli Lilly. Lilly's Zepbound (tirzepatide) superior to Wegovy (semaglutide) in head-to-head trial showing 47% greater relative weight loss. Press release. December 4, 2024.</li>
+    <li>ClinicalTrials.gov. NCT05822830: A Study of Tirzepatide Compared with Semaglutide in Participants With Obesity or Overweight With Weight-Related Comorbidities (SURMOUNT-5).</li>
+    <li>Weill Cornell Medicine. New study finds tirzepatide leads to more weight loss than semaglutide. Newsroom. May 2025.</li>
+    <li>Jastreboff AM, et al. Tirzepatide once weekly for the treatment of obesity (SURMOUNT-1). <em>New England Journal of Medicine</em>. 2022; 387:205-216.</li>
+    <li>Wilding JPH, et al. Once-weekly semaglutide in adults with overweight or obesity (STEP-1). <em>New England Journal of Medicine</em>. 2021; 384:989-1002.</li>
+    <li>Lincoff AM, et al. Semaglutide and cardiovascular outcomes in obesity without diabetes (SELECT). <em>New England Journal of Medicine</em>. 2023; 389:2221-2232.</li>
+    <li>Frias JP, et al. Tirzepatide versus semaglutide once weekly in patients with type 2 diabetes (SURPASS-2). <em>New England Journal of Medicine</em>. 2021; 385:503-515.</li>
+  </ol>
+</div>
+
+<section class="article-related">
+  <div class="related-header">
+    <div class="related-title">More from <span class="serif">the Journal</span></div>
+    <a href="/journal/" class="related-back">All articles &rarr;</a>
+  </div>
+  <div class="related-grid">
+    <a href="/journal/semaglutide-vs-tirzepatide" class="related-card" data-img="metabolic">
+      <div class="related-card-img"></div>
+      <div class="related-card-body">
+        <div class="related-card-cat">Comparison</div>
+        <div class="related-card-title">Semaglutide vs Tirzepatide: A Head-to-Head Look</div>
+        <div class="related-card-meta">12 min read</div>
+      </div>
+    </a>
+    <a href="/journal/select-trial-cardiovascular" class="related-card" data-img="research">
+      <div class="related-card-img"></div>
+      <div class="related-card-body">
+        <div class="related-card-cat">Research</div>
+        <div class="related-card-title">SELECT and the Cardiovascular Case for Semaglutide</div>
+        <div class="related-card-meta">11 min read</div>
+      </div>
+    </a>
+    <a href="/journal/longevity-medicine-foundations" class="related-card" data-img="longevity">
+      <div class="related-card-img"></div>
+      <div class="related-card-body">
+        <div class="related-card-cat">Longevity</div>
+        <div class="related-card-title">The Five Pillars of Modern Longevity Medicine</div>
+        <div class="related-card-meta">11 min read</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <svg viewBox="0 0 120 32" fill="none" width="90"><text x="0" y="26" font-family="DM Sans,sans-serif" font-weight="700" font-size="28" letter-spacing="-1"><tspan fill="#FFF">CLY</tspan><tspan fill="#00B4C5">R</tspan></text></svg>
+        <p>Science-backed treatments prescribed by licensed providers. Delivered to your door.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Weight Loss</h4>
+        <a href="/intake.html">Compounded Tirzepatide</a>
+        <a href="/intake.html">Compounded Semaglutide</a>
+        <a href="/zepbound.html">Zepbound&reg;</a>
+        <a href="/foundayo.html">Foundayo&reg;</a>
+        <a href="/wegovy-tablets.html">Wegovy&reg; Tablets</a>
+        <a href="/ozempic.html">Ozempic&reg;</a>
+      </div>
+      <div class="footer-col">
+        <h4>Wellness &amp; More</h4>
+        <a href="/sermorelin.html">Sermorelin</a>
+        <a href="/nad.html">NAD+ Injections</a>
+        <a href="/glutathione.html">Glutathione</a>
+        <a href="/tadalafil.html">Tadalafil</a>
+        <a href="/ivermectin.html">Ivermectin</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/journal/">Journal</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/portal/">Patient Portal</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Clyr Health, LLC.</span>
+      <span>LegitScript Certified</span>
+    </div>
+    <div class="footer-disclaimer">Compounded medications are not FDA-approved. Brand-name medications are trademarks of their respective manufacturers. CLYR Health is not affiliated with Eli Lilly or Novo Nordisk. All medications prescribed by licensed providers. Individual results may vary.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var bar = document.getElementById('readProgress');
+  var article = document.querySelector('.article-body');
+  function update(){
+    if(!article) return;
+    var rect = article.getBoundingClientRect();
+    var total = article.offsetHeight - window.innerHeight;
+    var scrolled = -rect.top;
+    var pct = Math.max(0, Math.min(100, (scrolled / total) * 100));
+    bar.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', update, {passive:true});
+  update();
+})();
+</script>
+
+</body>
+</html>

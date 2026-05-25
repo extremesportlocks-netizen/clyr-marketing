@@ -95,6 +95,15 @@ body{font-family:var(--sans);color:var(--dark);background:var(--white);overflow-
 .inline-cta p{font-size:15px;line-height:1.55;margin-bottom:18px;opacity:0.95}
 .inline-cta a{display:inline-flex;align-items:center;gap:8px;background:white;color:var(--teal-dark);padding:12px 22px;border-radius:100px;font-weight:600;font-size:14px;text-decoration:none;transition:all 0.2s}
 .inline-cta a:hover{transform:translateX(2px)}
+.article-figure{max-width:760px;margin:48px auto;padding:0 40px}
+.article-figure-inner{aspect-ratio:16/9;border-radius:16px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:32px}
+.article-figure[data-style="light"] .article-figure-inner{background:linear-gradient(135deg,#f0fafb 0%,#e8f4f8 50%,#d4eef2 100%)}
+.article-figure[data-style="dark"] .article-figure-inner{background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)}
+.article-figure[data-style="teal"] .article-figure-inner{background:linear-gradient(135deg,#E0F7FA 0%,#B2EBF2 100%)}
+.article-figure[data-style="cost"] .article-figure-inner{background:linear-gradient(135deg,#f1f4f6 0%,#e2e7eb 100%)}
+.article-figure-caption{font-size:13px;color:var(--gray-400);text-align:center;margin-top:14px;font-style:italic;font-family:'Instrument Serif',Georgia,serif}
+@media(max-width:768px){.article-figure{padding:0 20px;margin:36px auto}}
+
 
 /* SOURCES */
 .article-sources{max-width:680px;margin:48px auto 0;padding:32px 40px 0;border-top:1px solid var(--gray-200)}
@@ -258,6 +267,49 @@ body{font-family:var(--sans);color:var(--dark);background:var(--white);overflow-
 <p>In 2026, "semaglutide near me" usually leads to the same three answers regardless of where you're searching from: a local clinic, a national telehealth provider, or a manufacturer direct program. The right choice depends on your insurance, your budget, and whether you want in-person care. The seven-question due diligence checklist works for any provider you're considering.</p>
 <p>If you're exploring compounded semaglutide via telehealth, CLYR Health is LegitScript certified, serves 47 states, and offers flat \$149 to \$225/month pricing with no hidden fees. A licensed provider in your state reviews every intake, and if you're not a candidate, you get a full refund. Start your assessment at /intake.html.</p>
 </article>
+
+<div class="article-figure" data-style="teal">
+  <div class="article-figure-inner"><svg width="600" height="360" viewBox="0 0 600 360" fill="none" style="width:100%;max-width:600px;height:auto">
+<text x="300" y="32" text-anchor="middle" font-family="DM Sans" font-size="14" font-weight="700" fill="#1A1A1A">Provider Evaluation Checklist</text>
+<text x="300" y="52" text-anchor="middle" font-family="DM Sans" font-size="11" fill="#6B7C8A">What to verify before paying any GLP-1 provider</text>
+
+<g transform="translate(80,85)">
+<circle cx="14" cy="14" r="12" fill="#00B4C5"/>
+<path d="M8 14 L12 18 L20 10" stroke="#FFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<text x="40" y="13" font-family="DM Sans" font-size="13" font-weight="700" fill="#1A1A1A">State-licensed prescriber</text>
+<text x="40" y="29" font-family="DM Sans" font-size="11" fill="#6B7C8A">Active license in YOUR state, verifiable via public lookup</text>
+</g>
+
+<g transform="translate(80,140)">
+<circle cx="14" cy="14" r="12" fill="#00B4C5"/>
+<path d="M8 14 L12 18 L20 10" stroke="#FFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<text x="40" y="13" font-family="DM Sans" font-size="13" font-weight="700" fill="#1A1A1A">503A pharmacy permit</text>
+<text x="40" y="29" font-family="DM Sans" font-size="11" fill="#6B7C8A">In-state license or nonresident permit for shipping</text>
+</g>
+
+<g transform="translate(80,195)">
+<circle cx="14" cy="14" r="12" fill="#00B4C5"/>
+<path d="M8 14 L12 18 L20 10" stroke="#FFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<text x="40" y="13" font-family="DM Sans" font-size="13" font-weight="700" fill="#1A1A1A">Synchronous video evaluation</text>
+<text x="40" y="29" font-family="DM Sans" font-size="11" fill="#6B7C8A">Real-time visit, not just an intake form</text>
+</g>
+
+<g transform="translate(80,250)">
+<circle cx="14" cy="14" r="12" fill="#00B4C5"/>
+<path d="M8 14 L12 18 L20 10" stroke="#FFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<text x="40" y="13" font-family="DM Sans" font-size="13" font-weight="700" fill="#1A1A1A">Transparent flat pricing</text>
+<text x="40" y="29" font-family="DM Sans" font-size="11" fill="#6B7C8A">Any-dose pricing, no surprise titration fees</text>
+</g>
+
+<g transform="translate(80,305)">
+<circle cx="14" cy="14" r="12" fill="#00B4C5"/>
+<path d="M8 14 L12 18 L20 10" stroke="#FFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<text x="40" y="13" font-family="DM Sans" font-size="13" font-weight="700" fill="#1A1A1A">Follow-up included</text>
+<text x="40" y="29" font-family="DM Sans" font-size="11" fill="#6B7C8A">Dose adjustments and side-effect management at no extra cost</text>
+</g>
+</svg></div>
+  <div class="article-figure-caption">Five items to verify before paying any GLP-1 provider, online or in-person. The same checklist applies whether the provider is across town or shipping nationwide.</div>
+</div>
 
 <section class="inline-cta">
   <h3>Considering compounded GLP-1 treatment?</h3>

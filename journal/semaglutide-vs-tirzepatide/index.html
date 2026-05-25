@@ -95,6 +95,15 @@ body{font-family:var(--sans);color:var(--dark);background:var(--white);overflow-
 .inline-cta p{font-size:15px;line-height:1.55;margin-bottom:18px;opacity:0.95}
 .inline-cta a{display:inline-flex;align-items:center;gap:8px;background:white;color:var(--teal-dark);padding:12px 22px;border-radius:100px;font-weight:600;font-size:14px;text-decoration:none;transition:all 0.2s}
 .inline-cta a:hover{transform:translateX(2px)}
+.article-figure{max-width:760px;margin:48px auto;padding:0 40px}
+.article-figure-inner{aspect-ratio:16/9;border-radius:16px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:32px}
+.article-figure[data-style="light"] .article-figure-inner{background:linear-gradient(135deg,#f0fafb 0%,#e8f4f8 50%,#d4eef2 100%)}
+.article-figure[data-style="dark"] .article-figure-inner{background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)}
+.article-figure[data-style="teal"] .article-figure-inner{background:linear-gradient(135deg,#E0F7FA 0%,#B2EBF2 100%)}
+.article-figure[data-style="cost"] .article-figure-inner{background:linear-gradient(135deg,#f1f4f6 0%,#e2e7eb 100%)}
+.article-figure-caption{font-size:13px;color:var(--gray-400);text-align:center;margin-top:14px;font-style:italic;font-family:'Instrument Serif',Georgia,serif}
+@media(max-width:768px){.article-figure{padding:0 20px;margin:36px auto}}
+
 
 /* SOURCES */
 .article-sources{max-width:680px;margin:48px auto 0;padding:32px 40px 0;border-top:1px solid var(--gray-200)}
@@ -256,6 +265,33 @@ body{font-family:var(--sans);color:var(--dark);background:var(--white);overflow-
 <p>SURMOUNT-5 was the first randomized trial to compare semaglutide and tirzepatide head-to-head. The result: tirzepatide produced about 47% more weight loss on average, with similar (and in some cases slightly milder) side effects. But the right medication for any individual depends on cost, medical history, response, and goals, not the trial average. That decision belongs with a licensed provider, not a blog post.</p>
 <p>If you're considering compounded semaglutide or tirzepatide, CLYR Health offers both options starting at \$149 per month on a 6-month plan (semaglutide) and \$225 per month (tirzepatide), including a licensed provider consultation, Vitamin B12, and priority shipping. Start your assessment at /intake.html.</p>
 </article>
+
+<div class="article-figure" data-style="dark">
+  <div class="article-figure-inner"><svg width="600" height="320" viewBox="0 0 600 320" fill="none" style="width:100%;max-width:600px;height:auto">
+<text x="300" y="32" text-anchor="middle" font-family="DM Sans" font-size="14" font-weight="700" fill="#1A1A1A">Head-to-Head Weight Loss at 72 Weeks (SURMOUNT-5)</text>
+<text x="300" y="52" text-anchor="middle" font-family="DM Sans" font-size="11" fill="#6B7C8A">Mean percent body weight reduction</text>
+<line x1="80" y1="260" x2="540" y2="260" stroke="#94A3B0" stroke-width="1.5"/>
+<line x1="80" y1="90" x2="80" y2="260" stroke="#94A3B0" stroke-width="1.5"/>
+<text x="70" y="95" text-anchor="end" font-family="DM Sans" font-size="9" fill="#94A3B0">25%</text>
+<text x="70" y="155" text-anchor="end" font-family="DM Sans" font-size="9" fill="#94A3B0">15%</text>
+<text x="70" y="215" text-anchor="end" font-family="DM Sans" font-size="9" fill="#94A3B0">5%</text>
+<text x="70" y="260" text-anchor="end" font-family="DM Sans" font-size="9" fill="#94A3B0">0%</text>
+<line x1="80" y1="95" x2="540" y2="95" stroke="#E2E7EB" stroke-width="1"/>
+<line x1="80" y1="155" x2="540" y2="155" stroke="#E2E7EB" stroke-width="1"/>
+<line x1="80" y1="215" x2="540" y2="215" stroke="#E2E7EB" stroke-width="1"/>
+<rect x="180" y="178" width="80" height="82" fill="#94A3B0" opacity="0.65" rx="4"/>
+<text x="220" y="170" text-anchor="middle" font-family="DM Sans" font-size="14" font-weight="700" fill="#1A1A1A">13.7%</text>
+<text x="220" y="280" text-anchor="middle" font-family="DM Sans" font-size="11" font-weight="600" fill="#4A5568">Semaglutide</text>
+<text x="220" y="296" text-anchor="middle" font-family="DM Sans" font-size="9" fill="#6B7C8A">2.4 mg weekly</text>
+<rect x="340" y="100" width="80" height="160" fill="#00B4C5" opacity="0.9" rx="4"/>
+<text x="380" y="92" text-anchor="middle" font-family="DM Sans" font-size="14" font-weight="700" fill="#00B4C5">20.2%</text>
+<text x="380" y="280" text-anchor="middle" font-family="DM Sans" font-size="11" font-weight="600" fill="#4A5568">Tirzepatide</text>
+<text x="380" y="296" text-anchor="middle" font-family="DM Sans" font-size="9" fill="#6B7C8A">max tolerated</text>
+<path d="M260 130 L340 130" stroke="#00B4C5" stroke-width="1.5" stroke-dasharray="3 3"/>
+<text x="300" y="125" text-anchor="middle" font-family="DM Sans" font-size="10" font-weight="600" fill="#00B4C5">+47% relative</text>
+</svg></div>
+  <div class="article-figure-caption">SURMOUNT-5 head-to-head data, NEJM May 2025. Tirzepatide produced 47% greater relative weight loss than semaglutide over 72 weeks in adults with obesity and no diabetes.</div>
+</div>
 
 <section class="inline-cta">
   <h3>Considering compounded GLP-1 treatment?</h3>
