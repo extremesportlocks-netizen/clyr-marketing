@@ -713,25 +713,28 @@ async function loadMessages(){
     const data=await api('/api/portal/messages');
     const msgs=data.messages||[];
     if(!msgs.length){
-      list.innerHTML='<div class="empty"><div class="empty-icon">💬</div><div class="empty-title">No messages yet</div><div class="empty-msg">Send a message below to start a conversation with your provider.</div></div>';
+      const noteHtml=data.note?`<div class="empty-msg" style="margin-top:8px;font-style:italic">${escapeHtml(data.note)}</div>`:'';
+      list.innerHTML=`<div class="empty"><div class="empty-icon">💬</div><div class="empty-title">No messages yet</div><div class="empty-msg">Send a message below to start a conversation with your provider.</div>${noteHtml}</div>`;
       return;
     }
     list.innerHTML=msgs.map(m=>{
-      const cls=m.fromPatient?'msg-from-patient':'msg-from-provider';
-      return `<div><div class="msg ${cls}">${escapeHtml(m.body)}</div><div class="msg-meta" style="text-align:${m.fromPatient?'right':'left'}">${timeAgo(m.createdAt)}</div></div>`;
+      const fromPatient=m.senderType==='patient'||m.fromPatient;
+      const text=m.text||m.body||'';
+      const cls=fromPatient?'msg-from-patient':'msg-from-provider';
+      return `<div><div class="msg ${cls}">${escapeHtml(text)}</div><div class="msg-meta" style="text-align:${fromPatient?'right':'left'}">${timeAgo(m.createdAt)}</div></div>`;
     }).join('');
     list.scrollTop=list.scrollHeight;
   }catch(e){
-    list.innerHTML=`<div class="empty"><div class="empty-msg">Could not load messages: ${escapeHtml(e.message)}</div></div>`;
+    list.innerHTML=`<div class="empty"><div class="empty-icon">💬</div><div class="empty-title">No messages yet</div><div class="empty-msg">Send a message below to start a conversation with your provider.</div></div>`;
   }
 }
 
 async function sendMessage(){
-  const body=$('msgInput').value.trim();
-  if(!body)return;
+  const text=$('msgInput').value.trim();
+  if(!text)return;
   const btn=$('btnSendMsg');btn.disabled=true;
   try{
-    await api('/api/portal/messages',{method:'POST',body:JSON.stringify({body})});
+    await api('/api/portal/messages',{method:'POST',body:JSON.stringify({text})});
     $('msgInput').value='';
     await loadMessages();
   }catch(e){
