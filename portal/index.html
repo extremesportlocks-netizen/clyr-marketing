@@ -239,6 +239,29 @@ textarea.q-input{resize:vertical;min-height:80px}
 .q-radio input{margin:0;cursor:pointer}
 .q-radio.selected{border-color:var(--teal);background:var(--teal-light);color:var(--teal-dark);font-weight:600}
 
+/* ─── ONBOARDING TOUR ─── */
+.tour-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;z-index:2000;padding:20px;animation:fadeIn 0.2s}
+.tour-overlay-step{align-items:flex-end;background:rgba(0,0,0,0.3);backdrop-filter:none;padding:24px 20px}
+.tour-card{background:white;border-radius:20px;padding:28px 26px 22px;max-width:460px;width:100%;box-shadow:0 24px 80px rgba(0,0,0,0.18);text-align:center;animation:fadeUp 0.25s ease}
+.tour-card-step{max-width:520px;text-align:left}
+.tour-step-num{font-size:11px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px}
+.tour-title{font-size:24px;font-weight:700;margin-bottom:8px;letter-spacing:-0.02em}
+.tour-title .serif{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--teal)}
+.tour-step-title{font-size:18px;font-weight:700;margin-bottom:6px;letter-spacing:-0.01em}
+.tour-body{font-size:14px;color:var(--gray-500);line-height:1.55;margin-bottom:18px}
+.tour-chips{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+.tour-chip{display:flex;align-items:center;gap:10px;padding:13px 16px;background:var(--gray-50);border:1.5px solid var(--gray-100);border-radius:12px;font-size:14px;font-weight:600;color:var(--gray-700);cursor:pointer;transition:all 0.15s;font-family:inherit;text-align:left}
+.tour-chip:hover{border-color:var(--teal);background:var(--teal-light);color:var(--teal-dark)}
+.tour-chip svg{color:var(--teal);flex-shrink:0}
+.tour-skip{font-size:13px;color:var(--gray-400);background:none;border:none;cursor:pointer;padding:8px 12px;font-family:inherit;font-weight:500}
+.tour-skip:hover{color:var(--gray-600)}
+.tour-step-buttons{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:8px}
+.tour-spotlight{position:absolute;pointer-events:none;border:2px solid var(--teal);border-radius:14px;box-shadow:0 0 0 9999px rgba(0,0,0,0.45);z-index:1999;transition:all 0.25s ease}
+@media(max-width:768px){
+  .tour-card{padding:24px 20px 18px}
+  .tour-title{font-size:20px}
+}
+
 /* ─── LOADING ─── */
 .loading{text-align:center;padding:60px 20px;color:var(--gray-500)}
 .spinner{display:inline-block;width:28px;height:28px;border:2.5px solid var(--gray-200);border-top-color:var(--teal);border-radius:50%;animation:spin 0.8s linear infinite;margin-bottom:12px}
@@ -570,6 +593,109 @@ async function enterApp(){
   $('loginView').style.display='none';
   $('appView').style.display='grid';
   await loadHome();
+  // Fire onboarding tour for first-time visitors
+  maybeStartTour();
+}
+
+// ═══ ONBOARDING TOUR ═══
+// GLM-inspired chip picker that lets the patient choose what they want to
+// learn about first, then walks them through it. Skip-able. Idempotent
+// across sessions via localStorage flag 'th_portal_toured'.
+function maybeStartTour(){
+  if (localStorage.getItem('th_portal_toured')) return;
+  // Wait a beat so the home page is visible before the tour layers on top
+  setTimeout(() => startTour(), 600);
+}
+
+function endTour(){
+  localStorage.setItem('th_portal_toured', '1');
+  const m = $('tourModal');
+  if (m) m.remove();
+  const sp = $('tourSpotlight');
+  if (sp) sp.remove();
+}
+
+function startTour(){
+  const firstName = portalData?.patient?.firstName || 'there';
+  document.body.insertAdjacentHTML('beforeend', `
+    <div id="tourModal" class="tour-overlay">
+      <div class="tour-card">
+        <div class="tour-step-num">Welcome</div>
+        <h2 class="tour-title">Hi, <span class="serif">${escapeHtml(firstName)}.</span> Welcome to your portal.</h2>
+        <p class="tour-body">This is your home base for everything CLYR. Want a quick walkthrough? Pick what you want to see first.</p>
+        <div class="tour-chips">
+          <button class="tour-chip" onclick="tourStep('nav')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            Show me around
+          </button>
+          <button class="tour-chip" onclick="tourStep('actions')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            Quick actions
+          </button>
+          <button class="tour-chip" onclick="tourStep('treatment')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M12 7v10M7 12h10"/></svg>
+            My treatment
+          </button>
+        </div>
+        <button class="tour-skip" onclick="endTour()">Skip for now</button>
+      </div>
+    </div>`);
+}
+
+function tourStep(which){
+  const m = $('tourModal');
+  if (m) m.remove();
+  const sp = $('tourSpotlight');
+  if (sp) sp.remove();
+
+  const steps = {
+    nav: {
+      anchor: '.sidebar',
+      pos: 'right',
+      title: 'Sidebar navigation',
+      body: 'Home, Chat, Treatments, Shots, Shop, and Account. Everything you need is one click away. Tap any item to jump there.',
+      next: 'actions',
+    },
+    actions: {
+      anchor: '.quick-actions',
+      pos: 'bottom',
+      title: 'Quick actions',
+      body: 'Log a dose, get help, or check your treatment status in one tap. These adapt to what you have going on.',
+      next: 'treatment',
+    },
+    treatment: {
+      anchor: '#myTreatmentArea',
+      pos: 'top',
+      title: 'Your treatment',
+      body: 'Your current plan, refill window, and treatment journey live here. State chips let you see at a glance if anything needs attention.',
+      next: null,
+    },
+  };
+  const s = steps[which];
+  if (!s) { endTour(); return; }
+
+  const target = document.querySelector(s.anchor);
+  if (target) {
+    const r = target.getBoundingClientRect();
+    // Render spotlight outline
+    document.body.insertAdjacentHTML('beforeend', `
+      <div id="tourSpotlight" class="tour-spotlight" style="top:${r.top + window.scrollY - 8}px;left:${r.left - 8}px;width:${r.width + 16}px;height:${r.height + 16}px"></div>`);
+    target.scrollIntoView({behavior: 'smooth', block: 'center'});
+  }
+
+  // Render step card centered at bottom of viewport
+  document.body.insertAdjacentHTML('beforeend', `
+    <div id="tourModal" class="tour-overlay tour-overlay-step">
+      <div class="tour-card tour-card-step">
+        <div class="tour-step-num">Step ${Object.keys(steps).indexOf(which) + 1} of 3</div>
+        <h3 class="tour-step-title">${escapeHtml(s.title)}</h3>
+        <p class="tour-body">${escapeHtml(s.body)}</p>
+        <div class="tour-step-buttons">
+          <button class="tour-skip" onclick="endTour()">${s.next ? 'Skip' : 'Close'}</button>
+          ${s.next ? `<button class="btn btn-primary" onclick="tourStep('${s.next}')">Next →</button>` : `<button class="btn btn-primary" onclick="endTour()">Got it</button>`}
+        </div>
+      </div>
+    </div>`);
 }
 
 // ═══ HOME ═══
