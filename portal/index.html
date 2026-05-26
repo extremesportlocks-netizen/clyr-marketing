@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>My Portal — CLYR Health</title>
+<title>My Portal · CLYR Health</title>
 <meta name="robots" content="noindex,nofollow">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -472,7 +472,7 @@ textarea.q-input{resize:vertical;min-height:80px}
 
 <script>
 // ═══════════════════════════════════════════════════════════════════
-// CLYR Portal v2 — vertical-aware, multi-product, GLM-inspired
+// CLYR Portal v2, vertical-aware, multi-product, GLM-inspired
 // ═══════════════════════════════════════════════════════════════════
 
 const API = 'https://clyr-backend.onrender.com';
@@ -716,7 +716,7 @@ function renderTimeline(){
   const idx=Math.max(0,order.indexOf(stage));
   const steps=[
     {key:'intake',label:'Health intake completed',desc:'Your health profile is on file.'},
-    {key:'payment',label:'Payment processed',desc:`${portalData.subscription?.productDisplay||'Subscription'} — ${({monthly:'Monthly',['3month']:'3-month',['6month']:'6-month'})[portalData.subscription?.plan]||'Monthly'}`},
+    {key:'payment',label:'Payment processed',desc:`${portalData.subscription?.productDisplay||'Subscription'} · ${({monthly:'Monthly',['3month']:'3-month',['6month']:'6-month'})[portalData.subscription?.plan]||'Monthly'}`},
     {key:'provider',label:'Provider review',desc:'A licensed provider has reviewed your case.'},
     {key:'prescribed',label:'Prescription sent',desc:'Your prescription has been sent to our licensed pharmacy.'},
     {key:'shipped',label:'Shipping',desc:'Ships from our licensed pharmacy.'},
@@ -858,11 +858,11 @@ function startRefill(){
 function renderGenericRefill(){
   const productLabel=portalData.patient.treatmentDisplay||'your treatment';
   $('refillFormArea').innerHTML=`
-    <h3 style="font-size:16px;font-weight:700;margin-bottom:6px">Refill request — ${escapeHtml(productLabel)}</h3>
+    <h3 style="font-size:16px;font-weight:700;margin-bottom:6px">Refill request · ${escapeHtml(productLabel)}</h3>
     <p style="font-size:14px;color:var(--gray-500);margin-bottom:18px">Quick check-in so your provider can issue your next prescription.</p>
 
     <div class="q-item"><label class="q-label q-required">How is your treatment going?</label>
-      <select class="q-select" id="r_progress"><option value="">Select...</option><option>Going well — no issues</option><option>Mild side effects but tolerable</option><option>Noticeable side effects, want to discuss</option><option>Not seeing the results I expected</option></select></div>
+      <select class="q-select" id="r_progress"><option value="">Select...</option><option>Going well, no issues</option><option>Mild side effects but tolerable</option><option>Noticeable side effects, want to discuss</option><option>Not seeing the results I expected</option></select></div>
 
     <div class="q-item"><label class="q-label">Any side effects since your last visit?</label>
       <textarea class="q-input" id="r_sideeffects" rows="2" placeholder="Optional. Briefly describe anything you've noticed."></textarea></div>
@@ -897,7 +897,7 @@ async function submitGenericRefill(){
 
 function renderGlp1Refill(){
   $('refillFormArea').innerHTML=`
-    <h3 style="font-size:16px;font-weight:700;margin-bottom:6px">Refill request — ${escapeHtml(portalData.patient.treatmentDisplay)}</h3>
+    <h3 style="font-size:16px;font-weight:700;margin-bottom:6px">Refill request · ${escapeHtml(portalData.patient.treatmentDisplay)}</h3>
     <p style="font-size:14px;color:var(--gray-500);margin-bottom:18px">A few quick questions so your provider can issue your next prescription.</p>
 
     <div class="q-item"><label class="q-label q-required">Over the past 4 weeks, approximately how many pounds have you lost?</label>
@@ -907,7 +907,7 @@ function renderGlp1Refill(){
       <input class="q-input" type="number" id="g_weight" min="80" max="600" placeholder="e.g. 185"></div>
 
     <div class="q-item"><label class="q-label q-required">How is your appetite suppression?</label>
-      <select class="q-select" id="g_appetite"><option value="">Select...</option><option>Strong — eating much less</option><option>Moderate — noticeable reduction</option><option>Mild — small change</option><option>None — appetite is back</option></select></div>
+      <select class="q-select" id="g_appetite"><option value="">Select...</option><option>Strong, eating much less</option><option>Moderate, noticeable reduction</option><option>Mild, small change</option><option>None, appetite is back</option></select></div>
 
     <div class="q-item"><label class="q-label q-required">For your next dose, would you like to:</label>
       <select class="q-select" id="g_dose"><option value="">Select...</option><option>Stay at the same dose</option><option>Increase the dose</option><option>Decrease the dose</option></select></div>
@@ -1010,7 +1010,7 @@ function renderShots(){
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
         <div>
           <div style="font-size:13px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Estimated medication level</div>
-          <div style="font-size:12px;color:var(--gray-400)">Based on a ${halfLife}-hour half-life. Estimate only — not a clinical measurement.</div>
+          <div style="font-size:12px;color:var(--gray-400)">Based on a ${halfLife}-hour half-life. Estimate only, not a clinical measurement.</div>
         </div>
         <div style="font-size:11px;color:var(--gray-400)">Last 60 days</div>
       </div>
