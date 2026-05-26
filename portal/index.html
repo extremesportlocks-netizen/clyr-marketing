@@ -480,7 +480,12 @@ textarea.q-input{resize:vertical;min-height:80px}
           <div class="card" style="margin-bottom:14px">
             <div class="acc-row"><span class="acc-row-label">Current plan</span><span class="acc-row-val" id="billPlan">—</span></div>
             <div class="acc-row"><span class="acc-row-label">Subscription status</span><span class="acc-row-val" id="billStatus">—</span></div>
-            <div class="acc-row"><span class="acc-row-label">Shipping address</span><span class="acc-row-val" id="billAddress">—</span></div>
+            <div class="acc-row"><span class="acc-row-label">Shipping address</span>
+              <span class="acc-row-val" id="billAddress" style="display:flex;align-items:center;gap:8px">
+                <span id="billAddressText">—</span>
+                <button onclick="openAddressEditor()" style="background:none;border:none;color:var(--teal);cursor:pointer;font-size:12px;font-weight:600;padding:0">Edit</button>
+              </span>
+            </div>
             <div class="acc-row"><span class="acc-row-label">Next billing date</span><span class="acc-row-val" id="billNextDate">—</span></div>
           </div>
           <button class="btn btn-primary" onclick="manageSubscription()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>Manage payment in Stripe</button>
@@ -890,7 +895,7 @@ function populateAccount(){
   $('billPlan').textContent=sub?`${sub.productDisplay} · ${({monthly:'Monthly','3month':'3 months','6month':'6 months'})[sub.plan]||sub.plan}`:'No active plan';
   $('billStatus').textContent=sub?sub.status:'—';
   const addr=p.shippingAddress;
-  $('billAddress').textContent=addr?.street?`${addr.street}, ${addr.city}, ${addr.state} ${addr.zip}`:'—';
+  $('billAddressText').textContent=addr?.street?`${addr.street}${addr.apt?`, ${addr.apt}`:''}, ${addr.city}, ${addr.state} ${addr.zip}`:'—';
   $('billNextDate').textContent=sub?.currentPeriodEnd?fmtDate(sub.currentPeriodEnd):'—';
 }
 
@@ -1012,8 +1017,29 @@ document.addEventListener('click',e=>{
 // ═══ REFILL FLOW (branches on patient.refillFlow) ═══
 function startRefill(){
   if(!portalData)return;
-  const flow=portalData.patient.refillFlow||'generic';
+  const rw=portalData.refillWindow;
   $('refillSection').style.display='block';
+  // Gate by window state. Allow if open OR expired (overdue patients still need to request).
+  if(rw && !rw.isOpen && !rw.isExpired){
+    const opensAt=rw.opensAt?new Date(rw.opensAt):null;
+    const daysLeft=rw.daysRemaining??(opensAt?Math.max(0,Math.ceil((opensAt-new Date())/86400000)):null);
+    const opensLabel=opensAt?opensAt.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):'soon';
+    $('refillFormArea').innerHTML=`
+      <div class="empty" style="padding:32px 20px">
+        <div class="empty-icon">📅</div>
+        <div class="empty-title">Refill window not open yet</div>
+        <div class="empty-msg">
+          Your refill window opens on <strong>${escapeHtml(opensLabel)}</strong>${daysLeft?`, about ${daysLeft} day${daysLeft===1?'':'s'} from now`:''}.
+          We open it 10 days before your supply runs out so your provider has time to review and your pharmacy has time to ship.
+        </div>
+        <div style="margin-top:18px">
+          <button class="btn btn-secondary" onclick="$('refillSection').style.display='none'">Got it</button>
+        </div>
+      </div>`;
+    $('refillFormArea').scrollIntoView({behavior:'smooth',block:'start'});
+    return;
+  }
+  const flow=portalData.patient.refillFlow||'generic';
   if(flow==='glp1')renderGlp1Refill();
   else renderGenericRefill();
   $('refillFormArea').scrollIntoView({behavior:'smooth',block:'start'});
@@ -1403,6 +1429,73 @@ document.addEventListener('click',e=>{
 });
 
 // ═══ BILLING ═══
+// ─── Shipping address editor ───
+function openAddressEditor(){
+  const addr=portalData?.patient?.shippingAddress||{};
+  const STATES=['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY','DC'];
+  document.body.insertAdjacentHTML('beforeend',`
+    <div id="addrModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;z-index:1000;padding:20px;animation:fadeIn 0.15s">
+      <div style="background:white;border-radius:18px;padding:24px;max-width:480px;width:100%;box-shadow:var(--shadow-lg);max-height:90vh;overflow-y:auto">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px">
+          <div>
+            <h3 style="font-size:18px;font-weight:700;margin-bottom:4px">Update shipping address</h3>
+            <div style="font-size:13px;color:var(--gray-500)">Future shipments will use this address.</div>
+          </div>
+          <button onclick="closeAddressEditor()" style="background:none;border:none;font-size:24px;line-height:1;color:var(--gray-400);cursor:pointer;padding:0">&times;</button>
+        </div>
+        <div class="q-item" style="padding:8px 0"><label class="q-label">Street address</label>
+          <input class="q-input" type="text" id="addr_street" value="${escapeAttr(addr.street||'')}" placeholder="123 Main Street"></div>
+        <div class="q-item" style="padding:8px 0"><label class="q-label">Apartment or suite <span style="color:var(--gray-400);font-weight:500">(optional)</span></label>
+          <input class="q-input" type="text" id="addr_apt" value="${escapeAttr(addr.apt||'')}" placeholder="Apt 4B"></div>
+        <div style="display:flex;gap:8px">
+          <div class="q-item" style="padding:8px 0;flex:2"><label class="q-label">City</label>
+            <input class="q-input" type="text" id="addr_city" value="${escapeAttr(addr.city||'')}"></div>
+          <div class="q-item" style="padding:8px 0;flex:1"><label class="q-label">State</label>
+            <select class="q-select" id="addr_state">${STATES.map(s=>`<option value="${s}"${addr.state===s?' selected':''}>${s}</option>`).join('')}</select></div>
+          <div class="q-item" style="padding:8px 0;flex:1"><label class="q-label">ZIP</label>
+            <input class="q-input" type="text" id="addr_zip" value="${escapeAttr(addr.zip||'')}" maxlength="10"></div>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:14px">
+          <button class="btn btn-secondary" style="flex:1" onclick="closeAddressEditor()">Cancel</button>
+          <button class="btn btn-primary" style="flex:1" id="btnSaveAddress" onclick="saveAddress()">Save address</button>
+        </div>
+      </div>
+    </div>`);
+}
+
+function escapeAttr(s){return String(s||'').replace(/"/g,'&quot;');}
+
+function closeAddressEditor(){const m=$('addrModal');if(m)m.remove();}
+
+async function saveAddress(){
+  const btn=$('btnSaveAddress');btn.disabled=true;btn.textContent='Saving...';
+  const payload={
+    street:$('addr_street').value.trim(),
+    apt:$('addr_apt').value.trim(),
+    city:$('addr_city').value.trim(),
+    state:$('addr_state').value,
+    zip:$('addr_zip').value.trim(),
+  };
+  if(!payload.street||!payload.city||!payload.state||!payload.zip){
+    btn.disabled=false;btn.textContent='Save address';
+    alert('Please fill out street, city, state, and ZIP.');
+    return;
+  }
+  try{
+    const res=await api('/api/portal/shipping-address',{method:'PUT',body:JSON.stringify(payload)});
+    // Update local cache so UI re-renders correctly
+    if(!portalData.patient.shippingAddress)portalData.patient.shippingAddress={};
+    Object.assign(portalData.patient.shippingAddress,payload);
+    closeAddressEditor();
+    // Re-render billing tab values
+    const addr=portalData.patient.shippingAddress;
+    $('billAddressText').textContent=`${addr.street}${addr.apt?`, ${addr.apt}`:''}, ${addr.city}, ${addr.state} ${addr.zip}`;
+  }catch(e){
+    btn.disabled=false;btn.textContent='Save address';
+    alert('Could not save: '+e.message);
+  }
+}
+
 async function manageSubscription(){
   try{
     const data=await api('/api/portal/subscription/manage',{method:'POST'});
