@@ -607,7 +607,13 @@ function renderActionBanner(){
   // Render the highest-severity action
   const order={high:0,info:1};
   const a=[...requiredActions].sort((x,y)=>(order[x.severity]??99)-(order[y.severity]??99))[0];
-  const ctaHtml=a.cta?`<button class="action-banner-cta" onclick="${a.cta.action==='manage_billing'?'manageSubscription()':'showPage(\"chat\")'}">${escapeHtml(a.cta.label)}</button>`:'';
+  let ctaHandler='';
+  if(a.cta){
+    if(a.cta.action==='manage_billing')ctaHandler='manageSubscription()';
+    else if(a.cta.action==='open_refill')ctaHandler='showPage(\'treatments\');startRefill()';
+    else ctaHandler='showPage(\'chat\')';
+  }
+  const ctaHtml=a.cta?`<button class="action-banner-cta" onclick="${ctaHandler}">${escapeHtml(a.cta.label)}</button>`:'';
   el.innerHTML=`<div class="action-banner"><div class="action-banner-dot"></div><div class="action-banner-body"><div class="action-banner-label">${escapeHtml(a.label)}</div><div class="action-banner-msg">${escapeHtml(a.message)}</div></div>${ctaHtml}</div>`;
 }
 
