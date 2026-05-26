@@ -2,737 +2,1022 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>My Portal — CLYR Health</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
-@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
-@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
-*{margin:0;padding:0;box-sizing:border-box}
-:root{--teal:#00B4C5;--teal-dark:#009BA8;--teal-light:rgba(0,180,197,0.08);--dark:#1a1a2e;--gray-50:#f8fafb;--gray-100:#f1f4f7;--gray-200:#e5e7eb;--gray-400:#9ca3af;--gray-500:#6b7280;--gray-600:#4b5563;--green:#22c55e;--red:#ef4444;--orange:#f59e0b;--radius:14px}
-body{font-family:'DM Sans',sans-serif;background:var(--gray-50);color:var(--dark);min-height:100vh;min-height:100svh;-webkit-font-smoothing:antialiased}
-.nav{background:#fff;border-bottom:1px solid rgba(0,0,0,0.06);padding:14px 24px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:50}
-.nav-logo{font-size:22px;font-weight:800;letter-spacing:-0.5px;color:var(--dark);text-decoration:none}.nav-logo span{color:var(--teal)}
-.nav-right{display:flex;align-items:center;gap:10px}
-.nav-name{font-size:13px;font-weight:600;color:var(--gray-500)}
-.nav-btn{padding:7px 14px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:none;font-family:inherit;transition:all 0.2s;background:none;color:var(--gray-500)}
-.nav-btn:hover{color:var(--dark);background:var(--gray-100)}
+:root{
+  --white:#FFF;--black:#0A0A0A;--dark:#1A1A1A;
+  --teal:#00B4C5;--teal-dark:#009BAA;--teal-light:#E0F7FA;
+  --gray-50:#F8FAFB;--gray-100:#F1F4F6;--gray-200:#E2E7EB;--gray-300:#CBD3DA;
+  --gray-400:#94A3B0;--gray-500:#6B7C8A;--gray-600:#4A5568;--gray-700:#374151;--gray-800:#2D3748;
+  --green:#10B981;--amber:#F59E0B;--red:#EF4444;--blue:#3B82F6;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+  --radius:16px;--radius-sm:10px;--radius-lg:24px;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04);
+  --shadow-md:0 4px 20px rgba(0,0,0,0.06);
+  --shadow-lg:0 12px 40px rgba(0,0,0,0.08);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:var(--sans);color:var(--dark);background:var(--gray-50);line-height:1.5;min-height:100vh}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+a{color:inherit;text-decoration:none}
 
-/* Tabs */
-.tabs{display:none;background:#fff;border-bottom:1px solid rgba(0,0,0,0.06);padding:0 24px;overflow-x:auto}
-.tabs-inner{max-width:680px;margin:0 auto;display:flex;gap:4px}
-.tab{padding:12px 18px;font-size:13px;font-weight:600;color:var(--gray-400);cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;white-space:nowrap;position:relative}
-.tab:hover{color:var(--dark)}
-.tab.active{color:var(--teal);border-bottom-color:var(--teal)}
-.tab-badge{position:absolute;top:8px;right:4px;width:8px;height:8px;background:var(--red);border-radius:50%;display:none}
+/* ─── LOGIN VIEW ─── */
+.login-wrap{min-height:100vh;display:grid;place-items:center;padding:40px 20px;background:var(--white)}
+.login-card{width:100%;max-width:440px;text-align:center}
+.login-logo{display:inline-block;margin-bottom:32px}
+.login-logo svg{height:36px}
+.login-title{font-size:32px;font-weight:700;letter-spacing:-0.02em;margin-bottom:8px}
+.login-title .serif{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--teal)}
+.login-sub{font-size:15px;color:var(--gray-500);margin-bottom:32px;line-height:1.6}
+.login-field{margin-bottom:16px;text-align:left}
+.login-label{display:block;font-size:12px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px}
+.login-input{width:100%;padding:14px 16px;font-size:15px;font-family:var(--sans);background:var(--white);border:1.5px solid var(--gray-200);border-radius:12px;color:var(--dark);outline:none;transition:all 0.15s}
+.login-input:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,180,197,0.15)}
+.login-input-code{text-align:center;font-size:24px;letter-spacing:8px;font-weight:700;font-family:'Courier New',monospace}
+.login-btn{width:100%;padding:15px;background:var(--teal);color:white;border-radius:100px;font-size:15px;font-weight:700;margin-top:8px;transition:all 0.15s}
+.login-btn:hover:not(:disabled){background:var(--teal-dark)}
+.login-btn:disabled{opacity:0.6;cursor:not-allowed}
+.login-hint{font-size:13px;color:var(--gray-400);margin-top:16px}
+.login-back{color:var(--teal);font-size:13px;font-weight:600;background:none;border:none;cursor:pointer;margin-top:12px}
+.login-err{color:var(--red);font-size:13px;margin-top:12px;padding:10px 14px;background:rgba(239,68,68,0.08);border-radius:10px;border:1px solid rgba(239,68,68,0.2)}
 
-/* Pages */
-.page{display:none;max-width:680px;margin:0 auto;padding:28px 20px 80px;animation:fadeUp 0.3s ease}
+/* ─── APP SHELL ─── */
+.app-shell{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+.sidebar{background:var(--white);border-right:1px solid var(--gray-200);padding:20px 16px;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto}
+.sidebar-logo{padding:8px 12px 28px}
+.sidebar-logo svg{height:28px}
+.sidebar-nav{display:flex;flex-direction:column;gap:2px;flex:1}
+.nav-item{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:10px;font-size:14px;font-weight:500;color:var(--gray-600);transition:all 0.15s;cursor:pointer;text-align:left;background:none;border:none;font-family:inherit;width:100%}
+.nav-item:hover{background:var(--gray-50);color:var(--dark)}
+.nav-item.active{background:var(--teal-light);color:var(--teal-dark);font-weight:600}
+.nav-item svg{width:18px;height:18px;flex-shrink:0}
+.nav-bottom{padding-top:16px;border-top:1px solid var(--gray-100);display:flex;flex-direction:column;gap:2px}
+.main{display:flex;flex-direction:column;min-height:100vh}
+.topbar{background:var(--white);border-bottom:1px solid var(--gray-100);padding:18px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10}
+.greeting{font-size:18px;font-weight:600}
+.greeting .serif{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--teal);margin-right:4px}
+.topbar-actions{display:flex;align-items:center;gap:12px}
+.icon-btn{width:38px;height:38px;border-radius:50%;background:var(--gray-50);display:flex;align-items:center;justify-content:center;color:var(--gray-600);transition:all 0.15s;border:1px solid var(--gray-100)}
+.icon-btn:hover{background:var(--gray-100);color:var(--dark)}
+.icon-btn svg{width:18px;height:18px}
+.avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--teal) 0%,var(--teal-dark) 100%);color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
+.content{flex:1;padding:24px 32px 48px;max-width:1200px;margin:0 auto;width:100%}
+
+/* ─── REQUIRED ACTION BANNER ─── */
+.action-banner{background:linear-gradient(90deg,rgba(245,158,11,0.08) 0%,rgba(59,130,246,0.06) 100%);border:1px solid rgba(245,158,11,0.18);border-radius:var(--radius);padding:18px 22px;margin-bottom:28px;display:flex;align-items:flex-start;gap:14px}
+.action-banner-dot{width:8px;height:8px;border-radius:50%;background:var(--amber);margin-top:7px;flex-shrink:0;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}
+.action-banner-body{flex:1}
+.action-banner-label{font-size:13px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px}
+.action-banner-msg{font-size:14px;color:var(--gray-700);line-height:1.5}
+.action-banner-cta{padding:9px 18px;background:var(--dark);color:white;border-radius:100px;font-size:13px;font-weight:600;flex-shrink:0;transition:background 0.15s}
+.action-banner-cta:hover{background:var(--black)}
+
+/* ─── PAGE TITLES ─── */
+.page{display:none}
 .page.active{display:block}
+.page-title{font-size:22px;font-weight:700;margin-bottom:4px;letter-spacing:-0.01em}
+.page-sub{font-size:14px;color:var(--gray-500);margin-bottom:28px}
 
-/* Login */
-.login-wrap{display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 60px);min-height:calc(100svh - 60px);padding:20px}
-.login-card{background:#fff;border-radius:20px;padding:48px 36px;box-shadow:0 1px 3px rgba(0,0,0,0.04),0 8px 40px rgba(0,0,0,0.03);border:1px solid rgba(0,0,0,0.04);text-align:center;max-width:420px;width:100%}
-.login-title{font-family:'Instrument Serif',serif;font-size:32px;font-weight:400;margin-bottom:8px}.login-title em{font-style:italic;color:var(--teal)}
-.login-sub{font-size:15px;color:var(--gray-500);line-height:1.6;margin-bottom:32px}
-.input-group{margin-bottom:20px;text-align:left}
-.input-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--gray-400);margin-bottom:8px;display:block}
-.input{width:100%;padding:14px 18px;border:1.5px solid var(--gray-200);border-radius:10px;font-family:inherit;font-size:16px;outline:none;transition:border 0.2s}
-.input:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,180,197,0.1)}
-.input-code{text-align:center;font-size:28px;font-weight:700;letter-spacing:8px;font-family:monospace}
-.btn{width:100%;padding:14px;border-radius:12px;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;border:none;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:8px}
-.btn-primary{background:var(--teal);color:#fff}.btn-primary:hover{background:var(--teal-dark)}
-.btn-primary:disabled{opacity:0.5;cursor:not-allowed}
-.btn-secondary{background:var(--gray-100);color:var(--dark)}.btn-secondary:hover{background:var(--gray-200)}
-.btn-sm{width:auto;padding:10px 20px;font-size:13px}
-.login-error{background:rgba(239,68,68,0.08);color:var(--red);padding:12px 16px;border-radius:10px;font-size:13px;margin-bottom:16px;display:none}
-.login-back{font-size:13px;color:var(--gray-400);margin-top:16px;cursor:pointer}.login-back:hover{color:var(--teal)}
-.spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin 0.6s linear infinite;display:inline-block}
+/* ─── SECTION ─── */
+.section{margin-bottom:32px}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.section-title{font-size:13px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.08em;display:flex;align-items:center;gap:8px}
+.section-title svg{width:16px;height:16px;color:var(--teal)}
+.section-link{font-size:13px;color:var(--teal);font-weight:600}
 
-/* Dashboard */
-.greeting{font-family:'Instrument Serif',serif;font-size:28px;margin-bottom:4px}.greeting em{font-style:italic;color:var(--teal)}
-.greeting-sub{font-size:14px;color:var(--gray-400);margin-bottom:24px}
-.stage-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:100px;font-size:12px;font-weight:700;margin-bottom:20px}
-.stage-active{background:rgba(0,180,197,0.1);color:var(--teal)}.stage-shipped{background:rgba(34,197,94,0.1);color:var(--green)}.stage-cancelled{background:rgba(239,68,68,0.1);color:var(--red)}.stage-pending{background:rgba(245,158,11,0.1);color:var(--orange)}
+/* ─── CARDS ─── */
+.card{background:var(--white);border:1px solid var(--gray-100);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow-sm)}
+.card-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;font-size:14px}
+.card-row+.card-row{border-top:1px solid var(--gray-100)}
+.card-row-label{color:var(--gray-500)}
+.card-row-value{font-weight:600;color:var(--dark)}
 
-/* Timeline */
-.card{background:#fff;border-radius:var(--radius);padding:24px;border:1px solid rgba(0,0,0,0.04);margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,0.02)}
-.card-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--gray-400);margin-bottom:16px}
-.card-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--gray-100)}.card-row:last-child{border-bottom:none}
-.card-row-label{font-size:13px;color:var(--gray-500)}.card-row-value{font-size:14px;font-weight:600;color:var(--dark)}
-.tl-step{display:flex;gap:16px;position:relative;padding-bottom:20px}.tl-step:last-child{padding-bottom:0}
-.tl-step:not(:last-child)::after{content:'';position:absolute;left:15px;top:34px;bottom:0;width:1px;background:var(--gray-200)}
-.tl-dot{width:30px;height:30px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;position:relative;z-index:1}
-.tl-dot-done{background:var(--teal);color:#fff}.tl-dot-active{background:#fff;color:var(--teal);border:2px solid var(--teal);animation:pulse 2s ease infinite}.tl-dot-pending{background:var(--gray-100);color:var(--gray-400);border:1px solid var(--gray-200)}
-.tl-info{padding-top:4px;flex:1}.tl-label{font-size:14px;font-weight:600;margin-bottom:2px}.tl-desc{font-size:12px;color:var(--gray-400);line-height:1.5}.tl-time{font-size:11px;color:var(--gray-400);margin-top:4px}
-.tl-step.done .tl-label{color:var(--gray-400);text-decoration:line-through;text-decoration-color:rgba(0,0,0,0.1)}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
-.action-btn{background:#fff;border:1px solid var(--gray-200);border-radius:12px;padding:20px 16px;text-align:center;cursor:pointer;transition:all 0.2s;text-decoration:none;color:var(--dark)}
-.action-btn:hover{border-color:var(--teal);background:var(--teal-light)}
-.action-icon{font-size:22px;margin-bottom:6px}.action-label{font-size:13px;font-weight:600}.action-desc{font-size:11px;color:var(--gray-400);margin-top:2px}
-.tracking-link{color:var(--teal);text-decoration:none;font-weight:600}.tracking-link:hover{text-decoration:underline}
+/* ─── QUICK ACTIONS ─── */
+.quick-actions{display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap}
+.quick-action{padding:11px 18px;background:var(--white);border:1px solid var(--gray-200);border-radius:100px;font-size:14px;font-weight:600;color:var(--gray-700);display:inline-flex;align-items:center;gap:8px;transition:all 0.15s;cursor:pointer;font-family:inherit}
+.quick-action:hover{border-color:var(--teal);color:var(--teal-dark);background:var(--teal-light)}
+.quick-action svg{width:15px;height:15px}
 
-/* Messages */
-.msg-empty{text-align:center;padding:40px;color:var(--gray-400);font-size:14px}
-.msg-list{display:flex;flex-direction:column;gap:12px;margin-bottom:20px;max-height:500px;overflow-y:auto;padding:4px}
-.msg-bubble{max-width:85%;padding:14px 18px;border-radius:16px;font-size:14px;line-height:1.6;position:relative}
-.msg-patient{align-self:flex-end;background:var(--teal);color:#fff;border-bottom-right-radius:4px}
-.msg-provider{align-self:flex-start;background:#fff;border:1px solid var(--gray-200);border-bottom-left-radius:4px}
-.msg-meta{font-size:11px;margin-top:6px;opacity:0.7}
-.msg-input-wrap{display:flex;gap:10px;margin-top:12px}
-.msg-input{flex:1;padding:14px 18px;border:1.5px solid var(--gray-200);border-radius:12px;font-family:inherit;font-size:16px;outline:none;resize:none;min-height:48px;max-height:120px}
-.msg-input:focus{border-color:var(--teal)}
-.msg-send{padding:14px 20px;background:var(--teal);color:#fff;border:none;border-radius:12px;font-family:inherit;font-weight:700;cursor:pointer;font-size:14px;transition:background 0.2s}
-.msg-send:hover{background:var(--teal-dark)}.msg-send:disabled{opacity:0.5;cursor:not-allowed}
+/* ─── SUGGESTED ROW ─── */
+.suggest-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.suggest-card{background:var(--white);border:1px solid var(--gray-100);border-radius:var(--radius);padding:18px;display:flex;gap:14px;align-items:center;cursor:pointer;transition:all 0.2s}
+.suggest-card:hover{border-color:var(--teal);box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.suggest-card-img{width:64px;height:64px;background:var(--gray-50);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:8px}
+.suggest-card-img img{max-width:100%;max-height:100%;object-fit:contain}
+.suggest-card-body{flex:1;min-width:0}
+.suggest-card-cat{font-size:11px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px}
+.suggest-card-name{font-size:15px;font-weight:700;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.suggest-card-price{font-size:13px;color:var(--gray-500)}
 
-/* Refill */
-.q-item{background:#fff;border:1px solid var(--gray-200);border-radius:12px;padding:20px;margin-bottom:14px}
-.q-label{font-size:14px;font-weight:600;margin-bottom:10px;color:var(--dark)}
-.q-select{width:100%;padding:12px 14px;border:1.5px solid var(--gray-200);border-radius:8px;font-family:inherit;font-size:16px;outline:none;background:#fff;cursor:pointer}
-.q-select:focus{border-color:var(--teal)}
-.q-input{width:100%;padding:12px 14px;border:1.5px solid var(--gray-200);border-radius:8px;font-family:inherit;font-size:16px;outline:none}
-.q-input:focus{border-color:var(--teal)}
-.q-required::after{content:" *";color:var(--red)}
-.refill-success{text-align:center;padding:40px;animation:fadeUp 0.4s ease}
-.refill-success h2{font-family:'Instrument Serif',serif;font-size:26px;margin-bottom:8px}
+/* ─── TIMELINE ─── */
+.timeline{position:relative;padding-left:24px}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:var(--gray-100)}
+.timeline-step{position:relative;padding-bottom:18px}
+.timeline-step:last-child{padding-bottom:0}
+.timeline-dot{position:absolute;left:-24px;top:2px;width:16px;height:16px;border-radius:50%;background:var(--white);border:2px solid var(--gray-200);display:flex;align-items:center;justify-content:center}
+.timeline-step.done .timeline-dot{background:var(--teal);border-color:var(--teal)}
+.timeline-step.done .timeline-dot::after{content:'';width:6px;height:6px;background:white;border-radius:50%}
+.timeline-step.current .timeline-dot{background:var(--teal-light);border-color:var(--teal)}
+.timeline-step.current .timeline-dot::after{content:'';width:5px;height:5px;background:var(--teal);border-radius:50%;animation:pulse 1.5s ease-in-out infinite}
+.timeline-label{font-size:14px;font-weight:600;color:var(--dark);margin-bottom:2px}
+.timeline-desc{font-size:13px;color:var(--gray-500);line-height:1.5}
+.timeline-date{font-size:12px;color:var(--gray-400);margin-top:4px}
 
-/* Plans */
-.plan-card{border:1.5px solid var(--gray-200);border-radius:12px;padding:20px;margin-bottom:12px;cursor:pointer;transition:all 0.2s;display:flex;justify-content:space-between;align-items:center}
-.plan-card:hover{border-color:var(--teal);background:var(--teal-light)}
-.plan-card.current{border-color:var(--teal);background:var(--teal-light)}
-.plan-card.current::after{content:"Current";font-size:11px;font-weight:700;color:var(--teal);background:rgba(0,180,197,0.15);padding:4px 10px;border-radius:100px}
-.plan-name{font-size:15px;font-weight:700}.plan-detail{font-size:12px;color:var(--gray-400);margin-top:2px}
-.plan-price{font-size:18px;font-weight:800;text-align:right}.plan-period{font-size:12px;color:var(--gray-400);font-weight:400}
+/* ─── TREATMENT CARD ─── */
+.treatment-card{background:var(--white);border:1px solid var(--gray-100);border-radius:var(--radius);padding:0;overflow:hidden}
+.treatment-card-head{padding:18px 22px;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--gray-100)}
+.treatment-card-img{width:56px;height:56px;background:var(--gray-50);border-radius:12px;display:flex;align-items:center;justify-content:center;padding:6px;flex-shrink:0}
+.treatment-card-img img{max-width:100%;max-height:100%;object-fit:contain}
+.treatment-card-info{flex:1}
+.treatment-card-name{font-size:16px;font-weight:700}
+.treatment-card-meta{font-size:13px;color:var(--gray-500)}
+.treatment-card-badge{padding:5px 12px;background:rgba(16,185,129,0.1);color:var(--green);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;border-radius:100px}
+.treatment-card-badge.pending{background:rgba(245,158,11,0.1);color:var(--amber)}
+.treatment-card-body{padding:18px 22px}
 
-/* Loading */
-.loading{text-align:center;padding:60px 20px}
-.loading-spinner{width:32px;height:32px;border:3px solid var(--gray-200);border-top-color:var(--teal);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 16px}
-.loading-text{font-size:14px;color:var(--gray-400)}
-.footer{text-align:center;padding:20px;font-size:12px;color:var(--gray-400)}.footer a{color:var(--teal);text-decoration:none}
+/* ─── TABS ─── */
+.tabs{display:flex;gap:4px;background:var(--gray-100);padding:4px;border-radius:12px;margin-bottom:24px}
+.tab{flex:1;padding:10px 16px;font-size:14px;font-weight:600;color:var(--gray-500);background:transparent;border:none;border-radius:9px;cursor:pointer;transition:all 0.15s;font-family:inherit}
+.tab:hover{color:var(--dark)}
+.tab.active{background:var(--white);color:var(--dark);box-shadow:var(--shadow-sm)}
 
-@media(max-width:600px){.login-card{padding:32px 24px}.greeting{font-size:22px}.actions{grid-template-columns:1fr}.tabs-inner{padding:0 4px}.tab{padding:10px 14px;font-size:12px}}
+/* ─── EMPTY STATE ─── */
+.empty{text-align:center;padding:48px 24px;color:var(--gray-500)}
+.empty-icon{font-size:48px;margin-bottom:14px;opacity:0.4;line-height:1}
+.empty-title{font-size:16px;font-weight:700;color:var(--dark);margin-bottom:6px}
+.empty-msg{font-size:13px;color:var(--gray-500);max-width:340px;margin:0 auto}
+
+/* ─── SHOTS ─── */
+.shot-stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
+.shot-stat{background:var(--white);border:1px solid var(--gray-100);border-radius:var(--radius);padding:18px}
+.shot-stat-label{font-size:12px;font-weight:600;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px}
+.shot-stat-val{font-size:28px;font-weight:700;letter-spacing:-0.02em}
+.shot-stat-val .unit{font-size:14px;font-weight:500;color:var(--gray-500);margin-left:4px}
+
+/* ─── SHOP ─── */
+.shop-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.filter-pill{padding:8px 16px;background:var(--white);border:1px solid var(--gray-200);border-radius:100px;font-size:13px;font-weight:600;color:var(--gray-600);cursor:pointer;transition:all 0.15s;font-family:inherit}
+.filter-pill:hover{border-color:var(--teal);color:var(--teal-dark)}
+.filter-pill.active{background:var(--dark);border-color:var(--dark);color:white}
+.shop-search{width:100%;max-width:420px;padding:11px 16px;border:1px solid var(--gray-200);border-radius:100px;font-size:14px;font-family:inherit;outline:none;margin-bottom:18px}
+.shop-search:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,180,197,0.1)}
+.shop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.shop-card{background:var(--white);border:1px solid var(--gray-100);border-radius:var(--radius);padding:20px;cursor:pointer;transition:all 0.2s;text-align:center}
+.shop-card:hover{border-color:var(--teal);box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.shop-card-img{aspect-ratio:1;background:var(--gray-50);border-radius:12px;display:flex;align-items:center;justify-content:center;padding:18px;margin-bottom:14px}
+.shop-card-img img{max-width:100%;max-height:100%;object-fit:contain}
+.shop-card-cat{font-size:11px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px}
+.shop-card-name{font-size:15px;font-weight:700;margin-bottom:6px;line-height:1.3}
+.shop-card-price{font-size:13px;color:var(--gray-500)}
+.shop-card-price strong{color:var(--dark);font-weight:700}
+
+/* ─── ACCOUNT ─── */
+.acc-tabs{display:flex;gap:0;border-bottom:1px solid var(--gray-100);margin-bottom:24px}
+.acc-tab{padding:12px 18px;font-size:14px;font-weight:600;color:var(--gray-500);background:transparent;border:none;border-bottom:2px solid transparent;cursor:pointer;transition:all 0.15s;font-family:inherit;margin-bottom:-1px}
+.acc-tab:hover{color:var(--dark)}
+.acc-tab.active{color:var(--teal-dark);border-bottom-color:var(--teal)}
+.acc-section{display:none}
+.acc-section.active{display:block}
+.acc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+.acc-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--gray-100);font-size:14px}
+.acc-row:last-child{border-bottom:none}
+.acc-row-label{color:var(--gray-500);font-weight:500}
+.acc-row-val{font-weight:600;color:var(--dark)}
+
+/* ─── BUTTONS ─── */
+.btn{padding:11px 22px;font-size:14px;font-weight:600;border-radius:100px;cursor:pointer;font-family:inherit;transition:all 0.15s;display:inline-flex;align-items:center;gap:8px;border:none}
+.btn-primary{background:var(--teal);color:white}
+.btn-primary:hover{background:var(--teal-dark)}
+.btn-secondary{background:var(--white);color:var(--gray-700);border:1px solid var(--gray-200)}
+.btn-secondary:hover{border-color:var(--gray-400);background:var(--gray-50)}
+.btn-dark{background:var(--dark);color:white}
+.btn-dark:hover{background:var(--black)}
+
+/* ─── MESSAGES ─── */
+.msg-list{display:flex;flex-direction:column;gap:12px;margin-bottom:18px;max-height:440px;overflow-y:auto;padding-right:4px}
+.msg{padding:14px 18px;border-radius:14px;font-size:14px;line-height:1.5;max-width:80%;animation:fadeUp 0.2s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.msg-from-patient{background:var(--teal);color:white;align-self:flex-end;border-bottom-right-radius:4px}
+.msg-from-provider{background:var(--gray-100);color:var(--dark);align-self:flex-start;border-bottom-left-radius:4px}
+.msg-meta{font-size:11px;color:var(--gray-400);margin-top:4px;padding:0 4px}
+.msg-input-wrap{display:flex;gap:10px;background:var(--white);border:1px solid var(--gray-200);border-radius:14px;padding:8px;align-items:center}
+.msg-input{flex:1;padding:10px 14px;border:none;outline:none;font-size:14px;font-family:inherit;background:transparent;resize:none;max-height:120px}
+.msg-send{padding:10px 22px;background:var(--teal);color:white;border-radius:100px;font-size:14px;font-weight:700}
+.msg-send:disabled{opacity:0.4;cursor:not-allowed}
+
+/* ─── REFILL FORM ─── */
+.refill-card{background:var(--white);border:1px solid var(--gray-100);border-radius:var(--radius);padding:24px;margin-bottom:18px}
+.q-item{padding:18px 0;border-bottom:1px solid var(--gray-100)}
+.q-item:last-child{border-bottom:none}
+.q-label{display:block;font-size:14px;font-weight:600;margin-bottom:10px;color:var(--dark)}
+.q-label.q-required::after{content:' *';color:var(--red)}
+.q-input,.q-select{width:100%;padding:12px 14px;border:1px solid var(--gray-200);border-radius:10px;font-size:14px;font-family:inherit;outline:none;background:var(--white)}
+.q-input:focus,.q-select:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,180,197,0.1)}
+textarea.q-input{resize:vertical;min-height:80px}
+.q-radios{display:flex;flex-direction:column;gap:8px}
+.q-radio{display:flex;align-items:center;gap:10px;padding:11px 14px;border:1.5px solid var(--gray-200);border-radius:10px;cursor:pointer;transition:all 0.15s;font-size:14px}
+.q-radio:hover{border-color:var(--teal-light);background:var(--gray-50)}
+.q-radio input{margin:0;cursor:pointer}
+.q-radio.selected{border-color:var(--teal);background:var(--teal-light);color:var(--teal-dark);font-weight:600}
+
+/* ─── LOADING ─── */
+.loading{text-align:center;padding:60px 20px;color:var(--gray-500)}
+.spinner{display:inline-block;width:28px;height:28px;border:2.5px solid var(--gray-200);border-top-color:var(--teal);border-radius:50%;animation:spin 0.8s linear infinite;margin-bottom:12px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:920px){
+  .app-shell{grid-template-columns:1fr}
+  .sidebar{position:fixed;top:0;left:0;right:0;bottom:auto;height:auto;flex-direction:row;align-items:center;padding:12px 16px;border-bottom:1px solid var(--gray-200);border-right:none;z-index:100;overflow-x:auto;overflow-y:hidden}
+  .sidebar-logo{padding:0 12px 0 0}
+  .sidebar-nav{flex-direction:row;flex:1;gap:4px}
+  .nav-item{padding:8px 12px;white-space:nowrap;font-size:13px}
+  .nav-item span{display:none}
+  .nav-bottom{display:none}
+  .main{padding-top:60px}
+  .topbar{padding:14px 18px}
+  .content{padding:18px 16px 36px}
+  .suggest-row{grid-template-columns:1fr}
+  .shop-grid{grid-template-columns:repeat(2,1fr)}
+  .shot-stat-grid{grid-template-columns:1fr}
+  .acc-grid{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+  .shop-grid{grid-template-columns:1fr}
+  .action-banner{flex-direction:column}
+  .quick-actions{flex-direction:column}
+  .quick-action{justify-content:center}
+}
 </style>
 </head>
 <body>
-<nav class="nav" id="portalNav">
-  <a href="/portal/" class="nav-logo">CLY<span>R</span></a>
-  <div class="nav-right" id="navRight" style="display:none">
-    <span class="nav-name" id="navName"></span>
-    <button class="nav-btn" onclick="logout()">Sign out</button>
-  </div>
-</nav>
-<div class="tabs" id="tabBar">
-  <div class="tabs-inner">
-    <div class="tab active" onclick="showTab('dashboard')">Overview</div>
-    <div class="tab" onclick="showTab('messages')">Messages <span class="tab-badge" id="msgBadge"></span></div>
-    <div class="tab" onclick="showTab('refill')">Refill</div>
-    <div class="tab" onclick="showTab('plans')">My Plan</div>
-  </div>
-</div>
 
-<!-- ═══ LOGIN ═══ -->
-<div class="page active" id="loginPage">
-  <div class="login-wrap">
-    <div class="login-card">
-      <div id="loginStep1">
-        <h1 class="login-title">Your <em>health portal</em></h1>
-        <p class="login-sub">Check treatment status, message your provider, request refills, and manage your subscription.</p>
-        <div class="login-error" id="loginError1"></div>
-        <div class="input-group"><label class="input-label">Email address</label><input class="input" type="email" id="loginEmail" placeholder="you@example.com" autocomplete="email"></div>
-        <button class="btn btn-primary" id="btnSendCode" onclick="sendCode()">Send verification code</button>
+<!-- ═══ LOGIN VIEW ═══ -->
+<div id="loginView" class="login-wrap">
+  <div class="login-card">
+    <a href="/" class="login-logo">
+      <svg viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="0" y="26" font-family="DM Sans, sans-serif" font-weight="700" font-size="28" letter-spacing="-1"><tspan fill="#1A1A1A">CLY</tspan><tspan fill="#00B4C5">R</tspan></text></svg>
+    </a>
+    <h1 class="login-title">Your <span class="serif">health portal.</span></h1>
+    <p class="login-sub">Check treatment status, message your provider, request refills, and manage your subscription.</p>
+
+    <div id="loginStepEmail">
+      <div class="login-field">
+        <label class="login-label" for="emailInput">Email address</label>
+        <input class="login-input" type="email" id="emailInput" placeholder="you@email.com" autocomplete="email" autofocus>
       </div>
-      <div id="loginStep2" style="display:none">
-        <h1 class="login-title">Check your <em>inbox</em></h1>
-        <p class="login-sub">We sent a 6-digit code to <strong id="codeEmail"></strong></p>
-        <div class="login-error" id="loginError2"></div>
-        <div class="input-group"><label class="input-label">Verification code</label><input class="input input-code" type="text" id="loginCode" placeholder="------" maxlength="6" autocomplete="one-time-code" inputmode="numeric"></div>
-        <button class="btn btn-primary" id="btnVerify" onclick="verifyCode()">Verify &amp; sign in</button>
-        <div class="login-back" onclick="backToEmail()">&#8592; Use a different email</div>
+      <button class="login-btn" id="btnSendCode">Send verification code</button>
+      <div class="login-err" id="loginErr1" style="display:none"></div>
+    </div>
+
+    <div id="loginStepCode" style="display:none">
+      <div class="login-field">
+        <label class="login-label" for="codeInput">6-digit code</label>
+        <input class="login-input login-input-code" type="text" id="codeInput" maxlength="6" inputmode="numeric" placeholder="000000">
       </div>
+      <button class="login-btn" id="btnVerifyCode">Verify and sign in</button>
+      <button class="login-back" id="btnBackToEmail">← Use a different email</button>
+      <p class="login-hint" id="codeHint">We sent a code to your email. It expires in 10 minutes.</p>
+      <div class="login-err" id="loginErr2" style="display:none"></div>
     </div>
   </div>
 </div>
 
-<!-- ═══ DASHBOARD ═══ -->
-<div class="page" id="dashboardPage">
-  <div id="dashLoading" class="loading"><div class="loading-spinner"></div><div class="loading-text">Loading your portal...</div></div>
-  <div id="dashContent" style="display:none">
-    <h1 class="greeting">Hi <em id="dashName">there</em></h1>
-    <div class="greeting-sub">Here's your treatment overview</div>
-    <div id="dashStage"></div>
-    <div id="trackBanner" style="display:none;background:linear-gradient(135deg,#1a1a2e 0%,#2d2d4e 100%);border-radius:16px;padding:20px 24px;margin-bottom:20px;cursor:pointer" onclick="window.open(document.getElementById('trackBanner').dataset.url,'_blank')">
-      <div style="display:flex;align-items:center;gap:16px">
-        <div style="font-size:28px">📦</div>
-        <div style="flex:1">
-          <div style="color:#fff;font-size:15px;font-weight:700;margin-bottom:2px">Track My Package</div>
-          <div id="trackBannerSub" style="color:rgba(255,255,255,0.6);font-size:13px">Your medication is on its way</div>
-        </div>
-        <div style="color:#2bbcb3;font-size:24px;font-weight:700">&#8599;</div>
+<!-- ═══ APP SHELL ═══ -->
+<div id="appView" class="app-shell" style="display:none">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <a href="/" class="sidebar-logo">
+      <svg viewBox="0 0 120 32" fill="none"><text x="0" y="26" font-family="DM Sans, sans-serif" font-weight="700" font-size="26" letter-spacing="-1"><tspan fill="#1A1A1A">CLY</tspan><tspan fill="#00B4C5">R</tspan></text></svg>
+    </a>
+    <nav class="sidebar-nav">
+      <button class="nav-item active" data-page="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9v9a2 2 0 0 1-2 2h-4v-7H10v7H6a2 2 0 0 1-2-2v-9z" stroke-linejoin="round"/></svg><span>Home</span></button>
+      <button class="nav-item" data-page="chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-9 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.2A8.38 8.38 0 0 1 3 11.5 8.5 8.5 0 0 1 12 3a8.38 8.38 0 0 1 9 8.5z" stroke-linejoin="round"/></svg><span>Chat</span></button>
+      <button class="nav-item" data-page="treatments"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M12 7v10M7 12h10"/></svg><span>Treatments</span></button>
+      <button class="nav-item" data-page="shots"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2l4 4M11 13l-3 3M13 17l-2 2M3 21l3-3M7 8l9 9M15 4l5 5-9 9-5 1 1-5 8-10z" stroke-linejoin="round"/></svg><span>Shots</span></button>
+      <button class="nav-item" data-page="shop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" stroke-linejoin="round"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span>Shop</span></button>
+    </nav>
+    <div class="nav-bottom">
+      <button class="nav-item" data-page="account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke-linejoin="round"/><circle cx="12" cy="7" r="4"/></svg><span>Account</span></button>
+      <a class="nav-item" href="/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span>CLYR.health</span></a>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <header class="topbar">
+      <div class="greeting"><span class="serif">Hi,</span> <span id="greetName">there</span></div>
+      <div class="topbar-actions">
+        <button class="icon-btn" title="Sign out" id="btnSignOut"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></button>
+        <div class="avatar" id="avatarInitials">U</div>
       </div>
-    </div>
-    <div class="card" id="dashTimeline"><div class="card-title">Treatment journey</div><div id="timelineSteps"></div></div>
-    <div class="actions">
-      <div class="action-btn" onclick="showTab('messages')"><div class="action-icon">&#128172;</div><div class="action-label">Messages</div><div class="action-desc">Talk to your provider</div></div>
-      <div class="action-btn" id="actionRefill" onclick="showTab('refill')"><div class="action-icon">&#128138;</div><div class="action-label" id="actionRefillLabel">Request refill</div><div class="action-desc" id="actionRefillDesc">Schedule next consultation</div></div>
-      <div class="action-btn" onclick="manageSubscription()"><div class="action-icon">&#128179;</div><div class="action-label">Manage billing</div><div class="action-desc">Update payment method</div></div>
-      <div class="action-btn" onclick="showTab('plans')"><div class="action-icon">&#9889;</div><div class="action-label">Change plan</div><div class="action-desc">Upgrade or switch treatment</div></div>
-    </div>
-    <div class="card" id="subCard" style="display:none"><div class="card-title">Subscription</div><div id="subDetails"></div></div>
-    <div class="card" id="shipCard" style="display:none"><div class="card-title">Shipping</div><div id="shipDetails"></div></div>
-    <div class="card" style="background:var(--teal-light);border-color:rgba(0,180,197,0.15)"><div style="display:flex;gap:12px;align-items:flex-start"><span style="font-size:20px">&#128176;</span><div><div style="font-size:14px;font-weight:600;margin-bottom:4px">Full refund guarantee</div><div style="font-size:13px;color:var(--gray-500);line-height:1.5">Not eligible? You pay nothing — full refund, no questions asked.</div></div></div></div>
-  </div>
-</div>
+    </header>
 
-<!-- ═══ MESSAGES ═══ -->
-<div class="page" id="messagesPage">
-  <h2 style="font-size:20px;font-weight:700;margin-bottom:4px">Messages</h2>
-  <p style="font-size:13px;color:var(--gray-400);margin-bottom:20px">Communicate with your provider about your treatment</p>
-  <div id="msgLoading" class="loading"><div class="loading-spinner"></div><div class="loading-text">Loading messages...</div></div>
-  <div id="msgContent" style="display:none">
-    <div id="msgList" class="msg-list"></div>
-    <div class="msg-input-wrap">
-      <textarea class="msg-input" id="msgInput" placeholder="Type a message to your provider..." rows="1"></textarea>
-      <button class="msg-send" id="btnSendMsg" onclick="sendMessage()">Send</button>
-    </div>
-  </div>
-</div>
+    <div class="content">
 
-<!-- ═══ REFILL ═══ -->
-<div class="page" id="refillPage">
-  <div id="refillForm">
-    <h2 style="font-size:20px;font-weight:700;margin-bottom:4px">Request a refill</h2>
-    <p style="font-size:13px;color:var(--gray-400);margin-bottom:20px">Complete this questionnaire so your provider can evaluate your next prescription.</p>
+      <!-- Required Action banner (persistent across pages) -->
+      <div id="actionBanner"></div>
 
-    <!-- Medical update prompt -->
-    <div class="card" id="medUpdateCard" style="margin-bottom:20px;border-left:3px solid var(--teal)">
-      <div class="card-title">Medical updates</div>
-      <p style="font-size:14px;color:var(--gray-600);margin-bottom:12px">Has anything changed in your medical conditions, allergies, or medications since your last visit?</p>
-      <div style="display:flex;gap:10px;margin-bottom:12px">
-        <button class="btn btn-sm btn-secondary" id="medNo" onclick="toggleMedUpdate(false)" style="flex:1;border:2px solid var(--teal);color:var(--teal);font-weight:700">No changes</button>
-        <button class="btn btn-sm btn-secondary" id="medYes" onclick="toggleMedUpdate(true)" style="flex:1">Yes, I have updates</button>
-      </div>
-      <div id="medUpdateFields" style="display:none">
-        <div class="q-item" style="border:none;padding:12px 0"><label class="q-label">Current medications</label><textarea class="q-input" id="medMeds" rows="2" placeholder="List any new or changed medications"></textarea></div>
-        <div class="q-item" style="border:none;padding:12px 0"><label class="q-label">Drug allergies</label><textarea class="q-input" id="medAllergies" rows="2" placeholder="List any new drug allergies"></textarea></div>
-        <div class="q-item" style="border:none;padding:12px 0"><label class="q-label">Medical conditions</label><textarea class="q-input" id="medConditions" rows="2" placeholder="List any new medical conditions"></textarea></div>
-      </div>
-    </div>
+      <!-- HOME -->
+      <div class="page active" id="pageHome">
+        <div id="homeLoading" class="loading"><div class="spinner"></div><div>Loading your portal...</div></div>
+        <div id="homeContent" style="display:none">
+          <h1 class="page-title">Your treatment</h1>
+          <p class="page-sub" id="homeSubtitle">Welcome back to CLYR.</p>
 
-    <!-- Q30: Pounds lost -->
-    <div class="q-item">
-      <label class="q-label q-required">Over the past 4 weeks, approximately how many pounds have you lost?</label>
-      <select class="q-select" id="rq_q30" onchange="handleQ30Change(this.value)"><option value="">Select...</option><option>0-3 pounds</option><option>4-6 pounds</option><option>7-12 pounds</option><option>13-20 pounds</option><option>More than 20 pounds</option><option>I'm gaining weight</option></select>
-      <!-- Q31: Conditional on "I'm gaining weight" -->
-      <div id="q31wrap" style="display:none;margin-top:14px;padding:14px;background:var(--gray-50);border-radius:10px">
-        <label class="q-label q-required">Still gaining weight? What steps have you taken?</label>
-        <p style="font-size:12px;color:var(--gray-400);margin-bottom:8px">Select all that apply</p>
-        <div id="rq_q31" style="display:flex;flex-direction:column;gap:6px">
-          <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer"><input type="checkbox" value="Seen a dietician"> Seen a dietician</label>
-          <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer"><input type="checkbox" value="Decreased my calorie intake"> Decreased my calorie intake</label>
-          <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer"><input type="checkbox" value="Started an exercise program"> Started an exercise program</label>
-          <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer"><input type="checkbox" value="Attempted to decrease stress from my life which can cause increase in cortisol levels"> Decreased stress levels</label>
-          <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer"><input type="checkbox" value="None of the above"> None of the above</label>
-        </div>
-      </div>
-      <!-- Q32: Conditional on "More than 20 pounds" -->
-      <div id="q32wrap" style="display:none;margin-top:14px;padding:14px;background:rgba(245,158,11,0.08);border-radius:10px;border-left:3px solid var(--orange)">
-        <p style="font-size:14px;font-weight:600;color:var(--orange);margin-bottom:8px">⚠️ Significant weight loss detected</p>
-        <p style="font-size:13px;color:var(--gray-600);margin-bottom:10px">Losing more than 20 pounds in 4 weeks is significant. Your provider will review this closely.</p>
-        <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer"><input type="checkbox" id="rq_q32" value="Acknowledged"> I acknowledge and want my provider to review this</label>
-      </div>
-    </div>
-
-    <!-- Q40: Current weight -->
-    <div class="q-item">
-      <label class="q-label q-required">What is your current weight in pounds?</label>
-      <input class="q-input" type="number" id="rq_q40" placeholder="e.g. 185" min="80" max="600">
-    </div>
-
-    <!-- Q60: Appetite suppression -->
-    <div class="q-item">
-      <label class="q-label q-required">Are you having appetite suppression?</label>
-      <select class="q-select" id="rq_q60"><option value="">Select...</option><option>Yes, just where I want to be</option><option>Somewhat decreased appetite</option><option>Way too much appetite suppression! I can't eat anything</option><option>I'm always hungry!</option></select>
-    </div>
-
-    <!-- Q159/160: Medical history changes -->
-    <div class="q-item">
-      <label class="q-label q-required">Do you have any new changes/additions to your medical history?</label>
-      <select class="q-select" id="rq_q159" onchange="document.getElementById('q160wrap').style.display=this.value==='Yes I do'?'block':'none'"><option value="">Select...</option><option>No</option><option>Yes I do</option></select>
-      <div id="q160wrap" style="display:none;margin-top:12px"><label class="q-label">Please tell the doctor about any new medical history:</label><textarea class="q-input" id="rq_q160" rows="3" placeholder="Describe any changes..."></textarea></div>
-    </div>
-
-    <!-- Q200: Side effects (multi-select checkboxes) -->
-    <div class="q-item">
-      <label class="q-label q-required">Any major side effects which you are concerned about?</label>
-      <p style="font-size:12px;color:var(--gray-400);margin-bottom:10px">Select all that apply</p>
-      <div id="rq_q200" style="display:flex;flex-direction:column;gap:8px">
-        <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer"><input type="checkbox" value="Having side effects, but I can handle them"> Having side effects, but I can handle them</label>
-        <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer;color:var(--red);font-weight:600"><input type="checkbox" value="Significant vomiting"> Significant vomiting</label>
-        <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer"><input type="checkbox" value="Abdominal pain that concerns me"> Abdominal pain that concerns me</label>
-        <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer"><input type="checkbox" value="Dizziness that concerns me"> Dizziness that concerns me</label>
-        <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer;color:var(--red);font-weight:600"><input type="checkbox" value="Chest pain"> Chest pain</label>
-        <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer"><input type="checkbox" value="Fevers"> Fevers</label>
-        <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer;color:var(--red);font-weight:600"><input type="checkbox" value="Swelling in my neck"> Swelling in my neck</label>
-        <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer"><input type="checkbox" value="Other" onchange="document.getElementById('q200detailWrap').style.display=this.checked?'block':'none'"> Other</label>
-        <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer"><input type="checkbox" value="NONE of the above"> NONE of the above</label>
-      </div>
-      <div id="q200detailWrap" style="display:none;margin-top:12px"><textarea class="q-input" id="rq_q200_detail" rows="3" placeholder="Describe your symptoms..."></textarea></div>
-    </div>
-
-    <!-- Q260: Continue medication -->
-    <div class="q-item">
-      <label class="q-label q-required">I agree that I want to continue my current compounded medication.</label>
-      <div style="display:flex;gap:10px;margin-top:8px">
-        <button type="button" class="btn btn-sm" id="q260_agree" onclick="setQ260('I agree')" style="flex:1;border:2px solid var(--gray-200);background:#fff;color:var(--dark)">I agree</button>
-        <button type="button" class="btn btn-sm" id="q260_disagree" onclick="setQ260('I DO NOT agree')" style="flex:1;border:2px solid var(--gray-200);background:#fff;color:var(--dark)">I DO NOT agree</button>
-      </div>
-      <input type="hidden" id="rq_q260" value="">
-      <div id="q260warn" style="display:none;margin-top:10px;padding:12px;background:rgba(239,68,68,0.08);border-radius:8px;font-size:13px;color:var(--red)">⚠️ This will flag your case for discontinuation review. Your provider will follow up to discuss.</div>
-    </div>
-
-    <!-- Q285: Impact if discontinued (multi-select) -->
-    <div class="q-item">
-      <label class="q-label q-required">If I were to discontinue my treatment it would significantly impact my health because it would cause:</label>
-      <p style="font-size:12px;color:var(--gray-400);margin-bottom:10px">Select all that apply</p>
-      <div id="rq_q285" style="display:flex;flex-direction:column;gap:8px">
-        <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer"><input type="checkbox" value="Significant weight gain"> Significant weight gain</label>
-        <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer"><input type="checkbox" value="Depression"> Depression</label>
-        <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer"><input type="checkbox" value="Anxiety"> Anxiety</label>
-        <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer"><input type="checkbox" value="Increase in blood pressure"> Increase in blood pressure</label>
-        <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer"><input type="checkbox" value="Increase in blood sugar"> Increase in blood sugar</label>
-        <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer"><input type="checkbox" value="Increase in cholesterol"> Increase in cholesterol</label>
-        <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer"><input type="checkbox" value="Worsening of medical conditions I have"> Worsening of medical conditions</label>
-        <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer"><input type="checkbox" value="Other"> Other</label>
-        <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer"><input type="checkbox" value="None of the above"> None of the above</label>
-      </div>
-    </div>
-
-    <!-- Q300: Dose direction -->
-    <div class="q-item" style="border-left:3px solid var(--teal)">
-      <label class="q-label q-required">With your next prescription, do you think you should be:</label>
-      <div style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap">
-        <button type="button" class="btn btn-sm q300-btn" onclick="setQ300('Stay at the same dose')" style="flex:1;min-width:120px;border:2px solid var(--gray-200);background:#fff;color:var(--dark)">Stay at same dose</button>
-        <button type="button" class="btn btn-sm q300-btn" onclick="setQ300('Increase')" style="flex:1;min-width:100px;border:2px solid var(--gray-200);background:#fff;color:var(--dark)">Increase</button>
-        <button type="button" class="btn btn-sm q300-btn" onclick="setQ300('Decrease')" style="flex:1;min-width:100px;border:2px solid var(--gray-200);background:#fff;color:var(--dark)">Decrease</button>
-      </div>
-      <input type="hidden" id="rq_q300" value="">
-      <p id="q300note" style="display:none;font-size:12px;color:var(--gray-500);margin-top:8px">Your physician will review and determine the appropriate dose adjustment.</p>
-    </div>
-
-    <!-- Q400: Message to doctor -->
-    <div class="q-item">
-      <label class="q-label">Message to your doctor</label>
-      <p style="font-size:12px;color:var(--gray-400);margin-bottom:8px">Share how your treatment is going, any questions, or anything else</p>
-      <textarea class="q-input" id="rq_q400" rows="4" placeholder="Tell your doctor how things are going..."></textarea>
-    </div>
-
-    <!-- Upgrade upsell — only visible for monthly subscribers -->
-    <div id="refillUpgrade" style="display:none;margin-top:16px;background:linear-gradient(135deg,#1a1a2e 0%,#2d2d4e 100%);border-radius:16px;padding:28px 24px;color:#fff">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
-        <span style="font-size:22px">💎</span>
-        <span style="font-size:17px;font-weight:700">Save on your next supply</span>
-      </div>
-      <p style="font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:20px;line-height:1.5">You're on the monthly plan. Commit longer and save — use code <strong style="color:#2bbcb3">RENEW20</strong> for 20% off.</p>
-      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px">
-        <div id="upgrade3mo" class="upgrade-option" style="background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.12);border-radius:12px;padding:16px;cursor:pointer;transition:all 0.2s" onmouseover="this.style.borderColor='#2bbcb3'" onmouseout="this.style.borderColor='rgba(255,255,255,0.12)'">
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <div>
-              <div style="font-size:15px;font-weight:700">3-Month Plan</div>
-              <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:2px">Save <span id="up3save"></span> vs monthly</div>
-            </div>
-            <div style="text-align:right">
-              <div style="font-size:12px;color:rgba(255,255,255,0.4);text-decoration:line-through"><span id="up3full"></span></div>
-              <div style="font-size:18px;font-weight:800;color:#2bbcb3"><span id="up3disc"></span></div>
-              <div style="font-size:11px;color:rgba(255,255,255,0.5)"><span id="up3mo"></span>/mo</div>
-            </div>
+          <div class="quick-actions">
+            <button class="quick-action" onclick="showPage('shots')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add dose</button>
+            <button class="quick-action" onclick="showPage('chat')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 9a3 3 0 0 1 6 0c0 2-3 2-3 4"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Get help</button>
+            <button class="quick-action" onclick="showPage('treatments')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 12 8 12 11 21 13 3 16 12 21 12"/></svg>Treatment status</button>
           </div>
-        </div>
-        <div id="upgrade6mo" class="upgrade-option" style="background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.12);border-radius:12px;padding:16px;cursor:pointer;transition:all 0.2s" onmouseover="this.style.borderColor='#2bbcb3'" onmouseout="this.style.borderColor='rgba(255,255,255,0.12)'">
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <div>
-              <div style="font-size:15px;font-weight:700">6-Month Plan</div>
-              <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:2px">Best value — save <span id="up6save"></span></div>
+
+          <div class="section" id="suggestedSection" style="display:none">
+            <div class="section-head">
+              <h2 class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Suggested for you</h2>
+              <button class="section-link" onclick="showPage('shop')">View all →</button>
             </div>
-            <div style="text-align:right">
-              <div style="font-size:12px;color:rgba(255,255,255,0.4);text-decoration:line-through"><span id="up6full"></span></div>
-              <div style="font-size:18px;font-weight:800;color:#2bbcb3"><span id="up6disc"></span></div>
-              <div style="font-size:11px;color:rgba(255,255,255,0.5)"><span id="up6mo"></span>/mo</div>
+            <div class="suggest-row" id="suggestedRow"></div>
+          </div>
+
+          <div class="section">
+            <div class="section-head">
+              <h2 class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/></svg>My treatment</h2>
+            </div>
+            <div id="myTreatmentArea"></div>
+          </div>
+
+          <div class="section">
+            <div class="section-head">
+              <h2 class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Treatment journey</h2>
+            </div>
+            <div class="card">
+              <div class="timeline" id="timelineSteps"></div>
             </div>
           </div>
         </div>
       </div>
-      <p style="font-size:11px;color:rgba(255,255,255,0.35);text-align:center">Your refill will be submitted after checkout completes</p>
-    </div>
 
-    <button class="btn btn-primary" id="btnRefill" onclick="submitRefill()" style="margin-top:16px">Submit monthly refill</button>
-  </div>
-  <div id="refillDone" style="display:none" class="refill-success">
-    <div style="font-size:48px;margin-bottom:16px">&#10003;</div>
-    <h2>Refill submitted</h2>
-    <p style="color:var(--gray-500);margin-bottom:24px">Your provider will review within 1 hour. We'll email you when there's an update.</p>
-    <button class="btn btn-secondary btn-sm" onclick="showTab('dashboard')" style="margin:0 auto">Back to overview</button>
-  </div>
-</div>
-
-<!-- ═══ MY PLAN ═══ -->
-<div class="page" id="plansPage">
-  <h2 style="font-size:20px;font-weight:700;margin-bottom:4px">My plan</h2>
-  <p style="font-size:13px;color:var(--gray-400);margin-bottom:20px">Switch treatments or change your billing plan</p>
-  <div id="currentPlan" class="card" style="display:none"><div class="card-title">Current plan</div><div id="currentPlanDetails"></div></div>
-  <!-- Discount code -->
-  <div class="card" style="border-left:3px solid var(--teal)">
-    <div style="display:flex;align-items:center;gap:8px;cursor:pointer" onclick="document.getElementById('promoWrap').style.display=document.getElementById('promoWrap').style.display==='none'?'block':'none'">
-      <span style="font-size:16px">🏷️</span>
-      <span style="font-size:14px;font-weight:600;color:var(--teal)">Have a discount code?</span>
-      <span style="margin-left:auto;color:var(--gray-400);font-size:18px" id="promoChevron">+</span>
-    </div>
-    <div id="promoWrap" style="display:none;margin-top:12px">
-      <div style="display:flex;gap:8px">
-        <input class="q-input" type="text" id="promoCode" placeholder="Enter code" style="flex:1;text-transform:uppercase">
-        <button class="btn btn-sm btn-primary" onclick="applyPromo()" style="width:auto;padding:10px 18px">Apply</button>
+      <!-- CHAT -->
+      <div class="page" id="pageChat">
+        <h1 class="page-title">Chat</h1>
+        <p class="page-sub">Communicate with your provider about your treatment.</p>
+        <div class="card">
+          <div class="msg-list" id="msgList"><div class="loading"><div class="spinner"></div>Loading messages...</div></div>
+          <div class="msg-input-wrap">
+            <textarea class="msg-input" id="msgInput" placeholder="Type a message to your provider..." rows="1"></textarea>
+            <button class="msg-send" id="btnSendMsg">Send</button>
+          </div>
+        </div>
       </div>
-      <div id="promoMsg" style="display:none;margin-top:8px;font-size:13px"></div>
-    </div>
-  </div>
-  <div class="card"><div class="card-title">Available plans</div><div id="plansList"></div></div>
-  <div id="planChangeMsg" style="display:none;text-align:center;padding:20px;color:var(--green);font-weight:600"></div>
-</div>
 
-<footer class="footer">&copy; 2026 CLYR Health. <a href="https://www.clyr.health/privacy.html">Privacy</a> &middot; <a href="https://www.clyr.health/terms.html">Terms</a></footer>
+      <!-- TREATMENTS -->
+      <div class="page" id="pageTreatments">
+        <h1 class="page-title">Treatments</h1>
+        <p class="page-sub">View your active and past treatments.</p>
+        <div class="tabs">
+          <button class="tab active" data-tx-tab="active">Active</button>
+          <button class="tab" data-tx-tab="pending">Pending</button>
+        </div>
+        <div id="treatmentsActive"></div>
+        <div id="treatmentsPending" style="display:none"></div>
+
+        <div class="section" id="refillSection" style="display:none;margin-top:32px">
+          <div class="section-head"><h2 class="section-title">Request a refill</h2></div>
+          <div id="refillFormArea" class="refill-card"></div>
+        </div>
+      </div>
+
+      <!-- SHOTS -->
+      <div class="page" id="pageShots">
+        <h1 class="page-title">Shots</h1>
+        <p class="page-sub">Track your doses, schedule, and history.</p>
+        <div id="shotsContent"></div>
+      </div>
+
+      <!-- SHOP -->
+      <div class="page" id="pageShop">
+        <h1 class="page-title">Shop</h1>
+        <p class="page-sub">Discover treatments that fit your goals. All Rx, all provider-supervised.</p>
+        <input class="shop-search" id="shopSearch" placeholder="Search products..." type="search">
+        <div class="shop-filters" id="shopFilters">
+          <button class="filter-pill active" data-vertical="all">All</button>
+          <button class="filter-pill" data-vertical="weight-loss">Weight Loss</button>
+          <button class="filter-pill" data-vertical="wellness">Daily Wellness</button>
+          <button class="filter-pill" data-vertical="sexual-health">Sexual Health</button>
+        </div>
+        <div class="shop-grid" id="shopGrid"></div>
+      </div>
+
+      <!-- ACCOUNT -->
+      <div class="page" id="pageAccount">
+        <h1 class="page-title">Account</h1>
+        <p class="page-sub">Manage your profile, billing, and health records.</p>
+        <div class="acc-tabs">
+          <button class="acc-tab active" data-acc-tab="profile">Profile</button>
+          <button class="acc-tab" data-acc-tab="billing">Billing &amp; Shipping</button>
+          <button class="acc-tab" data-acc-tab="phi">Health Records</button>
+        </div>
+
+        <div class="acc-section active" id="accProfile">
+          <div class="card">
+            <div class="acc-row"><span class="acc-row-label">Name</span><span class="acc-row-val" id="accName">—</span></div>
+            <div class="acc-row"><span class="acc-row-label">Email</span><span class="acc-row-val" id="accEmail">—</span></div>
+            <div class="acc-row"><span class="acc-row-label">Phone</span><span class="acc-row-val" id="accPhone">—</span></div>
+            <div class="acc-row"><span class="acc-row-label">Member since</span><span class="acc-row-val" id="accMemberSince">—</span></div>
+          </div>
+        </div>
+
+        <div class="acc-section" id="accBilling">
+          <div class="card" style="margin-bottom:14px">
+            <div class="acc-row"><span class="acc-row-label">Current plan</span><span class="acc-row-val" id="billPlan">—</span></div>
+            <div class="acc-row"><span class="acc-row-label">Subscription status</span><span class="acc-row-val" id="billStatus">—</span></div>
+            <div class="acc-row"><span class="acc-row-label">Shipping address</span><span class="acc-row-val" id="billAddress">—</span></div>
+            <div class="acc-row"><span class="acc-row-label">Next billing date</span><span class="acc-row-val" id="billNextDate">—</span></div>
+          </div>
+          <button class="btn btn-primary" onclick="manageSubscription()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>Manage payment in Stripe</button>
+        </div>
+
+        <div class="acc-section" id="accPhi">
+          <div class="card">
+            <h3 style="font-size:16px;font-weight:700;margin-bottom:6px">Protected Health Information</h3>
+            <p style="font-size:14px;color:var(--gray-500);margin-bottom:16px;line-height:1.6">You have the right to view and download all your past intake questionnaires and provider consultations. This is your HIPAA right of access.</p>
+            <button class="btn btn-secondary" onclick="downloadPhi()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download my records</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
 
 <script>
-const API='https://clyr-backend.onrender.com';
-let authToken=localStorage.getItem('clyr_portal_token'),patientData=null,currentTab='dashboard';
+// ═══════════════════════════════════════════════════════════════════
+// CLYR Portal v2 — vertical-aware, multi-product, GLM-inspired
+// ═══════════════════════════════════════════════════════════════════
 
-// Admin deep-link: /portal/?token=<jwt> → stamp & strip param
-(function(){var u=new URL(location.href);var t=u.searchParams.get('token');if(t){authToken=t;localStorage.setItem('clyr_portal_token',t);u.searchParams.delete('token');history.replaceState({},'',u.pathname+(u.search||''));}})();
+const API = 'https://clyr-backend.onrender.com';
+const TOKEN_KEY = 'th_portal_token';
+const EMAIL_KEY = 'th_portal_email';
 
-if(authToken){showDashboard();}
+// ─── State ───
+let token = localStorage.getItem(TOKEN_KEY);
+let portalData = null;     // /me response
+let suggestions = [];      // /suggested response
+let requiredActions = [];  // /required-actions response
+let catalog = null;        // /catalog response
+let currentPage = 'home';
 
-// ═══ TAB NAVIGATION ═══
-function showTab(tab){
-  currentTab=tab;
-  document.querySelectorAll('.tab').forEach((t,i)=>{t.classList.toggle('active',['dashboard','messages','refill','plans'][i]===tab)});
-  document.querySelectorAll('.page:not(#loginPage)').forEach(p=>p.classList.remove('active'));
-  var pageMap={dashboard:'dashboardPage',messages:'messagesPage',refill:'refillPage',plans:'plansPage'};
-  var el=document.getElementById(pageMap[tab]);
-  if(el)el.classList.add('active');
-  if(tab==='messages')loadMessages();
-  if(tab==='refill')loadRefillQuestions();
-  if(tab==='plans')loadPlans();
+// ─── Helpers ───
+function $(id){return document.getElementById(id);}
+function fmtDate(iso){if(!iso)return '—';const d=new Date(iso);return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}
+function timeAgo(iso){if(!iso)return '';const d=new Date(iso),now=new Date(),s=(now-d)/1000;if(s<60)return 'just now';if(s<3600)return Math.floor(s/60)+'m ago';if(s<86400)return Math.floor(s/3600)+'h ago';if(s<604800)return Math.floor(s/86400)+'d ago';return d.toLocaleDateString('en-US',{month:'short',day:'numeric'});}
+function $fmtPrice(n){if(n===null||n===undefined)return '—';return '$'+n.toLocaleString();}
+function $fmtMoney(cents){if(cents===null||cents===undefined)return '—';return '$'+(cents/100).toFixed(2);}
+function escapeHtml(s){if(!s)return '';return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function verticalLabel(v){return ({'weight-loss':'Weight Loss','wellness':'Daily Wellness','sexual-health':'Sexual Health','hair':'Hair'})[v]||v;}
+function getGreeting(){const h=new Date().getHours();if(h<12)return 'Good morning';if(h<18)return 'Good afternoon';return 'Good evening';}
+
+// ─── API ───
+async function api(path,opts={}){
+  const headers={'Content-Type':'application/json'};
+  if(token)headers['Authorization']='Bearer '+token;
+  const r=await fetch(API+path,{...opts,headers:{...headers,...(opts.headers||{})}});
+  if(r.status===401){signOut();throw new Error('Session expired');}
+  const data=await r.json().catch(()=>({error:'Invalid response'}));
+  if(!r.ok)throw new Error(data.error||'Request failed');
+  return data;
 }
 
 // ═══ AUTH ═══
 async function sendCode(){
-  var email=document.getElementById('loginEmail').value.trim();
-  if(!email)return showError('loginError1','Please enter your email.');
-  var btn=document.getElementById('btnSendCode');btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Sending...';
-  try{await fetch(API+'/api/portal/auth/send-code',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email})});
-    document.getElementById('codeEmail').textContent=email;document.getElementById('loginStep1').style.display='none';document.getElementById('loginStep2').style.display='block';document.getElementById('loginCode').focus();
-  }catch(e){showError('loginError1','Something went wrong.');}
-  finally{btn.disabled=false;btn.innerHTML='Send verification code';}
-}
-async function verifyCode(){
-  var email=document.getElementById('loginEmail').value.trim(),code=document.getElementById('loginCode').value.trim();
-  if(!code||code.length<6)return showError('loginError2','Enter the 6-digit code.');
-  var btn=document.getElementById('btnVerify');btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Verifying...';
-  try{var r=await fetch(API+'/api/portal/auth/verify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,code})});
-    var d=await r.json();if(!r.ok){showError('loginError2',d.error||'Invalid code.');btn.disabled=false;btn.innerHTML='Verify &amp; sign in';return;}
-    authToken=d.token;localStorage.setItem('clyr_portal_token',authToken);
-    if(window.clyrIdentify)clyrIdentify(email);if(window.clyrTrack)clyrTrack('PortalLogin',{method:'magic_code'});
-    showDashboard();
-  }catch(e){showError('loginError2','Verification failed.');btn.disabled=false;btn.innerHTML='Verify &amp; sign in';}
-}
-function backToEmail(){document.getElementById('loginStep1').style.display='block';document.getElementById('loginStep2').style.display='none';document.getElementById('loginCode').value='';hideError('loginError2');}
-
-// ═══ DASHBOARD ═══
-async function showDashboard(){
-  document.getElementById('loginPage').classList.remove('active');document.getElementById('dashboardPage').classList.add('active');
-  document.getElementById('navRight').style.display='flex';document.getElementById('tabBar').style.display='block';
-  document.getElementById('dashLoading').style.display='block';document.getElementById('dashContent').style.display='none';
+  const email=$('emailInput').value.trim();
+  if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    showErr('loginErr1','Please enter a valid email address.');return;
+  }
+  const btn=$('btnSendCode');btn.disabled=true;btn.textContent='Sending...';
   try{
-    var[meR,tlR]=await Promise.all([apiFetch('/api/portal/me'),apiFetch('/api/portal/timeline')]);
-    if(meR._status===401){logout();return;}
-    patientData=meR;
-    var name=meR.patient?.firstName||'there';
-    document.getElementById('dashName').textContent=name;document.getElementById('navName').textContent=name;
-    // Refill action card: reflect refillWindow state
-    var rfw=meR.refillWindow;
-    if(rfw&&rfw.isOpen===false){
-      document.getElementById('actionRefillLabel').textContent='Refill unavailable';
-      document.getElementById('actionRefillDesc').textContent='Opens '+fmtDate(rfw.opensAt)+(typeof rfw.daysRemaining==='number'?' · '+rfw.daysRemaining+'d remaining':'');
-      document.getElementById('actionRefill').style.opacity='0.6';
-    }else if(rfw&&rfw.isOpen===true){
-      document.getElementById('actionRefillLabel').textContent='Request refill';
-      document.getElementById('actionRefillDesc').textContent='Available now — submit your refill';
-    }
-    var stageMap={intake_complete:{l:'Intake complete',c:'stage-pending'},paid:{l:'Payment received',c:'stage-active'},under_review:{l:'Under physician review',c:'stage-active'},info_needed:{l:'Provider needs info',c:'stage-pending'},approved:{l:'Treatment approved',c:'stage-active'},prescribed:{l:'Prescribed',c:'stage-active'},pharmacy_processing:{l:'Pharmacy preparing',c:'stage-active'},shipped:{l:'Shipped',c:'stage-shipped'},delivered:{l:'Delivered',c:'stage-shipped'},cancelled:{l:'Cancelled',c:'stage-cancelled'}};
-    var s=stageMap[meR.stage]||{l:meR.stage,c:'stage-active'};
-    document.getElementById('dashStage').innerHTML='<div class="stage-badge '+s.c+'">'+s.l+'</div>';
-    // Gate: if customer hasn't paid, show checkout prompt instead of full dashboard
-    if(meR.stage==='intake_complete'){
-      document.getElementById('dashStage').innerHTML+='<div style="background:linear-gradient(135deg,#1a1a2e 0%,#2d2d4e 100%);border-radius:16px;padding:28px 24px;margin:20px 0;text-align:center"><div style="font-size:32px;margin-bottom:12px">💳</div><h3 style="color:#fff;font-size:18px;font-weight:700;margin-bottom:8px">Complete your checkout</h3><p style="color:rgba(255,255,255,0.6);font-size:14px;line-height:1.6;margin-bottom:20px">Your intake is complete! Finish payment to connect with a licensed provider and start your treatment.</p><a href="/resume.html?email='+encodeURIComponent(meR.patient?.email||'')+'" style="display:inline-block;background:#2bbcb3;color:#fff;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:600;font-size:15px">Complete Checkout</a></div>';
-    }
-    var stepsEl=document.getElementById('timelineSteps');stepsEl.innerHTML='';
-    if(tlR.events)tlR.events.forEach(function(ev){
-      var dc=ev.status==='done'?'tl-dot-done':ev.status==='active'?'tl-dot-active':'tl-dot-pending';
-      var sc=ev.status==='done'?'done':'';var ic=ev.status==='done'?'&#10003;':ev.step;
-      var tm=ev.timestamp?'<div class="tl-time">'+fmtDate(ev.timestamp)+'</div>':'';
-      stepsEl.innerHTML+='<div class="tl-step '+sc+'"><div class="tl-dot '+dc+'">'+ic+'</div><div class="tl-info"><div class="tl-label">'+ev.label+'</div><div class="tl-desc">'+ev.description+'</div>'+tm+'</div></div>';
-    });
-    if(meR.subscription){var sub=meR.subscription;document.getElementById('subCard').style.display='block';
-      document.getElementById('subDetails').innerHTML='<div class="card-row"><span class="card-row-label">Plan</span><span class="card-row-value">'+fmtTx(sub.product)+' — '+fmtPlan(sub.plan)+'</span></div><div class="card-row"><span class="card-row-label">Status</span><span class="card-row-value" style="color:'+(sub.status==='active'?'var(--green)':'var(--orange)')+'">'+cap(sub.status)+'</span></div>'+(sub.currentPeriodEnd?'<div class="card-row"><span class="card-row-label">Next billing</span><span class="card-row-value">'+fmtDate(sub.currentPeriodEnd)+'</span></div>':'');}
-    if(meR.encounter?.trackingNumber||meR.patient?.shippingAddress?.street){document.getElementById('shipCard').style.display='block';var sh='';
-      if(meR.encounter?.trackingNumber){var tn=meR.encounter.trackingNumber,cr=(meR.encounter.carrier||'').toLowerCase(),tUrl='';if(cr.includes('ups'))tUrl='https://www.ups.com/track?tracknum='+tn;else if(cr.includes('fedex'))tUrl='https://www.fedex.com/fedextrack/?trknbr='+tn;else if(cr.includes('usps'))tUrl='https://tools.usps.com/go/TrackConfirmAction?tLabels='+tn;else tUrl='https://www.google.com/search?q='+tn+'+tracking';sh+='<div class="card-row"><span class="card-row-label">Tracking</span><span class="card-row-value"><a class="tracking-link" href="'+tUrl+'" target="_blank">'+tn+' &#8599;</a></span></div>';
-        var tb=document.getElementById('trackBanner');tb.style.display='block';tb.dataset.url=tUrl;
-        var ps=meR.encounter?.pharmacyStatus||'';var subTxt='Your medication is on its way';if(ps==='delivered')subTxt='Your medication has been delivered';else if(ps==='shipped')subTxt='Shipped via '+(cr.includes('ups')?'UPS':cr.includes('fedex')?'FedEx':'carrier')+' — '+tn;else if(ps==='filled')subTxt='Medication prepared — shipping soon';
-        document.getElementById('trackBannerSub').textContent=subTxt;}
-      var a=meR.patient?.shippingAddress;if(a?.street)sh+='<div class="card-row"><span class="card-row-label">Ship to</span><span class="card-row-value">'+a.street+', '+a.city+', '+a.state+' '+a.zip+'</span></div>';
-      document.getElementById('shipDetails').innerHTML=sh;}
-    document.getElementById('dashLoading').style.display='none';document.getElementById('dashContent').style.display='block';
-  }catch(e){console.error(e);document.getElementById('dashLoading').innerHTML='<div style="color:var(--red)">Failed to load. <span style="color:var(--teal);cursor:pointer;text-decoration:underline" onclick="showDashboard()">Retry</span></div>';}
+    await api('/api/portal/auth/send-code',{method:'POST',body:JSON.stringify({email})});
+    localStorage.setItem(EMAIL_KEY,email);
+    $('loginStepEmail').style.display='none';
+    $('loginStepCode').style.display='block';
+    $('codeInput').focus();
+    $('codeHint').textContent=`We sent a code to ${email}. It expires in 10 minutes.`;
+  }catch(e){
+    showErr('loginErr1',e.message);
+  }finally{
+    btn.disabled=false;btn.textContent='Send verification code';
+  }
+}
+
+async function verifyCode(){
+  const code=$('codeInput').value.trim();
+  const email=localStorage.getItem(EMAIL_KEY);
+  if(!code||code.length<6){showErr('loginErr2','Enter the 6-digit code.');return;}
+  const btn=$('btnVerifyCode');btn.disabled=true;btn.textContent='Verifying...';
+  try{
+    const data=await api('/api/portal/auth/verify',{method:'POST',body:JSON.stringify({email,code})});
+    token=data.token;
+    localStorage.setItem(TOKEN_KEY,token);
+    enterApp();
+  }catch(e){
+    showErr('loginErr2',e.message);
+    btn.disabled=false;btn.textContent='Verify and sign in';
+  }
+}
+
+function showErr(id,msg){const el=$(id);el.textContent=msg;el.style.display='block';setTimeout(()=>el.style.display='none',5000);}
+
+function signOut(){
+  localStorage.removeItem(TOKEN_KEY);
+  localStorage.removeItem(EMAIL_KEY);
+  token=null;portalData=null;
+  $('appView').style.display='none';
+  $('loginView').style.display='grid';
+  $('loginStepEmail').style.display='block';
+  $('loginStepCode').style.display='none';
+  $('emailInput').value='';
+  $('codeInput').value='';
+}
+
+// ═══ ENTER APP ═══
+async function enterApp(){
+  $('loginView').style.display='none';
+  $('appView').style.display='grid';
+  await loadHome();
+}
+
+// ═══ HOME ═══
+async function loadHome(){
+  $('homeLoading').style.display='block';
+  $('homeContent').style.display='none';
+  try{
+    // Parallel fetch
+    const [me,sugg,actions]=await Promise.all([
+      api('/api/portal/me'),
+      api('/api/portal/suggested').catch(()=>({suggestions:[]})),
+      api('/api/portal/required-actions').catch(()=>({actions:[]})),
+    ]);
+    portalData=me;
+    suggestions=sugg.suggestions||[];
+    requiredActions=actions.actions||[];
+
+    // Greeting + avatar
+    const first=me.patient.firstName||'there';
+    $('greetName').textContent=first;
+    $('avatarInitials').textContent=(first[0]||'U').toUpperCase()+(me.patient.lastName?.[0]||'').toUpperCase();
+    $('homeSubtitle').textContent=`${getGreeting()}, ${first}. Here's where your treatment stands.`;
+
+    // Render
+    renderActionBanner();
+    renderMyTreatment();
+    renderTimeline();
+    renderSuggested();
+    populateAccount();
+
+    $('homeLoading').style.display='none';
+    $('homeContent').style.display='block';
+  }catch(e){
+    $('homeLoading').innerHTML=`<div style="color:var(--red);padding:20px">Failed to load portal: ${escapeHtml(e.message)}</div>`;
+  }
+}
+
+function renderActionBanner(){
+  const el=$('actionBanner');
+  if(!requiredActions.length){el.innerHTML='';return;}
+  // Render the highest-severity action
+  const order={high:0,info:1};
+  const a=[...requiredActions].sort((x,y)=>(order[x.severity]??99)-(order[y.severity]??99))[0];
+  const ctaHtml=a.cta?`<button class="action-banner-cta" onclick="${a.cta.action==='manage_billing'?'manageSubscription()':'showPage(\"chat\")'}">${escapeHtml(a.cta.label)}</button>`:'';
+  el.innerHTML=`<div class="action-banner"><div class="action-banner-dot"></div><div class="action-banner-body"><div class="action-banner-label">${escapeHtml(a.label)}</div><div class="action-banner-msg">${escapeHtml(a.message)}</div></div>${ctaHtml}</div>`;
+}
+
+function renderMyTreatment(){
+  const sub=portalData.subscription;
+  const p=portalData.patient;
+  const area=$('myTreatmentArea');
+
+  if(!sub){
+    area.innerHTML=`<div class="card"><div class="empty"><div class="empty-icon">💊</div><div class="empty-title">No active treatment</div><div class="empty-msg">Once you complete an intake and are approved by a provider, your treatment will appear here.</div></div></div>`;
+    return;
+  }
+
+  const planLabel=({monthly:'Monthly',['3month']:'3 months',['6month']:'6 months'})[sub.plan]||sub.plan;
+  const img=sub.productImage||p.productImage||'/img/vial-tirzepatide.svg';
+  area.innerHTML=`
+    <div class="treatment-card">
+      <div class="treatment-card-head">
+        <div class="treatment-card-img"><img src="${img}" alt="" onerror="this.style.display='none'"></div>
+        <div class="treatment-card-info">
+          <div class="treatment-card-name">${escapeHtml(sub.productDisplay||p.treatmentDisplay||sub.product)}</div>
+          <div class="treatment-card-meta">${planLabel} · ${$fmtMoney(sub.amount)} · ${verticalLabel(sub.vertical||p.vertical||'wellness')}</div>
+        </div>
+        <div class="treatment-card-badge${sub.status==='active'?'':' pending'}">${escapeHtml(sub.status||'active')}</div>
+      </div>
+      <div class="treatment-card-body">
+        ${renderRefillSummary()}
+      </div>
+    </div>`;
+}
+
+function renderRefillSummary(){
+  const rw=portalData.refillWindow||{};
+  if(!rw)return '';
+  if(rw.isOpen){
+    return `<div style="display:flex;justify-content:space-between;align-items:center;gap:14px">
+      <div><div style="font-size:14px;font-weight:700;margin-bottom:2px">Your refill window is open</div><div style="font-size:13px;color:var(--gray-500)">${rw.message||'Complete the questionnaire to get your next prescription.'}</div></div>
+      <button class="btn btn-primary" onclick="showPage('treatments');startRefill()">Request refill</button>
+    </div>`;
+  }
+  return `<div style="display:flex;justify-content:space-between;align-items:center;gap:14px">
+    <div><div style="font-size:14px;font-weight:700;margin-bottom:2px">Refill opens ${fmtDate(rw.opensAt)}</div><div style="font-size:13px;color:var(--gray-500)">${rw.daysRemaining??0} days remaining in your current supply.</div></div>
+    <button class="btn btn-secondary" onclick="showPage('shots')">Track doses</button>
+  </div>`;
+}
+
+function renderTimeline(){
+  const el=$('timelineSteps');
+  const stage=portalData.stage||'prescribed';
+  const order=['intake','payment','provider','prescribed','shipped'];
+  const idx=Math.max(0,order.indexOf(stage));
+  const steps=[
+    {key:'intake',label:'Health intake completed',desc:'Your health profile is on file.'},
+    {key:'payment',label:'Payment processed',desc:`${portalData.subscription?.productDisplay||'Subscription'} — ${({monthly:'Monthly',['3month']:'3-month',['6month']:'6-month'})[portalData.subscription?.plan]||'Monthly'}`},
+    {key:'provider',label:'Provider review',desc:'A licensed provider has reviewed your case.'},
+    {key:'prescribed',label:'Prescription sent',desc:'Your prescription has been sent to our licensed pharmacy.'},
+    {key:'shipped',label:'Shipping',desc:'Ships from our licensed pharmacy.'},
+  ];
+  el.innerHTML=steps.map((s,i)=>{
+    const cls=i<idx?'done':i===idx?'current':'';
+    const date=i<=idx?fmtDate(portalData.patient.memberSince):'';
+    return `<div class="timeline-step ${cls}"><div class="timeline-dot"></div><div class="timeline-label">${s.label}</div><div class="timeline-desc">${s.desc}</div>${date?`<div class="timeline-date">${date}</div>`:''}</div>`;
+  }).join('');
+}
+
+function renderSuggested(){
+  if(!suggestions.length){$('suggestedSection').style.display='none';return;}
+  $('suggestedSection').style.display='block';
+  $('suggestedRow').innerHTML=suggestions.slice(0,3).map(p=>`
+    <div class="suggest-card" onclick="window.location='/${p.key.replace(/_/g,'-')}.html'">
+      <div class="suggest-card-img"><img src="${p.image}" alt="" onerror="this.parentElement.innerHTML='💊'"></div>
+      <div class="suggest-card-body">
+        <div class="suggest-card-cat">${verticalLabel(p.vertical)}</div>
+        <div class="suggest-card-name">${escapeHtml(p.shortName)}</div>
+        <div class="suggest-card-price">From $${p.monthlyPrice}/mo</div>
+      </div>
+    </div>`).join('');
+}
+
+// ═══ ACCOUNT POPULATION ═══
+function populateAccount(){
+  const p=portalData.patient,sub=portalData.subscription;
+  $('accName').textContent=`${p.firstName||''} ${p.lastName||''}`.trim()||'—';
+  $('accEmail').textContent=p.email||'—';
+  $('accPhone').textContent=p.phone||'—';
+  $('accMemberSince').textContent=fmtDate(p.memberSince);
+  $('billPlan').textContent=sub?`${sub.productDisplay} · ${({monthly:'Monthly','3month':'3 months','6month':'6 months'})[sub.plan]||sub.plan}`:'No active plan';
+  $('billStatus').textContent=sub?sub.status:'—';
+  const addr=p.shippingAddress;
+  $('billAddress').textContent=addr?.street?`${addr.street}, ${addr.city}, ${addr.state} ${addr.zip}`:'—';
+  $('billNextDate').textContent=sub?.currentPeriodEnd?fmtDate(sub.currentPeriodEnd):'—';
+}
+
+// ═══ PAGE ROUTING ═══
+function showPage(page){
+  currentPage=page;
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.toggle('active',n.dataset.page===page));
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  $('page'+page.charAt(0).toUpperCase()+page.slice(1)).classList.add('active');
+
+  if(page==='chat')loadMessages();
+  if(page==='treatments')loadTreatments();
+  if(page==='shots')loadShots();
+  if(page==='shop')loadShop();
 }
 
 // ═══ MESSAGES ═══
 async function loadMessages(){
-  document.getElementById('msgLoading').style.display='block';document.getElementById('msgContent').style.display='none';
-  try{var d=await apiFetch('/api/portal/messages');
-    var list=document.getElementById('msgList');list.innerHTML='';
-    if(!d.messages||d.messages.length===0){list.innerHTML='<div class="msg-empty">'+(d.note||'No messages yet. Send a message to start a conversation with your provider.')+'</div>';}
-    else{d.messages.forEach(function(m){
-      var isMe=m.senderType==='patient';
-      list.innerHTML+='<div class="msg-bubble '+(isMe?'msg-patient':'msg-provider')+'">'+esc(m.text)+'<div class="msg-meta">'+(isMe?'You':m.senderName)+' &middot; '+fmtDate(m.createdAt)+'</div></div>';
-      if(!isMe&&!m.read)try{fetch(API+'/api/portal/messages/'+m.id+'/read',{method:'POST',headers:{'Authorization':'Bearer '+authToken}}).catch(()=>{});}catch(e){}
-    });list.scrollTop=list.scrollHeight;}
-    document.getElementById('msgLoading').style.display='none';document.getElementById('msgContent').style.display='block';
-  }catch(e){document.getElementById('msgLoading').innerHTML='<div style="color:var(--red)">Failed to load messages.</div>';}
-}
-async function sendMessage(){
-  var input=document.getElementById('msgInput'),text=input.value.trim();if(!text)return;
-  var btn=document.getElementById('btnSendMsg');btn.disabled=true;btn.textContent='Sending...';
-  try{await fetch(API+'/api/portal/messages',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+authToken},body:JSON.stringify({text})});
-    input.value='';loadMessages();
-    if(window.clyrTrack)clyrTrack('PortalMessageSent');
-  }catch(e){alert('Failed to send message.');}
-  finally{btn.disabled=false;btn.textContent='Send';}
+  const list=$('msgList');
+  list.innerHTML='<div class="loading"><div class="spinner"></div>Loading messages...</div>';
+  try{
+    const data=await api('/api/portal/messages');
+    const msgs=data.messages||[];
+    if(!msgs.length){
+      list.innerHTML='<div class="empty"><div class="empty-icon">💬</div><div class="empty-title">No messages yet</div><div class="empty-msg">Send a message below to start a conversation with your provider.</div></div>';
+      return;
+    }
+    list.innerHTML=msgs.map(m=>{
+      const cls=m.fromPatient?'msg-from-patient':'msg-from-provider';
+      return `<div><div class="msg ${cls}">${escapeHtml(m.body)}</div><div class="msg-meta" style="text-align:${m.fromPatient?'right':'left'}">${timeAgo(m.createdAt)}</div></div>`;
+    }).join('');
+    list.scrollTop=list.scrollHeight;
+  }catch(e){
+    list.innerHTML=`<div class="empty"><div class="empty-msg">Could not load messages: ${escapeHtml(e.message)}</div></div>`;
+  }
 }
 
-// ═══ REFILL ═══
-var medUpdateNeeded=false;
-function toggleMedUpdate(show){
-  medUpdateNeeded=show;
-  document.getElementById('medUpdateFields').style.display=show?'block':'none';
-  document.getElementById('medYes').style.cssText=show?'flex:1;border:2px solid var(--teal);color:var(--teal);font-weight:700':'flex:1';
-  document.getElementById('medNo').style.cssText=show?'flex:1':'flex:1;border:2px solid var(--teal);color:var(--teal);font-weight:700';
+async function sendMessage(){
+  const body=$('msgInput').value.trim();
+  if(!body)return;
+  const btn=$('btnSendMsg');btn.disabled=true;
+  try{
+    await api('/api/portal/messages',{method:'POST',body:JSON.stringify({body})});
+    $('msgInput').value='';
+    await loadMessages();
+  }catch(e){
+    alert('Failed to send: '+e.message);
+  }finally{
+    btn.disabled=false;
+  }
 }
-function handleQ30Change(val){
-  document.getElementById('q31wrap').style.display=val==="I'm gaining weight"?'block':'none';
-  document.getElementById('q32wrap').style.display=val==='More than 20 pounds'?'block':'none';
+
+// ═══ TREATMENTS ═══
+function loadTreatments(){
+  if(!portalData)return;
+  const sub=portalData.subscription;
+  const active=$('treatmentsActive');
+
+  if(!sub){
+    active.innerHTML=`<div class="card"><div class="empty"><div class="empty-icon">🩺</div><div class="empty-title">No active treatments</div><div class="empty-msg">Once your provider approves your treatment, it will appear here.</div></div></div>`;
+  } else {
+    const planLabel=({monthly:'Monthly','3month':'3 months','6month':'6 months'})[sub.plan]||sub.plan;
+    active.innerHTML=`
+      <div class="treatment-card">
+        <div class="treatment-card-head">
+          <div class="treatment-card-img"><img src="${sub.productImage||'/img/vial-tirzepatide.svg'}" alt="" onerror="this.style.display='none'"></div>
+          <div class="treatment-card-info">
+            <div class="treatment-card-name">${escapeHtml(sub.productDisplay||sub.product)}</div>
+            <div class="treatment-card-meta">${planLabel} · ${$fmtMoney(sub.amount)} · ${verticalLabel(sub.vertical||'wellness')}</div>
+          </div>
+          <div class="treatment-card-badge">${escapeHtml(sub.status)}</div>
+        </div>
+        <div class="treatment-card-body">${renderRefillSummary()}</div>
+      </div>`;
+  }
+  $('treatmentsPending').innerHTML=`<div class="card"><div class="empty"><div class="empty-icon">📋</div><div class="empty-title">No pending treatments</div><div class="empty-msg">Treatments awaiting provider review will show here.</div></div></div>`;
 }
-function setQ260(v){
-  document.getElementById('rq_q260').value=v;
-  document.getElementById('q260_agree').style.cssText=v==='I agree'?'flex:1;border:2px solid var(--teal);background:var(--teal-light);color:var(--teal);font-weight:700':'flex:1;border:2px solid var(--gray-200);background:#fff;color:var(--dark)';
-  document.getElementById('q260_disagree').style.cssText=v==='I DO NOT agree'?'flex:1;border:2px solid var(--red);background:rgba(239,68,68,0.08);color:var(--red);font-weight:700':'flex:1;border:2px solid var(--gray-200);background:#fff;color:var(--dark)';
-  document.getElementById('q260warn').style.display=v==='I DO NOT agree'?'block':'none';
+
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-tx-tab]');
+  if(t){
+    document.querySelectorAll('[data-tx-tab]').forEach(b=>b.classList.toggle('active',b===t));
+    const which=t.dataset.txTab;
+    $('treatmentsActive').style.display=which==='active'?'block':'none';
+    $('treatmentsPending').style.display=which==='pending'?'block':'none';
+  }
+});
+
+// ═══ REFILL FLOW (branches on patient.refillFlow) ═══
+function startRefill(){
+  if(!portalData)return;
+  const flow=portalData.patient.refillFlow||'generic';
+  $('refillSection').style.display='block';
+  if(flow==='glp1')renderGlp1Refill();
+  else renderGenericRefill();
+  $('refillFormArea').scrollIntoView({behavior:'smooth',block:'start'});
 }
-function setQ300(v){
-  document.getElementById('rq_q300').value=v;
-  document.querySelectorAll('.q300-btn').forEach(function(b){
-    var isActive=b.textContent.trim()===({
-      'Stay at the same dose':'Stay at same dose','Increase':'Increase','Decrease':'Decrease'
-    }[v]||v);
-    b.style.cssText=isActive?'flex:1;min-width:100px;border:2px solid var(--teal);background:var(--teal-light);color:var(--teal);font-weight:700':'flex:1;min-width:100px;border:2px solid var(--gray-200);background:#fff;color:var(--dark)';
-  });
-  document.getElementById('q300note').style.display=(v==='Increase'||v==='Decrease')?'block':'none';
+
+function renderGenericRefill(){
+  const productLabel=portalData.patient.treatmentDisplay||'your treatment';
+  $('refillFormArea').innerHTML=`
+    <h3 style="font-size:16px;font-weight:700;margin-bottom:6px">Refill request — ${escapeHtml(productLabel)}</h3>
+    <p style="font-size:14px;color:var(--gray-500);margin-bottom:18px">Quick check-in so your provider can issue your next prescription.</p>
+
+    <div class="q-item"><label class="q-label q-required">How is your treatment going?</label>
+      <select class="q-select" id="r_progress"><option value="">Select...</option><option>Going well — no issues</option><option>Mild side effects but tolerable</option><option>Noticeable side effects, want to discuss</option><option>Not seeing the results I expected</option></select></div>
+
+    <div class="q-item"><label class="q-label">Any side effects since your last visit?</label>
+      <textarea class="q-input" id="r_sideeffects" rows="2" placeholder="Optional. Briefly describe anything you've noticed."></textarea></div>
+
+    <div class="q-item"><label class="q-label">Any new medications, supplements, or medical changes?</label>
+      <textarea class="q-input" id="r_changes" rows="2" placeholder="Optional. List anything new your provider should know."></textarea></div>
+
+    <div class="q-item"><label class="q-label q-required">For your next supply, would you like to:</label>
+      <select class="q-select" id="r_continue"><option value="">Select...</option><option>Continue the same plan</option><option>Discuss dose or frequency adjustment</option><option>Discuss pausing or stopping</option></select></div>
+
+    <button class="btn btn-primary" style="margin-top:10px" onclick="submitGenericRefill()">Submit refill request →</button>`;
 }
-function getChecked(containerId){
-  var checks=document.querySelectorAll('#'+containerId+' input[type="checkbox"]:checked');
-  return Array.from(checks).map(function(c){return c.value;});
+
+async function submitGenericRefill(){
+  const payload={
+    refillFlow:'generic',
+    answers:{
+      progress:$('r_progress').value,
+      sideEffects:$('r_sideeffects').value.trim(),
+      changes:$('r_changes').value.trim(),
+      continueOrChange:$('r_continue').value,
+    }
+  };
+  if(!payload.answers.progress||!payload.answers.continueOrChange){
+    alert('Please answer the required questions.');return;
+  }
+  try{
+    await api('/api/portal/refill',{method:'POST',body:JSON.stringify(payload)});
+    $('refillFormArea').innerHTML=`<div class="empty"><div class="empty-icon">✅</div><div class="empty-title">Refill request submitted</div><div class="empty-msg">Your provider will review and reach out within 24 to 48 hours.</div></div>`;
+  }catch(e){alert('Could not submit: '+e.message);}
 }
-async function loadRefillQuestions(){
-  // Static form — already rendered in HTML. Just check refill window.
-  if(patientData&&patientData.refillWindow&&!patientData.refillWindow.isOpen){
-    var rf=patientData.refillWindow;
-    document.getElementById('refillForm').innerHTML='<div style="text-align:center;padding:40px"><div style="font-size:48px;margin-bottom:16px">📅</div><h2 style="font-family:Instrument Serif,serif;font-size:24px;margin-bottom:8px">Refill not yet available</h2><p style="color:var(--gray-500);font-size:14px;line-height:1.6">Your refill window opens <strong>'+fmtDate(rf.opensAt)+'</strong>.<br>'+rf.daysRemaining+' days remaining in your current supply.</p></div>';
+
+function renderGlp1Refill(){
+  $('refillFormArea').innerHTML=`
+    <h3 style="font-size:16px;font-weight:700;margin-bottom:6px">Refill request — ${escapeHtml(portalData.patient.treatmentDisplay)}</h3>
+    <p style="font-size:14px;color:var(--gray-500);margin-bottom:18px">A few quick questions so your provider can issue your next prescription.</p>
+
+    <div class="q-item"><label class="q-label q-required">Over the past 4 weeks, approximately how many pounds have you lost?</label>
+      <select class="q-select" id="g_pounds"><option value="">Select...</option><option>0-3 pounds</option><option>4-6 pounds</option><option>7-12 pounds</option><option>13-20 pounds</option><option>More than 20 pounds</option><option>I'm gaining weight</option></select></div>
+
+    <div class="q-item"><label class="q-label q-required">Current weight (lbs)</label>
+      <input class="q-input" type="number" id="g_weight" min="80" max="600" placeholder="e.g. 185"></div>
+
+    <div class="q-item"><label class="q-label q-required">How is your appetite suppression?</label>
+      <select class="q-select" id="g_appetite"><option value="">Select...</option><option>Strong — eating much less</option><option>Moderate — noticeable reduction</option><option>Mild — small change</option><option>None — appetite is back</option></select></div>
+
+    <div class="q-item"><label class="q-label q-required">For your next dose, would you like to:</label>
+      <select class="q-select" id="g_dose"><option value="">Select...</option><option>Stay at the same dose</option><option>Increase the dose</option><option>Decrease the dose</option></select></div>
+
+    <div class="q-item"><label class="q-label">Any side effects to discuss?</label>
+      <textarea class="q-input" id="g_se" rows="2" placeholder="Optional."></textarea></div>
+
+    <button class="btn btn-primary" style="margin-top:10px" onclick="submitGlp1Refill()">Submit refill request →</button>`;
+}
+
+async function submitGlp1Refill(){
+  const payload={
+    refillFlow:'glp1',
+    answers:{
+      poundsLost:$('g_pounds').value,
+      currentWeight:$('g_weight').value,
+      appetite:$('g_appetite').value,
+      doseDirection:$('g_dose').value,
+      sideEffects:$('g_se').value.trim(),
+    }
+  };
+  if(!payload.answers.poundsLost||!payload.answers.currentWeight||!payload.answers.appetite||!payload.answers.doseDirection){
+    alert('Please answer the required questions.');return;
+  }
+  try{
+    await api('/api/portal/refill',{method:'POST',body:JSON.stringify(payload)});
+    $('refillFormArea').innerHTML=`<div class="empty"><div class="empty-icon">✅</div><div class="empty-title">Refill request submitted</div><div class="empty-msg">Your provider will review your responses and issue your prescription if appropriate.</div></div>`;
+  }catch(e){alert('Could not submit: '+e.message);}
+}
+
+// ═══ SHOTS ═══
+function loadShots(){
+  if(!portalData){return;}
+  const sub=portalData.subscription;
+  const p=portalData.patient;
+  if(!sub){
+    $('shotsContent').innerHTML=`<div class="card"><div class="empty"><div class="empty-icon">💉</div><div class="empty-title">No treatment to track yet</div><div class="empty-msg">Once you're on an active subscription, you can log doses and track your medication schedule here.</div></div></div>`;
     return;
   }
-  // Populate upgrade card for monthly subscribers
-  if(patientData&&patientData.refillWindow&&patientData.refillWindow.upgradeOptions){
-    var uo=patientData.refillWindow.upgradeOptions;
-    document.getElementById('refillUpgrade').style.display='block';
-    document.getElementById('btnRefill').textContent='Submit monthly refill';
-    // 3-month
-    var t3=uo.threeMonth;
-    document.getElementById('up3full').textContent='$'+t3.price;
-    document.getElementById('up3disc').textContent='$'+t3.withDiscount;
-    document.getElementById('up3mo').textContent='$'+t3.perMonthWithDiscount;
-    document.getElementById('up3save').textContent='$'+(t3.price-t3.withDiscount);
-    document.getElementById('upgrade3mo').onclick=function(){upgradeFromRefill('3month');};
-    // 6-month
-    var t6=uo.sixMonth;
-    document.getElementById('up6full').textContent='$'+t6.price;
-    document.getElementById('up6disc').textContent='$'+t6.withDiscount;
-    document.getElementById('up6mo').textContent='$'+t6.perMonthWithDiscount;
-    document.getElementById('up6save').textContent='$'+(t6.price-t6.withDiscount);
-    document.getElementById('upgrade6mo').onclick=function(){upgradeFromRefill('6month');};
-  }
+
+  // Local dose log stored per patient
+  const doseKey=`th_doses_${p.id}`;
+  const doses=JSON.parse(localStorage.getItem(doseKey)||'[]');
+  const lastDose=doses.length?doses[doses.length-1]:null;
+
+  $('shotsContent').innerHTML=`
+    <div class="card" style="margin-bottom:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:14px">
+        <div>
+          <div style="font-size:13px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">Next scheduled dose</div>
+          <div style="font-size:18px;font-weight:700">${escapeHtml(sub.productDisplay||sub.product)}</div>
+          <div style="font-size:13px;color:var(--gray-500);margin-top:2px">Tap "Add dose" when you take your next injection.</div>
+        </div>
+        <button class="btn btn-primary" onclick="addDose()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="15" height="15"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add dose</button>
+      </div>
+    </div>
+
+    <div class="shot-stat-grid">
+      <div class="shot-stat"><div class="shot-stat-label">Doses taken</div><div class="shot-stat-val">${doses.length}</div></div>
+      <div class="shot-stat"><div class="shot-stat-label">Last dose</div><div class="shot-stat-val" style="font-size:16px">${lastDose?fmtDate(lastDose.at):'—'}</div></div>
+      <div class="shot-stat"><div class="shot-stat-label">This month</div><div class="shot-stat-val">${doses.filter(d=>(new Date()-new Date(d.at))<30*86400000).length}</div></div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+        <div style="font-size:13px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.06em">Dose history</div>
+        ${doses.length?`<button class="quick-action" style="padding:6px 12px;font-size:12px" onclick="clearDoses('${doseKey}')">Clear log</button>`:''}
+      </div>
+      ${doses.length?doses.slice().reverse().map(d=>`
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--gray-100);font-size:14px">
+          <div><div style="font-weight:600">${fmtDate(d.at)}</div><div style="font-size:12px;color:var(--gray-500)">${d.note||'Logged dose'}</div></div>
+          <div style="font-size:13px;color:var(--gray-500)">${timeAgo(d.at)}</div>
+        </div>`).join(''):'<div class="empty" style="padding:24px"><div style="font-size:13px;color:var(--gray-500)">No doses logged yet. Tap "Add dose" after your next injection.</div></div>'}
+    </div>`;
 }
-function upgradeFromRefill(planType){
-  // Auto-apply RENEW20 for refill upgrade
-  activePromo='RENEW20';
-  // Save refill form state so we can submit after checkout returns
-  var formState={q30:document.getElementById('rq_q30').value,q40:document.getElementById('rq_q40').value,q60:document.getElementById('rq_q60').value,q159:document.getElementById('rq_q159').value,q260:document.getElementById('rq_q260').value,q300:document.getElementById('rq_q300').value,q400:document.getElementById('rq_q400').value};
-  try{sessionStorage.setItem('clyr_refill_draft',JSON.stringify(formState));}catch(e){}
-  // Determine price ID based on treatment + plan
-  var tx=patientData.patient.treatment||'tirzepatide';
-  var plans=null;
-  // Fetch plans to get the right priceId
-  fetch(API+'/api/portal/plans',{headers:{'Authorization':'Bearer '+authToken}}).then(function(r){return r.json();}).then(function(d){
-    var match=(d.plans||[]).find(function(p){return p.productType===tx&&p.planType===planType;});
-    if(match){
-      changePlan(match.priceId,match.productType,match.planType);
-    }else{alert('Plan not found. Please try from the My Plan tab.');}
-  }).catch(function(){alert('Could not load plans.');});
+
+function addDose(){
+  const p=portalData.patient;
+  const doseKey=`th_doses_${p.id}`;
+  const note=prompt('Optional note about this dose (e.g. site, time, anything to remember):','');
+  const doses=JSON.parse(localStorage.getItem(doseKey)||'[]');
+  doses.push({at:new Date().toISOString(),note:note||''});
+  localStorage.setItem(doseKey,JSON.stringify(doses));
+  loadShots();
 }
-async function submitRefill(){
-  // Defense-in-depth: hard-block submission if the refill window is closed.
-  // The form is normally replaced with a 'not yet available' message in loadRefillQuestions,
-  // but this catches edge cases (cached form state, manual DOM manipulation, etc.).
-  if(patientData&&patientData.refillWindow&&patientData.refillWindow.isOpen===false){
-    var rfw=patientData.refillWindow;
-    return alert('Refill is not yet available. Your refill window opens '+fmtDate(rfw.opensAt)+'.');
-  }
-  // Validate required fields
-  var q30=document.getElementById('rq_q30').value;
-  var q40=document.getElementById('rq_q40').value;
-  var q60=document.getElementById('rq_q60').value;
-  var q159=document.getElementById('rq_q159').value;
-  var q200=getChecked('rq_q200');
-  var q260=document.getElementById('rq_q260').value;
-  var q285=getChecked('rq_q285');
-  var q300=document.getElementById('rq_q300').value;
-  var q400=document.getElementById('rq_q400').value.trim();
 
-  var missing=[];
-  if(!q30)missing.push('Weight loss');
-  if(!q40)missing.push('Current weight');
-  if(!q60)missing.push('Appetite');
-  if(!q159)missing.push('Medical history');
-  if(q200.length===0)missing.push('Side effects');
-  if(!q260)missing.push('Continue medication');
-  if(q285.length===0)missing.push('Discontinuation impact');
-  if(!q300)missing.push('Dose direction');
-  if(missing.length){return alert('Please complete: '+missing.join(', '));}
+function clearDoses(key){
+  if(!confirm('Clear your dose history? This cannot be undone.'))return;
+  localStorage.removeItem(key);
+  loadShots();
+}
 
-  var btn=document.getElementById('btnRefill');btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Submitting...';
-
-  try{
-    // Step 1: Send medical update if needed
-    if(medUpdateNeeded){
-      var meds=document.getElementById('medMeds').value.trim();
-      var allergy=document.getElementById('medAllergies').value.trim();
-      var conds=document.getElementById('medConditions').value.trim();
-      if(meds||allergy||conds){
-        await fetch(API+'/api/portal/refill/medical-update',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+authToken},body:JSON.stringify({medications:meds||undefined,allergies:allergy||undefined,conditions:conds||undefined})});
-      }
+// ═══ SHOP ═══
+async function loadShop(){
+  if(!catalog){
+    try{
+      const data=await api('/api/portal/catalog');
+      catalog=data.catalog;
+    }catch(e){
+      $('shopGrid').innerHTML=`<div style="grid-column:1/-1" class="empty"><div class="empty-msg">Could not load catalog.</div></div>`;
+      return;
     }
-
-    // Step 2: Submit refill
-    var answers={
-      q30:q30,q40:q40,q60:q60,q159:q159,
-      q160:q159==='Yes I do'?(document.getElementById('rq_q160').value.trim()||''):'',
-      q200:q200,q200_detail:q200.includes('Other')?(document.getElementById('rq_q200_detail').value.trim()||''):'',
-      q260:q260,q285:q285,q300:q300,q400:q400
-    };
-    // Conditional Q31/Q32
-    if(q30==="I'm gaining weight"){answers.q31=getChecked('rq_q31').join(', ')||'None of the above';}
-    if(q30==='More than 20 pounds'){answers.q32=document.getElementById('rq_q32').checked?'Acknowledged':'';}
-    if(q30==='More than 20 pounds'&&!answers.q32){return alert('Please acknowledge the significant weight loss notice.');}
-    if(q30==="I'm gaining weight"&&getChecked('rq_q31').length===0){return alert('Please select at least one option for the weight gain question.');}
-    var r=await fetch(API+'/api/portal/refill',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+authToken},body:JSON.stringify({answers:answers})});
-    var d=await r.json();if(!r.ok)throw new Error(d.error||'Failed');
-    document.getElementById('refillForm').style.display='none';document.getElementById('refillDone').style.display='block';
-    if(d.duplicate)document.querySelector('#refillDone p').textContent='Your refill is already being reviewed by your provider.';
-    if(window.clyrTrack)clyrTrack('PortalRefillSubmitted',{q300:q300});
-  }catch(e){alert('Error: '+(e.message||'Failed to submit refill'));btn.disabled=false;btn.innerHTML='Submit refill request';}
+  }
+  renderShop();
 }
 
-// ═══ PLANS ═══
-async function loadPlans(){
-  // Auto-apply promo from URL param (e.g., from Day 25 email)
-  var urlPromo=new URLSearchParams(window.location.search).get('promo');
-  if(urlPromo&&!activePromo){activePromo=urlPromo.toUpperCase();document.getElementById('promoCode').value=activePromo;
-    var msg=document.getElementById('promoMsg');msg.style.display='block';msg.style.color='var(--green)';msg.textContent='✓ Code "'+activePromo+'" auto-applied.';
-    document.getElementById('promoWrap').style.display='block';}
-  try{var d=await apiFetch('/api/portal/plans');var plans=d.plans||[];
-    var currentTx=patientData?.patient?.treatment,currentPlan=patientData?.patient?.plan;
-    if(currentTx){document.getElementById('currentPlan').style.display='block';
-      document.getElementById('currentPlanDetails').innerHTML='<div class="card-row"><span class="card-row-label">Treatment</span><span class="card-row-value">'+fmtTx(currentTx)+'</span></div><div class="card-row"><span class="card-row-label">Plan</span><span class="card-row-value">'+fmtPlan(currentPlan)+'</span></div>';}
-    var html='';plans.forEach(function(p){
-      var isCurrent=(p.productType===currentTx&&p.planType===currentPlan);
-      html+='<div class="plan-card'+(isCurrent?' current':'')+'" onclick="'+(isCurrent?'':'changePlan(\''+p.priceId+'\',\''+p.productType+'\',\''+p.planType+'\')')+'"><div><div class="plan-name">'+p.name+'</div><div class="plan-detail">'+p.planName+'</div></div><div class="plan-price">'+p.price+'</div></div>';
-    });document.getElementById('plansList').innerHTML=html;
-  }catch(e){document.getElementById('plansList').innerHTML='<div style="color:var(--red)">Failed to load plans.</div>';}
-}
-var activePromo='';
-function applyPromo(){
-  var code=document.getElementById('promoCode').value.trim().toUpperCase();
-  if(!code){document.getElementById('promoMsg').style.display='none';return;}
-  activePromo=code;
-  var msg=document.getElementById('promoMsg');msg.style.display='block';msg.style.color='var(--green)';msg.textContent='✓ Code "'+code+'" will be applied at checkout.';
-}
-async function changePlan(priceId,productType,planType){
-  try{
-    var body={newPriceId:priceId,newProductType:productType,newPlanType:planType};
-    if(activePromo)body.promoCode=activePromo;
-    // Read promo from URL param if present
-    var urlPromo=new URLSearchParams(window.location.search).get('promo');
-    if(urlPromo&&!activePromo)body.promoCode=urlPromo;
-    var r=await fetch(API+'/api/portal/subscription/change',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+authToken},body:JSON.stringify(body)});
-    var d=await r.json();
-    if(d.checkoutUrl){if(window.clyrTrack)clyrTrack('PortalPlanChanged',{product:productType,plan:planType,flow:'new_checkout',promo:body.promoCode||''});window.location.href=d.checkoutUrl;return;}
-    if(d.success){if(window.clyrTrack)clyrTrack('PortalPlanChanged',{product:productType,plan:planType,flow:'subscription_update'});var msg=document.getElementById('planChangeMsg');msg.style.display='block';msg.textContent='✓ '+d.message;setTimeout(function(){showTab('dashboard');showDashboard();},2000);}
-    else throw new Error(d.error||'Failed');
-  }catch(e){alert('Error: '+(e.message||'Failed to change plan'));}
+function renderShop(){
+  const filter=document.querySelector('.filter-pill.active')?.dataset.vertical||'all';
+  const query=($('shopSearch').value||'').toLowerCase().trim();
+
+  const all=[];
+  for(const [v,products] of Object.entries(catalog||{})){
+    if(filter!=='all'&&v!==filter)continue;
+    for(const p of products){
+      if(query&&!p.displayName.toLowerCase().includes(query)&&!p.shortName.toLowerCase().includes(query))continue;
+      all.push(p);
+    }
+  }
+
+  if(!all.length){
+    $('shopGrid').innerHTML=`<div style="grid-column:1/-1" class="empty"><div class="empty-icon">🔍</div><div class="empty-title">No products match</div><div class="empty-msg">Try a different search or filter.</div></div>`;
+    return;
+  }
+  $('shopGrid').innerHTML=all.map(p=>`
+    <div class="shop-card" onclick="window.location='/${p.key.replace(/_/g,'-')}.html'">
+      <div class="shop-card-img"><img src="${p.image}" alt="" onerror="this.style.display='none'"></div>
+      <div class="shop-card-cat">${verticalLabel(p.vertical)} · RX</div>
+      <div class="shop-card-name">${escapeHtml(p.displayName)}</div>
+      <div class="shop-card-price">As low as <strong>$${p.monthlyPrice}/mo</strong></div>
+    </div>`).join('');
 }
 
-// ═══ SUBSCRIPTION PORTAL ═══
+document.addEventListener('click',e=>{
+  const f=e.target.closest('.filter-pill');
+  if(f){
+    document.querySelectorAll('.filter-pill').forEach(b=>b.classList.toggle('active',b===f));
+    renderShop();
+  }
+  const t=e.target.closest('.acc-tab');
+  if(t){
+    document.querySelectorAll('.acc-tab').forEach(b=>b.classList.toggle('active',b===t));
+    document.querySelectorAll('.acc-section').forEach(s=>s.classList.remove('active'));
+    $('acc'+t.dataset.accTab.charAt(0).toUpperCase()+t.dataset.accTab.slice(1)).classList.add('active');
+  }
+});
+
+// ═══ BILLING ═══
 async function manageSubscription(){
-  try{var r=await fetch(API+'/api/portal/subscription/manage',{method:'POST',headers:{'Authorization':'Bearer '+authToken,'Content-Type':'application/json'}});
-    var d=await r.json();if(d.url)window.location.href=d.url;else alert('Unable to open billing portal.');}
-  catch(e){alert('Error opening billing portal.');}
+  try{
+    const data=await api('/api/portal/subscription/manage',{method:'POST'});
+    if(data.url)window.location.href=data.url;
+  }catch(e){alert('Could not open billing: '+e.message);}
 }
 
-// ═══ LOGOUT ═══
-function logout(){localStorage.removeItem('clyr_portal_token');authToken=null;patientData=null;
-  document.getElementById('dashboardPage').classList.remove('active');document.getElementById('messagesPage').classList.remove('active');
-  document.getElementById('refillPage').classList.remove('active');document.getElementById('plansPage').classList.remove('active');
-  document.getElementById('loginPage').classList.add('active');document.getElementById('navRight').style.display='none';document.getElementById('tabBar').style.display='none';
-  document.getElementById('loginStep1').style.display='block';document.getElementById('loginStep2').style.display='none';
-  document.getElementById('loginEmail').value='';document.getElementById('loginCode').value='';currentTab='dashboard';
+function downloadPhi(){
+  alert('Your health records will be emailed to you within 24 hours. For HIPAA-protected delivery, we send a secure download link by email.');
 }
 
-// ═══ HELPERS ═══
-async function apiFetch(path){var r=await fetch(API+path,{headers:{'Authorization':'Bearer '+authToken}});var d=await r.json();d._status=r.status;return d;}
-function showError(id,m){var e=document.getElementById(id);e.textContent=m;e.style.display='block';}
-function hideError(id){document.getElementById(id).style.display='none';}
-function fmtDate(d){if(!d)return'';return new Date(d).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}
-function fmtTx(t){return({tirzepatide:'Tirzepatide + B6',semaglutide:'Semaglutide + B12'})[t]||t||'Treatment';}
-function fmtPlan(p){return({monthly:'Monthly','3month':'3-Month','6month':'6-Month'})[p]||p||'';}
-function cap(s){return s?s.charAt(0).toUpperCase()+s.slice(1):'';}
-function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
-document.getElementById('loginEmail').addEventListener('keydown',function(e){if(e.key==='Enter')sendCode();});
-document.getElementById('loginCode').addEventListener('keydown',function(e){if(e.key==='Enter')verifyCode();});
-document.getElementById('loginCode').addEventListener('input',function(e){if(e.target.value.length===6)verifyCode();});
-document.getElementById('msgInput').addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}});
+// ═══ EVENT WIRING ═══
+document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
+$('btnSendCode').addEventListener('click',sendCode);
+$('btnVerifyCode').addEventListener('click',verifyCode);
+$('btnBackToEmail').addEventListener('click',()=>{
+  $('loginStepCode').style.display='none';
+  $('loginStepEmail').style.display='block';
+});
+$('btnSignOut').addEventListener('click',signOut);
+$('emailInput').addEventListener('keydown',e=>{if(e.key==='Enter')sendCode();});
+$('codeInput').addEventListener('keydown',e=>{if(e.key==='Enter')verifyCode();});
+$('codeInput').addEventListener('input',e=>{e.target.value=e.target.value.replace(/\D/g,'').slice(0,6);if(e.target.value.length===6)verifyCode();});
+$('msgInput').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}});
+$('btnSendMsg').addEventListener('click',sendMessage);
+$('shopSearch').addEventListener('input',renderShop);
+
+// ═══ INIT ═══
+if(token){enterApp().catch(()=>signOut());}
+else{$('loginView').style.display='grid';}
+
 </script>
-<script src="/js/clyr-tracking.js"></script>
 </body>
 </html>
