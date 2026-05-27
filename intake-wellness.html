@@ -461,6 +461,54 @@ var state = {
 var stripe = null;
 var embeddedCheckout = null;
 
+// ── RETURNING PATIENT PREFILL ─────────────────────────────────────────
+// If the visitor is signed into the portal (clyr_portal_token in localStorage),
+// fetch /api/me and prefill the contact + shipping + health fields so they don't
+// have to re-enter info they've already given us.
+function prefillFromPortal() {
+  try {
+    var token = localStorage.getItem('clyr_portal_token');
+    if (!token) return Promise.resolve(false);
+    return fetch('https://clyr-backend.onrender.com/api/portal/me', {
+      headers: { 'Authorization': 'Bearer ' + token }
+    }).then(function(r){ return r.ok ? r.json() : null; }).then(function(data){
+      if (!data || !data.customer) return false;
+      var c = data.customer;
+      function set(id, val){ var el = document.getElementById(id); if (el && val != null && val !== '') { el.value = val; } }
+      set('firstName', c.first_name);
+      set('lastName',  c.last_name);
+      set('email',     c.email);
+      set('phone',     c.phone);
+      set('sex',       c.sex);
+      // DOB stored as YYYY-MM-DD or ISO timestamp
+      if (c.dob) {
+        var d = new Date(c.dob);
+        if (!isNaN(d)) {
+          set('dobMonth', d.getUTCMonth() + 1);
+          set('dobDay',   d.getUTCDate());
+          set('dobYear',  d.getUTCFullYear());
+        }
+      }
+      set('address',       c.shipping_street);
+      set('apt',           c.shipping_apt);
+      set('city',          c.shipping_city);
+      set('state',         c.shipping_state);
+      set('zip',           c.shipping_zip);
+      set('currentMeds',   c.current_medications);
+      set('drugAllergies', c.drug_allergies);
+      // Stash customerId so checkout can update the existing record instead of creating a duplicate
+      state.customerId = c.id;
+      // Welcome-back banner
+      var banner = document.createElement('div');
+      banner.style.cssText = 'background:#F0FAFB;border:1px solid #00B4C5;border-radius:12px;padding:14px 18px;margin:0 0 20px;font-size:14px;color:#1A1A1A;display:flex;align-items:center;gap:10px';
+      banner.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00B4C5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg><div>Welcome back' + (c.first_name ? ', <strong>' + c.first_name + '</strong>' : '') + ' — we\u2019ve pre-filled what we already have on file. Review and update anything that\u2019s changed.</div>';
+      var firstStep = document.querySelector('main.intake .step.active') || document.querySelector('main.intake .step');
+      if (firstStep && firstStep.parentNode) firstStep.parentNode.insertBefore(banner, firstStep);
+      return true;
+    }).catch(function(){ return false; });
+  } catch(e) { return Promise.resolve(false); }
+}
+
 // ── INIT ──────────────────────────────────────────────────────────────
 function init() {
   // Populate day & year dropdowns
@@ -510,6 +558,8 @@ function init() {
   renderProduct();
   renderScreening();
   attachListeners();
+  // Async — fills fields if patient is signed into portal. Non-blocking.
+  prefillFromPortal();
 }
 
 // ── COMING-SOON WAITLIST SUBMIT ────────────────────────────────────────
