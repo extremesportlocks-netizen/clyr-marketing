@@ -840,6 +840,13 @@ function renderMyTreatment(){
 function renderRefillSummary(){
   const rw=portalData.refillWindow||{};
   if(!rw)return '';
+  const tx=(portalData.patient&&portalData.patient.treatment)||'';
+  if(['glutathione','micc','pt141'].includes(tx)){
+    return `<div style="display:flex;justify-content:space-between;align-items:center;gap:14px">
+      <div><div style="font-size:14px;font-weight:700;margin-bottom:2px">Auto-refill in progress</div><div style="font-size:13px;color:var(--gray-500)">Our care team is handling your next refill. Questions? <a href="mailto:care@clyr.health" style="color:var(--teal);font-weight:600">care@clyr.health</a></div></div>
+      <button class="btn btn-secondary" onclick="showPage('treatments');startRefill()">View status</button>
+    </div>`;
+  }
   if(rw.isOpen){
     return `<div style="display:flex;justify-content:space-between;align-items:center;gap:14px">
       <div><div style="font-size:14px;font-weight:700;margin-bottom:2px">Your refill window is open</div><div style="font-size:13px;color:var(--gray-500)">${rw.message||'Complete the questionnaire to get your next prescription.'}</div></div>
@@ -1015,8 +1022,29 @@ document.addEventListener('click',e=>{
 });
 
 // ═══ REFILL FLOW (branches on patient.refillFlow) ═══
+// Treatments awaiting Karin's approved refill questionnaire — show the manual-care message
+// instead of the in-portal refill form until MDI templates are live.
+const AUTO_REFILL_PENDING = ['glutathione','micc','pt141'];
 function startRefill(){
   if(!portalData)return;
+  const tx=(portalData.patient&&portalData.patient.treatment)||'';
+  if(AUTO_REFILL_PENDING.includes(tx)){
+    $('refillSection').style.display='block';
+    $('refillFormArea').innerHTML=`
+      <div class="empty" style="padding:32px 20px">
+        <div class="empty-icon">🔄</div>
+        <div class="empty-title">Auto-refill in progress</div>
+        <div class="empty-msg">
+          Your next ${escapeHtml(portalData.patient.treatmentDisplay||'treatment')} refill is being handled by our care team — no questionnaire needed on your end.
+          If you have questions or want to adjust your plan, email <a href="mailto:care@clyr.health" style="color:var(--teal);font-weight:600">care@clyr.health</a> and we'll respond within one business day.
+        </div>
+        <div style="margin-top:18px">
+          <button class="btn btn-secondary" onclick="$('refillSection').style.display='none'">Got it</button>
+        </div>
+      </div>`;
+    $('refillFormArea').scrollIntoView({behavior:'smooth',block:'start'});
+    return;
+  }
   const rw=portalData.refillWindow;
   $('refillSection').style.display='block';
   // Gate by window state. Allow if open OR expired (overdue patients still need to request).
