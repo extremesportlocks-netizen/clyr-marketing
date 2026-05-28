@@ -1115,67 +1115,6 @@
   .reveal-delay-4 { transition-delay: 0.4s; }
 
   /* ============================================
-     PRESS BAR — scrolling logo marquee
-     ============================================ */
-  .press-bar {
-    padding: 36px 0;
-    background: var(--dark, #1a1a2e);
-    overflow: hidden;
-  }
-  .press-label {
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: rgba(255,255,255,0.25);
-    text-align: center;
-    margin-bottom: 24px;
-    display: block;
-    padding: 0 24px;
-  }
-  .press-track {
-    display: flex;
-    gap: 16px;
-    animation: press-scroll 40s linear infinite;
-    width: max-content;
-  }
-  .press-track:hover { animation-play-state: paused; }
-  .press-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 22px;
-    border-radius: 100px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    font-family: var(--sans);
-    font-size: 14px;
-    font-weight: 600;
-    color: rgba(255,255,255,0.45);
-    white-space: nowrap;
-    flex-shrink: 0;
-    transition: border-color 0.25s, color 0.25s, background 0.25s;
-    cursor: default;
-    user-select: none;
-  }
-  a.press-chip { text-decoration: none; cursor: pointer; }
-  .press-chip:hover {
-    border-color: rgba(255,255,255,0.18);
-    color: rgba(255,255,255,0.7);
-    background: rgba(255,255,255,0.07);
-  }
-  .press-chip img {
-    width: 20px;
-    height: 20px;
-    border-radius: 4px;
-    filter: brightness(1.2);
-  }
-  @keyframes press-scroll {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-33.33%); }
-  }
-
-  /* ============================================
      ANIMATED STATS BAR
      ============================================ */
   .stats-bar {
@@ -1875,33 +1814,6 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
   </div>
 </section>
 
-<!-- ========== PRESS / PUBLICATIONS BAR ========== -->
-<div class="press-bar">
-  <span class="press-label">As Featured In</span>
-  <div class="press-track">
-    <a class="press-chip" href="https://www.cnn.com/2026/03/19/health/weight-loss-drugs-glp-1" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=cnn.com&sz=64" alt="CNN Health">CNN Health</a>
-    <a class="press-chip" href="https://www.healthline.com/health/tirzepatide-vs-semaglutide" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=healthline.com&sz=64" alt="Healthline">Healthline</a>
-    <a class="press-chip" href="https://www.yalemedicine.org/news/glp-1-weight-loss-pills-what-you-need-to-know" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=yalemedicine.org&sz=64" alt="Yale Medicine">Yale Medicine</a>
-    <a class="press-chip" href="https://www.webmd.com/obesity/how-new-glp1-pill-compares-to-shots-for-weight-loss" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=webmd.com&sz=64" alt="WebMD">WebMD</a>
-    <a class="press-chip" href="https://my.clevelandclinic.org/health/treatments/13901-glp-1-agonists" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=clevelandclinic.org&sz=64" alt="Cleveland Clinic">Cleveland Clinic</a>
-    <a class="press-chip" href="https://www.bloomberg.com/news/articles/2025-12-24/weight-loss-drugs-are-changing-what-to-know-about-glp-1-medications" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=bloomberg.com&sz=64" alt="Bloomberg">Bloomberg</a>
-    <a class="press-chip" href="https://www.mayoclinic.org/drugs-supplements/tirzepatide-subcutaneous-route/description/drg-20534045" target="_blank" rel="noopener"><img src="https://icons.duckduckgo.com/ip3/www.mayoclinic.org.ico" alt="Mayo Clinic">Mayo Clinic</a>
-    <a class="press-chip" href="https://www.cnn.com/2026/03/19/health/weight-loss-drugs-glp-1" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=cnn.com&sz=64" alt="CNN Health">CNN Health</a>
-    <a class="press-chip" href="https://www.healthline.com/health/tirzepatide-vs-semaglutide" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=healthline.com&sz=64" alt="Healthline">Healthline</a>
-    <a class="press-chip" href="https://www.yalemedicine.org/news/glp-1-weight-loss-pills-what-you-need-to-know" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=yalemedicine.org&sz=64" alt="Yale Medicine">Yale Medicine</a>
-    <a class="press-chip" href="https://www.webmd.com/obesity/how-new-glp1-pill-compares-to-shots-for-weight-loss" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=webmd.com&sz=64" alt="WebMD">WebMD</a>
-    <a class="press-chip" href="https://my.clevelandclinic.org/health/treatments/13901-glp-1-agonists" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=clevelandclinic.org&sz=64" alt="Cleveland Clinic">Cleveland Clinic</a>
-    <a class="press-chip" href="https://www.bloomberg.com/news/articles/2025-12-24/weight-loss-drugs-are-changing-what-to-know-about-glp-1-medications" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=bloomberg.com&sz=64" alt="Bloomberg">Bloomberg</a>
-    <a class="press-chip" href="https://www.mayoclinic.org/drugs-supplements/tirzepatide-subcutaneous-route/description/drg-20534045" target="_blank" rel="noopener"><img src="https://icons.duckduckgo.com/ip3/www.mayoclinic.org.ico" alt="Mayo Clinic">Mayo Clinic</a>
-    <a class="press-chip" href="https://www.cnn.com/2026/03/19/health/weight-loss-drugs-glp-1" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=cnn.com&sz=64" alt="CNN Health">CNN Health</a>
-    <a class="press-chip" href="https://www.healthline.com/health/tirzepatide-vs-semaglutide" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=healthline.com&sz=64" alt="Healthline">Healthline</a>
-    <a class="press-chip" href="https://www.yalemedicine.org/news/glp-1-weight-loss-pills-what-you-need-to-know" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=yalemedicine.org&sz=64" alt="Yale Medicine">Yale Medicine</a>
-    <a class="press-chip" href="https://www.webmd.com/obesity/how-new-glp1-pill-compares-to-shots-for-weight-loss" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=webmd.com&sz=64" alt="WebMD">WebMD</a>
-    <a class="press-chip" href="https://my.clevelandclinic.org/health/treatments/13901-glp-1-agonists" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=clevelandclinic.org&sz=64" alt="Cleveland Clinic">Cleveland Clinic</a>
-    <a class="press-chip" href="https://www.bloomberg.com/news/articles/2025-12-24/weight-loss-drugs-are-changing-what-to-know-about-glp-1-medications" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=bloomberg.com&sz=64" alt="Bloomberg">Bloomberg</a>
-    <a class="press-chip" href="https://www.mayoclinic.org/drugs-supplements/tirzepatide-subcutaneous-route/description/drg-20534045" target="_blank" rel="noopener"><img src="https://icons.duckduckgo.com/ip3/www.mayoclinic.org.ico" alt="Mayo Clinic">Mayo Clinic</a>
-  </div>
-</div>
 
 <!-- ========== STATS BAR ========== -->
 <div class="stats-bar">
