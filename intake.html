@@ -512,6 +512,11 @@
     background-position: right 16px center;
     padding-right: 40px;
   }
+  textarea.form-input {
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+  }
   .dob-row {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -1060,6 +1065,12 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
       <div class="q-label">What dose are you currently on?</div>
       <div style="font-size:12px;color:var(--gray-400);margin-bottom:12px;font-style:italic;">*Select the closest option to your current dosage</div>
       <div class="mc-list" id="q36doseList"></div>
+    </div>
+
+    <!-- Conditional text input — shown when q36 = 'other' -->
+    <div class="q-block" id="q36OtherBlock" style="display:none;">
+      <div class="q-label">Please specify the medication you're currently taking.</div>
+      <input type="text" class="form-input" id="q36OtherText" placeholder="e.g. Contrave, Phentermine, Qsymia" oninput="formData.mdiAnswers.q36Other = this.value; validateStep()">
     </div>
 
     <div class="q-block">
@@ -1667,7 +1678,8 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
         break;
       case 4: // Medical History
         var doseRequired = formData.mdiAnswers.q36 && formData.mdiAnswers.q36 !== 'none' && formData.mdiAnswers.q36 !== 'other';
-        valid = formData.mdiAnswers.q10 && formData.mdiAnswers.q20 && formData.mdiAnswers.q30 && formData.mdiAnswers.q36 && (!doseRequired || formData.mdiAnswers.currentDoseTier) && document.getElementById('goalWeight').value && formData.mdiAnswers.q70 && formData.mdiAnswers.q72 && medsToggle !== null && allergyToggle !== null && document.getElementById('currentMedications').value.trim() && document.getElementById('drugAllergies').value.trim();
+        var otherTextRequired = formData.mdiAnswers.q36 === 'other';
+        valid = formData.mdiAnswers.q10 && formData.mdiAnswers.q20 && formData.mdiAnswers.q30 && formData.mdiAnswers.q36 && (!doseRequired || formData.mdiAnswers.currentDoseTier) && (!otherTextRequired || (formData.mdiAnswers.q36Other && formData.mdiAnswers.q36Other.trim())) && document.getElementById('goalWeight').value && formData.mdiAnswers.q70 && formData.mdiAnswers.q72 && medsToggle !== null && allergyToggle !== null && document.getElementById('currentMedications').value.trim() && document.getElementById('drugAllergies').value.trim();
         break;
       case 5: // Treatment Preferences
         valid = formData.mdiAnswers.q140 && formData.mdiAnswers.q150;
@@ -2029,9 +2041,19 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
   function updateDoseDropdown(q36Value) {
     var block = document.getElementById('q36doseBlock');
     var list = document.getElementById('q36doseList');
+    var otherBlock = document.getElementById('q36OtherBlock');
+    var otherInput = document.getElementById('q36OtherText');
     // Clear previous selection
     formData.mdiAnswers.currentDoseTier = null;
-    // Show dropdown for GLP-1 options only
+    // Show 'other' text input when user picks 'Other medication not listed'
+    if (q36Value === 'other') {
+      otherBlock.style.display = 'block';
+    } else {
+      otherBlock.style.display = 'none';
+      if (otherInput) otherInput.value = '';
+      formData.mdiAnswers.q36Other = null;
+    }
+    // Show dose dropdown for GLP-1 options only
     var showDose = (q36Value === 'compounded_tirz' || q36Value === 'compounded_sema' || q36Value === 'branded');
     if (!showDose) {
       block.style.display = 'none';
