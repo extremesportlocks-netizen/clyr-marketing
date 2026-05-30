@@ -1528,8 +1528,10 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
   function nextStep() {
     if (currentStep === 8) { submitIntake(); return; }
 
-    // Lead capture: save email, name, phone when leaving step 3
+    // Lead capture: save email, name, phone, profile when leaving step 3
     if (currentStep === 3) {
+      var dm = document.getElementById('dobMonth').value, dd = document.getElementById('dobDay').value, dy = document.getElementById('dobYear').value;
+      var dobStr = (dm && dd && dy) ? dy + '-' + String('JanFebMarAprMayJunJulAugSepOctNovDec'.indexOf(dm.slice(0,3)) / 3 + 1).padStart(2,'0') + '-' + String(dd).padStart(2,'0') : null;
       var leadData = {
         email: document.getElementById('email').value.trim(),
         firstName: document.getElementById('firstName').value.trim(),
@@ -1537,7 +1539,12 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
         phone: document.getElementById('phone').value.trim(),
         treatment: formData.treatment,
         planType: formData.plan,
-        visitor_id: localStorage.getItem('clyr_vid') || null
+        visitor_id: localStorage.getItem('clyr_vid') || null,
+        dob: dobStr,
+        sex: document.getElementById('sex').value || null,
+        heightFt: document.getElementById('heightFt').value || null,
+        heightIn: document.getElementById('heightIn').value || null,
+        weight: document.getElementById('weight').value || null
       };
       if (leadData.email) {
         if(window.clyrIdentify)clyrIdentify(leadData.email,{firstName:leadData.firstName,lastName:leadData.lastName,treatment:leadData.treatment});
