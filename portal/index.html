@@ -479,7 +479,7 @@ textarea.q-input{resize:vertical;min-height:80px}
         <div class="acc-section" id="accBilling">
           <div class="card" style="margin-bottom:14px">
             <div class="acc-row"><span class="acc-row-label">Current plan</span><span class="acc-row-val" id="billPlan">—</span></div>
-            <div class="acc-row"><span class="acc-row-label">Subscription status</span><span class="acc-row-val" id="billStatus">—</span></div>
+            <div class="acc-row"><span class="acc-row-label">Plan status</span><span class="acc-row-val" id="billStatus">—</span></div>
             <div class="acc-row"><span class="acc-row-label">Shipping address</span>
               <span class="acc-row-val" id="billAddress" style="display:flex;align-items:center;gap:8px">
                 <span id="billAddressText">—</span>
@@ -2122,8 +2122,38 @@ async function manageSubscription(){
   }catch(e){alert('Could not open billing: '+e.message);}
 }
 
-function downloadPhi(){
-  alert('Your health records will be emailed to you within 24 hours. For HIPAA-protected delivery, we send a secure download link by email.');
+async function downloadPhi(){
+  const btn = event?.target?.closest('button');
+  if (btn) { btn.disabled = true; btn.style.opacity = '0.6'; }
+  try {
+    // The endpoint returns a JSON attachment scoped to req.patient.customerId
+    // so we just stream the response into a Blob and trigger a browser
+    // download. No backend mailing infrastructure needed for self-service
+    // export — the patient is already authenticated and pulling their own
+    // record over HTTPS.
+    const response = await fetch(`${API}/api/portal/phi-export`, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+    if (!response.ok) {
+      let msg = response.statusText;
+      try { const j = await response.json(); msg = j.error || msg; } catch (e) {}
+      throw new Error(msg);
+    }
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+    // Pull the suggested filename out of Content-Disposition if present, else
+    // build one client-side.
+    const dispo = response.headers.get('Content-Disposition') || '';
+    const match = /filename="([^"]+)"/.exec(dispo);
+    const filename = match ? match[1] : `clyr-health-records-${new Date().toISOString().split('T')[0]}.json`;
+    const a = document.createElement('a');
+    a.href = url; a.download = filename; document.body.appendChild(a); a.click();
+    setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
+  } catch (e) {
+    alert('Could not export your records: ' + e.message + '. Email care@clyr.health if this keeps happening.');
+  } finally {
+    if (btn) { btn.disabled = false; btn.style.opacity = '1'; }
+  }
 }
 
 // ═══ EVENT WIRING ═══
