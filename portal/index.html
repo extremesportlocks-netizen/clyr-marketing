@@ -1251,7 +1251,7 @@ function startRefill(){
         <div class="empty-icon">🔄</div>
         <div class="empty-title">Auto-refill in progress</div>
         <div class="empty-msg">
-          Your next ${escapeHtml(portalData.patient.treatmentDisplay||'treatment')} refill is being handled by our care team — no questionnaire needed on your end.
+          Your next ${escapeHtml(portalData.patient.treatmentDisplay||'treatment')} refill is being handled by our care team. No questionnaire needed on your end.
           If you have questions or want to adjust your plan, email <a href="mailto:care@clyr.health" style="color:var(--teal);font-weight:600">care@clyr.health</a> and we'll respond within one business day.
         </div>
         <div style="margin-top:18px">
@@ -1945,7 +1945,7 @@ function openTreatmentActions(productKey){
     }
     actions.push({
       label: 'Cancel subscription',
-      sub: 'Stop future billing — keep access through this billing period',
+      sub: 'Stop future billing. Keep access through this billing period.',
       icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>',
       onclick: `confirmCancelTreatment('${escapeAttr(productKey)}')`,
       kind: 'danger'
