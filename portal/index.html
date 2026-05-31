@@ -2202,6 +2202,17 @@ function showClinicalScreening(productKey, planType){
   const answers = {};  // { qid: 'yes' | 'no' }
   const totalRequired = config.blockers.length + config.soft.length;
 
+  // For wellness (zero yes/no questions, just allergies + meds), there's
+  // nothing to answer — enable the submit button immediately so the patient
+  // isn't stuck on a "Answer all questions" CTA with nothing to click.
+  if (totalRequired === 0) {
+    const submitBtn = $('btnScreeningSubmit');
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Continue to payment';
+    }
+  }
+
   document.querySelectorAll('#productDetailBody .yn-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const row = btn.closest('.screen-q');
