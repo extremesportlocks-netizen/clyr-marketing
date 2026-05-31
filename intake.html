@@ -1556,9 +1556,13 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
           body: JSON.stringify(leadData)
         }).then(function(r) { return r.json(); }).then(function(data) {
           if (data.status === 'existing_active') {
-            showReturningCustomerModal(data.firstName || leadData.firstName, true, leadData.email);
+            showReturningCustomerModal(data.firstName || leadData.firstName, 'active', leadData.email);
           } else if (data.status === 'existing_incomplete') {
-            showReturningCustomerModal(data.firstName || leadData.firstName, false, leadData.email);
+            showReturningCustomerModal(data.firstName || leadData.firstName, 'incomplete', leadData.email);
+          } else if (data.status === 'existing_partial') {
+            // Started intake but bailed mid-flow — route to intake.html, not
+            // resume.html (resume.html would 4xx on incomplete intake data).
+            showReturningCustomerModal(data.firstName || leadData.firstName, 'partial', leadData.email);
           }
           // existing_lead: No modal — lead must complete full intake (patient safety)
           // New leads also continue silently
@@ -1569,17 +1573,24 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
     if (currentStep < totalSteps) goToStep(currentStep + 1);
   }
 
-  function showReturningCustomerModal(firstName, isActive, email) {
+  function showReturningCustomerModal(firstName, mode, email) {
     var overlay = document.createElement('div');
     overlay.id = 'returningModal';
     overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:999;display:flex;align-items:center;justify-content:center;padding:24px;animation:fadeUp 0.3s ease';
-    var resumeUrl = email ? '/resume.html?email=' + encodeURIComponent(email) : '/intake.html';
     var msg, buttons;
-    if (isActive) {
+    if (mode === 'active') {
       msg = '<p style="color:#4b5563;font-size:15px;line-height:1.6;margin-bottom:24px;">It looks like you already have an active CLYR Health account. Log into your patient portal to manage your treatment, view your prescription status, and more.</p>';
       buttons = '<a href="/portal/" style="display:inline-block;background:#2bbcb3;color:#fff;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:600;font-size:15px;margin-bottom:12px;width:100%;box-sizing:border-box;">Go to Patient Portal</a><br>' +
         '<button onclick="document.getElementById(\'returningModal\').remove()" style="background:none;border:none;color:#9ca3af;font-size:14px;cursor:pointer;padding:8px 16px;margin-top:4px;">Continue as new patient</button>';
+    } else if (mode === 'partial') {
+      // Bailed mid-intake. Don't suggest checkout — they don't have enough
+      // data on file for /api/checkout/resume to succeed. Send them back into
+      // the intake form to finish what's missing.
+      msg = '<p style="color:#4b5563;font-size:15px;line-height:1.6;margin-bottom:24px;">It looks like you started your consultation but didn\'t finish. Pick up where you left off — we\'ll skip the parts you\'ve already filled in.</p>';
+      buttons = '<button onclick="document.getElementById(\'returningModal\').remove()" style="display:inline-block;background:#2bbcb3;color:#fff;border:none;padding:14px 32px;border-radius:10px;font-weight:600;font-size:15px;margin-bottom:12px;width:100%;box-sizing:border-box;cursor:pointer;font-family:inherit;">Continue my consultation</button>';
     } else {
+      // 'incomplete' — completed intake, just didn't pay. resume.html works.
+      var resumeUrl = email ? '/resume.html?email=' + encodeURIComponent(email) : '/intake.html';
       msg = '<p style="color:#4b5563;font-size:15px;line-height:1.6;margin-bottom:24px;">It looks like you already started your consultation. Your information is saved — you can go straight to checkout or continue updating your details.</p>';
       buttons = '<a href="' + resumeUrl + '" style="display:inline-block;background:#2bbcb3;color:#fff;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:600;font-size:15px;margin-bottom:12px;width:100%;box-sizing:border-box;">Go to Checkout</a><br>' +
         '<button onclick="document.getElementById(\'returningModal\').remove()" style="background:none;border:none;color:#9ca3af;font-size:14px;cursor:pointer;padding:8px 16px;margin-top:4px;">Update my details first</button>';
