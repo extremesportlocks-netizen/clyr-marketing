@@ -1510,60 +1510,39 @@ function renderGlp1Refill(){
     <p style="font-size:14px;color:var(--gray-500);margin-bottom:18px">A few quick questions so your provider can issue your next prescription.</p>
 
     <div class="q-item"><label class="q-label q-required">Over the past 4 weeks, approximately how many pounds have you lost?</label>
-      <select class="q-select" id="q30"><option value="">Select...</option><option>0-3 pounds</option><option>4-6 pounds</option><option>7-12 pounds</option><option>13-20 pounds</option><option>More than 20 pounds</option><option>I'm gaining weight</option></select></div>
+      <select class="q-select" id="g_pounds"><option value="">Select...</option><option>0-3 pounds</option><option>4-6 pounds</option><option>7-12 pounds</option><option>13-20 pounds</option><option>More than 20 pounds</option><option>I&#39;m gaining weight</option></select></div>
 
     <div class="q-item"><label class="q-label q-required">Current weight (lbs)</label>
-      <input class="q-input" type="number" id="q40" min="80" max="600" placeholder="e.g. 185"></div>
+      <input class="q-input" type="number" id="g_weight" min="80" max="600" placeholder="e.g. 185"></div>
 
-    <div class="q-item"><label class="q-label q-required">Are you having appetite suppression?</label>
-      <select class="q-select" id="q60"><option value="">Select...</option><option>Yes, just where I want to be</option><option>Somewhat decreased appetite</option><option>Way too much appetite suppression! I can't eat anything</option><option>I'm always hungry!</option></select></div>
-
-    <div class="q-item"><label class="q-label q-required">Do you have any new changes/additions to your medical history?</label>
-      <select class="q-select" id="q159" onchange="document.getElementById('q160Wrap').style.display=this.value==='Yes I do'?'block':'none'"><option value="">Select...</option><option>No</option><option>Yes I do</option></select></div>
-    <div class="q-item" id="q160Wrap" style="display:none"><label class="q-label">Tell the doctor about any new medical history</label>
-      <textarea class="q-input" id="q160" rows="2" placeholder="Describe new conditions, medications, or changes."></textarea></div>
-
-    <div class="q-item"><label class="q-label">Any side effects you'd like the provider to know about?</label>
-      <div id="q200" style="display:flex;flex-direction:column;gap:8px">
-        <label style="display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:1.5px solid var(--gray-100);border-radius:10px;cursor:pointer;font-size:14px"><input type="checkbox" name="q200" value="NONE of the above" style="margin-top:2px;flex-shrink:0">NONE of the above — feeling fine</label>
-        <label style="display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:1.5px solid var(--gray-100);border-radius:10px;cursor:pointer;font-size:14px"><input type="checkbox" name="q200" value="Having side effects, but I can handle them" style="margin-top:2px;flex-shrink:0">Mild side effects but tolerable</label>
-        <label style="display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:1.5px solid var(--gray-100);border-radius:10px;cursor:pointer;font-size:14px"><input type="checkbox" name="q200" value="Significant vomiting" style="margin-top:2px;flex-shrink:0">Significant vomiting</label>
-        <label style="display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:1.5px solid var(--gray-100);border-radius:10px;cursor:pointer;font-size:14px"><input type="checkbox" name="q200" value="Abdominal pain that concerns me" style="margin-top:2px;flex-shrink:0">Abdominal pain that concerns me</label>
-        <label style="display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:1.5px solid var(--gray-100);border-radius:10px;cursor:pointer;font-size:14px"><input type="checkbox" name="q200" value="Dizziness that concerns me" style="margin-top:2px;flex-shrink:0">Dizziness that concerns me</label>
-        <label style="display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:1.5px solid var(--gray-100);border-radius:10px;cursor:pointer;font-size:14px"><input type="checkbox" name="q200" value="Chest pain" style="margin-top:2px;flex-shrink:0">Chest pain</label>
-        <label style="display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:1.5px solid var(--gray-100);border-radius:10px;cursor:pointer;font-size:14px"><input type="checkbox" name="q200" value="Fevers" style="margin-top:2px;flex-shrink:0">Fevers</label>
-        <label style="display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:1.5px solid var(--gray-100);border-radius:10px;cursor:pointer;font-size:14px"><input type="checkbox" name="q200" value="Swelling in my neck" style="margin-top:2px;flex-shrink:0">Swelling in my neck</label>
-      </div></div>
-
-    <div class="q-item"><label class="q-label q-required">I want to continue my current compounded medication</label>
-      <select class="q-select" id="q260"><option>I agree</option><option>I DO NOT agree</option></select></div>
+    <div class="q-item"><label class="q-label q-required">How is your appetite suppression?</label>
+      <select class="q-select" id="g_appetite"><option value="">Select...</option><option>Strong, eating much less</option><option>Moderate, noticeable reduction</option><option>Mild, small change</option><option>None, appetite is back</option></select></div>
 
     <div class="q-item"><label class="q-label q-required">For your next dose, would you like to:</label>
-      <select class="q-select" id="q300"><option value="">Select...</option><option>Stay at the same dose</option><option>Increase</option><option>Decrease</option></select></div>
+      <select class="q-select" id="g_dose"><option value="">Select...</option><option>Stay at the same dose</option><option>Increase the dose</option><option>Decrease the dose</option></select></div>
 
-    <div class="q-item"><label class="q-label">Message for your provider</label>
-      <textarea class="q-input" id="q400" rows="2" placeholder="Optional. Anything you'd like the provider to know."></textarea></div>
+    <div class="q-item"><label class="q-label">Any side effects to discuss?</label>
+      <textarea class="q-input" id="g_se" rows="2" placeholder="Optional."></textarea></div>
 
     <button class="btn btn-primary" style="margin-top:10px" onclick="submitGlp1Refill()">Submit refill request →</button>`;
 }
 
 async function submitGlp1Refill(){
-  const q200Vals = Array.from(document.querySelectorAll('input[name="q200"]:checked')).map(i => i.value);
   const payload={
     refillFlow:'glp1',
     answers:{
-      q30: ($('q30').value || '').trim(),
-      q40: ($('q40').value || '').trim(),
-      q60: ($('q60').value || '').trim(),
-      q159: ($('q159').value || 'No').trim(),
-      q160: ($('q160')?.value || '').trim(),
-      q200: q200Vals.length ? q200Vals.join(', ') : 'NONE of the above',
-      q260: ($('q260').value || 'I agree').trim(),
-      q300: ($('q300').value || '').trim(),
-      q400: ($('q400')?.value || '').trim()
+      q30: ($('g_pounds').value || '').trim(),
+      q40: ($('g_weight').value || '').trim(),
+      q60: ($('g_appetite').value || '').trim(),
+      q159: 'No',
+      q160: '',
+      q200: ($('g_se').value || '').trim() || 'NONE of the above',
+      q260: 'I agree',
+      q300: ($('g_dose').value || '').trim(),
+      q400: ($('g_se').value || '').trim()
     }
   };
-  if(!payload.answers.q30 || !payload.answers.q40 || !payload.answers.q60 || !payload.answers.q300 || !payload.answers.q159){
+  if(!payload.answers.q30 || !payload.answers.q40 || !payload.answers.q60 || !payload.answers.q300){
     alert('Please answer the required questions.');return;
   }
   try{
@@ -1571,7 +1550,6 @@ async function submitGlp1Refill(){
     $('refillFormArea').innerHTML=`<div class="empty"><div class="empty-icon">✅</div><div class="empty-title">Refill request submitted</div><div class="empty-msg">Your provider will review your responses and issue your prescription if appropriate.</div></div>`;
   }catch(e){alert('Could not submit: '+e.message);}
 }
-
 // ═══ SHOTS ═══
 let dosesCache=[];  // current patient's doses, populated by loadShots
 let shotsProduct=null; // resolved product object for the patient's current treatment
