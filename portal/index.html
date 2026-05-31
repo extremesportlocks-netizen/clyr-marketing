@@ -754,6 +754,17 @@ async function loadHome(){
 
 function renderActionBanner(){
   const el=$('actionBanner');
+  // Abandoned-intake patients (intake_status = 'abandoned' or 'intake_abandoned')
+  // have no order, encounter, or subscription. Without a banner they see only
+  // the bland "No active treatment" empty state. Surface a resume CTA that
+  // takes them back to the intake flow so they have a path forward.
+  const intakeStatus = portalData?.patient?.intakeStatus || '';
+  const hasTreatments = (portalData?.treatments||[]).length > 0;
+  const isAbandoned = !hasTreatments && /aband/i.test(intakeStatus);
+  if (isAbandoned) {
+    el.innerHTML=`<div class="action-banner"><div class="action-banner-dot" style="background:#f59e0b"></div><div class="action-banner-body"><div class="action-banner-label">Finish your CLYR intake</div><div class="action-banner-msg">You started signing up but didn't complete checkout. Pick up where you left off to see a provider and get your medication shipped.</div></div><a href="/intake.html" class="action-banner-cta" style="text-decoration:none;display:inline-flex;align-items:center;justify-content:center">Resume intake</a></div>`;
+    return;
+  }
   if(!requiredActions.length){el.innerHTML='';return;}
   // Render the highest-severity action
   const order={high:0,info:1};
