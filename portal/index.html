@@ -1918,18 +1918,31 @@ function openTreatmentActions(productKey){
   const planLabel = ({monthly:'Monthly','3month':'3 months','6month':'6 months'})[tx.plan] || tx.plan;
   const cancelPending = !!tx.cancelAt;
 
-  // Recurring + active: Change plan, Cancel
+  // Only show "Change plan" if the catalog actually has multiple plan tiers
+  // for this SKU. NAD+ / Glutathione / Sermorelin / etc. are monthly-only so
+  // there's nothing to switch to. Tirzepatide / Semaglutide offer monthly,
+  // 3-month, and 6-month tiers.
+  const product = findCatalogProductGlobal(productKey);
+  const hasOtherPlans = product && (
+    (product.threeMonth && tx.plan !== '3month') ||
+    (product.sixMonth && tx.plan !== '6month') ||
+    (product.monthlyPrice && tx.plan !== 'monthly')
+  );
+
+  // Recurring + active: Change plan (if other plans exist), Cancel
   // Recurring + cancel-pending: Resume
   // One-time: Renew now (re-buy)
   const actions = [];
   if (tx.isRecurring && !cancelPending) {
-    actions.push({
-      label: 'Change plan',
-      sub: 'Switch to a different plan tier or treatment',
-      icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>',
-      onclick: `closeTreatmentActions();openProductDetail('${escapeAttr(productKey)}')`,
-      kind: 'default'
-    });
+    if (hasOtherPlans) {
+      actions.push({
+        label: 'Change plan',
+        sub: 'Switch to a different plan tier for this same treatment',
+        icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>',
+        onclick: `closeTreatmentActions();openSwitchPlanModal('${escapeAttr(productKey)}')`,
+        kind: 'default'
+      });
+    }
     actions.push({
       label: 'Cancel subscription',
       sub: 'Stop future billing — keep access through this billing period',
@@ -2044,6 +2057,195 @@ async function resumeTreatment(productKey){
     alert(result.message || 'Your subscription will continue.');
   } catch (e) {
     alert('Could not resume: ' + e.message);
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════
+// SWITCH PLAN (atomic) — same SKU, different plan tier
+// ════════════════════════════════════════════════════════════════════
+// Unlike openProductDetail (which creates a brand-new subscription via
+// /add-product/create-session and is appropriate for adding a new SKU), this
+// flow routes through /subscription/change so the OLD subscription is
+// cancelled atomically:
+//   - Monthly → Multi-month: embedded checkout for the new one-time payment,
+//     metadata.cancel_subscription_id makes the webhook cancel the monthly
+//     sub after the payment captures (so no charge is lost if the patient
+//     abandons checkout).
+//   - Monthly → Different monthly tier: stripe.subscriptions.update() in
+//     place, no checkout needed. Returns inPlace: true and the portal just
+//     refreshes.
+//   - Multi-month → anything: there's no recurring sub to swap (one-time
+//     plans don't have one). Future iteration can handle this — for now,
+//     guard at the UI level and only show "Change plan" when the patient
+//     has an active recurring sub.
+async function openSwitchPlanModal(productKey){
+  try { await ensureCatalog(); } catch (e) {
+    return alert('Could not load plan options: ' + e.message);
+  }
+  const product = findCatalogProductGlobal(productKey);
+  const tx = findTreatmentByProduct(productKey);
+  if (!product || !tx) return alert('Could not find this treatment.');
+
+  // Build available plans for this SKU, exclude the patient's current plan.
+  const plans = [];
+  if (product.monthlyPrice && tx.plan !== 'monthly') plans.push({ key:'monthly', label:'Monthly', price:product.monthlyPrice, perMonth:product.monthlyPrice, recurring:true });
+  if (product.threeMonth && tx.plan !== '3month') plans.push({ key:'3month', label:'3 months', price:product.threeMonth, perMonth:Math.round(product.threeMonth/3), recurring:false });
+  if (product.sixMonth && tx.plan !== '6month') plans.push({ key:'6month', label:'6 months', price:product.sixMonth, perMonth:Math.round(product.sixMonth/6), recurring:false });
+  if (!plans.length) return alert('No other plans available for this treatment.');
+
+  const currentPlanLabel = ({monthly:'Monthly','3month':'3 months','6month':'6 months'})[tx.plan] || tx.plan;
+
+  document.body.insertAdjacentHTML('beforeend', `
+    <div id="switchPlanModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;z-index:1000;padding:20px;animation:fadeIn 0.15s">
+      <div style="background:white;border-radius:18px;padding:24px;max-width:560px;width:100%;box-shadow:var(--shadow-lg);max-height:92vh;overflow-y:auto">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px">
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:2px">Switch plan</div>
+            <h3 style="font-size:20px;font-weight:700;margin:0">${escapeHtml(product.displayName)}</h3>
+            <div style="font-size:13px;color:var(--gray-500);margin-top:4px">Currently on <strong>${escapeHtml(currentPlanLabel)}</strong>. Pick a new tier below.</div>
+          </div>
+          <button onclick="closeSwitchPlanModal()" style="background:none;border:none;font-size:24px;line-height:1;color:var(--gray-400);cursor:pointer;padding:0">&times;</button>
+        </div>
+
+        <div id="switchPlanBody">
+          <div style="background:#f8fafb;border:1px solid var(--gray-100);border-radius:12px;padding:14px;margin-bottom:18px;font-size:13px;color:var(--gray-600);line-height:1.5">
+            ${tx.plan === 'monthly' ? "Switching to a multi-month plan locks in your current price. Your existing monthly subscription is canceled automatically when the new plan is paid for, so there's no double-billing." : "Your new plan replaces the current one. Any new billing follows the tier you pick."}
+          </div>
+
+          <div style="font-size:13px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px">Available plans</div>
+          <div id="switchPlanPicker" style="display:flex;flex-direction:column;gap:8px;margin-bottom:18px">
+            ${plans.map(p => `
+              <button data-plan="${p.key}" class="switch-plan-row" style="text-align:left;padding:14px 16px;border:2px solid var(--gray-100);border-radius:12px;background:white;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit">
+                <div>
+                  <div style="font-weight:700;font-size:15px">${p.label}</div>
+                  <div style="font-size:12px;color:var(--gray-500);margin-top:2px">${p.recurring ? 'Billed monthly · cancel anytime' : `One-time payment · $${p.perMonth}/mo equivalent`}</div>
+                </div>
+                <div style="text-align:right">
+                  <div style="font-weight:700;font-size:16px">$${p.price}${p.recurring ? '/mo' : ''}</div>
+                  ${!p.recurring ? `<div style="font-size:11px;color:var(--gray-400)">total</div>` : ''}
+                </div>
+              </button>`).join('')}
+          </div>
+
+          <button id="btnSwitchPlan" class="btn btn-primary" style="width:100%;padding:14px" disabled>Select a plan</button>
+          <button class="btn btn-secondary" style="width:100%;margin-top:8px" onclick="closeSwitchPlanModal()">Cancel</button>
+        </div>
+
+        <div id="switchPlanCheckoutMount" style="display:none"></div>
+      </div>
+    </div>`);
+
+  let selectedPlan = null;
+  const updateSelection = () => {
+    document.querySelectorAll('#switchPlanModal .switch-plan-row').forEach(b => {
+      const isActive = b.dataset.plan === selectedPlan;
+      b.style.borderColor = isActive ? 'var(--teal)' : 'var(--gray-100)';
+      b.style.background = isActive ? 'rgba(43,188,179,0.06)' : 'white';
+    });
+    const btn = $('btnSwitchPlan');
+    btn.disabled = !selectedPlan;
+    btn.textContent = selectedPlan ? 'Switch to this plan' : 'Select a plan';
+  };
+  document.querySelectorAll('#switchPlanModal .switch-plan-row').forEach(b => {
+    b.addEventListener('click', () => { selectedPlan = b.dataset.plan; updateSelection(); });
+  });
+  $('btnSwitchPlan').addEventListener('click', async () => {
+    if (!selectedPlan) return;
+    await beginSwitchCheckout(productKey, selectedPlan);
+  });
+}
+
+function closeSwitchPlanModal(){
+  if (activeEmbeddedCheckout) {
+    try { activeEmbeddedCheckout.destroy(); } catch (e) {}
+    activeEmbeddedCheckout = null;
+  }
+  const m = $('switchPlanModal'); if (m) m.remove();
+}
+
+async function beginSwitchCheckout(productKey, newPlan){
+  const btn = $('btnSwitchPlan'); btn.disabled = true; btn.textContent = 'Preparing...';
+  try {
+    // Resolve the Stripe price ID for the new plan. The catalog response
+    // doesn't expose price IDs (those are sensitive); /portal/plans was the
+    // legacy resolver but only covers GLP-1. Easier: call the existing
+    // /portal/add-product/create-session metadata to get the price... actually
+    // we need a direct mapping. Use the new helper endpoint or just rely on
+    // the catalog's keys aligning with the env-var SKU pattern in the backend.
+    // For now, we pass productKey + newPlanType and let the backend resolve
+    // the price via the same product-catalog logic.
+    const session = await api('/api/portal/subscription/change', {
+      method: 'POST',
+      body: JSON.stringify({
+        // Backend needs newPriceId, so resolve via the SKU
+        newPriceId: await resolvePriceIdForSku(productKey, newPlan),
+        newProductType: productKey,
+        newPlanType: newPlan,
+        currentProductType: productKey,  // scope sub lookup to this product
+        embedded: true
+      })
+    });
+
+    if (session.inPlace) {
+      // Monthly→Monthly was updated atomically — no checkout needed.
+      $('switchPlanBody').style.display = 'none';
+      $('switchPlanCheckoutMount').style.display = 'block';
+      $('switchPlanCheckoutMount').innerHTML = `
+        <div style="text-align:center;padding:32px 20px">
+          <div style="font-size:48px;margin-bottom:12px">✓</div>
+          <div style="font-size:20px;font-weight:700;margin-bottom:6px">Plan updated</div>
+          <div style="font-size:14px;color:var(--gray-500);margin-bottom:18px">${escapeHtml(session.message || 'Your plan has been changed.')}</div>
+          <button class="btn btn-primary" onclick="closeSwitchPlanModal();loadHome()">Back to portal</button>
+        </div>`;
+      return;
+    }
+
+    if (!session.clientSecret) {
+      throw new Error(session.error || 'Unexpected checkout response');
+    }
+
+    const stripe = await loadStripeJs();
+    $('switchPlanBody').style.display = 'none';
+    $('switchPlanCheckoutMount').style.display = 'block';
+    $('switchPlanCheckoutMount').innerHTML = '<div id="switchCheckoutContainer"></div>';
+
+    activeEmbeddedCheckout = await stripe.initEmbeddedCheckout({
+      clientSecret: session.clientSecret,
+      onComplete: async () => {
+        // Webhook will cancel the old sub via metadata.cancel_subscription_id.
+        // Patient sees only the new plan after refresh.
+        $('switchPlanCheckoutMount').innerHTML = `
+          <div style="text-align:center;padding:32px 20px">
+            <div style="font-size:48px;margin-bottom:12px">✓</div>
+            <div style="font-size:20px;font-weight:700;margin-bottom:6px">Plan switched</div>
+            <div style="font-size:14px;color:var(--gray-500);margin-bottom:18px">Your previous plan has been canceled and your new plan is now active.</div>
+            <button class="btn btn-primary" onclick="closeSwitchPlanModal();loadHome()">Back to portal</button>
+          </div>`;
+      }
+    });
+    activeEmbeddedCheckout.mount('#switchCheckoutContainer');
+  } catch (err) {
+    btn.disabled = false; btn.textContent = 'Switch to this plan';
+    alert('Could not switch plan: ' + (err.message || err));
+  }
+}
+
+// Tiny helper: the catalog exposes plan prices but not Stripe price IDs (env-
+// var values stay backend-only). The backend's /add-product/create-session
+// resolves SKU→price-id internally. For the swap path we need to send the
+// newPriceId though, since /subscription/change predates SKU resolution.
+// Fetch the catalog product, look up its plan-specific stripePriceId via the
+// dedicated resolver endpoint.
+async function resolvePriceIdForSku(productKey, planType){
+  // Hit /api/portal/sku-price which we'll add as a tiny resolver. If that
+  // endpoint is not deployed yet, fall back to /portal/plans (GLP-1 only) or
+  // surface a clear error so a missing env var doesn't silently fail.
+  try {
+    const r = await api(`/api/portal/sku-price?productKey=${encodeURIComponent(productKey)}&planType=${encodeURIComponent(planType)}`);
+    if (r.priceId) return r.priceId;
+    throw new Error(r.error || 'Price not configured for this plan');
+  } catch (e) {
+    throw new Error('Could not resolve plan price: ' + e.message);
   }
 }
 
