@@ -2154,10 +2154,39 @@ const SCREENING_QUESTIONS = {
 // Build the screening UI for a specific product. Reads the product's vertical
 // off the catalog, picks the question set, prefills allergies + meds from
 // portalData.patient (set by /me), and wires the submit handler.
-function showClinicalScreening(productKey, planType){
+async function showClinicalScreening(productKey, planType){
   const product = findCatalogProductGlobal(productKey);
-  const vertical = product ? product.vertical : 'wellness';
-  const config = SCREENING_QUESTIONS[vertical] || SCREENING_QUESTIONS.wellness;
+  const verticalRaw = product ? product.vertical : 'wellness';
+  // Normalise vertical: backend product-catalog uses 'sexual_health',
+  // portal vocabulary uses 'sexual-health'. Same shape works for both.
+  const vertical = (verticalRaw || '').replace(/_/g, '-');
+
+  // Fetch the canonical question schema from the backend so we render
+  // exactly the same questions that MDI will receive. Falls back to the
+  // hard-coded SCREENING_QUESTIONS map if the fetch fails (offline / 5xx),
+  // so the modal still functions if the new endpoint is unavailable.
+  let config;
+  try {
+    const r = await fetch(API + '/api/portal/add-product/questions?productKey=' + encodeURIComponent(productKey), {
+      headers: { Authorization: 'Bearer ' + getPortalToken() }
+    });
+    if (r.ok) {
+      const data = await r.json();
+      config = {
+        intro: vertical === 'sexual-health'
+          ? 'These conditions matter for sexual health medications. Please answer honestly — your safety is our priority.'
+          : (vertical === 'wellness'
+              ? 'Quick safety check before our care team reviews your order.'
+              : 'A quick safety check before our care team reviews your order.'),
+        blockers: data.blockers || [],
+        soft: data.soft || []
+      };
+    }
+  } catch (_) { /* fall through to hardcoded */ }
+  if (!config) {
+    config = SCREENING_QUESTIONS[vertical] || SCREENING_QUESTIONS.wellness;
+  }
+
   const allergiesPrefill = portalData?.patient?.drugAllergies || '';
   const medsPrefill = portalData?.patient?.currentMedications || '';
 
