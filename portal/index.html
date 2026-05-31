@@ -1523,8 +1523,17 @@ function renderGlp1Refill(){
     <div class="q-item" id="q160Wrap" style="display:none"><label class="q-label">Tell the doctor about any new medical history</label>
       <textarea class="q-input" id="q160" rows="2" placeholder="Describe new conditions, medications, or changes."></textarea></div>
 
-    <div class="q-item"><label class="q-label">Any major side effects you're concerned about? (Optional, hold Ctrl/Cmd to pick multiple)</label>
-      <select class="q-select" id="q200" multiple size="5" style="height:auto"><option>NONE of the above</option><option>Having side effects, but I can handle them</option><option>Significant vomiting</option><option>Abdominal pain that concerns me</option><option>Dizziness that concerns me</option><option>Chest pain</option><option>Fevers</option><option>Swelling in my neck</option><option>Other</option></select></div>
+    <div class="q-item"><label class="q-label">Any side effects you'd like the provider to know about?</label>
+      <div id="q200" style="display:flex;flex-direction:column;gap:8px">
+        <label style="display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:1.5px solid var(--gray-100);border-radius:10px;cursor:pointer;font-size:14px"><input type="checkbox" name="q200" value="NONE of the above" style="margin-top:2px;flex-shrink:0">NONE of the above — feeling fine</label>
+        <label style="display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:1.5px solid var(--gray-100);border-radius:10px;cursor:pointer;font-size:14px"><input type="checkbox" name="q200" value="Having side effects, but I can handle them" style="margin-top:2px;flex-shrink:0">Mild side effects but tolerable</label>
+        <label style="display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:1.5px solid var(--gray-100);border-radius:10px;cursor:pointer;font-size:14px"><input type="checkbox" name="q200" value="Significant vomiting" style="margin-top:2px;flex-shrink:0">Significant vomiting</label>
+        <label style="display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:1.5px solid var(--gray-100);border-radius:10px;cursor:pointer;font-size:14px"><input type="checkbox" name="q200" value="Abdominal pain that concerns me" style="margin-top:2px;flex-shrink:0">Abdominal pain that concerns me</label>
+        <label style="display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:1.5px solid var(--gray-100);border-radius:10px;cursor:pointer;font-size:14px"><input type="checkbox" name="q200" value="Dizziness that concerns me" style="margin-top:2px;flex-shrink:0">Dizziness that concerns me</label>
+        <label style="display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:1.5px solid var(--gray-100);border-radius:10px;cursor:pointer;font-size:14px"><input type="checkbox" name="q200" value="Chest pain" style="margin-top:2px;flex-shrink:0">Chest pain</label>
+        <label style="display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:1.5px solid var(--gray-100);border-radius:10px;cursor:pointer;font-size:14px"><input type="checkbox" name="q200" value="Fevers" style="margin-top:2px;flex-shrink:0">Fevers</label>
+        <label style="display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:1.5px solid var(--gray-100);border-radius:10px;cursor:pointer;font-size:14px"><input type="checkbox" name="q200" value="Swelling in my neck" style="margin-top:2px;flex-shrink:0">Swelling in my neck</label>
+      </div></div>
 
     <div class="q-item"><label class="q-label q-required">I want to continue my current compounded medication</label>
       <select class="q-select" id="q260"><option>I agree</option><option>I DO NOT agree</option></select></div>
@@ -1539,8 +1548,7 @@ function renderGlp1Refill(){
 }
 
 async function submitGlp1Refill(){
-  const q200Sel = document.getElementById('q200');
-  const q200Vals = q200Sel ? Array.from(q200Sel.selectedOptions).map(o => o.value).filter(Boolean) : [];
+  const q200Vals = Array.from(document.querySelectorAll('input[name="q200"]:checked')).map(i => i.value);
   const payload={
     refillFlow:'glp1',
     answers:{
