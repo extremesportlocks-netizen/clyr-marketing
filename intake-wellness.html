@@ -780,7 +780,49 @@ function onStep3Continue() {
     dobDay: document.getElementById('dobDay').value,
     dobYear: document.getElementById('dobYear').value
   };
+  // Fire-and-forget returning-customer detection (mirrors intake.html).
+  // Won't block the step transition — if it errors we just continue silently.
+  if (state.details.email) {
+    fetch('https://clyr-backend.onrender.com/api/intake/save-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: state.details.email,
+        firstName: state.details.firstName,
+        lastName: state.details.lastName,
+        phone: state.details.phone,
+        treatment: state.product || state.treatment || null
+      })
+    }).then(function(r) { return r.json(); }).then(function(data) {
+      if (data.status === 'existing_active') {
+        showWellnessReturningModal(data.firstName || state.details.firstName, 'active');
+      } else if (data.status === 'existing_partial') {
+        // Already in intake form — no need for a modal that says "continue
+        // your intake". They're literally doing that right now.
+      }
+      // existing_lead / new: silent continue
+    }).catch(function() {}); // Non-blocking
+  }
   goToStep(4);
+}
+
+// Active-patient gate: an existing patient adding a new wellness product
+// shouldn't have to re-run the full clinical screening flow on the marketing
+// site — the portal Shop tab does this faster with their saved info. Suggest
+// they switch to the portal, but let them dismiss and continue if they want.
+function showWellnessReturningModal(firstName, mode) {
+  if (document.getElementById('returningModal')) return; // idempotent
+  var overlay = document.createElement('div');
+  overlay.id = 'returningModal';
+  overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:999;display:flex;align-items:center;justify-content:center;padding:24px;animation:fadeUp 0.3s ease';
+  overlay.innerHTML = '<div style="background:#fff;border-radius:20px;padding:36px 32px;max-width:440px;width:100%;text-align:center;box-shadow:0 24px 80px rgba(0,0,0,0.15)">' +
+    '<div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,rgba(0,180,197,0.15),rgba(0,180,197,0.05));display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:24px;">👋</div>' +
+    '<h2 style="font-size:22px;font-weight:700;color:#1a1a2e;margin-bottom:8px;">Welcome back' + (firstName ? ', ' + firstName : '') + '!</h2>' +
+    '<p style="color:#4b5563;font-size:15px;line-height:1.6;margin-bottom:24px;">You already have an active CLYR Health account. Add this treatment right from your patient portal — it\'s faster and uses the info we already have on file.</p>' +
+    '<a href="/portal/" style="display:inline-block;background:#00B4C5;color:#fff;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:600;font-size:15px;margin-bottom:12px;width:100%;box-sizing:border-box;">Go to Patient Portal</a><br>' +
+    '<button onclick="document.getElementById(\'returningModal\').remove()" style="background:none;border:none;color:#9ca3af;font-size:14px;cursor:pointer;padding:8px 16px;margin-top:4px;font-family:inherit;">Continue as new patient</button>' +
+    '</div>';
+  document.body.appendChild(overlay);
 }
 
 function onStep4Continue() {
