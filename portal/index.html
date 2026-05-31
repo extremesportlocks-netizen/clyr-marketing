@@ -518,6 +518,7 @@ let token = localStorage.getItem(TOKEN_KEY);
 let portalData = null;     // /me response
 let suggestions = [];      // /suggested response
 let requiredActions = [];  // /required-actions response
+let timelineEvents = [];   // /timeline response — drives the Treatment Journey card
 let catalog = null;        // /catalog response
 let currentPage = 'home';
 
@@ -709,14 +710,16 @@ async function loadHome(){
   $('homeContent').style.display='none';
   try{
     // Parallel fetch
-    const [me,sugg,actions]=await Promise.all([
+    const [me,sugg,actions,timeline]=await Promise.all([
       api('/api/portal/me'),
       api('/api/portal/suggested').catch(()=>({suggestions:[]})),
       api('/api/portal/required-actions').catch(()=>({actions:[]})),
+      api('/api/portal/timeline').catch(()=>({events:[]})),
     ]);
     portalData=me;
     suggestions=sugg.suggestions||[];
     requiredActions=actions.actions||[];
+    timelineEvents=timeline.events||[];
 
     // Greeting + avatar
     const first=me.patient.firstName||'there';
@@ -859,22 +862,48 @@ function renderRefillSummary(){
   </div>`;
 }
 
+// Build a clickable tracking link if we recognize the carrier from the
+// number format. UPS is the dominant carrier for compounded shipments
+// (1Z prefix). FedEx and USPS fall back to a parcel-lookup link.
+function trackingLink(num, carrier){
+  if(!num) return '';
+  const n=String(num).trim();
+  let url=null;
+  const c=(carrier||'').toLowerCase();
+  if(c.includes('ups') || /^1Z/i.test(n)){
+    url=`https://www.ups.com/track?tracknum=${encodeURIComponent(n)}`;
+  } else if(c.includes('fedex') || /^\d{12}$|^\d{15}$/.test(n)){
+    url=`https://www.fedex.com/fedextrack/?trknbr=${encodeURIComponent(n)}`;
+  } else if(c.includes('usps') || /^9\d{15,21}$/.test(n)){
+    url=`https://tools.usps.com/go/TrackConfirmAction?tLabels=${encodeURIComponent(n)}`;
+  } else {
+    url=`https://parcelsapp.com/en/tracking/${encodeURIComponent(n)}`;
+  }
+  return `<a href="${url}" target="_blank" rel="noopener" style="color:var(--teal);font-weight:600;text-decoration:none">${escapeHtml(n)} \u2197</a>`;
+}
+
 function renderTimeline(){
   const el=$('timelineSteps');
-  const stage=portalData.stage||'prescribed';
-  const order=['intake','payment','provider','prescribed','shipped'];
-  const idx=Math.max(0,order.indexOf(stage));
-  const steps=[
-    {key:'intake',label:'Health intake completed',desc:'Your health profile is on file.'},
-    {key:'payment',label:'Payment processed',desc:`${portalData.subscription?.productDisplay||'Subscription'} · ${({monthly:'Monthly',['3month']:'3-month',['6month']:'6-month'})[portalData.subscription?.plan]||'Monthly'}`},
-    {key:'provider',label:'Provider review',desc:'A licensed provider has reviewed your case.'},
-    {key:'prescribed',label:'Prescription sent',desc:'Your prescription has been sent to our licensed pharmacy.'},
-    {key:'shipped',label:'Shipping',desc:'Ships from our licensed pharmacy.'},
-  ];
-  el.innerHTML=steps.map((s,i)=>{
-    const cls=i<idx?'done':i===idx?'current':'';
-    const date=i<=idx?fmtDate(portalData.patient.memberSince):'';
-    return `<div class="timeline-step ${cls}"><div class="timeline-dot"></div><div class="timeline-label">${s.label}</div><div class="timeline-desc">${s.desc}</div>${date?`<div class="timeline-date">${date}</div>`:''}</div>`;
+  if(!el) return;
+  // Drive the journey card directly from /api/portal/timeline.
+  // Each event arrives with its own status (done | active | pending | cancelled)
+  // and timestamp, so we don't need to re-derive anything from portalData.stage.
+  if(!timelineEvents || !timelineEvents.length){
+    // Defensive fallback for the rare case where /timeline failed to load.
+    el.innerHTML='<div class="timeline-step"><div class="timeline-dot"></div><div class="timeline-label">Loading your treatment journey...</div></div>';
+    return;
+  }
+  el.innerHTML=timelineEvents.map(ev=>{
+    const cls = ev.status==='done' ? 'done'
+              : ev.status==='active' ? 'current'
+              : ev.status==='cancelled' ? 'cancelled'
+              : '';
+    const date = ev.timestamp ? fmtDate(ev.timestamp) : '';
+    // Step 5 gets a clickable tracking link if a tracking number is present.
+    const trackHtml = ev.trackingNumber
+      ? `<div class="timeline-desc" style="margin-top:4px">Tracking: ${trackingLink(ev.trackingNumber, ev.carrier)}</div>`
+      : '';
+    return `<div class="timeline-step ${cls}"><div class="timeline-dot"></div><div class="timeline-label">${escapeHtml(ev.label)}</div><div class="timeline-desc">${escapeHtml(ev.description||'')}</div>${trackHtml}${date?`<div class="timeline-date">${date}</div>`:''}</div>`;
   }).join('');
 }
 
