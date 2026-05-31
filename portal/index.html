@@ -886,6 +886,8 @@ function renderRefillSummaryForTreatment(tx){
 function renderTreatmentCardHtml(tx){
   const planLabel=({monthly:'Monthly','3month':'3 months','6month':'6 months'})[tx.plan]||tx.plan||'';
   const img=tx.productImage||'/img/vial-tirzepatide.svg';
+  const cancelPending=!!tx.cancelAt;
+  const productKey=escapeAttr(tx.product||'');
   return `
     <div class="treatment-card">
       <div class="treatment-card-head">
@@ -894,11 +896,18 @@ function renderTreatmentCardHtml(tx){
           <div class="treatment-card-name">${escapeHtml(tx.productDisplay||tx.product||'Treatment')}</div>
           <div class="treatment-card-meta">${escapeHtml(planLabel)}${tx.amount!=null?` · ${$fmtMoney(tx.amount)}`:''} · ${escapeHtml(verticalLabel(tx.vertical||'wellness'))}</div>
           ${renderChipsForTreatment(tx)}
+          ${cancelPending?`<div style="margin-top:6px;font-size:12px;color:var(--gray-500)">Ends ${fmtDate(tx.cancelAt)} \u00b7 <a href="#" onclick="event.preventDefault();resumeTreatment('${productKey}')" style="color:var(--teal);font-weight:600">Resume</a></div>`:''}
         </div>
         <div class="treatment-card-badge${tx.status==='active'?'':' pending'}">${escapeHtml(tx.status||'active')}</div>
       </div>
       <div class="treatment-card-body">
         ${renderRefillSummaryForTreatment(tx)}
+      </div>
+      <div style="border-top:1px solid var(--gray-100);padding-top:10px;margin-top:12px;display:flex;justify-content:flex-end">
+        <button onclick="openTreatmentActions('${productKey}')" style="background:none;border:none;color:var(--gray-500);font-size:13px;font-weight:600;cursor:pointer;padding:4px 8px;border-radius:6px;display:inline-flex;align-items:center;gap:6px" onmouseover="this.style.background='var(--gray-50)'" onmouseout="this.style.background='none'">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+          Manage
+        </button>
       </div>
     </div>`;
 }
@@ -1835,6 +1844,152 @@ async function beginEmbeddedCheckout(productKey, planType){
   } catch (err) {
     btn.disabled = false; btn.textContent = 'Add to my treatments';
     alert('Could not start checkout: ' + (err.message || err));
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════
+// PER-TREATMENT ACTIONS (cancel, resume, change plan)
+// ════════════════════════════════════════════════════════════════════
+// Each treatment card has a "Manage" button that opens this modal. The
+// available actions depend on whether the treatment is recurring and whether
+// a cancellation is already pending.
+
+function findTreatmentByProduct(productKey){
+  return (portalData?.treatments||[]).find(t => t.product === productKey) || null;
+}
+
+function openTreatmentActions(productKey){
+  const tx = findTreatmentByProduct(productKey);
+  if (!tx) return;
+  const planLabel = ({monthly:'Monthly','3month':'3 months','6month':'6 months'})[tx.plan] || tx.plan;
+  const cancelPending = !!tx.cancelAt;
+
+  // Recurring + active: Change plan, Cancel
+  // Recurring + cancel-pending: Resume
+  // One-time: Renew now (re-buy)
+  const actions = [];
+  if (tx.isRecurring && !cancelPending) {
+    actions.push({
+      label: 'Change plan',
+      sub: 'Switch to a different plan tier or treatment',
+      icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>',
+      onclick: `closeTreatmentActions();openProductDetail('${escapeAttr(productKey)}')`,
+      kind: 'default'
+    });
+    actions.push({
+      label: 'Cancel subscription',
+      sub: 'Stop future billing — keep access through this billing period',
+      icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>',
+      onclick: `confirmCancelTreatment('${escapeAttr(productKey)}')`,
+      kind: 'danger'
+    });
+  } else if (tx.isRecurring && cancelPending) {
+    actions.push({
+      label: 'Resume subscription',
+      sub: `Continue billing past ${fmtDate(tx.cancelAt)}`,
+      icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>',
+      onclick: `resumeTreatment('${escapeAttr(productKey)}')`,
+      kind: 'primary'
+    });
+  } else {
+    // One-time 3/6mo plan — no recurring billing to cancel. Offer a re-buy.
+    actions.push({
+      label: 'Renew this plan',
+      sub: 'Buy another supply of the same product',
+      icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>',
+      onclick: `closeTreatmentActions();openProductDetail('${escapeAttr(productKey)}')`,
+      kind: 'primary'
+    });
+  }
+
+  const kindStyles = {
+    primary: 'border-color:var(--teal);color:var(--teal)',
+    danger: 'border-color:#fca5a5;color:#dc2626',
+    default: 'border-color:var(--gray-100);color:var(--dark)'
+  };
+
+  document.body.insertAdjacentHTML('beforeend', `
+    <div id="treatmentActionsModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;z-index:1000;padding:20px;animation:fadeIn 0.15s">
+      <div style="background:white;border-radius:18px;padding:24px;max-width:440px;width:100%;box-shadow:var(--shadow-lg);max-height:90vh;overflow-y:auto">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px">
+          <div>
+            <h3 style="font-size:18px;font-weight:700;margin-bottom:4px">${escapeHtml(tx.productDisplay)}</h3>
+            <div style="font-size:13px;color:var(--gray-500)">${escapeHtml(planLabel)} · ${escapeHtml(tx.status||'active')}${cancelPending?` · cancels ${fmtDate(tx.cancelAt)}`:''}</div>
+          </div>
+          <button onclick="closeTreatmentActions()" style="background:none;border:none;font-size:24px;line-height:1;color:var(--gray-400);cursor:pointer;padding:0">&times;</button>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          ${actions.map(a=>`
+            <button onclick="${a.onclick}" style="text-align:left;padding:14px 16px;border:1.5px solid var(--gray-100);border-radius:12px;background:white;cursor:pointer;display:flex;gap:12px;align-items:flex-start;font-family:inherit;${kindStyles[a.kind]||kindStyles.default}">
+              <div style="flex-shrink:0;margin-top:2px">${a.icon}</div>
+              <div style="flex:1">
+                <div style="font-weight:700;font-size:14px;line-height:1.3">${escapeHtml(a.label)}</div>
+                <div style="font-size:12px;color:var(--gray-500);margin-top:3px;line-height:1.4">${escapeHtml(a.sub)}</div>
+              </div>
+            </button>`).join('')}
+        </div>
+        <button class="btn btn-secondary" style="width:100%;margin-top:14px" onclick="closeTreatmentActions()">Close</button>
+      </div>
+    </div>`);
+}
+
+function closeTreatmentActions(){
+  const m = $('treatmentActionsModal'); if (m) m.remove();
+}
+
+// Two-step confirmation before destructive cancel. Spell out exactly what
+// happens so the patient can't fat-finger this.
+function confirmCancelTreatment(productKey){
+  const tx = findTreatmentByProduct(productKey);
+  if (!tx) return;
+  closeTreatmentActions();
+  const endDate = tx.currentPeriodEnd ? fmtDate(tx.currentPeriodEnd) : 'the end of this billing period';
+  document.body.insertAdjacentHTML('beforeend', `
+    <div id="confirmCancelModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;z-index:1001;padding:20px;animation:fadeIn 0.15s">
+      <div style="background:white;border-radius:18px;padding:24px;max-width:420px;width:100%;box-shadow:var(--shadow-lg)">
+        <h3 style="font-size:18px;font-weight:700;margin-bottom:8px">Cancel ${escapeHtml(tx.productDisplay)}?</h3>
+        <p style="font-size:14px;color:var(--gray-600);line-height:1.5;margin-bottom:18px">You'll keep access through ${escapeHtml(endDate)}. No charges will be made after that date, and your other treatments are unaffected. You can resume anytime before the end date.</p>
+        <div style="display:flex;gap:10px">
+          <button class="btn btn-secondary" style="flex:1" onclick="document.getElementById('confirmCancelModal').remove()">Keep subscription</button>
+          <button id="btnConfirmCancel" class="btn" style="flex:1;background:#dc2626;color:white" onclick="cancelTreatment('${escapeAttr(productKey)}')">Yes, cancel</button>
+        </div>
+      </div>
+    </div>`);
+}
+
+async function cancelTreatment(productKey){
+  const btn = $('btnConfirmCancel');
+  if (btn) { btn.disabled = true; btn.textContent = 'Canceling...'; }
+  try {
+    const result = await api('/api/portal/subscription/cancel', {
+      method: 'POST',
+      body: JSON.stringify({ productKey })
+    });
+    $('confirmCancelModal')?.remove();
+    // Reload /me so the badge flips to cancel-pending with the end date.
+    await loadHome();
+    // If they were on the Treatments tab, refresh that view too.
+    if (currentPage === 'treatments') loadTreatments();
+    // Light toast — reuse the alert pattern for now, swap to a real toast later.
+    alert(result.message || 'Your subscription will end at the close of the current billing period.');
+  } catch (e) {
+    if (btn) { btn.disabled = false; btn.textContent = 'Yes, cancel'; }
+    alert('Could not cancel: ' + e.message);
+  }
+}
+
+async function resumeTreatment(productKey){
+  try {
+    const result = await api('/api/portal/subscription/resume', {
+      method: 'POST',
+      body: JSON.stringify({ productKey })
+    });
+    closeTreatmentActions();
+    await loadHome();
+    if (currentPage === 'treatments') loadTreatments();
+    alert(result.message || 'Your subscription will continue.');
+  } catch (e) {
+    alert('Could not resume: ' + e.message);
   }
 }
 
