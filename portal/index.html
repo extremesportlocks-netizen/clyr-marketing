@@ -1225,7 +1225,11 @@ function renderAutoRefillToggle(){
   const sec=$('accAutoRefill');
   if(!sec)return;
   const refillsRemaining=portalData?.patient?.refillsRemaining||0;
-  if(refillsRemaining<=0){
+  const treatments=portalData?.treatments||[];
+  // Hide if no refills OR no active treatments. A patient with 11 refills
+  // but no current treatments (abandoned intake, all cancelled, etc.) has
+  // nothing to auto-refill, so the toggle would be a misleading green light.
+  if(refillsRemaining<=0 || treatments.length===0){
     // Hide the whole section. The patient has nothing to auto-refill.
     sec.style.display='none';
     return;
