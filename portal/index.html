@@ -393,6 +393,7 @@ textarea.q-input{resize:vertical;min-height:80px}
             <div class="section-head">
               <h2 class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Treatment journey</h2>
             </div>
+            <div id="journeyPicker" style="display:none;gap:8px;flex-wrap:wrap;margin-bottom:12px;padding:4px"></div>
             <div class="card">
               <div class="timeline" id="timelineSteps"></div>
             </div>
@@ -519,6 +520,7 @@ let portalData = null;     // /me response
 let suggestions = [];      // /suggested response
 let requiredActions = [];  // /required-actions response
 let timelineEvents = [];   // /timeline response — drives the Treatment Journey card
+let selectedJourneyProduct = null; // for multi-product patients, which treatment's journey is currently focused
 let catalog = null;        // /catalog response
 let currentPage = 'home';
 
@@ -721,6 +723,14 @@ async function loadHome(){
     requiredActions=actions.actions||[];
     timelineEvents=timeline.events||[];
 
+    // Default the Journey to the most-recent treatment (treatments[0]) unless
+    // the user already picked one (selectedJourneyProduct persists across
+    // page-load calls so a manual selection survives a refresh).
+    const firstTreatmentProduct = (me?.treatments||[])[0]?.product;
+    if (!selectedJourneyProduct || !(me?.treatments||[]).find(t => t.product === selectedJourneyProduct)) {
+      selectedJourneyProduct = firstTreatmentProduct || null;
+    }
+
     // Greeting + avatar
     const first=me.patient.firstName||'there';
     $('greetName').textContent=first;
@@ -730,6 +740,7 @@ async function loadHome(){
     // Render
     renderActionBanner();
     renderMyTreatment();
+    renderJourneyPicker();
     renderTimeline();
     renderSuggested();
     populateAccount();
@@ -1055,6 +1066,43 @@ function renderTimeline(){
       : '';
     return `<div class="timeline-step ${cls}"><div class="timeline-dot"></div><div class="timeline-label">${escapeHtml(ev.label)}</div><div class="timeline-desc">${escapeHtml(ev.description||'')}</div>${trackHtml}${date?`<div class="timeline-date">${date}</div>`:''}</div>`;
   }).join('');
+}
+
+// Render the per-treatment Journey picker. Hidden when the patient has only
+// one treatment (the picker would be a no-op pill row). Selecting a pill
+// fetches /timeline?productKey=X and re-renders the Journey card.
+function renderJourneyPicker(){
+  const picker=$('journeyPicker');
+  if(!picker)return;
+  const list=portalData?.treatments||[];
+  if(list.length<2){
+    picker.style.display='none';
+    picker.innerHTML='';
+    return;
+  }
+  picker.style.display='flex';
+  picker.innerHTML=list.map(t=>{
+    const isActive=t.product===selectedJourneyProduct;
+    return `<button onclick="switchJourneyProduct('${escapeAttr(t.product)}')" style="padding:8px 14px;border-radius:999px;border:1.5px solid ${isActive?'var(--teal)':'var(--gray-100)'};background:${isActive?'rgba(43,188,179,0.06)':'white'};color:${isActive?'var(--teal)':'var(--gray-600)'};font-weight:600;font-size:13px;cursor:pointer;font-family:inherit">${escapeHtml(t.productDisplay||t.product)}</button>`;
+  }).join('');
+}
+
+// Picker click — refetch the timeline for the selected product and re-render
+// the Journey card. Picker pill highlight updates too.
+async function switchJourneyProduct(productKey){
+  selectedJourneyProduct=productKey;
+  // Show a quick loading state while the fetch is in flight so the patient
+  // sees feedback for their click.
+  const el=$('timelineSteps');
+  if(el)el.innerHTML='<div class="timeline-step"><div class="timeline-dot"></div><div class="timeline-label">Loading...</div></div>';
+  try{
+    const t=await api(`/api/portal/timeline?productKey=${encodeURIComponent(productKey)}`);
+    timelineEvents=t.events||[];
+  }catch(e){
+    timelineEvents=[];
+  }
+  renderJourneyPicker();
+  renderTimeline();
 }
 
 function renderSuggested(){
