@@ -2412,6 +2412,7 @@ function openTreatmentActions(productKey){
     default: 'border-color:var(--gray-100);color:var(--dark)'
   };
 
+  document.getElementById('treatmentActionsModal')?.remove();
   document.body.insertAdjacentHTML('beforeend', `
     <div id="treatmentActionsModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;z-index:1000;padding:20px;animation:fadeIn 0.15s">
       <div style="background:white;border-radius:18px;padding:24px;max-width:440px;width:100%;box-shadow:var(--shadow-lg);max-height:90vh;overflow-y:auto">
