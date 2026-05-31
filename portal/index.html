@@ -1904,14 +1904,18 @@ async function openProductDetail(productKey){
     });
     const btn = $('btnAddTreatment');
     btn.disabled = !selectedPlan;
-    btn.textContent = selectedPlan ? 'Add to my treatments' : 'Select a plan';
+    btn.textContent = selectedPlan ? 'Continue' : 'Select a plan';
   };
   document.querySelectorAll('#productModal .plan-row').forEach(b => {
     b.addEventListener('click', () => { selectedPlan = b.dataset.plan; updateSelection(); });
   });
   $('btnAddTreatment').addEventListener('click', async () => {
     if (!selectedPlan) return;
-    await beginEmbeddedCheckout(productKey, selectedPlan);
+    // Hand off to the clinical screening step rather than going straight to
+    // checkout. The screening collects vertical-aware safety answers (cardiac
+    // for sexual-health, thyroid/pregnancy for GLP-1) and validates blockers
+    // before any Stripe session is created.
+    showClinicalScreening(productKey, selectedPlan);
   });
 }
 
@@ -1923,14 +1927,26 @@ function closeProductDetail(){
   const m = $('productModal'); if (m) m.remove();
 }
 
-async function beginEmbeddedCheckout(productKey, planType){
-  const btn = $('btnAddTreatment'); btn.disabled = true; btn.textContent = 'Preparing checkout...';
+async function beginEmbeddedCheckout(productKey, planType, screeningAnswers){
+  const screeningBtn = $('btnScreeningSubmit');
+  const fallbackBtn = $('btnAddTreatment');
+  const submitBtn = screeningBtn || fallbackBtn;
+  if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Preparing checkout...'; }
   try {
     const [stripe, session] = await Promise.all([
       loadStripeJs(),
       api('/api/portal/add-product/create-session', {
         method: 'POST',
-        body: JSON.stringify({ productKey, planType })
+        body: JSON.stringify({
+          productKey,
+          planType,
+          // Optional: when the patient came through the clinical screening
+          // step (which is the default path now), forward their answers so
+          // the backend can attach them to the Stripe session metadata for
+          // the admin alert. Falls back to undefined for any code path that
+          // skips screening.
+          screeningAnswers: screeningAnswers || undefined
+        })
       })
     ]);
 
@@ -1955,9 +1971,185 @@ async function beginEmbeddedCheckout(productKey, planType){
     });
     activeEmbeddedCheckout.mount('#checkoutContainer');
   } catch (err) {
-    btn.disabled = false; btn.textContent = 'Add to my treatments';
+    // Server-side clinical hold — happens if the local screening was skipped
+    // somehow or a blocker slipped through. Show the care-team stop screen
+    // instead of the generic alert.
+    if (err && (err.reason === 'clinical_hold' || /clinical_hold/i.test(err.message || ''))) {
+      showCareTeamHold(productKey);
+      return;
+    }
+    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Continue to payment'; }
     alert('Could not start checkout: ' + (err.message || err));
   }
+}
+
+// ════════════════════════════════════════════════════════════════════
+// PER-PRODUCT CLINICAL SCREENING
+// ════════════════════════════════════════════════════════════════════
+// Inserted between the plan picker and the embedded Stripe Checkout step
+// in the product detail modal. Asks a vertical-aware set of safety
+// questions (cardiac for sexual-health, thyroid/pregnancy for GLP-1) plus
+// a universal allergies + current-meds confirmation that prefills from
+// the patient's record. Hard-blocker "yes" answers route to a care-team
+// hold screen instead of checkout; the backend re-validates as a safety
+// net so a tampered request can't bypass.
+
+const SCREENING_QUESTIONS = {
+  'sexual-health': {
+    intro: 'A quick safety check before our care team reviews your order.',
+    blockers: [
+      { id: 'cardiac', q: 'In the last 6 months, have you had a heart attack, stroke, or unstable chest pain?' },
+      { id: 'nitrates', q: 'Are you currently taking nitrates (nitroglycerin, isosorbide) or amyl nitrite "poppers"?' }
+    ],
+    soft: [
+      { id: 'priapism', q: 'Have you ever had priapism (an erection lasting more than 4 hours)?' }
+    ]
+  },
+  'weight-loss': {
+    intro: 'A quick safety check before our care team reviews your order.',
+    blockers: [
+      { id: 'pregnancy', q: 'Are you pregnant, breastfeeding, or trying to conceive in the next 12 months?' },
+      { id: 'thyroid', q: 'Do you or any first-degree relative (parent, sibling, or child) have a personal history of medullary thyroid carcinoma (MTC) or MEN 2?' }
+    ],
+    soft: [
+      { id: 'pancreatitis', q: 'Have you ever been diagnosed with pancreatitis or gallbladder disease?' }
+    ]
+  },
+  'wellness': {
+    intro: 'Quick confirmation of your meds and allergies before our care team reviews your order.',
+    blockers: [],
+    soft: []
+  },
+  'hair': {
+    intro: 'A quick safety check before our care team reviews your order.',
+    blockers: [
+      { id: 'pregnancy_hair', q: 'Are you pregnant, breastfeeding, or trying to conceive in the next 12 months?' }
+    ],
+    soft: [
+      { id: 'sexual_sides', q: 'Have you had sexual side effects from finasteride or dutasteride before?' }
+    ]
+  }
+};
+
+// Build the screening UI for a specific product. Reads the product's vertical
+// off the catalog, picks the question set, prefills allergies + meds from
+// portalData.patient (set by /me), and wires the submit handler.
+function showClinicalScreening(productKey, planType){
+  const product = findCatalogProductGlobal(productKey);
+  const vertical = product ? product.vertical : 'wellness';
+  const config = SCREENING_QUESTIONS[vertical] || SCREENING_QUESTIONS.wellness;
+  const allergiesPrefill = portalData?.patient?.drugAllergies || '';
+  const medsPrefill = portalData?.patient?.currentMedications || '';
+
+  // Yes/No pill row for a single blocker or soft question.
+  const yesNoRow = (item, kind) => `
+    <div class="screen-q" data-qid="${escapeAttr(item.id)}" data-kind="${kind}" style="background:white;border:1px solid var(--gray-100);border-radius:12px;padding:14px;margin-bottom:8px">
+      <div style="font-size:14px;font-weight:600;color:var(--gray-700);margin-bottom:10px;line-height:1.4">${escapeHtml(item.q)}</div>
+      <div style="display:flex;gap:8px">
+        <button type="button" class="yn-btn" data-val="yes" style="flex:1;padding:10px;border-radius:10px;border:1.5px solid var(--gray-100);background:white;font-weight:600;font-size:14px;cursor:pointer;font-family:inherit">Yes</button>
+        <button type="button" class="yn-btn" data-val="no" style="flex:1;padding:10px;border-radius:10px;border:1.5px solid var(--gray-100);background:white;font-weight:600;font-size:14px;cursor:pointer;font-family:inherit">No</button>
+      </div>
+    </div>`;
+
+  const blockersHtml = config.blockers.map(b => yesNoRow(b, 'blocker')).join('');
+  const softHtml = config.soft.map(s => yesNoRow(s, 'soft')).join('');
+
+  $('productDetailBody').innerHTML = `
+    <div style="background:#f8fafb;border:1px solid var(--gray-100);border-radius:12px;padding:14px;margin-bottom:18px;font-size:13px;color:var(--gray-600);line-height:1.5">
+      ${escapeHtml(config.intro)} Your answers go straight to our care team and are kept with your medical record.
+    </div>
+
+    ${blockersHtml ? `<div style="font-size:13px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px">Safety check</div>${blockersHtml}` : ''}
+    ${softHtml ? `<div style="font-size:13px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.06em;margin:18px 0 10px">Medical history</div>${softHtml}` : ''}
+
+    <div style="font-size:13px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.06em;margin:18px 0 10px">Allergies and medications</div>
+
+    <div style="margin-bottom:10px">
+      <label style="display:block;font-size:13px;font-weight:600;color:var(--gray-700);margin-bottom:6px">Drug allergies</label>
+      <textarea id="scrAllergies" placeholder='List any drug allergies, or write "None"' style="width:100%;padding:10px;border-radius:10px;border:1.5px solid var(--gray-100);font-family:inherit;font-size:14px;resize:vertical;min-height:60px">${escapeHtml(allergiesPrefill)}</textarea>
+    </div>
+    <div style="margin-bottom:18px">
+      <label style="display:block;font-size:13px;font-weight:600;color:var(--gray-700);margin-bottom:6px">Current medications, supplements, and dosages</label>
+      <textarea id="scrMeds" placeholder='List everything you take, or write "None"' style="width:100%;padding:10px;border-radius:10px;border:1.5px solid var(--gray-100);font-family:inherit;font-size:14px;resize:vertical;min-height:60px">${escapeHtml(medsPrefill)}</textarea>
+    </div>
+
+    <button id="btnScreeningSubmit" class="btn btn-primary" style="width:100%;padding:14px" disabled>Answer all questions</button>
+    <button class="btn btn-secondary" style="width:100%;margin-top:8px" onclick="closeProductDetail()">Cancel</button>`;
+
+  // Track selections per question; require every blocker + soft answered.
+  const answers = {};  // { qid: 'yes' | 'no' }
+  const totalRequired = config.blockers.length + config.soft.length;
+
+  document.querySelectorAll('#productDetailBody .yn-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const row = btn.closest('.screen-q');
+      const qid = row.dataset.qid;
+      const val = btn.dataset.val;
+      answers[qid] = val;
+      // Repaint the row: highlight the picked button, dim the other.
+      row.querySelectorAll('.yn-btn').forEach(b => {
+        const isPicked = b.dataset.val === val;
+        b.style.borderColor = isPicked ? 'var(--teal)' : 'var(--gray-100)';
+        b.style.background = isPicked ? 'rgba(43,188,179,0.06)' : 'white';
+        b.style.color = isPicked ? 'var(--teal)' : 'var(--gray-700)';
+      });
+      // Update submit button state.
+      const submitBtn = $('btnScreeningSubmit');
+      if (Object.keys(answers).length >= totalRequired) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Continue to payment';
+      } else {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Answer all questions';
+      }
+    });
+  });
+
+  $('btnScreeningSubmit').addEventListener('click', async () => {
+    // Split answers back into blocker/soft buckets for the backend payload.
+    const blockerAnswers = {};
+    const softAnswers = {};
+    config.blockers.forEach(b => { blockerAnswers[b.id] = answers[b.id] || 'no'; });
+    config.soft.forEach(s => { softAnswers[s.id] = answers[s.id] || 'no'; });
+
+    // Local hard-block check — show the care-team hold screen without
+    // making a network call so the patient gets fast feedback.
+    const tripped = Object.entries(blockerAnswers)
+      .filter(([_, v]) => v === 'yes')
+      .map(([k]) => k);
+    if (tripped.length > 0) {
+      showCareTeamHold(productKey, tripped);
+      return;
+    }
+
+    const screeningAnswers = {
+      vertical,
+      blockers: blockerAnswers,
+      soft: softAnswers,
+      allergies: ($('scrAllergies').value || '').trim(),
+      medications: ($('scrMeds').value || '').trim()
+    };
+    await beginEmbeddedCheckout(productKey, planType, screeningAnswers);
+  });
+}
+
+// Care-team hold screen — replaces the modal body when a hard-blocker
+// question came back yes. We avoid creating any Stripe session for these
+// patients; instead they're routed to email the care team for review.
+function showCareTeamHold(productKey, blockerIds){
+  const product = findCatalogProductGlobal(productKey);
+  const productName = product ? product.displayName : 'this treatment';
+  $('productDetailBody').innerHTML = `
+    <div style="text-align:center;padding:24px 12px">
+      <div style="width:64px;height:64px;border-radius:50%;background:#fef3c7;display:flex;align-items:center;justify-content:center;margin:0 auto 16px">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2"><path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+      </div>
+      <div style="font-size:20px;font-weight:700;margin-bottom:8px">A clinician needs to review your order</div>
+      <div style="font-size:14px;color:var(--gray-500);line-height:1.5;margin-bottom:20px">Based on your answers, ${escapeHtml(productName)} isn't a safe self-checkout for you. We didn't take any payment. Reach out and our care team will recommend the right next step.</div>
+      <a href="mailto:care@clyr.health?subject=Care%20review%20request%20for%20${encodeURIComponent(productName)}" class="btn btn-primary" style="display:inline-block;text-decoration:none;padding:12px 24px;margin-bottom:8px">Email the care team</a>
+      <br>
+      <button class="btn btn-secondary" style="margin-top:8px" onclick="closeProductDetail()">Back to portal</button>
+    </div>`;
 }
 
 // ════════════════════════════════════════════════════════════════════
