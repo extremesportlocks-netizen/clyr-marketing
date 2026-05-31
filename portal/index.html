@@ -1375,30 +1375,57 @@ async function submitGlp1Refill(){
 // ═══ SHOTS ═══
 let dosesCache=[];  // current patient's doses, populated by loadShots
 let shotsProduct=null; // resolved product object for the patient's current treatment
+let selectedShotsProductKey=null; // for multi-product patients, which treatment the Shots view is currently focused on
 
 async function loadShots(){
   if(!portalData){return;}
-  const tx=currentTreatmentView();
-  const p=portalData.patient;
-  if(!tx){
-    $('shotsContent').innerHTML=`<div class="card"><div class="empty"><div class="empty-icon">💉</div><div class="empty-title">No treatment to track yet</div><div class="empty-msg">Once you have an active treatment, you can log doses and track your medication schedule here.</div></div></div>`;
-    return;
-  }
-
-  // Ensure catalog is loaded so we have PK metadata
+  // Ensure catalog is loaded so we can resolve product metadata (form, half-life, dose).
   if(!catalog){
     try{const d=await api('/api/portal/catalog');catalog=d.catalog;}catch(e){}
   }
-  shotsProduct=findCatalogProduct(tx.product||p.treatment);
 
-  $('shotsContent').innerHTML=`<div class="loading"><div class="spinner"></div>Loading your dose history...</div>`;
-  try{
-    const data=await api('/api/portal/doses?limit=200');
-    dosesCache=(data.doses||[]).map(d=>({...d,takenAt:new Date(d.takenAt)})).sort((a,b)=>b.takenAt-a.takenAt);
-    renderShots();
-  }catch(e){
-    $('shotsContent').innerHTML=`<div class="card"><div class="empty"><div class="empty-icon">⚠️</div><div class="empty-title">Could not load doses</div><div class="empty-msg">${escapeHtml(e.message)}</div></div></div>`;
+  // Build the list of injectable treatments — Shots is a shot/injection log, so
+  // we filter out oral SKUs (tablets, gummies, ODTs). A patient on five products
+  // might have only two that are injections; the picker shows only those.
+  const allTreatments = portalData?.treatments || [];
+  const injectables = allTreatments
+    .map(t => ({tx: t, prod: findCatalogProductGlobal(t.product)}))
+    .filter(x => x.prod && x.prod.form === 'injection');
+
+  if (!injectables.length){
+    // No injectable treatments — show empty state but keep the door open for
+    // oral logging later (could route to a "Doses" tab eventually).
+    $('shotsContent').innerHTML=`<div class="card"><div class="empty"><div class="empty-icon">💉</div><div class="empty-title">No injectable treatments yet</div><div class="empty-msg">Once you're on an injectable like Tirzepatide, NAD+, or Sermorelin, this is where you'll log doses and see your medication schedule.</div></div></div>`;
+    return;
   }
+
+  // Pick which injectable the view is focused on. Honor an explicit user choice
+  // first; otherwise default to whichever this patient has logged a dose for
+  // most recently, falling back to the first treatment in the list.
+  let chosen = injectables.find(x => x.tx.product === selectedShotsProductKey);
+  if (!chosen) {
+    // Pre-load doses cache so we can pick based on usage. Cheap because the
+    // doses query is unfiltered already.
+    try { const data=await api('/api/portal/doses?limit=200'); dosesCache=(data.doses||[]).map(d=>({...d,takenAt:new Date(d.takenAt)})).sort((a,b)=>b.takenAt-a.takenAt); } catch(e){ dosesCache=[]; }
+    const mostRecent = dosesCache.find(d => injectables.find(x => x.tx.product === d.productKey));
+    if (mostRecent) chosen = injectables.find(x => x.tx.product === mostRecent.productKey);
+    if (!chosen) chosen = injectables[0];
+    selectedShotsProductKey = chosen.tx.product;
+  }
+  shotsProduct = chosen.prod;
+
+  // Refresh doses if we haven't already
+  if (!dosesCache.length) {
+    $('shotsContent').innerHTML=`<div class="loading"><div class="spinner"></div>Loading your dose history...</div>`;
+    try{
+      const data=await api('/api/portal/doses?limit=200');
+      dosesCache=(data.doses||[]).map(d=>({...d,takenAt:new Date(d.takenAt)})).sort((a,b)=>b.takenAt-a.takenAt);
+    }catch(e){
+      $('shotsContent').innerHTML=`<div class="card"><div class="empty"><div class="empty-icon">⚠️</div><div class="empty-title">Could not load doses</div><div class="empty-msg">${escapeHtml(e.message)}</div></div></div>`;
+      return;
+    }
+  }
+  renderShots(injectables);
 }
 
 function findCatalogProduct(treatment){
@@ -1412,9 +1439,11 @@ function findCatalogProduct(treatment){
   return null;
 }
 
-function renderShots(){
-  const tx=currentTreatmentView();
-  const doses=dosesCache;
+function renderShots(injectables){
+  // Filter dose history to the selected product only — a patient on three
+  // injectables sees only THIS product's doses in the log and PK chart.
+  const allDoses = dosesCache;
+  const doses = allDoses.filter(d => d.productKey === selectedShotsProductKey);
   const last=doses[0]||null;
   const thisMonth=doses.filter(d=>(new Date()-d.takenAt)<30*86400000).length;
   const halfLife=shotsProduct?.halfLifeHours;
@@ -1422,12 +1451,23 @@ function renderShots(){
   const defaultUnit=shotsProduct?.defaultDoseUnit||'mg';
   const schedule=shotsProduct?.doseSchedule||'';
 
+  // Build the treatment picker pill row — only shown when the patient has more
+  // than one injectable. Single-injectable patients see the existing layout.
+  const pickerHtml = (injectables && injectables.length > 1) ? `
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;padding:4px">
+      ${injectables.map(x => {
+        const isActive = x.tx.product === selectedShotsProductKey;
+        return `<button onclick="switchShotsProduct('${escapeAttr(x.tx.product)}')" style="padding:8px 14px;border-radius:999px;border:1.5px solid ${isActive?'var(--teal)':'var(--gray-100)'};background:${isActive?'rgba(43,188,179,0.06)':'white'};color:${isActive?'var(--teal)':'var(--gray-600)'};font-weight:600;font-size:13px;cursor:pointer;font-family:inherit">${escapeHtml(x.prod.displayName||x.tx.productDisplay||x.tx.product)}</button>`;
+      }).join('')}
+    </div>` : '';
+
   $('shotsContent').innerHTML=`
+    ${pickerHtml}
     <div class="card" style="margin-bottom:18px">
       <div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap">
         <div>
           <div style="font-size:13px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">Current treatment</div>
-          <div style="font-size:18px;font-weight:700">${escapeHtml(tx?.productDisplay||shotsProduct?.displayName||'Your treatment')}</div>
+          <div style="font-size:18px;font-weight:700">${escapeHtml(shotsProduct?.displayName||'Your treatment')}</div>
           <div style="font-size:13px;color:var(--gray-500);margin-top:2px">${escapeHtml(schedule)}${defaultDose?` · ${defaultDose} ${defaultUnit} per dose`:''}</div>
         </div>
         <button class="btn btn-primary" onclick="openDoseModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="15" height="15"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Log a dose</button>
@@ -1466,8 +1506,16 @@ function renderShots(){
             <span style="font-size:13px;color:var(--gray-500)">${timeAgo(d.takenAt)}</span>
             <button onclick="deleteDose(${d.id})" title="Delete dose" style="background:none;border:none;color:var(--gray-400);cursor:pointer;padding:4px;font-size:18px;line-height:1">×</button>
           </div>
-        </div>`).join(''):'<div class="empty" style="padding:24px"><div style="font-size:13px;color:var(--gray-500)">No doses logged yet. Tap "Log a dose" after your next injection.</div></div>'}
+        </div>`).join(''):'<div class="empty" style="padding:24px"><div style="font-size:13px;color:var(--gray-500)">No doses logged for this treatment yet. Tap "Log a dose" after your next injection.</div></div>'}
     </div>`;
+}
+
+// Picker click handler — update which injectable Shots is focused on, then
+// re-render. Doses cache is shared across products (one query covers all),
+// so this is purely a client-side filter swap.
+function switchShotsProduct(productKey){
+  selectedShotsProductKey = productKey;
+  loadShots();
 }
 
 // Render an SVG line chart of estimated medication level over time.
@@ -1585,7 +1633,13 @@ function closeDoseModal(){const m=$('doseModal');if(m)m.remove();}
 
 async function submitDose(){
   const btn=$('btnSubmitDose');btn.disabled=true;btn.textContent='Logging...';
+  // Always tag the dose with which treatment it's for — for a multi-product
+  // patient the backend's fallback to customer.treatment would mis-attribute
+  // the dose. Pick from selectedShotsProductKey (set when the Shots tab is
+  // open) or fall back to the patient's current product view.
+  const productKey = selectedShotsProductKey || currentTreatmentView()?.product;
   const payload={
+    productKey,
     takenAt:new Date($('dose_when').value).toISOString(),
     amount:$('dose_amount').value||undefined,
     unit:$('dose_unit').value||undefined,
