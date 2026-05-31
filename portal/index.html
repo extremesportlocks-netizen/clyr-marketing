@@ -502,6 +502,24 @@ window.track = function(event, props){ try { if (window.posthog && window.postho
           <button class="btn btn-primary" onclick="manageSubscription()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>Manage payment in Stripe</button>
         </div>
 
+        <div class="acc-section" id="accAutoRefill" style="display:none">
+          <div class="card">
+            <h3 style="font-size:16px;font-weight:700;margin-bottom:6px">Auto-refill</h3>
+            <p style="font-size:14px;color:var(--gray-500);margin-bottom:16px;line-height:1.6">When this is on, we'll ship your next supply automatically 3 days before your current one runs out. You'll get an email confirmation when each shipment goes out. You can turn this off any time.</p>
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 14px;background:#f8fafb;border:1px solid var(--gray-100);border-radius:12px">
+              <div>
+                <div style="font-weight:600;font-size:14px" id="autoRefillStateLabel">Auto-refill is off</div>
+                <div style="font-size:12px;color:var(--gray-500);margin-top:2px" id="autoRefillRemainingLabel">&mdash;</div>
+              </div>
+              <label class="toggle" style="position:relative;display:inline-block;width:48px;height:28px;flex-shrink:0;cursor:pointer">
+                <input type="checkbox" id="autoRefillToggle" style="opacity:0;width:0;height:0" onchange="toggleAutoRefill(this.checked)">
+                <span id="autoRefillTrack" style="position:absolute;inset:0;background:var(--gray-200);border-radius:999px;transition:background 0.2s"></span>
+                <span id="autoRefillThumb" style="position:absolute;top:3px;left:3px;width:22px;height:22px;background:white;border-radius:50%;transition:transform 0.2s;box-shadow:0 1px 3px rgba(0,0,0,0.2)"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
         <div class="acc-section" id="accPhi">
           <div class="card">
             <h3 style="font-size:16px;font-weight:700;margin-bottom:6px">Protected Health Information</h3>
@@ -1192,6 +1210,69 @@ function populateAccount(){
   } else {
     if(billNextLabel) billNextLabel.textContent='Next billing date';
     $('billNextDate').textContent=tx?.currentPeriodEnd?fmtDate(tx.currentPeriodEnd):'—';
+  }
+
+  // B6 auto-refill toggle. Only show the whole section to patients who
+  // actually have authorized refills — otherwise the toggle is a dead end
+  // (the cron's findEligible filters on refills_remaining > 0 too).
+  renderAutoRefillToggle();
+}
+
+// Render the Account page's auto-refill toggle based on the patient's
+// authorized refill count + current opt-in state. Hidden entirely for
+// patients with no refills (GLP-1 or pre-prescription wellness patients).
+function renderAutoRefillToggle(){
+  const sec=$('accAutoRefill');
+  if(!sec)return;
+  const refillsRemaining=portalData?.patient?.refillsRemaining||0;
+  if(refillsRemaining<=0){
+    // Hide the whole section. The patient has nothing to auto-refill.
+    sec.style.display='none';
+    return;
+  }
+  sec.style.display='block';
+  const enabled=!!portalData?.patient?.autoRefillEnabled;
+  // Reflect current state on the toggle widget.
+  const checkbox=$('autoRefillToggle');
+  const track=$('autoRefillTrack');
+  const thumb=$('autoRefillThumb');
+  const stateLabel=$('autoRefillStateLabel');
+  const remainingLabel=$('autoRefillRemainingLabel');
+  if(checkbox)checkbox.checked=enabled;
+  if(track)track.style.background=enabled?'var(--teal)':'var(--gray-200)';
+  if(thumb)thumb.style.transform=enabled?'translateX(20px)':'translateX(0)';
+  if(stateLabel)stateLabel.textContent=enabled?'Auto-refill is on':'Auto-refill is off';
+  if(remainingLabel){
+    const word=refillsRemaining===1?'refill':'refills';
+    remainingLabel.textContent=`${refillsRemaining} authorized ${word} remaining on your script`;
+  }
+}
+
+// Toggle handler — POSTs to /preferences/auto-refill, then re-reads /me
+// so the UI reflects the server-side truth (the backend can refuse to
+// flip ON for patients with refills_remaining <= 0).
+async function toggleAutoRefill(enabled){
+  // Optimistic UI lock so a double-click can't fire two requests.
+  const checkbox=$('autoRefillToggle');
+  if(checkbox)checkbox.disabled=true;
+  try {
+    await api('/api/portal/preferences/auto-refill',{
+      method:'POST',
+      body:JSON.stringify({enabled})
+    });
+    track('portal_auto_refill_toggled',{enabled});
+    // Local mutation so the toggle reflects immediately; /me on next load
+    // will confirm.
+    if(portalData?.patient)portalData.patient.autoRefillEnabled=enabled;
+    renderAutoRefillToggle();
+  } catch(e) {
+    // Revert checkbox state on failure (e.g. backend refused because
+    // refills_remaining == 0)
+    if(checkbox)checkbox.checked=!enabled;
+    renderAutoRefillToggle();
+    alert(e.message||'Could not update auto-refill setting.');
+  } finally {
+    if(checkbox)checkbox.disabled=false;
   }
 }
 
