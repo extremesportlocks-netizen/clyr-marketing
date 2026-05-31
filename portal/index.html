@@ -486,7 +486,7 @@ textarea.q-input{resize:vertical;min-height:80px}
                 <button onclick="openAddressEditor()" style="background:none;border:none;color:var(--teal);cursor:pointer;font-size:12px;font-weight:600;padding:0">Edit</button>
               </span>
             </div>
-            <div class="acc-row"><span class="acc-row-label">Next billing date</span><span class="acc-row-val" id="billNextDate">—</span></div>
+            <div class="acc-row"><span class="acc-row-label" id="billNextLabel">Next billing date</span><span class="acc-row-val" id="billNextDate">—</span></div>
           </div>
           <button class="btn btn-primary" onclick="manageSubscription()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>Manage payment in Stripe</button>
         </div>
@@ -812,32 +812,60 @@ function renderStateChips(){
 }
 
 function renderMyTreatment(){
-  const sub=portalData.subscription;
+  const tx=currentTreatmentView();
   const p=portalData.patient;
   const area=$('myTreatmentArea');
 
-  if(!sub){
+  if(!tx){
     area.innerHTML=`<div class="card"><div class="empty"><div class="empty-icon">💊</div><div class="empty-title">No active treatment</div><div class="empty-msg">Once you complete an intake and are approved by a provider, your treatment will appear here.</div></div></div>`;
     return;
   }
 
-  const planLabel=({monthly:'Monthly',['3month']:'3 months',['6month']:'6 months'})[sub.plan]||sub.plan;
-  const img=sub.productImage||p.productImage||'/img/vial-tirzepatide.svg';
+  const planLabel=({monthly:'Monthly',['3month']:'3 months',['6month']:'6 months'})[tx.plan]||tx.plan;
+  const img=tx.productImage||'/img/vial-tirzepatide.svg';
   area.innerHTML=`
     <div class="treatment-card">
       <div class="treatment-card-head">
         <div class="treatment-card-img"><img src="${img}" alt="" onerror="this.style.display='none'"></div>
         <div class="treatment-card-info">
-          <div class="treatment-card-name">${escapeHtml(sub.productDisplay||p.treatmentDisplay||sub.product)}</div>
-          <div class="treatment-card-meta">${planLabel} · ${$fmtMoney(sub.amount)} · ${verticalLabel(sub.vertical||p.vertical||'wellness')}</div>
+          <div class="treatment-card-name">${escapeHtml(tx.productDisplay)}</div>
+          <div class="treatment-card-meta">${planLabel} · ${$fmtMoney(tx.amount)} · ${verticalLabel(tx.vertical||'wellness')}</div>
           ${renderStateChips()}
         </div>
-        <div class="treatment-card-badge${sub.status==='active'?'':' pending'}">${escapeHtml(sub.status||'active')}</div>
+        <div class="treatment-card-badge${tx.statusLabel==='active'?'':' pending'}">${escapeHtml(tx.statusLabel)}</div>
       </div>
       <div class="treatment-card-body">
         ${renderRefillSummary()}
       </div>
     </div>`;
+}
+
+// Unified view of "what treatment is the patient currently on". Recurring
+// monthly buyers have a subscription row in /me; one-time 3-month and 6-month
+// buyers don't (their Stripe purchase is a Payment, not a Subscription). Both
+// groups have an /me order. This helper returns the same shape for either, so
+// every UI surface (home Treatment card, Treatments tab, Shots tab, Account
+// Billing) can render uniformly without each one re-deriving the rules.
+function currentTreatmentView(){
+  if(!portalData) return null;
+  const sub=portalData.subscription;
+  const order=portalData.order;
+  const p=portalData.patient||{};
+  // No treatment when there's neither an active subscription nor a paid order.
+  if(!sub && (!order || order.status!=='paid')) return null;
+  return {
+    product:           sub?.product || order?.product || p.treatment,
+    productDisplay:    sub?.productDisplay || order?.productDisplay || p.treatmentDisplay,
+    productImage:      sub?.productImage || p.productImage,
+    vertical:          sub?.vertical || p.vertical,
+    plan:              sub?.plan || p.plan,
+    amount:            sub?.amount != null ? sub.amount : order?.amount,
+    isRecurring:       !!sub,
+    statusLabel:       sub ? (sub.status || 'active') : 'active',
+    currentPeriodEnd:  sub?.currentPeriodEnd || null,
+    // For one-time orders, "plan ends" comes from the refill window cycle end.
+    planEndsAt:        !sub ? (portalData.refillWindow && portalData.refillWindow.cycleEndsAt) : null,
+  };
 }
 
 function renderRefillSummary(){
@@ -923,16 +951,32 @@ function renderSuggested(){
 
 // ═══ ACCOUNT POPULATION ═══
 function populateAccount(){
-  const p=portalData.patient,sub=portalData.subscription;
+  const p=portalData.patient,tx=currentTreatmentView();
   $('accName').textContent=`${p.firstName||''} ${p.lastName||''}`.trim()||'—';
   $('accEmail').textContent=p.email||'—';
   $('accPhone').textContent=p.phone||'—';
   $('accMemberSince').textContent=fmtDate(p.memberSince);
-  $('billPlan').textContent=sub?`${sub.productDisplay} · ${({monthly:'Monthly','3month':'3 months','6month':'6 months'})[sub.plan]||sub.plan}`:'No active plan';
-  $('billStatus').textContent=sub?sub.status:'—';
+  // Current plan card — same line works for recurring and one-time.
+  if(tx){
+    const planLabel=({monthly:'Monthly','3month':'3 months','6month':'6 months'})[tx.plan]||tx.plan;
+    $('billPlan').textContent=`${tx.productDisplay} · ${planLabel}`;
+  } else {
+    $('billPlan').textContent='No active plan';
+  }
+  // Status — "active" for both recurring and a paid one-time, otherwise the sub status.
+  $('billStatus').textContent=tx?tx.statusLabel:'—';
   const addr=p.shippingAddress;
   $('billAddressText').textContent=addr?.street?`${addr.street}${addr.apt?`, ${addr.apt}`:''}, ${addr.city}, ${addr.state} ${addr.zip}`:'—';
-  $('billNextDate').textContent=sub?.currentPeriodEnd?fmtDate(sub.currentPeriodEnd):'—';
+  // For monthly subs: show next billing date from Stripe. For one-time 3/6mo
+  // plans: there is no "next billing" — show when the current supply ends.
+  const billNextLabel=$('billNextLabel');
+  if(tx && !tx.isRecurring){
+    if(billNextLabel) billNextLabel.textContent='Plan ends';
+    $('billNextDate').textContent=tx.planEndsAt?fmtDate(tx.planEndsAt):'—';
+  } else {
+    if(billNextLabel) billNextLabel.textContent='Next billing date';
+    $('billNextDate').textContent=tx?.currentPeriodEnd?fmtDate(tx.currentPeriodEnd):'—';
+  }
 }
 
 // ═══ PAGE ROUTING ═══
@@ -1012,23 +1056,23 @@ async function sendMessage(){
 // ═══ TREATMENTS ═══
 function loadTreatments(){
   if(!portalData)return;
-  const sub=portalData.subscription;
+  const tx=currentTreatmentView();
   const active=$('treatmentsActive');
 
-  if(!sub){
+  if(!tx){
     active.innerHTML=`<div class="card"><div class="empty"><div class="empty-icon">🩺</div><div class="empty-title">No active treatments</div><div class="empty-msg">Once your provider approves your treatment, it will appear here.</div></div></div>`;
   } else {
-    const planLabel=({monthly:'Monthly','3month':'3 months','6month':'6 months'})[sub.plan]||sub.plan;
+    const planLabel=({monthly:'Monthly','3month':'3 months','6month':'6 months'})[tx.plan]||tx.plan;
     active.innerHTML=`
       <div class="treatment-card">
         <div class="treatment-card-head">
-          <div class="treatment-card-img"><img src="${sub.productImage||'/img/vial-tirzepatide.svg'}" alt="" onerror="this.style.display='none'"></div>
+          <div class="treatment-card-img"><img src="${tx.productImage||'/img/vial-tirzepatide.svg'}" alt="" onerror="this.style.display='none'"></div>
           <div class="treatment-card-info">
-            <div class="treatment-card-name">${escapeHtml(sub.productDisplay||sub.product)}</div>
-            <div class="treatment-card-meta">${planLabel} · ${$fmtMoney(sub.amount)} · ${verticalLabel(sub.vertical||'wellness')}</div>
+            <div class="treatment-card-name">${escapeHtml(tx.productDisplay)}</div>
+            <div class="treatment-card-meta">${planLabel} · ${$fmtMoney(tx.amount)} · ${verticalLabel(tx.vertical||'wellness')}</div>
             ${renderStateChips()}
           </div>
-          <div class="treatment-card-badge">${escapeHtml(sub.status)}</div>
+          <div class="treatment-card-badge">${escapeHtml(tx.statusLabel)}</div>
         </div>
         <div class="treatment-card-body">${renderRefillSummary()}</div>
       </div>`;
@@ -1191,10 +1235,10 @@ let shotsProduct=null; // resolved product object for the patient's current trea
 
 async function loadShots(){
   if(!portalData){return;}
-  const sub=portalData.subscription;
+  const tx=currentTreatmentView();
   const p=portalData.patient;
-  if(!sub){
-    $('shotsContent').innerHTML=`<div class="card"><div class="empty"><div class="empty-icon">💉</div><div class="empty-title">No treatment to track yet</div><div class="empty-msg">Once you're on an active subscription, you can log doses and track your medication schedule here.</div></div></div>`;
+  if(!tx){
+    $('shotsContent').innerHTML=`<div class="card"><div class="empty"><div class="empty-icon">💉</div><div class="empty-title">No treatment to track yet</div><div class="empty-msg">Once you have an active treatment, you can log doses and track your medication schedule here.</div></div></div>`;
     return;
   }
 
@@ -1202,7 +1246,7 @@ async function loadShots(){
   if(!catalog){
     try{const d=await api('/api/portal/catalog');catalog=d.catalog;}catch(e){}
   }
-  shotsProduct=findCatalogProduct(p.treatment||sub.product);
+  shotsProduct=findCatalogProduct(tx.product||p.treatment);
 
   $('shotsContent').innerHTML=`<div class="loading"><div class="spinner"></div>Loading your dose history...</div>`;
   try{
@@ -1226,7 +1270,7 @@ function findCatalogProduct(treatment){
 }
 
 function renderShots(){
-  const sub=portalData.subscription;
+  const tx=currentTreatmentView();
   const doses=dosesCache;
   const last=doses[0]||null;
   const thisMonth=doses.filter(d=>(new Date()-d.takenAt)<30*86400000).length;
@@ -1240,7 +1284,7 @@ function renderShots(){
       <div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap">
         <div>
           <div style="font-size:13px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">Current treatment</div>
-          <div style="font-size:18px;font-weight:700">${escapeHtml(sub.productDisplay||sub.product)}</div>
+          <div style="font-size:18px;font-weight:700">${escapeHtml(tx?.productDisplay||shotsProduct?.displayName||'Your treatment')}</div>
           <div style="font-size:13px;color:var(--gray-500);margin-top:2px">${escapeHtml(schedule)}${defaultDose?` · ${defaultDose} ${defaultUnit} per dose`:''}</div>
         </div>
         <button class="btn btn-primary" onclick="openDoseModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="15" height="15"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Log a dose</button>
@@ -1352,11 +1396,11 @@ function renderPkChart(doses,halfLifeHours,unit){
 
 // ─── Dose modal ───
 function openDoseModal(){
-  const sub=portalData.subscription;
+  const tx=currentTreatmentView();
   const product=shotsProduct;
   const defaultDose=product?.defaultDose||'';
   const defaultUnit=product?.defaultDoseUnit||'mg';
-  const productLabel=sub?.productDisplay||product?.displayName||'your treatment';
+  const productLabel=tx?.productDisplay||product?.displayName||'your treatment';
   const sites=product?.form==='injection'?['Abdomen','Upper thigh','Upper arm','Buttock','Other']:[];
   const siteHtml=sites.length?`<div class="q-item"><label class="q-label">Injection site</label>
       <select class="q-select" id="dose_site"><option value="">(skip)</option>${sites.map(s=>`<option>${s}</option>`).join('')}</select></div>`:'';
