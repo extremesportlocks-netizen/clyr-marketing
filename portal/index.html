@@ -811,33 +811,129 @@ function renderStateChips(){
   return `<div class="state-chips">${chips.map(c=>`<span class="state-chip ${c.kind}">${icons[c.icon]||''}${escapeHtml(c.label)}</span>`).join('')}</div>`;
 }
 
-function renderMyTreatment(){
-  const tx=currentTreatmentView();
-  const p=portalData.patient;
-  const area=$('myTreatmentArea');
-
-  if(!tx){
-    area.innerHTML=`<div class="card"><div class="empty"><div class="empty-icon">💊</div><div class="empty-title">No active treatment</div><div class="empty-msg">Once you complete an intake and are approved by a provider, your treatment will appear here.</div></div></div>`;
-    return;
+// Compute per-treatment state chips. The legacy version read from the global
+// portalData (single treatment); this one accepts a treatment-view object so
+// every card in a multi-product portal can render its own status accurately.
+function computeStateChipsForTreatment(tx){
+  const chips=[];
+  const actions=requiredActions||[];
+  if(actions.find(a=>a.type==='payment_error')){
+    chips.push({label:'Payment Issue',kind:'error',icon:'card'});
   }
+  const enc=tx.encounter||{};
+  const rw=tx.refillWindow||{};
+  if(enc.status==='pending'||enc.status==='waiting'||enc.status==='approved'){
+    chips.push({label:'Provider Review',kind:'info',icon:'eye'});
+  }
+  if(rw.isOpen){
+    chips.push({label:'Refill Ready',kind:'warn',icon:'refresh'});
+  }
+  if(rw.isExpired){
+    chips.push({label:'Supply Expired',kind:'error',icon:'clock'});
+  }
+  if(enc.pharmacyStatus==='shipped'){
+    chips.push({label:'Shipping',kind:'info',icon:'truck'});
+  }
+  if(tx.cancelAt){
+    chips.push({label:'Cancels Soon',kind:'warn',icon:'clock'});
+  }
+  if(!chips.length && tx.status==='active'){
+    chips.push({label:'Active',kind:'ok',icon:'check'});
+  }
+  return chips;
+}
 
-  const planLabel=({monthly:'Monthly',['3month']:'3 months',['6month']:'6 months'})[tx.plan]||tx.plan;
+function renderChipsForTreatment(tx){
+  const chips=computeStateChipsForTreatment(tx);
+  if(!chips.length)return '';
+  const icons={
+    card:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>',
+    eye:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>',
+    refresh:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>',
+    clock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
+    truck:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>',
+    check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>',
+  };
+  return `<div class="state-chips">${chips.map(c=>`<span class="state-chip ${c.kind}">${icons[c.icon]||''}${escapeHtml(c.label)}</span>`).join('')}</div>`;
+}
+
+// Per-treatment refill summary. Replaces the legacy renderRefillSummary which
+// read from the global portalData. AUTO_REFILL_PENDING products show a
+// care-team message; otherwise show the open window or the countdown.
+function renderRefillSummaryForTreatment(tx){
+  const rw=tx.refillWindow||{};
+  if(!rw)return '';
+  if(AUTO_REFILL_PENDING.includes(tx.product)){
+    return `<div style="display:flex;justify-content:space-between;align-items:center;gap:14px">
+      <div><div style="font-size:14px;font-weight:700;margin-bottom:2px">Auto-refill in progress</div><div style="font-size:13px;color:var(--gray-500)">Our care team is handling your next refill. Questions? <a href="mailto:care@clyr.health" style="color:var(--teal);font-weight:600">care@clyr.health</a></div></div>
+      <button class="btn btn-secondary" onclick="showPage('treatments');startRefill('${escapeAttr(tx.product)}')">View status</button>
+    </div>`;
+  }
+  if(rw.isOpen){
+    return `<div style="display:flex;justify-content:space-between;align-items:center;gap:14px">
+      <div><div style="font-size:14px;font-weight:700;margin-bottom:2px">Your refill window is open</div><div style="font-size:13px;color:var(--gray-500)">${rw.message||'Complete the questionnaire to get your next prescription.'}</div></div>
+      <button class="btn btn-primary" onclick="showPage('treatments');startRefill('${escapeAttr(tx.product)}')">Request refill</button>
+    </div>`;
+  }
+  return `<div style="display:flex;justify-content:space-between;align-items:center;gap:14px">
+    <div><div style="font-size:14px;font-weight:700;margin-bottom:2px">${tx.isRecurring?'Refill opens':'Plan ends'} ${fmtDate(tx.isRecurring?rw.opensAt:rw.cycleEndsAt)}</div><div style="font-size:13px;color:var(--gray-500)">${rw.daysRemaining??0} days remaining in your current supply.</div></div>
+    <button class="btn btn-secondary" onclick="showPage('shots')">Track doses</button>
+  </div>`;
+}
+
+// Render a single treatment card. Used both on the home stack and the
+// Treatments tab — the layout is identical so we don't fork the HTML.
+function renderTreatmentCardHtml(tx){
+  const planLabel=({monthly:'Monthly','3month':'3 months','6month':'6 months'})[tx.plan]||tx.plan||'';
   const img=tx.productImage||'/img/vial-tirzepatide.svg';
-  area.innerHTML=`
+  return `
     <div class="treatment-card">
       <div class="treatment-card-head">
         <div class="treatment-card-img"><img src="${img}" alt="" onerror="this.style.display='none'"></div>
         <div class="treatment-card-info">
-          <div class="treatment-card-name">${escapeHtml(tx.productDisplay)}</div>
-          <div class="treatment-card-meta">${planLabel} · ${$fmtMoney(tx.amount)} · ${verticalLabel(tx.vertical||'wellness')}</div>
-          ${renderStateChips()}
+          <div class="treatment-card-name">${escapeHtml(tx.productDisplay||tx.product||'Treatment')}</div>
+          <div class="treatment-card-meta">${escapeHtml(planLabel)}${tx.amount!=null?` · ${$fmtMoney(tx.amount)}`:''} · ${escapeHtml(verticalLabel(tx.vertical||'wellness'))}</div>
+          ${renderChipsForTreatment(tx)}
         </div>
-        <div class="treatment-card-badge${tx.statusLabel==='active'?'':' pending'}">${escapeHtml(tx.statusLabel)}</div>
+        <div class="treatment-card-badge${tx.status==='active'?'':' pending'}">${escapeHtml(tx.status||'active')}</div>
       </div>
       <div class="treatment-card-body">
-        ${renderRefillSummary()}
+        ${renderRefillSummaryForTreatment(tx)}
       </div>
     </div>`;
+}
+
+function renderMyTreatment(){
+  const area=$('myTreatmentArea');
+  const list=portalData.treatments||[];
+
+  if(!list.length){
+    // Fallback: no treatments[] from API (older deploys) — use the legacy
+    // single-treatment view via currentTreatmentView.
+    const legacy=currentTreatmentView();
+    if(!legacy){
+      area.innerHTML=`<div class="card"><div class="empty"><div class="empty-icon">💊</div><div class="empty-title">No active treatment</div><div class="empty-msg">Once you complete an intake and are approved by a provider, your treatment will appear here.</div></div></div>`;
+      return;
+    }
+    // Synthesize a treatment-view shape for the renderer.
+    const synth={
+      product: legacy.product,
+      productDisplay: legacy.productDisplay,
+      productImage: legacy.productImage,
+      vertical: legacy.vertical,
+      plan: legacy.plan,
+      isRecurring: legacy.isRecurring,
+      amount: legacy.amount,
+      status: legacy.statusLabel,
+      cancelAt: null,
+      refillWindow: portalData.refillWindow || {},
+      encounter: portalData.encounter || null
+    };
+    area.innerHTML=renderTreatmentCardHtml(synth);
+    return;
+  }
+
+  area.innerHTML=list.map(renderTreatmentCardHtml).join('');
 }
 
 // Unified view of "what treatment is the patient currently on". Recurring
@@ -848,6 +944,23 @@ function renderMyTreatment(){
 // Billing) can render uniformly without each one re-deriving the rules.
 function currentTreatmentView(){
   if(!portalData) return null;
+  // Prefer the multi-product treatments[] if available — first entry is the
+  // most-recent treatment by order date.
+  const first=(portalData.treatments||[])[0];
+  if(first){
+    return {
+      product:           first.product,
+      productDisplay:    first.productDisplay,
+      productImage:      first.productImage,
+      vertical:          first.vertical,
+      plan:              first.plan,
+      amount:            first.amount,
+      isRecurring:       first.isRecurring,
+      statusLabel:       first.status,
+      currentPeriodEnd:  first.currentPeriodEnd,
+      planEndsAt:        !first.isRecurring ? (first.refillWindow && first.refillWindow.cycleEndsAt) : null,
+    };
+  }
   const sub=portalData.subscription;
   const order=portalData.order;
   const p=portalData.patient||{};
@@ -936,10 +1049,14 @@ function renderTimeline(){
 }
 
 function renderSuggested(){
-  if(!suggestions.length){$('suggestedSection').style.display='none';return;}
+  // Filter out products the patient already has an active treatment for so we
+  // don't suggest something they bought yesterday.
+  const owned=new Set((portalData?.treatments||[]).map(t=>t.product));
+  const filtered=(suggestions||[]).filter(p=>!owned.has(p.key));
+  if(!filtered.length){$('suggestedSection').style.display='none';return;}
   $('suggestedSection').style.display='block';
-  $('suggestedRow').innerHTML=suggestions.slice(0,3).map(p=>`
-    <div class="suggest-card" onclick="window.location='/${p.key.replace(/_/g,'-')}.html'">
+  $('suggestedRow').innerHTML=filtered.slice(0,3).map(p=>`
+    <div class="suggest-card" onclick="openProductDetail('${escapeAttr(p.key)}')">
       <div class="suggest-card-img"><img src="${p.image}" alt="" onerror="this.parentElement.innerHTML='💊'"></div>
       <div class="suggest-card-body">
         <div class="suggest-card-cat">${verticalLabel(p.vertical)}</div>
@@ -1056,28 +1173,45 @@ async function sendMessage(){
 // ═══ TREATMENTS ═══
 function loadTreatments(){
   if(!portalData)return;
-  const tx=currentTreatmentView();
   const active=$('treatmentsActive');
+  const list=portalData.treatments||[];
 
-  if(!tx){
-    active.innerHTML=`<div class="card"><div class="empty"><div class="empty-icon">🩺</div><div class="empty-title">No active treatments</div><div class="empty-msg">Once your provider approves your treatment, it will appear here.</div></div></div>`;
+  if(!list.length){
+    // Fallback path for older /me responses without treatments[].
+    const legacy=currentTreatmentView();
+    if(!legacy){
+      active.innerHTML=`<div class="card"><div class="empty"><div class="empty-icon">🩺</div><div class="empty-title">No active treatments</div><div class="empty-msg">Once your provider approves your treatment, it will appear here.</div></div></div>${renderAddTreatmentCta()}`;
+    } else {
+      const synth={
+        product: legacy.product,
+        productDisplay: legacy.productDisplay,
+        productImage: legacy.productImage,
+        vertical: legacy.vertical,
+        plan: legacy.plan,
+        isRecurring: legacy.isRecurring,
+        amount: legacy.amount,
+        status: legacy.statusLabel,
+        cancelAt: null,
+        refillWindow: portalData.refillWindow || {},
+        encounter: portalData.encounter || null
+      };
+      active.innerHTML=renderTreatmentCardHtml(synth)+renderAddTreatmentCta();
+    }
   } else {
-    const planLabel=({monthly:'Monthly','3month':'3 months','6month':'6 months'})[tx.plan]||tx.plan;
-    active.innerHTML=`
-      <div class="treatment-card">
-        <div class="treatment-card-head">
-          <div class="treatment-card-img"><img src="${tx.productImage||'/img/vial-tirzepatide.svg'}" alt="" onerror="this.style.display='none'"></div>
-          <div class="treatment-card-info">
-            <div class="treatment-card-name">${escapeHtml(tx.productDisplay)}</div>
-            <div class="treatment-card-meta">${planLabel} · ${$fmtMoney(tx.amount)} · ${verticalLabel(tx.vertical||'wellness')}</div>
-            ${renderStateChips()}
-          </div>
-          <div class="treatment-card-badge">${escapeHtml(tx.statusLabel)}</div>
-        </div>
-        <div class="treatment-card-body">${renderRefillSummary()}</div>
-      </div>`;
+    active.innerHTML=list.map(renderTreatmentCardHtml).join('')+renderAddTreatmentCta();
   }
   $('treatmentsPending').innerHTML=`<div class="card"><div class="empty"><div class="empty-icon">📋</div><div class="empty-title">No pending treatments</div><div class="empty-msg">Treatments awaiting provider review will show here.</div></div></div>`;
+}
+
+// "Add a treatment" CTA shown at the bottom of the treatments list. Click
+// opens the in-portal Shop page where each product opens its detail modal.
+function renderAddTreatmentCta(){
+  return `<div style="margin-top:16px;text-align:center">
+    <button class="btn btn-secondary" onclick="showPage('shop')" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Add a treatment
+    </button>
+  </div>`;
 }
 
 document.addEventListener('click',e=>{
@@ -1507,7 +1641,7 @@ function renderShop(){
     return;
   }
   $('shopGrid').innerHTML=all.map(p=>`
-    <div class="shop-card" onclick="window.location='/${p.key.replace(/_/g,'-')}.html'">
+    <div class="shop-card" onclick="openProductDetail('${escapeAttr(p.key)}')">
       <div class="shop-card-img"><img src="${p.image}" alt="" onerror="this.style.display='none'"></div>
       <div class="shop-card-cat">${verticalLabel(p.vertical)} · RX</div>
       <div class="shop-card-name">${escapeHtml(p.displayName)}</div>
@@ -1528,6 +1662,181 @@ document.addEventListener('click',e=>{
     $('acc'+t.dataset.accTab.charAt(0).toUpperCase()+t.dataset.accTab.slice(1)).classList.add('active');
   }
 });
+
+// ════════════════════════════════════════════════════════════════════
+// PRODUCT DETAIL MODAL + EMBEDDED CHECKOUT
+// ════════════════════════════════════════════════════════════════════
+// Goal: when a patient clicks a Shop or Suggested product, keep them in the
+// portal. Show product detail + plan picker, and on "Add" mount Stripe's
+// embedded checkout iframe right inside the modal so the patient never leaves
+// clyr.health. After payment, refresh /me to surface the new treatment card.
+
+let stripeJsLoadPromise = null;
+let stripePublishableKey = null;
+let activeEmbeddedCheckout = null;
+
+function loadStripeJs(){
+  if (stripeJsLoadPromise) return stripeJsLoadPromise;
+  stripeJsLoadPromise = new Promise(async (resolve, reject) => {
+    try {
+      // Fetch the publishable key once — public, served by /api/config.
+      const cfg = await fetch(API + '/api/config').then(r => r.json());
+      stripePublishableKey = cfg.publishableKey;
+      if (!stripePublishableKey) {
+        reject(new Error('No Stripe publishable key configured'));
+        return;
+      }
+      if (window.Stripe) return resolve(window.Stripe(stripePublishableKey));
+      const s = document.createElement('script');
+      s.src = 'https://js.stripe.com/v3/';
+      s.onload = () => resolve(window.Stripe(stripePublishableKey));
+      s.onerror = () => reject(new Error('Failed to load Stripe.js'));
+      document.head.appendChild(s);
+    } catch (e) { reject(e); }
+  });
+  return stripeJsLoadPromise;
+}
+
+async function ensureCatalog(){
+  if (catalog) return catalog;
+  const d = await api('/api/portal/catalog');
+  catalog = d.catalog;
+  return catalog;
+}
+
+function findCatalogProductGlobal(key){
+  if (!catalog) return null;
+  for (const products of Object.values(catalog)) {
+    for (const p of products) { if (p.key === key) return p; }
+  }
+  return null;
+}
+
+async function openProductDetail(productKey){
+  // Make sure the catalog is loaded — Suggested cards can fire before Shop has
+  // been visited.
+  try { await ensureCatalog(); } catch (e) {
+    return alert('Could not load product details: ' + e.message);
+  }
+  const product = findCatalogProductGlobal(productKey);
+  if (!product) return alert('Unknown product: ' + productKey);
+
+  // Build the plan options actually offered for this SKU.
+  const plans = [];
+  plans.push({ key: 'monthly', label: 'Monthly', price: product.monthlyPrice, perMonth: product.monthlyPrice, recurring: true });
+  if (product.threeMonth) plans.push({ key: '3month', label: '3 months', price: product.threeMonth, perMonth: Math.round(product.threeMonth/3), recurring: false });
+  if (product.sixMonth) plans.push({ key: '6month', label: '6 months', price: product.sixMonth, perMonth: Math.round(product.sixMonth/6), recurring: false });
+
+  document.body.insertAdjacentHTML('beforeend', `
+    <div id="productModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;z-index:1000;padding:20px;animation:fadeIn 0.15s">
+      <div style="background:white;border-radius:18px;padding:24px;max-width:560px;width:100%;box-shadow:var(--shadow-lg);max-height:92vh;overflow-y:auto">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px">
+          <div style="display:flex;gap:14px;align-items:center">
+            <div style="width:56px;height:56px;background:var(--gray-50);border-radius:12px;display:flex;align-items:center;justify-content:center;padding:8px">
+              <img src="${product.image}" alt="" style="max-width:100%;max-height:100%;object-fit:contain" onerror="this.style.display='none'">
+            </div>
+            <div>
+              <div style="font-size:11px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:2px">${verticalLabel(product.vertical)} · RX</div>
+              <h3 style="font-size:20px;font-weight:700;margin:0">${escapeHtml(product.displayName)}</h3>
+              ${product.doseSchedule ? `<div style="font-size:13px;color:var(--gray-500);margin-top:2px">${escapeHtml(product.doseSchedule)}</div>` : ''}
+            </div>
+          </div>
+          <button onclick="closeProductDetail()" style="background:none;border:none;font-size:24px;line-height:1;color:var(--gray-400);cursor:pointer;padding:0">&times;</button>
+        </div>
+
+        <div id="productDetailBody">
+          <div style="background:#f8fafb;border:1px solid var(--gray-100);border-radius:12px;padding:16px;margin-bottom:18px;font-size:13px;color:var(--gray-600);line-height:1.5">
+            Provider-supervised. Compounded by a state-licensed pharmacy. Delivered to your door. All plans include the provider consultation, prescription, medication, and shipping.
+          </div>
+
+          <div style="font-size:13px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px">Choose your plan</div>
+          <div id="planPicker" style="display:flex;flex-direction:column;gap:8px;margin-bottom:18px">
+            ${plans.map((p, i) => `
+              <button data-plan="${p.key}" class="plan-row" style="text-align:left;padding:14px 16px;border:2px solid var(--gray-100);border-radius:12px;background:white;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit">
+                <div>
+                  <div style="font-weight:700;font-size:15px">${p.label}</div>
+                  <div style="font-size:12px;color:var(--gray-500);margin-top:2px">${p.recurring ? 'Billed monthly · cancel anytime' : `One-time payment · $${p.perMonth}/mo equivalent`}</div>
+                </div>
+                <div style="text-align:right">
+                  <div style="font-weight:700;font-size:16px">$${p.price}${p.recurring ? '/mo' : ''}</div>
+                  ${!p.recurring ? `<div style="font-size:11px;color:var(--gray-400)">total</div>` : ''}
+                </div>
+              </button>`).join('')}
+          </div>
+
+          <button id="btnAddTreatment" class="btn btn-primary" style="width:100%;padding:14px" disabled>Select a plan</button>
+          <button class="btn btn-secondary" style="width:100%;margin-top:8px" onclick="closeProductDetail()">Cancel</button>
+        </div>
+
+        <div id="embeddedCheckoutMount" style="display:none"></div>
+      </div>
+    </div>`);
+
+  // Plan-pick wiring
+  let selectedPlan = null;
+  const updateSelection = () => {
+    document.querySelectorAll('#productModal .plan-row').forEach(b => {
+      const isActive = b.dataset.plan === selectedPlan;
+      b.style.borderColor = isActive ? 'var(--teal)' : 'var(--gray-100)';
+      b.style.background = isActive ? 'rgba(43,188,179,0.06)' : 'white';
+    });
+    const btn = $('btnAddTreatment');
+    btn.disabled = !selectedPlan;
+    btn.textContent = selectedPlan ? 'Add to my treatments' : 'Select a plan';
+  };
+  document.querySelectorAll('#productModal .plan-row').forEach(b => {
+    b.addEventListener('click', () => { selectedPlan = b.dataset.plan; updateSelection(); });
+  });
+  $('btnAddTreatment').addEventListener('click', async () => {
+    if (!selectedPlan) return;
+    await beginEmbeddedCheckout(productKey, selectedPlan);
+  });
+}
+
+function closeProductDetail(){
+  if (activeEmbeddedCheckout) {
+    try { activeEmbeddedCheckout.destroy(); } catch (e) {}
+    activeEmbeddedCheckout = null;
+  }
+  const m = $('productModal'); if (m) m.remove();
+}
+
+async function beginEmbeddedCheckout(productKey, planType){
+  const btn = $('btnAddTreatment'); btn.disabled = true; btn.textContent = 'Preparing checkout...';
+  try {
+    const [stripe, session] = await Promise.all([
+      loadStripeJs(),
+      api('/api/portal/add-product/create-session', {
+        method: 'POST',
+        body: JSON.stringify({ productKey, planType })
+      })
+    ]);
+
+    // Swap the modal body for the embedded checkout.
+    $('productDetailBody').style.display = 'none';
+    $('embeddedCheckoutMount').style.display = 'block';
+    $('embeddedCheckoutMount').innerHTML = '<div id="checkoutContainer"></div>';
+
+    activeEmbeddedCheckout = await stripe.initEmbeddedCheckout({
+      clientSecret: session.clientSecret,
+      onComplete: async () => {
+        // Payment captured. Refresh /me so the new treatment surfaces in the
+        // home stack and Treatments tab without a full reload.
+        $('embeddedCheckoutMount').innerHTML = `
+          <div style="text-align:center;padding:32px 20px">
+            <div style="font-size:48px;margin-bottom:12px">✓</div>
+            <div style="font-size:20px;font-weight:700;margin-bottom:6px">You're all set</div>
+            <div style="font-size:14px;color:var(--gray-500);margin-bottom:18px">Your new treatment is being prepared. Our care team will reach out shortly to confirm clinical details.</div>
+            <button class="btn btn-primary" onclick="closeProductDetail();loadHome()">Back to portal</button>
+          </div>`;
+      }
+    });
+    activeEmbeddedCheckout.mount('#checkoutContainer');
+  } catch (err) {
+    btn.disabled = false; btn.textContent = 'Add to my treatments';
+    alert('Could not start checkout: ' + (err.message || err));
+  }
+}
 
 // ═══ BILLING ═══
 // ─── Shipping address editor ───
