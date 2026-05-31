@@ -291,6 +291,16 @@ textarea.q-input{resize:vertical;min-height:80px}
   .quick-action{justify-content:center}
 }
 </style>
+<!-- PostHog for portal behavioral analytics. Same project as intake.html so
+     a single funnel can stitch lead_captured (intake) -> portal_signed_in ->
+     portal_addproduct_* -> portal_addproduct_paid. Autocapture is off so we
+     only see explicit business events, not every clicked button. -->
+<script>
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug getPageviewId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', { api_host: 'https://us.i.posthog.com', autocapture: false, capture_pageview: true });
+// Tiny wrapper so the rest of the portal code can call track('event', {props}) safely whether or not the PostHog script has loaded yet.
+window.track = function(event, props){ try { if (window.posthog && window.posthog.capture) window.posthog.capture(event, props || {}); } catch(_){} };
+</script>
 </head>
 <body>
 
@@ -722,6 +732,27 @@ async function loadHome(){
     suggestions=sugg.suggestions||[];
     requiredActions=actions.actions||[];
     timelineEvents=timeline.events||[];
+
+    // Identify the patient in PostHog so events stitch to their lead_captured
+    // / lead_purchased history. Fire portal_signed_in once per loadHome so
+    // we can measure portal engagement vs intake conversions. The identify
+    // is idempotent — PostHog dedupes on email.
+    try {
+      if (window.posthog && me?.patient?.email) {
+        window.posthog.identify(me.patient.email, {
+          first_name: me.patient.firstName,
+          last_name: me.patient.lastName,
+          treatment_count: (me.treatments||[]).length,
+          intake_status: me.patient.intakeStatus
+        });
+      }
+      track('portal_signed_in', {
+        treatment_count: (me.treatments||[]).length,
+        intake_status: me.patient.intakeStatus,
+        has_recurring: (me.treatments||[]).some(t=>t.isRecurring),
+        has_one_time: (me.treatments||[]).some(t=>!t.isRecurring)
+      });
+    } catch(_) {}
 
     // Default the Journey to the most-recent treatment (treatments[0]) unless
     // the user already picked one (selectedJourneyProduct persists across
@@ -1843,6 +1874,8 @@ async function openProductDetail(productKey){
   const product = findCatalogProductGlobal(productKey);
   if (!product) return alert('Unknown product: ' + productKey);
 
+  track('portal_addproduct_opened', { product: productKey, vertical: product.vertical });
+
   // Build the plan options actually offered for this SKU.
   const plans = [];
   plans.push({ key: 'monthly', label: 'Monthly', price: product.monthlyPrice, perMonth: product.monthlyPrice, recurring: true });
@@ -1911,6 +1944,7 @@ async function openProductDetail(productKey){
   });
   $('btnAddTreatment').addEventListener('click', async () => {
     if (!selectedPlan) return;
+    track('portal_addproduct_plan_selected', { product: productKey, plan: selectedPlan });
     // Hand off to the clinical screening step rather than going straight to
     // checkout. The screening collects vertical-aware safety answers (cardiac
     // for sexual-health, thyroid/pregnancy for GLP-1) and validates blockers
@@ -1958,6 +1992,7 @@ async function beginEmbeddedCheckout(productKey, planType, screeningAnswers){
     activeEmbeddedCheckout = await stripe.initEmbeddedCheckout({
       clientSecret: session.clientSecret,
       onComplete: async () => {
+        track('portal_addproduct_paid', { product: productKey, plan: planType, had_screening: !!screeningAnswers });
         // Payment captured. Refresh /me so the new treatment surfaces in the
         // home stack and Treatments tab without a full reload.
         $('embeddedCheckoutMount').innerHTML = `
@@ -2040,6 +2075,8 @@ function showClinicalScreening(productKey, planType){
   const config = SCREENING_QUESTIONS[vertical] || SCREENING_QUESTIONS.wellness;
   const allergiesPrefill = portalData?.patient?.drugAllergies || '';
   const medsPrefill = portalData?.patient?.currentMedications || '';
+
+  track('portal_screening_started', { product: productKey, plan: planType, vertical, blocker_count: config.blockers.length, soft_count: config.soft.length });
 
   // Yes/No pill row for a single blocker or soft question.
   const yesNoRow = (item, kind) => `
@@ -2129,6 +2166,7 @@ function showClinicalScreening(productKey, planType){
       allergies: ($('scrAllergies').value || '').trim(),
       medications: ($('scrMeds').value || '').trim()
     };
+    track('portal_screening_passed', { product: productKey, plan: planType, vertical, soft_yes_count: Object.values(softAnswers).filter(v => v === 'yes').length });
     await beginEmbeddedCheckout(productKey, planType, screeningAnswers);
   });
 }
@@ -2137,6 +2175,7 @@ function showClinicalScreening(productKey, planType){
 // question came back yes. We avoid creating any Stripe session for these
 // patients; instead they're routed to email the care team for review.
 function showCareTeamHold(productKey, blockerIds){
+  track('portal_screening_blocked', { product: productKey, blockers: (blockerIds || []).join(',') || 'server' });
   const product = findCatalogProductGlobal(productKey);
   const productName = product ? product.displayName : 'this treatment';
   $('productDetailBody').innerHTML = `
@@ -2283,6 +2322,7 @@ async function cancelTreatment(productKey){
       method: 'POST',
       body: JSON.stringify({ productKey })
     });
+    track('portal_treatment_cancelled', { product: productKey });
     $('confirmCancelModal')?.remove();
     // Reload /me so the badge flips to cancel-pending with the end date.
     await loadHome();
@@ -2302,6 +2342,7 @@ async function resumeTreatment(productKey){
       method: 'POST',
       body: JSON.stringify({ productKey })
     });
+    track('portal_treatment_resumed', { product: productKey });
     closeTreatmentActions();
     await loadHome();
     if (currentPage === 'treatments') loadTreatments();
@@ -2438,6 +2479,7 @@ async function beginSwitchCheckout(productKey, newPlan){
     });
 
     if (session.inPlace) {
+      track('portal_plan_swapped', { product: productKey, new_plan: newPlan, mode: 'in_place' });
       // Monthly→Monthly was updated atomically — no checkout needed.
       $('switchPlanBody').style.display = 'none';
       $('switchPlanCheckoutMount').style.display = 'block';
@@ -2463,6 +2505,7 @@ async function beginSwitchCheckout(productKey, newPlan){
     activeEmbeddedCheckout = await stripe.initEmbeddedCheckout({
       clientSecret: session.clientSecret,
       onComplete: async () => {
+        track('portal_plan_swapped', { product: productKey, new_plan: newPlan, mode: 'checkout' });
         // Webhook will cancel the old sub via metadata.cancel_subscription_id.
         // Patient sees only the new plan after refresh.
         $('switchPlanCheckoutMount').innerHTML = `
