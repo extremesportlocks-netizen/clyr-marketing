@@ -2168,7 +2168,7 @@ async function showClinicalScreening(productKey, planType){
   let config;
   try {
     const r = await fetch(API + '/api/portal/add-product/questions?productKey=' + encodeURIComponent(productKey), {
-      headers: { Authorization: 'Bearer ' + getPortalToken() }
+      headers: { Authorization: 'Bearer ' + (localStorage.getItem('th_portal_token') || '') }
     });
     if (r.ok) {
       const data = await r.json();
