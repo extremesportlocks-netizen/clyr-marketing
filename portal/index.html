@@ -2219,9 +2219,13 @@ async function showClinicalScreening(productKey, planType){
       <label style="display:block;font-size:13px;font-weight:600;color:var(--gray-700);margin-bottom:6px">Drug allergies</label>
       <textarea id="scrAllergies" placeholder='List any drug allergies, or write "None"' style="width:100%;padding:10px;border-radius:10px;border:1.5px solid var(--gray-100);font-family:inherit;font-size:14px;resize:vertical;min-height:60px">${escapeHtml(allergiesPrefill)}</textarea>
     </div>
-    <div style="margin-bottom:18px">
+    <div style="margin-bottom:10px">
       <label style="display:block;font-size:13px;font-weight:600;color:var(--gray-700);margin-bottom:6px">Current medications, supplements, and dosages</label>
       <textarea id="scrMeds" placeholder='List everything you take, or write "None"' style="width:100%;padding:10px;border-radius:10px;border:1.5px solid var(--gray-100);font-family:inherit;font-size:14px;resize:vertical;min-height:60px">${escapeHtml(medsPrefill)}</textarea>
+    </div>
+    <div style="margin-bottom:18px">
+      <label style="display:block;font-size:13px;font-weight:600;color:var(--gray-700);margin-bottom:6px">Anything else for your provider? <span style="color:var(--gray-500);font-weight:400">(optional)</span></label>
+      <textarea id="scrDoctorMessage" placeholder="Concerns, prior experiences, dosing preferences, or anything you'd like the provider to know" style="width:100%;padding:10px;border-radius:10px;border:1.5px solid var(--gray-100);font-family:inherit;font-size:14px;resize:vertical;min-height:50px"></textarea>
     </div>
 
     <button id="btnScreeningSubmit" class="btn btn-primary" style="width:100%;padding:14px" disabled>Answer all questions</button>
@@ -2289,7 +2293,8 @@ async function showClinicalScreening(productKey, planType){
       blockers: blockerAnswers,
       soft: softAnswers,
       allergies: ($('scrAllergies').value || '').trim(),
-      medications: ($('scrMeds').value || '').trim()
+      medications: ($('scrMeds').value || '').trim(),
+      doctorMessage: ($('scrDoctorMessage')?.value || '').trim()
     };
     track('portal_screening_passed', { product: productKey, plan: planType, vertical, soft_yes_count: Object.values(softAnswers).filter(v => v === 'yes').length });
     await beginEmbeddedCheckout(productKey, planType, screeningAnswers);
