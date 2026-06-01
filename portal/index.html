@@ -1555,8 +1555,13 @@ let dosesCache=[];  // current patient's doses, populated by loadShots
 let shotsProduct=null; // resolved product object for the patient's current treatment
 let selectedShotsProductKey=null; // for multi-product patients, which treatment the Shots view is currently focused on
 
-async function loadShots(){
+async function loadShots(forceRefresh){
   if(!portalData){return;}
+  // When called after a dose mutation (log/delete/clear) pass forceRefresh=true
+  // so the in-memory dosesCache is re-fetched. Without this the view re-renders
+  // off the stale pre-mutation cache and the new dose appears to vanish until a
+  // full page reload.
+  if(forceRefresh){dosesCache=[];}
   // Ensure catalog is loaded so we can resolve product metadata (form, half-life, dose).
   if(!catalog){
     try{const d=await api('/api/portal/catalog');catalog=d.catalog;}catch(e){}
@@ -1827,7 +1832,7 @@ async function submitDose(){
   try{
     await api('/api/portal/doses',{method:'POST',body:JSON.stringify(payload)});
     closeDoseModal();
-    await loadShots();
+    await loadShots(true);
   }catch(e){
     btn.disabled=false;btn.textContent='Log dose';
     alert('Could not log dose: '+e.message);
@@ -1838,7 +1843,7 @@ async function deleteDose(id){
   if(!confirm('Delete this dose entry?'))return;
   try{
     await api(`/api/portal/doses/${id}`,{method:'DELETE'});
-    await loadShots();
+    await loadShots(true);
   }catch(e){alert('Could not delete: '+e.message);}
 }
 
@@ -1846,7 +1851,7 @@ async function clearAllDoses(){
   if(!confirm('Clear your entire dose history? This cannot be undone.'))return;
   try{
     await api('/api/portal/doses',{method:'DELETE'});
-    await loadShots();
+    await loadShots(true);
   }catch(e){alert('Could not clear: '+e.message);}
 }
 
