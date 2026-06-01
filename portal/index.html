@@ -1646,7 +1646,7 @@ function renderShots(injectables){
         <div>
           <div style="font-size:13px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">Current treatment</div>
           <div style="font-size:18px;font-weight:700">${escapeHtml(shotsProduct?.displayName||'Your treatment')}</div>
-          <div style="font-size:13px;color:var(--gray-500);margin-top:2px">${escapeHtml(schedule)}${defaultDose?` · ${defaultDose} ${defaultUnit} per dose`:''}</div>
+          <div style="font-size:13px;color:var(--gray-500);margin-top:2px">${(shotsProduct?.key==='tirzepatide'||shotsProduct?.key==='semaglutide'||/tirzepatide|semaglutide/i.test(shotsProduct?.displayName||''))?'Refer to your prescription for dosage':escapeHtml(schedule)+(defaultDose?` · ${defaultDose} ${defaultUnit} per dose`:'')}</div>
         </div>
         <button class="btn btn-primary" onclick="openDoseModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="15" height="15"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Log a dose</button>
       </div>
