@@ -1101,11 +1101,14 @@
     .nav.mobile-open .mobile-menu-btn span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
     .nav.mobile-open .mobile-menu-btn span:nth-child(2) { opacity: 0; }
     .nav.mobile-open .mobile-menu-btn span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-    .hero { padding: 40px 20px 60px; min-height: auto; }
-    .hero-inner { grid-template-columns: 1fr; text-align: center; justify-items: center; gap: 24px; }
+    .hero { padding: 36px 20px 48px; min-height: auto; }
+    .hero-inner { grid-template-columns: 1fr; text-align: center; justify-items: center; gap: 20px; }
     .hero-content { max-width: 100%; }
-    .hero-visual { max-width: 340px; margin: 0 auto; }
-    .hero h1 { font-size: 36px; }
+    .hero-visual { max-width: 300px; margin: 0 auto; }
+    .hero h1 { font-size: 34px; }
+    /* fix clipped rotating word on mobile: give the wrapper room for the italic serif */
+    .hero h1 .rotating-wrapper { height: 1.35em; line-height: 1.35em; min-width: 0; vertical-align: top; }
+    .hero h1 .rotating-word { line-height: 1.35em; padding-bottom: 0.12em; }
     .hero-actions { flex-direction: column; }
     .hero-proof { flex-direction: column; gap: 10px; }
     .hero-proof-divider { display: none; }
