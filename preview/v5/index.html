@@ -1665,82 +1665,6 @@
   .mm-footer a{font-size:13px;font-weight:600;color:#00B4C5;text-decoration:none}
   @media (max-width:900px){ .nav-item .megamenu{display:none} }
 
-
-/* toggle catalog CSS (from df56084) */
-.filter-pills {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  margin-bottom: 48px;
-  flex-wrap: wrap;
-}
-.pill {
-  padding: 10px 22px;
-  background: var(--gray-50);
-  border: 1px solid var(--gray-100);
-  border-radius: 100px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--gray-600);
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.pill:hover { color: var(--dark); border-color: var(--gray-300); }
-.pill.active { background: var(--black); color: var(--white); border-color: var(--black); }
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 18px;
-}
-.product-card {
-  background: var(--white);
-  border: 1px solid var(--gray-100);
-  border-radius: 20px;
-  padding: 24px 22px 22px;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  cursor: pointer;
-  display: block;
-}
-.product-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--teal);
-}
-.product-card-img {
-  aspect-ratio: 1.05 / 1;
-  background: linear-gradient(135deg, var(--gray-50), var(--white));
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 18px;
-  overflow: hidden;
-  transition: transform 0.3s;
-}
-.product-card:hover .product-card-img { transform: scale(1.02); }
-.product-card-img img { width: 65%; height: 65%; object-fit: contain; }
-.product-card-tag {
-  font-size: 10.5px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--teal);
-  margin-bottom: 6px;
-  display: block;
-}
-.product-card-name {
-  font-size: 17px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--dark);
-  margin-bottom: 4px;
-}
-.product-card-price {
-  font-size: 13px;
-  color: var(--gray-500);
-}
-.product-card-price strong { color: var(--dark); font-weight: 700; }
-.product-card-img { transform: scale(1.02); }
 </style>
 <script type="application/ld+json">
 {
@@ -2234,101 +2158,73 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
   </div>
 </section>
 
-<!-- ========== FULL CATALOG (toggle) ========== -->
-<section class="product-wall section-pad">
+<!-- ========== FULL CATALOG ========== -->
+<section id="catalog" style="padding:80px 40px;background:var(--gray-50)">
   <div class="section-inner">
-    <div class="section-head section-head-center reveal">
-      <div class="eyebrow">The full catalog</div>
-      <h2 class="section-h2">Twelve treatments, <span class="serif">one place.</span></h2>
-      <p class="section-sub">Every product on our shelf, all prescribed by licensed providers and dispensed by US pharmacies.</p>
+    <div style="text-align:center;max-width:720px;margin:0 auto 48px">
+      <div class="section-label reveal" style="margin-bottom:14px">The Full Catalog</div>
+      <h2 class="section-heading" style="font-size:42px;line-height:1.15;letter-spacing:-0.02em;margin-bottom:14px">Beyond GLP-1, also <span class="serif-word">in-house.</span></h2>
+      <p style="font-size:17px;color:#6B7C8A;max-width:560px;margin:0 auto;line-height:1.6">Wellness peptides, sexual health, and protocol prescriptions — same licensed providers, same compounding pharmacy, same fast shipping.</p>
     </div>
-    <div class="filter-pills reveal">
-      <button class="pill active" data-filter="all">All</button>
-      <button class="pill" data-filter="weight">Weight Loss</button>
-      <button class="pill" data-filter="wellness">Daily Wellness</button>
-      <button class="pill" data-filter="sexual">Sexual Health</button>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px" id="catalogGrid">
+      <a href="/nad.html" class="cat-tile" style="display:flex;flex-direction:column;background:#FFF;border:1px solid #E2E7EB;border-radius:20px;padding:24px 20px;text-decoration:none;color:#1A1A1A;transition:all 0.2s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 30px rgba(0,0,0,0.06)';this.style.borderColor='#00B4C5'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none';this.style.borderColor='#E2E7EB'">
+        <div style="aspect-ratio:1;background:#F8FAFB;border-radius:14px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;padding:18px"><img src="/preview/v5/img/nad.png" alt="NAD+ Injections" style="max-width:100%;max-height:100%;object-fit:contain"></div>
+        <div style="font-size:10px;font-weight:700;color:#9333EA;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px">Wellness</div>
+        <h3 style="font-size:16px;font-weight:700;margin-bottom:4px;line-height:1.25">NAD+ Injections</h3>
+        <p style="font-size:13px;color:#6B7C8A;line-height:1.45;flex-grow:1;margin-bottom:14px">Cellular energy &amp; healthy aging</p><div style="font-size:18px;font-weight:800;color:#1A1A1A;margin-bottom:12px">$199<span style="font-size:13px;font-weight:500;color:#94A3B0">/mo</span></div><div style="font-size:13px;font-weight:600;color:#00B4C5;display:inline-flex;align-items:center;gap:4px">Learn more →</div>
+      </a>
+
+      <a href="/sermorelin.html" class="cat-tile" style="display:flex;flex-direction:column;background:#FFF;border:1px solid #E2E7EB;border-radius:20px;padding:24px 20px;text-decoration:none;color:#1A1A1A;transition:all 0.2s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 30px rgba(0,0,0,0.06)';this.style.borderColor='#00B4C5'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none';this.style.borderColor='#E2E7EB'">
+        <div style="aspect-ratio:1;background:#F8FAFB;border-radius:14px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;padding:18px"><img src="/preview/v5/img/sermorelin.png" alt="Sermorelin" style="max-width:100%;max-height:100%;object-fit:contain"></div>
+        <div style="font-size:10px;font-weight:700;color:#9333EA;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px">Wellness</div>
+        <h3 style="font-size:16px;font-weight:700;margin-bottom:4px;line-height:1.25">Sermorelin</h3>
+        <p style="font-size:13px;color:#6B7C8A;line-height:1.45;flex-grow:1;margin-bottom:14px">Sleep, recovery &amp; lean mass</p><div style="font-size:18px;font-weight:800;color:#1A1A1A;margin-bottom:12px">$179<span style="font-size:13px;font-weight:500;color:#94A3B0">/mo</span></div><div style="font-size:13px;font-weight:600;color:#00B4C5;display:inline-flex;align-items:center;gap:4px">Learn more →</div>
+      </a>
+
+      <a href="/glutathione.html" class="cat-tile" style="display:flex;flex-direction:column;background:#FFF;border:1px solid #E2E7EB;border-radius:20px;padding:24px 20px;text-decoration:none;color:#1A1A1A;transition:all 0.2s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 30px rgba(0,0,0,0.06)';this.style.borderColor='#00B4C5'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none';this.style.borderColor='#E2E7EB'">
+        <div style="aspect-ratio:1;background:#F8FAFB;border-radius:14px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;padding:18px"><img src="/preview/v5/img/glutathione.png" alt="Glutathione" style="max-width:100%;max-height:100%;object-fit:contain"></div>
+        <div style="font-size:10px;font-weight:700;color:#9333EA;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px">Wellness</div>
+        <h3 style="font-size:16px;font-weight:700;margin-bottom:4px;line-height:1.25">Glutathione</h3>
+        <p style="font-size:13px;color:#6B7C8A;line-height:1.45;flex-grow:1;margin-bottom:14px">Master antioxidant &amp; immune</p><div style="font-size:18px;font-weight:800;color:#1A1A1A;margin-bottom:12px">$129<span style="font-size:13px;font-weight:500;color:#94A3B0">/mo</span></div><div style="font-size:13px;font-weight:600;color:#00B4C5;display:inline-flex;align-items:center;gap:4px">Learn more →</div>
+      </a>
+
+      <a href="/micc.html" class="cat-tile" style="display:flex;flex-direction:column;background:#FFF;border:1px solid #E2E7EB;border-radius:20px;padding:24px 20px;text-decoration:none;color:#1A1A1A;transition:all 0.2s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 30px rgba(0,0,0,0.06)';this.style.borderColor='#00B4C5'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none';this.style.borderColor='#E2E7EB'">
+        <div style="aspect-ratio:1;background:#F8FAFB;border-radius:14px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;padding:18px"><img src="/preview/v5/img/micc.png" alt="Lipo-Mino" style="max-width:100%;max-height:100%;object-fit:contain"></div>
+        <div style="font-size:10px;font-weight:700;color:#9333EA;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px">Wellness</div>
+        <h3 style="font-size:16px;font-weight:700;margin-bottom:4px;line-height:1.25">MICC + B12</h3>
+        <p style="font-size:13px;color:#6B7C8A;line-height:1.45;flex-grow:1;margin-bottom:14px">MIC + B12 metabolic support</p><div style="font-size:18px;font-weight:800;color:#1A1A1A;margin-bottom:12px">$149<span style="font-size:13px;font-weight:500;color:#94A3B0">/mo</span></div><div style="font-size:13px;font-weight:600;color:#00B4C5;display:inline-flex;align-items:center;gap:4px">Learn more →</div>
+      </a>
+
+      <a href="/tadalafil.html" class="cat-tile" style="display:flex;flex-direction:column;background:#FFF;border:1px solid #E2E7EB;border-radius:20px;padding:24px 20px;text-decoration:none;color:#1A1A1A;transition:all 0.2s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 30px rgba(0,0,0,0.06)';this.style.borderColor='#00B4C5'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none';this.style.borderColor='#E2E7EB'">
+        <div style="aspect-ratio:1;background:#F8FAFB;border-radius:14px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;padding:18px"><img src="/img/pill-tadalafil-tad25-new.png" alt="Tadalafil" style="max-width:100%;max-height:100%;object-fit:contain"></div>
+        <div style="font-size:10px;font-weight:700;color:#E11D48;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px">Sexual Health</div>
+        <h3 style="font-size:16px;font-weight:700;margin-bottom:4px;line-height:1.25">Tadalafil</h3>
+        <p style="font-size:13px;color:#6B7C8A;line-height:1.45;flex-grow:1;margin-bottom:14px">Long-lasting ED treatment</p><div style="font-size:18px;font-weight:800;color:#1A1A1A;margin-bottom:12px">$99<span style="font-size:13px;font-weight:500;color:#94A3B0">/mo</span></div><div style="font-size:13px;font-weight:600;color:#00B4C5;display:inline-flex;align-items:center;gap:4px">Learn more →</div>
+      </a>
+
+      <a href="/sildenafil-gummy.html" class="cat-tile" style="display:flex;flex-direction:column;background:#FFF;border:1px solid #E2E7EB;border-radius:20px;padding:24px 20px;text-decoration:none;color:#1A1A1A;transition:all 0.2s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 30px rgba(0,0,0,0.06)';this.style.borderColor='#00B4C5'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none';this.style.borderColor='#E2E7EB'">
+        <div style="aspect-ratio:1;background:#F8FAFB;border-radius:14px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;padding:18px"><img src="/img/gummy-sildenafil.png" alt="Sildenafil Gummy" style="max-width:100%;max-height:100%;object-fit:contain"></div>
+        <div style="font-size:10px;font-weight:700;color:#E11D48;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px">Sexual Health</div>
+        <h3 style="font-size:16px;font-weight:700;margin-bottom:4px;line-height:1.25">Sildenafil Gummy</h3>
+        <p style="font-size:13px;color:#6B7C8A;line-height:1.45;flex-grow:1;margin-bottom:14px">Fast-onset chewable form</p><div style="font-size:18px;font-weight:800;color:#1A1A1A;margin-bottom:12px">$89<span style="font-size:13px;font-weight:500;color:#94A3B0">/mo</span></div><div style="font-size:13px;font-weight:600;color:#00B4C5;display:inline-flex;align-items:center;gap:4px">Learn more →</div>
+      </a>
+
+      <a href="/pt141.html" class="cat-tile" style="display:flex;flex-direction:column;background:#FFF;border:1px solid #E2E7EB;border-radius:20px;padding:24px 20px;text-decoration:none;color:#1A1A1A;transition:all 0.2s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 30px rgba(0,0,0,0.06)';this.style.borderColor='#00B4C5'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none';this.style.borderColor='#E2E7EB'">
+        <div style="aspect-ratio:1;background:#F8FAFB;border-radius:14px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;padding:18px"><img src="/preview/v5/img/pt141-odt-rose.png" alt="PT-141" style="max-width:100%;max-height:100%;object-fit:contain"></div>
+        <div style="font-size:10px;font-weight:700;color:#E11D48;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px">Sexual Health</div>
+        <h3 style="font-size:16px;font-weight:700;margin-bottom:4px;line-height:1.25">PT-141</h3>
+        <p style="font-size:13px;color:#6B7C8A;line-height:1.45;flex-grow:1;margin-bottom:14px">Libido peptide, men &amp; women</p><div style="font-size:18px;font-weight:800;color:#1A1A1A;margin-bottom:12px">$149<span style="font-size:13px;font-weight:500;color:#94A3B0">/mo</span></div><div style="font-size:13px;font-weight:600;color:#00B4C5;display:inline-flex;align-items:center;gap:4px">Learn more →</div>
+      </a>
+
+      <a href="/ivermectin.html" style="display:none" data-paused="ivermectin-2026-05-27"></a>
     </div>
-    <div class="products-grid">
-      
-      <a href="/tirzepatide.html" class="product-card reveal" data-vertical="weight">
-        <div class="product-card-img"><img src="/img/vial-tirzepatide-new.png" alt="Tirzepatide + B12"></div>
-        <span class="product-card-tag">Weight Loss</span>
-        <div class="product-card-name">Tirzepatide + B12</div>
-        <div class="product-card-price">From <strong>$320/mo</strong></div>
-      </a>
-      <a href="/semaglutide.html" class="product-card reveal" data-vertical="weight">
-        <div class="product-card-img"><img src="/img/vial-semaglutide-new.png" alt="Semaglutide + B12"></div>
-        <span class="product-card-tag">Weight Loss</span>
-        <div class="product-card-name">Semaglutide + B12</div>
-        <div class="product-card-price">From <strong>$225/mo</strong></div>
-      </a>
-      <a href="/zepbound.html" class="product-card reveal" data-vertical="weight">
-        <div class="product-card-img"><img src="/img/pen-zepbound.svg" alt="Zepbound®"></div>
-        <span class="product-card-tag">Weight Loss</span>
-        <div class="product-card-name">Zepbound®</div>
-        <div class="product-card-price">From <strong>$499/mo</strong></div>
-      </a>
-      <a href="/foundayo.html" class="product-card reveal" data-vertical="weight">
-        <div class="product-card-img"><img src="/img/tablet-foundayo.svg" alt="Foundayo®"></div>
-        <span class="product-card-tag">Weight Loss</span>
-        <div class="product-card-name">Foundayo®</div>
-        <div class="product-card-price">From <strong>$299/mo</strong></div>
-      </a>
-      <a href="/sermorelin.html" class="product-card reveal" data-vertical="wellness">
-        <div class="product-card-img"><img src="/img/vial-sermorelin-new.png" alt="Sermorelin"></div>
-        <span class="product-card-tag">Daily Wellness</span>
-        <div class="product-card-name">Sermorelin</div>
-        <div class="product-card-price">From <strong>$179/mo</strong></div>
-      </a>
-      <a href="/nad.html" class="product-card reveal" data-vertical="wellness">
-        <div class="product-card-img"><img src="/img/vial-nad-new.png" alt="NAD+ Injections"></div>
-        <span class="product-card-tag">Daily Wellness</span>
-        <div class="product-card-name">NAD+ Injections</div>
-        <div class="product-card-price">From <strong>$199/mo</strong></div>
-      </a>
-      <a href="/glutathione.html" class="product-card reveal" data-vertical="wellness">
-        <div class="product-card-img"><img src="/img/vial-glutathione-new.png" alt="Glutathione"></div>
-        <span class="product-card-tag">Daily Wellness</span>
-        <div class="product-card-name">Glutathione</div>
-        <div class="product-card-price">From <strong>$129/mo</strong></div>
-      </a>
-      <a href="/lipo-mino.html" class="product-card reveal" data-vertical="wellness">
-        <div class="product-card-img"><img src="/img/vial-lipo-mino-new.png" alt="Lipo-Mino MIC+B12"></div>
-        <span class="product-card-tag">Daily Wellness</span>
-        <div class="product-card-name">Lipo-Mino MIC+B12</div>
-        <div class="product-card-price">From <strong>$149/mo</strong></div>
-      </a>
-      <a href="/micc.html" class="product-card reveal" data-vertical="wellness">
-        <div class="product-card-img"><img src="/img/vial-micc-new.png" alt="MICC + B12"></div>
-        <span class="product-card-tag">Daily Wellness</span>
-        <div class="product-card-name">MICC + B12</div>
-        <div class="product-card-price">From <strong>$149/mo</strong></div>
-      </a>
-      <a href="/tadalafil.html" class="product-card reveal" data-vertical="sexual">
-        <div class="product-card-img"><img src="/img/pill-tadalafil-tad25-new.png" alt="Tadalafil"></div>
-        <span class="product-card-tag">Sexual Health</span>
-        <div class="product-card-name">Tadalafil</div>
-        <div class="product-card-price">From <strong>$99/mo</strong></div>
-      </a>
-      <a href="/sildenafil-gummy.html" class="product-card reveal" data-vertical="sexual">
-        <div class="product-card-img"><img src="/img/gummy-sildenafil.svg" alt="Sildenafil Gummy"></div>
-        <span class="product-card-tag">Sexual Health</span>
-        <div class="product-card-name">Sildenafil Gummy</div>
-        <div class="product-card-price">From <strong>$89/mo</strong></div>
-      </a>
-      <a href="/pt141.html" class="product-card reveal" data-vertical="sexual">
-        <div class="product-card-img"><img src="/img/pt141-odt-rose.png" alt="PT-141 + Oxytocin"></div>
-        <span class="product-card-tag">Sexual Health</span>
-        <div class="product-card-name">PT-141 + Oxytocin</div>
-        <div class="product-card-price">From <strong>$149/mo</strong></div>
-      </a>
-      <a href="/sild-tadal-oxy.html" class="product-card reveal" data-vertical="sexual">
-        <div class="product-card-img"><img src="/img/odt-sild-tadal-oxy.svg" alt="Sild + Tadal + Oxy ODT"></div>
-        <span class="product-card-tag">Sexual Health</span>
-        <div class="product-card-name">Sild + Tadal + Oxy ODT</div>
-        <div class="product-card-price">From <strong>$129/mo</strong></div>
-      </a>
-    </div>
+
+    <style>
+      @media (max-width:1024px) { #catalogGrid { grid-template-columns:repeat(3,1fr) !important; } }
+      @media (max-width:768px) { #catalogGrid { grid-template-columns:repeat(2,1fr) !important; } #catalog { padding:60px 24px !important; } }
+      @media (max-width:480px) { #catalogGrid { grid-template-columns:1fr !important; } }
+    </style>
   </div>
 </section>
 
@@ -2787,18 +2683,6 @@ document.addEventListener('click',function(e){
     }
   } catch(e) { /* no promo, no problem */ }
 })();
-</script>
-<script>
-  document.querySelectorAll('.pill').forEach(p => {
-    p.addEventListener('click', () => {
-      document.querySelectorAll('.pill').forEach(x => x.classList.remove('active'));
-      p.classList.add('active');
-      const f = p.dataset.filter;
-      document.querySelectorAll('.product-card').forEach(c => {
-        c.style.display = (f === 'all' || c.dataset.vertical === f) ? '' : 'none';
-      });
-    });
-  });
 </script>
 </body>
 </html>
