@@ -1114,11 +1114,10 @@
     .hero-content { max-width: 100%; }
     .hero-visual { max-width: 300px; margin: 0 auto; }
     .hero h1 { font-size: 34px; }
-    /* mobile: headline wraps, so the slide animation mis-positions the word.
-       Robust fix: all words absolutely stacked + centered, opacity crossfade,
-       wrapper width held by the widest word via an invisible sizer. */
-    .hero h1 .rotating-wrapper { display: inline-block !important; position: relative !important; overflow: visible !important; vertical-align: baseline !important; height: auto !important; min-width: 110px !important; line-height: 1.1 !important; }
-    .hero h1 .rotating-word { position: absolute !important; left: 0 !important; right: 0 !important; top: 0 !important; text-align: center !important; transform: none !important; white-space: nowrap !important; animation: rotateWordsFade 9s ease-in-out infinite !important; padding-bottom: 0 !important; line-height: 1.1 !important; }
+    /* mobile: headline wraps; put the rotating word on its own centered line
+       with a reserved-height box so the crossfading words don't overlap or detach. */
+    .hero h1 .rotating-wrapper { display: block !important; position: relative !important; overflow: visible !important; height: 1.2em !important; width: 100% !important; min-width: 0 !important; line-height: 1.2 !important; margin-top: 2px !important; text-align: center !important; }
+    .hero h1 .rotating-word { position: absolute !important; left: 0 !important; right: 0 !important; top: 0 !important; text-align: center !important; transform: none !important; white-space: nowrap !important; animation: rotateWordsFade 9s ease-in-out infinite !important; padding-bottom: 0 !important; line-height: 1.2 !important; }
     .hero-actions { flex-direction: column; }
     .hero-proof { flex-direction: column; gap: 10px; }
     .hero-proof-divider { display: none; }
