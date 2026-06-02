@@ -1565,6 +1565,85 @@
     0%   { transform: translateX(0); }
     100% { transform: translateX(-33.33%); }
   }
+
+  /* ===== Find what's right — animated liquid verticals ===== */
+  .verticals { padding: 90px 40px; background: #fff; }
+  .verticals-inner { max-width: 1200px; margin: 0 auto; }
+  .verticals-head { text-align: center; margin-bottom: 48px; }
+  .vgrid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    grid-template-rows: repeat(3, auto);
+    gap: 18px;
+  }
+  /* big feature card spans the left, full height */
+  .vc-glp { grid-row: 1 / 4; grid-column: 1; min-height: 480px; }
+  .vc-well { grid-column: 2; grid-row: 1; }
+  .vc-sex  { grid-column: 2; grid-row: 2; }
+  .vc-proto{ grid-column: 2; grid-row: 3; }
+
+  .vcard {
+    position: relative;
+    border-radius: 22px;
+    overflow: hidden;
+    text-decoration: none;
+    display: flex;
+    align-items: flex-end;
+    min-height: 200px;
+    isolation: isolate;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .vcard:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(15,30,60,0.18); }
+
+  /* animated liquid background layer */
+  .vfx { position: absolute; inset: 0; z-index: 0; }
+  .vfx::before, .vfx::after {
+    content: ''; position: absolute; inset: -40%;
+    background: radial-gradient(circle at 30% 30%, var(--fx1) 0%, transparent 55%),
+                radial-gradient(circle at 70% 70%, var(--fx2) 0%, transparent 55%);
+    animation: liquid 16s ease-in-out infinite;
+    mix-blend-mode: screen;
+  }
+  .vfx::after { animation-duration: 22s; animation-direction: reverse; opacity: 0.8; }
+  @keyframes liquid {
+    0%,100% { transform: translate(0,0) rotate(0deg) scale(1); }
+    33% { transform: translate(8%, -6%) rotate(8deg) scale(1.08); }
+    66% { transform: translate(-6%, 6%) rotate(-6deg) scale(1.04); }
+  }
+  @media (prefers-reduced-motion: reduce) { .vfx::before, .vfx::after { animation: none; } }
+
+  /* product visual floating in card */
+  .vshape {
+    position: absolute; z-index: 1;
+    height: 62%; right: 6%; top: 50%; transform: translateY(-50%);
+    filter: drop-shadow(0 14px 22px rgba(0,0,0,0.28));
+    opacity: 0.96; pointer-events: none;
+  }
+  .vc-glp .vshape { height: 52%; right: 8%; top: 42%; }
+  .vshape-pill { height: 30% !important; right: 4% !important; }
+
+  .vbody { position: relative; z-index: 2; padding: 28px; color: #fff; max-width: 78%; }
+  .vc-glp .vbody { max-width: 60%; }
+  .vlabel { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.85; margin-bottom: 8px; }
+  .vtitle { font-size: 24px; font-weight: 700; line-height: 1.15; margin-bottom: 10px; letter-spacing: -0.01em; }
+  .vc-glp .vtitle { font-size: 30px; }
+  .vserif { font-family: var(--serif); font-style: italic; font-weight: 400; }
+  .vdesc { font-size: 14px; line-height: 1.5; opacity: 0.82; margin-bottom: 16px; }
+  .vcta { font-size: 14px; font-weight: 700; }
+
+  /* vertical color systems (base gradient + liquid fx colors) */
+  .vc-glp   { background: linear-gradient(135deg,#0a1626,#0d2a35 55%,#063b40); --fx1: rgba(0,180,197,0.5); --fx2: rgba(20,80,110,0.6); }
+  .vc-well  { background: linear-gradient(135deg,#1a2740,#2a3f64 60%,#3a5a86); --fx1: rgba(120,160,210,0.55); --fx2: rgba(180,200,230,0.4); }
+  .vc-sex   { background: linear-gradient(135deg,#3a0e22,#5e1230 60%,#7a1838); --fx1: rgba(225,29,72,0.45); --fx2: rgba(255,120,150,0.35); }
+  .vc-proto { background: linear-gradient(135deg,#0e2a1a,#16402a 60%,#1d5536); --fx1: rgba(34,160,90,0.45); --fx2: rgba(120,200,150,0.35); }
+
+  @media (max-width: 860px) {
+    .vgrid { grid-template-columns: 1fr; grid-template-rows: none; }
+    .vc-glp, .vc-well, .vc-sex, .vc-proto { grid-column: 1; grid-row: auto; min-height: 240px; }
+    .vbody, .vc-glp .vbody { max-width: 70%; }
+    .verticals { padding: 60px 20px; }
+  }
+
 </style>
 <script type="application/ld+json">
 {
@@ -1747,53 +1826,63 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
   </div>
 </div>
 
-<!-- ========== CATEGORIES (multi-vertical) ========== -->
-<section id="categories" style="padding:80px 40px;background:#FFF">
-  <div style="max-width:1200px;margin:0 auto">
-    <div style="text-align:center;margin-bottom:48px">
-      <div class="section-label reveal" style="margin-bottom:14px">Every Treatment, One Place</div>
+<!-- ========== FIND WHAT'S RIGHT (4 animated verticals) ========== -->
+<section id="categories" class="verticals">
+  <div class="verticals-inner">
+    <div class="verticals-head">
+      <div class="section-label reveal" style="margin-bottom:14px">One Platform, Four Verticals</div>
       <h2 class="section-heading" style="font-size:42px;line-height:1.15;letter-spacing:-0.02em;margin-bottom:14px">Find what's right for <span class="serif-word">you.</span></h2>
-      <p style="font-size:17px;color:#6B7C8A;max-width:620px;margin:0 auto;line-height:1.6">Prescription medications across four verticals — all from licensed providers, all delivered discreetly to your door.</p>
+      <p style="font-size:17px;color:#6B7C8A;max-width:620px;margin:0 auto;line-height:1.6">Real medications. Real providers. Across the categories that matter most, all from a single intake.</p>
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
-      <a href="/wellness.html#weight-loss" style="display:block;background:linear-gradient(180deg,#F0FAFB 0%,#FFF 100%);border:1px solid #E2E7EB;border-radius:20px;padding:32px 24px;text-decoration:none;color:#1A1A1A;transition:all 0.25s;position:relative;overflow:hidden" onmouseover="this.style.borderColor='#00B4C5';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 40px rgba(0,180,197,0.15)'" onmouseout="this.style.borderColor='#E2E7EB';this.style.transform='translateY(0)';this.style.boxShadow='none'">
-        <div style="font-size:48px;margin-bottom:18px;line-height:1">💉</div>
-        <div style="font-size:11px;font-weight:700;color:#00B4C5;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px">Weight Loss</div>
-        <h3 style="font-size:20px;font-weight:700;margin-bottom:8px;line-height:1.2">Compounded &amp; brand-name GLP-1</h3>
-        <p style="font-size:14px;color:#6B7C8A;line-height:1.55;margin-bottom:18px">Tirzepatide, Semaglutide, Zepbound®, Wegovy®, Foundayo®. Up to 21% body weight loss.</p>
-        <div style="font-size:14px;font-weight:700;color:#00B4C5;display:inline-flex;align-items:center;gap:6px">Explore weight loss <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-        <div style="position:absolute;top:18px;right:18px;background:#00B4C5;color:white;font-size:10px;font-weight:700;padding:4px 10px;border-radius:100px;text-transform:uppercase;letter-spacing:0.06em">Most Popular</div>
+    <div class="vgrid">
+      <!-- Weight Loss (teal) -->
+      <a href="/weight-loss.html" class="vcard vc-glp">
+        <div class="vfx"></div>
+        <img class="vshape" src="/preview/v5/img/tirzepatide.png" alt="">
+        <div class="vbody">
+          <div class="vlabel">Weight Loss</div>
+          <h3 class="vtitle">Compounded &amp; brand-name <span class="vserif">GLP-1.</span></h3>
+          <p class="vdesc">Tirzepatide, Semaglutide, Zepbound, Mounjaro, Ozempic, Wegovy, Foundayo. Up to 21% body weight loss in clinical trials.</p>
+          <span class="vcta">Explore weight loss →</span>
+        </div>
       </a>
 
-      <a href="/wellness.html#wellness" style="display:block;background:linear-gradient(180deg,#FAF5FF 0%,#FFF 100%);border:1px solid #E2E7EB;border-radius:20px;padding:32px 24px;text-decoration:none;color:#1A1A1A;transition:all 0.25s;position:relative" onmouseover="this.style.borderColor='#9333EA';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 40px rgba(147,51,234,0.12)'" onmouseout="this.style.borderColor='#E2E7EB';this.style.transform='translateY(0)';this.style.boxShadow='none'">
-        <div style="font-size:48px;margin-bottom:18px;line-height:1">🧬</div>
-        <div style="font-size:11px;font-weight:700;color:#9333EA;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px">Daily Wellness</div>
-        <h3 style="font-size:20px;font-weight:700;margin-bottom:8px;line-height:1.2">Longevity &amp; energy</h3>
-        <p style="font-size:14px;color:#6B7C8A;line-height:1.55;margin-bottom:18px">Sermorelin, NAD+, Glutathione, Lipo-Mino. Sleep, recovery, cellular energy, healthy aging.</p>
-        <div style="font-size:14px;font-weight:700;color:#9333EA;display:inline-flex;align-items:center;gap:6px">Explore wellness <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      <!-- Daily Wellness (chrome/blue) -->
+      <a href="/wellness.html" class="vcard vc-well">
+        <div class="vfx"></div>
+        <img class="vshape" src="/preview/v5/img/sermorelin.png" alt="">
+        <div class="vbody">
+          <div class="vlabel">Daily Wellness</div>
+          <h3 class="vtitle"><span class="vserif">Longevity</span> &amp; energy.</h3>
+          <p class="vdesc">Sermorelin, NAD+, Glutathione, Lipo-Mino. Sleep, recovery, cellular health.</p>
+          <span class="vcta">Explore wellness →</span>
+        </div>
       </a>
 
-      <a href="/sexual-health.html" style="display:block;background:linear-gradient(180deg,#FFF5F5 0%,#FFF 100%);border:1px solid #E2E7EB;border-radius:20px;padding:32px 24px;text-decoration:none;color:#1A1A1A;transition:all 0.25s;position:relative" onmouseover="this.style.borderColor='#E11D48';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 40px rgba(225,29,72,0.12)'" onmouseout="this.style.borderColor='#E2E7EB';this.style.transform='translateY(0)';this.style.boxShadow='none'">
-        <div style="font-size:48px;margin-bottom:18px;line-height:1">🌹</div>
-        <div style="font-size:11px;font-weight:700;color:#E11D48;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px">Sexual Health</div>
-        <h3 style="font-size:20px;font-weight:700;margin-bottom:8px;line-height:1.2">Performance &amp; libido</h3>
-        <p style="font-size:14px;color:#6B7C8A;line-height:1.55;margin-bottom:18px">Tadalafil, Sildenafil, PT-141, combo ODTs. ED treatment and libido support. Discreet packaging.</p>
-        <div style="font-size:14px;font-weight:700;color:#E11D48;display:inline-flex;align-items:center;gap:6px">Explore sexual health <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      <!-- Sexual Health (rose) -->
+      <a href="/sexual-health.html" class="vcard vc-sex">
+        <div class="vfx"></div>
+        <img class="vshape vshape-pill" src="/preview/v5/img/pill-tadalafil-tad25.png" alt="">
+        <div class="vbody">
+          <div class="vlabel">Sexual Health</div>
+          <h3 class="vtitle">Performance, <span class="vserif">privately.</span></h3>
+          <p class="vdesc">Tadalafil, Sildenafil gummy, PT-141, combo ODTs. Discreet packaging.</p>
+          <span class="vcta">Explore sexual health →</span>
+        </div>
       </a>
 
-      <a href="/ivermectin.html" style="display:none" data-paused="ivermectin-2026-05-27"></a>
+      <!-- Protocols (green) -->
+      <a href="/ivermectin.html" class="vcard vc-proto">
+        <div class="vfx"></div>
+        <div class="vbody">
+          <div class="vlabel">Protocols</div>
+          <h3 class="vtitle">Antiparasitic <span class="vserif">protocols.</span></h3>
+          <p class="vdesc">Ivermectin and Mebendazole/Ivermectin packages.</p>
+          <span class="vcta">Explore protocols →</span>
+        </div>
+      </a>
     </div>
-
-    <style>
-      @media (max-width:1024px) {
-        #categories > div > div:nth-child(2) { grid-template-columns:repeat(2,1fr) !important; }
-      }
-      @media (max-width:640px) {
-        #categories > div > div:nth-child(2) { grid-template-columns:1fr !important; }
-        #categories { padding:60px 20px !important; }
-      }
-    </style>
   </div>
 </section>
 
