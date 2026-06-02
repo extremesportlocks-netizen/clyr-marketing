@@ -1088,7 +1088,7 @@ function renderRefillSummaryForTreatment(tx){
 // Treatments tab — the layout is identical so we don't fork the HTML.
 function renderTreatmentCardHtml(tx){
   const planLabel=({monthly:'Monthly','3month':'3 months','6month':'6 months'})[tx.plan]||tx.plan||'';
-  const img=tx.productImage||'/img/vial-tirzepatide.svg';
+  const img=tx.productImage||'/img/vial-tirzepatide-new.png';
   const cancelPending=!!tx.cancelAt;
   const productKey=escapeAttr(tx.product||'');
   return `
