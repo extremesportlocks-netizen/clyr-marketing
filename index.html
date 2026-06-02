@@ -299,6 +299,14 @@
     100%   { opacity: 0; transform: translateY(-100%); }
   }
 
+  @keyframes rotateWordsFade {
+    0%   { opacity: 0; }
+    4%   { opacity: 1; }
+    30%  { opacity: 1; }
+    36%  { opacity: 0; }
+    100% { opacity: 0; }
+  }
+
   .hero-sub {
     font-size: 18px;
     line-height: 1.65;
@@ -1109,12 +1117,8 @@
     /* mobile: headline wraps, so the slide animation mis-positions the word.
        Robust fix: all words absolutely stacked + centered, opacity crossfade,
        wrapper width held by the widest word via an invisible sizer. */
-    .hero h1 .rotating-wrapper { display: inline-block; position: relative; overflow: visible; vertical-align: baseline; height: auto; min-width: 0; line-height: 1.1; }
-    .hero h1 .rotating-wrapper::before { content: "effortless."; visibility: hidden; font-family: var(--serif); font-style: italic; font-weight: 400; white-space: nowrap; }
-    .hero h1 .rotating-word { position: absolute; left: 0; right: 0; top: 0; text-align: center; transform: none !important; white-space: nowrap; animation: rotateWordsFade 9s ease-in-out infinite; padding-bottom: 0; line-height: 1.1; }
-    @keyframes rotateWordsFade {
-      0% { opacity: 0; } 4% { opacity: 1; } 30% { opacity: 1; } 36% { opacity: 0; } 100% { opacity: 0; }
-    }
+    .hero h1 .rotating-wrapper { display: inline-block !important; position: relative !important; overflow: visible !important; vertical-align: baseline !important; height: auto !important; min-width: 110px !important; line-height: 1.1 !important; }
+    .hero h1 .rotating-word { position: absolute !important; left: 0 !important; right: 0 !important; top: 0 !important; text-align: center !important; transform: none !important; white-space: nowrap !important; animation: rotateWordsFade 9s ease-in-out infinite !important; padding-bottom: 0 !important; line-height: 1.1 !important; }
     .hero-actions { flex-direction: column; }
     .hero-proof { flex-direction: column; gap: 10px; }
     .hero-proof-divider { display: none; }
