@@ -2377,15 +2377,29 @@ async function showClinicalScreening(productKey, planType){
 
     <div style="font-size:13px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.06em;margin:18px 0 10px">Allergies and medications</div>
 
-    <div style="margin-bottom:10px">
-      <label style="display:block;font-size:13px;font-weight:600;color:var(--gray-700);margin-bottom:6px">Drug allergies</label>
-      <textarea id="scrAllergies" placeholder='List any drug allergies, or write "None"' style="width:100%;padding:10px;border-radius:10px;border:1.5px solid var(--gray-100);font-family:inherit;font-size:14px;resize:vertical;min-height:60px">${escapeHtml(allergiesPrefill)}</textarea>
+    <div class="screen-q" data-qid="hasAllergies" data-kind="reveal" style="background:white;border:1px solid var(--gray-100);border-radius:12px;padding:14px;margin-bottom:8px">
+      <div style="font-size:14px;font-weight:600;color:var(--gray-700);margin-bottom:10px;line-height:1.4">Do you have any drug allergies?</div>
+      <div style="display:flex;gap:8px">
+        <button type="button" class="yn-btn" data-val="yes" style="flex:1;padding:10px;border-radius:10px;border:1.5px solid var(--gray-100);background:white;font-weight:600;font-size:14px;cursor:pointer;font-family:inherit">Yes</button>
+        <button type="button" class="yn-btn" data-val="no" style="flex:1;padding:10px;border-radius:10px;border:1.5px solid var(--gray-100);background:white;font-weight:600;font-size:14px;cursor:pointer;font-family:inherit">No</button>
+      </div>
+      <div id="scrAllergiesReveal" style="display:none;margin-top:10px">
+        <textarea id="scrAllergies" placeholder="Please list your drug allergies" style="width:100%;padding:10px;border-radius:10px;border:1.5px solid var(--gray-100);font-family:inherit;font-size:14px;resize:vertical;min-height:60px">${escapeHtml(allergiesPrefill)}</textarea>
+      </div>
     </div>
-    <div style="margin-bottom:10px">
-      <label style="display:block;font-size:13px;font-weight:600;color:var(--gray-700);margin-bottom:6px">Current medications, supplements, and dosages</label>
-      <textarea id="scrMeds" placeholder='List everything you take, or write "None"' style="width:100%;padding:10px;border-radius:10px;border:1.5px solid var(--gray-100);font-family:inherit;font-size:14px;resize:vertical;min-height:60px">${escapeHtml(medsPrefill)}</textarea>
+
+    <div class="screen-q" data-qid="hasMeds" data-kind="reveal" style="background:white;border:1px solid var(--gray-100);border-radius:12px;padding:14px;margin-bottom:8px">
+      <div style="font-size:14px;font-weight:600;color:var(--gray-700);margin-bottom:10px;line-height:1.4">Do you take any medications, supplements, or vitamins?</div>
+      <div style="display:flex;gap:8px">
+        <button type="button" class="yn-btn" data-val="yes" style="flex:1;padding:10px;border-radius:10px;border:1.5px solid var(--gray-100);background:white;font-weight:600;font-size:14px;cursor:pointer;font-family:inherit">Yes</button>
+        <button type="button" class="yn-btn" data-val="no" style="flex:1;padding:10px;border-radius:10px;border:1.5px solid var(--gray-100);background:white;font-weight:600;font-size:14px;cursor:pointer;font-family:inherit">No</button>
+      </div>
+      <div id="scrMedsReveal" style="display:none;margin-top:10px">
+        <textarea id="scrMeds" placeholder="Please list everything you take, with dosages if known" style="width:100%;padding:10px;border-radius:10px;border:1.5px solid var(--gray-100);font-family:inherit;font-size:14px;resize:vertical;min-height:60px">${escapeHtml(medsPrefill)}</textarea>
+      </div>
     </div>
-    <div style="margin-bottom:18px">
+
+    <div style="margin:8px 0 18px">
       <label style="display:block;font-size:13px;font-weight:600;color:var(--gray-700);margin-bottom:6px">Anything else for your provider? <span style="color:var(--gray-500);font-weight:400">(optional)</span></label>
       <textarea id="scrDoctorMessage" placeholder="Concerns, prior experiences, dosing preferences, or anything you'd like the provider to know" style="width:100%;padding:10px;border-radius:10px;border:1.5px solid var(--gray-100);font-family:inherit;font-size:14px;resize:vertical;min-height:50px"></textarea>
     </div>
@@ -2393,20 +2407,15 @@ async function showClinicalScreening(productKey, planType){
     <button id="btnScreeningSubmit" class="btn btn-primary" style="width:100%;padding:14px" disabled>Answer all questions</button>
     <button class="btn btn-secondary" style="width:100%;margin-top:8px" onclick="closeProductDetail()">Cancel</button>`;
 
-  // Track selections per question; require every blocker + soft answered.
+  // Track selections per question; require every blocker + soft answered,
+  // plus the two reveal questions (allergies / meds).
   const answers = {};  // { qid: 'yes' | 'no' }
-  const totalRequired = config.blockers.length + config.soft.length;
+  const REVEAL_QIDS = ['hasAllergies', 'hasMeds'];
+  const totalRequired = config.blockers.length + config.soft.length + REVEAL_QIDS.length;
 
-  // For wellness (zero yes/no questions, just allergies + meds), there's
-  // nothing to answer — enable the submit button immediately so the patient
-  // isn't stuck on a "Answer all questions" CTA with nothing to click.
-  if (totalRequired === 0) {
-    const submitBtn = $('btnScreeningSubmit');
-    if (submitBtn) {
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Continue to payment';
-    }
-  }
+  // Every screening now has at least the two reveal questions, so the submit
+  // button always starts disabled until they're answered (handled by the
+  // click + input listeners below).
 
   document.querySelectorAll('#productDetailBody .yn-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -2421,9 +2430,18 @@ async function showClinicalScreening(productKey, planType){
         b.style.background = isPicked ? 'rgba(43,188,179,0.06)' : 'white';
         b.style.color = isPicked ? 'var(--teal)' : 'var(--gray-700)';
       });
+      // Reveal questions: show the textarea when "yes", hide + clear when "no".
+      if (row.dataset.kind === 'reveal') {
+        const revealId = qid === 'hasAllergies' ? 'scrAllergiesReveal' : 'scrMedsReveal';
+        const taId = qid === 'hasAllergies' ? 'scrAllergies' : 'scrMeds';
+        const reveal = $(revealId);
+        if (reveal) reveal.style.display = (val === 'yes') ? 'block' : 'none';
+        if (val === 'no') { const ta = $(taId); if (ta) ta.value = ''; }
+        if (val === 'yes') { const ta = $(taId); if (ta) setTimeout(() => ta.focus(), 50); }
+      }
       // Update submit button state.
       const submitBtn = $('btnScreeningSubmit');
-      if (Object.keys(answers).length >= totalRequired) {
+      if (validateScreening()) {
         submitBtn.disabled = false;
         submitBtn.textContent = 'Continue to payment';
       } else {
@@ -2432,6 +2450,26 @@ async function showClinicalScreening(productKey, planType){
       }
     });
   });
+
+  // Also re-validate when a revealed textarea is typed into (a "yes" answer
+  // needs non-empty text to be considered complete).
+  ['scrAllergies', 'scrMeds'].forEach(id => {
+    const ta = $(id);
+    if (ta) ta.addEventListener('input', () => {
+      const submitBtn = $('btnScreeningSubmit');
+      if (validateScreening()) { submitBtn.disabled = false; submitBtn.textContent = 'Continue to payment'; }
+      else { submitBtn.disabled = true; submitBtn.textContent = 'Answer all questions'; }
+    });
+  });
+
+  // Validation: every blocker + soft + reveal answered; and if a reveal is
+  // "yes", its textarea must be non-empty.
+  function validateScreening() {
+    if (Object.keys(answers).length < totalRequired) return false;
+    if (answers.hasAllergies === 'yes' && !($('scrAllergies')?.value || '').trim()) return false;
+    if (answers.hasMeds === 'yes' && !($('scrMeds')?.value || '').trim()) return false;
+    return true;
+  }
 
   $('btnScreeningSubmit').addEventListener('click', async () => {
     // Split answers back into blocker/soft buckets for the backend payload.
@@ -2454,8 +2492,8 @@ async function showClinicalScreening(productKey, planType){
       vertical,
       blockers: blockerAnswers,
       soft: softAnswers,
-      allergies: ($('scrAllergies').value || '').trim(),
-      medications: ($('scrMeds').value || '').trim(),
+      allergies: answers.hasAllergies === 'yes' ? ($('scrAllergies').value || '').trim() : 'None',
+      medications: answers.hasMeds === 'yes' ? ($('scrMeds').value || '').trim() : 'None',
       doctorMessage: ($('scrDoctorMessage')?.value || '').trim()
     };
     track('portal_screening_passed', { product: productKey, plan: planType, vertical, soft_yes_count: Object.values(softAnswers).filter(v => v === 'yes').length });
