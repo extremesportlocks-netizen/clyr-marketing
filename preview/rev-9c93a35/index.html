@@ -1,0 +1,2688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://www.clyr.health/">
+<meta property="og:title" content="CLYR Health — Prescription Healthcare, Simplified">
+<meta property="og:description" content="Compounded Semaglutide and Tirzepatide with B12. Provider-supervised weight loss starting at $149/mo. No hidden fees. Ships to 47 states.">
+<meta property="og:url" content="https://www.clyr.health">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CLYR Health">
+<meta property="og:image" content="https://www.clyr.health/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CLYR Health — Prescription Healthcare, Simplified">
+<meta name="twitter:description" content="Compounded Semaglutide and Tirzepatide with B12. Provider-supervised weight loss starting at $149/mo. No hidden fees. Ships to 47 states.">
+<meta name="twitter:image" content="https://www.clyr.health/og-image.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLYR Health — Weight Loss, Wellness, Sexual Health, and Protocol Rx</title>
+<meta name="description" content="Compounded Semaglutide and Tirzepatide with B12. Provider-supervised weight loss. No hidden fees. No gimmicks.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white: #FFFFFF;
+    --black: #0A0A0A;
+    --dark: #1A1A1A;
+    --teal: #00B4C5;
+    --teal-dark: #009BAA;
+    --teal-light: #E0F7FA;
+    --teal-glow: rgba(0, 180, 197, 0.12);
+    --gray-50: #F8FAFB;
+    --gray-100: #F1F4F6;
+    --gray-200: #E2E7EB;
+    --gray-400: #94A3B0;
+    --gray-500: #6B7C8A;
+    --gray-600: #4A5568;
+    --gray-800: #2D3748;
+    --serif: 'Instrument Serif', Georgia, serif;
+    --sans: 'DM Sans', -apple-system, sans-serif;
+    --radius: 16px;
+    --radius-sm: 10px;
+    --radius-lg: 24px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 20px rgba(0,0,0,0.06);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.08);
+    --shadow-teal: 0 8px 30px rgba(0,180,197,0.2);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+  body {
+    font-family: var(--sans);
+    color: var(--dark);
+    background: var(--white);
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* ============================================
+     ANNOUNCEMENT BAR
+     ============================================ */
+  .announcement {
+    background: var(--dark);
+    color: var(--white);
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .announcement strong { color: var(--teal); }
+
+  /* ============================================
+     NAVIGATION
+     ============================================ */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding: 0 40px;
+    transition: box-shadow 0.3s;
+  }
+  .nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+  .nav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+  .nav-logo { height: 32px; }
+  .nav-links { display: flex; align-items: center; gap: 36px; }
+  .nav-links a {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--gray-600);
+    text-decoration: none;
+    transition: color 0.2s;
+    letter-spacing: -0.01em;
+  }
+  .nav-links a:hover { color: var(--dark); }
+  .nav-cta {
+    background: var(--teal) !important;
+    color: var(--white) !important;
+    padding: 10px 28px !important;
+    border-radius: 100px !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    transition: all 0.25s !important;
+    letter-spacing: 0.01em;
+  }
+  .nav-cta:hover { background: var(--teal-dark) !important; transform: translateY(-1px); box-shadow: var(--shadow-teal); }
+  .nav-portal {
+    border: 1.5px solid var(--teal) !important;
+    color: var(--teal) !important;
+    padding: 9px 22px !important;
+    border-radius: 100px !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    transition: all 0.2s;
+    text-decoration: none !important;
+  }
+  .nav-portal:hover { background: rgba(43, 188, 179, 0.08) !important; transform: translateY(-1px); }
+
+  .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+  .mobile-menu-btn span { display: block; width: 22px; height: 2px; background: var(--dark); margin: 5px 0; transition: 0.3s; border-radius: 2px; }
+
+  /* ============================================
+     HERO SECTION
+     ============================================ */
+  .hero {
+    position: relative;
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+    padding: 60px 40px 80px;
+    overflow: hidden;
+    background: linear-gradient(175deg, var(--white) 0%, var(--gray-50) 50%, var(--teal-light) 100%);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 700px;
+    height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,180,197,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    left: -100px;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,180,197,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 48px;
+    align-items: center;
+    justify-items: start;
+    text-align: left;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-content { max-width: 600px; }
+
+  /* ===== floating vial composition ===== */
+  .hero-visual {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-disc {
+    position: absolute;
+    width: 86%;
+    height: 86%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 42% 38%, rgba(224,247,250,0.95) 0%, rgba(204,251,241,0.6) 45%, rgba(224,247,250,0.0) 72%);
+    filter: blur(2px);
+  }
+  .hero-float {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    filter: drop-shadow(0 22px 30px rgba(15,40,60,0.20));
+    animation: heroFloat 7s ease-in-out infinite;
+  }
+  .hero-float img { display: block; width: 100%; height: auto; }
+  /* four anchored, well-spaced products inside the disc (left/top = CENTER) */
+  .hf-tirz   { width: 27%; left: 44%; top: 40%; animation-delay: 0s;   z-index: 3; }
+  .hf-serm   { width: 18%; left: 74%; top: 30%; animation-delay: 1.2s; z-index: 2; }
+  .hf-nad    { width: 16%; left: 22%; top: 52%; animation-delay: 2.1s; z-index: 2; }
+  .hf-pill   { width: 25%; left: 58%; top: 70%; animation-delay: 0.6s; z-index: 4; }
+  @keyframes heroFloat {
+    0%,100% { transform: translate(-50%, -50%) translateY(0); }
+    50%     { transform: translate(-50%, -50%) translateY(-12px); }
+  }
+  @media (prefers-reduced-motion: reduce) { .hero-float { animation: none; } }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: 100px;
+    padding: 8px 18px 8px 10px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-600);
+    margin-bottom: 28px;
+    animation: fadeInUp 0.8s ease-out;
+  }
+  .hero-badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22C55E;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .hero h1 {
+    font-family: var(--sans);
+    font-size: clamp(42px, 5vw, 64px);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: var(--dark);
+    margin-bottom: 24px;
+    animation: fadeInUp 0.8s ease-out 0.1s both;
+  }
+  .hero h1 .serif-word {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--teal);
+  }
+  .hero h1 .rotating-wrapper {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    vertical-align: bottom;
+    height: 1.1em;
+    min-width: 200px;
+  }
+  .hero h1 .rotating-word {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    transform: translateY(100%);
+    animation: rotateWords 9s ease-in-out infinite;
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--teal);
+  }
+  .hero h1 .rotating-word:nth-child(2) { animation-delay: 3s; }
+  .hero h1 .rotating-word:nth-child(3) { animation-delay: 6s; }
+
+  @keyframes rotateWords {
+    0%     { opacity: 0; transform: translateY(100%); }
+    5%     { opacity: 1; transform: translateY(0); }
+    30%    { opacity: 1; transform: translateY(0); }
+    35%    { opacity: 0; transform: translateY(-100%); }
+    100%   { opacity: 0; transform: translateY(-100%); }
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--gray-500);
+    margin-bottom: 36px;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 48px;
+    animation: fadeInUp 0.8s ease-out 0.3s both;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--teal);
+    color: var(--white);
+    padding: 16px 36px;
+    border-radius: 100px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+    letter-spacing: -0.01em;
+  }
+  .btn-primary:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: var(--shadow-teal); }
+  .btn-primary svg { transition: transform 0.3s; }
+  .btn-primary:hover svg { transform: translateX(3px); }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--dark);
+    padding: 16px 28px;
+    border-radius: 100px;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s;
+    border: 1.5px solid var(--gray-200);
+  }
+  .btn-secondary:hover { border-color: var(--gray-400); background: var(--gray-50); }
+
+  .hero-proof {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    animation: fadeInUp 0.8s ease-out 0.4s both;
+  }
+  .hero-proof-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--gray-500);
+  }
+  .hero-proof-item svg { flex-shrink: 0; }
+  .hero-proof-divider { width: 1px; height: 24px; background: var(--gray-200); }
+
+
+  /* ============================================
+     TRUST BAR
+     ============================================ */
+  .trust-bar {
+    background: var(--white);
+    border-top: 1px solid var(--gray-100);
+    border-bottom: 1px solid var(--gray-100);
+    padding: 32px 40px;
+  }
+  .trust-bar-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gray-500);
+  }
+  .trust-item svg { flex-shrink: 0; color: var(--teal); }
+  .trust-divider { width: 1px; height: 28px; background: var(--gray-200); }
+
+  /* ============================================
+     HOW IT WORKS
+     ============================================ */
+  .how-it-works {
+    padding: 100px 40px;
+    background: var(--white);
+  }
+  .section-inner { max-width: 1280px; margin: 0 auto; }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--teal);
+    margin-bottom: 16px;
+  }
+  .section-heading {
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--dark);
+    margin-bottom: 20px;
+  }
+  .section-heading .serif-word {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--teal);
+  }
+  .section-subtext {
+    font-size: 17px;
+    color: var(--gray-500);
+    max-width: 520px;
+    line-height: 1.6;
+    margin-bottom: 56px;
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+  }
+  .step-card {
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 20px;
+    padding: 32px 26px;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid rgba(0, 180, 197, 0.1);
+  }
+  .step-card:hover {
+    border-color: rgba(0,180,197,0.3);
+    box-shadow: 0 16px 48px rgba(0, 180, 197, 0.1), 0 4px 12px rgba(0,0,0,0.03);
+    transform: translateY(-5px);
+  }
+  .step-number {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(0,180,197,0.12), rgba(0,136,204,0.08));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--teal);
+    margin-bottom: 18px;
+  }
+  .step-card h3 {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
+  }
+  .step-card p {
+    font-size: 15px;
+    color: var(--gray-500);
+    line-height: 1.55;
+  }
+
+  /* ============================================
+     TREATMENTS / PRODUCTS
+     ============================================ */
+  .treatments {
+    padding: 100px 40px;
+    background: var(--gray-50);
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .product-card {
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 20px;
+    padding: 36px 32px 32px;
+    border: 1px solid rgba(0, 180, 197, 0.1);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  .product-card:hover {
+    border-color: rgba(0,180,197,0.3);
+    box-shadow: 0 20px 60px rgba(0, 180, 197, 0.12), 0 4px 16px rgba(0,0,0,0.04);
+    transform: translateY(-6px);
+  }
+  .product-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--teal), #0088cc, var(--teal-dark));
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .product-card:hover::before { opacity: 1; }
+
+  .product-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #fff;
+    background: linear-gradient(135deg, var(--teal), #0088cc);
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 2px 8px rgba(0, 180, 197, 0.3);
+  }
+  .product-name {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--dark);
+    letter-spacing: -0.03em;
+    margin-bottom: 4px;
+  }
+  .product-compound {
+    font-size: 13px;
+    color: var(--gray-400);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+
+  .product-includes {
+    border-top: 1px solid rgba(0, 180, 197, 0.08);
+    padding-top: 18px;
+    margin-bottom: 24px;
+  }
+  .product-includes-title {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--teal);
+    margin-bottom: 14px;
+  }
+  .product-includes li {
+    list-style: none;
+    font-size: 13.5px;
+    color: var(--gray-600);
+    padding: 6px 0;
+    padding-left: 26px;
+    position: relative;
+    font-weight: 500;
+  }
+  .product-includes li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 18px;
+    height: 18px;
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--teal);
+    background: rgba(0, 180, 197, 0.08);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 18px;
+    text-align: center;
+  }
+
+  .product-pricing {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+  .product-price {
+    font-size: 42px;
+    font-weight: 800;
+    color: var(--dark);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .product-price-period {
+    font-size: 15px;
+    color: var(--gray-400);
+    font-weight: 500;
+  }
+  .product-price-note {
+    font-size: 12px;
+    color: var(--gray-400);
+    font-weight: 500;
+  }
+
+  .product-cta {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--teal), #009BAA);
+    color: var(--white);
+    border: none;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    font-family: var(--sans);
+    letter-spacing: 0.01em;
+    margin-top: 20px;
+    box-shadow: 0 4px 14px rgba(0, 180, 197, 0.25);
+  }
+  .product-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 180, 197, 0.35);
+    background: linear-gradient(135deg, #00c4d6, var(--teal-dark));
+  }
+
+  /* ============================================
+     PRICING TIERS
+     ============================================ */
+  .pricing {
+    padding: 100px 40px;
+    background: var(--white);
+  }
+  .pricing .section-heading { text-align: center; }
+  .pricing .section-label { display: flex; justify-content: center; }
+  .pricing .section-subtext { text-align: center; margin-left: auto; margin-right: auto; }
+
+  .pricing-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    background: var(--gray-100);
+    border-radius: 100px;
+    padding: 4px;
+    max-width: 340px;
+    margin: 0 auto 48px;
+  }
+  .pricing-tab {
+    flex: 1;
+    padding: 10px 24px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gray-500);
+    cursor: pointer;
+    transition: all 0.25s;
+    border: none;
+    background: transparent;
+    font-family: var(--sans);
+    text-align: center;
+  }
+  .pricing-tab.active {
+    background: var(--white);
+    color: var(--dark);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .pricing-tiers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .tier-card {
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(0, 180, 197, 0.1);
+    border-radius: 20px;
+    padding: 32px 24px 28px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .tier-card:hover { border-color: rgba(0,180,197,0.3); box-shadow: 0 16px 48px rgba(0,180,197,0.1); transform: translateY(-5px); }
+  .tier-card.popular {
+    border-color: rgba(0,180,197,0.35);
+    background: rgba(255,255,255,0.85);
+    box-shadow: 0 8px 32px rgba(0, 180, 197, 0.08);
+  }
+  .tier-popular-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, var(--teal), #0088cc);
+    color: var(--white);
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 5px 18px;
+    border-radius: 100px;
+    box-shadow: 0 2px 8px rgba(0, 180, 197, 0.3);
+  }
+  .tier-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--gray-600);
+    margin-bottom: 16px;
+  }
+  .tier-price {
+    font-size: 44px;
+    font-weight: 700;
+    color: var(--dark);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .tier-price span { font-size: 16px; font-weight: 400; color: var(--gray-400); }
+  .tier-billing {
+    font-size: 13px;
+    color: var(--gray-400);
+    margin-top: 6px;
+    margin-bottom: 16px;
+    flex-grow: 1;
+  }
+  .tier-savings {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    color: #16A34A;
+    background: #F0FDF4;
+    padding: 4px 12px;
+    border-radius: 100px;
+    margin-bottom: 16px;
+  }
+  .tier-cta {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    border: none;
+    background: linear-gradient(135deg, var(--teal), #009BAA);
+    color: var(--white);
+    font-family: var(--sans);
+    box-shadow: 0 4px 14px rgba(0, 180, 197, 0.25);
+  }
+  .tier-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0, 180, 197, 0.35); background: linear-gradient(135deg, #00c4d6, var(--teal-dark)); }
+  .tier-card.popular .tier-cta {
+    background: linear-gradient(135deg, var(--teal), #0088cc);
+    box-shadow: 0 4px 16px rgba(0, 180, 197, 0.3);
+  }
+  .tier-card.popular .tier-cta:hover { background: linear-gradient(135deg, #00c4d6, #0077b3); }
+
+  /* ============================================
+     FEATURES / WHAT'S INCLUDED
+     ============================================ */
+  .features {
+    padding: 100px 40px;
+    background: var(--gray-50);
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .feature-card {
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 20px;
+    padding: 32px 26px;
+    border: 1px solid rgba(0, 180, 197, 0.1);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .feature-card:hover { border-color: rgba(0,180,197,0.3); box-shadow: 0 16px 48px rgba(0,180,197,0.1); transform: translateY(-5px); }
+  .feature-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(0,180,197,0.12), rgba(0,136,204,0.08));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+    color: var(--teal);
+  }
+  .feature-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+  .feature-card p {
+    font-size: 15px;
+    color: var(--gray-500);
+    line-height: 1.55;
+  }
+
+  /* ============================================
+     FAQ
+     ============================================ */
+  .faq {
+    padding: 100px 40px;
+    background: var(--white);
+  }
+  .faq-grid {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .faq-item {
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .faq-question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: var(--sans);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--dark);
+    transition: color 0.2s;
+  }
+  .faq-question:hover { color: var(--teal); }
+  .faq-question svg { flex-shrink: 0; margin-left: 16px; transition: transform 0.3s; color: var(--gray-400); }
+  .faq-item.open .faq-question svg { transform: rotate(45deg); color: var(--teal); }
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+  }
+  .faq-item.open .faq-answer { max-height: 300px; }
+  .faq-answer p {
+    padding-bottom: 24px;
+    font-size: 15px;
+    color: var(--gray-500);
+    line-height: 1.65;
+  }
+
+  /* ============================================
+     CTA SECTION
+     ============================================ */
+  .cta-section {
+    padding: 100px 40px;
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,180,197,0.1) 0%, transparent 70%);
+  }
+  .cta-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+  .cta-section h2 {
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .cta-section h2 .serif-word {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--teal);
+  }
+  .cta-section p {
+    font-size: 17px;
+    color: var(--gray-400);
+    margin-bottom: 36px;
+    line-height: 1.6;
+  }
+  .cta-section .btn-primary {
+    padding: 18px 44px;
+    font-size: 17px;
+  }
+
+  /* ============================================
+     FOOTER
+     ============================================ */
+  .footer {
+    background: var(--black);
+    padding: 60px 40px 36px;
+    color: var(--gray-400);
+  }
+  .footer-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .footer-brand-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--gray-500);
+    max-width: 280px;
+    margin-top: 16px;
+  }
+  .footer-col h4 {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gray-400);
+    margin-bottom: 16px;
+  }
+  .footer-col a {
+    display: block;
+    font-size: 14px;
+    color: var(--gray-500);
+    text-decoration: none;
+    padding: 5px 0;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--white); }
+
+  .footer-bottom {
+    padding-top: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-bottom p {
+    font-size: 13px;
+    color: var(--gray-500);
+  }
+  .footer-legal {
+    display: flex;
+    gap: 24px;
+  }
+  .footer-legal a {
+    font-size: 13px;
+    color: var(--gray-500);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-legal a:hover { color: var(--white); }
+
+  .footer-disclaimer {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    font-size: 11px;
+    line-height: 1.7;
+    color: var(--gray-500);
+    opacity: 0.7;
+  }
+
+  .footer-seals {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  .footer-seals a { display: inline-block; opacity: 0.85; transition: opacity 0.2s; }
+  .footer-seals a:hover { opacity: 1; }
+  .footer-trust {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-top: 24px;
+    margin-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    flex-wrap: wrap;
+  }
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--gray-500);
+  }
+  .trust-icon {
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .trust-icon svg { width: 16px; height: 16px; }
+
+  /* ============================================
+     ANIMATIONS
+     ============================================ */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ============================================
+     RESPONSIVE
+     ============================================ */
+  @media (max-width: 1024px) {
+    .steps-grid { grid-template-columns: repeat(2, 1fr); }
+    .pricing-tiers { grid-template-columns: repeat(2, 1fr); }
+    .features-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 768px) {
+    .nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .mobile-menu-btn { display: block; }
+    .nav.mobile-open .nav-links {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 72px;
+      left: 0;
+      right: 0;
+      background: #FFFFFF;
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+      padding: 24px 20px;
+      gap: 20px;
+      border-bottom: 1px solid var(--gray-200);
+      z-index: 99;
+    }
+    .nav.mobile-open { background: #FFFFFF; }
+    .nav.mobile-open .nav-links a { font-size: 16px; }
+    .nav.mobile-open .mobile-menu-btn span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .nav.mobile-open .mobile-menu-btn span:nth-child(2) { opacity: 0; }
+    .nav.mobile-open .mobile-menu-btn span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .hero { padding: 40px 20px 60px; min-height: auto; }
+    .hero-inner { grid-template-columns: 1fr; text-align: center; justify-items: center; gap: 24px; }
+    .hero-content { max-width: 100%; }
+    .hero-visual { max-width: 340px; margin: 0 auto; }
+    .hero h1 { font-size: 36px; }
+    .hero-actions { flex-direction: column; }
+    .hero-proof { flex-direction: column; gap: 10px; }
+    .hero-proof-divider { display: none; }
+    .trust-bar { padding: 20px; }
+    .trust-bar-inner { gap: 20px; }
+    .trust-divider { display: none; }
+    .how-it-works, .treatments, .pricing, .features, .faq, .cta-section { padding: 60px 20px; }
+    .steps-grid, .products-grid, .pricing-tiers, .features-grid { grid-template-columns: 1fr; }
+    .steps-grid { max-width: 440px; margin: 0 auto; gap: 14px; }
+    .step-card { padding: 24px 20px; border-radius: 16px; }
+    .step-card h3 { font-size: 17px; }
+    .step-card p { font-size: 14px; }
+    .products-grid { gap: 16px; max-width: 440px; }
+    .product-card { padding: 28px 24px 24px; border-radius: 16px; }
+    .product-name { font-size: 22px; }
+    .product-price { font-size: 36px; }
+    .product-cta { padding: 14px; font-size: 14px; border-radius: 12px; }
+    .pricing-tiers { max-width: 440px; margin: 0 auto; gap: 14px; }
+    .tier-card { padding: 28px 20px; border-radius: 16px; }
+    .tier-price { font-size: 38px; }
+    .tier-cta { padding: 13px; border-radius: 12px; }
+    .features-grid { max-width: 440px; margin: 0 auto; gap: 14px; }
+    .feature-card { padding: 24px 20px; border-radius: 16px; }
+    .footer { padding: 40px 20px 28px; }
+    .footer-top { grid-template-columns: 1fr; gap: 28px; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+    .footer-legal { justify-content: center; }
+    .section-heading { font-size: 28px; }
+    .announcement { font-size: 12px; }
+  }
+
+  /* ============================================
+     SCROLL REVEAL ANIMATIONS
+     ============================================ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ============================================
+     ANIMATED STATS BAR
+     ============================================ */
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 56px 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .stat-item {
+    text-align: center;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 180, 197, 0.12);
+    border-radius: 16px;
+    padding: 28px 16px 24px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .stat-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 180, 197, 0.1);
+  }
+  .stat-number {
+    font-size: 38px;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--teal), #0088cc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -1px;
+    line-height: 1.1;
+  }
+  .stat-label {
+    font-size: 13px;
+    color: var(--gray-500);
+    font-weight: 600;
+    margin-top: 8px;
+    letter-spacing: 0.3px;
+  }
+
+  /* ============================================
+     PAYMENT METHOD LOGOS
+     ============================================ */
+  .payment-methods {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 16px 0;
+  }
+  .payment-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(0, 180, 197, 0.1);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gray-600);
+    transition: all 0.25s;
+  }
+  .payment-chip img {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    object-fit: contain;
+  }
+  .payment-chip:hover {
+    border-color: rgba(0,180,197,0.3);
+    background: rgba(0, 180, 197, 0.06);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,180,197,0.08);
+  }
+
+  /* ============================================
+     TRUST BADGES — GLASSMORPHISM CHIPS
+     ============================================ */
+  .trust-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.75);
+    transition: all 0.25s;
+  }
+  .trust-chip:hover {
+    background: rgba(0,180,197,0.08);
+    border-color: rgba(0,180,197,0.2);
+    color: rgba(255,255,255,0.95);
+  }
+  .trust-chip svg {
+    width: 14px;
+    height: 14px;
+    color: var(--teal);
+    flex-shrink: 0;
+  }
+
+  /* ============================================
+     CARD HOVER + BUTTON POLISH
+     ============================================ */
+  .step-card:hover, .feature-card:hover, .tier-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 48px rgba(0, 180, 197, 0.1), 0 4px 12px rgba(0,0,0,0.03);
+  }
+
+  @media (max-width: 768px) {
+    .stats-bar { grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 32px 16px; }
+    .stat-item { padding: 20px 12px 18px; border-radius: 12px; }
+    .stat-number { font-size: 28px; }
+    .payment-methods { gap: 8px; }
+    .payment-chip { padding: 4px 10px; font-size: 11px; }
+    .trust-chip { padding: 6px 12px; font-size: 11px; }
+    .testimonials { padding: 60px 20px; }
+    .testimonial-card { width: 280px; padding: 24px 20px; }
+  }
+
+  /* ============================================
+     COMPARISON TABLE
+     ============================================ */
+  .compare-wrap {
+    margin-top: 72px;
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .compare-heading {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .compare-heading h3 {
+    font-size: clamp(26px, 3vw, 36px);
+    font-weight: 700;
+    color: var(--dark, #1a1a2e);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  .compare-heading h3 .serif-word {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--teal);
+  }
+  .compare-cols {
+    display: grid;
+    grid-template-columns: 180px 1fr 1fr;
+    gap: 0;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--gray-200, #E2E7EB);
+    background: var(--white);
+    box-shadow: 0 4px 32px rgba(0,0,0,0.04);
+  }
+  .compare-cols .col-header {
+    padding: 20px 24px;
+    font-size: 14px;
+    font-weight: 700;
+    background: var(--dark, #1a1a2e);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+  }
+  .compare-cols .col-header:first-child {
+    color: var(--teal);
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .compare-row {
+    display: contents;
+  }
+  .compare-row > div {
+    padding: 18px 24px;
+    font-size: 14px;
+    color: var(--gray-600, #4A5568);
+    border-bottom: 1px solid var(--gray-100, #F1F4F6);
+    line-height: 1.55;
+    transition: background 0.2s, color 0.2s;
+  }
+  .compare-row:last-child > div { border-bottom: none; }
+  .compare-row > div:first-child {
+    font-weight: 600;
+    color: var(--dark, #1a1a2e);
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    background: var(--gray-50, #F8FAFB);
+    border-right: 1px solid var(--gray-100, #F1F4F6);
+  }
+  .compare-row:hover > div {
+    background: rgba(43, 188, 179, 0.04);
+  }
+  .compare-row:hover > div:first-child {
+    background: rgba(43, 188, 179, 0.08);
+    color: var(--teal-dark, #009BAA);
+  }
+  .compare-row > div:nth-child(2) {
+    border-right: 1px solid var(--gray-100, #F1F4F6);
+  }
+  .compare-val-highlight {
+    font-weight: 600;
+    color: var(--teal);
+  }
+
+  /* Stacked mobile cards — hidden on desktop */
+  .compare-stacked { display: none; }
+  .compare-stack-card {
+    border: 1px solid var(--gray-200, #E2E7EB);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background: var(--white);
+    box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+  }
+  .compare-stack-header {
+    background: var(--dark, #1a1a2e);
+    padding: 24px 20px;
+  }
+  .compare-stack-badge {
+    display: inline-block;
+    padding: 5px 14px;
+    border-radius: 100px;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #fff;
+    background: linear-gradient(135deg, var(--teal), #0088cc);
+    margin-bottom: 10px;
+  }
+  .compare-stack-header h4 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.02em;
+  }
+  .compare-stack-body { padding: 4px 0; }
+  .compare-stack-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    font-size: 15px;
+    border-bottom: 1px solid var(--gray-100, #F1F4F6);
+  }
+  .compare-stack-row:last-child { border-bottom: none; }
+  .compare-stack-row > span:first-child {
+    font-weight: 600;
+    color: var(--dark, #1a1a2e);
+    font-size: 14px;
+  }
+  .compare-stack-row > span:last-child,
+  .compare-stack-row > strong {
+    text-align: right;
+    color: var(--gray-600, #4A5568);
+    font-size: 15px;
+  }
+  .compare-stack-cta {
+    display: block;
+    margin: 4px 20px 20px;
+    padding: 14px 24px;
+    border-radius: 100px;
+    background: var(--teal);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.25s, box-shadow 0.25s;
+  }
+  .compare-stack-cta:hover {
+    background: var(--teal-dark);
+    box-shadow: 0 6px 24px rgba(0,180,197,0.25);
+  }
+
+  @media (max-width: 768px) {
+    .compare-cols { grid-template-columns: 120px 1fr 1fr; border-radius: 14px; }
+    .compare-cols .col-header { padding: 16px 14px; font-size: 13px; }
+    .compare-row > div { padding: 14px 14px; font-size: 13px; }
+    .compare-wrap { margin-top: 48px; }
+  }
+  @media (max-width: 480px) {
+    .compare-cols { display: none; }
+    .compare-stacked { display: block; margin-top: 0; }
+  }
+
+  /* ============================================
+     SCROLLING TRUST MARQUEE
+     ============================================ */
+  .marquee-section {
+    padding: 28px 0;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    background: var(--gray-50);
+  }
+  .marquee-track {
+    display: flex;
+    gap: 12px;
+    animation: marquee-scroll 50s linear infinite;
+    width: max-content;
+  }
+  .marquee-track:hover { animation-play-state: paused; }
+  .marquee-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 100px;
+    background: var(--white);
+    border: 1px solid rgba(0,0,0,0.06);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-600);
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .marquee-chip:hover {
+    border-color: var(--teal);
+    box-shadow: 0 2px 12px rgba(0,180,197,0.12);
+  }
+  .marquee-chip svg { width: 16px; height: 16px; color: var(--teal); flex-shrink: 0; }
+  @keyframes marquee-scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-33.33%); }
+  }
+
+  /* ============================================
+     TESTIMONIALS
+     ============================================ */
+  .testimonials {
+    padding: 100px 40px;
+    background: var(--dark, #1a1a2e);
+    overflow: hidden;
+  }
+  .testimonials .section-inner { text-align: center; }
+  .testimonials .section-label { color: var(--teal); }
+  .testimonials .section-heading { color: #fff; }
+  .testimonials .section-heading .serif-word { color: var(--teal); }
+  .testimonials .section-subtext {
+    color: rgba(255,255,255,0.45);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .testimonial-marquee {
+    display: flex;
+    gap: 20px;
+    animation: testimonial-scroll 65s linear infinite;
+    width: max-content;
+    margin-top: 48px;
+  }
+  .testimonial-marquee:hover { animation-play-state: paused; }
+  .testimonial-card {
+    width: 360px;
+    padding: 32px 28px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    flex-shrink: 0;
+    text-align: left;
+    transition: border-color 0.3s, background 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+  .testimonial-card:hover {
+    border-color: rgba(43,188,179,0.3);
+    background: rgba(255,255,255,0.06);
+  }
+  .testimonial-author { display: flex; align-items: center; gap: 12px; order: 1; margin-bottom: 14px; }
+  .testimonial-stars { display: flex; gap: 3px; order: 2; margin-bottom: 14px; }
+  .testimonial-stars svg { width: 16px; height: 16px; }
+  .testimonial-text {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.78);
+    font-style: italic;
+    order: 3;
+  }
+  .testimonial-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .testimonial-name { font-size: 14px; font-weight: 600; color: #fff; }
+  .testimonial-detail { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 2px; }
+  @keyframes testimonial-scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-33.33%); }
+  }
+
+  /* ===== Find what's right — animated liquid verticals ===== */
+  .verticals { padding: 90px 40px; background: #fff; }
+  .verticals-inner { max-width: 1200px; margin: 0 auto; }
+  .verticals-head { text-align: center; margin-bottom: 48px; }
+  .vgrid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    grid-template-rows: repeat(3, auto);
+    gap: 18px;
+  }
+  /* big feature card spans the left, full height */
+  .vc-glp { grid-row: 1 / 4; grid-column: 1; min-height: 480px; }
+  .vc-well { grid-column: 2; grid-row: 1; }
+  .vc-sex  { grid-column: 2; grid-row: 2; }
+  .vc-proto{ grid-column: 2; grid-row: 3; }
+
+  .vcard {
+    position: relative;
+    border-radius: 22px;
+    overflow: hidden;
+    text-decoration: none;
+    display: flex;
+    align-items: flex-end;
+    min-height: 200px;
+    isolation: isolate;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .vcard:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(15,30,60,0.18); }
+
+  /* animated liquid background layer */
+  .vfx { position: absolute; inset: 0; z-index: 0; }
+  .vfx::before, .vfx::after {
+    content: ''; position: absolute; inset: -40%;
+    background: radial-gradient(circle at 30% 30%, var(--fx1) 0%, transparent 55%),
+                radial-gradient(circle at 70% 70%, var(--fx2) 0%, transparent 55%);
+    animation: liquid 16s ease-in-out infinite;
+    mix-blend-mode: screen;
+  }
+  .vfx::after { animation-duration: 22s; animation-direction: reverse; opacity: 0.8; }
+  @keyframes liquid {
+    0%,100% { transform: translate(0,0) rotate(0deg) scale(1); }
+    33% { transform: translate(8%, -6%) rotate(8deg) scale(1.08); }
+    66% { transform: translate(-6%, 6%) rotate(-6deg) scale(1.04); }
+  }
+  @media (prefers-reduced-motion: reduce) { .vfx::before, .vfx::after { animation: none; } }
+
+  /* product visual floating in card */
+  .vshape {
+    position: absolute; z-index: 1;
+    height: 62%; right: 6%; top: 50%; transform: translateY(-50%);
+    filter: drop-shadow(0 14px 22px rgba(0,0,0,0.28));
+    opacity: 0.96; pointer-events: none;
+  }
+  .vc-glp .vshape { height: 52%; right: 8%; top: 42%; }
+  .vshape-pill { height: 30% !important; right: 4% !important; }
+
+  .vbody { position: relative; z-index: 2; padding: 28px; color: #fff; max-width: 78%; }
+  .vc-glp .vbody { max-width: 60%; }
+  .vlabel { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.85; margin-bottom: 8px; }
+  .vtitle { font-size: 24px; font-weight: 700; line-height: 1.15; margin-bottom: 10px; letter-spacing: -0.01em; }
+  .vc-glp .vtitle { font-size: 30px; }
+  .vserif { font-family: var(--serif); font-style: italic; font-weight: 400; }
+  .vdesc { font-size: 14px; line-height: 1.5; opacity: 0.82; margin-bottom: 16px; }
+  .vcta { font-size: 14px; font-weight: 700; }
+
+  /* vertical color systems (base gradient + liquid fx colors) */
+  .vc-glp   { background: linear-gradient(135deg,#0a1626,#0d2a35 55%,#063b40); --fx1: rgba(0,180,197,0.5); --fx2: rgba(20,80,110,0.6); }
+  .vc-well  { background: linear-gradient(135deg,#1a2740,#2a3f64 60%,#3a5a86); --fx1: rgba(120,160,210,0.55); --fx2: rgba(180,200,230,0.4); }
+  .vc-sex   { background: linear-gradient(135deg,#3a0e22,#5e1230 60%,#7a1838); --fx1: rgba(225,29,72,0.45); --fx2: rgba(255,120,150,0.35); }
+  .vc-proto { background: linear-gradient(135deg,#0e2a1a,#16402a 60%,#1d5536); --fx1: rgba(34,160,90,0.45); --fx2: rgba(120,200,150,0.35); }
+
+  @media (max-width: 860px) {
+    .vgrid { grid-template-columns: 1fr; grid-template-rows: none; }
+    .vc-glp, .vc-well, .vc-sex, .vc-proto { grid-column: 1; grid-row: auto; min-height: 240px; }
+    .vbody, .vc-glp .vbody { max-width: 70%; }
+    .verticals { padding: 60px 20px; }
+  }
+
+
+  /* ===== v3 MEGA-MENU nav ===== */
+  .nav-item{position:relative}
+  .nav-item > a{font-size:15px;font-weight:500;color:#4A5568;text-decoration:none;transition:color 0.2s;padding:26px 0;display:inline-flex;align-items:center}
+  .nav-item > a:hover{color:#1A1A1A}
+  .nav-item > a .chev{display:inline-block;margin-left:4px;transition:transform 0.2s;vertical-align:middle}
+  .nav-item:hover > a .chev{transform:rotate(180deg)}
+  .megamenu{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(0);background:#fff;border:1px solid #E2E7EB;border-radius:20px;box-shadow:0 20px 50px rgba(15,30,60,0.14);padding:22px;min-width:520px;opacity:0;visibility:hidden;transition:all 0.2s;pointer-events:none;z-index:200}
+  .nav-item:hover .megamenu{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(8px)}
+  .mm-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
+  .mm-link{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;text-decoration:none;color:#1A1A1A;transition:background 0.15s}
+  .mm-link:hover{background:#F8FAFB}
+  .mm-link img{width:34px;height:48px;flex-shrink:0;object-fit:contain}
+  .mm-link-text{display:flex;flex-direction:column;line-height:1.2}
+  .mm-link-text strong{font-size:14px;font-weight:600;color:#1A1A1A}
+  .mm-link-text span{font-size:12px;color:#6B7C8A;margin-top:2px}
+  .mm-footer{margin-top:12px;padding-top:12px;border-top:1px solid #F1F4F6;display:flex;justify-content:space-between;align-items:center}
+  .mm-footer .mm-count{font-size:12px;color:#6B7C8A}
+  .mm-footer a{font-size:13px;font-weight:600;color:#00B4C5;text-decoration:none}
+  @media (max-width:900px){ .nav-item .megamenu{display:none} }
+
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "MedicalBusiness",
+      "name": "CLYR Health",
+      "url": "https://www.clyr.health",
+      "logo": "https://www.clyr.health/clyricon512.png",
+      "description": "Compounded Semaglutide and Tirzepatide with B12. Provider-supervised weight loss. No hidden fees.",
+      "telephone": "(302) 515-2597",
+      "email": "contact@clyr.health",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "US"
+      },
+      "priceRange": "$149-$320/mo",
+      "areaServed": "US",
+      "sameAs": ["https://www.instagram.com/clyr.health"]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is compounded Semaglutide?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Compounded Semaglutide is a custom-prepared medication made by licensed 503A compounding pharmacies. It is prescribed by a licensed healthcare provider and combined with Vitamin B12 to support your weight management journey."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What's the difference between Semaglutide and Tirzepatide?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Semaglutide targets the GLP-1 receptor, helping regulate appetite and blood sugar. Tirzepatide targets both GLP-1 and GIP receptors (dual-action), which may provide enhanced weight loss results."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How quickly will I see results?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most patients begin noticing reduced appetite within the first 1-2 weeks. Meaningful weight loss typically begins within the first month, with an average of 5-10% body weight loss over the first 3 months."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I cancel anytime?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Monthly auto-refill plans can be canceled at any time with no penalties or fees. Multi-month bundles auto-renew every 90 days. If deemed ineligible by your provider, we offer a full refund."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What states are your services available in?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our services are currently available in all 50 states excluding Alaska, Mississippi, and Louisiana."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- PostHog Analytics -->
+<script>
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug getPageviewId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
+    api_host: 'https://us.i.posthog.com',
+    person_profiles: 'identified_only',
+    capture_pageview: true,
+    capture_pageleave: true,
+    autocapture: true
+});
+</script>
+</head>
+<body>
+
+<!-- ========== PROMO BAR (dynamic) ========== -->
+<div id="promo-bar"></div>
+
+<!-- ========== NAVIGATION ========== -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#">
+      <svg class="nav-logo" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <text x="0" y="26" font-family="DM Sans, sans-serif" font-weight="700" font-size="28" letter-spacing="-1">
+          <tspan fill="#1A1A1A">CLY</tspan><tspan fill="#00B4C5">R</tspan>
+        </text>
+      </svg>
+    </a>
+        <div class="nav-links">
+      <div class="nav-item">
+        <a href="/weight-loss.html">Weight Loss <svg class="chev" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <div class="megamenu">
+          <div class="mm-grid">
+            <a href="/tirzepatide.html" class="mm-link"><img src="/preview/v5/img/tirzepatide.png" alt=""><span class="mm-link-text"><strong>Tirzepatide</strong><span>GLP-1 + GIP</span></span></a>
+            <a href="/semaglutide.html" class="mm-link"><img src="/preview/v5/img/semaglutide.png" alt=""><span class="mm-link-text"><strong>Semaglutide</strong><span>GLP-1</span></span></a>
+            <a href="/zepbound.html" class="mm-link"><img src="/preview/v5/img/zepbound-pen.png" alt=""><span class="mm-link-text"><strong>Zepbound&reg;</strong><span>Brand-name</span></span></a>
+            <a href="/foundayo.html" class="mm-link"><img src="/preview/v5/img/foundayo-bottle.png" alt=""><span class="mm-link-text"><strong>Foundayo&reg;</strong><span>Oral GLP-1</span></span></a>
+          </div>
+          <div class="mm-footer"><span class="mm-count">Compounded &amp; brand-name options</span><a href="/weight-loss.html">Explore Weight Loss →</a></div>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="/wellness.html">Daily Wellness <svg class="chev" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <div class="megamenu">
+          <div class="mm-grid">
+            <a href="/nad.html" class="mm-link"><img src="/preview/v5/img/nad.png" alt=""><span class="mm-link-text"><strong>NAD+ Injections</strong><span>Cellular energy</span></span></a>
+            <a href="/sermorelin.html" class="mm-link"><img src="/preview/v5/img/sermorelin.png" alt=""><span class="mm-link-text"><strong>Sermorelin</strong><span>Growth hormone peptide</span></span></a>
+            <a href="/glutathione.html" class="mm-link"><img src="/preview/v5/img/glutathione.png" alt=""><span class="mm-link-text"><strong>Glutathione</strong><span>Antioxidant</span></span></a>
+            <a href="/micc.html" class="mm-link"><img src="/preview/v5/img/micc.png" alt=""><span class="mm-link-text"><strong>MICC + B12</strong><span>Metabolic support</span></span></a>
+          </div>
+          <div class="mm-footer"><span class="mm-count">4 wellness treatments</span><a href="/wellness.html">Explore Wellness →</a></div>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="/sexual-health.html">Sexual Health <svg class="chev" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <div class="megamenu">
+          <div class="mm-grid">
+            <a href="/tadalafil.html" class="mm-link"><img src="/img/pill-tadalafil.svg" alt=""><span class="mm-link-text"><strong>Tadalafil</strong><span>Daily ED tablet</span></span></a>
+            <a href="/sildenafil-gummy.html" class="mm-link"><img src="/img/gummy-sildenafil.png" alt=""><span class="mm-link-text"><strong>Sildenafil Gummy</strong><span>On-demand</span></span></a>
+            <a href="/sild-tadal-oxy.html" class="mm-link"><img src="/img/odt-sild-tadal-oxy.svg" alt=""><span class="mm-link-text"><strong>Combo ODT</strong><span>Triple-action</span></span></a>
+            <a href="/pt141.html" class="mm-link"><img src="/preview/v5/img/pt141-odt-rose.png" alt=""><span class="mm-link-text"><strong>PT-141</strong><span>Libido ODT</span></span></a>
+          </div>
+          <div class="mm-footer"><span class="mm-count">4 sexual health treatments</span><a href="/sexual-health.html">Explore Sexual Health →</a></div>
+        </div>
+      </div>
+      <a href="/ivermectin.html">Ivermectin</a>
+      <a href="/journal/">Journal</a>
+      <a href="/portal/" class="nav-portal">Patient Portal</a>
+      <a href="/intake.html" class="nav-cta">Get Started</a>
+    </div>
+    <button class="mobile-menu-btn" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('mobile-open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Provider-supervised &amp; HIPAA-compliant
+      </div>
+      <h1>
+        Healthcare that<br>
+        feels
+        <span class="rotating-wrapper">
+          <span class="rotating-word">CLYR.</span>
+          <span class="rotating-word">effortless.</span>
+          <span class="rotating-word">different.</span>
+        </span>
+      </h1>
+      <p class="hero-sub">Compounded GLP-1, longevity wellness, sexual health, and protocol prescriptions — by licensed providers. Delivered to your&nbsp;door. No hidden fees, no gimmicks.</p>
+      <div class="hero-actions">
+        <a href="/wellness.html" class="btn-primary">
+          Explore Treatments
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#categories" class="btn-secondary">Find what's right for you</a>
+      </div>
+      <div class="hero-proof">
+        <div class="hero-proof-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00B4C5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+          Licensed US providers
+        </div>
+        <div class="hero-proof-divider"></div>
+        <div class="hero-proof-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00B4C5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+          Free shipping nationwide
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hero-disc"></div>
+      <div class="hero-float hf-tirz"><img src="/preview/v5/img/tirzepatide.png" alt=""></div>
+      <div class="hero-float hf-serm"><img src="/preview/v5/img/sermorelin.png" alt=""></div>
+      <div class="hero-float hf-nad"><img src="/preview/v5/img/nad.png" alt=""></div>
+      <div class="hero-float hf-pill"><img src="/preview/v5/img/pill-tadalafil-tad25.png" alt=""></div>
+    </div>
+  </div>
+</section>
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <div class="trust-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      HIPAA compliant
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0 1 12 2.944a11.955 11.955 0 0 1-8.618 3.04A12.02 12.02 0 0 0 3 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+      State-licensed compounding pharmacy
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="m16 8 5 3-5 3z"/></svg>
+      Telehealth consultation included
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Ships to most states
+    </div>
+  </div>
+</div>
+
+<!-- ========== FIND WHAT'S RIGHT (4 animated verticals) ========== -->
+<section id="categories" class="verticals">
+  <div class="verticals-inner">
+    <div class="verticals-head">
+      <div class="section-label reveal" style="margin-bottom:14px">One Platform, Four Verticals</div>
+      <h2 class="section-heading" style="font-size:42px;line-height:1.15;letter-spacing:-0.02em;margin-bottom:14px">Find what's right for <span class="serif-word">you.</span></h2>
+      <p style="font-size:17px;color:#6B7C8A;max-width:620px;margin:0 auto;line-height:1.6">Real medications. Real providers. Across the categories that matter most, all from a single intake.</p>
+    </div>
+
+    <div class="vgrid">
+      <!-- Weight Loss (teal) -->
+      <a href="/weight-loss.html" class="vcard vc-glp">
+        <div class="vfx"></div>
+        <img class="vshape" src="/preview/v5/img/tirzepatide.png" alt="">
+        <div class="vbody">
+          <div class="vlabel">Weight Loss</div>
+          <h3 class="vtitle">Compounded &amp; brand-name <span class="vserif">GLP-1.</span></h3>
+          <p class="vdesc">Tirzepatide, Semaglutide, Zepbound, Mounjaro, Ozempic, Wegovy, Foundayo. Up to 21% body weight loss in clinical trials.</p>
+          <span class="vcta">Explore weight loss →</span>
+        </div>
+      </a>
+
+      <!-- Daily Wellness (chrome/blue) -->
+      <a href="/wellness.html" class="vcard vc-well">
+        <div class="vfx"></div>
+        <img class="vshape" src="/preview/v5/img/sermorelin.png" alt="">
+        <div class="vbody">
+          <div class="vlabel">Daily Wellness</div>
+          <h3 class="vtitle"><span class="vserif">Longevity</span> &amp; energy.</h3>
+          <p class="vdesc">Sermorelin, NAD+, Glutathione, Lipo-Mino. Sleep, recovery, cellular health.</p>
+          <span class="vcta">Explore wellness →</span>
+        </div>
+      </a>
+
+      <!-- Sexual Health (rose) -->
+      <a href="/sexual-health.html" class="vcard vc-sex">
+        <div class="vfx"></div>
+        <img class="vshape vshape-pill" src="/preview/v5/img/pill-tadalafil-tad25.png" alt="">
+        <div class="vbody">
+          <div class="vlabel">Sexual Health</div>
+          <h3 class="vtitle">Performance, <span class="vserif">privately.</span></h3>
+          <p class="vdesc">Tadalafil, Sildenafil gummy, PT-141, combo ODTs. Discreet packaging.</p>
+          <span class="vcta">Explore sexual health →</span>
+        </div>
+      </a>
+
+      <!-- Protocols (green) -->
+      <a href="/ivermectin.html" class="vcard vc-proto">
+        <div class="vfx"></div>
+        <img class="vshape vshape-pill" src="/preview/v5/img/pill-antiparasitic.png" alt="">
+        <div class="vbody">
+          <div class="vlabel">Protocols</div>
+          <h3 class="vtitle">Antiparasitic <span class="vserif">protocols.</span></h3>
+          <p class="vdesc">Ivermectin and Mebendazole/Ivermectin packages.</p>
+          <span class="vcta">Explore protocols →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SCROLLING TRUST MARQUEE ========== -->
+<div class="marquee-section">
+    <div class="marquee-track">
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>HIPAA Compliant</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0 1 12 2.944a11.955 11.955 0 0 1-8.618 3.04A12.02 12.02 0 0 0 3 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>LegitScript Certified</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Licensed US Providers</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 12 15 16 10"/></svg>503A Licensed Pharmacy</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Secure Stripe Payments</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="m16 8 5 3-5 3z"/></svg>Telehealth Consultation</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Ships to 47 States</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>Eligibility Guarantee</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>HIPAA Compliant</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0 1 12 2.944a11.955 11.955 0 0 1-8.618 3.04A12.02 12.02 0 0 0 3 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>LegitScript Certified</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Licensed US Providers</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 12 15 16 10"/></svg>503A Licensed Pharmacy</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Secure Stripe Payments</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="m16 8 5 3-5 3z"/></svg>Telehealth Consultation</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Ships to 47 States</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>Eligibility Guarantee</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>HIPAA Compliant</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0 1 12 2.944a11.955 11.955 0 0 1-8.618 3.04A12.02 12.02 0 0 0 3 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>LegitScript Certified</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Licensed US Providers</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 12 15 16 10"/></svg>503A Licensed Pharmacy</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Secure Stripe Payments</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="m16 8 5 3-5 3z"/></svg>Telehealth Consultation</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Ships to 47 States</div>
+    <div class="marquee-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>Eligibility Guarantee</div>
+  </div></div>
+</div>
+
+<!-- ========== HOW IT WORKS ========== -->
+<section class="how-it-works" id="how-it-works">
+  <div class="section-inner">
+    <div class="section-label reveal">How It Works</div>
+    <h2 class="section-heading">Start in minutes.<br>Feel the <span class="serif-word">difference</span> in weeks.</h2>
+    <p class="section-subtext">No waiting rooms. No insurance hassles. A straightforward path from health questionnaire to provider review to medication at your door, with medical guidance every step of the way.</p>
+
+    <div class="steps-grid">
+      <div class="step-card reveal">
+        <div class="step-number">1</div>
+        <h3>Complete Your Profile</h3>
+        <p>Answer a quick health questionnaire so our providers can assess your eligibility and personalize the right treatment plan.</p>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-number">2</div>
+        <h3>Provider Review</h3>
+        <p>A licensed medical provider reviews your profile and, if appropriate, prescribes the right medication for your goals.</p>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-number">3</div>
+        <h3>Medication Delivered</h3>
+        <p>Your prescription ships from a licensed pharmacy directly to your door in discreet, temperature-safe packaging.</p>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-number">4</div>
+        <h3>Ongoing Support</h3>
+        <p>Stay connected with your care team. Adjust dosing, ask questions, and track your progress, all through our platform.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========== STATS BAR ========== -->
+<div class="stats-bar">
+  <div class="stat-item reveal">
+    <div class="stat-number"><span class="counter" data-target="47">0</span></div>
+    <div class="stat-label">States Served</div>
+  </div>
+  <div class="stat-item reveal reveal-delay-1">
+    <div class="stat-number">$<span class="counter" data-target="0">0</span></div>
+    <div class="stat-label">Hidden Fees</div>
+  </div>
+  <div class="stat-item reveal reveal-delay-2">
+    <div class="stat-number"><span class="counter" data-target="100">0</span>%</div>
+    <div class="stat-label">Refund if Ineligible</div>
+  </div>
+  <div class="stat-item reveal reveal-delay-3">
+    <div class="stat-number">&lt;<span class="counter" data-target="1">0</span>hr</div>
+    <div class="stat-label">Provider Response</div>
+  </div>
+</div>
+
+<!-- ========== TREATMENTS ========== -->
+<section class="treatments" id="treatments">
+  <div class="section-inner">
+    <h2 class="section-heading" style="text-align:center;">Two flagship GLP-1s.<br>Plus the rest of your <span class="serif-word">healthcare.</span></h2>
+    <p class="section-subtext" style="text-align:center; margin-left:auto; margin-right:auto;">Tirzepatide and Semaglutide compounded with Vitamin B12 — the most popular GLP-1 treatments at CLYR. Plus wellness, sexual health, and protocol prescriptions in our <a href="/wellness.html" style="color:var(--teal);font-weight:600;text-decoration:none">full catalog</a>.</p>
+
+    <div style="display:flex; align-items:center; gap:16px; margin:36px auto 32px; max-width:600px;">
+      <div style="flex:1; height:1px; background:linear-gradient(to right, transparent, var(--border));"></div>
+      <span style="font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--teal); white-space:nowrap;">Our Treatments</span>
+      <div style="flex:1; height:1px; background:linear-gradient(to left, transparent, var(--border));"></div>
+    </div>
+
+    <div class="products-grid">
+      <div class="product-card reveal">
+        <span class="product-tag">Most Popular</span>
+        <h3 class="product-name">Tirzepatide + B12</h3>
+        <p class="product-compound">Compounded GLP-1/GIP dual receptor agonist</p>
+        <div class="product-includes">
+          <div class="product-includes-title">Includes</div>
+          <ul>
+            <li>Compounded Tirzepatide injection</li>
+            <li>Vitamin B12 for energy &amp; metabolism</li>
+            <li>Provider consultation &amp; prescription</li>
+            <li>Ongoing dosing adjustments</li>
+            <li>Free priority shipping</li>
+          </ul>
+        </div>
+        <div class="product-pricing">
+          <span class="product-price">$320</span>
+          <span class="product-price-period">/month</span>
+        </div>
+        <p style="font-size:14px; font-weight:600; color:var(--teal); margin:-8px 0 4px;">Any dose — Same price</p>
+        <p class="product-price-note">Auto-refill. Cancel anytime. Save more with bundles.</p>
+        <a href="/tirzepatide.html" class="product-cta">Learn more →</a>
+      </div>
+
+      <div class="product-card reveal">
+        <span class="product-tag">Best Value</span>
+        <h3 class="product-name">Semaglutide + B12</h3>
+        <p class="product-compound">Compounded GLP-1 receptor agonist</p>
+        <div class="product-includes">
+          <div class="product-includes-title">Includes</div>
+          <ul>
+            <li>Compounded Semaglutide injection</li>
+            <li>Vitamin B12 for energy &amp; metabolism</li>
+            <li>Provider consultation &amp; prescription</li>
+            <li>Ongoing dosing adjustments</li>
+            <li>Free priority shipping</li>
+          </ul>
+        </div>
+        <div class="product-pricing">
+          <span class="product-price">$225</span>
+          <span class="product-price-period">/month</span>
+        </div>
+        <p style="font-size:14px; font-weight:600; color:var(--teal); margin:-8px 0 4px;">Any dose — Same price</p>
+        <p class="product-price-note">Auto-refill. Cancel anytime. Save more with bundles.</p>
+        <a href="/semaglutide.html" class="product-cta">Learn more →</a>
+      </div>
+    </div>
+
+    <!-- ── Explore the full catalog CTA ── -->
+    <div style="text-align:center;margin:48px auto 0;max-width:560px;padding:28px 24px;background:linear-gradient(180deg,#F0FAFB 0%,#FFFFFF 100%);border:1px solid #E2E7EB;border-radius:20px">
+      <div style="font-size:13px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px">9 more prescriptions</div>
+      <h3 style="font-size:22px;font-weight:700;line-height:1.3;letter-spacing:-0.02em;margin-bottom:8px;color:#1A1A1A">Looking for wellness, sexual health, or protocols?</h3>
+      <p style="font-size:14px;color:#6B7C8A;line-height:1.55;margin-bottom:18px">Sermorelin, NAD+, Glutathione, Lipo-Mino, Tadalafil, Sildenafil, PT-141, and antiparasitic protocols — all in our full catalog.</p>
+      <a href="/wellness.html" style="display:inline-flex;align-items:center;gap:8px;background:white;color:#1A1A1A;border:1.5px solid #00B4C5;padding:12px 26px;border-radius:100px;font-size:14px;font-weight:700;text-decoration:none;transition:all 0.2s" onmouseover="this.style.background='#00B4C5';this.style.color='white'" onmouseout="this.style.background='white';this.style.color='#1A1A1A'">Browse all treatments <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+
+    <!-- Comparison Table -->
+    <div class="compare-wrap reveal">
+      <div class="compare-heading">
+        <h3>Compare your <span class="serif-word">options.</span></h3>
+      </div>
+      <div class="compare-cols">
+        <div class="col-header">Feature</div>
+        <div class="col-header">Compounded Tirzepatide <span class="product-tag" style="margin:0 0 0 auto">Most Popular</span></div>
+        <div class="col-header">Compounded Semaglutide <span class="product-tag" style="margin:0 0 0 auto">Best Value</span></div>
+
+        <div class="compare-row">
+          <div>Avg. Weight Loss</div>
+          <div><span class="compare-val-highlight">20–21%</span></div>
+          <div>13–15%</div>
+        </div>
+        <div class="compare-row">
+          <div>Delivery</div>
+          <div>Weekly injection</div>
+          <div>Weekly injection</div>
+        </div>
+        <div class="compare-row">
+          <div>Receptors</div>
+          <div><span class="compare-val-highlight">GLP-1 &amp; GIP (dual agonist)</span></div>
+          <div>GLP-1 (single agonist)</div>
+        </div>
+        <div class="compare-row">
+          <div>Dosages</div>
+          <div>2.5 mg – 15 mg</div>
+          <div>0.25 mg – 2.5 mg</div>
+        </div>
+      </div>
+
+      <!-- Mobile stacked version -->
+      <div class="compare-stacked">
+        <div class="compare-stack-card">
+          <div class="compare-stack-header">
+            <div class="compare-stack-badge">Most Popular</div>
+            <h4>Compounded Tirzepatide</h4>
+          </div>
+          <div class="compare-stack-body">
+            <div class="compare-stack-row"><span>Avg. Weight Loss</span><strong style="color:var(--teal)">20–21%</strong></div>
+            <div class="compare-stack-row"><span>Delivery</span><span>Weekly injection</span></div>
+            <div class="compare-stack-row"><span>Receptors</span><strong style="color:var(--teal)">GLP-1 &amp; GIP (dual)</strong></div>
+            <div class="compare-stack-row"><span>Dosages</span><span>2.5 mg – 15 mg</span></div>
+          </div>
+          <a href="/intake.html" class="compare-stack-cta">Start Consultation</a>
+        </div>
+        <div class="compare-stack-card">
+          <div class="compare-stack-header">
+            <div class="compare-stack-badge">Best Value</div>
+            <h4>Compounded Semaglutide</h4>
+          </div>
+          <div class="compare-stack-body">
+            <div class="compare-stack-row"><span>Avg. Weight Loss</span><span>13–15%</span></div>
+            <div class="compare-stack-row"><span>Delivery</span><span>Weekly injection</span></div>
+            <div class="compare-stack-row"><span>Receptors</span><span>GLP-1 (single)</span></div>
+            <div class="compare-stack-row"><span>Dosages</span><span>0.25 mg – 2.5 mg</span></div>
+          </div>
+          <a href="/intake.html" class="compare-stack-cta">Start Consultation</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========== FULL CATALOG ========== -->
+<section id="catalog" style="padding:80px 40px;background:var(--gray-50)">
+  <div class="section-inner">
+    <div style="text-align:center;max-width:720px;margin:0 auto 48px">
+      <div class="section-label reveal" style="margin-bottom:14px">The Full Catalog</div>
+      <h2 class="section-heading" style="font-size:42px;line-height:1.15;letter-spacing:-0.02em;margin-bottom:14px">Beyond GLP-1, also <span class="serif-word">in-house.</span></h2>
+      <p style="font-size:17px;color:#6B7C8A;max-width:560px;margin:0 auto;line-height:1.6">Wellness peptides, sexual health, and protocol prescriptions — same licensed providers, same compounding pharmacy, same fast shipping.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px" id="catalogGrid">
+      <a href="/nad.html" class="cat-tile" style="display:flex;flex-direction:column;background:#FFF;border:1px solid #E2E7EB;border-radius:20px;padding:24px 20px;text-decoration:none;color:#1A1A1A;transition:all 0.2s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 30px rgba(0,0,0,0.06)';this.style.borderColor='#00B4C5'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none';this.style.borderColor='#E2E7EB'">
+        <div style="aspect-ratio:1;background:#F8FAFB;border-radius:14px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;padding:18px"><img src="/preview/v5/img/nad.png" alt="NAD+ Injections" style="max-width:100%;max-height:100%;object-fit:contain"></div>
+        <div style="font-size:10px;font-weight:700;color:#9333EA;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px">Wellness</div>
+        <h3 style="font-size:16px;font-weight:700;margin-bottom:4px;line-height:1.25">NAD+ Injections</h3>
+        <p style="font-size:13px;color:#6B7C8A;line-height:1.45;flex-grow:1;margin-bottom:14px">Cellular energy &amp; healthy aging</p><div style="font-size:18px;font-weight:800;color:#1A1A1A;margin-bottom:12px">$199<span style="font-size:13px;font-weight:500;color:#94A3B0">/mo</span></div><div style="font-size:13px;font-weight:600;color:#00B4C5;display:inline-flex;align-items:center;gap:4px">Learn more →</div>
+      </a>
+
+      <a href="/sermorelin.html" class="cat-tile" style="display:flex;flex-direction:column;background:#FFF;border:1px solid #E2E7EB;border-radius:20px;padding:24px 20px;text-decoration:none;color:#1A1A1A;transition:all 0.2s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 30px rgba(0,0,0,0.06)';this.style.borderColor='#00B4C5'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none';this.style.borderColor='#E2E7EB'">
+        <div style="aspect-ratio:1;background:#F8FAFB;border-radius:14px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;padding:18px"><img src="/preview/v5/img/sermorelin.png" alt="Sermorelin" style="max-width:100%;max-height:100%;object-fit:contain"></div>
+        <div style="font-size:10px;font-weight:700;color:#9333EA;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px">Wellness</div>
+        <h3 style="font-size:16px;font-weight:700;margin-bottom:4px;line-height:1.25">Sermorelin</h3>
+        <p style="font-size:13px;color:#6B7C8A;line-height:1.45;flex-grow:1;margin-bottom:14px">Sleep, recovery &amp; lean mass</p><div style="font-size:18px;font-weight:800;color:#1A1A1A;margin-bottom:12px">$179<span style="font-size:13px;font-weight:500;color:#94A3B0">/mo</span></div><div style="font-size:13px;font-weight:600;color:#00B4C5;display:inline-flex;align-items:center;gap:4px">Learn more →</div>
+      </a>
+
+      <a href="/glutathione.html" class="cat-tile" style="display:flex;flex-direction:column;background:#FFF;border:1px solid #E2E7EB;border-radius:20px;padding:24px 20px;text-decoration:none;color:#1A1A1A;transition:all 0.2s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 30px rgba(0,0,0,0.06)';this.style.borderColor='#00B4C5'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none';this.style.borderColor='#E2E7EB'">
+        <div style="aspect-ratio:1;background:#F8FAFB;border-radius:14px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;padding:18px"><img src="/preview/v5/img/glutathione.png" alt="Glutathione" style="max-width:100%;max-height:100%;object-fit:contain"></div>
+        <div style="font-size:10px;font-weight:700;color:#9333EA;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px">Wellness</div>
+        <h3 style="font-size:16px;font-weight:700;margin-bottom:4px;line-height:1.25">Glutathione</h3>
+        <p style="font-size:13px;color:#6B7C8A;line-height:1.45;flex-grow:1;margin-bottom:14px">Master antioxidant &amp; immune</p><div style="font-size:18px;font-weight:800;color:#1A1A1A;margin-bottom:12px">$129<span style="font-size:13px;font-weight:500;color:#94A3B0">/mo</span></div><div style="font-size:13px;font-weight:600;color:#00B4C5;display:inline-flex;align-items:center;gap:4px">Learn more →</div>
+      </a>
+
+      <a href="/micc.html" class="cat-tile" style="display:flex;flex-direction:column;background:#FFF;border:1px solid #E2E7EB;border-radius:20px;padding:24px 20px;text-decoration:none;color:#1A1A1A;transition:all 0.2s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 30px rgba(0,0,0,0.06)';this.style.borderColor='#00B4C5'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none';this.style.borderColor='#E2E7EB'">
+        <div style="aspect-ratio:1;background:#F8FAFB;border-radius:14px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;padding:18px"><img src="/preview/v5/img/micc.png" alt="Lipo-Mino" style="max-width:100%;max-height:100%;object-fit:contain"></div>
+        <div style="font-size:10px;font-weight:700;color:#9333EA;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px">Wellness</div>
+        <h3 style="font-size:16px;font-weight:700;margin-bottom:4px;line-height:1.25">MICC + B12</h3>
+        <p style="font-size:13px;color:#6B7C8A;line-height:1.45;flex-grow:1;margin-bottom:14px">MIC + B12 metabolic support</p><div style="font-size:18px;font-weight:800;color:#1A1A1A;margin-bottom:12px">$149<span style="font-size:13px;font-weight:500;color:#94A3B0">/mo</span></div><div style="font-size:13px;font-weight:600;color:#00B4C5;display:inline-flex;align-items:center;gap:4px">Learn more →</div>
+      </a>
+
+      <a href="/tadalafil.html" class="cat-tile" style="display:flex;flex-direction:column;background:#FFF;border:1px solid #E2E7EB;border-radius:20px;padding:24px 20px;text-decoration:none;color:#1A1A1A;transition:all 0.2s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 30px rgba(0,0,0,0.06)';this.style.borderColor='#00B4C5'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none';this.style.borderColor='#E2E7EB'">
+        <div style="aspect-ratio:1;background:#F8FAFB;border-radius:14px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;padding:18px"><img src="/img/pill-tadalafil.svg" alt="Tadalafil" style="max-width:100%;max-height:100%;object-fit:contain"></div>
+        <div style="font-size:10px;font-weight:700;color:#E11D48;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px">Sexual Health</div>
+        <h3 style="font-size:16px;font-weight:700;margin-bottom:4px;line-height:1.25">Tadalafil</h3>
+        <p style="font-size:13px;color:#6B7C8A;line-height:1.45;flex-grow:1;margin-bottom:14px">Long-lasting ED treatment</p><div style="font-size:18px;font-weight:800;color:#1A1A1A;margin-bottom:12px">$99<span style="font-size:13px;font-weight:500;color:#94A3B0">/mo</span></div><div style="font-size:13px;font-weight:600;color:#00B4C5;display:inline-flex;align-items:center;gap:4px">Learn more →</div>
+      </a>
+
+      <a href="/sildenafil-gummy.html" class="cat-tile" style="display:flex;flex-direction:column;background:#FFF;border:1px solid #E2E7EB;border-radius:20px;padding:24px 20px;text-decoration:none;color:#1A1A1A;transition:all 0.2s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 30px rgba(0,0,0,0.06)';this.style.borderColor='#00B4C5'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none';this.style.borderColor='#E2E7EB'">
+        <div style="aspect-ratio:1;background:#F8FAFB;border-radius:14px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;padding:18px"><img src="/img/gummy-sildenafil.png" alt="Sildenafil Gummy" style="max-width:100%;max-height:100%;object-fit:contain"></div>
+        <div style="font-size:10px;font-weight:700;color:#E11D48;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px">Sexual Health</div>
+        <h3 style="font-size:16px;font-weight:700;margin-bottom:4px;line-height:1.25">Sildenafil Gummy</h3>
+        <p style="font-size:13px;color:#6B7C8A;line-height:1.45;flex-grow:1;margin-bottom:14px">Fast-onset chewable form</p><div style="font-size:18px;font-weight:800;color:#1A1A1A;margin-bottom:12px">$89<span style="font-size:13px;font-weight:500;color:#94A3B0">/mo</span></div><div style="font-size:13px;font-weight:600;color:#00B4C5;display:inline-flex;align-items:center;gap:4px">Learn more →</div>
+      </a>
+
+      <a href="/pt141.html" class="cat-tile" style="display:flex;flex-direction:column;background:#FFF;border:1px solid #E2E7EB;border-radius:20px;padding:24px 20px;text-decoration:none;color:#1A1A1A;transition:all 0.2s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 30px rgba(0,0,0,0.06)';this.style.borderColor='#00B4C5'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none';this.style.borderColor='#E2E7EB'">
+        <div style="aspect-ratio:1;background:#F8FAFB;border-radius:14px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;padding:18px"><img src="/preview/v5/img/pt141-odt-rose.png" alt="PT-141" style="max-width:100%;max-height:100%;object-fit:contain"></div>
+        <div style="font-size:10px;font-weight:700;color:#E11D48;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px">Sexual Health</div>
+        <h3 style="font-size:16px;font-weight:700;margin-bottom:4px;line-height:1.25">PT-141</h3>
+        <p style="font-size:13px;color:#6B7C8A;line-height:1.45;flex-grow:1;margin-bottom:14px">Libido peptide, men &amp; women</p><div style="font-size:18px;font-weight:800;color:#1A1A1A;margin-bottom:12px">$149<span style="font-size:13px;font-weight:500;color:#94A3B0">/mo</span></div><div style="font-size:13px;font-weight:600;color:#00B4C5;display:inline-flex;align-items:center;gap:4px">Learn more →</div>
+      </a>
+
+      <a href="/ivermectin.html" style="display:none" data-paused="ivermectin-2026-05-27"></a>
+    </div>
+
+    <style>
+      @media (max-width:1024px) { #catalogGrid { grid-template-columns:repeat(3,1fr) !important; } }
+      @media (max-width:768px) { #catalogGrid { grid-template-columns:repeat(2,1fr) !important; } #catalog { padding:60px 24px !important; } }
+      @media (max-width:480px) { #catalogGrid { grid-template-columns:1fr !important; } }
+    </style>
+  </div>
+</section>
+
+<!-- ========== PRICING TIERS ========== -->
+<section class="pricing" id="pricing">
+  <div class="section-inner">
+    <div class="section-label reveal">Transparent Pricing</div>
+    <h2 class="section-heading">Save more when you<br>commit to <span class="serif-word">yourself.</span></h2>
+    <p class="section-subtext">No hidden fees. No surprise charges. Pick the plan that fits your timeline, and we'll handle the rest.</p>
+
+    <div class="pricing-tabs">
+      <button class="pricing-tab active" onclick="switchPricing('tirz')">Tirzepatide</button>
+      <button class="pricing-tab" onclick="switchPricing('sema')">Semaglutide</button>
+    </div>
+
+    <div class="pricing-tiers" id="pricing-tiers">
+      <!-- Populated by JS -->
+    </div>
+
+    <div class="payment-methods reveal">
+      <span style="font-size:12px;color:var(--gray-400);margin-right:4px;">Payments Accepted:</span>
+      <div class="payment-chip"><img src="https://www.google.com/s2/favicons?domain=apple.com&sz=64" alt="Apple Pay">Apple Pay</div>
+      <div class="payment-chip"><img src="https://www.google.com/s2/favicons?domain=visa.com&sz=64" alt="Visa">Visa</div>
+      <div class="payment-chip"><img src="https://www.google.com/s2/favicons?domain=mastercard.com&sz=64" alt="Mastercard">Mastercard</div>
+      <div class="payment-chip"><img src="https://www.google.com/s2/favicons?domain=amex.com&sz=64" alt="Amex">Amex</div>
+      <div class="payment-chip"><img src="https://www.google.com/s2/favicons?domain=cash.app&sz=64" alt="Cash App">Cash App</div>
+      <div class="payment-chip"><img src="https://www.google.com/s2/favicons?domain=pay.google.com&sz=64" alt="Google Pay">Google Pay</div>
+    </div>
+    <div class="payment-methods reveal" style="margin-top:-8px;">
+      <span style="font-size:12px;color:var(--gray-400);margin-right:4px;">Payment Plans:</span>
+      <div class="payment-chip"><img src="https://www.google.com/s2/favicons?domain=klarna.com&sz=64" alt="Klarna">Klarna</div>
+      <div class="payment-chip"><img src="https://www.google.com/s2/favicons?domain=affirm.com&sz=64" alt="Affirm">Affirm</div>
+      <div class="payment-chip"><img src="https://icons.duckduckgo.com/ip3/afterpay.com.ico" alt="Afterpay">Afterpay</div>
+    </div>
+    <div id="promo-card"></div>
+  </div>
+</section>
+
+<!-- ========== TESTIMONIALS ========== -->
+<section class="testimonials" id="reviews">
+  <div class="section-inner">
+    <div class="section-label reveal">Real Patients, Real Results</div>
+    <h2 class="section-heading reveal">There's a reason patients<br>trust <span class="serif-word">CLYR.</span></h2>
+    <p class="section-subtext reveal">Hear from real patients who've started their GLP-1 journey with us.</p>
+  </div>
+    <div class="testimonial-marquee">
+    <div class="testimonial-card">
+      <div class="testimonial-stars"><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></div>
+      <p class="testimonial-text">"I was previously ordering from another telehealth company and switched to CLYR Health. I'm so happy. My medicine actually came cold and on ice! Best packaging I've ever seen for refrigerated medicine."</p>
+      <div class="testimonial-author"><div class="testimonial-avatar">D</div><div><div class="testimonial-name">David S.</div><div class="testimonial-detail">Verified CLYR patient</div></div></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars"><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></div>
+      <p class="testimonial-text">"I was hesitant about switching from a name-brand medicine to a compounded medicine because I had a bad experience before. However, CLYR's process and quality of the product is so good, I'm very pleased with my decision."</p>
+      <div class="testimonial-author"><div class="testimonial-avatar">B</div><div><div class="testimonial-name">Barrett L.</div><div class="testimonial-detail">Verified CLYR patient</div></div></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars"><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></div>
+      <p class="testimonial-text">"Super easy and much more affordable than what I was previously paying. Highly recommend."</p>
+      <div class="testimonial-author"><div class="testimonial-avatar">S</div><div><div class="testimonial-name">Shawn S.</div><div class="testimonial-detail">Verified CLYR patient</div></div></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars"><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></div>
+      <p class="testimonial-text">"The process couldn't have been easier. From order to my doorstep in days."</p>
+      <div class="testimonial-author"><div class="testimonial-avatar">W</div><div><div class="testimonial-name">Wendy M.</div><div class="testimonial-detail">Verified CLYR patient</div></div></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars"><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></div>
+      <p class="testimonial-text">"I was previously ordering from another telehealth company and switched to CLYR Health. I'm so happy. My medicine actually came cold and on ice! Best packaging I've ever seen for refrigerated medicine."</p>
+      <div class="testimonial-author"><div class="testimonial-avatar">D</div><div><div class="testimonial-name">David S.</div><div class="testimonial-detail">Verified CLYR patient</div></div></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars"><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></div>
+      <p class="testimonial-text">"I was hesitant about switching from a name-brand medicine to a compounded medicine because I had a bad experience before. However, CLYR's process and quality of the product is so good, I'm very pleased with my decision."</p>
+      <div class="testimonial-author"><div class="testimonial-avatar">B</div><div><div class="testimonial-name">Barrett L.</div><div class="testimonial-detail">Verified CLYR patient</div></div></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars"><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></div>
+      <p class="testimonial-text">"Super easy and much more affordable than what I was previously paying. Highly recommend."</p>
+      <div class="testimonial-author"><div class="testimonial-avatar">S</div><div><div class="testimonial-name">Shawn S.</div><div class="testimonial-detail">Verified CLYR patient</div></div></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars"><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></div>
+      <p class="testimonial-text">"The process couldn't have been easier. From order to my doorstep in days."</p>
+      <div class="testimonial-author"><div class="testimonial-avatar">W</div><div><div class="testimonial-name">Wendy M.</div><div class="testimonial-detail">Verified CLYR patient</div></div></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars"><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></div>
+      <p class="testimonial-text">"I was previously ordering from another telehealth company and switched to CLYR Health. I'm so happy. My medicine actually came cold and on ice! Best packaging I've ever seen for refrigerated medicine."</p>
+      <div class="testimonial-author"><div class="testimonial-avatar">D</div><div><div class="testimonial-name">David S.</div><div class="testimonial-detail">Verified CLYR patient</div></div></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars"><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></div>
+      <p class="testimonial-text">"I was hesitant about switching from a name-brand medicine to a compounded medicine because I had a bad experience before. However, CLYR's process and quality of the product is so good, I'm very pleased with my decision."</p>
+      <div class="testimonial-author"><div class="testimonial-avatar">B</div><div><div class="testimonial-name">Barrett L.</div><div class="testimonial-detail">Verified CLYR patient</div></div></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars"><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></div>
+      <p class="testimonial-text">"Super easy and much more affordable than what I was previously paying. Highly recommend."</p>
+      <div class="testimonial-author"><div class="testimonial-avatar">S</div><div><div class="testimonial-name">Shawn S.</div><div class="testimonial-detail">Verified CLYR patient</div></div></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars"><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg viewBox="0 0 24 24" fill="#2bbcb3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></div>
+      <p class="testimonial-text">"The process couldn't have been easier. From order to my doorstep in days."</p>
+      <div class="testimonial-author"><div class="testimonial-avatar">W</div><div><div class="testimonial-name">Wendy M.</div><div class="testimonial-detail">Verified CLYR patient</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FAQ ========== -->
+<section class="faq" id="faq">
+  <div class="section-inner">
+    <div class="section-label" style="display:flex;justify-content:center;">Frequently Asked</div>
+    <h2 class="section-heading" style="text-align:center;">Got questions?<br>We've got <span class="serif-word">answers.</span></h2>
+    <p class="section-subtext" style="text-align:center; margin-left:auto; margin-right:auto;">Everything you need to know about starting your GLP-1 weight loss journey with CLYR.</p>
+
+    <div class="faq-grid">
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          What is compounded Semaglutide?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>Compounded Semaglutide is a custom-prepared medication made by licensed 503A compounding pharmacies. It is prescribed by a licensed healthcare provider and combined with Vitamin B12 to support your weight management journey. Compounded medications are not FDA-approved.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          What's the difference between Semaglutide and Tirzepatide?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>Semaglutide targets the GLP-1 receptor, helping regulate appetite and blood sugar. Tirzepatide targets both GLP-1 and GIP receptors (dual-action), which may provide enhanced weight loss results. Your provider will recommend the best option based on your health profile and goals.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          How quickly will I see results?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>Most patients begin noticing reduced appetite within the first 1–2 weeks. Meaningful weight loss typically begins within the first month, with an average of 5–10% body weight loss over the first 3 months. Individual results vary based on dosing, diet, and activity level.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Is CLYR right for me? Do I need to visit a doctor?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>Every CLYR patient is evaluated by a licensed medical provider via our telehealth platform before receiving a prescription. Our providers review your health history, current medications, and goals to determine if treatment is appropriate for you.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Can I cancel anytime?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>Absolutely. Monthly auto-refill plans can be canceled at any time with no penalties or fees. Multi-month bundles auto-renew every 90 days — if you cancel during your current 90-day period, you will not be charged for the next renewal. If you're deemed ineligible by your provider, we offer a full refund.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Do you accept insurance?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>CLYR does not bill insurance, but we do accept FSA and HSA cards at checkout. Our straightforward pricing means no surprise bills — what you see is what you pay.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          What states are your services available in?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>Our services are currently available in all 50 states excluding Alaska, Mississippi, and Louisiana.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Will my medication always contain Vitamin B12?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>Our compounding pharmacy may occasionally substitute Vitamin B6 (Pyridoxine) for B12 (Methylcobalamin) based on ingredient availability. Both vitamins support energy and metabolism during your weight loss journey. Your medication's active ingredient — Tirzepatide or Semaglutide — remains exactly the same regardless of which vitamin is included. You will always be notified if there is any change to your prescription.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FEATURES ========== -->
+<section class="features">
+  <div class="section-inner">
+    <div class="section-label reveal">What's Included</div>
+    <h2 class="section-heading">More than just<br><span class="serif-word">medication.</span></h2>
+    <p class="section-subtext">Every CLYR plan comes with the full support system you need to succeed — not just a prescription.</p>
+
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="feature-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3>Licensed Providers</h3>
+        <p>Board-certified physicians and nurse practitioners review your health history and prescribe your treatment.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+        </div>
+        <h3>Ongoing Care</h3>
+        <p>Message your care team anytime. Get dosing adjustments, check-ins, and medical guidance throughout your journey.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+        </div>
+        <h3>Vitamin B12 Included</h3>
+        <p>Every compound includes B12 to support energy levels, metabolism, and overall wellbeing during your weight loss.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        </div>
+        <h3>Free Discreet Shipping</h3>
+        <p>Temperature-controlled packaging, shipped in plain boxes. Fast delivery, always free.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Eligibility Guarantee</h3>
+        <p>If our provider determines you're not eligible after payment, you'll receive a full refund. Zero risk to start.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CTA ========== -->
+<section class="cta-section reveal" id="get-started">
+  <div class="cta-inner">
+    <h2>Your journey starts<br>with one <span class="serif-word">clear</span> step.</h2>
+    <p>Complete a 5-minute health questionnaire and get matched with a licensed provider today. If you're not eligible, you pay nothing.</p>
+    <a href="/intake.html" class="btn-primary">
+      Get Started Now
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <div style="margin-top:20px"><a href="/wellness.html#compare-glp1" style="color:rgba(255,255,255,0.55);font-size:14px;text-decoration:underline;text-underline-offset:4px">Compare all 8 GLP-1 options side-by-side →</a></div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <svg viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="100">
+          <text x="0" y="26" font-family="DM Sans, sans-serif" font-weight="700" font-size="28" letter-spacing="-1">
+            <tspan fill="#ffffff">CLY</tspan><tspan fill="#00B4C5">R</tspan>
+          </text>
+        </svg>
+        <p class="footer-brand-text">Compounded GLP-1 medications with B12, prescribed by licensed providers. Delivered to your door.</p>
+        <div class="footer-seals">
+          <a href="https://www.legitscript.com/websites/?checker_keywords=clyr.health" target="_blank" title="Verify LegitScript Approval for www.clyr.health">
+            <img src="https://static.legitscript.com/seals/49414584.png" alt="LegitScript Certified" width="73" height="79" />
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Treatments</h4>
+        <a href="/semaglutide.html">Semaglutide + B12</a>
+        <a href="/tirzepatide.html">Tirzepatide + B12</a>
+        <a href="#pricing">Pricing</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About CLYR</a>
+        <a href="#faq">FAQ</a>
+        <a href="/contact.html">Contact Us</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
+        <a href="/telehealth-consent.html">Telehealth Consent</a>
+        <a href="/sms-terms.html">SMS Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 CLYR Health. All rights reserved.</p>
+      <div class="footer-legal">
+      </div>
+    </div>
+    <div class="footer-trust">
+      <div class="trust-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        LegitScript Certified
+      </div>
+      <div class="trust-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        HIPAA Compliant
+      </div>
+      <div class="trust-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Licensed Physicians
+      </div>
+      <div class="trust-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 12 15 16 10"/></svg>
+        503A Licensed Pharmacy
+      </div>
+      <div class="trust-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        Secure Payments via Stripe
+      </div>
+    </div>
+    <div class="footer-disclaimer">
+      The information provided on this website is for informational purposes only and does not constitute medical advice. Compounded medications are not FDA-approved but are prepared by licensed pharmacies in compliance with applicable regulations. Individual results may vary. All treatments require a valid prescription from a licensed healthcare provider. Not all patients will qualify for treatment. Clyr Health is not a compounding pharmacy or chemical compounding facility as defined under 503A of the Federal Food, Drug, and Cosmetic Act.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ===== NAV SCROLL EFFECT =====
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // ===== PRICING DATA =====
+  const pricingData = {
+    sema: [
+      { name: 'Monthly', price: 225, period: '/mo', billing: 'Auto-refill, cancel anytime', savings: null, popular: false },
+      { name: '3 Month Starter', price: 179, period: '/mo', billing: 'One-time payment of $537', savings: 'Save $138', popular: true },
+      { name: '6 Month Plan', price: 149, period: '/mo', billing: 'One-time payment of $894', savings: 'Save $456', popular: false }
+    ],
+    tirz: [
+      { name: 'Monthly', price: 320, period: '/mo', billing: 'Auto-refill, cancel anytime', savings: null, popular: false },
+      { name: '3 Month Starter', price: 259, period: '/mo', billing: 'One-time payment of $777', savings: 'Save $183', popular: true },
+      { name: '6 Month Plan', price: 225, period: '/mo', billing: 'One-time payment of $1,350', savings: 'Save $570', popular: false }
+    ]
+  };
+
+  let currentPricing = 'tirz';
+
+  function switchPricing(type) {
+    currentPricing = type;
+    document.querySelectorAll('.pricing-tab').forEach(t => t.classList.remove('active'));
+    event.target.classList.add('active');
+    renderPricing();
+    if(window.clyrTrack)clyrTrack('PricingToggled',{product:type});
+  }
+
+  function renderPricing() {
+    const container = document.getElementById('pricing-tiers');
+    const data = pricingData[currentPricing];
+    container.innerHTML = data.map(tier => `
+      <div class="tier-card ${tier.popular ? 'popular' : ''} reveal visible">
+        ${tier.popular ? '<div class="tier-popular-badge">Most Popular</div>' : ''}
+        <div class="tier-name">${tier.name}</div>
+        <div class="tier-price">$${tier.price}<span>${tier.period}</span></div>
+        <div class="tier-billing">${tier.billing}</div>
+        ${tier.savings ? `<div class="tier-savings">${tier.savings}</div>` : ''}
+        <a href="/intake.html" class="tier-cta">Get Started</a>
+      </div>
+    `).join('');
+  }
+
+  renderPricing();
+
+  // ===== FAQ TOGGLE =====
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) { item.classList.add('open'); if(window.clyrTrack)clyrTrack('FAQExpanded',{question:btn.textContent.trim().slice(0,80)}); }
+  }
+
+  // ===== SCROLL REVEAL =====
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        // Don't unobserve — keep the class permanent
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ===== ANIMATED COUNTERS =====
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = parseInt(el.dataset.target);
+        if (target === 0) { el.textContent = '0'; counterObserver.unobserve(el); return; }
+        let current = 0;
+        const step = Math.max(1, Math.ceil(target / 35));
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) { current = target; clearInterval(timer); }
+          el.textContent = current;
+        }, 30);
+        counterObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+  // ===== SMOOTH SCROLL =====
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      document.getElementById('nav').classList.remove('mobile-open');
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+
+<script src="/js/clyr-tracking.js"></script>
+<script>
+document.addEventListener('click',function(e){
+  var a=e.target.closest('a[href*="intake.html"]');
+  if(a&&window.clyrTrack){
+    var label=a.textContent.trim().slice(0,60);
+    var section=a.closest('section,nav,footer');
+    clyrTrack('HomepageCTAClicked',{label:label,section:section?section.className||section.id||'unknown':'unknown'});
+  }
+});
+</script>
+<script>
+// Dynamic promo banner — fetches from admin backend
+(async function(){
+  try {
+    const r = await fetch('https://clyr-backend.onrender.com/api/promo/active');
+    const d = await r.json();
+    if (!d.active || !d.promo) return;
+    const p = d.promo;
+    const disc = p.discount_type === 'percent' ? p.discount_value + '% off' : '$' + p.discount_value + ' off';
+
+    // Announcement bar
+    const bar = document.getElementById('promo-bar');
+    if (bar && p.headline) {
+      bar.innerHTML = '<div class="announcement"><strong>' + p.headline + '</strong></div>';
+    }
+
+    // Promo card below pricing
+    const card = document.getElementById('promo-card');
+    if (card && p.description) {
+      card.innerHTML = '<div style="margin-top:28px;padding:20px 28px;background:linear-gradient(135deg,rgba(0,180,197,0.08) 0%,rgba(0,180,197,0.03) 100%);border:1.5px solid rgba(0,180,197,0.2);border-radius:16px;text-align:center;">'
+        + '<div style="font-size:20px;font-weight:700;color:#1A1A1A;letter-spacing:-0.02em;margin-bottom:6px;">' + p.description + '</div>'
+        + '<div style="font-size:14px;color:#6B7C8A;">Enter code <span style="font-weight:700;color:#00B4C5;background:rgba(0,180,197,0.1);padding:3px 12px;border-radius:6px;font-family:monospace;font-size:15px;letter-spacing:0.05em;">' + p.code + '</span> at checkout</div>'
+        + '</div>';
+    }
+  } catch(e) { /* no promo, no problem */ }
+})();
+</script>
+</body>
+</html>
