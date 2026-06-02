@@ -851,7 +851,7 @@ function computeStateChips(){
   }
   // Expired supply
   if(rw?.isExpired){
-    chips.push({label:'Supply Expired',kind:'error',icon:'clock'});
+    chips.push({label:'Refill Due',kind:'warn',icon:'clock'});
   }
   // Shipping
   if(stage==='shipped'){
@@ -900,7 +900,7 @@ function computeStateChipsForTreatment(tx){
     chips.push({label:'Refill Ready',kind:'warn',icon:'refresh'});
   }
   if(rw.isExpired){
-    chips.push({label:'Supply Expired',kind:'error',icon:'clock'});
+    chips.push({label:'Refill Due',kind:'warn',icon:'clock'});
   }
   if(enc.pharmacyStatus==='shipped'){
     chips.push({label:'Shipping',kind:'info',icon:'truck'});
