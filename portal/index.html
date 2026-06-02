@@ -1087,6 +1087,7 @@ function renderRefillSummaryForTreatment(tx){
 // Map product names to the new product thumbnails (frontend override so the
 // updated artwork shows regardless of what productImage the backend sends).
 const PRODUCT_THUMBS=[
+  [/zepbound/i,'/img/portal/zepbound.png'],
   [/tirzep/i,'/img/portal/tirzepatide.png'],
   [/semaglu/i,'/img/portal/semaglutide.png'],
   [/nad/i,'/img/portal/nad.png'],
@@ -1094,14 +1095,29 @@ const PRODUCT_THUMBS=[
   [/glutath/i,'/img/portal/glutathione.png'],
   [/micc/i,'/img/portal/micc.png'],
   [/lipo|mic\b|carnitine/i,'/img/portal/lipo-mino.png'],
+  [/sild.*tadal.*oxy|tadal.*oxy|triple|combo\s*odt/i,'/img/portal/sild-tadal-oxy.png'],
+  [/sildenafil.*gummy|gummy/i,'/img/portal/sildenafil-gummy.png'],
   [/tadalafil|vardenafil|\btad\b/i,'/img/portal/tadalafil.png'],
   [/pt-?141|oxytocin|bremelanotide/i,'/img/portal/pt141.png'],
   [/ivermectin|mebendazole|antiparasit/i,'/img/portal/antiparasitic.png'],
+  // NOTE: Foundayo intentionally omitted until the correct bottle asset is confirmed (foundayo-bottle.png currently shows Wegovy). Falls back to backend image.
 ];
+// Resolve a thumbnail from any object that carries product name fields.
+// Accepts treatment objects (productDisplay/product), catalog objects
+// (displayName/key/shortName), or a raw string.
+function thumbFromName(name, fallbackImg){
+  name=(name||'').toString();
+  for(const [re,src] of PRODUCT_THUMBS){ if(re.test(name)) return src; }
+  return fallbackImg || '/img/portal/tirzepatide.png';
+}
 function resolveProductThumb(tx){
   const name=((tx.productDisplay||'')+' '+(tx.product||'')).trim();
-  for(const [re,src] of PRODUCT_THUMBS){ if(re.test(name)) return src; }
-  return tx.productImage || '/img/portal/tirzepatide.png';
+  return thumbFromName(name, tx.productImage);
+}
+// For Shop / suggest / detail catalog objects.
+function resolveCatalogThumb(p){
+  const name=((p.displayName||'')+' '+(p.shortName||'')+' '+(p.key||'')).trim();
+  return thumbFromName(name, p.image);
 }
 
 // Render a single treatment card. Used both on the home stack and the
@@ -1326,7 +1342,7 @@ function renderSuggested(){
   $('suggestedSection').style.display='block';
   $('suggestedRow').innerHTML=filtered.slice(0,3).map(p=>`
     <div class="suggest-card" onclick="openProductDetail('${escapeAttr(p.key)}')">
-      <div class="suggest-card-img"><img src="${p.image}" alt="" onerror="this.parentElement.innerHTML='💊'"></div>
+      <div class="suggest-card-img"><img src="${resolveCatalogThumb(p)}" alt="" onerror="this.parentElement.innerHTML='💊'"></div>
       <div class="suggest-card-body">
         <div class="suggest-card-cat">${verticalLabel(p.vertical)}</div>
         <div class="suggest-card-name">${escapeHtml(p.shortName)}</div>
@@ -2040,7 +2056,7 @@ function renderShop(){
   }
   $('shopGrid').innerHTML=all.map(p=>`
     <div class="shop-card" onclick="openProductDetail('${escapeAttr(p.key)}')">
-      <div class="shop-card-img"><img src="${p.image}" alt="" onerror="this.style.display='none'"></div>
+      <div class="shop-card-img"><img src="${resolveCatalogThumb(p)}" alt="" onerror="this.style.display='none'"></div>
       <div class="shop-card-cat">${verticalLabel(p.vertical)} · RX</div>
       <div class="shop-card-name">${escapeHtml(p.displayName)}</div>
       <div class="shop-card-price">As low as <strong>$${p.monthlyPrice}/mo</strong></div>
@@ -2133,7 +2149,7 @@ async function openProductDetail(productKey){
         <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px">
           <div style="display:flex;gap:14px;align-items:center">
             <div style="width:56px;height:56px;background:var(--gray-50);border-radius:12px;display:flex;align-items:center;justify-content:center;padding:8px">
-              <img src="${product.image}" alt="" style="max-width:100%;max-height:100%;object-fit:contain" onerror="this.style.display='none'">
+              <img src="${resolveCatalogThumb(product)}" alt="" style="max-width:100%;max-height:100%;object-fit:contain" onerror="this.style.display='none'">
             </div>
             <div>
               <div style="font-size:11px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:2px">${verticalLabel(product.vertical)} · RX</div>
