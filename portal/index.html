@@ -552,6 +552,128 @@ let selectedJourneyProduct = null; // for multi-product patients, which treatmen
 let catalog = null;        // /catalog response
 let currentPage = 'home';
 
+// ─── Per-product educational info ───────────────────────────────────────
+// Canonical copy mirrored from the clyr.health landing pages so patients can
+// learn what a treatment does, what's in it, and how to take it WITHOUT
+// leaving the portal. Keep in sync with the product pages. Each entry:
+//   tagline   one-line "what it is"
+//   supply    what arrives + cadence (answers "how many do I get?")
+//   dosing    how/when to take it
+//   onset     how fast / how long (sexual health especially)
+//   benefits  [{h, p}] short benefit cards
+const PRODUCT_INFO = {
+  tadalafil: {
+    tagline: 'A dual-action ED tablet combining Tadalafil 2.5mg + Vardenafil 2.5mg — two PDE5 inhibitors in one tablet.',
+    supply: '10-tablet pack, as-needed. Also available as a 30-day daily supply.',
+    dosing: 'Take one tablet 30–60 minutes before activity. Works only with sexual arousal.',
+    onset: 'Works in 30–60 min · lasts up to 36 hours',
+    benefits: [
+      { h: 'Two actives, one tablet', p: 'Combines Tadalafil (Cialis) and Vardenafil (Levitra) for enhanced blood flow and reliable performance.' },
+      { h: 'Lasts up to 36 hours', p: "Tadalafil's extended half-life means one tablet can support performance for up to a day and a half." },
+      { h: 'As-needed or daily', p: 'Take before planned activity, or switch to daily low-dose for always-ready confidence. Your provider helps you choose.' },
+    ],
+  },
+  sildenafil_gummy: {
+    tagline: 'Chewable 50mg sildenafil gummies for on-demand ED treatment — same active ingredient as branded sildenafil, no pills, no water.',
+    supply: '10-gummy monthly supply (50mg sildenafil each).',
+    dosing: 'Chew one gummy 30–60 minutes before activity, as needed.',
+    onset: 'Works in 30–60 min · lasts 4–6 hours',
+    benefits: [
+      { h: 'Chewable, no water', p: 'Just chew and go. Easier to take than tablets, especially on the move.' },
+      { h: 'Fast-acting', p: 'Effects typically begin within 30–60 minutes and last 4–6 hours.' },
+      { h: 'PDE5 inhibitor', p: 'Sildenafil increases blood flow to support erection during sexual stimulation.' },
+    ],
+  },
+  pt141: {
+    tagline: "Bremelanotide + Oxytocin sublingual ODT. PT-141 works on the brain's melanocortin pathways — distinct from PDE5 inhibitors — to support desire, arousal, and intimacy in men and women.",
+    supply: '8-ODT monthly supply (Bremelanotide 2mg + Oxytocin 40IU per dose).',
+    dosing: 'Dissolve one ODT under the tongue 30–60 minutes before intimacy.',
+    onset: 'Works in 30–60 min · lasts 4–6 hours',
+    benefits: [
+      { h: 'Acts on the brain', p: 'Stimulates the melanocortin pathway — distinct from PDE5 inhibitors that work on blood vessels — to support libido and desire.' },
+      { h: 'Sublingual ODT', p: 'Dissolves under the tongue. No water, no pills to swallow.' },
+      { h: 'For men & women', p: 'Supports desire and arousal in both. Many patients pair it with a PDE5 inhibitor.' },
+    ],
+  },
+  sild_tadal_oxy: {
+    tagline: 'A triple-action orally-dissolving tablet — sildenafil for fast onset, tadalafil for duration, and oxytocin for intimacy — in one ODT.',
+    supply: '10-ODT monthly supply (Sildenafil 50mg / Tadalafil 20mg / Oxytocin 125IU each).',
+    dosing: 'Dissolve one ODT under the tongue 30 minutes before activity.',
+    onset: 'Sildenafil in 30 min · Tadalafil lasts up to 36 hours',
+    benefits: [
+      { h: 'Sildenafil — fast onset', p: 'Begins working in about 30 minutes. Same active as Viagra®.' },
+      { h: 'Tadalafil — long duration', p: 'Effects can last up to 36 hours. Same active as Cialis®.' },
+      { h: 'Oxytocin — connection', p: 'Low-dose oxytocin supports bonding and intimacy alongside the PDE5 inhibitors.' },
+    ],
+  },
+  sermorelin: {
+    tagline: "A synthetic peptide that stimulates your body's natural growth hormone production — supporting deeper sleep, faster recovery, lean muscle, and healthy aging, without synthetic HGH.",
+    supply: 'One-month supply: Sermorelin 2mg/ml vial (5ml — 10mg total) + injection homekit (syringes + alcohol pads).',
+    dosing: 'Daily subcutaneous injection. Most patients self-administer in under a minute.',
+    onset: 'Once daily · feel the difference in weeks',
+    benefits: [
+      { h: 'Natural GH support', p: "Stimulates your body's own growth hormone production rather than replacing it with synthetic HGH." },
+      { h: 'Sleep & recovery', p: 'Supports deeper sleep, faster recovery, and lean muscle as part of a longevity protocol.' },
+      { h: 'Simple homekit', p: 'Syringes and alcohol pads included. Quick subcutaneous self-injection.' },
+    ],
+  },
+  nad: {
+    tagline: 'Pharmaceutical-grade NAD+ injections for cellular energy and longevity — delivered subcutaneously for rapid absorption.',
+    supply: 'One-month supply: NAD+ injection vial + injection homekit (syringes + alcohol pads).',
+    dosing: 'Subcutaneous injection per your provider\u2019s schedule. Self-administered at home.',
+    onset: 'Feel the difference in weeks',
+    benefits: [
+      { h: 'Cellular energy', p: 'NAD+ is a coenzyme central to how your cells produce energy and repair themselves.' },
+      { h: 'Higher bioavailability', p: 'Injections bypass digestion, delivering NAD+ directly to your bloodstream — unlike oral supplements.' },
+      { h: 'Longevity support', p: 'Part of a daily-wellness protocol for cellular health and healthy aging.' },
+    ],
+  },
+  glutathione: {
+    tagline: "The body's master antioxidant — a tripeptide of cysteine, glycine, and glutamine that neutralizes free radicals, supports liver detox, immune function, and healthier skin.",
+    supply: 'One-month supply: Glutathione 200mg/ml vial (10ml — 2,000mg total) + injection homekit.',
+    dosing: 'Subcutaneous injection per your provider\u2019s schedule. Self-administered at home.',
+    onset: 'Feel the difference in weeks',
+    benefits: [
+      { h: 'Master antioxidant', p: 'Protects every cell from oxidative damage and supports your liver and immune system.' },
+      { h: 'Skin & detox', p: 'Supports liver detoxification and promotes healthier skin from the inside out.' },
+      { h: 'Simple homekit', p: 'Syringes and alcohol pads included for a quick subcutaneous injection.' },
+    ],
+  },
+  micc: {
+    tagline: 'A compounded lipotropic injection — methionine, inositol, choline, and B12 (the classic MIC + B12 stack) — for fat metabolism and energy. Often paired with GLP-1 protocols.',
+    supply: 'One-month supply: Lipo-Mino MICC vial (10ml) + injection homekit (syringes + alcohol pads).',
+    dosing: 'Typically once-weekly subcutaneous or intramuscular injection. Self-administered in under a minute.',
+    onset: 'Once weekly',
+    benefits: [
+      { h: 'Fat metabolism', p: 'Methionine, inositol, choline, and B12 work together to help the body process fat more efficiently.' },
+      { h: 'Pairs with GLP-1', p: 'Commonly used alongside Tirzepatide or Semaglutide — same weekly injection routine.' },
+      { h: 'Energy support', p: 'The B12 component supports energy as part of a metabolic protocol.' },
+    ],
+  },
+  tirzepatide: {
+    tagline: 'A once-weekly dual GIP/GLP-1 injection for weight management, compounded with B12.',
+    supply: 'Monthly supply with injection homekit. Dose titrates over time per your provider.',
+    dosing: 'Once-weekly subcutaneous injection. Refer to your prescription for your current dose.',
+    onset: 'Once weekly',
+    benefits: [
+      { h: 'Dual-action', p: 'Targets two appetite-regulating pathways (GIP and GLP-1) to support weight management.' },
+      { h: 'Once weekly', p: 'A single weekly subcutaneous injection, self-administered at home.' },
+      { h: 'Provider-managed dosing', p: 'Your provider titrates your dose over time. Each refill requires a quick check-in.' },
+    ],
+  },
+  semaglutide: {
+    tagline: 'A once-weekly GLP-1 injection for weight management, compounded with B12.',
+    supply: 'Monthly supply with injection homekit. Dose titrates over time per your provider.',
+    dosing: 'Once-weekly subcutaneous injection. Refer to your prescription for your current dose.',
+    onset: 'Once weekly',
+    benefits: [
+      { h: 'GLP-1 action', p: 'Targets the GLP-1 appetite-regulating pathway to support weight management.' },
+      { h: 'Once weekly', p: 'A single weekly subcutaneous injection, self-administered at home.' },
+      { h: 'Provider-managed dosing', p: 'Your provider titrates your dose over time. Each refill requires a quick check-in.' },
+    ],
+  },
+};
+
 // ─── Helpers ───
 function $(id){return document.getElementById(id);}
 function fmtDate(iso){if(!iso)return '—';const d=new Date(iso);return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}
@@ -1993,9 +2115,31 @@ async function openProductDetail(productKey){
         </div>
 
         <div id="productDetailBody">
-          <div style="background:#f8fafb;border:1px solid var(--gray-100);border-radius:12px;padding:16px;margin-bottom:18px;font-size:13px;color:var(--gray-600);line-height:1.5">
-            Provider-supervised. Compounded by a state-licensed pharmacy. Delivered to your door. All plans include the provider consultation, prescription, medication, and shipping.
-          </div>
+          ${(() => {
+            const info = PRODUCT_INFO[product.key];
+            if (!info) {
+              return `<div style="background:#f8fafb;border:1px solid var(--gray-100);border-radius:12px;padding:16px;margin-bottom:18px;font-size:13px;color:var(--gray-600);line-height:1.5">Provider-supervised. Compounded by a state-licensed pharmacy. Delivered to your door. All plans include the provider consultation, prescription, medication, and shipping.</div>`;
+            }
+            const benefitCards = (info.benefits || []).map(b => `
+              <div style="background:#f8fafb;border:1px solid var(--gray-100);border-radius:10px;padding:12px 14px">
+                <div style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:3px">${escapeHtml(b.h)}</div>
+                <div style="font-size:12px;color:var(--gray-500);line-height:1.45">${escapeHtml(b.p)}</div>
+              </div>`).join('');
+            const fact = (label, val) => val ? `
+              <div style="display:flex;gap:8px;padding:7px 0;border-bottom:1px solid var(--gray-100);font-size:13px">
+                <div style="min-width:78px;font-weight:700;color:var(--gray-500)">${label}</div>
+                <div style="color:var(--gray-700);line-height:1.45">${escapeHtml(val)}</div>
+              </div>` : '';
+            return `
+              <div style="font-size:14px;color:var(--gray-700);line-height:1.55;margin-bottom:16px">${escapeHtml(info.tagline)}</div>
+              ${info.onset ? `<div style="display:inline-flex;align-items:center;gap:6px;background:var(--teal-light, rgba(43,188,179,0.1));color:var(--teal-dark, #1a9b94);font-size:12px;font-weight:700;padding:6px 12px;border-radius:100px;margin-bottom:16px">${escapeHtml(info.onset)}</div>` : ''}
+              ${benefitCards ? `<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px">${benefitCards}</div>` : ''}
+              <div style="background:white;border:1px solid var(--gray-100);border-radius:12px;padding:6px 14px;margin-bottom:18px">
+                ${fact('What you get', info.supply)}
+                ${fact('How to take', info.dosing)}
+              </div>
+              <div style="font-size:11px;color:var(--gray-400);line-height:1.5;margin-bottom:18px">Compounded by a state-licensed pharmacy and not reviewed by the FDA. Provider consultation, prescription, and discreet shipping are included with every plan.</div>`;
+          })()}
 
           <div style="font-size:13px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px">Choose your plan</div>
           <div id="planPicker" style="display:flex;flex-direction:column;gap:8px;margin-bottom:18px">
