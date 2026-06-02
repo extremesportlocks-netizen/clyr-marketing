@@ -1709,13 +1709,17 @@
 }
 .bento-card .bento-product {
   position: absolute;
-  width: 38%;
-  top: 14%;
-  right: 8%;
+  height: 52%;
+  width: auto;
+  top: 10%;
+  right: 7%;
   z-index: 1;
-  filter: drop-shadow(0 18px 32px rgba(0,0,0,0.18));
+  filter: drop-shadow(0 18px 32px rgba(0,0,0,0.28));
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
+.bento-1 .bento-product { height: 56%; top: 12%; right: 12%; }
+.bento-3 .bento-product { height: 34%; }
+.bento-4 .bento-product { height: 34%; }
 .bento-card:hover .bento-product { transform: translateY(-8px) rotate(-2deg); }
 .bento-card-vertical {
   font-size: 12px;
