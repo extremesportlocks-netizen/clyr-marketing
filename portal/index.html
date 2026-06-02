@@ -136,7 +136,7 @@ a{color:inherit;text-decoration:none}
 /* ─── TREATMENT CARD ─── */
 .treatment-card{background:var(--white);border:1px solid var(--gray-100);border-radius:var(--radius);padding:0;overflow:hidden}
 .treatment-card-head{padding:18px 22px;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--gray-100)}
-.treatment-card-img{width:56px;height:56px;background:var(--gray-50);border-radius:12px;display:flex;align-items:center;justify-content:center;padding:6px;flex-shrink:0}
+.treatment-card-img{width:72px;height:72px;background:var(--gray-50);border-radius:12px;display:flex;align-items:center;justify-content:center;padding:6px;flex-shrink:0}
 .treatment-card-img img{max-width:100%;max-height:100%;object-fit:contain}
 .treatment-card-info{flex:1}
 .treatment-card-name{font-size:16px;font-weight:700}
@@ -1084,11 +1084,31 @@ function renderRefillSummaryForTreatment(tx){
   </div>`;
 }
 
+// Map product names to the new product thumbnails (frontend override so the
+// updated artwork shows regardless of what productImage the backend sends).
+const PRODUCT_THUMBS=[
+  [/tirzep/i,'/img/portal/tirzepatide.png'],
+  [/semaglu/i,'/img/portal/semaglutide.png'],
+  [/nad/i,'/img/portal/nad.png'],
+  [/sermorel/i,'/img/portal/sermorelin.png'],
+  [/glutath/i,'/img/portal/glutathione.png'],
+  [/micc/i,'/img/portal/micc.png'],
+  [/lipo|mic\b|carnitine/i,'/img/portal/lipo-mino.png'],
+  [/tadalafil|vardenafil|\btad\b/i,'/img/portal/tadalafil.png'],
+  [/pt-?141|oxytocin|bremelanotide/i,'/img/portal/pt141.png'],
+  [/ivermectin|mebendazole|antiparasit/i,'/img/portal/antiparasitic.png'],
+];
+function resolveProductThumb(tx){
+  const name=((tx.productDisplay||'')+' '+(tx.product||'')).trim();
+  for(const [re,src] of PRODUCT_THUMBS){ if(re.test(name)) return src; }
+  return tx.productImage || '/img/portal/tirzepatide.png';
+}
+
 // Render a single treatment card. Used both on the home stack and the
 // Treatments tab — the layout is identical so we don't fork the HTML.
 function renderTreatmentCardHtml(tx){
   const planLabel=({monthly:'Monthly','3month':'3 months','6month':'6 months'})[tx.plan]||tx.plan||'';
-  const img=tx.productImage||'/img/vial-tirzepatide-new.png';
+  const img=resolveProductThumb(tx);
   const cancelPending=!!tx.cancelAt;
   const productKey=escapeAttr(tx.product||'');
   return `
