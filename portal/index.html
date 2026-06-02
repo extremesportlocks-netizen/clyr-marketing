@@ -1088,6 +1088,7 @@ function renderRefillSummaryForTreatment(tx){
 // updated artwork shows regardless of what productImage the backend sends).
 const PRODUCT_THUMBS=[
   [/zepbound/i,'/img/portal/zepbound.png'],
+  [/foundayo|orforglipron/i,'/img/portal/foundayo.png'],
   [/tirzep/i,'/img/portal/tirzepatide.png'],
   [/semaglu/i,'/img/portal/semaglutide.png'],
   [/nad/i,'/img/portal/nad.png'],
@@ -1100,7 +1101,7 @@ const PRODUCT_THUMBS=[
   [/tadalafil|vardenafil|\btad\b/i,'/img/portal/tadalafil.png'],
   [/pt-?141|oxytocin|bremelanotide/i,'/img/portal/pt141.png'],
   [/ivermectin|mebendazole|antiparasit/i,'/img/portal/antiparasitic.png'],
-  // NOTE: Foundayo intentionally omitted until the correct bottle asset is confirmed (foundayo-bottle.png currently shows Wegovy). Falls back to backend image.
+  // Foundayo confirmed: correct orforglipron bottle asset placed (img/portal/foundayo.png), mapped above.
 ];
 // Resolve a thumbnail from any object that carries product name fields.
 // Accepts treatment objects (productDisplay/product), catalog objects
