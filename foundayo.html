@@ -163,7 +163,7 @@
       <span class="period">/month</span>
     </div>
     <p class="product-price-note">Starting dose (0.8mg). Higher doses $349-$449. Includes provider consultation, prescription, and free 2-day shipping.</p>
-    <a href="mailto:care@clyr.health?subject=Notify%20me%20when%20Foundayo%20launches&amp;body=Please%20notify%20me%20when%20Foundayo%20becomes%20available%20at%20CLYR." class="product-cta">
+    <a href="#waitlist" class="product-cta">
       Join the waitlist
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
@@ -285,10 +285,10 @@
   </div>
 </section>
 
-<section class="cta-section">
+<section class="cta-section" id="waitlist">
   <h2>Be first to know when<br><span class="serif">Foundayo launches.</span></h2>
   <p>Foundayo is launching soon at CLYR. Drop us a note and we'll notify you the moment it goes live.</p>
-  <a href="mailto:care@clyr.health?subject=Notify%20me%20when%20Foundayo%20launches&amp;body=Please%20notify%20me%20when%20Foundayo%20becomes%20available%20at%20CLYR." class="cta-btn">Join the waitlist<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  <form id="wl_foundayo" style="display:flex;gap:10px;max-width:440px;margin:24px auto 0;flex-wrap:wrap;justify-content:center"><input id="wlEmail_foundayo" type="email" required placeholder="you@email.com" autocomplete="email" style="flex:1;min-width:240px;padding:15px 18px;font-size:16px;border:1.5px solid rgba(255,255,255,0.25);border-radius:100px;outline:none;background:rgba(255,255,255,0.95);color:#1A1A1A"><button type="submit" id="wlBtn_foundayo" class="cta-btn" style="white-space:nowrap">Join the waitlist</button></form><div id="wlThanks_foundayo" style="display:none;padding:18px 0 0;color:#fff;font-weight:600;font-size:16px">You are on the list. We will email you the moment Foundayo launches.</div><script>(function(){var f=document.getElementById("wl_foundayo");if(!f)return;f.addEventListener("submit",async function(e){e.preventDefault();var email=document.getElementById("wlEmail_foundayo").value.trim();if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))return;var b=document.getElementById("wlBtn_foundayo");b.disabled=true;b.textContent="Submitting...";try{var res=await fetch("https://clyr-backend.onrender.com/api/contact",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({topic:"Waitlist: Foundayo",first_name:"Waitlist",last_name:"Signup",email:email,phone:"",message:"Foundayo waitlist signup from product page."})});if(!res.ok)throw new Error("failed");f.style.display="none";document.getElementById("wlThanks_foundayo").style.display="block";if(window.clyrTrack)clyrTrack("WaitlistSignup",{product:"foundayo"});}catch(err){window.location.href="mailto:contact@clyr.health?subject="+encodeURIComponent("Waitlist: Foundayo")+"&body="+encodeURIComponent("Please add me to the Foundayo waitlist: "+email);b.disabled=false;b.textContent="Join the waitlist";}});})();</script>
 </section>
 
 <footer class="footer">
