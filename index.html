@@ -1770,15 +1770,13 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
 <!-- ========== NAVIGATION ========== -->
 <nav class="nav" id="nav">
   <div class="nav-inner">
-    <a href="#">
-      <svg class="nav-logo" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <text x="0" y="26" font-family="DM Sans, sans-serif" font-weight="700" font-size="28" letter-spacing="-1">
-          <tspan fill="#1A1A1A">CLY</tspan><tspan fill="#00B4C5">R</tspan>
-        </text>
+    <a href="/" aria-label="CLYR Health home">
+      <svg class="nav-logo" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg" height="32">
+        <text x="0" y="26" font-family="DM Sans, sans-serif" font-weight="700" font-size="28" letter-spacing="-1"><tspan fill="#1A1A1A">CLY</tspan><tspan fill="#00B4C5">R</tspan></text>
       </svg>
     </a>
-        <div class="nav-links">
-      <div class="nav-item">
+    <div class="nav-links">
+      <div class="nav-item" data-nav="weight-loss">
         <a href="/weight-loss.html">Weight Loss <svg class="chev" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></a>
         <div class="megamenu">
           <div class="mm-grid">
@@ -1790,7 +1788,7 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
           <div class="mm-footer"><span class="mm-count">Compounded &amp; brand-name options</span><a href="/weight-loss.html">Explore Weight Loss →</a></div>
         </div>
       </div>
-      <div class="nav-item">
+      <div class="nav-item" data-nav="daily-wellness">
         <a href="/daily-wellness.html">Daily Wellness <svg class="chev" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></a>
         <div class="megamenu">
           <div class="mm-grid">
@@ -1802,22 +1800,23 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
           <div class="mm-footer"><span class="mm-count">4 wellness treatments</span><a href="/daily-wellness.html">Explore Wellness →</a></div>
         </div>
       </div>
-      <div class="nav-item">
+      <div class="nav-item" data-nav="sexual-health">
         <a href="/sexual-health.html">Sexual Health <svg class="chev" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></a>
         <div class="megamenu">
           <div class="mm-grid">
             <a href="/tadalafil.html" class="mm-link"><img src="/img/pill-tadalafil-tad25-new.png" alt=""><span class="mm-link-text"><strong>Tadalafil</strong><span>Daily ED tablet</span></span></a>
             <a href="/sildenafil-gummy.html" class="mm-link"><img src="/img/gummy-sildenafil-square.png" alt=""><span class="mm-link-text"><strong>Sildenafil Gummy</strong><span>On-demand</span></span></a>
-            <a href="/sild-tadal-oxy.html" class="mm-link"><img src="/img/odt-sild-tadal-oxy.svg" alt=""><span class="mm-link-text"><strong>Combo ODT</strong><span>Triple-action</span></span></a>
+            <a href="/sild-tadal-oxy.html" class="mm-link"><img src="/img/sild-tadal-oxy-square.png" alt=""><span class="mm-link-text"><strong>Combo ODT</strong><span>Triple-action</span></span></a>
             <a href="/pt141.html" class="mm-link"><img src="/img/pt141-odt-rose.png" alt=""><span class="mm-link-text"><strong>PT-141</strong><span>Libido ODT</span></span></a>
           </div>
           <div class="mm-footer"><span class="mm-count">4 sexual health treatments</span><a href="/sexual-health.html">Explore Sexual Health →</a></div>
         </div>
       </div>
-      <a href="/ivermectin.html">Ivermectin</a>
-      <a href="/journal/">Journal</a>
+      <a href="/wellness.html#wellness" data-nav="all-treatments">All Treatments</a>
+      <a href="/ivermectin.html" data-nav="ivermectin">Ivermectin</a>
+      <a href="/journal/" data-nav="journal">Journal</a>
       <a href="/portal/" class="nav-portal">Patient Portal</a>
-      <a href="/intake.html" class="nav-cta">Get Started</a>
+      <a href="/wellness.html#wellness" class="nav-cta">Get Started</a>
     </div>
     <button class="mobile-menu-btn" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('mobile-open')">
       <span></span><span></span><span></span>

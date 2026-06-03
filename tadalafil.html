@@ -31,23 +31,95 @@
 .footer{background:var(--dark);color:rgba(255,255,255,0.5);padding:48px 40px 24px;font-size:13px}.footer-inner{max-width:1200px;margin:0 auto}.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:36px}.footer-brand p{margin-top:12px;line-height:1.6;max-width:280px}.footer-col h4{color:white;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:14px}.footer-col a{display:block;color:rgba(255,255,255,0.5);text-decoration:none;margin-bottom:8px;font-size:13px;transition:color 0.2s}.footer-col a:hover{color:var(--teal)}.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}.footer-disclaimer{max-width:1200px;margin:24px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,0.05);font-size:11px;line-height:1.7;color:rgba(255,255,255,0.3)}
 @media(max-width:1024px){.product-hero{grid-template-columns:1fr;gap:40px}.included-inner{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:768px){.nav{padding:0 20px}.breadcrumb{padding:12px 20px}.product-hero{padding:0 20px 40px}.product-title{font-size:32px}.product-price .amount{font-size:40px}.benefits{padding:60px 20px}.benefits-grid{grid-template-columns:1fr}.included{padding:60px 20px}.quality{padding:60px 20px}.quality-grid{grid-template-columns:1fr 1fr}.how-it-works{padding:60px 20px}.steps{grid-template-columns:1fr}.faq{padding:60px 20px}.cta-section{padding:60px 20px}.footer{padding:36px 20px 16px}.footer-grid{grid-template-columns:1fr;gap:24px}.nav-links{display:none}.mobile-menu-btn{display:block}.nav.mobile-open .nav-links {display:flex;flex-direction:column;position:absolute;top:72px;left:0;right:0;background:#FFFFFF;backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);box-shadow:0 12px 40px rgba(0,0,0,0.12);padding:20px;border-bottom:1px solid var(--gray-200);gap:16px;}.nav.mobile-open{background:#FFFFFF}}
+/* ===== Canonical mega-menu nav (injected) ===== */
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-item{position:relative}
+.nav-item > a{font-size:15px;font-weight:500;color:#4A5568;text-decoration:none;transition:color 0.2s;padding:26px 0;display:inline-flex;align-items:center}
+.nav-item > a:hover{color:#1A1A1A}
+.nav-item > a .chev{display:inline-block;margin-left:4px;transition:transform 0.2s;vertical-align:middle}
+.nav-item:hover > a .chev{transform:rotate(180deg)}
+.megamenu{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(0);background:#fff;border:1px solid #E2E7EB;border-radius:20px;box-shadow:0 20px 50px rgba(15,30,60,0.14);padding:22px;min-width:520px;opacity:0;visibility:hidden;transition:all 0.2s;pointer-events:none;z-index:200}
+.nav-item:hover .megamenu{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(8px)}
+.mm-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
+.mm-link{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;text-decoration:none;color:#1A1A1A;transition:background 0.15s}
+.mm-link:hover{background:#F8FAFB}
+.mm-link img{width:34px;height:48px;flex-shrink:0;object-fit:contain}
+.mm-link-text{display:flex;flex-direction:column;line-height:1.2}
+.mm-link-text strong{font-size:14px;font-weight:600;color:#1A1A1A}
+.mm-link-text span{font-size:12px;color:#6B7C8A;margin-top:2px}
+.mm-footer{margin-top:12px;padding-top:12px;border-top:1px solid #F1F4F6;display:flex;justify-content:space-between;align-items:center}
+.mm-footer .mm-count{font-size:12px;color:#6B7C8A}
+.mm-footer a{font-size:13px;font-weight:600;color:#00B4C5;text-decoration:none}
+.nav-links a.nav-active,.nav-item.nav-active > a{color:#00B4C5;font-weight:600}
+@media (max-width:900px){
+  .nav-item .megamenu{display:none}
+  .mobile-menu-btn{display:block}
+  .nav-links{display:none}
+  .nav.mobile-open .nav-links{display:flex;flex-direction:column;align-items:flex-start;position:absolute;top:72px;left:0;right:0;background:#FFFFFF;box-shadow:0 12px 40px rgba(0,0,0,0.12);padding:24px 20px;gap:18px;border-bottom:1px solid #E2E7EB;z-index:99}
+  .nav.mobile-open .nav-item > a{padding:0}
+  .nav.mobile-open .nav-links a{font-size:16px}
+  .nav.mobile-open .mobile-menu-btn span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+  .nav.mobile-open .mobile-menu-btn span:nth-child(2){opacity:0}
+  .nav.mobile-open .mobile-menu-btn span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+}
+/* ===== end canonical mega-menu nav ===== */
 </style>
 </head>
 <body>
 
 <nav class="nav" id="nav">
   <div class="nav-inner">
-    <a href="/"><svg class="nav-logo" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="0" y="26" font-family="DM Sans, sans-serif" font-weight="700" font-size="28" letter-spacing="-1"><tspan fill="#1A1A1A">CLY</tspan><tspan fill="#00B4C5">R</tspan></text></svg></a>
+    <a href="/" aria-label="CLYR Health home">
+      <svg class="nav-logo" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg" height="32">
+        <text x="0" y="26" font-family="DM Sans, sans-serif" font-weight="700" font-size="28" letter-spacing="-1"><tspan fill="#1A1A1A">CLY</tspan><tspan fill="#00B4C5">R</tspan></text>
+      </svg>
+    </a>
     <div class="nav-links">
-      <a href="/weight-loss.html">Weight Loss</a>
-      <a href="/wellness.html#wellness">Daily Wellness</a>
-      <a href="/sexual-health.html">Sexual Health</a>
-      <a href="/journal/">Journal</a><a href="/contact.html">Contact</a>
+      <div class="nav-item" data-nav="weight-loss">
+        <a href="/weight-loss.html">Weight Loss <svg class="chev" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <div class="megamenu">
+          <div class="mm-grid">
+            <a href="/tirzepatide.html" class="mm-link"><img src="/img/tirzepatide.png" alt=""><span class="mm-link-text"><strong>Tirzepatide</strong><span>GLP-1 + GIP</span></span></a>
+            <a href="/semaglutide.html" class="mm-link"><img src="/img/semaglutide.png" alt=""><span class="mm-link-text"><strong>Semaglutide</strong><span>GLP-1</span></span></a>
+            <a href="/zepbound.html" class="mm-link"><img src="/img/zepbound-pen.png" alt=""><span class="mm-link-text"><strong>Zepbound&reg;</strong><span>Brand-name</span></span></a>
+            <a href="/foundayo.html" class="mm-link"><img src="/img/foundayo-bottle.png" alt=""><span class="mm-link-text"><strong>Foundayo&reg;</strong><span>Oral GLP-1</span></span></a>
+          </div>
+          <div class="mm-footer"><span class="mm-count">Compounded &amp; brand-name options</span><a href="/weight-loss.html">Explore Weight Loss →</a></div>
+        </div>
+      </div>
+      <div class="nav-item" data-nav="daily-wellness">
+        <a href="/daily-wellness.html">Daily Wellness <svg class="chev" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <div class="megamenu">
+          <div class="mm-grid">
+            <a href="/nad.html" class="mm-link"><img src="/img/nad.png" alt=""><span class="mm-link-text"><strong>NAD+ Injections</strong><span>Cellular energy</span></span></a>
+            <a href="/sermorelin.html" class="mm-link"><img src="/img/sermorelin.png" alt=""><span class="mm-link-text"><strong>Sermorelin</strong><span>Growth hormone peptide</span></span></a>
+            <a href="/glutathione.html" class="mm-link"><img src="/img/glutathione.png" alt=""><span class="mm-link-text"><strong>Glutathione</strong><span>Antioxidant</span></span></a>
+            <a href="/micc.html" class="mm-link"><img src="/img/micc.png" alt=""><span class="mm-link-text"><strong>MICC + B12</strong><span>Metabolic support</span></span></a>
+          </div>
+          <div class="mm-footer"><span class="mm-count">4 wellness treatments</span><a href="/daily-wellness.html">Explore Wellness →</a></div>
+        </div>
+      </div>
+      <div class="nav-item nav-active" data-nav="sexual-health">
+        <a href="/sexual-health.html">Sexual Health <svg class="chev" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <div class="megamenu">
+          <div class="mm-grid">
+            <a href="/tadalafil.html" class="mm-link"><img src="/img/pill-tadalafil-tad25-new.png" alt=""><span class="mm-link-text"><strong>Tadalafil</strong><span>Daily ED tablet</span></span></a>
+            <a href="/sildenafil-gummy.html" class="mm-link"><img src="/img/gummy-sildenafil-square.png" alt=""><span class="mm-link-text"><strong>Sildenafil Gummy</strong><span>On-demand</span></span></a>
+            <a href="/sild-tadal-oxy.html" class="mm-link"><img src="/img/sild-tadal-oxy-square.png" alt=""><span class="mm-link-text"><strong>Combo ODT</strong><span>Triple-action</span></span></a>
+            <a href="/pt141.html" class="mm-link"><img src="/img/pt141-odt-rose.png" alt=""><span class="mm-link-text"><strong>PT-141</strong><span>Libido ODT</span></span></a>
+          </div>
+          <div class="mm-footer"><span class="mm-count">4 sexual health treatments</span><a href="/sexual-health.html">Explore Sexual Health →</a></div>
+        </div>
+      </div>
+      <a href="/wellness.html#wellness" data-nav="all-treatments">All Treatments</a>
+      <a href="/ivermectin.html" data-nav="ivermectin">Ivermectin</a>
+      <a href="/journal/" data-nav="journal">Journal</a>
       <a href="/portal/" class="nav-portal">Patient Portal</a>
-      <a href="/wellness.html" class="nav-cta">Get Started</a>
-    
+      <a href="/wellness.html#wellness" class="nav-cta">Get Started</a>
     </div>
-    <button class="mobile-menu-btn" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('mobile-open')"><span></span><span></span><span></span></button>
+    <button class="mobile-menu-btn" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('mobile-open')">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
