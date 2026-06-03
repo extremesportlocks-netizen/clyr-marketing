@@ -287,7 +287,7 @@ textarea{resize:vertical;min-height:80px;font-family:var(--sans)}
     <p class="step-sub">Your medication ships directly to you from a licensed pharmacy. Discreet packaging, free expedited shipping.</p>
 
     <div class="input-grid shipping">
-      <div class="input-wrap"><label for="address">Street address</label><input id="address" type="text" autocomplete="street-address" required></div>
+      <div class="input-wrap"><label for="address">Street address</label><input id="address" type="text" autocomplete="street-address" placeholder="123 Main St" required></div>
       <div class="input-wrap"><label for="apt">Apt / Suite (optional)</label><input id="apt" type="text" autocomplete="address-line2"></div>
     </div>
     <div class="input-grid city-state">
@@ -714,6 +714,46 @@ function attachListeners() {
     e.target.value = e.target.value.replace(/\D/g, '').substring(0, 5);
     validateStep4();
   });
+
+  // Address autofill splitter. street-address autofill / Stripe Link can drop a
+  // full one-line address into the street field (Google Places, which would
+  // split it, is disabled). On blur, split a trailing "City, ST ZIP" out so
+  // shipping_street stays clean.
+  (function(){
+    var addrEl = document.getElementById('address');
+    if (!addrEl) return;
+    addrEl.addEventListener('blur', function() {
+      var v = (addrEl.value || '').trim();
+      if (v.indexOf(',') === -1) return;
+      var parts = v.split(',').map(function(s){ return s.trim(); }).filter(Boolean);
+      if (parts.length < 2) return;
+      var tail = parts[parts.length - 1];
+      var m = tail.match(/^([A-Za-z]{2})?\s*(\d{5}(?:-\d{4})?)?$/);
+      var streetParts = parts.slice();
+      var stEl = document.getElementById('state');
+      var cityEl = document.getElementById('city');
+      var zipEl = document.getElementById('zip');
+      if (m && (m[1] || m[2])) {
+        if (m[2] && zipEl && !zipEl.value.trim()) zipEl.value = m[2].substring(0,5);
+        if (m[1] && stEl && !stEl.value) {
+          var st = m[1].toUpperCase();
+          for (var i=0;i<stEl.options.length;i++){ if(stEl.options[i].value===st){ stEl.value=st; break; } }
+        }
+        streetParts = parts.slice(0, parts.length - 1);
+        if (streetParts.length >= 2 && cityEl && !cityEl.value.trim()) {
+          cityEl.value = streetParts[streetParts.length - 1];
+          streetParts = streetParts.slice(0, streetParts.length - 1);
+        }
+      } else {
+        if (streetParts.length >= 2 && cityEl && !cityEl.value.trim()) {
+          cityEl.value = streetParts[streetParts.length - 1];
+          streetParts = streetParts.slice(0, streetParts.length - 1);
+        }
+      }
+      addrEl.value = streetParts.join(', ').trim();
+      if (typeof validateStep4 === 'function') validateStep4();
+    });
+  })();
 
   // Consents
   document.querySelectorAll('.consent-item').forEach(function(el) {

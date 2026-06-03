@@ -1204,8 +1204,8 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
     <div class="form-grid">
       <div class="form-group full-width">
         <label class="form-label">Street address * <span class="fi-ok" id="okAddr"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span></label>
-        <input type="text" class="form-input" id="address" placeholder="Start typing your address..." autocomplete="street-address" required>
-        <div class="addr-hint" id="addrHint">Enter your full street address</div>
+        <input type="text" class="form-input" id="address" placeholder="123 Main St" autocomplete="street-address" required>
+        <div class="addr-hint" id="addrHint">Street number and name only (e.g. 123 Main St)</div>
       </div>
       <div class="form-group full-width">
         <label class="form-label">Apartment, suite, etc.</label>
@@ -1510,6 +1510,52 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
     e.target.value = e.target.value.replace(/[^\d-]/g, '').substring(0, 10);
     validateStep();
   });
+
+  // Address autofill splitter. The street field uses autocomplete="street-address",
+  // so browser autofill and Stripe Link can drop a full single-line address
+  // ("123 Main St, Naples, FL 34102") into it. Google Places (which would have
+  // split it) is disabled. On blur, if the street value looks like a full
+  // address, split the trailing "City, ST ZIP" out into the proper fields so
+  // shipping_street stays clean.
+  (function(){
+    var addrEl = document.getElementById('address');
+    if (!addrEl) return;
+    addrEl.addEventListener('blur', function() {
+      var v = (addrEl.value || '').trim();
+      if (v.indexOf(',') === -1) return; // single field, nothing to split
+      var parts = v.split(',').map(function(s){ return s.trim(); }).filter(Boolean);
+      if (parts.length < 2) return;
+      // Last part may be "ST 34102" or "FL 34102-1234" or just "34102".
+      var tail = parts[parts.length - 1];
+      var m = tail.match(/^([A-Za-z]{2})?\s*(\d{5}(?:-\d{4})?)?$/);
+      var streetParts = parts.slice();
+      var stEl = document.getElementById('state');
+      var cityEl = document.getElementById('city');
+      var zipEl = document.getElementById('zip');
+      if (m && (m[1] || m[2])) {
+        // tail held state and/or zip
+        if (m[2] && zipEl && !zipEl.value.trim()) zipEl.value = m[2].substring(0,5);
+        if (m[1] && stEl && !stEl.value) {
+          var st = m[1].toUpperCase();
+          for (var i=0;i<stEl.options.length;i++){ if(stEl.options[i].value===st){ stEl.value=st; break; } }
+        }
+        streetParts = parts.slice(0, parts.length - 1);
+        // If there's still a trailing part and it's not numeric, treat as city.
+        if (streetParts.length >= 2 && cityEl && !cityEl.value.trim()) {
+          cityEl.value = streetParts[streetParts.length - 1];
+          streetParts = streetParts.slice(0, streetParts.length - 1);
+        }
+      } else {
+        // No clear state/zip tail; if 2+ comma parts, last is likely the city.
+        if (streetParts.length >= 2 && cityEl && !cityEl.value.trim()) {
+          cityEl.value = streetParts[streetParts.length - 1];
+          streetParts = streetParts.slice(0, streetParts.length - 1);
+        }
+      }
+      addrEl.value = streetParts.join(', ').trim();
+      if (typeof validateStep === 'function') validateStep();
+    });
+  })();
 
   // NAVIGATION
   var stepNames={1:'TreatmentSelect',2:'Screening',3:'PersonalDetails',4:'Consents',5:'MedicalHistory',6:'TreatmentPreferences',7:'AdditionalInfo',8:'Review',9:'Checkout'};
