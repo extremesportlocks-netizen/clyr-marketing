@@ -57,6 +57,30 @@
   .nav.mobile-open .mobile-menu-btn span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
 }
 /* ===== end canonical mega-menu nav ===== */
+/* ===== Canonical footer (injected) ===== */
+.footer{background:#0A0A0A;padding:60px 40px 36px;color:#94A3B0}
+.footer-inner{max-width:1280px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.footer-brand-text{font-size:14px;line-height:1.6;color:#6B7C8A;max-width:280px;margin-top:16px}
+.footer-col h4{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:#94A3B0;margin-bottom:16px}
+.footer-col a{display:block;font-size:14px;color:#6B7C8A;text-decoration:none;padding:5px 0;transition:color 0.2s}
+.footer-col a:hover{color:#FFFFFF}
+.footer-bottom{padding-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-bottom p{font-size:13px;color:#6B7C8A}
+.footer-legal{display:flex;gap:24px}
+.footer-legal a{font-size:13px;color:#6B7C8A;text-decoration:none;transition:color 0.2s}
+.footer-legal a:hover{color:#FFFFFF}
+.footer-disclaimer{margin-top:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.06);font-size:11px;line-height:1.7;color:#6B7C8A;opacity:0.7}
+.footer-seals{display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-top:20px}
+.footer-seals a{display:inline-block;opacity:0.85;transition:opacity 0.2s}
+.footer-seals a:hover{opacity:1}
+.footer-trust{display:flex;align-items:center;gap:20px;padding-top:24px;margin-top:24px;border-top:1px solid rgba(255,255,255,0.06);flex-wrap:wrap}
+.trust-chip{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:10px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);font-size:12px;font-weight:500;color:rgba(255,255,255,0.75);transition:all 0.25s}
+.trust-chip:hover{background:rgba(0,180,197,0.08);border-color:rgba(0,180,197,0.2);color:rgba(255,255,255,0.95)}
+.trust-chip svg{width:14px;height:14px;color:#00B4C5;flex-shrink:0}
+@media (max-width:1024px){.footer-top{grid-template-columns:1fr 1fr}}
+@media (max-width:768px){.footer{padding:40px 20px 28px}.footer-top{grid-template-columns:1fr;gap:28px}.footer-bottom{flex-direction:column;text-align:center}.footer-legal{justify-content:center}.trust-chip{padding:6px 12px;font-size:11px}}
+/* ===== end canonical footer ===== */
 </style>
 </head>
 <body>
@@ -166,7 +190,77 @@
 
 <section class="cta-section"><h2>Not sure where to <span class="serif">start?</span></h2><p>Complete a free 5-minute questionnaire. Your provider will recommend the best treatment for your goals.</p><a href="/intake.html" class="cta-btn">Start your free consultation<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></section>
 
-<footer class="footer"><div class="footer-inner"><div class="footer-grid"><div class="footer-brand"><svg viewBox="0 0 120 32" fill="none" width="90"><text x="0" y="26" font-family="DM Sans,sans-serif" font-weight="700" font-size="28" letter-spacing="-1"><tspan fill="#FFF">CLY</tspan><tspan fill="#00B4C5">R</tspan></text></svg><p>Science-backed treatments prescribed by licensed providers. Delivered to your door.</p></div><div class="footer-col"><h4>Weight Loss</h4><a href="/intake.html">Compounded Tirzepatide</a><a href="/intake.html">Compounded Semaglutide</a><a href="/zepbound.html">Zepbound®</a><a href="/foundayo.html">Foundayo®</a><a href="/wegovy-tablets.html">Wegovy® Tablets</a></div><div class="footer-col"><h4>Wellness & More</h4><a href="/sermorelin.html">Sermorelin</a><a href="/nad.html">NAD+ Injections</a><a href="/glutathione.html">Glutathione</a><a href="/tadalafil.html">Tadalafil</a><a href="/ivermectin.html">Ivermectin</a></div><div class="footer-col"><h4>Company</h4><a href="/contact.html">Contact</a><a href="/portal/">Patient Portal</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div></div><div class="footer-bottom"><span>© 2026 Clyr Health, LLC.</span><span>LegitScript Certified</span></div><div class="footer-disclaimer">Compounded medications are not FDA-approved. Brand-name medications are trademarks of their respective manufacturers. CLYR Health is not affiliated with Eli Lilly or Novo Nordisk. All medications prescribed by licensed providers. Individual results may vary.</div></div></footer>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <svg viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="100">
+          <text x="0" y="26" font-family="DM Sans, sans-serif" font-weight="700" font-size="28" letter-spacing="-1">
+            <tspan fill="#ffffff">CLY</tspan><tspan fill="#00B4C5">R</tspan>
+          </text>
+        </svg>
+        <p class="footer-brand-text">Prescription weight loss, wellness, sexual health, and protocol treatments, prescribed by licensed providers and delivered to your door.</p>
+        <div class="footer-seals">
+          <a href="https://www.legitscript.com/websites/?checker_keywords=clyr.health" target="_blank" rel="noopener" title="Verify LegitScript Approval for www.clyr.health">
+            <img src="https://static.legitscript.com/seals/49414584.png" alt="LegitScript Certified" width="73" height="79" />
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Treatments</h4>
+        <a href="/weight-loss.html">Weight Loss</a>
+        <a href="/daily-wellness.html">Daily Wellness</a>
+        <a href="/sexual-health.html">Sexual Health</a>
+        <a href="/ivermectin.html">Ivermectin</a>
+        <a href="/wellness.html#wellness">All Treatments</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/wellness.html#wellness">How It Works</a>
+        <a href="/journal/">Journal</a>
+        <a href="/contact.html">Contact Us</a>
+        <a href="/portal/">Patient Portal</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
+        <a href="/telehealth-consent.html">Telehealth Consent</a>
+        <a href="/sms-terms.html">SMS Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 CLYR Health. All rights reserved.</p>
+      <div class="footer-legal">
+      </div>
+    </div>
+    <div class="footer-trust">
+      <div class="trust-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        LegitScript Certified
+      </div>
+      <div class="trust-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        HIPAA Compliant
+      </div>
+      <div class="trust-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Licensed Physicians
+      </div>
+      <div class="trust-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 12 15 16 10"/></svg>
+        503A Licensed Pharmacy
+      </div>
+      <div class="trust-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        Secure Payments via Stripe
+      </div>
+    </div>
+    <div class="footer-disclaimer">
+      The information provided on this website is for informational purposes only and does not constitute medical advice. Compounded medications are not FDA-approved but are prepared by licensed pharmacies in compliance with applicable regulations. Individual results may vary. All treatments require a valid prescription from a licensed healthcare provider. Not all patients will qualify for treatment. Clyr Health is not a compounding pharmacy or chemical compounding facility as defined under 503A of the Federal Food, Drug, and Cosmetic Act.
+    </div>
+  </div>
+</footer>
 
 <script>document.querySelectorAll('.cat-pill').forEach(function(p){p.addEventListener('click',function(e){e.preventDefault();var t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'});document.querySelectorAll('.cat-pill').forEach(function(x){x.classList.remove('active')});this.classList.add('active')})});</script>
 </body></html>
