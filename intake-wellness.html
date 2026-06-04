@@ -947,9 +947,10 @@ function initCheckout() {
       currentMedications: state.shipping.currentMeds,
       drugAllergies: state.shipping.drugAllergies,
       visitor_id: visitor_id,
-      utm_source: params.get('utm_source'),
-      utm_medium: params.get('utm_medium'),
-      utm_campaign: params.get('utm_campaign')
+      utm_source: (window.clyrAttribution ? window.clyrAttribution().utm_source : null) || params.get('utm_source'),
+      utm_medium: (window.clyrAttribution ? window.clyrAttribution().utm_medium : null) || params.get('utm_medium'),
+      utm_campaign: (window.clyrAttribution ? window.clyrAttribution().utm_campaign : null) || params.get('utm_campaign'),
+      referrer: (window.clyrAttribution ? window.clyrAttribution().referrer : null) || document.referrer || null
     };
 
     return fetch(API + '/api/intake', {
@@ -1009,5 +1010,6 @@ function initCheckout() {
 // Boot
 init();
 </script>
+<script src="/js/clyr-tracking.js"></script>
 </body>
 </html>

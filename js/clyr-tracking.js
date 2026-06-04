@@ -10,6 +10,75 @@
   var vid = localStorage.getItem('clyr_vid');
   if (!vid) { vid = crypto.randomUUID(); localStorage.setItem('clyr_vid', vid); }
 
+  // ── First-touch attribution capture ────────────────────────
+  // Captures UTMs + referrer + gclid the FIRST time a visitor lands and
+  // persists them so the intake form (often several pages/days later) can
+  // attribute the customer to their true source. First-touch wins: once set,
+  // it is never overwritten within the visitor's stored history.
+  function captureAttribution() {
+    var params = new URLSearchParams(window.location.search);
+    var ref = document.referrer || '';
+    var hasUtm = params.get('utm_source') || params.get('gclid') || params.get('fbclid');
+    var existing = null;
+    try { existing = JSON.parse(localStorage.getItem('clyr_attribution')); } catch (e) {}
+
+    // Derive a source from referrer when no explicit UTM is present.
+    function deriveSource() {
+      if (params.get('gclid')) return 'Google';
+      if (params.get('fbclid')) return 'Facebook';
+      if (params.get('utm_source')) return params.get('utm_source');
+      var r = ref.toLowerCase();
+      if (!r) return 'Direct';
+      if (r.indexOf('clyr.health') !== -1 || r.indexOf('getclyrtoday.com') !== -1) return null; // internal nav, ignore
+      if (r.indexOf('instagram') !== -1) return 'Instagram';
+      if (r.indexOf('google') !== -1) return 'Google';
+      if (r.indexOf('tiktok') !== -1) return 'TikTok';
+      if (r.indexOf('facebook') !== -1 || r.indexOf('fb.') !== -1) return 'Facebook';
+      if (r.indexOf('twitter') !== -1 || r.indexOf('t.co') !== -1) return 'Twitter/X';
+      if (r.indexOf('youtube') !== -1) return 'YouTube';
+      if (r.indexOf('linkedin') !== -1) return 'LinkedIn';
+      if (r.indexOf('mail') !== -1 || r.indexOf('email') !== -1) return 'Email';
+      return 'Referral';
+    }
+
+    var derived = deriveSource();
+
+    // Bound stored values so they never exceed backend VARCHAR limits
+    // (utm_* are 255, referrer is 500) and keep the localStorage record small.
+    function cap(v, n) { return (v == null) ? null : (String(v).length > n ? String(v).slice(0, n) : String(v)); }
+
+    // Only set first-touch once. Internal-nav (derived === null) never sets it.
+    if (!existing && derived !== null) {
+      var attribution = {
+        utm_source: cap(params.get('utm_source') || derived, 255),
+        utm_medium: cap(params.get('utm_medium') || (params.get('gclid') ? 'cpc' : (ref ? 'referral' : 'none')), 255),
+        utm_campaign: cap(params.get('utm_campaign'), 255),
+        referrer: cap(ref, 500),
+        gclid: cap(params.get('gclid'), 255),
+        fbclid: cap(params.get('fbclid'), 255),
+        landing_page: window.location.pathname,
+        captured_at: new Date().toISOString()
+      };
+      try { localStorage.setItem('clyr_attribution', JSON.stringify(attribution)); } catch (e) {}
+    } else if (hasUtm && existing) {
+      // Last-touch: if a NEW explicit campaign click arrives, record it separately
+      // without clobbering first-touch. Useful for retargeting / email re-clicks.
+      try {
+        existing.last_utm_source = params.get('utm_source') || existing.last_utm_source;
+        existing.last_utm_campaign = params.get('utm_campaign') || existing.last_utm_campaign;
+        existing.last_touch_at = new Date().toISOString();
+        localStorage.setItem('clyr_attribution', JSON.stringify(existing));
+      } catch (e) {}
+    }
+  }
+  captureAttribution();
+
+  // Helper the intake forms call to retrieve stored first-touch attribution.
+  window.clyrAttribution = function() {
+    try { return JSON.parse(localStorage.getItem('clyr_attribution')) || {}; }
+    catch (e) { return {}; }
+  };
+
   // ── Load PostHog SDK ───────────────────────────────────────
   var _phReady = false;
   var _phQueue = [];
