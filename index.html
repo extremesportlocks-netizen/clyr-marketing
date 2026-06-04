@@ -1539,17 +1539,19 @@
     width: 360px;
     padding: 32px 28px;
     border-radius: 20px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
+    background: linear-gradient(160deg, rgba(255,255,255,0.07), rgba(255,255,255,0.025));
+    border: 1px solid rgba(255,255,255,0.10);
     flex-shrink: 0;
     text-align: left;
-    transition: border-color 0.3s, background 0.3s;
+    transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
     display: flex;
     flex-direction: column;
   }
   .testimonial-card:hover {
-    border-color: rgba(43,188,179,0.3);
-    background: rgba(255,255,255,0.06);
+    transform: translateY(-5px);
+    border-color: rgba(43,188,179,0.45);
+    background: linear-gradient(160deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04));
+    box-shadow: 0 18px 40px rgba(0,0,0,0.28), 0 0 0 1px rgba(43,188,179,0.12);
   }
   .testimonial-author { display: flex; align-items: center; gap: 12px; order: 1; margin-bottom: 14px; }
   .testimonial-stars { display: flex; gap: 3px; order: 2; margin-bottom: 14px; }
@@ -1865,7 +1867,7 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
           <span class="rotating-word">different.</span>
         </span>
       </h1>
-      <p class="hero-sub">Compounded GLP-1, longevity wellness, sexual health, and protocol prescriptions — by licensed providers. Delivered to your&nbsp;door. No hidden fees, no gimmicks.</p>
+      <p class="hero-sub">Doctor-prescribed weight loss with compounded GLP-1, plus longevity, sexual health, and protocol care. Delivered to your&nbsp;door, no hidden fees.</p>
       <div class="hero-actions">
         <a href="/wellness.html" class="btn-primary">
           Explore Treatments
@@ -1923,7 +1925,7 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
   <div class="verticals-inner">
     <div class="verticals-head">
       <div class="section-label reveal" style="margin-bottom:14px">One Platform, Four Verticals</div>
-      <h2 class="section-heading" style="font-size:42px;line-height:1.15;letter-spacing:-0.02em;margin-bottom:14px">Find what's right for <span class="serif-word">you.</span></h2>
+      <h2 class="section-heading" style="margin-bottom:14px">Find what's right for <span class="serif-word">you.</span></h2>
       <p style="font-size:17px;color:#6B7C8A;max-width:620px;margin:0 auto;line-height:1.6">Real medications. Real providers. Across the categories that matter most, all from a single intake.</p>
     </div>
 
@@ -2201,7 +2203,7 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
   <div class="section-inner">
     <div style="text-align:center;max-width:720px;margin:0 auto 48px">
       <div class="section-label reveal" style="margin-bottom:14px">The Full Catalog</div>
-      <h2 class="section-heading" style="font-size:42px;line-height:1.15;letter-spacing:-0.02em;margin-bottom:14px">Beyond GLP-1, also <span class="serif-word">in-house.</span></h2>
+      <h2 class="section-heading" style="margin-bottom:14px">Beyond GLP-1, also <span class="serif-word">in-house.</span></h2>
       <p style="font-size:17px;color:#6B7C8A;max-width:560px;margin:0 auto;line-height:1.6">Wellness peptides, sexual health, and protocol prescriptions — same licensed providers, same compounding pharmacy, same fast shipping.</p>
     </div>
 
