@@ -1100,6 +1100,7 @@
     .nav.mobile-open .nav-links {
       display: flex;
       flex-direction: column;
+      align-items: flex-start;
       position: absolute;
       top: 72px;
       left: 0;
@@ -1114,6 +1115,7 @@
       z-index: 99;
     }
     .nav.mobile-open { background: #FFFFFF; }
+    .nav.mobile-open .nav-item > a { padding: 0; }
     .nav.mobile-open .nav-links a { font-size: 16px; }
     .nav.mobile-open .mobile-menu-btn span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
     .nav.mobile-open .mobile-menu-btn span:nth-child(2) { opacity: 0; }
