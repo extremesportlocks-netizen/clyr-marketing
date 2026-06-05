@@ -2146,20 +2146,17 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
     var doses;
     if (formData.treatment === 'tirzepatide') {
       doses = [
-        { tier: 'T1', label: '2.5 mg' },
-        { tier: 'T2', label: '5 mg' },
-        { tier: 'T3', label: '7.5 mg' },
-        { tier: 'T4', label: '10 mg' },
-        { tier: 'T5', label: '12.5 mg' },
-        { tier: 'T6', label: '15 mg' }
+        { tier: 'T1', label: '2 mg' },
+        { tier: 'T2', label: '4 mg' },
+        { tier: 'T3', label: '7 mg' },
+        { tier: 'T4', label: '9 mg' },
+        { tier: 'T5', label: '12 mg' }
       ];
     } else {
       doses = [
-        { tier: 'S1', label: '0.25 mg' },
-        { tier: 'S2', label: '0.5 mg' },
-        { tier: 'S3', label: '1 mg' },
-        { tier: 'S4', label: '1.5 mg' },
-        { tier: 'S5', label: '2.5 mg' }
+        { tier: 'S1', label: '0.4 mg' },
+        { tier: 'S2', label: '0.9 mg' },
+        { tier: 'S3', label: '1.5 mg' }
       ];
     }
     list.innerHTML = doses.map(function(d) {
