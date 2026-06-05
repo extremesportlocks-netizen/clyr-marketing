@@ -641,6 +641,26 @@
     color: var(--gray-400);
     font-weight: 500;
   }
+  .card-bundle-banner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--teal-light, #E6FAF8);
+    color: var(--teal-dark, #127c75);
+    border: 1px solid rgba(43,188,179,0.25);
+    border-radius: 10px;
+    padding: 9px 12px;
+    margin: 4px 0 16px;
+    font-size: 12.5px;
+    line-height: 1.35;
+  }
+  .card-bundle-banner svg { flex-shrink: 0; color: var(--teal); }
+  .card-bundle-banner strong { font-weight: 700; color: var(--teal-dark, #127c75); }
+  .card-bundle-banner .pb-sep { opacity: 0.45; }
+  @media (max-width: 480px) {
+    .card-bundle-banner .pb-sep { display: none; }
+    .card-bundle-banner span { display: flex; flex-direction: column; gap: 2px; }
+  }
 
   .product-cta {
     display: block;
@@ -2107,7 +2127,10 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
           <span class="product-price-period">/month</span>
         </div>
         <p style="font-size:14px; font-weight:600; color:var(--teal); margin:-8px 0 4px;">Any dose, same price</p>
-        <p class="product-price-note">Auto-refill. Cancel anytime. Save more with bundles.</p>
+        <div class="card-bundle-banner">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v10H4V12"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+          <span><strong>$259/mo</strong> on 3-month<span class="pb-sep"> &nbsp;·&nbsp; </span><strong>$225/mo</strong> on 6-month</span>
+        </div>
         <a href="/tirzepatide.html" class="product-cta">Learn more →</a>
       </div>
 
@@ -2130,7 +2153,10 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
           <span class="product-price-period">/month</span>
         </div>
         <p style="font-size:14px; font-weight:600; color:var(--teal); margin:-8px 0 4px;">Any dose, same price</p>
-        <p class="product-price-note">Auto-refill. Cancel anytime. Save more with bundles.</p>
+        <div class="card-bundle-banner">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v10H4V12"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+          <span><strong>$179/mo</strong> on 3-month<span class="pb-sep"> &nbsp;·&nbsp; </span><strong>$149/mo</strong> on 6-month</span>
+        </div>
         <a href="/semaglutide.html" class="product-cta">Learn more →</a>
       </div>
     </div>
