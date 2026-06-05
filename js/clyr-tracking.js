@@ -131,6 +131,7 @@
 
     // Internal DB (fire-and-forget)
     try {
+      var _a = (window.clyrAttribution && window.clyrAttribution()) || {};
       fetch(API + '/api/track', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -139,6 +140,9 @@
           page: props.page,
           visitor_id: vid,
           referrer: props.referrer,
+          utm_source: _a.utm_source || null,
+          utm_medium: _a.utm_medium || null,
+          utm_campaign: _a.utm_campaign || null,
           metadata: props
         })
       }).catch(function() {});
@@ -158,13 +162,17 @@
 
   // ── Auto page view to internal DB ──────────────────────────
   try {
+    var _ap = (window.clyrAttribution && window.clyrAttribution()) || {};
     fetch(API + '/api/track', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         page: window.location.pathname,
         visitor_id: vid,
-        referrer: document.referrer || null
+        referrer: document.referrer || null,
+        utm_source: _ap.utm_source || null,
+        utm_medium: _ap.utm_medium || null,
+        utm_campaign: _ap.utm_campaign || null
       })
     }).catch(function() {});
   } catch(e) {}
