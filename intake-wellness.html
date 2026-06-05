@@ -692,7 +692,9 @@ function renderScreening() {
 function attachListeners() {
   // Phone formatter
   document.getElementById('phone').addEventListener('input', function(e) {
-    var x = e.target.value.replace(/\D/g, '').substring(0, 10);
+    var d = e.target.value.replace(/\D/g, '');
+    if (d.length === 11 && d.charAt(0) === '1') d = d.substring(1);
+    var x = d.substring(0, 10);
     var f = '';
     if (x.length > 0) f = '(' + x.substring(0, 3);
     if (x.length >= 3) f += ') ' + x.substring(3, 6);

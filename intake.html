@@ -1431,7 +1431,11 @@ posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', {
 
   // ─── PHONE AUTO-FORMAT ─────────────────────
   document.getElementById('phone').addEventListener('input', function(e) {
-    var x = e.target.value.replace(/\D/g, '').substring(0, 10);
+    var d = e.target.value.replace(/\D/g, '');
+    // Strip a leading US country code "1" so e.g. 1-808-838-1986 doesn't get
+    // mangled into (180) 838-198. Only when it would otherwise overflow 10 digits.
+    if (d.length === 11 && d.charAt(0) === '1') d = d.substring(1);
+    var x = d.substring(0, 10);
     var f = '';
     if (x.length > 0) f = '(' + x.substring(0, 3);
     if (x.length >= 3) f += ') ' + x.substring(3, 6);
