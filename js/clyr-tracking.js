@@ -18,12 +18,13 @@
   function captureAttribution() {
     var params = new URLSearchParams(window.location.search);
     var ref = document.referrer || '';
-    var hasUtm = params.get('utm_source') || params.get('gclid') || params.get('fbclid');
+    var hasUtm = params.get('utm_source') || params.get('gclid') || params.get('fbclid') || params.get('twclid');
     var existing = null;
     try { existing = JSON.parse(localStorage.getItem('clyr_attribution')); } catch (e) {}
 
     // Derive a source from referrer when no explicit UTM is present.
     function deriveSource() {
+      if (params.get('twclid')) return 'Twitter/X';
       if (params.get('gclid')) return 'Google';
       if (params.get('fbclid')) return 'Facebook';
       if (params.get('utm_source')) return params.get('utm_source');
@@ -51,11 +52,12 @@
     if (!existing && derived !== null) {
       var attribution = {
         utm_source: cap(params.get('utm_source') || derived, 255),
-        utm_medium: cap(params.get('utm_medium') || (params.get('gclid') ? 'cpc' : (ref ? 'referral' : 'none')), 255),
+        utm_medium: cap(params.get('utm_medium') || ((params.get('gclid') || params.get('twclid')) ? 'cpc' : (ref ? 'referral' : 'none')), 255),
         utm_campaign: cap(params.get('utm_campaign'), 255),
         referrer: cap(ref, 500),
         gclid: cap(params.get('gclid'), 255),
         fbclid: cap(params.get('fbclid'), 255),
+        twclid: cap(params.get('twclid'), 255),
         landing_page: window.location.pathname,
         captured_at: new Date().toISOString()
       };
@@ -143,6 +145,9 @@
           utm_source: _a.utm_source || null,
           utm_medium: _a.utm_medium || null,
           utm_campaign: _a.utm_campaign || null,
+          gclid: _a.gclid || null,
+          fbclid: _a.fbclid || null,
+          twclid: _a.twclid || null,
           metadata: props
         })
       }).catch(function() {});
@@ -172,7 +177,10 @@
         referrer: document.referrer || null,
         utm_source: _ap.utm_source || null,
         utm_medium: _ap.utm_medium || null,
-        utm_campaign: _ap.utm_campaign || null
+        utm_campaign: _ap.utm_campaign || null,
+        gclid: _ap.gclid || null,
+        fbclid: _ap.fbclid || null,
+        twclid: _ap.twclid || null
       })
     }).catch(function() {});
   } catch(e) {}
