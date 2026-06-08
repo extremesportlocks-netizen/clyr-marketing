@@ -179,6 +179,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         // Track confirmed checkout (PostHog + internal DB)
         if(window.clyrTrack)clyrTrack('CheckoutCompleted',{session_id:sid,value:data.amount_total?data.amount_total/100:0,currency:'USD'});
         if(window.posthog)posthog.capture('checkout_completed',{session_id:sid,value:data.amount_total?data.amount_total/100:0,currency:'USD',treatment:data.treatment||''});
+        // GTM dataLayer Purchase event — value + currency ONLY, no product/medication
+        // (PHI-safe). Dedup id = session_id so browser pixel + server CAPI count once.
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'clyr_purchase',
+          value: data.amount_total ? data.amount_total / 100 : 0,
+          currency: 'USD',
+          transaction_id: sid
+        });
         fetch('https://clyr-backend.onrender.com/api/track', {
           method: 'POST', headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({ page: '/success', event: 'checkout_completed', referrer: document.referrer, visitor_id: vid, metadata: { session_id: sid } })

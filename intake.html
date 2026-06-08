@@ -1615,6 +1615,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         if(window.clyrIdentify)clyrIdentify(leadData.email,{firstName:leadData.firstName,lastName:leadData.lastName,treatment:leadData.treatment});
         if(window.clyrTrack)clyrTrack('LeadCaptured',{treatment:leadData.treatment,plan:leadData.planType});
         if(window.posthog){posthog.identify(leadData.email,{first_name:leadData.firstName,last_name:leadData.lastName,treatment:leadData.treatment,plan:leadData.planType});posthog.capture('lead_captured',{treatment:leadData.treatment,plan:leadData.planType});}
+        // GTM dataLayer Lead event — bare signal only, NO treatment/medication data
+        // goes to the ad-facing layer (PHI-safe).
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'clyr_lead' });
         fetch('https://clyr-backend.onrender.com/api/intake/save-lead', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
