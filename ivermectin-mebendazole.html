@@ -98,6 +98,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 @media (max-width:768px){.footer{padding:40px 20px 28px}.footer-top{grid-template-columns:1fr;gap:28px}.footer-bottom{flex-direction:column;text-align:center}.footer-legal{justify-content:center}.trust-chip{padding:6px 12px;font-size:11px}}
 /* ===== end canonical footer ===== */
 </style>
+<style>
+.green-benefits .benefit-icon{background:#E3F9EE;color:#0F9D6B}
+.green-benefits .benefit-card:hover{border-color:#10B981;box-shadow:0 4px 20px rgba(16,185,129,0.14)}
+.warn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.warn-card{background:#FEF3F2;border:1px solid #F2C9C3;border-radius:16px;padding:28px 24px}
+.warn-tag{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#C0392B;background:#FBE0E0;padding:4px 11px;border-radius:100px;margin-bottom:14px}
+.warn-icon{width:44px;height:44px;background:#FBE0E0;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;color:#C0392B}
+.warn-card h3{font-size:17px;font-weight:700;margin-bottom:8px;color:#7A1F16}
+.warn-card p{font-size:14px;color:#9A6A63;line-height:1.6}
+.clyr-diff{margin-top:24px;background:linear-gradient(135deg,#E3F9EE 0%,#E0F7FA 100%);border:1px solid rgba(16,185,129,0.25);border-radius:16px;padding:26px 28px;display:flex;gap:16px;align-items:flex-start}
+.clyr-diff .cd-icon{width:44px;height:44px;background:#10B981;color:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.clyr-diff h3{font-size:17px;font-weight:700;margin-bottom:6px}
+.clyr-diff p{font-size:14px;color:#4A5568;line-height:1.6}
+@media(max-width:768px){.warn-grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -180,7 +195,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<section class="benefits">
+<section class="benefits green-benefits">
   <div class="section-label">Why CLYR</div>
   <h2 class="section-heading">A real prescription,<br><span class="serif">not a guess.</span></h2>
   <p class="section-sub">Same Miami compounding pharmacy and physician review the high-priced services use &mdash; at a fair, transparent price, as a flexible monthly plan instead of a four-figure lump sum.</p>
@@ -216,14 +231,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <section class="benefits" style="padding-top:0">
-  <div class="section-label">A word on sourcing</div>
+  <div class="section-label" style="color:#C0392B">A word on sourcing</div>
   <h2 class="section-heading">Not all ivermectin is<br><span class="serif">created equal.</span></h2>
-  <p class="section-sub">Where you get it matters as much as whether you take it. Not every source is safe, and not every dose is right.</p>
-  <div class="benefits-grid">
-    <div class="benefit-card"><div class="benefit-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><h3>Amazon &amp; social &ldquo;supplements&rdquo;</h3><p>Sold without a pharmacy license, so there is no way to verify what is actually in the capsule or at what strength.</p></div>
-    <div class="benefit-card"><div class="benefit-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20"/></svg></div><h3>Overseas pharmacies</h3><p>No U.S. physician oversight, unknown compounding standards, and shipments that can be seized at customs.</p></div>
-    <div class="benefit-card"><div class="benefit-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 16l-6 6M4 22h6v-6M7 3l2 2M3 7l2 2M21 3l-9 9"/></svg></div><h3>Veterinary &ldquo;horse paste&rdquo;</h3><p>Made for animals, not people. No purity testing, no dose verification, and no physician involved.</p></div>
+  <p class="section-sub">Where you get it matters as much as whether you take it. These are the sources to <strong>avoid</strong> &mdash; and what CLYR does instead.</p>
+  <div class="warn-grid">
+    <div class="warn-card"><div class="warn-tag">&#10007; Buyer beware</div><div class="warn-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><h3>Amazon &amp; social &ldquo;supplements&rdquo;</h3><p>Sold without a pharmacy license, so there is no way to verify what is actually in the capsule or at what strength.</p></div>
+    <div class="warn-card"><div class="warn-tag">&#10007; Buyer beware</div><div class="warn-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><h3>Overseas pharmacies</h3><p>No U.S. physician oversight, unknown compounding standards, and shipments that can be seized at customs.</p></div>
+    <div class="warn-card"><div class="warn-tag">&#10007; Buyer beware</div><div class="warn-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><h3>Veterinary &ldquo;horse paste&rdquo;</h3><p>Made for animals, not people. No purity testing, no dose verification, and no physician involved.</p></div>
   </div>
+  <div class="clyr-diff"><div class="cd-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><h3>What you get with CLYR instead</h3><p>A real prescription, written by a licensed U.S. physician and compounded to your exact dose by a licensed U.S. 503A pharmacy &mdash; with your name on the label. None of the guesswork above.</p></div></div>
 </section>
 
 <section class="how-it-works">
