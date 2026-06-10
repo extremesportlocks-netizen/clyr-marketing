@@ -1711,6 +1711,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .mm-footer a{font-size:13px;font-weight:600;color:#00B4C5;text-decoration:none}
   @media (max-width:900px){ .nav-item .megamenu{display:none} }
 
+  /* --- nav polish: section dividers + dropdown hover bridge (rollout block) --- */
+  .nav-links > *:not(.nav-portal):not(.nav-cta){position:relative}
+  .nav-links > *:not(:first-child):not(.nav-portal):not(.nav-cta)::before{content:'';position:absolute;left:-18px;top:50%;transform:translateY(-50%);width:1px;height:18px;background:#E2E7EB;pointer-events:none}
+  .megamenu::before{content:'';position:absolute;top:-14px;left:0;right:0;height:16px;background:transparent}
+  @media (max-width:900px){ .nav-links > *::before{display:none} }
+
 /* ===== Canonical footer (injected) ===== */
 .footer{background:#0A0A0A;padding:60px 40px 36px;color:#94A3B0}
 .footer-inner{max-width:1280px;margin:0 auto}
