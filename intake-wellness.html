@@ -553,7 +553,7 @@ function prefillFromPortal() {
       // Welcome-back banner
       var banner = document.createElement('div');
       banner.style.cssText = 'background:#F0FAFB;border:1px solid #00B4C5;border-radius:12px;padding:14px 18px;margin:0 0 20px;font-size:14px;color:#1A1A1A;display:flex;align-items:center;gap:10px';
-      banner.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00B4C5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg><div>Welcome back' + (c.first_name ? ', <strong>' + c.first_name + '</strong>' : '') + ' — we\u2019ve pre-filled what we already have on file. Review and update anything that\u2019s changed.</div>';
+      banner.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00B4C5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg><div>Welcome back' + (c.first_name ? ', <strong>' + c.first_name + '</strong>' : '') + ', we\u2019ve pre-filled what we already have on file. Review and update anything that\u2019s changed.</div>';
       var firstStep = document.querySelector('main.intake .step.active') || document.querySelector('main.intake .step');
       if (firstStep && firstStep.parentNode) firstStep.parentNode.insertBefore(banner, firstStep);
       return true;
@@ -581,7 +581,7 @@ function init() {
   prod = prod.replace(/-/g, '_');
 
   // Coming-soon products: route to waitlist screen instead of silently falling back to Sermorelin.
-  // Ivermectin is pending MDI clinical questionnaire approval — checkout is intentionally not yet active.
+  // Ivermectin is pending MDI clinical questionnaire approval, checkout is intentionally not yet active.
   var COMING_SOON = {
     ivermectin: { label: 'Ivermectin Protocol', title: 'Ivermectin protocol launching <span class="serif">soon.</span>', sub: "We're finalizing this with our medical partner. Take the quick eligibility check below and join the waitlist \u2014 a provider reviews your responses the day it opens." },
     ivermectin_mebendazole: { label: 'Ivermectin + Mebendazole', title: 'Ivermectin + Mebendazole launching <span class="serif">soon.</span>', sub: "We're finalizing this with our medical partner. Take the quick eligibility check below and join the waitlist \u2014 a provider reviews your responses the day it opens." }
@@ -616,7 +616,7 @@ function init() {
   renderProduct();
   renderScreening();
   attachListeners();
-  // Async — fills fields if patient is signed into portal. Non-blocking.
+  // Async, fills fields if patient is signed into portal. Non-blocking.
   prefillFromPortal();
 }
 
@@ -665,7 +665,7 @@ var WL_SHARED = [
   { id:'loa', q:'Have you spent significant time living in or traveling to Central or West Africa (e.g. Cameroon, Nigeria, DR Congo, Gabon)?',
     follow:{ q:'While there or since, have you had a worm visible in your eye, recurrent localized (Calabar) swellings, or a loiasis diagnosis?', dqOn:'yes' } },
   { id:'neuro', q:'Do you have a history of seizures, epilepsy, or another neurological condition?',
-    follow:{ q:'Has it been stable — no seizure, flare, or hospitalization — in the last 12 months?', dqOn:'no' } },
+    follow:{ q:'Has it been stable, no seizure, flare, or hospitalization, in the last 12 months?', dqOn:'no' } },
   { id:'liver', q:'Do you have severe liver disease, hepatitis, or known abnormal liver enzymes?',
     follow:{ q:'Have you been diagnosed with cirrhosis, liver failure, or active hepatitis?', dqOn:'yes' }, comboHardStop:true },
   { id:'kidney', q:'Do you have severe kidney disease?',
@@ -1009,7 +1009,7 @@ function onStep3Continue() {
     dobYear: document.getElementById('dobYear').value
   };
   // Fire-and-forget returning-customer detection (mirrors intake.html).
-  // Won't block the step transition — if it errors we just continue silently.
+  // Won't block the step transition, if it errors we just continue silently.
   if (state.details.email) {
     fetch('https://clyr-backend.onrender.com/api/intake/save-lead', {
       method: 'POST',
@@ -1025,7 +1025,7 @@ function onStep3Continue() {
       if (data.status === 'existing_active') {
         showWellnessReturningModal(data.firstName || state.details.firstName, 'active');
       } else if (data.status === 'existing_partial') {
-        // Already in intake form — no need for a modal that says "continue
+        // Already in intake form, no need for a modal that says "continue
         // your intake". They're literally doing that right now.
       }
       // existing_lead / new: silent continue
@@ -1036,7 +1036,7 @@ function onStep3Continue() {
 
 // Active-patient gate: an existing patient adding a new wellness product
 // shouldn't have to re-run the full clinical screening flow on the marketing
-// site — the portal Shop tab does this faster with their saved info. Suggest
+// site, the portal Shop tab does this faster with their saved info. Suggest
 // they switch to the portal, but let them dismiss and continue if they want.
 function showWellnessReturningModal(firstName, mode) {
   if (document.getElementById('returningModal')) return; // idempotent
@@ -1046,7 +1046,7 @@ function showWellnessReturningModal(firstName, mode) {
   overlay.innerHTML = '<div style="background:#fff;border-radius:20px;padding:36px 32px;max-width:440px;width:100%;text-align:center;box-shadow:0 24px 80px rgba(0,0,0,0.15)">' +
     '<div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,rgba(0,180,197,0.15),rgba(0,180,197,0.05));display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:24px;">👋</div>' +
     '<h2 style="font-size:22px;font-weight:700;color:#1a1a2e;margin-bottom:8px;">Welcome back' + (firstName ? ', ' + firstName : '') + '!</h2>' +
-    '<p style="color:#4b5563;font-size:15px;line-height:1.6;margin-bottom:24px;">You already have an active CLYR Health account. Add this treatment right from your patient portal — it\'s faster and uses the info we already have on file.</p>' +
+    '<p style="color:#4b5563;font-size:15px;line-height:1.6;margin-bottom:24px;">You already have an active CLYR Health account. Add this treatment right from your patient portal, it\'s faster and uses the info we already have on file.</p>' +
     '<a href="/portal/" style="display:inline-block;background:#00B4C5;color:#fff;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:600;font-size:15px;margin-bottom:12px;width:100%;box-sizing:border-box;">Go to Patient Portal</a><br>' +
     '<button onclick="document.getElementById(\'returningModal\').remove()" style="background:none;border:none;color:#9ca3af;font-size:14px;cursor:pointer;padding:8px 16px;margin-top:4px;font-family:inherit;">Continue as new patient</button>' +
     '</div>';
@@ -1171,7 +1171,7 @@ function initCheckout() {
     });
   }).catch(function(err) {
     console.error('[CLYR Checkout]', err);
-    // Write error UI into the loading slot (never into mount target — Stripe requires it empty)
+    // Write error UI into the loading slot (never into mount target, Stripe requires it empty)
     var loadingEl = document.getElementById('checkout-loading-state');
     if (loadingEl) {
       loadingEl.style.display = 'block';

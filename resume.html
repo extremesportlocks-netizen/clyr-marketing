@@ -19,7 +19,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://www.clyr.health/og-image.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Complete Your Checkout — CLYR Health</title>
+<title>Complete Your Checkout · CLYR Health</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -144,7 +144,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (data.customer) {
       var treatName = data.customer.treatment === 'tirzepatide' ? 'Tirzepatide' : 'Semaglutide';
       var planName = data.customer.plan === 'monthly' ? 'Monthly' : data.customer.plan === '3month' ? '3-Month Starter' : '6-Month Plan';
-      document.getElementById('planText').textContent = treatName + ' — ' + planName;
+      document.getElementById('planText').textContent = treatName + ', ' + planName;
       document.getElementById('planBadge').style.display = 'flex';
       if (data.customer.firstName) {
         document.getElementById('pageTitle').innerHTML = 'Welcome back, <em>' + data.customer.firstName + '</em>';

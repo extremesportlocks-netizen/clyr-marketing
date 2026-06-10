@@ -20,7 +20,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://www.clyr.health/og-image.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Payment Confirmed — CLYR Health</title>
+<title>Payment Confirmed · CLYR Health</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -139,7 +139,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="expect">
         <div class="expect-item"><div class="expect-icon">&#9201;</div><div><div class="expect-label">Under 1 hour</div><div class="expect-desc">Physician review typically completes within 1 hour</div></div></div>
         <div class="expect-item"><div class="expect-icon">&#128232;</div><div><div class="expect-label">Check your email</div><div class="expect-desc">Updates and next steps sent to your inbox</div></div></div>
-        <div class="expect-item"><div class="expect-icon">&#128176;</div><div><div class="expect-label">Full refund guarantee</div><div class="expect-desc">Not eligible? You pay nothing — full refund</div></div></div>
+        <div class="expect-item"><div class="expect-icon">&#128176;</div><div><div class="expect-label">Full refund guarantee</div><div class="expect-desc">Not eligible? You pay nothing, full refund</div></div></div>
         <div class="expect-item"><div class="expect-icon">&#128172;</div><div><div class="expect-label">Questions?</div><div class="expect-desc">Reach us at <a href="mailto:contact@clyr.health" style="color:var(--teal)">contact@clyr.health</a></div></div></div>
       </div>
       <div class="email-notice">
@@ -173,13 +173,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     .then(function(r) { return r.json(); })
     .then(function(data) {
       if (data.status === 'complete' && data.payment_status === 'paid') {
-        // Real successful payment — show success page
+        // Real successful payment, show success page
         if (cardContent) cardContent.style.opacity = '1';
         if (successBadge) successBadge.style.opacity = '1';
         // Track confirmed checkout (PostHog + internal DB)
         if(window.clyrTrack)clyrTrack('CheckoutCompleted',{session_id:sid,value:data.amount_total?data.amount_total/100:0,currency:'USD'});
         if(window.posthog)posthog.capture('checkout_completed',{session_id:sid,value:data.amount_total?data.amount_total/100:0,currency:'USD',treatment:data.treatment||''});
-        // GTM dataLayer Purchase event — value + currency ONLY, no product/medication
+        // GTM dataLayer Purchase event, value + currency ONLY, no product/medication
         // (PHI-safe). Dedup id = session_id so browser pixel + server CAPI count once.
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
@@ -199,7 +199,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }
     })
     .catch(function() {
-      // API error (Render cold start, timeout) — don't show false success
+      // API error (Render cold start, timeout), don't show false success
       // Show verification state with retry button
       showFailed('We\'re having trouble verifying your payment. If you completed payment, please check your email for a confirmation. If not, you can try again below.', null);
     });

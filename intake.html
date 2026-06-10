@@ -14,7 +14,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://www.clyr.health/intake.html">
-<meta property="og:title" content="Start Your Journey — CLYR Health">
+<meta property="og:title" content="Start Your Journey · CLYR Health">
 <meta property="og:description" content="Complete your health questionnaire in 5 minutes and get matched with a licensed provider. If you're not eligible, you pay nothing.">
 <meta property="og:url" content="https://www.clyr.health/intake.html">
 <meta property="og:type" content="website">
@@ -23,17 +23,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Start Your Journey — CLYR Health">
+<meta name="twitter:title" content="Start Your Journey · CLYR Health">
 <meta name="twitter:description" content="Complete your health questionnaire in 5 minutes and get matched with a licensed provider. If you're not eligible, you pay nothing.">
 <meta name="twitter:image" content="https://www.clyr.health/og-image.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CLYR Health — Start Your Journey</title>
+<title>CLYR Health · Start Your Journey</title>
 <meta name="description" content="Complete your health profile to see if GLP-1 treatment is right for you. Provider-supervised, compounded medications from licensed pharmacies.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <script>
-// Google Places removed — API key invalid (InvalidKeyMapError)
+// Google Places removed, API key invalid (InvalidKeyMapError)
 // Plain text address input with browser autocomplete enabled
 // TODO: Re-enable Google Places once API key is fixed in Google Cloud Console
 
@@ -1040,7 +1040,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="q-label">Have you ever attempted to lose weight in a weight management program?</div>
       <div class="yn-row">
         <div class="yn-card" onclick="selectYN(this,'q10','yes')"><span class="yn-icon">✓</span> Yes</div>
-        <div class="yn-card" onclick="selectYN(this,'q10','no')"><span class="yn-icon">—</span> No, first time</div>
+        <div class="yn-card" onclick="selectYN(this,'q10','no')"><span class="yn-icon">, </span> No, first time</div>
       </div>
     </div>
 
@@ -1071,14 +1071,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
 
-    <!-- Conditional dose dropdown — shown when q36 != none and != other -->
+    <!-- Conditional dose dropdown, shown when q36 != none and != other -->
     <div class="q-block" id="q36doseBlock" style="display:none;">
       <div class="q-label">What dose are you currently on?</div>
       <div style="font-size:12px;color:var(--gray-400);margin-bottom:12px;font-style:italic;">*Select the closest option to your current dosage</div>
       <div class="mc-list" id="q36doseList"></div>
     </div>
 
-    <!-- Conditional text input — shown when q36 = 'other' -->
+    <!-- Conditional text input, shown when q36 = 'other' -->
     <div class="q-block" id="q36OtherBlock" style="display:none;">
       <div class="q-label">Please specify the medication you're currently taking.</div>
       <input type="text" class="form-input" id="q36OtherText" placeholder="e.g. Contrave, Phentermine, Qsymia" style="width:100%;box-sizing:border-box;" oninput="formData.mdiAnswers.q36Other = this.value; validateStep()">
@@ -1103,7 +1103,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="q-label">Have you had any lab tests completed within the last 6 months?</div>
       <div class="yn-row">
         <div class="yn-card" onclick="selectYN(this,'q72','yes')"><span class="yn-icon">🔬</span> Yes</div>
-        <div class="yn-card" onclick="selectYN(this,'q72','no')"><span class="yn-icon">—</span> No, not at this time</div>
+        <div class="yn-card" onclick="selectYN(this,'q72','no')"><span class="yn-icon">, </span> No, not at this time</div>
       </div>
     </div>
 
@@ -1111,7 +1111,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="q-label">Are you currently taking any medications?</div>
       <div class="yn-row">
         <div class="yn-card" onclick="toggleMedsField(this,'yes')"><span class="yn-icon">💊</span> Yes</div>
-        <div class="yn-card" onclick="toggleMedsField(this,'no')"><span class="yn-icon">—</span> No medications</div>
+        <div class="yn-card" onclick="toggleMedsField(this,'no')"><span class="yn-icon">, </span> No medications</div>
       </div>
       <div id="medsDetailWrap" style="display:none;margin-top:12px;">
         <textarea class="form-input" id="currentMedications" placeholder="e.g. Lisinopril 10mg daily, Metformin 500mg twice daily" oninput="validateStep()" rows="2" style="resize:vertical;min-height:60px;font-family:inherit;padding:14px 16px;"></textarea>
@@ -1122,7 +1122,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="q-label">Do you have any drug allergies or intolerances?</div>
       <div class="yn-row">
         <div class="yn-card" onclick="toggleAllergyField(this,'yes')"><span class="yn-icon">⚠️</span> Yes</div>
-        <div class="yn-card" onclick="toggleAllergyField(this,'no')"><span class="yn-icon">—</span> No allergies</div>
+        <div class="yn-card" onclick="toggleAllergyField(this,'no')"><span class="yn-icon">, </span> No allergies</div>
       </div>
       <div id="allergyDetailWrap" style="display:none;margin-top:12px;">
         <textarea class="form-input" id="drugAllergies" placeholder="e.g. Penicillin (hives), Sulfa drugs (rash)" oninput="validateStep()" rows="2" style="resize:vertical;min-height:60px;font-family:inherit;padding:14px 16px;"></textarea>
@@ -1141,7 +1141,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="q-sublabel">This is separate from your GLP-1 treatment and may require a co-pay or out-of-pocket cost.</div>
       <div class="yn-row">
         <div class="yn-card" onclick="selectYN(this,'q140','yes')"><span class="yn-icon">💊</span> Yes, please</div>
-        <div class="yn-card" onclick="selectYN(this,'q140','no')"><span class="yn-icon">—</span> No, thank you</div>
+        <div class="yn-card" onclick="selectYN(this,'q140','no')"><span class="yn-icon">, </span> No, thank you</div>
       </div>
     </div>
 
@@ -1150,7 +1150,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="range-val" id="rangeVal">5</div>
       <div class="range-wrap">
         <input type="range" class="q-range" id="q150range" min="1" max="10" value="5" oninput="formData.mdiAnswers.q150=this.value;document.getElementById('rangeVal').textContent=this.value;validateStep()">
-        <div class="range-labels"><span>1 — Not sensitive</span><span>10 — Extremely sensitive</span></div>
+        <div class="range-labels"><span>1, Not sensitive</span><span>10, Extremely sensitive</span></div>
       </div>
     </div>
 
@@ -1271,11 +1271,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="review-card-title">Treatment & Plan</span>
         <button class="review-edit" onclick="goToStep(1)">Edit</button>
       </div>
-      <div class="review-treatment-name" id="reviewTreatment">—</div>
-      <div class="review-treatment-detail" id="reviewCompound">—</div>
+      <div class="review-treatment-name" id="reviewTreatment">, </div>
+      <div class="review-treatment-detail" id="reviewCompound">, </div>
       <div class="review-row" style="margin-top:12px;padding-top:12px;border-top:1px solid var(--gray-100);">
         <span class="review-label">Selected Plan</span>
-        <span class="review-value" id="reviewPlan" style="font-weight:700;color:var(--teal);">—</span>
+        <span class="review-value" id="reviewPlan" style="font-weight:700;color:var(--teal);">, </span>
       </div>
     </div>
     <div class="review-card">
@@ -1285,27 +1285,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="review-row">
         <span class="review-label">Name</span>
-        <span class="review-value" id="reviewName">—</span>
+        <span class="review-value" id="reviewName">, </span>
       </div>
       <div class="review-row">
         <span class="review-label">Email</span>
-        <span class="review-value" id="reviewEmail">—</span>
+        <span class="review-value" id="reviewEmail">, </span>
       </div>
       <div class="review-row">
         <span class="review-label">Phone</span>
-        <span class="review-value" id="reviewPhone">—</span>
+        <span class="review-value" id="reviewPhone">, </span>
       </div>
       <div class="review-row">
         <span class="review-label">Date of Birth</span>
-        <span class="review-value" id="reviewDOB">—</span>
+        <span class="review-value" id="reviewDOB">, </span>
       </div>
       <div class="review-row">
         <span class="review-label">Biological Sex</span>
-        <span class="review-value" id="reviewSex">—</span>
+        <span class="review-value" id="reviewSex">, </span>
       </div>
       <div class="review-row">
         <span class="review-label">Height / Weight / BMI</span>
-        <span class="review-value" id="reviewBody">—</span>
+        <span class="review-value" id="reviewBody">, </span>
       </div>
     </div>
     <div class="review-card">
@@ -1313,7 +1313,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="review-card-title">Shipping Address</span>
         <button class="review-edit" onclick="goToStep(7)">Edit</button>
       </div>
-      <div class="review-value" id="reviewAddress" style="text-align: left;">—</div>
+      <div class="review-value" id="reviewAddress" style="text-align: left;">, </div>
     </div>
     <div class="review-card">
       <div class="review-card-header">
@@ -1322,19 +1322,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="review-row">
         <span class="review-label">Prior weight management</span>
-        <span class="review-value" id="reviewQ10">—</span>
+        <span class="review-value" id="reviewQ10">, </span>
       </div>
       <div class="review-row">
         <span class="review-label">Current weight loss Rx</span>
-        <span class="review-value" id="reviewQ36">—</span>
+        <span class="review-value" id="reviewQ36">, </span>
       </div>
       <div class="review-row">
         <span class="review-label">Goal weight</span>
-        <span class="review-value" id="reviewGoal">—</span>
+        <span class="review-value" id="reviewGoal">, </span>
       </div>
       <div class="review-row">
         <span class="review-label">Last medical evaluation</span>
-        <span class="review-value" id="reviewQ70">—</span>
+        <span class="review-value" id="reviewQ70">, </span>
       </div>
     </div>
     <div class="review-card">
@@ -1344,11 +1344,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="review-row">
         <span class="review-label">GLP-1 Consent</span>
-        <span class="review-value" id="reviewConsent" style="color:var(--green);font-weight:700;">—</span>
+        <span class="review-value" id="reviewConsent" style="color:var(--green);font-weight:700;">, </span>
       </div>
       <div class="review-row">
         <span class="review-label">Legal signature</span>
-        <span class="review-value" id="reviewSignature">—</span>
+        <span class="review-value" id="reviewSignature">, </span>
       </div>
     </div>
     <div class="review-disclaimer">
@@ -1365,12 +1365,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="checkout-order-summary" id="checkoutSummary">
       <div class="checkout-order-row">
-        <span class="checkout-order-label" id="checkoutTreatmentLabel">—</span>
-        <span class="checkout-order-value" id="checkoutPlanLabel">—</span>
+        <span class="checkout-order-label" id="checkoutTreatmentLabel">, </span>
+        <span class="checkout-order-value" id="checkoutPlanLabel">, </span>
       </div>
       <div class="checkout-order-row checkout-order-total">
         <span class="checkout-order-label">Total</span>
-        <span class="checkout-order-value" id="checkoutTotal">—</span>
+        <span class="checkout-order-value" id="checkoutTotal">, </span>
       </div>
     </div>
     <div id="intake-promo-banner"></div>
@@ -1615,7 +1615,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         if(window.clyrIdentify)clyrIdentify(leadData.email,{firstName:leadData.firstName,lastName:leadData.lastName,treatment:leadData.treatment});
         if(window.clyrTrack)clyrTrack('LeadCaptured',{treatment:leadData.treatment,plan:leadData.planType});
         if(window.posthog){posthog.identify(leadData.email,{first_name:leadData.firstName,last_name:leadData.lastName,treatment:leadData.treatment,plan:leadData.planType});posthog.capture('lead_captured',{treatment:leadData.treatment,plan:leadData.planType});}
-        // GTM dataLayer Lead event — bare signal only, NO treatment/medication data
+        // GTM dataLayer Lead event, bare signal only, NO treatment/medication data
         // goes to the ad-facing layer (PHI-safe).
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({ event: 'clyr_lead' });
@@ -1629,11 +1629,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           } else if (data.status === 'existing_incomplete') {
             showReturningCustomerModal(data.firstName || leadData.firstName, 'incomplete', leadData.email);
           } else if (data.status === 'existing_partial') {
-            // Started intake but bailed mid-flow — route to intake.html, not
+            // Started intake but bailed mid-flow, route to intake.html, not
             // resume.html (resume.html would 4xx on incomplete intake data).
             showReturningCustomerModal(data.firstName || leadData.firstName, 'partial', leadData.email);
           }
-          // existing_lead: No modal — lead must complete full intake (patient safety)
+          // existing_lead: No modal, lead must complete full intake (patient safety)
           // New leads also continue silently
         }).catch(function() {}); // Non-blocking
       }
@@ -1652,15 +1652,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       buttons = '<a href="/portal/" style="display:inline-block;background:#2bbcb3;color:#fff;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:600;font-size:15px;margin-bottom:12px;width:100%;box-sizing:border-box;">Go to Patient Portal</a><br>' +
         '<button onclick="document.getElementById(\'returningModal\').remove()" style="background:none;border:none;color:#9ca3af;font-size:14px;cursor:pointer;padding:8px 16px;margin-top:4px;">Continue as new patient</button>';
     } else if (mode === 'partial') {
-      // Bailed mid-intake. Don't suggest checkout — they don't have enough
+      // Bailed mid-intake. Don't suggest checkout, they don't have enough
       // data on file for /api/checkout/resume to succeed. Send them back into
       // the intake form to finish what's missing.
-      msg = '<p style="color:#4b5563;font-size:15px;line-height:1.6;margin-bottom:24px;">It looks like you started your consultation but didn\'t finish. Pick up where you left off — we\'ll skip the parts you\'ve already filled in.</p>';
+      msg = '<p style="color:#4b5563;font-size:15px;line-height:1.6;margin-bottom:24px;">It looks like you started your consultation but didn\'t finish. Pick up where you left off, we\'ll skip the parts you\'ve already filled in.</p>';
       buttons = '<button onclick="document.getElementById(\'returningModal\').remove()" style="display:inline-block;background:#2bbcb3;color:#fff;border:none;padding:14px 32px;border-radius:10px;font-weight:600;font-size:15px;margin-bottom:12px;width:100%;box-sizing:border-box;cursor:pointer;font-family:inherit;">Continue my consultation</button>';
     } else {
-      // 'incomplete' — completed intake, just didn't pay. resume.html works.
+      // 'incomplete', completed intake, just didn't pay. resume.html works.
       var resumeUrl = email ? '/resume.html?email=' + encodeURIComponent(email) : '/intake.html';
-      msg = '<p style="color:#4b5563;font-size:15px;line-height:1.6;margin-bottom:24px;">It looks like you already started your consultation. Your information is saved — you can go straight to checkout or continue updating your details.</p>';
+      msg = '<p style="color:#4b5563;font-size:15px;line-height:1.6;margin-bottom:24px;">It looks like you already started your consultation. Your information is saved, you can go straight to checkout or continue updating your details.</p>';
       buttons = '<a href="' + resumeUrl + '" style="display:inline-block;background:#2bbcb3;color:#fff;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:600;font-size:15px;margin-bottom:12px;width:100%;box-sizing:border-box;">Go to Checkout</a><br>' +
         '<button onclick="document.getElementById(\'returningModal\').remove()" style="background:none;border:none;color:#9ca3af;font-size:14px;cursor:pointer;padding:8px 16px;margin-top:4px;">Update my details first</button>';
     }
@@ -1774,7 +1774,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       case 6: // GLP-1 Consent
         valid = formData.mdiAnswers.q130 === 'yes' && document.getElementById('legalName').value.trim().length >= 3;
         break;
-      case 8: valid = true; break; // Review — all info already filled
+      case 8: valid = true; break; // Review, all info already filled
       case 9: valid = false; break; // Stripe handles payment on step 9
     }
     btn.disabled = !valid;
@@ -1870,15 +1870,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   function populateReview() {
     var treatmentNames = { semaglutide: 'Semaglutide + B12', tirzepatide: 'Tirzepatide + B12' };
     var compoundNames = { semaglutide: 'Compounded GLP-1 with Vitamin B12', tirzepatide: 'Compounded dual GLP-1/GIP with Vitamin B12' };
-    document.getElementById('reviewTreatment').textContent = treatmentNames[formData.treatment] || '—';
-    document.getElementById('reviewCompound').textContent = compoundNames[formData.treatment] || '—';
+    document.getElementById('reviewTreatment').textContent = treatmentNames[formData.treatment] || ', ';
+    document.getElementById('reviewCompound').textContent = compoundNames[formData.treatment] || ', ';
     // Show selected plan
     var plans = planData[formData.treatment] || [];
     var selectedPlan = plans.find(function(p) { return p.type === formData.plan; });
     var planEl = document.getElementById('reviewPlan');
     if (planEl && selectedPlan) {
-      planEl.textContent = selectedPlan.name + ' — ' + selectedPlan.price + selectedPlan.period + (selectedPlan.total ? ' (' + selectedPlan.total + ' total)' : '');
-    } else if (planEl) { planEl.textContent = '—'; }
+      planEl.textContent = selectedPlan.name + ', ' + selectedPlan.price + selectedPlan.period + (selectedPlan.total ? ' (' + selectedPlan.total + ' total)' : '');
+    } else if (planEl) { planEl.textContent = ', '; }
     document.getElementById('reviewName').textContent = document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value;
     document.getElementById('reviewEmail').textContent = document.getElementById('email').value;
     document.getElementById('reviewPhone').textContent = document.getElementById('phone').value;
@@ -1897,16 +1897,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var q10Map = { yes: 'Yes', no: 'No, first time' };
     var q36Map = { none: 'None', branded: 'Brand-name GLP-1', compounded_sema: 'Compounded Sema', compounded_tirz: 'Compounded Tirz', other: 'Other' };
     var q70Map = { less_year: '< 1 year ago', '1_2_years': '1-2 years ago', more_2_years: '> 2 years ago' };
-    document.getElementById('reviewQ10').textContent = q10Map[formData.mdiAnswers.q10] || '—';
-    document.getElementById('reviewQ36').textContent = q36Map[formData.mdiAnswers.q36] || '—';
-    document.getElementById('reviewGoal').textContent = (document.getElementById('goalWeight').value || '—') + ' lbs';
-    document.getElementById('reviewQ70').textContent = q70Map[formData.mdiAnswers.q70] || '—';
-    document.getElementById('reviewConsent').textContent = formData.mdiAnswers.q130 === 'yes' ? '✓ Consented' : '—';
-    document.getElementById('reviewSignature').textContent = document.getElementById('legalName').value || '—';
+    document.getElementById('reviewQ10').textContent = q10Map[formData.mdiAnswers.q10] || ', ';
+    document.getElementById('reviewQ36').textContent = q36Map[formData.mdiAnswers.q36] || ', ';
+    document.getElementById('reviewGoal').textContent = (document.getElementById('goalWeight').value || ', ') + ' lbs';
+    document.getElementById('reviewQ70').textContent = q70Map[formData.mdiAnswers.q70] || ', ';
+    document.getElementById('reviewConsent').textContent = formData.mdiAnswers.q130 === 'yes' ? '✓ Consented' : ', ';
+    document.getElementById('reviewSignature').textContent = document.getElementById('legalName').value || ', ';
   }
 
   // SUBMIT
-  // Stripe instance — lazy-loaded with retry
+  // Stripe instance, lazy-loaded with retry
   var stripe = null;
   var embeddedCheckout = null;
   var stripeReady = false;
@@ -1945,15 +1945,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   function populateCheckoutSummary() {
     var prices = {
-      'tirzepatide_monthly': { label: 'Tirzepatide + B12 — Monthly', total: '$320/mo' },
-      'tirzepatide_3month': { label: 'Tirzepatide + B12 — 3-Month', total: '$777' },
-      'tirzepatide_6month': { label: 'Tirzepatide + B12 — 6-Month', total: '$1,350' },
-      'semaglutide_monthly': { label: 'Semaglutide + B12 — Monthly', total: '$225/mo' },
-      'semaglutide_3month': { label: 'Semaglutide + B12 — 3-Month', total: '$537' },
-      'semaglutide_6month': { label: 'Semaglutide + B12 — 6-Month', total: '$894' },
+      'tirzepatide_monthly': { label: 'Tirzepatide + B12, Monthly', total: '$320/mo' },
+      'tirzepatide_3month': { label: 'Tirzepatide + B12, 3-Month', total: '$777' },
+      'tirzepatide_6month': { label: 'Tirzepatide + B12, 6-Month', total: '$1,350' },
+      'semaglutide_monthly': { label: 'Semaglutide + B12, Monthly', total: '$225/mo' },
+      'semaglutide_3month': { label: 'Semaglutide + B12, 3-Month', total: '$537' },
+      'semaglutide_6month': { label: 'Semaglutide + B12, 6-Month', total: '$894' },
     };
     var key = formData.treatment + '_' + formData.plan;
-    var info = prices[key] || { label: '—', total: '—' };
+    var info = prices[key] || { label: ', ', total: ', ' };
     var el1 = document.getElementById('checkoutTreatmentLabel');
     var el2 = document.getElementById('checkoutPlanLabel');
     var el3 = document.getElementById('checkoutTotal');
@@ -2270,7 +2270,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 </script>
-<!-- SMS OPT-IN DISCLOSURE — always visible for TCR/10DLC verification -->
+<!-- SMS OPT-IN DISCLOSURE, always visible for TCR/10DLC verification -->
 <div id="sms-terms" style="max-width:600px;margin:48px auto 0;padding:32px 24px 120px;border-top:1px solid #e5e7eb;">
   <h3 style="font-size:16px;font-weight:700;color:#1a1a2e;margin:0 0 12px;">SMS Text Message Opt-In</h3>
   <p style="font-size:14px;line-height:1.7;color:#4b5563;margin:0 0 16px;">
@@ -2287,7 +2287,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <strong>Message &amp; data rates may apply.</strong><br>
     <strong>Opt-out:</strong> Reply <strong>STOP</strong> to any message to unsubscribe at any time.<br>
     <strong>Help:</strong> Reply <strong>HELP</strong> for assistance.<br>
-    <strong>Consent is optional</strong> — it is not required to complete your intake or receive treatment.
+    <strong>Consent is optional</strong>, it is not required to complete your intake or receive treatment.
   </p>
   <p style="font-size:13px;color:#6b7280;margin:0;">
     For more details, see our <a href="/privacy.html" style="color:#2bbcb3;text-decoration:underline;">Privacy Policy</a> and <a href="/terms.html" style="color:#2bbcb3;text-decoration:underline;">Terms of Service</a>.
@@ -2305,7 +2305,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const el = document.getElementById('intake-promo-banner');
     if (el) {
       el.innerHTML = '<div style="margin:12px 0 4px;padding:12px 16px;background:linear-gradient(135deg,rgba(0,180,197,0.1),rgba(0,180,197,0.03));border:1px solid rgba(0,180,197,0.2);border-radius:12px;text-align:center;font-size:13px;color:#1a1a2e;">'
-        + '<strong style="color:#00B4C5;">' + p.code + '</strong> — '
+        + '<strong style="color:#00B4C5;">' + p.code + '</strong>, '
         + (p.discount_type === 'percent' ? p.discount_value + '% off' : '$' + p.discount_value + ' off')
         + ' · Enter the code below at checkout</div>';
     }
