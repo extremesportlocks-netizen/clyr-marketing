@@ -103,6 +103,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 @media (max-width:900px){ .nav-item .megamenu{display:none} .mobile-menu-btn{display:block} .nav-links{display:none} .nav.mobile-open .nav-links{display:flex;flex-direction:column;align-items:flex-start;position:absolute;top:72px;left:0;right:0;background:#FFFFFF;box-shadow:0 12px 40px rgba(0,0,0,0.12);padding:24px 20px;gap:18px;border-bottom:1px solid #E2E7EB;z-index:99} .nav.mobile-open .nav-item > a{padding:0} .nav.mobile-open .nav-links a{font-size:16px} .nav.mobile-open .mobile-menu-btn span:nth-child(1){transform:rotate(45deg) translate(5px,5px)} .nav.mobile-open .mobile-menu-btn span:nth-child(2){opacity:0} .nav.mobile-open .mobile-menu-btn span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)} }
 /* ===== end canonical nav CSS ===== */
 </style>
+<style>/* nav polish: section dividers + dropdown hover bridge */
+.nav-links > *:not(.nav-portal):not(.nav-cta){position:relative}
+.nav-links > *:not(:first-child):not(.nav-portal):not(.nav-cta)::before{content:'';position:absolute;left:-18px;top:50%;transform:translateY(-50%);width:1px;height:18px;background:#E2E7EB;pointer-events:none}
+.megamenu::before{content:'';position:absolute;top:-14px;left:0;right:0;height:16px;background:transparent}
+@media (max-width:900px){.nav-links > *::before{display:none}}</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->

@@ -88,6 +88,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 @media (max-width:768px){.footer{padding:40px 20px 28px}.footer-top{grid-template-columns:1fr;gap:28px}.footer-bottom{flex-direction:column;text-align:center}.footer-legal{justify-content:center}.trust-chip{padding:6px 12px;font-size:11px}}
 /* ===== end canonical footer ===== */
 </style>
+<style>/* nav polish: section dividers + dropdown hover bridge */
+.nav-links > *:not(.nav-portal):not(.nav-cta){position:relative}
+.nav-links > *:not(:first-child):not(.nav-portal):not(.nav-cta)::before{content:'';position:absolute;left:-18px;top:50%;transform:translateY(-50%);width:1px;height:18px;background:#E2E7EB;pointer-events:none}
+.megamenu::before{content:'';position:absolute;top:-14px;left:0;right:0;height:16px;background:transparent}
+@media (max-width:900px){.nav-links > *::before{display:none}}</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->

@@ -130,6 +130,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 .cov-meta{font-size:12px;font-weight:600;color:var(--gray-500);margin-top:8px;text-transform:uppercase;letter-spacing:0.06em}
 @media(max-width:768px){.warn-grid{grid-template-columns:1fr}.trust-band-inner{padding:14px 20px;gap:8px 14px}.tb-chip{font-size:12px}.img-chip{display:none}}
 </style>
+<style>/* nav polish: section dividers + dropdown hover bridge */
+.nav-links > *:not(.nav-portal):not(.nav-cta){position:relative}
+.nav-links > *:not(:first-child):not(.nav-portal):not(.nav-cta)::before{content:'';position:absolute;left:-18px;top:50%;transform:translateY(-50%);width:1px;height:18px;background:#E2E7EB;pointer-events:none}
+.megamenu::before{content:'';position:absolute;top:-14px;left:0;right:0;height:16px;background:transparent}
+@media (max-width:900px){.nav-links > *::before{display:none}}</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->

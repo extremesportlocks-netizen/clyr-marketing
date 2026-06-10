@@ -177,6 +177,11 @@ body{font-family:var(--sans);color:var(--dark);background:var(--white);overflow-
   .nav.mobile-open .nav-links{display:flex;flex-direction:column;position:absolute;top:72px;left:0;right:0;background:white;padding:20px;border-bottom:1px solid var(--gray-200);gap:16px;box-shadow:var(--shadow-md)}
 }
 </style>
+<style>/* nav polish: section dividers + dropdown hover bridge */
+.nav-links > *:not(.nav-portal):not(.nav-cta){position:relative}
+.nav-links > *:not(:first-child):not(.nav-portal):not(.nav-cta)::before{content:'';position:absolute;left:-18px;top:50%;transform:translateY(-50%);width:1px;height:18px;background:#E2E7EB;pointer-events:none}
+.megamenu::before{content:'';position:absolute;top:-14px;left:0;right:0;height:16px;background:transparent}
+@media (max-width:900px){.nav-links > *::before{display:none}}</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
