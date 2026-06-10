@@ -97,6 +97,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 @media (max-width:1024px){.footer-top{grid-template-columns:1fr 1fr}}
 @media (max-width:768px){.footer{padding:40px 20px 28px}.footer-top{grid-template-columns:1fr;gap:28px}.footer-bottom{flex-direction:column;text-align:center}.footer-legal{justify-content:center}.trust-chip{padding:6px 12px;font-size:11px}}
 /* ===== end canonical footer ===== */
+.hub-hero{background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 50%,#0d2a35 100%);max-width:none;margin:0;padding:100px 40px 80px;text-align:left;color:white;position:relative;overflow:hidden}
+.hub-hero .hub-hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1}
+.hub-hero h1{color:white}
+.hub-hero .lede{color:rgba(255,255,255,0.78);margin-left:0;text-align:left}
+.hub-hero .product-category{color:#5eead4}
+.hero-products{position:absolute;right:6%;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:28px;z-index:0;pointer-events:none}
+.hero-products img{display:block;filter:drop-shadow(0 22px 30px rgba(0,0,0,0.35));animation:apFloat 7s ease-in-out infinite}
+.hero-products img:last-child{animation-delay:1.4s}
+@keyframes apFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+@media(max-width:1024px){.hero-products{display:none}}
+@media(prefers-reduced-motion:reduce){.hero-products img{animation:none}.reveal{opacity:1;transform:none;transition:none}}
 </style>
 <style>
 .green-benefits .benefit-icon{background:#E3F9EE;color:#0F9D6B}
@@ -270,11 +283,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <a href="/">CLYR Health</a> &nbsp;/&nbsp; Antiparasitic
 </div>
 
-<section class="hub-hero">
+<section class="hub-hero"><div class="hero-products"><img src="/img/pill-antiparasitic-new.png" alt="" style="width:300px"><img src="/img/pill-antiparasitic-new.png" alt="" style="width:220px"></div><div class="hub-hero-inner">
   <div class="product-category">Antiparasitic Protocols &middot; Rx &middot; Launching Soon</div>
   <h1>Two protocols.<br>One <span class="serif">standard of care.</span></h1>
   <p class="lede">Provider-prescribed ivermectin, on its own, or paired with mebendazole for broader coverage. Both are compounded to your body weight by a licensed U.S. pharmacy and reviewed for your history before anything is approved.</p>
-</section>
+</div></section>
 
 <div class="trust-band"><div class="trust-band-inner">
   <span class="tb-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> LegitScript Certified</span><span class="tb-dot"></span>
@@ -284,7 +297,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <span class="tb-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="6" width="13" height="11" rx="1"/><path d="M14 9h4l3 3v5h-7zM5.5 19a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM17.5 19a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg> Discreet 2-day shipping</span>
 </div></div>
 
-<section class="compare">
+<section class="compare reveal">
   <div style="text-align:center;margin-bottom:44px">
     <div class="section-label" style="display:inline-flex">Compare protocols</div>
     <h2 class="section-heading">Pick the coverage<br><span class="serif">that fits.</span></h2>
@@ -348,7 +361,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </table>
 </div>
 
-<section class="benefits green-benefits" style="padding-top:32px">
+<section class="benefits green-benefits reveal" style="padding-top:32px">
   <div class="section-label">Why two</div>
   <h2 class="section-heading">Broader coverage,<br><span class="serif">one plan.</span></h2>
   <p class="section-sub">Ivermectin and mebendazole act through different mechanisms. Used together under a provider&rsquo;s guidance, they cover more ground than either does on its own. Whether the combination suits you is your provider&rsquo;s decision.</p>
@@ -358,7 +371,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<section class="benefits green-benefits">
+<section class="benefits green-benefits reveal">
   <div class="section-label">Why CLYR</div>
   <h2 class="section-heading">Care that&rsquo;s actually<br><span class="serif">yours.</span></h2>
   <p class="section-sub">The same U.S. pharmacy and provider network behind the high-priced services, offered as a fair monthly plan instead of a four-figure upfront bill.</p>
@@ -369,7 +382,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<section class="quality">
+<section class="quality reveal">
   <div class="section-label">Quality &amp; Safety</div>
   <h2 class="section-heading">Every order,<br><span class="serif">accounted for.</span></h2>
   <p class="section-sub">A forum post and an offshore website can&rsquo;t tell you who made your medication or whether the dose is right. Here is what is behind yours.</p>
@@ -381,7 +394,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<section class="benefits" style="padding-top:0">
+<section class="benefits reveal" style="padding-top:0">
   <div class="section-label" style="color:#C0392B">Where it comes from</div>
   <h2 class="section-heading">Source matters as much<br>as <span class="serif">dose.</span></h2>
   <p class="section-sub">Plenty of places will sell you ivermectin. Most can&rsquo;t tell you what is actually in it. Here is what we would steer you away from, and what we do instead.</p>
@@ -393,7 +406,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="clyr-diff"><div class="cd-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><h3>The CLYR way</h3><p>A licensed U.S. provider writes the prescription, a licensed 503A pharmacy fills it to your exact dose, and it ships labeled for you. Every step is tied to a real, accountable name.</p></div></div>
 </section>
 
-<section class="how-it-works">
+<section class="how-it-works reveal">
   <div class="how-inner">
     <div class="section-label" style="display:inline-flex">How It Works</div>
     <h2 class="section-heading">From check to<br><span class="serif">doorstep.</span></h2>
@@ -405,7 +418,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<section class="faq">
+<section class="faq reveal">
   <div class="section-label" style="display:flex;justify-content:center;">Frequently Asked</div>
   <h2 class="section-heading" style="text-align:center">Questions about<br><span class="serif">the protocols?</span></h2>
   <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Which protocol is right for me?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><div class="faq-a"><p>Ivermectin alone is a proven single-agent antiparasitic. Adding mebendazole introduces a second mechanism for broader coverage. Both are dosed to your body weight; which one fits you is ultimately your reviewing provider&rsquo;s decision based on your history.</p></div></div>
@@ -507,5 +520,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 function toggleFaq(btn){var a=btn.nextElementSibling;var w=a.classList.contains('open');document.querySelectorAll('.faq-a').forEach(function(el){el.classList.remove('open')});document.querySelectorAll('.faq-q').forEach(function(el){el.classList.remove('open')});if(!w){a.classList.add('open');btn.classList.add('open')}}
 </script>
 <script src="/js/clyr-tracking.js"></script>
+<script>(function(){var els=document.querySelectorAll('.reveal');if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:0.12});els.forEach(function(e){io.observe(e)})})();</script>
 </body>
 </html>
