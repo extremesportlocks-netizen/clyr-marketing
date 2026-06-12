@@ -433,6 +433,16 @@ var CATALOG = {
     type:'wellness', name:'NAD+ Injections', emoji:'🧬', priceCents:19900, plans:[{key:'monthly',label:'Monthly',priceCents:19900}],
     desc:'Cellular energy, DNA repair, cognitive function.'
   },
+  ivermectin: {
+    type:'protocol', name:'Ivermectin Protocol', emoji:'🌿', priceCents:8900,
+    plans:[{key:'protocol',label:'One-time protocol',priceCents:8900}],
+    desc:'Provider-prescribed antiparasitic protocol. 18mg capsules.'
+  },
+  ivermectin_mebendazole: {
+    type:'protocol', name:'Ivermectin + Mebendazole', emoji:'🌿', priceCents:11900,
+    plans:[{key:'protocol',label:'One-time protocol',priceCents:11900}],
+    desc:'Provider-prescribed combined antiparasitic protocol.'
+  },
   glutathione: {
     type:'wellness', name:'Glutathione', emoji:'🛡️', priceCents:12900,
     plans:[{key:'monthly',label:'Monthly',priceCents:12900}],
@@ -583,8 +593,8 @@ function init() {
   // Coming-soon products: route to waitlist screen instead of silently falling back to Sermorelin.
   // Ivermectin is pending MDI clinical questionnaire approval, checkout is intentionally not yet active.
   var COMING_SOON = {
-    ivermectin: { label: 'Ivermectin Protocol', title: 'Ivermectin protocol launching <span class="serif">soon.</span>', sub: "We're finalizing this with our medical partner. Take the quick eligibility check below and join the waitlist \u2014 a provider reviews your responses the day it opens." },
-    ivermectin_mebendazole: { label: 'Ivermectin + Mebendazole', title: 'Ivermectin + Mebendazole launching <span class="serif">soon.</span>', sub: "We're finalizing this with our medical partner. Take the quick eligibility check below and join the waitlist \u2014 a provider reviews your responses the day it opens." }
+    // Ivermectin + combo went LIVE June 12 2026 — direct-Rx checkout via
+    // the Provider Queue. Map kept for future coming-soon products.
   };
   if (COMING_SOON[prod]) {
     var cs = COMING_SOON[prod];
