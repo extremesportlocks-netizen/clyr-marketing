@@ -434,14 +434,22 @@ var CATALOG = {
     desc:'Cellular energy, DNA repair, cognitive function.'
   },
   ivermectin: {
-    type:'protocol', name:'Ivermectin Protocol', emoji:'🌿', priceCents:8900,
-    plans:[{key:'protocol',label:'One-time protocol',priceCents:8900}],
+    type:'protocol', name:'Ivermectin Protocol', emoji:'🌿', priceCents:13900,
+    plans:[
+      {key:'monthly',label:'Monthly — 30 capsules ($139/mo, cancel anytime)',priceCents:13900},
+      {key:'2month',label:'2-Month — 60 capsules ($249 one-time)',priceCents:24900},
+      {key:'3month',label:'3-Month — 90 capsules ($369 one-time)',priceCents:36900}
+    ],
     desc:'Provider-prescribed antiparasitic protocol. 18mg capsules.'
   },
   ivermectin_mebendazole: {
-    type:'protocol', name:'Ivermectin + Mebendazole', emoji:'🌿', priceCents:11900,
-    plans:[{key:'protocol',label:'One-time protocol',priceCents:11900}],
-    desc:'Provider-prescribed combined antiparasitic protocol.'
+    type:'protocol', name:'Ivermectin + Mebendazole', emoji:'🌿', priceCents:16900,
+    plans:[
+      {key:'monthly',label:'Monthly — 30 capsules ($169/mo, cancel anytime)',priceCents:16900},
+      {key:'2month',label:'2-Month — 60 capsules ($299 one-time)',priceCents:29900},
+      {key:'3month',label:'3-Month — 90 capsules ($449 one-time)',priceCents:44900}
+    ],
+    desc:'Provider-prescribed combined antiparasitic protocol. 25mg/250mg combined capsule.'
   },
   glutathione: {
     type:'wellness', name:'Glutathione', emoji:'🛡️', priceCents:12900,
