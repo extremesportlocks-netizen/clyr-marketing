@@ -66,13 +66,16 @@ body{font-family:var(--sans);color:var(--dark);background:var(--gray-50);overflo
 .product-card .product-price .period{font-size:13px;color:var(--gray-400);font-weight:500;margin-left:2px}
 
 /* PLAN OPTIONS */
-.plan-options{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.plan-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:16px}
 .plan-option{padding:16px;border:1.5px solid var(--gray-200);border-radius:12px;cursor:pointer;text-align:center;transition:all 0.2s;background:var(--white)}
 .plan-option:hover{border-color:var(--teal)}
 .plan-option.selected{border-color:var(--teal);background:var(--teal-light)}
 .plan-option .plan-name{font-size:14px;font-weight:700;margin-bottom:2px}
 .plan-option .plan-price{font-size:16px;font-weight:700;color:var(--dark)}
 .plan-option .plan-save{font-size:11px;color:var(--green);font-weight:700;text-transform:uppercase;letter-spacing:0.05em;margin-top:4px}
+.plan-option .plan-sub{font-size:11.5px;color:var(--gray-500);margin-bottom:6px;line-height:1.3}
+.plan-option .plan-price .plan-suffix{font-size:12px;font-weight:600;color:var(--gray-500)}
+.plan-option .plan-price{font-size:20px}
 
 /* CHECKBOX CONDITION CARDS */
 .condition-list{display:flex;flex-direction:column;gap:10px}
@@ -434,20 +437,20 @@ var CATALOG = {
     desc:'Cellular energy, DNA repair, cognitive function.'
   },
   ivermectin: {
-    type:'protocol', name:'Ivermectin Protocol', emoji:'🌿', priceCents:13900,
+    type:'protocol', name:'Ivermectin Protocol', emoji:'💊', img:'/img/pill-antiparasitic-new.png', priceCents:13900,
     plans:[
-      {key:'monthly',label:'Monthly — 30 capsules ($139/mo, cancel anytime)',priceCents:13900},
-      {key:'2month',label:'2-Month — 60 capsules ($249 one-time)',priceCents:24900},
-      {key:'3month',label:'3-Month — 90 capsules ($369 one-time)',priceCents:36900}
+      {key:'monthly',label:'Monthly',sub:'30 capsules · cancel anytime',priceCents:13900,suffix:'/mo'},
+      {key:'2month',label:'2-Month',sub:'60 capsules · one-time',priceCents:24900,save:'Save $29'},
+      {key:'3month',label:'3-Month',sub:'90 capsules · one-time',priceCents:36900,save:'Save $48'}
     ],
     desc:'Provider-prescribed antiparasitic protocol. 18mg capsules.'
   },
   ivermectin_mebendazole: {
-    type:'protocol', name:'Ivermectin + Mebendazole', emoji:'🌿', priceCents:16900,
+    type:'protocol', name:'Ivermectin + Mebendazole', emoji:'💊', img:'/img/pill-antiparasitic-new.png', priceCents:16900,
     plans:[
-      {key:'monthly',label:'Monthly — 30 capsules ($169/mo, cancel anytime)',priceCents:16900},
-      {key:'2month',label:'2-Month — 60 capsules ($299 one-time)',priceCents:29900},
-      {key:'3month',label:'3-Month — 90 capsules ($449 one-time)',priceCents:44900}
+      {key:'monthly',label:'Monthly',sub:'30 capsules · cancel anytime',priceCents:16900,suffix:'/mo'},
+      {key:'2month',label:'2-Month',sub:'60 capsules · one-time',priceCents:29900,save:'Save $39'},
+      {key:'3month',label:'3-Month',sub:'90 capsules · one-time',priceCents:44900,save:'Save $58'}
     ],
     desc:'Provider-prescribed combined antiparasitic protocol. 25mg/250mg combined capsule.'
   },
@@ -805,7 +808,9 @@ function csJoinWaitlist(){
 // ── PRODUCT RENDERING ──────────────────────────────────────────────────
 function renderProduct() {
   var p = CATALOG[state.productKey];
-  document.getElementById('productThumb').textContent = p.emoji;
+  var thumbEl = document.getElementById('productThumb');
+  if (p.img) { thumbEl.innerHTML = '<img src="'+p.img+'" alt="" style="width:52px;height:52px;object-fit:contain;display:block;filter:drop-shadow(0 6px 14px rgba(0,0,0,0.18))">'; }
+  else { thumbEl.textContent = p.emoji; }
   document.getElementById('productName').textContent = p.name;
   document.getElementById('productDesc').textContent = p.desc;
   var planObj = p.plans.find(function(x){return x.key === state.planKey}) || p.plans[0];
@@ -819,7 +824,9 @@ function renderProduct() {
     planEl.innerHTML = p.plans.map(function(pl) {
       var sel = pl.key === state.planKey ? 'selected' : '';
       var save = pl.save ? '<div class="plan-save">'+pl.save+'</div>' : '';
-      return '<div class="plan-option '+sel+'" data-plan="'+pl.key+'"><div class="plan-name">'+pl.label+'</div><div class="plan-price">$'+(pl.priceCents/100).toFixed(0)+'</div>'+save+'</div>';
+      var sub = pl.sub ? '<div class="plan-sub">'+pl.sub+'</div>' : '';
+      var suffix = pl.suffix ? '<span class="plan-suffix">'+pl.suffix+'</span>' : '';
+      return '<div class="plan-option '+sel+'" data-plan="'+pl.key+'"><div class="plan-name">'+pl.label+'</div>'+sub+'<div class="plan-price">$'+(pl.priceCents/100).toFixed(0)+suffix+'</div>'+save+'</div>';
     }).join('');
     planEl.querySelectorAll('.plan-option').forEach(function(el) {
       el.addEventListener('click', function() {
