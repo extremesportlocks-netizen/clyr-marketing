@@ -670,7 +670,7 @@ function init() {
   var planExists = product.plans.some(function(p){return p.key === plan});
   var has3mo = product.plans.some(function(p){return p.key === '3month'});
   var fallback = (!params.get('plan') && has3mo) ? '3month' : product.plans[0].key;
-  state.planKey = planExists ? plan : fallback;
+  state.planKey = (params.get('plan') && planExists) ? plan : fallback;
 
   renderProduct();
   renderScreening();
