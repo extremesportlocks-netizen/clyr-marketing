@@ -1023,6 +1023,19 @@ function onStep2Continue() {
 }
 
 function onStep3Continue() {
+  // 18+ gate: the year dropdown alone admits people who haven't had this
+  // year's birthday yet. Validate the full date of birth.
+  var _m = parseInt(document.getElementById('dobMonth').value, 10);
+  var _d = parseInt(document.getElementById('dobDay').value, 10);
+  var _y = parseInt(document.getElementById('dobYear').value, 10);
+  if (_m && _d && _y) {
+    var _now = new Date();
+    var _age = _now.getFullYear() - _y - ((_now.getMonth() + 1 < _m || (_now.getMonth() + 1 === _m && _now.getDate() < _d)) ? 1 : 0);
+    if (_age < 18) {
+      alert('You must be 18 or older to use CLYR Health.');
+      return;
+    }
+  }
   state.details = {
     firstName: document.getElementById('firstName').value.trim(),
     lastName: document.getElementById('lastName').value.trim(),
