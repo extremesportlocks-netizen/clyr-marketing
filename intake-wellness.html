@@ -429,11 +429,19 @@ var API = 'https://clyr-backend.onrender.com';
 // ── PRODUCT CATALOG (mirrors backend services/product-catalog.js) ─────
 var CATALOG = {
   sermorelin: {
-    type:'wellness', name:'Sermorelin', emoji:'💉', priceCents:17900, plans:[{key:'monthly',label:'Monthly',priceCents:17900}],
+    type:'wellness', name:'Sermorelin', emoji:'💉', priceCents:17900, plans:[
+      {key:'monthly',label:'Monthly',sub:'1 vial · cancel anytime',priceCents:17900,suffix:'/mo'},
+      {key:'3month',label:'3-Month',sub:'3 monthly shipments · $159/mo · one-time',priceCents:47700,save:'Save $60'},
+      {key:'6month',label:'6-Month',sub:'6 monthly shipments · $149/mo · one-time',priceCents:89400,save:'Save $180'}
+    ],
     desc:'Growth hormone peptide. Sleep, recovery, lean muscle, healthy aging.'
   },
   nad: {
-    type:'wellness', name:'NAD+ Injections', emoji:'🧬', priceCents:19900, plans:[{key:'monthly',label:'Monthly',priceCents:19900}],
+    type:'wellness', name:'NAD+ Injections', emoji:'🧬', priceCents:19900, plans:[
+      {key:'monthly',label:'Monthly',sub:'1 vial · cancel anytime',priceCents:19900,suffix:'/mo'},
+      {key:'3month',label:'3-Month',sub:'3 monthly shipments · $179/mo · one-time',priceCents:53700,save:'Save $60'},
+      {key:'6month',label:'6-Month',sub:'6 monthly shipments · $169/mo · one-time',priceCents:101400,save:'Save $180'}
+    ],
     desc:'Cellular energy, DNA repair, cognitive function.'
   },
   ivermectin: {
@@ -456,31 +464,59 @@ var CATALOG = {
   },
   glutathione: {
     type:'wellness', name:'Glutathione', emoji:'🛡️', priceCents:12900,
-    plans:[{key:'monthly',label:'Monthly',priceCents:12900}],
+    plans:[
+      {key:'monthly',label:'Monthly',sub:'2 vials · cancel anytime',priceCents:12900,suffix:'/mo'},
+      {key:'3month',label:'3-Month',sub:'3 monthly shipments · $119/mo · one-time',priceCents:35700,save:'Save $30'},
+      {key:'6month',label:'6-Month',sub:'6 monthly shipments · $109/mo · one-time',priceCents:65400,save:'Save $120'}
+    ],
     desc:'Master antioxidant. Detox, immune, skin health.'
   },
   micc: {
-    type:'wellness', name:'MICC + B12', emoji:'💧', priceCents:14900, plans:[{key:'monthly',label:'Monthly',priceCents:14900}],
+    type:'wellness', name:'MICC + B12', emoji:'💧', priceCents:14900, plans:[
+      {key:'monthly',label:'Monthly',sub:'1 vial · cancel anytime',priceCents:14900,suffix:'/mo'},
+      {key:'3month',label:'3-Month',sub:'3 monthly shipments · $139/mo · one-time',priceCents:41700,save:'Save $30'},
+      {key:'6month',label:'6-Month',sub:'6 monthly shipments · $129/mo · one-time',priceCents:77400,save:'Save $120'}
+    ],
     desc:'B12 energy and metabolism blend. Pairs with GLP-1.'
   },
   lipo_mino: {
-    type:'wellness', name:'Lipo-Mino + L-Carnitine', emoji:'💧', priceCents:14900, plans:[{key:'monthly',label:'Monthly',priceCents:14900}],
+    type:'wellness', name:'Lipo-Mino + L-Carnitine', emoji:'💧', priceCents:14900, plans:[
+      {key:'monthly',label:'Monthly',sub:'1 vial · cancel anytime',priceCents:14900,suffix:'/mo'},
+      {key:'3month',label:'3-Month',sub:'3 monthly shipments · $139/mo · one-time',priceCents:41700,save:'Save $30'},
+      {key:'6month',label:'6-Month',sub:'6 monthly shipments · $129/mo · one-time',priceCents:77400,save:'Save $120'}
+    ],
     desc:'Lipotropic + L-Carnitine injection. Weight management and fat metabolism.'
   },
   tadalafil: {
-    type:'sexual_health', name:'Tadalafil + Vardenafil', emoji:'🔵', priceCents:9900, plans:[{key:'monthly',label:'Monthly',priceCents:9900}],
+    type:'sexual_health', name:'Tadalafil + Vardenafil', emoji:'🔵', priceCents:9900, plans:[
+      {key:'monthly',label:'Monthly',sub:'30 tablets · cancel anytime',priceCents:9900,suffix:'/mo'},
+      {key:'3month',label:'3-Month',sub:'90 tablets · $89.67/mo · one-time',priceCents:26900,save:'Save $28'},
+      {key:'6month',label:'6-Month',sub:'180 tablets · $83.17/mo · one-time',priceCents:49900,save:'Save $95'},
+      {key:'12month',label:'12-Month',sub:'360 tablets · $74.92/mo · one-time',priceCents:89900,save:'Save $289'}
+    ],
     desc:'Dual PDE5 inhibitor. 30-count daily tablet.'
   },
   sildenafil_gummy: {
-    type:'sexual_health', name:'Sildenafil 50mg Gummy', emoji:'🍬', priceCents:8900, plans:[{key:'monthly',label:'Monthly',priceCents:8900}],
+    type:'sexual_health', name:'Sildenafil 50mg Gummy', emoji:'🍬', priceCents:8900, plans:[
+      {key:'monthly',label:'Monthly',sub:'10 gummies · cancel anytime',priceCents:8900,suffix:'/mo'},
+      {key:'3month',label:'3-Month',sub:'30 gummies · $79/mo · one-time',priceCents:23700,save:'Save $30'},
+      {key:'6month',label:'6-Month',sub:'60 gummies · $74/mo · one-time',priceCents:44400,save:'Save $90'}
+    ],
     desc:'On-demand ED treatment. 10-count gummies.'
   },
   pt141: {
-    type:'sexual_health', name:'PT-141 + Oxytocin', emoji:'🌹', priceCents:14900, plans:[{key:'monthly',label:'Monthly',priceCents:14900}],
+    type:'sexual_health', name:'PT-141 + Oxytocin', emoji:'🌹', priceCents:14900, plans:[
+      {key:'3month',label:'3-Month',sub:'24 ODTs · $83/mo · one-time',priceCents:24900,save:'Save $198'},
+      {key:'monthly',label:'Monthly',sub:'8 ODTs · cancel anytime',priceCents:14900,suffix:'/mo'}
+    ],
     desc:'Libido and arousal support. 8-count ODT.'
   },
   sild_tadal_oxy: {
-    type:'sexual_health', name:'Sildenafil + Tadalafil + Oxytocin ODT', emoji:'⚡', priceCents:12900, plans:[{key:'monthly',label:'Monthly',priceCents:12900}],
+    type:'sexual_health', name:'Sildenafil + Tadalafil + Oxytocin ODT', emoji:'⚡', priceCents:12900, plans:[
+      {key:'monthly',label:'Monthly',sub:'10 ODTs · cancel anytime',priceCents:12900,suffix:'/mo'},
+      {key:'3month',label:'3-Month',sub:'30 ODTs · $119/mo · one-time',priceCents:35700,save:'Save $30'},
+      {key:'6month',label:'6-Month',sub:'60 ODTs · $109/mo · one-time',priceCents:65400,save:'Save $120'}
+    ],
     desc:'Triple-action ODT for sexual performance.'
   }
 };
@@ -632,7 +668,9 @@ function init() {
   // Validate plan
   var product = CATALOG[prod];
   var planExists = product.plans.some(function(p){return p.key === plan});
-  state.planKey = planExists ? plan : product.plans[0].key;
+  var has3mo = product.plans.some(function(p){return p.key === '3month'});
+  var fallback = (!params.get('plan') && has3mo) ? '3month' : product.plans[0].key;
+  state.planKey = planExists ? plan : fallback;
 
   renderProduct();
   renderScreening();
