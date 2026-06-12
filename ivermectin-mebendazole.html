@@ -105,6 +105,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 .tier-price{font-weight:800;font-size:19px;color:var(--dark,#1a1a2e)}
 .tier-price span{font-size:12px;font-weight:600;color:#6b7280}
 .tier-save{font-size:11px;font-weight:700;color:#0f9d58;text-transform:uppercase;letter-spacing:0.04em;margin-top:2px}
+.payment-methods{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.payment-chip{display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:10px;background:#fff;border:1px solid #e5e7eb;font-size:11.5px;font-weight:600;color:#4b5563}
+.payment-chip img{width:16px;height:16px;border-radius:4px;object-fit:contain}
 </style>
 <style>
 .green-benefits .benefit-icon{background:#E3F9EE;color:#0F9D6B}
@@ -270,6 +273,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="tier-row"><div><div class="tier-name">Monthly</div><div class="tier-caps">30 capsules &middot; cancel anytime</div></div><div class="tier-right"><div class="tier-price">$169<span>/mo</span></div></div></div>
         <div class="tier-row"><div><div class="tier-name">2-Month</div><div class="tier-caps">60 capsules &middot; one-time</div></div><div class="tier-right"><div class="tier-price">$299</div><div class="tier-save">Save $39</div></div></div>
         <div class="tier-row"><div><div class="tier-name">3-Month</div><div class="tier-caps">90 capsules &middot; one-time</div></div><div class="tier-right"><div class="tier-price">$449</div><div class="tier-save">Save $58</div></div></div>
+      </div>
+      <div class="payment-methods" style="justify-content:flex-start;padding:6px 0 0;gap:8px">
+        <span style="font-size:11.5px;color:#9ca3af;margin-right:2px;">Payments:</span>
+        <div class="payment-chip"><img src="https://www.google.com/s2/favicons?domain=apple.com&sz=64" alt="Apple Pay">Apple Pay</div>
+        <div class="payment-chip"><img src="https://www.google.com/s2/favicons?domain=visa.com&sz=64" alt="Visa">Visa</div>
+        <div class="payment-chip"><img src="https://www.google.com/s2/favicons?domain=mastercard.com&sz=64" alt="Mastercard">Mastercard</div>
+        <div class="payment-chip"><img src="https://www.google.com/s2/favicons?domain=cash.app&sz=64" alt="Cash App">Cash App</div>
+      </div>
+      <div class="payment-methods" style="justify-content:flex-start;padding:4px 0 18px;gap:8px">
+        <span style="font-size:11.5px;color:#9ca3af;margin-right:2px;">Pay later:</span>
+        <div class="payment-chip"><img src="https://www.google.com/s2/favicons?domain=klarna.com&sz=64" alt="Klarna">Klarna</div>
+        <div class="payment-chip"><img src="https://www.google.com/s2/favicons?domain=affirm.com&sz=64" alt="Affirm">Affirm</div>
+        <div class="payment-chip"><img src="https://icons.duckduckgo.com/ip3/afterpay.com.ico" alt="Afterpay">Afterpay</div>
       </div>
       <a href="/intake-wellness.html?product=ivermectin-mebendazole" class="product-cta" onclick="if(window.clyrTrack)clyrTrack('ProductCTAClick',{product:'ivermectin_mebendazole',location:'pricing'})">Check your eligibility <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
