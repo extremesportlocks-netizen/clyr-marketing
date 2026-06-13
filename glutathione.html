@@ -87,16 +87,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 @media (max-width:768px){.footer{padding:40px 20px 28px}.footer-top{grid-template-columns:1fr;gap:28px}.footer-bottom{flex-direction:column;text-align:center}.footer-legal{justify-content:center}.trust-chip{padding:6px 12px;font-size:11px}}
 /* ===== end canonical footer ===== */
 
-.tier-list{display:flex;flex-direction:column;gap:10px;margin:4px 0 26px;max-width:430px}
-a.tier-row{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:14px 18px;text-decoration:none;color:inherit;transition:border-color .15s,box-shadow .15s}
-a.tier-row:hover{border-color:var(--teal);box-shadow:0 4px 16px rgba(43,188,179,0.12)}
-.tier-name{font-weight:700;font-size:15.5px;color:var(--dark,#1a1a2e);display:flex;align-items:center;gap:8px}
-.tier-caps{font-size:12.5px;color:#6b7280;margin-top:2px}
-.tier-right{text-align:right}
-.tier-price{font-weight:800;font-size:19px;color:var(--dark,#1a1a2e)}
-.tier-price span{font-size:12px;font-weight:600;color:#6b7280}
-.tier-save{font-size:11px;font-weight:700;color:#0f9d58;text-transform:uppercase;letter-spacing:0.04em;margin-top:2px}
-.tier-badge{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.05em;padding:3px 9px;border-radius:100px;background:var(--teal-light,#e0f5f3);color:var(--teal,#2bbcb3)}
+.plan-label{font-size:11px;font-weight:800;letter-spacing:0.11em;text-transform:uppercase;color:var(--teal,#2bbcb3);margin:4px 0 10px}
+.tier-list{display:flex;flex-direction:column;gap:10px;margin:0 0 26px;max-width:460px}
+a.tier-row{display:flex;align-items:center;justify-content:space-between;gap:14px;background:#fff;border:1.5px solid #E3E9ED;border-radius:16px;padding:15px 20px;text-decoration:none;color:inherit;position:relative;transition:border-color .18s,transform .18s,box-shadow .18s}
+a.tier-row:hover{border-color:var(--teal,#2bbcb3);transform:translateY(-2px);box-shadow:0 10px 26px rgba(43,188,179,0.16)}
+.tier-name{font-weight:700;font-size:15.5px;color:var(--dark,#1a1a2e);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.tier-caps{font-size:12.5px;color:#6b7280;margin-top:3px}
+.tier-right{text-align:right;flex-shrink:0}
+.tier-price{font-weight:800;font-size:20px;letter-spacing:-0.01em;color:var(--dark,#1a1a2e)}
+.tier-price span{font-size:12px;font-weight:600;color:#8a94a0;margin-left:1px}
+.tier-save{display:inline-block;font-size:10.5px;font-weight:700;color:#0E8F87;background:#E0F5F3;padding:2.5px 9px;border-radius:100px;margin-top:6px;letter-spacing:0.03em}
+.tier-badge{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:0.06em;padding:3.5px 10px;border-radius:100px;background:var(--teal,#2bbcb3);color:#fff}
+.tier-badge.bv{background:#E0F5F3;color:#0E8F87}
+a.tier-row.hl{background:linear-gradient(135deg,#1A1A2E 0%,#1F3E50 100%);border-color:transparent;box-shadow:0 12px 32px rgba(26,26,46,0.30)}
+a.tier-row.hl::after{content:"";position:absolute;inset:0;border-radius:16px;background:radial-gradient(130% 110% at 100% 0%,rgba(43,188,179,0.25),transparent 55%);pointer-events:none}
+a.tier-row.hl>div{position:relative;z-index:1}
+a.tier-row.hl:hover{transform:translateY(-2px);box-shadow:0 16px 38px rgba(26,26,46,0.38)}
+a.tier-row.hl .tier-name{color:#fff}
+a.tier-row.hl .tier-caps{color:rgba(255,255,255,0.74)}
+a.tier-row.hl .tier-price{color:#fff}
+a.tier-row.hl .tier-price span{color:#7FD8D2}
+a.tier-row.hl .tier-save{background:rgba(43,188,179,0.20);color:#6FE3DA}
+a.tier-row.hl .tier-badge{box-shadow:0 2px 10px rgba(43,188,179,0.45)}
+@media(max-width:480px){a.tier-row{padding:13px 16px}.tier-price{font-size:18px}.tier-list{max-width:100%}
 .tier-badge.bv{background:#E3F9EE;color:#0F9D6B}
 </style>
 <style>/* nav polish: section dividers + dropdown hover bridge */
@@ -192,8 +205,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="amount">$109</span>
       <span class="period">/mo</span>
     </div>
-    <p class="product-price-note">6-Month Plan, $654 billed once, shipped monthly. Monthly from $129. Provider consultation, syringes, and free shipping included on every plan.</p>
-    <div class="tier-list"><a class="tier-row" href="/intake-wellness.html?product=glutathione&amp;plan=monthly"><div><div class="tier-name">Monthly</div><div class="tier-caps">2 vials · cancel anytime</div></div><div class="tier-right"><div class="tier-price">$129<span>/mo</span></div></div></a><a class="tier-row" href="/intake-wellness.html?product=glutathione&amp;plan=3month"><div><div class="tier-name">3-Month<span class="tier-badge">Recommended</span></div><div class="tier-caps">3 monthly shipments · $119/mo · one-time</div></div><div class="tier-right"><div class="tier-price">$357</div><div class="tier-save">Save $30</div></div></a><a class="tier-row" href="/intake-wellness.html?product=glutathione&amp;plan=6month"><div><div class="tier-name">6-Month<span class="tier-badge bv">Best Value</span></div><div class="tier-caps">6 monthly shipments · $109/mo · one-time</div></div><div class="tier-right"><div class="tier-price">$654</div><div class="tier-save">Save $120</div></div></a></div>
+    <p class="product-price-note">Pay monthly, or lock a lower monthly rate with a longer plan, billed once and shipped monthly. Provider consultation, syringes, and free shipping included on every plan.</p>
+    <div class="plan-label">Choose your plan</div><div class="tier-list"><a class="tier-row" href="/intake-wellness.html?product=glutathione&amp;plan=monthly"><div><div class="tier-name">Monthly</div><div class="tier-caps">2 vials · cancel anytime</div></div><div class="tier-right"><div class="tier-price">$129<span>/mo</span></div></div></a><a class="tier-row hl" href="/intake-wellness.html?product=glutathione&amp;plan=3month"><div><div class="tier-name">3-Month<span class="tier-badge">Recommended</span></div><div class="tier-caps">3 monthly shipments · $357 billed once</div></div><div class="tier-right"><div class="tier-price">$119<span>/mo</span></div><div class="tier-save">Save $30</div></div></a><a class="tier-row" href="/intake-wellness.html?product=glutathione&amp;plan=6month"><div><div class="tier-name">6-Month<span class="tier-badge bv">Best Value</span></div><div class="tier-caps">6 monthly shipments · $654 billed once</div></div><div class="tier-right"><div class="tier-price">$109<span>/mo</span></div><div class="tier-save">Save $120</div></div></a></div>
     <a href="/intake-wellness.html?product=glutathione" class="product-cta">
       Start your consultation
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
