@@ -1793,14 +1793,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   var planData = {
     tirzepatide: [
-      { type: 'monthly', name: 'Monthly', desc: 'Auto-refill, cancel anytime', price: '$320', period: '/mo', total: null },
-      { type: '3month', name: '3-Month Starter', desc: 'One-time payment of $777', price: '$259', period: '/mo', total: '$777', savings: 'Save $183', best: true },
-      { type: '6month', name: '6-Month Plan', desc: 'One-time payment of $1,350', price: '$225', period: '/mo', total: '$1,350', savings: 'Save $570' }
+      { type: 'monthly', name: 'Monthly', desc: 'Any dose, same price. Auto-refill, cancel anytime', price: '$320', period: '/mo', total: null }
     ],
     semaglutide: [
-      { type: 'monthly', name: 'Monthly', desc: 'Auto-refill, cancel anytime', price: '$225', period: '/mo', total: null },
-      { type: '3month', name: '3-Month Starter', desc: 'One-time payment of $537', price: '$179', period: '/mo', total: '$537', savings: 'Save $138', best: true },
-      { type: '6month', name: '6-Month Plan', desc: 'One-time payment of $894', price: '$149', period: '/mo', total: '$894', savings: 'Save $456' }
+      { type: 'monthly', name: 'Monthly', desc: 'Any dose, same price. Auto-refill, cancel anytime', price: '$225', period: '/mo', total: null }
     ]
   };
 
@@ -1818,6 +1814,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         (p.savings ? '<div class="plan-card-savings">' + p.savings + '</div>' : '') +
         '</div></div>';
     }).join('');
+    if (plans.length === 1) { var only = container.querySelector('.plan-card'); if (only) selectPlan(only, plans[0].type); }
   }
 
   function selectPlan(card, plan) {
