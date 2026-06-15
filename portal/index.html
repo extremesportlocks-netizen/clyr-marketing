@@ -1721,7 +1721,8 @@ function renderGlp1Refill(){
       <select class="q-select" id="g_appetite"><option value="">Select...</option><option>Strong, eating much less</option><option>Moderate, noticeable reduction</option><option>Mild, small change</option><option>None, appetite is back</option></select></div>
 
     <div class="q-item"><label class="q-label q-required">For your next dose, would you like to:</label>
-      <select class="q-select" id="g_dose"><option value="">Select...</option><option>Stay at the same dose</option><option>Increase the dose</option><option>Decrease the dose</option></select></div>
+      <select class="q-select" id="g_dose"><option value="">Select...</option><option>Stay at the same dose</option><option>Decrease the dose</option></select>
+      <div style="font-size:11.5px;color:var(--gray-400);margin-top:4px">Looking to increase your dose? Message your provider so they can review it directly.</div></div>
 
     <div class="q-item"><label class="q-label">Any side effects to discuss?</label>
       <textarea class="q-input" id="g_se" rows="2" placeholder="Optional."></textarea></div>
@@ -1729,28 +1730,88 @@ function renderGlp1Refill(){
     <button class="btn btn-primary" style="margin-top:10px" onclick="submitGlp1Refill()">Submit refill request →</button>`;
 }
 
-async function submitGlp1Refill(){
-  const payload={
-    refillFlow:'glp1',
-    answers:{
-      q30: ($('g_pounds').value || '').trim(),
-      q40: ($('g_weight').value || '').trim(),
-      q60: ($('g_appetite').value || '').trim(),
-      q159: 'No',
-      q160: '',
-      q200: ($('g_se').value || '').trim() || 'NONE of the above',
-      q260: 'I agree',
-      q300: ($('g_dose').value || '').trim(),
-      q400: ($('g_se').value || '').trim()
-    }
+// GLP-1 refills are PAYMENT-FIRST (fix June 2026): collect the refill answers,
+// then have the patient pick a term and pay BEFORE any prescription is created.
+// The backend /refill/checkout returns a Stripe clientSecret; the webhook builds
+// the Strive case only after payment succeeds. (Renewal incident root-cause fix.)
+function glp1RefillAnswers(){
+  const a={
+    q30: ($('g_pounds').value || '').trim(),
+    q40: ($('g_weight').value || '').trim(),
+    q60: ($('g_appetite').value || '').trim(),
+    q159: 'No', q160: '',
+    q200: ($('g_se').value || '').trim() || 'NONE of the above',
+    q260: 'I agree',
+    q300: ($('g_dose').value || '').trim(),
+    q400: ($('g_se').value || '').trim()
   };
-  if(!payload.answers.q30 || !payload.answers.q40 || !payload.answers.q60 || !payload.answers.q300){
+  return a;
+}
+
+function submitGlp1Refill(){
+  const answers = glp1RefillAnswers();
+  if(!answers.q30 || !answers.q40 || !answers.q60 || !answers.q300){
     alert('Please answer the required questions.');return;
   }
+  // Determine pricing from the patient's product (Tirz vs Sema).
+  const tx=((portalData.patient&&portalData.patient.treatment)||'').toLowerCase();
+  const isTirz=tx.includes('tirz');
+  const oneMo=isTirz?320:225;
+  const threeMo=isTirz?777:537;
+  const threePer=Math.round(threeMo/3);
+  // Stash answers on window so the term buttons can read them.
+  window._glp1RefillAnswers=answers;
+  $('refillFormArea').innerHTML=`
+    <h3 style="font-size:16px;font-weight:700;margin-bottom:6px">Choose your plan</h3>
+    <p style="font-size:14px;color:var(--gray-500);margin-bottom:18px">Your provider reviews every refill. We ship 30 days at a time for freshness; the 3-month plan is billed once and refills automatically each month.</p>
+    <div style="display:flex;flex-direction:column;gap:10px;max-width:430px">
+      <button class="refill-term-btn" onclick="startGlp1RefillCheckout('1month')" style="text-align:left;background:var(--white);border:1px solid var(--gray-200);border-radius:14px;padding:16px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center">
+        <span><span style="font-weight:700;font-size:15.5px;display:block">1 Month</span><span style="font-size:12.5px;color:var(--gray-500)">30-day supply · cancel anytime</span></span>
+        <span style="font-weight:800;font-size:19px">$${oneMo}<span style="font-size:12px;font-weight:600;color:var(--gray-500)">/mo</span></span>
+      </button>
+      <button class="refill-term-btn" onclick="startGlp1RefillCheckout('3month')" style="text-align:left;background:var(--teal-light,#e6f7f5);border:1.5px solid var(--teal,#2bbcb3);border-radius:14px;padding:16px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center">
+        <span><span style="font-weight:700;font-size:15.5px;display:block">3 Months <span style="font-size:11px;color:var(--teal,#2bbcb3);font-weight:700;text-transform:uppercase;letter-spacing:.04em">Best value</span></span><span style="font-size:12.5px;color:var(--gray-500)">Billed once · ships monthly · ~$${threePer}/mo</span></span>
+        <span style="font-weight:800;font-size:19px">$${threeMo}</span>
+      </button>
+    </div>
+    <div id="glp1CheckoutMount" style="display:none;margin-top:20px"></div>`;
+}
+
+async function startGlp1RefillCheckout(term){
+  const answers = window._glp1RefillAnswers;
+  if(!answers){alert('Please complete the questionnaire again.');return;}
+  document.querySelectorAll('.refill-term-btn').forEach(b=>{b.disabled=true;b.style.opacity='0.5';});
+  const mount=$('glp1CheckoutMount');
+  mount.style.display='block';
+  mount.innerHTML='<div style="color:var(--gray-500);font-size:14px">Preparing secure checkout...</div>';
   try{
-    await api('/api/portal/refill',{method:'POST',body:JSON.stringify(payload)});
-    $('refillFormArea').innerHTML=`<div class="empty"><div class="empty-icon">✅</div><div class="empty-title">Refill request submitted</div><div class="empty-msg">Your provider will review your responses and issue your prescription if appropriate.</div></div>`;
-  }catch(e){alert('Could not submit: '+e.message);}
+    const [stripe, session] = await Promise.all([
+      loadStripeJs(),
+      api('/api/portal/refill/checkout',{method:'POST',body:JSON.stringify({answers, term})})
+    ]);
+    if(!session.clientSecret) throw new Error(session.error||'No checkout session returned');
+    mount.innerHTML='<div id="glp1CheckoutContainer"></div>';
+    const ec = await stripe.initEmbeddedCheckout({
+      clientSecret: session.clientSecret,
+      onComplete: async () => {
+        try{ track('portal_glp1_refill_paid',{term}); }catch(e){}
+        mount.innerHTML=`
+          <div style="text-align:center;padding:32px 20px">
+            <div style="font-size:48px;margin-bottom:12px">✓</div>
+            <div style="font-size:20px;font-weight:700;margin-bottom:6px">Payment received</div>
+            <div style="font-size:14px;color:var(--gray-500);margin-bottom:18px">Your provider will review your refill and your prescription will be sent to the pharmacy. You'll get tracking once it ships.</div>
+            <button class="btn btn-primary" onclick="showPage('home');loadHome()">Back to portal</button>
+          </div>`;
+    }});
+    ec.mount('#glp1CheckoutContainer');
+  }catch(e){
+    if(e && (e.paymentRequired || /payment/i.test(e.message||''))){
+      mount.innerHTML='<div style="color:#c0392b;font-size:14px">'+(e.message||'Payment is required to submit your refill.')+'</div>';
+    } else {
+      mount.innerHTML='<div style="color:#c0392b;font-size:14px">Could not start checkout: '+(e.message||'unknown error')+'. Please contact care@clyr.health.</div>';
+    }
+    document.querySelectorAll('.refill-term-btn').forEach(b=>{b.disabled=false;b.style.opacity='1';});
+  }
 }
 // ═══ SHOTS ═══
 let dosesCache=[];  // current patient's doses, populated by loadShots
