@@ -644,20 +644,31 @@ function init() {
   if (prod === 'sildenafil') prod = 'sildenafil_gummy';
   if (prod === 'bremelanotide' || prod === 'pt-141') prod = 'pt141';
   if (prod === 'clyr-tri-gel' || prod === 'clyrtigel' || prod === 'cabtreo') prod = 'clyr_tri_gel';
+  if (prod === 'hair-spray-women' || prod === 'hair_spray_women' || prod === 'hairwomen') prod = 'hair_spray_women';
   prod = prod.replace(/-/g, '_');
 
   // Coming-soon products: route to waitlist screen instead of silently falling back to Sermorelin.
   // Ivermectin is pending MDI clinical questionnaire approval, checkout is intentionally not yet active.
   var COMING_SOON = {
+    niagen: {
+      label: 'Coming Soon',
+      title: 'Injectable Niagen is launching <span class="serif">soon.</span>',
+      sub: 'We\'re finalizing Olympia 100mg/ml Niagen with physician partners. Join the waitlist to be first when provider consultations open.'
+    },
     minoxidil: {
       label: 'Coming Soon',
-      title: 'Minoxidil 5% is launching <span class="serif">soon.</span>',
-      sub: 'We\'re finalizing our hair regrowth protocol with physician partners. Join the waitlist to be first when CLYR Minoxidil goes live.'
+      title: 'CLYR Hair Regrowth Spray is launching <span class="serif">soon.</span>',
+      sub: 'Our 7% quad-stack hair spray is almost ready. Join the waitlist and we\'ll email you when provider consultations open.'
+    },
+    hair_spray_women: {
+      label: 'Coming Soon',
+      title: 'Women\'s Hair Regrowth Spray is launching <span class="serif">soon.</span>',
+      sub: 'Finasteride-free 7% stack with biotin and melatonin. Join the waitlist for early access.'
     },
     clyr_tri_gel: {
       label: 'Coming Soon',
       title: 'CLYR Tri Gel is launching <span class="serif">soon.</span>',
-      sub: 'Our triple-action acne gel is almost ready. Join the waitlist and we\'ll email you when provider consultations open.'
+      sub: 'Our Master Formulation — Cabtreo-class triple therapy plus 4% niacinamide — is almost ready. Join the waitlist.'
     }
   };
   if (COMING_SOON[prod]) {
