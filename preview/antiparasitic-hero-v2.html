@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Antiparasitic Hero v2 — Coming Soon | CLYR Health</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      background: linear-gradient(135deg, #eef6f0 0%, #f7f3ea 55%, #edf4ef 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      gap: 16px;
+    }
+    .coming-soon-banner {
+      width: 100%;
+      max-width: 1792px;
+      background: #0d1b2e;
+      color: #fff;
+      text-align: center;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .coming-soon-banner strong { color: #00e5e5; }
+    .canvas {
+      width: 1792px;
+      height: 1008px;
+      max-width: 100%;
+      aspect-ratio: 16 / 9;
+      position: relative;
+      overflow: hidden;
+      border-radius: 24px;
+      background: linear-gradient(160deg, #eef6f0 0%, #f8f4ec 45%, #e8f2ec 100%);
+      padding: 64px 72px 56px;
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 48px;
+    }
+    .wave {
+      position: absolute;
+      bottom: -40px;
+      left: -10%;
+      width: 120%;
+      height: 220px;
+      background: radial-gradient(ellipse at center, rgba(0,229,229,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .logo {
+      font-size: 42px;
+      font-weight: 800;
+      color: #00b8b0;
+      line-height: 1;
+      letter-spacing: -1px;
+    }
+    .logo span { display: block; font-size: 22px; font-weight: 600; margin-top: 4px; }
+    .left { display: flex; flex-direction: column; justify-content: center; gap: 20px; z-index: 1; }
+    .headline {
+      font-size: 72px;
+      font-weight: 800;
+      color: #0D1B2A;
+      line-height: 1.05;
+      letter-spacing: -2px;
+      max-width: 520px;
+    }
+    .sub {
+      font-size: 26px;
+      color: #334155;
+      line-height: 1.4;
+      max-width: 480px;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-content: center;
+      z-index: 1;
+    }
+    .card {
+      background: #fff;
+      border: 2px solid rgba(0,184,176,0.35);
+      border-radius: 24px;
+      padding: 28px 26px 24px;
+      box-shadow: 0 12px 40px rgba(13,27,42,0.06);
+      display: flex;
+      flex-direction: column;
+      min-height: 420px;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fff;
+      background: #00b8b0;
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+      width: fit-content;
+    }
+    .badge.navy { background: #0D1B2A; }
+    .card h3 {
+      font-size: 26px;
+      font-weight: 800;
+      color: #0D1B2A;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+    .price {
+      font-size: 17px;
+      font-weight: 600;
+      color: #0D1B2A;
+      margin-bottom: 6px;
+    }
+    .dose {
+      font-size: 15px;
+      font-weight: 600;
+      color: #00a89f;
+      margin-bottom: 4px;
+    }
+    .meta {
+      font-size: 14px;
+      color: #64748b;
+      line-height: 1.45;
+      margin-bottom: 18px;
+    }
+    .pill-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 0 4px;
+    }
+    .pill-wrap img {
+      max-width: 100%;
+      max-height: 160px;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 20px rgba(13,27,42,0.12));
+    }
+    .combo-pills {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      justify-content: center;
+    }
+    .combo-pills img { max-height: 130px; }
+    .cta-wrap {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 88px;
+      z-index: 2;
+    }
+    .cta {
+      display: inline-block;
+      background: linear-gradient(135deg, #00c4bc, #00a89f);
+      color: #fff;
+      font-size: 22px;
+      font-weight: 700;
+      padding: 18px 48px;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 10px 30px rgba(0,168,159,0.28);
+    }
+    .footer {
+      position: absolute;
+      left: 72px;
+      right: 72px;
+      bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 24px;
+      z-index: 2;
+    }
+    .disclaimer {
+      font-size: 11px;
+      color: #94a3b8;
+      max-width: 720px;
+      line-height: 1.45;
+    }
+    .legit {
+      font-size: 11px;
+      font-weight: 700;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+    .legit::before {
+      content: "🛡";
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="coming-soon-banner"><strong>Coming soon</strong> — Hero design preview with dosing &amp; pill photography. Not yet on <a href="/antiparasitic.html" style="color:#00e5e5">antiparasitic.html</a>.</div>
+  <div class="canvas" data-document-role="page" data-label="Antiparasitic Hero v2">
+    <div class="wave"></div>
+
+    <div class="left">
+      <div class="logo">CLYR<span>Health</span></div>
+      <h1 class="headline">Ivermectin protocol</h1>
+      <p class="sub">Physician-guided care from licensed U.S. providers.</p>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <span class="badge">Popular</span>
+        <h3>Ivermectin protocol</h3>
+        <p class="price">30 capsules · from $139/mo</p>
+        <p class="dose">18mg capsules · dosed to your body weight</p>
+        <p class="meta">Provider reviews your history &amp; medications before approval. 30-day supply, refilled on schedule.</p>
+        <div class="pill-wrap">
+          <img src="https://www.clyr.health/img/card/ivermectin.png" alt="Ivermectin capsule">
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="badge navy">Broader</span>
+        <h3>Ivermectin + Mebendazole</h3>
+        <p class="price">30 capsules · from $169/mo</p>
+        <p class="dose">25mg ivermectin + 250mg mebendazole per capsule</p>
+        <p class="meta">Dual-coverage protocol. Two mechanisms, one monthly plan. Provider-reviewed &amp; pharmacy-compounded.</p>
+        <div class="pill-wrap combo-pills">
+          <img src="https://www.clyr.health/img/card/ivermectin.png" alt="Ivermectin capsule">
+          <img src="https://www.clyr.health/img/card/mebendazole.png" alt="Mebendazole capsule">
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-wrap">
+      <a class="cta" href="/antiparasitic.html">View live antiparasitic page</a>
+    </div>
+
+    <div class="footer">
+      <p class="disclaimer">Compounded medications are not FDA-approved. Rx only if prescribed. Consult your healthcare provider.</p>
+      <div class="legit">LegitScript CERTIFIED</div>
+    </div>
+  </div>
+</body>
+</html>
