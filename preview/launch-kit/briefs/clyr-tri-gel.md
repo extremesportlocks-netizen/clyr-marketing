@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | CUSTOM: CLYR Master Formulation |
 | **Standard strength (CLYR pick)** | Clinda 1.2% / Ada 0.15% / BPO 3.1% / Nia 4% |
 | **Package** | 50g airless pump |
-| **Page (live/preview)** | https://www.clyr.health/clyr-tri-gel.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/clyr-tri-gel.html |
+| **Page (live/preview)** | [www.clyr.health/clyr-tri-gel.html](https://www.clyr.health/clyr-tri-gel.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/clyr-tri-gel.html) |
 
 > **Strength selection note:** 503A proprietary — NOT Cabtreo copy. Custom compound request.
 

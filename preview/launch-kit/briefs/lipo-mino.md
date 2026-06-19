@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | Lipo-Mino Olympia injection |
 | **Standard strength (CLYR pick)** | Per vial protocol |
 | **Package** | 10ml vial |
-| **Page (live/preview)** | https://www.clyr.health/lipo-mino.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/lipo-mino.html |
+| **Page (live/preview)** | [www.clyr.health/lipo-mino.html](https://www.clyr.health/lipo-mino.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/lipo-mino.html) |
 
 > **Strength selection note:** Single industry-standard strength selected from pharmacy menu.
 

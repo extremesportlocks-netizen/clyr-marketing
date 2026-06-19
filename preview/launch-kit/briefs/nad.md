@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | NAD+ liquid - Olympia - 100mg/ml 10ml Vial |
 | **Standard strength (CLYR pick)** | 100mg/ml |
 | **Package** | 10ml vial |
-| **Page (live/preview)** | https://www.clyr.health/nad.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/nad.html |
+| **Page (live/preview)** | [www.clyr.health/nad.html](https://www.clyr.health/nad.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/nad.html) |
 
 > **Strength selection note:** PICK: 100mg/ml 10ml — matches live CLYR page.
 

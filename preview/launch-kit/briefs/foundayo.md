@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | Foundayo compounded oral |
 | **Standard strength (CLYR pick)** | Per provider protocol |
 | **Package** | Bottle |
-| **Page (live/preview)** | https://www.clyr.health/foundayo.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/foundayo.html |
+| **Page (live/preview)** | [www.clyr.health/foundayo.html](https://www.clyr.health/foundayo.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/foundayo.html) |
 
 > **Strength selection note:** Single industry-standard strength selected from pharmacy menu.
 

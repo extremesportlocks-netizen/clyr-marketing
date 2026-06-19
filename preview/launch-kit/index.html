@@ -23,20 +23,22 @@ main{max-width:1200px;margin:0 auto;padding:0 20px 80px}
 .vertical{margin-bottom:48px}.vertical h2{font-size:20px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:10px;color:#fff}
 .vertical h2 span{font-size:12px;background:#141c28;padding:4px 12px;border-radius:100px;color:var(--gray);font-weight:600}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
-.card{background:#141c28;border:1px solid #2a3544;border-radius:16px;padding:20px;position:relative;transition:border-color .2s}
+.card{background:#141c28;border:1px solid #2a3544;border-radius:16px;padding:0;position:relative;transition:border-color .2s;display:flex;flex-direction:column;overflow:hidden}
 .card:hover{border-color:rgba(0,180,197,.4)}.card.hidden{display:none}
+.card-hit{display:block;padding:20px 20px 12px;text-decoration:none;color:inherit;flex:1;position:relative}
+.card-hit:hover h3{color:var(--teal)}
 .badge{position:absolute;top:14px;right:14px;font-size:9px;font-weight:800;padding:4px 10px;border-radius:100px;color:#fff;letter-spacing:.06em}
-.card h3{font-size:17px;font-weight:700;margin:8px 0 8px;padding-right:56px}.card h3 a{color:#fff;text-decoration:none}.card h3 a:hover{color:var(--teal)}
+.card h3{font-size:17px;font-weight:700;margin:8px 0 8px;padding-right:56px;color:#fff;transition:color .2s}
 .spec{font-size:13px;color:var(--teal);font-weight:600;margin-bottom:6px}.pharm{font-size:12px;color:var(--gray);margin-bottom:14px;line-height:1.45}
-.links{display:flex;gap:14px;flex-wrap:wrap}.links a{font-size:12px;font-weight:600;color:var(--teal);text-decoration:none}.links a:hover{text-decoration:underline}
+.links{display:flex;gap:14px;flex-wrap:wrap;padding:0 20px 20px}.links a{font-size:12px;font-weight:600;color:var(--teal);text-decoration:none}.links a:hover{text-decoration:underline}
 .footer-note{text-align:center;padding:40px 20px;font-size:13px;color:var(--gray);border-top:1px solid #2a3544;max-width:1200px;margin:0 auto}
 </style></head><body>
 <div class="top">
   <h1>Launch Kit · <em>52 products</em></h1>
   <p>Every CLYR SKU with product page, pharmacy marketing brief, and industry-standard strength picked from your Olympia menu. Send the partner pack to negotiate wholesale.</p>
   <div class="actions">
-    <a class="btn btn-primary" href="/preview/launch-kit/PHARMACY-PARTNER-PACK.md">Download Partner Pack (MD)</a>
-    <a class="btn btn-ghost" href="/preview/launch-kit/PHARMACY-PARTNER-PACK.html">Partner Pack (HTML)</a>
+    <a class="btn btn-primary" href="/preview/launch-kit/PHARMACY-PARTNER-PACK.html">Open Partner Pack</a>
+    <a class="btn btn-ghost" href="/preview/launch-kit/PHARMACY-PARTNER-PACK.md">Partner Pack (MD)</a>
     <a class="btn btn-ghost" href="/preview/launch-kit/CLYR-TRI-GEL-COMPOUNDING-REQUEST.html">Tri Gel compound request</a>
     <a class="btn btn-ghost" href="/preview/launch-kit/launch-kit.json">JSON export</a>
     <a class="btn btn-ghost" href="/preview/catalog/">Catalog index</a>
@@ -63,520 +65,624 @@ main{max-width:1200px;margin:0 auto;padding:0 20px 80px}
   <button class="filter" data-v="protocols" onclick="setV('protocols',this)">Protocols</button>
 </div>
 <main><section class="vertical" id="daily-wellness"><h2>Daily Wellness <span>5</span></h2><div class="grid"><div class="card" data-title="nad+ injections" data-vertical="daily wellness">
-  <span class="badge" style="background:#10B981">LIVE</span>
-  <h3><a href="/nad.html">NAD+ Injections</a></h3>
-  <p class="spec">100mg/ml · 10ml vial</p>
-  <p class="pharm">NAD+ liquid - Olympia - 100mg/ml 10ml Vial</p>
+  <a class="card-hit" href="/nad.html">
+    <span class="badge" style="background:#10B981">LIVE</span>
+    <h3>NAD+ Injections</h3>
+    <p class="spec">100mg/ml · 10ml vial</p>
+    <p class="pharm">NAD+ liquid - Olympia - 100mg/ml 10ml Vial</p>
+  </a>
   <div class="links">
     <a href="/nad.html">Product page</a>
     <a href="/preview/launch-kit/briefs/nad.html">Pharmacy brief</a>
     <a href="/daily-wellness.html">Hub</a>
   </div>
 </div><div class="card" data-title="injectable niagen" data-vertical="daily wellness">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/niagen.html">Injectable Niagen</a></h3>
-  <p class="spec">100mg/ml · 5ml vial</p>
-  <p class="pharm">Niagen 100mg/ml - 5ml Vial Olympia</p>
+  <a class="card-hit" href="/niagen.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>Injectable Niagen</h3>
+    <p class="spec">100mg/ml · 5ml vial</p>
+    <p class="pharm">Niagen 100mg/ml - 5ml Vial Olympia</p>
+  </a>
   <div class="links">
     <a href="/niagen.html">Product page</a>
     <a href="/preview/launch-kit/briefs/niagen.html">Pharmacy brief</a>
     <a href="/daily-wellness.html">Hub</a>
   </div>
 </div><div class="card" data-title="sermorelin" data-vertical="daily wellness">
-  <span class="badge" style="background:#10B981">LIVE</span>
-  <h3><a href="/sermorelin.html">Sermorelin</a></h3>
-  <p class="spec">Per peptide protocol · Vial</p>
-  <p class="pharm">Sermorelin Olympia</p>
+  <a class="card-hit" href="/sermorelin.html">
+    <span class="badge" style="background:#10B981">LIVE</span>
+    <h3>Sermorelin</h3>
+    <p class="spec">Per peptide protocol · Vial</p>
+    <p class="pharm">Sermorelin Olympia</p>
+  </a>
   <div class="links">
     <a href="/sermorelin.html">Product page</a>
     <a href="/preview/launch-kit/briefs/sermorelin.html">Pharmacy brief</a>
     <a href="/daily-wellness.html">Hub</a>
   </div>
 </div><div class="card" data-title="glutathione" data-vertical="daily wellness">
-  <span class="badge" style="background:#10B981">LIVE</span>
-  <h3><a href="/glutathione.html">Glutathione</a></h3>
-  <p class="spec">200mg/ml · 5ml vial</p>
-  <p class="pharm">Glutathione Injection Olympia 200mg/ml x 5ml</p>
+  <a class="card-hit" href="/glutathione.html">
+    <span class="badge" style="background:#10B981">LIVE</span>
+    <h3>Glutathione</h3>
+    <p class="spec">200mg/ml · 5ml vial</p>
+    <p class="pharm">Glutathione Injection Olympia 200mg/ml x 5ml</p>
+  </a>
   <div class="links">
     <a href="/glutathione.html">Product page</a>
     <a href="/preview/launch-kit/briefs/glutathione.html">Pharmacy brief</a>
     <a href="/daily-wellness.html">Hub</a>
   </div>
 </div><div class="card" data-title="micc + b12" data-vertical="daily wellness">
-  <span class="badge" style="background:#10B981">LIVE</span>
-  <h3><a href="/micc.html">MICC + B12</a></h3>
-  <p class="spec">MICC blend · 10ml vial</p>
-  <p class="pharm">MICC-B12 - Olympia -Injection 25/50/50/330mcg x 10ml</p>
+  <a class="card-hit" href="/micc.html">
+    <span class="badge" style="background:#10B981">LIVE</span>
+    <h3>MICC + B12</h3>
+    <p class="spec">MICC blend · 10ml vial</p>
+    <p class="pharm">MICC-B12 - Olympia -Injection 25/50/50/330mcg x 10ml</p>
+  </a>
   <div class="links">
     <a href="/micc.html">Product page</a>
     <a href="/preview/launch-kit/briefs/micc.html">Pharmacy brief</a>
     <a href="/daily-wellness.html">Hub</a>
   </div>
 </div></div></section><section class="vertical" id="men's-hormone"><h2>Men's Hormone <span>6</span></h2><div class="grid"><div class="card" data-title="testosterone cypionate" data-vertical="men's hormone">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/testosterone-cypionate.html">Testosterone Cypionate</a></h3>
-  <p class="spec">200mg/ml · 10ml vial</p>
-  <p class="pharm">Testosterone Cypionate 200mg/ml x 10ml</p>
+  <a class="card-hit" href="/testosterone-cypionate.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>Testosterone Cypionate</h3>
+    <p class="spec">200mg/ml · 10ml vial</p>
+    <p class="pharm">Testosterone Cypionate 200mg/ml x 10ml</p>
+  </a>
   <div class="links">
     <a href="/testosterone-cypionate.html">Product page</a>
     <a href="/preview/launch-kit/briefs/testosterone-cypionate.html">Pharmacy brief</a>
     <a href="/mens-hormone.html">Hub</a>
   </div>
 </div><div class="card" data-title="testosterone cream" data-vertical="men's hormone">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/testosterone-cream.html">Testosterone Cream</a></h3>
-  <p class="spec">1% · 30g tube</p>
-  <p class="pharm">Testosterone 1% (10mg/gm) Cream - 30g</p>
+  <a class="card-hit" href="/testosterone-cream.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>Testosterone Cream</h3>
+    <p class="spec">1% · 30g tube</p>
+    <p class="pharm">Testosterone 1% (10mg/gm) Cream - 30g</p>
+  </a>
   <div class="links">
     <a href="/testosterone-cream.html">Product page</a>
     <a href="/preview/launch-kit/briefs/testosterone-cream.html">Pharmacy brief</a>
     <a href="/mens-hormone.html">Hub</a>
   </div>
 </div><div class="card" data-title="testosterone hypo spray" data-vertical="men's hormone">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/testosterone-hypo-spray.html">Testosterone Hypo Spray</a></h3>
-  <p class="spec">20mg/0.2ml · 14ml spray</p>
-  <p class="pharm">Testosterone 20mg/0.2ml Hypo Spray - 14ml</p>
+  <a class="card-hit" href="/testosterone-hypo-spray.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>Testosterone Hypo Spray</h3>
+    <p class="spec">20mg/0.2ml · 14ml spray</p>
+    <p class="pharm">Testosterone 20mg/0.2ml Hypo Spray - 14ml</p>
+  </a>
   <div class="links">
     <a href="/testosterone-hypo-spray.html">Product page</a>
     <a href="/preview/launch-kit/briefs/testosterone-hypo-spray.html">Pharmacy brief</a>
     <a href="/mens-hormone.html">Hub</a>
   </div>
 </div><div class="card" data-title="enclomiphene" data-vertical="men's hormone">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/enclomiphene.html">Enclomiphene</a></h3>
-  <p class="spec">12.5mg · 30-count</p>
-  <p class="pharm">Enclomiphene 12.5mg Capsules</p>
+  <a class="card-hit" href="/enclomiphene.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>Enclomiphene</h3>
+    <p class="spec">12.5mg · 30-count</p>
+    <p class="pharm">Enclomiphene 12.5mg Capsules</p>
+  </a>
   <div class="links">
     <a href="/enclomiphene.html">Product page</a>
     <a href="/preview/launch-kit/briefs/enclomiphene.html">Pharmacy brief</a>
     <a href="/mens-hormone.html">Hub</a>
   </div>
 </div><div class="card" data-title="hcg injection" data-vertical="men's hormone">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/hcg.html">HCG Injection</a></h3>
-  <p class="spec">10,000 IU · Vial</p>
-  <p class="pharm">Chorionic Gonadotropin - HCG (Fresenius Kabi)</p>
+  <a class="card-hit" href="/hcg.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>HCG Injection</h3>
+    <p class="spec">10,000 IU · Vial</p>
+    <p class="pharm">Chorionic Gonadotropin - HCG (Fresenius Kabi)</p>
+  </a>
   <div class="links">
     <a href="/hcg.html">Product page</a>
     <a href="/preview/launch-kit/briefs/hcg.html">Pharmacy brief</a>
     <a href="/mens-hormone.html">Hub</a>
   </div>
 </div><div class="card" data-title="anastrozole" data-vertical="men's hormone">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/anastrozole.html">Anastrozole</a></h3>
-  <p class="spec">0.5mg · 30-count</p>
-  <p class="pharm">Anastrozole 0.5mg Capsules</p>
+  <a class="card-hit" href="/anastrozole.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>Anastrozole</h3>
+    <p class="spec">0.5mg · 30-count</p>
+    <p class="pharm">Anastrozole 0.5mg Capsules</p>
+  </a>
   <div class="links">
     <a href="/anastrozole.html">Product page</a>
     <a href="/preview/launch-kit/briefs/anastrozole.html">Pharmacy brief</a>
     <a href="/mens-hormone.html">Hub</a>
   </div>
 </div></div></section><section class="vertical" id="peptides"><h2>Peptides <span>3</span></h2><div class="grid"><div class="card" data-title="bpc-157" data-vertical="peptides">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/bpc-157.html">BPC-157</a></h3>
-  <p class="spec">500mcg daily typical · Vial</p>
-  <p class="pharm">BPC-157 injection Olympia</p>
+  <a class="card-hit" href="/bpc-157.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>BPC-157</h3>
+    <p class="spec">500mcg daily typical · Vial</p>
+    <p class="pharm">BPC-157 injection Olympia</p>
+  </a>
   <div class="links">
     <a href="/bpc-157.html">Product page</a>
     <a href="/preview/launch-kit/briefs/bpc-157.html">Pharmacy brief</a>
     <a href="/peptides.html">Hub</a>
   </div>
 </div><div class="card" data-title="tb-500" data-vertical="peptides">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/tb-500.html">TB-500</a></h3>
-  <p class="spec">2.5mg 2x/week typical · Vial</p>
-  <p class="pharm">Thymosin Beta-4 (TB-500)</p>
+  <a class="card-hit" href="/tb-500.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>TB-500</h3>
+    <p class="spec">2.5mg 2x/week typical · Vial</p>
+    <p class="pharm">Thymosin Beta-4 (TB-500)</p>
+  </a>
   <div class="links">
     <a href="/tb-500.html">Product page</a>
     <a href="/preview/launch-kit/briefs/tb-500.html">Pharmacy brief</a>
     <a href="/peptides.html">Hub</a>
   </div>
 </div><div class="card" data-title="ghk-cu injectable" data-vertical="peptides">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/ghk-cu-injectable.html">GHK-Cu Injectable</a></h3>
-  <p class="spec">1–2mg daily typical · Vial</p>
-  <p class="pharm">GHK-Cu injectable</p>
+  <a class="card-hit" href="/ghk-cu-injectable.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>GHK-Cu Injectable</h3>
+    <p class="spec">1–2mg daily typical · Vial</p>
+    <p class="pharm">GHK-Cu injectable</p>
+  </a>
   <div class="links">
     <a href="/ghk-cu-injectable.html">Product page</a>
     <a href="/preview/launch-kit/briefs/ghk-cu-injectable.html">Pharmacy brief</a>
     <a href="/peptides.html">Hub</a>
   </div>
 </div></div></section><section class="vertical" id="protocols"><h2>Protocols <span>2</span></h2><div class="grid"><div class="card" data-title="ivermectin protocol" data-vertical="protocols">
-  <span class="badge" style="background:#10B981">LIVE</span>
-  <h3><a href="/ivermectin.html">Ivermectin Protocol</a></h3>
-  <p class="spec">18mg · 30 capsules</p>
-  <p class="pharm">Ivermectin 18mg Capsules</p>
+  <a class="card-hit" href="/ivermectin.html">
+    <span class="badge" style="background:#10B981">LIVE</span>
+    <h3>Ivermectin Protocol</h3>
+    <p class="spec">18mg · 30 capsules</p>
+    <p class="pharm">Ivermectin 18mg Capsules</p>
+  </a>
   <div class="links">
     <a href="/ivermectin.html">Product page</a>
     <a href="/preview/launch-kit/briefs/ivermectin.html">Pharmacy brief</a>
     <a href="/antiparasitic.html">Hub</a>
   </div>
 </div><div class="card" data-title="ivermectin + mebendazole" data-vertical="protocols">
-  <span class="badge" style="background:#10B981">LIVE</span>
-  <h3><a href="/ivermectin-mebendazole.html">Ivermectin + Mebendazole</a></h3>
-  <p class="spec">25mg/250mg · 30 capsules</p>
-  <p class="pharm">Ivermectin + Mebendazole combined</p>
+  <a class="card-hit" href="/ivermectin-mebendazole.html">
+    <span class="badge" style="background:#10B981">LIVE</span>
+    <h3>Ivermectin + Mebendazole</h3>
+    <p class="spec">25mg/250mg · 30 capsules</p>
+    <p class="pharm">Ivermectin + Mebendazole combined</p>
+  </a>
   <div class="links">
     <a href="/ivermectin-mebendazole.html">Product page</a>
     <a href="/preview/launch-kit/briefs/ivermectin-mebendazole.html">Pharmacy brief</a>
     <a href="/antiparasitic.html">Hub</a>
   </div>
 </div></div></section><section class="vertical" id="recovery"><h2>Recovery <span>1</span></h2><div class="grid"><div class="card" data-title="low-dose naltrexone" data-vertical="recovery">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/naltrexone-ldn.html">Low-Dose Naltrexone</a></h3>
-  <p class="spec">4.5mg · 90-count</p>
-  <p class="pharm">Naltrexone Capsule compounded LDN</p>
+  <a class="card-hit" href="/naltrexone-ldn.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>Low-Dose Naltrexone</h3>
+    <p class="spec">4.5mg · 90-count</p>
+    <p class="pharm">Naltrexone Capsule compounded LDN</p>
+  </a>
   <div class="links">
     <a href="/naltrexone-ldn.html">Product page</a>
     <a href="/preview/launch-kit/briefs/naltrexone-ldn.html">Pharmacy brief</a>
     <a href="/recovery.html">Hub</a>
   </div>
 </div></div></section><section class="vertical" id="sexual-health"><h2>Sexual Health <span>10</span></h2><div class="grid"><div class="card" data-title="tadalafil + vardenafil" data-vertical="sexual health">
-  <span class="badge" style="background:#10B981">LIVE</span>
-  <h3><a href="/tadalafil.html">Tadalafil + Vardenafil</a></h3>
-  <p class="spec">2.5–5mg daily class · 30 tablets</p>
-  <p class="pharm">Tadalafil compounded daily</p>
+  <a class="card-hit" href="/tadalafil.html">
+    <span class="badge" style="background:#10B981">LIVE</span>
+    <h3>Tadalafil + Vardenafil</h3>
+    <p class="spec">2.5–5mg daily class · 30 tablets</p>
+    <p class="pharm">Tadalafil compounded daily</p>
+  </a>
   <div class="links">
     <a href="/tadalafil.html">Product page</a>
     <a href="/preview/launch-kit/briefs/tadalafil.html">Pharmacy brief</a>
     <a href="/sexual-health.html">Hub</a>
   </div>
 </div><div class="card" data-title="sildenafil gummy" data-vertical="sexual health">
-  <span class="badge" style="background:#10B981">LIVE</span>
-  <h3><a href="/sildenafil-gummy.html">Sildenafil Gummy</a></h3>
-  <p class="spec">50mg · 10 gummies</p>
-  <p class="pharm">Sildenafil 50mg Gummy</p>
+  <a class="card-hit" href="/sildenafil-gummy.html">
+    <span class="badge" style="background:#10B981">LIVE</span>
+    <h3>Sildenafil Gummy</h3>
+    <p class="spec">50mg · 10 gummies</p>
+    <p class="pharm">Sildenafil 50mg Gummy</p>
+  </a>
   <div class="links">
     <a href="/sildenafil-gummy.html">Product page</a>
     <a href="/preview/launch-kit/briefs/sildenafil-gummy.html">Pharmacy brief</a>
     <a href="/sexual-health.html">Hub</a>
   </div>
 </div><div class="card" data-title="combo odt" data-vertical="sexual health">
-  <span class="badge" style="background:#10B981">LIVE</span>
-  <h3><a href="/sild-tadal-oxy.html">Combo ODT</a></h3>
-  <p class="spec">Triple combo · 10 ODT</p>
-  <p class="pharm">Sildenafil + Tadalafil + Oxytocin ODT</p>
+  <a class="card-hit" href="/sild-tadal-oxy.html">
+    <span class="badge" style="background:#10B981">LIVE</span>
+    <h3>Combo ODT</h3>
+    <p class="spec">Triple combo · 10 ODT</p>
+    <p class="pharm">Sildenafil + Tadalafil + Oxytocin ODT</p>
+  </a>
   <div class="links">
     <a href="/sild-tadal-oxy.html">Product page</a>
     <a href="/preview/launch-kit/briefs/sild-tadal-oxy.html">Pharmacy brief</a>
     <a href="/sexual-health.html">Hub</a>
   </div>
 </div><div class="card" data-title="pt-141 + oxytocin" data-vertical="sexual health">
-  <span class="badge" style="background:#10B981">LIVE</span>
-  <h3><a href="/pt141.html">PT-141 + Oxytocin</a></h3>
-  <p class="spec">Per troche · 8 ODT</p>
-  <p class="pharm">PT-141 + Oxytocin ODT</p>
+  <a class="card-hit" href="/pt141.html">
+    <span class="badge" style="background:#10B981">LIVE</span>
+    <h3>PT-141 + Oxytocin</h3>
+    <p class="spec">Per troche · 8 ODT</p>
+    <p class="pharm">PT-141 + Oxytocin ODT</p>
+  </a>
   <div class="links">
     <a href="/pt141.html">Product page</a>
     <a href="/preview/launch-kit/briefs/pt141.html">Pharmacy brief</a>
     <a href="/sexual-health.html">Hub</a>
   </div>
 </div><div class="card" data-title="trimix injection" data-vertical="sexual health">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/trimix.html">Trimix Injection</a></h3>
-  <p class="spec">30mg/1mg/10mcg per 0.1ml · 2.5ml vial</p>
-  <p class="pharm">TRIMIX T105</p>
+  <a class="card-hit" href="/trimix.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>Trimix Injection</h3>
+    <p class="spec">30mg/1mg/10mcg per 0.1ml · 2.5ml vial</p>
+    <p class="pharm">TRIMIX T105</p>
+  </a>
   <div class="links">
     <a href="/trimix.html">Product page</a>
     <a href="/preview/launch-kit/briefs/trimix.html">Pharmacy brief</a>
     <a href="/sexual-health.html">Hub</a>
   </div>
 </div><div class="card" data-title="tadalafil + apomorphine" data-vertical="sexual health">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/tadalafil-apomorphine.html">Tadalafil + Apomorphine</a></h3>
-  <p class="spec">22mg / 2mg · 8 troches</p>
-  <p class="pharm">Tadalafil+Apomorphine Troches</p>
+  <a class="card-hit" href="/tadalafil-apomorphine.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>Tadalafil + Apomorphine</h3>
+    <p class="spec">22mg / 2mg · 8 troches</p>
+    <p class="pharm">Tadalafil+Apomorphine Troches</p>
+  </a>
   <div class="links">
     <a href="/tadalafil-apomorphine.html">Product page</a>
     <a href="/preview/launch-kit/briefs/tadalafil-apomorphine.html">Pharmacy brief</a>
     <a href="/sexual-health.html">Hub</a>
   </div>
 </div><div class="card" data-title="oxytocin nasal spray" data-vertical="sexual health">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/oxytocin-nasal.html">Oxytocin Nasal Spray</a></h3>
-  <p class="spec">Per spray protocol · Nasal bottle</p>
-  <p class="pharm">Oxytocin Nasal Spray</p>
+  <a class="card-hit" href="/oxytocin-nasal.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>Oxytocin Nasal Spray</h3>
+    <p class="spec">Per spray protocol · Nasal bottle</p>
+    <p class="pharm">Oxytocin Nasal Spray</p>
+  </a>
   <div class="links">
     <a href="/oxytocin-nasal.html">Product page</a>
     <a href="/preview/launch-kit/briefs/oxytocin-nasal.html">Pharmacy brief</a>
     <a href="/sexual-health.html">Hub</a>
   </div>
 </div><div class="card" data-title="tadalafil troches" data-vertical="sexual health">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/tadalafil-troches.html">Tadalafil Troches</a></h3>
-  <p class="spec">22mg · 8 troches</p>
-  <p class="pharm">Tadalafil 22mg Troches x 8</p>
+  <a class="card-hit" href="/tadalafil-troches.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>Tadalafil Troches</h3>
+    <p class="spec">22mg · 8 troches</p>
+    <p class="pharm">Tadalafil 22mg Troches x 8</p>
+  </a>
   <div class="links">
     <a href="/tadalafil-troches.html">Product page</a>
     <a href="/preview/launch-kit/briefs/tadalafil-troches.html">Pharmacy brief</a>
     <a href="/sexual-health.html">Hub</a>
   </div>
 </div><div class="card" data-title="sildenafil + tadalafil gummy" data-vertical="sexual health">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/sildenafil-tadalafil-gummy.html">Sildenafil + Tadalafil Gummy</a></h3>
-  <p class="spec">40mg / 10mg · 8 gummies</p>
-  <p class="pharm">Sildenafil 40mg / Tadalafil 10mg Gummy x 8</p>
+  <a class="card-hit" href="/sildenafil-tadalafil-gummy.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>Sildenafil + Tadalafil Gummy</h3>
+    <p class="spec">40mg / 10mg · 8 gummies</p>
+    <p class="pharm">Sildenafil 40mg / Tadalafil 10mg Gummy x 8</p>
+  </a>
   <div class="links">
     <a href="/sildenafil-tadalafil-gummy.html">Product page</a>
     <a href="/preview/launch-kit/briefs/sildenafil-tadalafil-gummy.html">Pharmacy brief</a>
     <a href="/sexual-health.html">Hub</a>
   </div>
 </div><div class="card" data-title="pt-141 strips" data-vertical="sexual health">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/pt141-strips.html">PT-141 Strips</a></h3>
-  <p class="spec">Per strip protocol · Strips</p>
-  <p class="pharm">PT141 Strip</p>
+  <a class="card-hit" href="/pt141-strips.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>PT-141 Strips</h3>
+    <p class="spec">Per strip protocol · Strips</p>
+    <p class="pharm">PT141 Strip</p>
+  </a>
   <div class="links">
     <a href="/pt141-strips.html">Product page</a>
     <a href="/preview/launch-kit/briefs/pt141-strips.html">Pharmacy brief</a>
     <a href="/sexual-health.html">Hub</a>
   </div>
 </div></div></section><section class="vertical" id="skin-&-hair"><h2>Skin & Hair <span>9</span></h2><div class="grid"><div class="card" data-title="clyr tri gel" data-vertical="skin & hair">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/clyr-tri-gel.html">CLYR Tri Gel</a></h3>
-  <p class="spec">Clinda 1.2% / Ada 0.15% / BPO 3.1% / Nia 4% · 50g airless pump</p>
-  <p class="pharm">CUSTOM: CLYR Master Formulation</p>
+  <a class="card-hit" href="/clyr-tri-gel.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>CLYR Tri Gel</h3>
+    <p class="spec">Clinda 1.2% / Ada 0.15% / BPO 3.1% / Nia 4% · 50g airless pump</p>
+    <p class="pharm">CUSTOM: CLYR Master Formulation</p>
+  </a>
   <div class="links">
     <a href="/clyr-tri-gel.html">Product page</a>
     <a href="/preview/launch-kit/briefs/clyr-tri-gel.html">Pharmacy brief</a>
     <a href="/skin-hair.html">Hub</a>
   </div>
 </div><div class="card" data-title="clyr hair regrowth spray (men)" data-vertical="skin & hair">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/minoxidil.html">CLYR Hair Regrowth Spray (Men)</a></h3>
-  <p class="spec">7/0.025/0.025/0.2% · 60ml</p>
-  <p class="pharm">Minoxdil/Tretinoin/Fluocinolone/Finasteride Spray</p>
+  <a class="card-hit" href="/minoxidil.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>CLYR Hair Regrowth Spray (Men)</h3>
+    <p class="spec">7/0.025/0.025/0.2% · 60ml</p>
+    <p class="pharm">Minoxdil/Tretinoin/Fluocinolone/Finasteride Spray</p>
+  </a>
   <div class="links">
     <a href="/minoxidil.html">Product page</a>
     <a href="/preview/launch-kit/briefs/minoxidil.html">Pharmacy brief</a>
     <a href="/skin-hair.html">Hub</a>
   </div>
 </div><div class="card" data-title="clyr hair regrowth spray (women)" data-vertical="skin & hair">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/hair-spray-women.html">CLYR Hair Regrowth Spray (Women)</a></h3>
-  <p class="spec">7/0.025/0.025/0.8/0.5% · 60ml</p>
-  <p class="pharm">Minoxidil/Tretinoin/Fluocinolone/Biotin/Melatonin Spray</p>
+  <a class="card-hit" href="/hair-spray-women.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>CLYR Hair Regrowth Spray (Women)</h3>
+    <p class="spec">7/0.025/0.025/0.8/0.5% · 60ml</p>
+    <p class="pharm">Minoxidil/Tretinoin/Fluocinolone/Biotin/Melatonin Spray</p>
+  </a>
   <div class="links">
     <a href="/hair-spray-women.html">Product page</a>
     <a href="/preview/launch-kit/briefs/hair-spray-women.html">Pharmacy brief</a>
     <a href="/skin-hair.html">Hub</a>
   </div>
 </div><div class="card" data-title="nad+ face cream" data-vertical="skin & hair">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/nad-face-cream.html">NAD+ Face Cream</a></h3>
-  <p class="spec">10% NAD+ · Pump bottle</p>
-  <p class="pharm">NAD+ Pump Face Cream</p>
+  <a class="card-hit" href="/nad-face-cream.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>NAD+ Face Cream</h3>
+    <p class="spec">10% NAD+ · Pump bottle</p>
+    <p class="pharm">NAD+ Pump Face Cream</p>
+  </a>
   <div class="links">
     <a href="/nad-face-cream.html">Product page</a>
     <a href="/preview/launch-kit/briefs/nad-face-cream.html">Pharmacy brief</a>
     <a href="/skin-hair.html">Hub</a>
   </div>
 </div><div class="card" data-title="tretinoin cream" data-vertical="skin & hair">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/tretinoin.html">Tretinoin Cream</a></h3>
-  <p class="spec">0.025% · 45g</p>
-  <p class="pharm">Tretinoin Cream</p>
+  <a class="card-hit" href="/tretinoin.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>Tretinoin Cream</h3>
+    <p class="spec">0.025% · 45g</p>
+    <p class="pharm">Tretinoin Cream</p>
+  </a>
   <div class="links">
     <a href="/tretinoin.html">Product page</a>
     <a href="/preview/launch-kit/briefs/tretinoin.html">Pharmacy brief</a>
     <a href="/skin-hair.html">Hub</a>
   </div>
 </div><div class="card" data-title="estriol + ghk-cu cream" data-vertical="skin & hair">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/estriol-ghk-cu-cream.html">Estriol + GHK-Cu Cream</a></h3>
-  <p class="spec">Compounded anti-aging · 30g</p>
-  <p class="pharm">Estriol /Niacinamide/GHK-Cu /Hyaluronic Acid Cream</p>
+  <a class="card-hit" href="/estriol-ghk-cu-cream.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>Estriol + GHK-Cu Cream</h3>
+    <p class="spec">Compounded anti-aging · 30g</p>
+    <p class="pharm">Estriol /Niacinamide/GHK-Cu /Hyaluronic Acid Cream</p>
+  </a>
   <div class="links">
     <a href="/estriol-ghk-cu-cream.html">Product page</a>
     <a href="/preview/launch-kit/briefs/estriol-ghk-cu-cream.html">Pharmacy brief</a>
     <a href="/skin-hair.html">Hub</a>
   </div>
 </div><div class="card" data-title="hydroquinone triple cream" data-vertical="skin & hair">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/hydroquinone-triple-cream.html">Hydroquinone Triple Cream</a></h3>
-  <p class="spec">Standard triple combo · 30g</p>
-  <p class="pharm">Hydroquionone/Tretinoin/Fluocinolone Acetonide</p>
+  <a class="card-hit" href="/hydroquinone-triple-cream.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>Hydroquinone Triple Cream</h3>
+    <p class="spec">Standard triple combo · 30g</p>
+    <p class="pharm">Hydroquionone/Tretinoin/Fluocinolone Acetonide</p>
+  </a>
   <div class="links">
     <a href="/hydroquinone-triple-cream.html">Product page</a>
     <a href="/preview/launch-kit/briefs/hydroquinone-triple-cream.html">Pharmacy brief</a>
     <a href="/skin-hair.html">Hub</a>
   </div>
 </div><div class="card" data-title="doxycycline (acne)" data-vertical="skin & hair">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/doxycycline-acne.html">Doxycycline (Acne)</a></h3>
-  <p class="spec">100mg · 30-count</p>
-  <p class="pharm">Doxycycline Capsules</p>
+  <a class="card-hit" href="/doxycycline-acne.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>Doxycycline (Acne)</h3>
+    <p class="spec">100mg · 30-count</p>
+    <p class="pharm">Doxycycline Capsules</p>
+  </a>
   <div class="links">
     <a href="/doxycycline-acne.html">Product page</a>
     <a href="/preview/launch-kit/briefs/doxycycline-acne.html">Pharmacy brief</a>
     <a href="/skin-hair.html">Hub</a>
   </div>
 </div><div class="card" data-title="finasteride oral" data-vertical="skin & hair">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/finasteride-oral.html">Finasteride Oral</a></h3>
-  <p class="spec">1mg · 30-count</p>
-  <p class="pharm">Finasteride</p>
+  <a class="card-hit" href="/finasteride-oral.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>Finasteride Oral</h3>
+    <p class="spec">1mg · 30-count</p>
+    <p class="pharm">Finasteride</p>
+  </a>
   <div class="links">
     <a href="/finasteride-oral.html">Product page</a>
     <a href="/preview/launch-kit/briefs/finasteride-oral.html">Pharmacy brief</a>
     <a href="/skin-hair.html">Hub</a>
   </div>
 </div></div></section><section class="vertical" id="weight-loss"><h2>Weight Loss <span>10</span></h2><div class="grid"><div class="card" data-title="tirzepatide" data-vertical="weight loss">
-  <span class="badge" style="background:#10B981">LIVE</span>
-  <h3><a href="/tirzepatide.html">Tirzepatide</a></h3>
-  <p class="spec">Up to 15mg/week titration · Multi-dose vial</p>
-  <p class="pharm">Tirzepatide Olympia compounded</p>
+  <a class="card-hit" href="/tirzepatide.html">
+    <span class="badge" style="background:#10B981">LIVE</span>
+    <h3>Tirzepatide</h3>
+    <p class="spec">Up to 15mg/week titration · Multi-dose vial</p>
+    <p class="pharm">Tirzepatide Olympia compounded</p>
+  </a>
   <div class="links">
     <a href="/tirzepatide.html">Product page</a>
     <a href="/preview/launch-kit/briefs/tirzepatide.html">Pharmacy brief</a>
     <a href="/weight-loss.html">Hub</a>
   </div>
 </div><div class="card" data-title="semaglutide" data-vertical="weight loss">
-  <span class="badge" style="background:#10B981">LIVE</span>
-  <h3><a href="/semaglutide.html">Semaglutide</a></h3>
-  <p class="spec">Up to 2.4mg/week · Multi-dose vial</p>
-  <p class="pharm">Semaglutide Olympia compounded</p>
+  <a class="card-hit" href="/semaglutide.html">
+    <span class="badge" style="background:#10B981">LIVE</span>
+    <h3>Semaglutide</h3>
+    <p class="spec">Up to 2.4mg/week · Multi-dose vial</p>
+    <p class="pharm">Semaglutide Olympia compounded</p>
+  </a>
   <div class="links">
     <a href="/semaglutide.html">Product page</a>
     <a href="/preview/launch-kit/briefs/semaglutide.html">Pharmacy brief</a>
     <a href="/weight-loss.html">Hub</a>
   </div>
 </div><div class="card" data-title="zepbound" data-vertical="weight loss">
-  <span class="badge" style="background:#10B981">LIVE</span>
-  <h3><a href="/zepbound.html">Zepbound</a></h3>
-  <p class="spec">2.5–15mg weekly · Brand pen</p>
-  <p class="pharm">Mounjaro/Zepbound brand pen</p>
+  <a class="card-hit" href="/zepbound.html">
+    <span class="badge" style="background:#10B981">LIVE</span>
+    <h3>Zepbound</h3>
+    <p class="spec">2.5–15mg weekly · Brand pen</p>
+    <p class="pharm">Mounjaro/Zepbound brand pen</p>
+  </a>
   <div class="links">
     <a href="/zepbound.html">Product page</a>
     <a href="/preview/launch-kit/briefs/zepbound.html">Pharmacy brief</a>
     <a href="/weight-loss.html">Hub</a>
   </div>
 </div><div class="card" data-title="wegovy tablets" data-vertical="weight loss">
-  <span class="badge" style="background:#10B981">LIVE</span>
-  <h3><a href="/wegovy-tablets.html">Wegovy Tablets</a></h3>
-  <p class="spec">Per FDA oral label · Bottle</p>
-  <p class="pharm">Oral semaglutide brand</p>
+  <a class="card-hit" href="/wegovy-tablets.html">
+    <span class="badge" style="background:#10B981">LIVE</span>
+    <h3>Wegovy Tablets</h3>
+    <p class="spec">Per FDA oral label · Bottle</p>
+    <p class="pharm">Oral semaglutide brand</p>
+  </a>
   <div class="links">
     <a href="/wegovy-tablets.html">Product page</a>
     <a href="/preview/launch-kit/briefs/wegovy-tablets.html">Pharmacy brief</a>
     <a href="/weight-loss.html">Hub</a>
   </div>
 </div><div class="card" data-title="foundayo oral glp-1" data-vertical="weight loss">
-  <span class="badge" style="background:#10B981">LIVE</span>
-  <h3><a href="/foundayo.html">Foundayo Oral GLP-1</a></h3>
-  <p class="spec">Per provider protocol · Bottle</p>
-  <p class="pharm">Foundayo compounded oral</p>
+  <a class="card-hit" href="/foundayo.html">
+    <span class="badge" style="background:#10B981">LIVE</span>
+    <h3>Foundayo Oral GLP-1</h3>
+    <p class="spec">Per provider protocol · Bottle</p>
+    <p class="pharm">Foundayo compounded oral</p>
+  </a>
   <div class="links">
     <a href="/foundayo.html">Product page</a>
     <a href="/preview/launch-kit/briefs/foundayo.html">Pharmacy brief</a>
     <a href="/weight-loss.html">Hub</a>
   </div>
 </div><div class="card" data-title="lipo-mino + l-carnitine" data-vertical="weight loss">
-  <span class="badge" style="background:#10B981">LIVE</span>
-  <h3><a href="/lipo-mino.html">Lipo-Mino + L-Carnitine</a></h3>
-  <p class="spec">Per vial protocol · 10ml vial</p>
-  <p class="pharm">Lipo-Mino Olympia injection</p>
+  <a class="card-hit" href="/lipo-mino.html">
+    <span class="badge" style="background:#10B981">LIVE</span>
+    <h3>Lipo-Mino + L-Carnitine</h3>
+    <p class="spec">Per vial protocol · 10ml vial</p>
+    <p class="pharm">Lipo-Mino Olympia injection</p>
+  </a>
   <div class="links">
     <a href="/lipo-mino.html">Product page</a>
     <a href="/preview/launch-kit/briefs/lipo-mino.html">Pharmacy brief</a>
     <a href="/weight-loss.html">Hub</a>
   </div>
 </div><div class="card" data-title="semaglutide odt + ondansetron" data-vertical="weight loss">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/semaglutide-odt.html">Semaglutide ODT + Ondansetron</a></h3>
-  <p class="spec">4mg sema + 2mg ondansetron · 30-count ODT</p>
-  <p class="pharm">Semaglutide 4mg / Ondansetron 2mg ODT</p>
+  <a class="card-hit" href="/semaglutide-odt.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>Semaglutide ODT + Ondansetron</h3>
+    <p class="spec">4mg sema + 2mg ondansetron · 30-count ODT</p>
+    <p class="pharm">Semaglutide 4mg / Ondansetron 2mg ODT</p>
+  </a>
   <div class="links">
     <a href="/semaglutide-odt.html">Product page</a>
     <a href="/preview/launch-kit/briefs/semaglutide-odt.html">Pharmacy brief</a>
     <a href="/weight-loss.html">Hub</a>
   </div>
 </div><div class="card" data-title="tirzepatide sublingual drops" data-vertical="weight loss">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/tirzepatide-sublingual.html">Tirzepatide Sublingual Drops</a></h3>
-  <p class="spec">Titrated per protocol · Dropper bottle</p>
-  <p class="pharm">Tirzepatide sublingual drops Olympia</p>
+  <a class="card-hit" href="/tirzepatide-sublingual.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>Tirzepatide Sublingual Drops</h3>
+    <p class="spec">Titrated per protocol · Dropper bottle</p>
+    <p class="pharm">Tirzepatide sublingual drops Olympia</p>
+  </a>
   <div class="links">
     <a href="/tirzepatide-sublingual.html">Product page</a>
     <a href="/preview/launch-kit/briefs/tirzepatide-sublingual.html">Pharmacy brief</a>
     <a href="/weight-loss.html">Hub</a>
   </div>
 </div><div class="card" data-title="metformin er" data-vertical="weight loss">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/metformin-er.html">Metformin ER</a></h3>
-  <p class="spec">500mg · 90-count</p>
-  <p class="pharm">Metformin ER</p>
+  <a class="card-hit" href="/metformin-er.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>Metformin ER</h3>
+    <p class="spec">500mg · 90-count</p>
+    <p class="pharm">Metformin ER</p>
+  </a>
   <div class="links">
     <a href="/metformin-er.html">Product page</a>
     <a href="/preview/launch-kit/briefs/metformin-er.html">Pharmacy brief</a>
     <a href="/weight-loss.html">Hub</a>
   </div>
 </div><div class="card" data-title="liraglutide" data-vertical="weight loss">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/liraglutide.html">Liraglutide</a></h3>
-  <p class="spec">Up to 3mg daily · Multi-dose pen/vial</p>
-  <p class="pharm">Liraglutide Olympia</p>
+  <a class="card-hit" href="/liraglutide.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>Liraglutide</h3>
+    <p class="spec">Up to 3mg daily · Multi-dose pen/vial</p>
+    <p class="pharm">Liraglutide Olympia</p>
+  </a>
   <div class="links">
     <a href="/liraglutide.html">Product page</a>
     <a href="/preview/launch-kit/briefs/liraglutide.html">Pharmacy brief</a>
     <a href="/weight-loss.html">Hub</a>
   </div>
 </div></div></section><section class="vertical" id="women's-hormone"><h2>Women's Hormone <span>6</span></h2><div class="grid"><div class="card" data-title="estradiol patches" data-vertical="women's hormone">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/estradiol-patches.html">Estradiol Patches</a></h3>
-  <p class="spec">0.05mg/day · 8-pack</p>
-  <p class="pharm">Estradiol 0.05 mg / Day Patch x 8pack</p>
+  <a class="card-hit" href="/estradiol-patches.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>Estradiol Patches</h3>
+    <p class="spec">0.05mg/day · 8-pack</p>
+    <p class="pharm">Estradiol 0.05 mg / Day Patch x 8pack</p>
+  </a>
   <div class="links">
     <a href="/estradiol-patches.html">Product page</a>
     <a href="/preview/launch-kit/briefs/estradiol-patches.html">Pharmacy brief</a>
     <a href="/womens-hormone.html">Hub</a>
   </div>
 </div><div class="card" data-title="biest + progesterone cream" data-vertical="women's hormone">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/biest-progesterone-cream.html">Biest + Progesterone Cream</a></h3>
-  <p class="spec">Biest 0.1% / Prog 4% · 30g</p>
-  <p class="pharm">Biestrogen 50:50 0.1% / Progesterone 4% cream</p>
+  <a class="card-hit" href="/biest-progesterone-cream.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>Biest + Progesterone Cream</h3>
+    <p class="spec">Biest 0.1% / Prog 4% · 30g</p>
+    <p class="pharm">Biestrogen 50:50 0.1% / Progesterone 4% cream</p>
+  </a>
   <div class="links">
     <a href="/biest-progesterone-cream.html">Product page</a>
     <a href="/preview/launch-kit/briefs/biest-progesterone-cream.html">Pharmacy brief</a>
     <a href="/womens-hormone.html">Hub</a>
   </div>
 </div><div class="card" data-title="progesterone capsules" data-vertical="women's hormone">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/progesterone-capsules.html">Progesterone Capsules</a></h3>
-  <p class="spec">100mg · 30-count</p>
-  <p class="pharm">Progesterone Capsule micronized</p>
+  <a class="card-hit" href="/progesterone-capsules.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>Progesterone Capsules</h3>
+    <p class="spec">100mg · 30-count</p>
+    <p class="pharm">Progesterone Capsule micronized</p>
+  </a>
   <div class="links">
     <a href="/progesterone-capsules.html">Product page</a>
     <a href="/preview/launch-kit/briefs/progesterone-capsules.html">Pharmacy brief</a>
     <a href="/womens-hormone.html">Hub</a>
   </div>
 </div><div class="card" data-title="dhea + pregnenolone" data-vertical="women's hormone">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/dhea-pregnenolone.html">DHEA + Pregnenolone</a></h3>
-  <p class="spec">Per protocol · 30-count</p>
-  <p class="pharm">DHEA/Pregnenolone compounded</p>
+  <a class="card-hit" href="/dhea-pregnenolone.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>DHEA + Pregnenolone</h3>
+    <p class="spec">Per protocol · 30-count</p>
+    <p class="pharm">DHEA/Pregnenolone compounded</p>
+  </a>
   <div class="links">
     <a href="/dhea-pregnenolone.html">Product page</a>
     <a href="/preview/launch-kit/briefs/dhea-pregnenolone.html">Pharmacy brief</a>
     <a href="/womens-hormone.html">Hub</a>
   </div>
 </div><div class="card" data-title="estradiol vaginal cream" data-vertical="women's hormone">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/estradiol-vaginal-cream.html">Estradiol Vaginal Cream</a></h3>
-  <p class="spec">0.01% (1mg/g) · 30g</p>
-  <p class="pharm">Estradiol Vaginal Topical Cream</p>
+  <a class="card-hit" href="/estradiol-vaginal-cream.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>Estradiol Vaginal Cream</h3>
+    <p class="spec">0.01% (1mg/g) · 30g</p>
+    <p class="pharm">Estradiol Vaginal Topical Cream</p>
+  </a>
   <div class="links">
     <a href="/estradiol-vaginal-cream.html">Product page</a>
     <a href="/preview/launch-kit/briefs/estradiol-vaginal-cream.html">Pharmacy brief</a>
     <a href="/womens-hormone.html">Hub</a>
   </div>
 </div><div class="card" data-title="women's testosterone cream" data-vertical="women's hormone">
-  <span class="badge" style="background:#00B4C5">PREVIEW</span>
-  <h3><a href="/womens-testosterone-cream.html">Women's Testosterone Cream</a></h3>
-  <p class="spec">0.5–1mg/day typical · 30g</p>
-  <p class="pharm">Women Testosterone cream low dose</p>
+  <a class="card-hit" href="/womens-testosterone-cream.html">
+    <span class="badge" style="background:#00B4C5">PREVIEW</span>
+    <h3>Women's Testosterone Cream</h3>
+    <p class="spec">0.5–1mg/day typical · 30g</p>
+    <p class="pharm">Women Testosterone cream low dose</p>
+  </a>
   <div class="links">
     <a href="/womens-testosterone-cream.html">Product page</a>
     <a href="/preview/launch-kit/briefs/womens-testosterone-cream.html">Pharmacy brief</a>

@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | Tadalafil 22mg Troches x 8 |
 | **Standard strength (CLYR pick)** | 22mg |
 | **Package** | 8 troches |
-| **Page (live/preview)** | https://www.clyr.health/tadalafil-troches.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/tadalafil-troches.html |
+| **Page (live/preview)** | [www.clyr.health/tadalafil-troches.html](https://www.clyr.health/tadalafil-troches.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/tadalafil-troches.html) |
 
 > **Strength selection note:** PICK: 22mg — industry standard compounded troche.
 

@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | Semaglutide Olympia compounded |
 | **Standard strength (CLYR pick)** | Up to 2.4mg/week |
 | **Package** | Multi-dose vial |
-| **Page (live/preview)** | https://www.clyr.health/semaglutide.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/semaglutide.html |
+| **Page (live/preview)** | [www.clyr.health/semaglutide.html](https://www.clyr.health/semaglutide.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/semaglutide.html) |
 
 > **Strength selection note:** Standard obesity dosing per FDA semaglutide 2.4mg target.
 

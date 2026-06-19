@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | Estradiol Vaginal Topical Cream |
 | **Standard strength (CLYR pick)** | 0.01% (1mg/g) |
 | **Package** | 30g |
-| **Page (live/preview)** | https://www.clyr.health/estradiol-vaginal-cream.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/estradiol-vaginal-cream.html |
+| **Page (live/preview)** | [www.clyr.health/estradiol-vaginal-cream.html](https://www.clyr.health/estradiol-vaginal-cream.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/estradiol-vaginal-cream.html) |
 
 > **Strength selection note:** Single industry-standard strength selected from pharmacy menu.
 

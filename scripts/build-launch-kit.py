@@ -227,8 +227,8 @@ BRIEF_TEMPLATE = """# CLYR Health — Pharmacy Partner Brief
 | **Pharmacy dispense name** | {pharmacy_dispense} |
 | **Standard strength (CLYR pick)** | {standard_strength} |
 | **Package** | {package} |
-| **Page (live/preview)** | https://www.clyr.health/{slug}.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/{slug}.html |
+| **Page (live/preview)** | [www.clyr.health/{slug}.html](https://www.clyr.health/{slug}.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/{slug}.html) |
 
 > **Strength selection note:** {notes}
 
@@ -314,8 +314,14 @@ WAVES = {
 
 
 def _inline(text: str) -> str:
+    text = re.sub(r'`([^`]+)`', r'<code>\1</code>', text)
     text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text)
     text = re.sub(r'\[(.+?)\]\((.+?)\)', r'<a href="\2">\1</a>', text)
+    text = re.sub(
+        r'(?<!["\'>])(https?://[^\s<]+)',
+        r'<a href="\1">\1</a>',
+        text,
+    )
     return text
 
 
@@ -486,7 +492,11 @@ def main():
     for v in sorted(by_v):
         pack_lines.append(f"\n## {v}\n")
         for k in by_v[v]:
-            pack_lines.append(f"- **{k['title']}** — `{k['strength']}` · {k['package']} · [{k['brief']}](https://www.clyr.health{k['brief']})")
+            pack_lines.append(
+                f"- **{k['title']}** — `{k['strength']}` · {k['package']} · "
+                f"[Product page](https://www.clyr.health{k['page']}) · "
+                f"[Pharmacy brief](https://www.clyr.health{k['brief']})"
+            )
     (KIT / "PHARMACY-PARTNER-PACK.md").write_text('\n'.join(pack_lines))
 
     # Index HTML
@@ -497,10 +507,12 @@ def main():
             badge = 'LIVE' if k['status'] == 'live' else 'PREVIEW'
             bc = '#10B981' if k['status'] == 'live' else '#00B4C5'
             cards.append(f'''<div class="card" data-title="{k['title'].lower()}" data-vertical="{v.lower()}">
-  <span class="badge" style="background:{bc}">{badge}</span>
-  <h3><a href="{k['page']}">{k['title']}</a></h3>
-  <p class="spec">{k['strength']} · {k['package']}</p>
-  <p class="pharm">{k['pharmacy'][:70]}{'…' if len(k['pharmacy'])>70 else ''}</p>
+  <a class="card-hit" href="{k['page']}">
+    <span class="badge" style="background:{bc}">{badge}</span>
+    <h3>{k['title']}</h3>
+    <p class="spec">{k['strength']} · {k['package']}</p>
+    <p class="pharm">{k['pharmacy'][:70]}{'…' if len(k['pharmacy'])>70 else ''}</p>
+  </a>
   <div class="links">
     <a href="{k['page']}">Product page</a>
     <a href="{k['brief']}">Pharmacy brief</a>
@@ -534,20 +546,22 @@ main{{max-width:1200px;margin:0 auto;padding:0 20px 80px}}
 .vertical{{margin-bottom:48px}}.vertical h2{{font-size:20px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:10px;color:#fff}}
 .vertical h2 span{{font-size:12px;background:#141c28;padding:4px 12px;border-radius:100px;color:var(--gray);font-weight:600}}
 .grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}}
-.card{{background:#141c28;border:1px solid #2a3544;border-radius:16px;padding:20px;position:relative;transition:border-color .2s}}
+.card{{background:#141c28;border:1px solid #2a3544;border-radius:16px;padding:0;position:relative;transition:border-color .2s;display:flex;flex-direction:column;overflow:hidden}}
 .card:hover{{border-color:rgba(0,180,197,.4)}}.card.hidden{{display:none}}
+.card-hit{{display:block;padding:20px 20px 12px;text-decoration:none;color:inherit;flex:1;position:relative}}
+.card-hit:hover h3{{color:var(--teal)}}
 .badge{{position:absolute;top:14px;right:14px;font-size:9px;font-weight:800;padding:4px 10px;border-radius:100px;color:#fff;letter-spacing:.06em}}
-.card h3{{font-size:17px;font-weight:700;margin:8px 0 8px;padding-right:56px}}.card h3 a{{color:#fff;text-decoration:none}}.card h3 a:hover{{color:var(--teal)}}
+.card h3{{font-size:17px;font-weight:700;margin:8px 0 8px;padding-right:56px;color:#fff;transition:color .2s}}
 .spec{{font-size:13px;color:var(--teal);font-weight:600;margin-bottom:6px}}.pharm{{font-size:12px;color:var(--gray);margin-bottom:14px;line-height:1.45}}
-.links{{display:flex;gap:14px;flex-wrap:wrap}}.links a{{font-size:12px;font-weight:600;color:var(--teal);text-decoration:none}}.links a:hover{{text-decoration:underline}}
+.links{{display:flex;gap:14px;flex-wrap:wrap;padding:0 20px 20px}}.links a{{font-size:12px;font-weight:600;color:var(--teal);text-decoration:none}}.links a:hover{{text-decoration:underline}}
 .footer-note{{text-align:center;padding:40px 20px;font-size:13px;color:var(--gray);border-top:1px solid #2a3544;max-width:1200px;margin:0 auto}}
 </style></head><body>
 <div class="top">
   <h1>Launch Kit · <em>52 products</em></h1>
   <p>Every CLYR SKU with product page, pharmacy marketing brief, and industry-standard strength picked from your Olympia menu. Send the partner pack to negotiate wholesale.</p>
   <div class="actions">
-    <a class="btn btn-primary" href="/preview/launch-kit/PHARMACY-PARTNER-PACK.md">Download Partner Pack (MD)</a>
-    <a class="btn btn-ghost" href="/preview/launch-kit/PHARMACY-PARTNER-PACK.html">Partner Pack (HTML)</a>
+    <a class="btn btn-primary" href="/preview/launch-kit/PHARMACY-PARTNER-PACK.html">Open Partner Pack</a>
+    <a class="btn btn-ghost" href="/preview/launch-kit/PHARMACY-PARTNER-PACK.md">Partner Pack (MD)</a>
     <a class="btn btn-ghost" href="/preview/launch-kit/CLYR-TRI-GEL-COMPOUNDING-REQUEST.html">Tri Gel compound request</a>
     <a class="btn btn-ghost" href="/preview/launch-kit/launch-kit.json">JSON export</a>
     <a class="btn btn-ghost" href="/preview/catalog/">Catalog index</a>
@@ -593,8 +607,36 @@ function filterCards(){{
 </script></body></html>'''
     (KIT / "index.html").write_text(index)
 
-    # Partner pack HTML
-    pack_html = brief_html('\n'.join(pack_lines), "Pharmacy Partner Pack")
+    # Partner pack HTML — full clickable table
+    pack_rows = []
+    for v in sorted(by_v):
+        for k in by_v[v]:
+            pack_rows.append(
+                f'<tr><td><strong>{k["title"]}</strong><br><span style="color:#6B7C8A;font-size:12px">{v}</span></td>'
+                f'<td><code>{k["strength"]}</code><br>{k["package"]}</td>'
+                f'<td><a href="{k["page"]}">Product page</a></td>'
+                f'<td><a href="{k["brief"]}">Pharmacy brief</a></td></tr>'
+            )
+    pack_html = f'''<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="robots" content="noindex">
+<title>Pharmacy Partner Pack · CLYR Health</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>body{{font-family:'DM Sans',sans-serif;max-width:1100px;margin:0 auto;padding:40px 24px 80px;color:#1A1A1A;line-height:1.65}}
+h1{{font-size:28px;margin-bottom:8px}}p.lede{{color:#6B7C8A;max-width:720px;margin-bottom:28px}}
+table{{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px}}th,td{{border:1px solid #E2E7EB;padding:12px 14px;text-align:left;vertical-align:top}}th{{background:#0d1b2e;color:#fff}}
+a{{color:#00B4C5;font-weight:600;text-decoration:none}}a:hover{{text-decoration:underline}}
+.back,.print-btn{{display:inline-block;margin-bottom:24px;color:#00B4C5;font-weight:600;text-decoration:none}}
+.print-btn{{background:#00B4C5;color:#fff;padding:10px 20px;border-radius:8px;margin-left:12px}}code{{background:#f0fafb;padding:2px 6px;border-radius:4px;font-size:13px}}
+@media print{{body{{padding:20px}}}}</style></head><body>
+<a class="back" href="/preview/launch-kit/">← Launch Kit</a>
+<a class="print-btn" href="javascript:window.print()">Print / Save PDF</a>
+<h1>CLYR Health — Pharmacy Partner Pack</h1>
+<p class="lede"><strong>52 products · June 2026</strong> — Every row links to the live product page and pharmacy marketing brief. Industry-standard strength picked per SKU.</p>
+<table>
+<tr><th>Product</th><th>CLYR standard offering</th><th>Page</th><th>Brief</th></tr>
+{"".join(pack_rows)}
+</table>
+<p style="margin-top:32px;color:#6B7C8A;font-size:13px">Launch kit: <a href="https://www.clyr.health/preview/launch-kit/">www.clyr.health/preview/launch-kit/</a></p>
+</body></html>'''
     (KIT / "PHARMACY-PARTNER-PACK.html").write_text(pack_html)
 
     # CLYR Tri Gel formal compounding request

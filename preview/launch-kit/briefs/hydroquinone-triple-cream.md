@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | Hydroquionone/Tretinoin/Fluocinolone Acetonide |
 | **Standard strength (CLYR pick)** | Standard triple combo |
 | **Package** | 30g |
-| **Page (live/preview)** | https://www.clyr.health/hydroquinone-triple-cream.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/hydroquinone-triple-cream.html |
+| **Page (live/preview)** | [www.clyr.health/hydroquinone-triple-cream.html](https://www.clyr.health/hydroquinone-triple-cream.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/hydroquinone-triple-cream.html) |
 
 > **Strength selection note:** Single industry-standard strength selected from pharmacy menu.
 

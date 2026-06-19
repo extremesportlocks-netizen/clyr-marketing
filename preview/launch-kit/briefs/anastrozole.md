@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | Anastrozole 0.5mg Capsules |
 | **Standard strength (CLYR pick)** | 0.5mg |
 | **Package** | 30-count |
-| **Page (live/preview)** | https://www.clyr.health/anastrozole.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/anastrozole.html |
+| **Page (live/preview)** | [www.clyr.health/anastrozole.html](https://www.clyr.health/anastrozole.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/anastrozole.html) |
 
 > **Strength selection note:** PICK: 0.5mg — standard TRT adjunct (not 1mg oncology dose).
 

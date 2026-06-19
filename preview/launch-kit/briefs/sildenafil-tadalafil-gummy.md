@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | Sildenafil 40mg / Tadalafil 10mg Gummy x 8 |
 | **Standard strength (CLYR pick)** | 40mg / 10mg |
 | **Package** | 8 gummies |
-| **Page (live/preview)** | https://www.clyr.health/sildenafil-tadalafil-gummy.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/sildenafil-tadalafil-gummy.html |
+| **Page (live/preview)** | [www.clyr.health/sildenafil-tadalafil-gummy.html](https://www.clyr.health/sildenafil-tadalafil-gummy.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/sildenafil-tadalafil-gummy.html) |
 
 > **Strength selection note:** Single industry-standard strength selected from pharmacy menu.
 

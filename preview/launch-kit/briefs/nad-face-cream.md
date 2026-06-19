@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | NAD+ Pump Face Cream |
 | **Standard strength (CLYR pick)** | 10% NAD+ |
 | **Package** | Pump bottle |
-| **Page (live/preview)** | https://www.clyr.health/nad-face-cream.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/nad-face-cream.html |
+| **Page (live/preview)** | [www.clyr.health/nad-face-cream.html](https://www.clyr.health/nad-face-cream.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/nad-face-cream.html) |
 
 > **Strength selection note:** PICK: 10% NAD+ pump cream from pharmacy sheet.
 

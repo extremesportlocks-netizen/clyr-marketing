@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | Sildenafil + Tadalafil + Oxytocin ODT |
 | **Standard strength (CLYR pick)** | Triple combo |
 | **Package** | 10 ODT |
-| **Page (live/preview)** | https://www.clyr.health/sild-tadal-oxy.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/sild-tadal-oxy.html |
+| **Page (live/preview)** | [www.clyr.health/sild-tadal-oxy.html](https://www.clyr.health/sild-tadal-oxy.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/sild-tadal-oxy.html) |
 
 > **Strength selection note:** Single industry-standard strength selected from pharmacy menu.
 

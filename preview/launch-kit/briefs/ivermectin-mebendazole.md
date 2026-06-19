@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | Ivermectin + Mebendazole combined |
 | **Standard strength (CLYR pick)** | 25mg/250mg |
 | **Package** | 30 capsules |
-| **Page (live/preview)** | https://www.clyr.health/ivermectin-mebendazole.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/ivermectin-mebendazole.html |
+| **Page (live/preview)** | [www.clyr.health/ivermectin-mebendazole.html](https://www.clyr.health/ivermectin-mebendazole.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/ivermectin-mebendazole.html) |
 
 > **Strength selection note:** Single industry-standard strength selected from pharmacy menu.
 

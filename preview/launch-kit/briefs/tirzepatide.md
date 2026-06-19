@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | Tirzepatide Olympia compounded |
 | **Standard strength (CLYR pick)** | Up to 15mg/week titration |
 | **Package** | Multi-dose vial |
-| **Page (live/preview)** | https://www.clyr.health/tirzepatide.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/tirzepatide.html |
+| **Page (live/preview)** | [www.clyr.health/tirzepatide.html](https://www.clyr.health/tirzepatide.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/tirzepatide.html) |
 
 > **Strength selection note:** Industry standard: dose-titrated compounded tirzepatide matching Zepbound/Mounjaro protocols.
 

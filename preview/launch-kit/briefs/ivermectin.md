@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | Ivermectin 18mg Capsules |
 | **Standard strength (CLYR pick)** | 18mg |
 | **Package** | 30 capsules |
-| **Page (live/preview)** | https://www.clyr.health/ivermectin.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/ivermectin.html |
+| **Page (live/preview)** | [www.clyr.health/ivermectin.html](https://www.clyr.health/ivermectin.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/ivermectin.html) |
 
 > **Strength selection note:** PICK: 18mg 30-cap — live CLYR protocol.
 

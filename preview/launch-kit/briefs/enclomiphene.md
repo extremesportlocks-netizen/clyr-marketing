@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | Enclomiphene 12.5mg Capsules |
 | **Standard strength (CLYR pick)** | 12.5mg |
 | **Package** | 30-count |
-| **Page (live/preview)** | https://www.clyr.health/enclomiphene.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/enclomiphene.html |
+| **Page (live/preview)** | [www.clyr.health/enclomiphene.html](https://www.clyr.health/enclomiphene.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/enclomiphene.html) |
 
 > **Strength selection note:** PICK: 12.5mg — standard starting dose (titrate to 25mg).
 

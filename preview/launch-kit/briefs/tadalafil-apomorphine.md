@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | Tadalafil+Apomorphine Troches |
 | **Standard strength (CLYR pick)** | 22mg / 2mg |
 | **Package** | 8 troches |
-| **Page (live/preview)** | https://www.clyr.health/tadalafil-apomorphine.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/tadalafil-apomorphine.html |
+| **Page (live/preview)** | [www.clyr.health/tadalafil-apomorphine.html](https://www.clyr.health/tadalafil-apomorphine.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/tadalafil-apomorphine.html) |
 
 > **Strength selection note:** PICK: 22mg/2mg — lower apomorphine, standard tadalafil troche dose.
 

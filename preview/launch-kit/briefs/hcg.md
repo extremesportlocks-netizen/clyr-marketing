@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | Chorionic Gonadotropin - HCG (Fresenius Kabi) |
 | **Standard strength (CLYR pick)** | 10,000 IU |
 | **Package** | Vial |
-| **Page (live/preview)** | https://www.clyr.health/hcg.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/hcg.html |
+| **Page (live/preview)** | [www.clyr.health/hcg.html](https://www.clyr.health/hcg.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/hcg.html) |
 
 > **Strength selection note:** PICK: 10,000 IU vial — industry standard HCG kit.
 

@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | Mounjaro/Zepbound brand pen |
 | **Standard strength (CLYR pick)** | 2.5–15mg weekly |
 | **Package** | Brand pen |
-| **Page (live/preview)** | https://www.clyr.health/zepbound.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/zepbound.html |
+| **Page (live/preview)** | [www.clyr.health/zepbound.html](https://www.clyr.health/zepbound.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/zepbound.html) |
 
 > **Strength selection note:** Lead with 2.5mg starter pen — industry titration ladder.
 

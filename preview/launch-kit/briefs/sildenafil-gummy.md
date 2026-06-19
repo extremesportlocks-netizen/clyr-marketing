@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | Sildenafil 50mg Gummy |
 | **Standard strength (CLYR pick)** | 50mg |
 | **Package** | 10 gummies |
-| **Page (live/preview)** | https://www.clyr.health/sildenafil-gummy.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/sildenafil-gummy.html |
+| **Page (live/preview)** | [www.clyr.health/sildenafil-gummy.html](https://www.clyr.health/sildenafil-gummy.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/sildenafil-gummy.html) |
 
 > **Strength selection note:** PICK: 50mg — standard on-demand dose.
 

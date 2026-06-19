@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | Metformin ER |
 | **Standard strength (CLYR pick)** | 500mg |
 | **Package** | 90-count |
-| **Page (live/preview)** | https://www.clyr.health/metformin-er.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/metformin-er.html |
+| **Page (live/preview)** | [www.clyr.health/metformin-er.html](https://www.clyr.health/metformin-er.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/metformin-er.html) |
 
 > **Strength selection note:** PICK: 500mg ER — standard starting dose, pairs with every GLP-1 patient.
 

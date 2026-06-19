@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | DHEA/Pregnenolone compounded |
 | **Standard strength (CLYR pick)** | Per protocol |
 | **Package** | 30-count |
-| **Page (live/preview)** | https://www.clyr.health/dhea-pregnenolone.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/dhea-pregnenolone.html |
+| **Page (live/preview)** | [www.clyr.health/dhea-pregnenolone.html](https://www.clyr.health/dhea-pregnenolone.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/dhea-pregnenolone.html) |
 
 > **Strength selection note:** Single industry-standard strength selected from pharmacy menu.
 

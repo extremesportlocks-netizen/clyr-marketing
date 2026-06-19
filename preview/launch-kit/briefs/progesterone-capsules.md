@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | Progesterone Capsule micronized |
 | **Standard strength (CLYR pick)** | 100mg |
 | **Package** | 30-count |
-| **Page (live/preview)** | https://www.clyr.health/progesterone-capsules.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/progesterone-capsules.html |
+| **Page (live/preview)** | [www.clyr.health/progesterone-capsules.html](https://www.clyr.health/progesterone-capsules.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/progesterone-capsules.html) |
 
 > **Strength selection note:** PICK: 100mg — standard nightly HRT dose.
 

@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | TRIMIX T105 |
 | **Standard strength (CLYR pick)** | 30mg/1mg/10mcg per 0.1ml |
 | **Package** | 2.5ml vial |
-| **Page (live/preview)** | https://www.clyr.health/trimix.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/trimix.html |
+| **Page (live/preview)** | [www.clyr.health/trimix.html](https://www.clyr.health/trimix.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/trimix.html) |
 
 > **Strength selection note:** PICK: T105 (10mcg PGE) — standard starting trimix (T106 for non-responders).
 

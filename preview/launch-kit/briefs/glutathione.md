@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | Glutathione Injection Olympia 200mg/ml x 5ml |
 | **Standard strength (CLYR pick)** | 200mg/ml |
 | **Package** | 5ml vial |
-| **Page (live/preview)** | https://www.clyr.health/glutathione.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/glutathione.html |
+| **Page (live/preview)** | [www.clyr.health/glutathione.html](https://www.clyr.health/glutathione.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/glutathione.html) |
 
 > **Strength selection note:** PICK: 200mg/ml 5ml — standard wellness vial size.
 

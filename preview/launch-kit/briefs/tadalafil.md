@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | Tadalafil compounded daily |
 | **Standard strength (CLYR pick)** | 2.5–5mg daily class |
 | **Package** | 30 tablets |
-| **Page (live/preview)** | https://www.clyr.health/tadalafil.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/tadalafil.html |
+| **Page (live/preview)** | [www.clyr.health/tadalafil.html](https://www.clyr.health/tadalafil.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/tadalafil.html) |
 
 > **Strength selection note:** Single industry-standard strength selected from pharmacy menu.
 

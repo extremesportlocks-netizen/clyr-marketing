@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | GHK-Cu injectable |
 | **Standard strength (CLYR pick)** | 1–2mg daily typical |
 | **Package** | Vial |
-| **Page (live/preview)** | https://www.clyr.health/ghk-cu-injectable.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/ghk-cu-injectable.html |
+| **Page (live/preview)** | [www.clyr.health/ghk-cu-injectable.html](https://www.clyr.health/ghk-cu-injectable.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/ghk-cu-injectable.html) |
 
 > **Strength selection note:** Single industry-standard strength selected from pharmacy menu.
 

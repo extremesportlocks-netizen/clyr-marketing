@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | Oral semaglutide brand |
 | **Standard strength (CLYR pick)** | Per FDA oral label |
 | **Package** | Bottle |
-| **Page (live/preview)** | https://www.clyr.health/wegovy-tablets.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/wegovy-tablets.html |
+| **Page (live/preview)** | [www.clyr.health/wegovy-tablets.html](https://www.clyr.health/wegovy-tablets.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/wegovy-tablets.html) |
 
 > **Strength selection note:** Single industry-standard strength selected from pharmacy menu.
 

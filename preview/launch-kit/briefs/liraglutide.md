@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | Liraglutide Olympia |
 | **Standard strength (CLYR pick)** | Up to 3mg daily |
 | **Package** | Multi-dose pen/vial |
-| **Page (live/preview)** | https://www.clyr.health/liraglutide.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/liraglutide.html |
+| **Page (live/preview)** | [www.clyr.health/liraglutide.html](https://www.clyr.health/liraglutide.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/liraglutide.html) |
 
 > **Strength selection note:** Single industry-standard strength selected from pharmacy menu.
 

@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | MICC-B12 - Olympia -Injection 25/50/50/330mcg x 10ml |
 | **Standard strength (CLYR pick)** | MICC blend |
 | **Package** | 10ml vial |
-| **Page (live/preview)** | https://www.clyr.health/micc.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/micc.html |
+| **Page (live/preview)** | [www.clyr.health/micc.html](https://www.clyr.health/micc.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/micc.html) |
 
 > **Strength selection note:** Single industry-standard strength selected from pharmacy menu.
 

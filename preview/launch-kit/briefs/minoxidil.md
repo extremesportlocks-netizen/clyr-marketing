@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | Minoxdil/Tretinoin/Fluocinolone/Finasteride Spray |
 | **Standard strength (CLYR pick)** | 7/0.025/0.025/0.2% |
 | **Package** | 60ml |
-| **Page (live/preview)** | https://www.clyr.health/minoxidil.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/minoxidil.html |
+| **Page (live/preview)** | [www.clyr.health/minoxidil.html](https://www.clyr.health/minoxidil.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/minoxidil.html) |
 
 > **Strength selection note:** PICK: 7% quad stack 60ml — pharmacy row 191.
 

@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | Estradiol 0.05 mg / Day Patch x 8pack |
 | **Standard strength (CLYR pick)** | 0.05mg/day |
 | **Package** | 8-pack |
-| **Page (live/preview)** | https://www.clyr.health/estradiol-patches.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/estradiol-patches.html |
+| **Page (live/preview)** | [www.clyr.health/estradiol-patches.html](https://www.clyr.health/estradiol-patches.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/estradiol-patches.html) |
 
 > **Strength selection note:** PICK: 0.05mg/day — most common maintenance patch dose.
 

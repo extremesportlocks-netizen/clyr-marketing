@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | Sermorelin Olympia |
 | **Standard strength (CLYR pick)** | Per peptide protocol |
 | **Package** | Vial |
-| **Page (live/preview)** | https://www.clyr.health/sermorelin.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/sermorelin.html |
+| **Page (live/preview)** | [www.clyr.health/sermorelin.html](https://www.clyr.health/sermorelin.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/sermorelin.html) |
 
 > **Strength selection note:** Single industry-standard strength selected from pharmacy menu.
 

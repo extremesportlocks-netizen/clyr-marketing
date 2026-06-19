@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | Biestrogen 50:50 0.1% / Progesterone 4% cream |
 | **Standard strength (CLYR pick)** | Biest 0.1% / Prog 4% |
 | **Package** | 30g |
-| **Page (live/preview)** | https://www.clyr.health/biest-progesterone-cream.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/biest-progesterone-cream.html |
+| **Page (live/preview)** | [www.clyr.health/biest-progesterone-cream.html](https://www.clyr.health/biest-progesterone-cream.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/biest-progesterone-cream.html) |
 
 > **Strength selection note:** Single industry-standard strength selected from pharmacy menu.
 

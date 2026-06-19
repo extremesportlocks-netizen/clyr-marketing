@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | Minoxidil/Tretinoin/Fluocinolone/Biotin/Melatonin Spray |
 | **Standard strength (CLYR pick)** | 7/0.025/0.025/0.8/0.5% |
 | **Package** | 60ml |
-| **Page (live/preview)** | https://www.clyr.health/hair-spray-women.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/hair-spray-women.html |
+| **Page (live/preview)** | [www.clyr.health/hair-spray-women.html](https://www.clyr.health/hair-spray-women.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/hair-spray-women.html) |
 
 > **Strength selection note:** PICK: 7% + biotin/melatonin 60ml — pharmacy row 190.
 

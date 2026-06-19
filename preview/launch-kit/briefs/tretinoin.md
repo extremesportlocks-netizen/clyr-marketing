@@ -18,8 +18,8 @@
 | **Pharmacy dispense name** | Tretinoin Cream |
 | **Standard strength (CLYR pick)** | 0.025% |
 | **Package** | 45g |
-| **Page (live/preview)** | https://www.clyr.health/tretinoin.html |
-| **Marketing brief** | https://www.clyr.health/preview/launch-kit/briefs/tretinoin.html |
+| **Page (live/preview)** | [www.clyr.health/tretinoin.html](https://www.clyr.health/tretinoin.html) |
+| **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/tretinoin.html) |
 
 > **Strength selection note:** PICK: 0.025% 45g — industry starter strength (titrate to 0.05%).
 
