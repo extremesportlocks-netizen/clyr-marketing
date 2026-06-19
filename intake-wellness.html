@@ -444,6 +444,14 @@ var CATALOG = {
     ],
     desc:'Cellular energy, DNA repair, cognitive function.'
   },
+  niagen: {
+    type:'wellness', name:'Injectable Niagen', emoji:'🧬', priceCents:19900, plans:[
+      {key:'monthly',label:'Monthly',sub:'1 vial · cancel anytime',priceCents:19900,suffix:'/mo'},
+      {key:'3month',label:'3-Month',sub:'3 monthly shipments · $179/mo · one-time',priceCents:53700,save:'Save $60'},
+      {key:'6month',label:'6-Month',sub:'6 monthly shipments · $169/mo · one-time',priceCents:101400,save:'Save $180'}
+    ],
+    desc:'NAD+ precursor (nicotinamide riboside). Injectable NR support.'
+  },
   ivermectin: {
     type:'protocol', name:'Ivermectin Protocol', emoji:'💊', img:'/img/pill-antiparasitic-new.png', priceCents:13900,
     plans:[
@@ -635,13 +643,22 @@ function init() {
   // Handle alias for sildenafil, some marketing pages might pass "sildenafil"
   if (prod === 'sildenafil') prod = 'sildenafil_gummy';
   if (prod === 'bremelanotide' || prod === 'pt-141') prod = 'pt141';
+  if (prod === 'clyr-tri-gel' || prod === 'clyrtigel' || prod === 'cabtreo') prod = 'clyr_tri_gel';
   prod = prod.replace(/-/g, '_');
 
   // Coming-soon products: route to waitlist screen instead of silently falling back to Sermorelin.
   // Ivermectin is pending MDI clinical questionnaire approval, checkout is intentionally not yet active.
   var COMING_SOON = {
-    // Ivermectin + combo went LIVE June 12 2026, direct-Rx checkout via
-    // the Provider Queue. Map kept for future coming-soon products.
+    minoxidil: {
+      label: 'Coming Soon',
+      title: 'Minoxidil 5% is launching <span class="serif">soon.</span>',
+      sub: 'We\'re finalizing our hair regrowth protocol with physician partners. Join the waitlist to be first when CLYR Minoxidil goes live.'
+    },
+    clyr_tri_gel: {
+      label: 'Coming Soon',
+      title: 'CLYR Tri Gel is launching <span class="serif">soon.</span>',
+      sub: 'Our triple-action acne gel is almost ready. Join the waitlist and we\'ll email you when provider consultations open.'
+    }
   };
   if (COMING_SOON[prod]) {
     var cs = COMING_SOON[prod];
