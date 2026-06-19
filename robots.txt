@@ -3,5 +3,8 @@ Allow: /
 Disallow: /portal/
 Disallow: /intake-backup.html
 Disallow: /intake-old.html
+Disallow: /preview/launch-kit/
+Disallow: /preview/strategy/
+Disallow: /preview/catalog/
 
 Sitemap: https://www.clyr.health/sitemap.xml

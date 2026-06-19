@@ -411,39 +411,45 @@ a{{color:#00B4C5}}.back{{display:inline-block;margin-bottom:24px;color:#00B4C5;f
 </body></html>'''
 
 
-def patch_product_page(slug: str, spec_html: str, status: str):
+def strip_internal_from_product_page(text: str) -> str:
+    """Remove pharmacy negotiation UI from customer-facing product pages."""
+    text = re.sub(
+        r'<div class="admin-strip"[^>]*>.*?</div>\s*',
+        '',
+        text,
+        flags=re.S,
+    )
+    text = re.sub(
+        r'<div class="launch-spec"[^>]*>.*?</div>\s*',
+        '',
+        text,
+        flags=re.S,
+    )
+    # Strip preview strips that expose internal launch-kit / pharmacy brief links
+    text = re.sub(
+        r'<div class="preview-strip">[^<]*(?:launch-kit|Pharmacy brief|Pharmacy pack)[^<]*</div>\s*',
+        '',
+        text,
+        flags=re.I | re.S,
+    )
+    return text
+
+
+def patch_product_page(slug: str, status: str):
+    """Customer product pages must never show wholesale/pharmacy negotiation blocks."""
     path = ROOT / f"{slug}.html"
     if not path.exists():
         return
-    text = path.read_text()
-    preview_strip = (
-        '<div class="preview-strip">Preview launch — '
-        '<a href="/preview/launch-kit/">Launch Kit</a> · '
-        f'<a href="/preview/launch-kit/briefs/{slug}.html">Pharmacy brief</a> · '
-        '<a href="/preview/catalog/">Catalog</a></div>'
-    )
-    admin_strip = (
-        '<div class="admin-strip" style="background:#0d1b2e;color:#fff;text-align:center;'
-        'padding:8px 16px;font-size:12px;font-weight:600">'
-        '<a href="/preview/launch-kit/" style="color:#00e5e5;text-decoration:none">Launch Kit</a> · '
-        f'<a href="/preview/launch-kit/briefs/{slug}.html" style="color:#00e5e5;text-decoration:none">Pharmacy brief</a>'
-        '</div>'
-    )
+    text = strip_internal_from_product_page(path.read_text())
     if status == 'preview':
+        customer_strip = (
+            '<div class="preview-strip">Preview — pricing confirmed at consultation. '
+            '<a href="/intake-wellness.html">Join waitlist</a></div>'
+        )
         if 'preview-strip' in text:
-            text = re.sub(r'<div class="preview-strip">.*?</div>', preview_strip, text, count=1, flags=re.S)
+            text = re.sub(r'<div class="preview-strip">.*?</div>', customer_strip, text, count=1, flags=re.S)
         elif '<body>' in text:
-            text = text.replace('<body>', '<body>\n' + preview_strip, 1)
-    elif 'admin-strip' not in text and 'preview-strip' not in text:
-        text = text.replace('<body>', '<body>\n' + admin_strip, 1)
-
-    if 'launch-spec' not in text:
-        if '<div class="pharmacy-ref">' in text:
-            text = text.replace('<div class="pharmacy-ref">', spec_html + '\n    <div class="pharmacy-ref">', 1)
-        elif '<div class="product-includes">' in text:
-            text = text.replace('<div class="product-includes">', spec_html + '\n    <div class="product-includes">', 1)
-    else:
-        text = re.sub(r'<div class="launch-spec"[^>]*>.*?</div>\s*', spec_html + '\n    ', text, count=1, flags=re.S)
+            text = text.replace('<body>', '<body>\n' + customer_strip, 1)
     path.write_text(text)
 
 
@@ -466,13 +472,7 @@ def main():
         (BRIEFS / f"{slug}.md").write_text(md)
         (BRIEFS / f"{slug}.html").write_text(brief_html(md, title))
 
-        spec = f'''<div class="launch-spec" style="margin-top:20px;padding:18px 20px;background:linear-gradient(135deg,#f0fafb,#fff);border:1px solid rgba(0,180,197,.35);border-radius:12px;font-size:13px;line-height:1.6">
-      <strong style="display:block;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#00B4C5;margin-bottom:8px">CLYR Standard Offering</strong>
-      <strong>{strength}</strong> · {pkg}<br>
-      <span style="color:#6B7C8A">Pharmacy: {pharm}</span><br>
-      <a href="/preview/launch-kit/briefs/{slug}.html" style="color:#00B4C5;font-weight:600">Pharmacy marketing brief →</a>
-    </div>'''
-        patch_product_page(slug, spec, status)
+        patch_product_page(slug, status)
 
         kit_data.append({
             "slug": slug, "title": title, "vertical": vertical, "hub": hub,
@@ -558,7 +558,7 @@ main{{max-width:1200px;margin:0 auto;padding:0 20px 80px}}
 </style></head><body>
 <div class="top">
   <h1>Launch Kit · <em>52 products</em></h1>
-  <p>Every CLYR SKU with product page, pharmacy marketing brief, and industry-standard strength picked from your Olympia menu. Send the partner pack to negotiate wholesale.</p>
+  <p><strong>Internal only</strong> — pharmacy wholesale negotiation. Not linked from live product pages. Every SKU: product page + marketing brief + industry-standard strength picked from Olympia menu.</p>
   <div class="actions">
     <a class="btn btn-primary" href="/preview/launch-kit/PHARMACY-PARTNER-PACK.html">Open Partner Pack</a>
     <a class="btn btn-ghost" href="/preview/launch-kit/PHARMACY-PARTNER-PACK.md">Partner Pack (MD)</a>
