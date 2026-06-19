@@ -1,15 +1,36 @@
 # Niagen + Skin & Hair — Preview Branch Handoff
 
 **Branch:** `preview/niagen-skin-hair-jun2026`  
-**Status:** Planning + preview assets only. Not linked from live nav. `noindex` on preview pages.  
+**Status:** Live on `main` under `/preview/` as **Coming Soon**. Not linked from live nav. `noindex` on preview pages.  
 **Repo:** `extremesportlocks-netizen/clyr-marketing`
 
-## Preview URLs (after merge to main, or branch deploy)
+## Live preview URLs
 
 | Asset | Path |
 |-------|------|
+| Niagen + Skin & Hair coming soon | `/preview/niagen-skin-hair/` |
 | Antiparasitic hero v2 (dosing + real pill photos) | `/preview/antiparasitic-hero-v2.html` |
 | This handoff | `/preview/niagen-skin-hair/HANDOFF.md` |
+
+## Revert (if needed)
+
+Before deploy, `main` was tagged **`revert-point/before-coming-soon-jun2026`**.
+
+**Option A — revert the merge (safest, keeps history):**
+```bash
+git checkout main
+git revert -m 1 <merge-commit-sha>
+git push origin main
+```
+
+**Option B — reset to the tag (only if no other commits landed on main since):**
+```bash
+git checkout main
+git reset --hard revert-point/before-coming-soon-jun2026
+git push origin main --force-with-lease
+```
+
+The preview branch `preview/niagen-skin-hair-jun2026` stays on GitHub either way.
 
 ## Niagen (Daily Wellness)
 
