@@ -1791,12 +1791,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if(window.clyrTrack)clyrTrack('TreatmentSelected',{treatment:treatment});
   }
 
+  // Three-door GLP-1 pricing (June 2026). The plan `type` is sent verbatim as
+  // planType at checkout, so productType_planType resolves to the backend catalog
+  // SKU (e.g. tirzepatide_t1_monthly, semaglutide_t1_3month). Tirzepatide is
+  // dose-tiered (Tier 1 up to 3mL/7mg, Tier 2 at 4mL/9mg and up); semaglutide is flat.
   var planData = {
     tirzepatide: [
-      { type: 'monthly', name: 'Monthly', desc: 'Any dose, same price. Auto-refill, cancel anytime', price: '$320', period: '/mo', total: null }
+      { type: 't1_monthly', name: 'Tier 1 Monthly', desc: 'Standard dose, up to 3mL (7mg). Cancel anytime', price: '$249', period: '/mo', total: null },
+      { type: 't1_3month', name: 'Tier 1, 3-Month', desc: 'Standard dose, up to 3mL (7mg). Billed once', price: '$597', period: '', total: null },
+      { type: 't2_monthly', name: 'Tier 2 Monthly', desc: 'Higher dose, 4mL (9mg) and up. Cancel anytime', price: '$399', period: '/mo', total: null },
+      { type: 't2_3month', name: 'Tier 2, 3-Month', desc: 'Higher dose, 4mL (9mg) and up. Billed once', price: '$1,047', period: '', total: null }
     ],
     semaglutide: [
-      { type: 'monthly', name: 'Monthly', desc: 'Any dose, same price. Auto-refill, cancel anytime', price: '$225', period: '/mo', total: null }
+      { type: 't1_monthly', name: 'Monthly', desc: 'Any dose, one price. Cancel anytime', price: '$229', period: '/mo', total: null },
+      { type: 't1_3month', name: '3-Month', desc: 'Any dose, one price. Billed once', price: '$567', period: '', total: null }
     ]
   };
 
@@ -2252,15 +2260,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     input.addEventListener('change', validateStep);
   });
 
-  // PREFILL TREATMENT FROM ?product= URL PARAM
-  // Lets flagship pages (tirzepatide.html, semaglutide.html) deep-link straight into intake with selection made.
+  // PREFILL TREATMENT + PLAN FROM ?product= / ?plan= URL PARAMS
+  // Lets the flagship pages (tirzepatide.html, semaglutide.html) deep-link straight
+  // into intake with the treatment AND the exact tier/plan already selected. The
+  // plan value (t1_monthly, t1_3month, t2_monthly, t2_3month) is sent verbatim as
+  // planType, so the backend resolves productType_planType to the catalog SKU.
   try {
-    var preProduct = new URLSearchParams(window.location.search).get('product');
+    var _sp = new URLSearchParams(window.location.search);
+    var preProduct = _sp.get('product');
+    var prePlan = _sp.get('plan');
     if (preProduct === 'tirzepatide' || preProduct === 'semaglutide') {
       var card = document.querySelector('.treatment-card[data-treatment="' + preProduct + '"]');
       if (card) selectTreatment(card, preProduct);
+      if (prePlan) {
+        var planCard = document.querySelector('.plan-card[data-plan="' + prePlan + '"]');
+        if (planCard) selectPlan(planCard, prePlan);
+      }
     }
-  } catch(e) { /* no-op: param is optional */ }
+  } catch(e) { /* no-op: params are optional */ }
 
   updateUI();
 
