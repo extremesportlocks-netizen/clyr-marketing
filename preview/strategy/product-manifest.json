@@ -1,0 +1,378 @@
+{
+  "target": 50,
+  "generated": [
+    "testosterone-cypionate",
+    "testosterone-cream",
+    "testosterone-hypo-spray",
+    "enclomiphene",
+    "hcg",
+    "anastrozole",
+    "estradiol-patches",
+    "biest-progesterone-cream",
+    "progesterone-capsules",
+    "dhea-pregnenolone",
+    "estradiol-vaginal-cream",
+    "womens-testosterone-cream",
+    "trimix",
+    "tadalafil-apomorphine",
+    "oxytocin-nasal",
+    "tadalafil-troches",
+    "sildenafil-tadalafil-gummy",
+    "semaglutide-odt",
+    "tirzepatide-sublingual",
+    "metformin-er",
+    "liraglutide",
+    "nad-face-cream",
+    "tretinoin",
+    "estriol-ghk-cu-cream",
+    "hydroquinone-triple-cream",
+    "doxycycline-acne",
+    "bpc-157",
+    "tb-500",
+    "ghk-cu-injectable",
+    "pt141-strips",
+    "finasteride-oral",
+    "naltrexone-ldn"
+  ],
+  "preview_new": 32,
+  "existing": [
+    {
+      "slug": "clyr-tri-gel",
+      "status": "preview"
+    },
+    {
+      "slug": "foundayo",
+      "status": "live"
+    },
+    {
+      "slug": "glutathione",
+      "status": "live"
+    },
+    {
+      "slug": "hair-spray-women",
+      "status": "preview"
+    },
+    {
+      "slug": "ivermectin",
+      "status": "live"
+    },
+    {
+      "slug": "ivermectin-mebendazole",
+      "status": "live"
+    },
+    {
+      "slug": "lipo-mino",
+      "status": "live"
+    },
+    {
+      "slug": "micc",
+      "status": "live"
+    },
+    {
+      "slug": "minoxidil",
+      "status": "preview"
+    },
+    {
+      "slug": "nad",
+      "status": "live"
+    },
+    {
+      "slug": "niagen",
+      "status": "preview"
+    },
+    {
+      "slug": "pt141",
+      "status": "live"
+    },
+    {
+      "slug": "semaglutide",
+      "status": "live"
+    },
+    {
+      "slug": "sermorelin",
+      "status": "live"
+    },
+    {
+      "slug": "sild-tadal-oxy",
+      "status": "live"
+    },
+    {
+      "slug": "sildenafil-gummy",
+      "status": "live"
+    },
+    {
+      "slug": "tadalafil",
+      "status": "live"
+    },
+    {
+      "slug": "tirzepatide",
+      "status": "live"
+    },
+    {
+      "slug": "wegovy-tablets",
+      "status": "live"
+    },
+    {
+      "slug": "zepbound",
+      "status": "live"
+    }
+  ],
+  "products": [
+    {
+      "slug": "testosterone-cypionate",
+      "title": "Testosterone Cypionate",
+      "hub": "mens-hormone",
+      "category": "Men's Hormone \u00b7 TRT",
+      "pharmacy": "Testosterone Cypionate injectable",
+      "status": "preview"
+    },
+    {
+      "slug": "testosterone-cream",
+      "title": "Testosterone Cream",
+      "hub": "mens-hormone",
+      "category": "Men's Hormone \u00b7 TRT",
+      "pharmacy": "Testosterone 1% (10mg/gm) Cream - 30g",
+      "status": "preview"
+    },
+    {
+      "slug": "testosterone-hypo-spray",
+      "title": "Testosterone Hypo Spray",
+      "hub": "mens-hormone",
+      "category": "Men's Hormone \u00b7 TRT",
+      "pharmacy": "Testosterone Hypo Spray 12\u201314ml",
+      "status": "preview"
+    },
+    {
+      "slug": "enclomiphene",
+      "title": "Enclomiphene",
+      "hub": "mens-hormone",
+      "category": "Men's Hormone \u00b7 Fertility",
+      "pharmacy": "Enclomiphene",
+      "status": "preview"
+    },
+    {
+      "slug": "hcg",
+      "title": "HCG Injection",
+      "hub": "mens-hormone",
+      "category": "Men's Hormone \u00b7 Adjunct",
+      "pharmacy": "Chorionic Gonadotropin - HCG",
+      "status": "preview"
+    },
+    {
+      "slug": "anastrozole",
+      "title": "Anastrozole",
+      "hub": "mens-hormone",
+      "category": "Men's Hormone \u00b7 Support",
+      "pharmacy": "Anastrazole",
+      "status": "preview"
+    },
+    {
+      "slug": "estradiol-patches",
+      "title": "Estradiol Patches",
+      "hub": "womens-hormone",
+      "category": "Women's Hormone \u00b7 HRT",
+      "pharmacy": "Estradiol Patches",
+      "status": "preview"
+    },
+    {
+      "slug": "biest-progesterone-cream",
+      "title": "Biest + Progesterone Cream",
+      "hub": "womens-hormone",
+      "category": "Women's Hormone \u00b7 HRT",
+      "pharmacy": "Biestrogen / Progesterone cream",
+      "status": "preview"
+    },
+    {
+      "slug": "progesterone-capsules",
+      "title": "Progesterone Capsules",
+      "hub": "womens-hormone",
+      "category": "Women's Hormone \u00b7 HRT",
+      "pharmacy": "Progesterone Capsule",
+      "status": "preview"
+    },
+    {
+      "slug": "dhea-pregnenolone",
+      "title": "DHEA + Pregnenolone",
+      "hub": "womens-hormone",
+      "category": "Women's Hormone \u00b7 Longevity",
+      "pharmacy": "DHEA/Pregnenolone",
+      "status": "preview"
+    },
+    {
+      "slug": "estradiol-vaginal-cream",
+      "title": "Estradiol Vaginal Cream",
+      "hub": "womens-hormone",
+      "category": "Women's Hormone \u00b7 HRT",
+      "pharmacy": "Estradiol Vaginal Topical Cream",
+      "status": "preview"
+    },
+    {
+      "slug": "womens-testosterone-cream",
+      "title": "Women's Testosterone Cream",
+      "hub": "womens-hormone",
+      "category": "Women's Hormone \u00b7 Libido",
+      "pharmacy": "Women Testosterone cream",
+      "status": "preview"
+    },
+    {
+      "slug": "trimix",
+      "title": "Trimix Injection",
+      "hub": "sexual-health",
+      "category": "Sexual Health \u00b7 ED",
+      "pharmacy": "Trimix T105/T106",
+      "status": "preview"
+    },
+    {
+      "slug": "tadalafil-apomorphine",
+      "title": "Tadalafil + Apomorphine",
+      "hub": "sexual-health",
+      "category": "Sexual Health \u00b7 ED",
+      "pharmacy": "Tadalafil+Apomorphine Troches",
+      "status": "preview"
+    },
+    {
+      "slug": "oxytocin-nasal",
+      "title": "Oxytocin Nasal Spray",
+      "hub": "sexual-health",
+      "category": "Sexual Health \u00b7 Bonding",
+      "pharmacy": "Oxytocin Nasal Spray",
+      "status": "preview"
+    },
+    {
+      "slug": "tadalafil-troches",
+      "title": "Tadalafil Troches",
+      "hub": "sexual-health",
+      "category": "Sexual Health \u00b7 ED",
+      "pharmacy": "Tadalafil 22mg Troches x 8",
+      "status": "preview"
+    },
+    {
+      "slug": "sildenafil-tadalafil-gummy",
+      "title": "Sildenafil + Tadalafil Gummy",
+      "hub": "sexual-health",
+      "category": "Sexual Health \u00b7 ED",
+      "pharmacy": "Sildenafil 40mg / Tadalafil 10mg Gummy x 8",
+      "status": "preview"
+    },
+    {
+      "slug": "semaglutide-odt",
+      "title": "Semaglutide ODT + Ondansetron",
+      "hub": "weight-loss",
+      "category": "Weight Loss \u00b7 Oral",
+      "pharmacy": "Semaglutide / Ondansetron ODT",
+      "status": "preview"
+    },
+    {
+      "slug": "tirzepatide-sublingual",
+      "title": "Tirzepatide Sublingual Drops",
+      "hub": "weight-loss",
+      "category": "Weight Loss \u00b7 Oral",
+      "pharmacy": "Tirzepatide sublingual drops",
+      "status": "preview"
+    },
+    {
+      "slug": "metformin-er",
+      "title": "Metformin ER",
+      "hub": "weight-loss",
+      "category": "Weight Loss \u00b7 Metabolic",
+      "pharmacy": "Metformin ER",
+      "status": "preview"
+    },
+    {
+      "slug": "liraglutide",
+      "title": "Liraglutide",
+      "hub": "weight-loss",
+      "category": "Weight Loss \u00b7 GLP-1",
+      "pharmacy": "Liraglutide Olympia",
+      "status": "preview"
+    },
+    {
+      "slug": "nad-face-cream",
+      "title": "NAD+ Face Cream",
+      "hub": "skin-hair",
+      "category": "Skin & Hair \u00b7 Anti-Aging",
+      "pharmacy": "NAD+ Pump Face Cream",
+      "status": "preview"
+    },
+    {
+      "slug": "tretinoin",
+      "title": "Tretinoin Cream",
+      "hub": "skin-hair",
+      "category": "Skin & Hair \u00b7 Anti-Aging",
+      "pharmacy": "Tretinoin cream",
+      "status": "preview"
+    },
+    {
+      "slug": "estriol-ghk-cu-cream",
+      "title": "Estriol + GHK-Cu Cream",
+      "hub": "skin-hair",
+      "category": "Skin & Hair \u00b7 Anti-Aging",
+      "pharmacy": "Estriol /Niacinamide/GHK-Cu /Hyaluronic Acid Cream",
+      "status": "preview"
+    },
+    {
+      "slug": "hydroquinone-triple-cream",
+      "title": "Hydroquinone Triple Cream",
+      "hub": "skin-hair",
+      "category": "Skin & Hair \u00b7 Pigmentation",
+      "pharmacy": "Hydroquionone/Tretinoin/Fluocinolone Acetonide",
+      "status": "preview"
+    },
+    {
+      "slug": "doxycycline-acne",
+      "title": "Doxycycline (Acne)",
+      "hub": "skin-hair",
+      "category": "Skin & Hair \u00b7 Acne",
+      "pharmacy": "Doxycycline Capsules",
+      "status": "preview"
+    },
+    {
+      "slug": "bpc-157",
+      "title": "BPC-157",
+      "hub": "peptides",
+      "category": "Daily Wellness \u00b7 Peptides",
+      "pharmacy": "BPC-157 injection",
+      "status": "preview"
+    },
+    {
+      "slug": "tb-500",
+      "title": "TB-500",
+      "hub": "peptides",
+      "category": "Daily Wellness \u00b7 Peptides",
+      "pharmacy": "TB-500 / Thymosin Beta-4",
+      "status": "preview"
+    },
+    {
+      "slug": "ghk-cu-injectable",
+      "title": "GHK-Cu Injectable",
+      "hub": "peptides",
+      "category": "Daily Wellness \u00b7 Peptides",
+      "pharmacy": "GHK-Cu injectable",
+      "status": "preview"
+    },
+    {
+      "slug": "pt141-strips",
+      "title": "PT-141 Strips",
+      "hub": "sexual-health",
+      "category": "Sexual Health \u00b7 Libido",
+      "pharmacy": "PT141 Strip",
+      "status": "preview"
+    },
+    {
+      "slug": "finasteride-oral",
+      "title": "Finasteride Oral",
+      "hub": "skin-hair",
+      "category": "Skin & Hair \u00b7 Hair",
+      "pharmacy": "Finasteride",
+      "status": "preview"
+    },
+    {
+      "slug": "naltrexone-ldn",
+      "title": "Low-Dose Naltrexone",
+      "hub": "recovery",
+      "category": "Recovery \u00b7 Wellness",
+      "pharmacy": "Naltrexone Capsule",
+      "status": "preview"
+    }
+  ]
+}

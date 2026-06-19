@@ -687,6 +687,31 @@ function init() {
     return;
   }
 
+  // Preview catalog products (50-product roadmap) — generic waitlist until Stripe/MDI live
+  var PREVIEW_WAITLIST = [
+    'anastrozole','biest_progesterone_cream','bpc_157','clyr_tri_gel','dhea_pregnenolone',
+    'doxycycline_acne','enclomiphene','estradiol_patches','estradiol_vaginal_cream',
+    'estriol_ghk_cu_cream','finasteride_oral','ghk_cu_injectable','hair_spray_women','hcg',
+    'hydroquinone_triple_cream','liraglutide','metformin_er','minoxidil','nad_face_cream',
+    'naltrexone_ldn','niagen','oxytocin_nasal','progesterone_capsules','pt141_strips',
+    'semaglutide_odt','sildenafil_tadalafil_gummy','tadalafil_apomorphine','tadalafil_troches',
+    'tb_500','testosterone_cream','testosterone_cypionate','testosterone_hypo_spray',
+    'tirzepatide_sublingual','tretinoin','trimix','womens_testosterone_cream'
+  ];
+  if (!CATALOG[prod] && PREVIEW_WAITLIST.indexOf(prod) !== -1) {
+    state.productKey = prod;
+    document.getElementById('csLabel').textContent = 'Preview Launch';
+    document.getElementById('csTitle').innerHTML = 'This treatment is in <span class="serif">preview.</span>';
+    document.getElementById('csSub').textContent = 'Join the waitlist — we\'ll notify you when provider consultations and pricing go live for this SKU.';
+    document.querySelectorAll('main.intake .step').forEach(function(s){ s.style.display = 'none'; s.classList.remove('active'); });
+    document.getElementById('comingSoonScreen').style.display = 'block';
+    renderWaitlistScreening();
+    csShow('csScreen');
+    var pbar2 = document.querySelector('.progress-bar, .progress');
+    if (pbar2) pbar2.style.display = 'none';
+    return;
+  }
+
   if (!CATALOG[prod]) {
     // Default to Sermorelin if unknown (cleanest fallback that still works)
     prod = 'sermorelin';

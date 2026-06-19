@@ -1,6 +1,6 @@
 # CLYR Health — CEO Playbook (June 2026)
 **Source:** `Product List (2).xlsx` — 253 pharmacy SKUs across 9 verticals  
-**Status:** Wave 1 build — Skin & Hair + Niagen (preview until wholesale pricing locked)
+**Status:** 52-product index live (16 live · 36 preview) — target 50 by EOY 2026 ✅
 
 ---
 
@@ -148,7 +148,9 @@ You already have compounded + brand. Pharmacy adds:
 5. Nav + `wellness.html` / `daily-wellness.html` cards
 
 ### Phase C — Vertical hubs
-- `mens-hormone.html`, `womens-hormone.html`, expand `sexual-health.html`
+- [x] `mens-hormone.html`, `womens-hormone.html`, `peptides.html`, `recovery.html`
+- [x] `/preview/catalog/` — 52-product roadmap index
+- [ ] Megamenu sync site-wide (after Orlando approves)
 
 ---
 
@@ -165,6 +167,11 @@ You already have compounded + brand. Pharmacy adds:
 | Hair Regrowth Spray (Women) | `/hair-spray-women.html` |
 | CLYR Tri Gel | `/clyr-tri-gel.html` |
 | Wave 1 preview index | `/preview/niagen-skin-hair/` |
+| **50-product catalog index** | `/preview/catalog/` |
+| **50-product roadmap** | `/preview/strategy/CLYR-50-PRODUCT-ROADMAP.md` |
+| Men's Hormone hub | `/mens-hormone.html` |
+| Women's Hormone hub | `/womens-hormone.html` |
+| Peptides hub | `/peptides.html` |
 
 ---
 
