@@ -9,5 +9,6 @@ Disallow: /preview/catalog/
 Disallow: /preview/asset-review/
 Disallow: /preview/products/
 Disallow: /preview/hubs/
+Disallow: /lp/
 
 Sitemap: https://www.clyr.health/sitemap.xml
