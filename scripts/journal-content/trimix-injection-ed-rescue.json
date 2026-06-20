@@ -1,0 +1,23 @@
+{
+  "slug": "trimix-injection-ed-rescue",
+  "title": "Trimix for Erectile Dysfunction: When PDE5 Inhibitors Are Not Enough",
+  "titleHtml": "Trimix for ED: <span class=\"serif\">When PDE5 Inhibitors Fail.</span>",
+  "category": "Sexual Health",
+  "categoryKey": "research",
+  "deck": "Intracavernosal alprostadil, papaverine, and phentolamine produce reliable erections on demand — mechanism, T105 starting strengths, priapism rules, and who qualifies.",
+  "date": "June 20, 2026",
+  "readTime": "10 min read",
+  "metaDescription": "Trimix injection for ED: papaverine phentolamine alprostadil mechanism, T105 dosing, priapism protocol, vs oral PDE5 inhibitors.",
+  "bodyHtml": "<p>Oral PDE5 inhibitors (sildenafil, tadalafil) resolve erectile dysfunction for most men. Trimix — a compounded intracavernosal injection combining papaverine, phentolamine, and alprostadil (prostaglandin E1) — remains the rescue therapy for moderate to severe ED when pills fail, nerve-sparing surgery recovery requires rehabilitative erections, or cardiovascular contraindications limit oral options.</p>\n\n<h2>How trimix works</h2>\n\n<p><strong>Papaverine</strong> is a nonspecific phosphodiesterase inhibitor that relaxes smooth muscle in corpus cavernosum trabeculae. <strong>Phentolamine</strong> is an alpha-adrenergic antagonist that blocks sympathetic tone maintaining flaccidity. <strong>Alprostadil</strong> activates prostaglandin receptors, increasing cAMP and direct vasodilation. Together they produce tumescence within 5 to 15 minutes independent of sexual stimulation pathways, though stimulation still matters for rigidity perception.</p>\n\n<h2>T105 and titration</h2>\n\n<p>Standard starting trimix (T105) contains per 0.1 mL: papaverine 30 mg, phentolamine 1 mg, alprostadil 10 mcg. Patients begin at 0.05 to 0.1 mL and titrate in clinic or supervised home protocol to erection lasting 30 to 60 minutes without pain. T106 (20 mcg PGE1) is reserved for non-responders.</p>\n\n<h2>Priapism: the critical safety rule</h2>\n\n<p>Erections lasting beyond 4 hours constitute priapism — a urologic emergency. Patients must have phenylephrine rescue instructions and know when to go to the ER. Dose escalation should be slow and documented.</p>\n\n<h2>Who uses trimix</h2>\n\n<ul>\n<li>PDE5 non-responders or partial responders</li>\n<li>Post-prostatectomy penile rehabilitation</li>\n<li>Diabetic neuropathy with severe vascular compromise where pills are insufficient</li>\n<li>Men wanting on-demand reliability without timing oral medication</li>\n</ul>\n\n<p>Compounded trimix is not FDA-approved as a combination product but components are established in urologic practice. CLYR Health offers trimix as a preview sexual health SKU with mandatory priapism education.</p>",
+  "sources": [
+    {"label": "Montorsi F, et al. Summary of evidence on intracavernosal injection for ED. <em>Eur Urol</em>. 2004.", "url": "https://pubmed.ncbi.nlm.nih.gov/15164722/"},
+    {"label": "AUA Guideline on erectile dysfunction. 2018.", "url": "https://pubmed.ncbi.nlm.nih.gov/29562364/"},
+    {"label": "Linet OI, Ogrinc FG. Efficacy and safety of intracavernosal alprostadil in men with ED. <em>J Urol</em>. 1996.", "url": "https://pubmed.ncbi.nlm.nih.gov/8632546/"},
+    {"label": "American Urological Association. Priapism guideline.", "url": "https://www.auanet.org/guidelines-and-quality/guidelines/priapism"}
+  ],
+  "related": [
+    {"slug": "testosterone-cypionate-trt-explained", "title": "Testosterone Cypionate for TRT", "category": "Men's Hormone"},
+    {"slug": "longevity-medicine-foundations", "title": "Longevity Medicine Foundations", "category": "Longevity"},
+    {"slug": "compounded-hair-regrowth-quad-stack-men", "title": "Men's Hair Regrowth Stack", "category": "Skin & Hair"}
+  ]
+}

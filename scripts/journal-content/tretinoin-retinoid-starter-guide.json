@@ -1,0 +1,23 @@
+{
+  "slug": "tretinoin-retinoid-starter-guide",
+  "title": "Tretinoin 0.025%: The Gold-Standard Retinoid for Skin Renewal",
+  "titleHtml": "Tretinoin 0.025%: <span class=\"serif\">The Gold-Standard Retinoid.</span>",
+  "category": "Skin & Hair",
+  "categoryKey": "research",
+  "deck": "Prescription all-trans retinoic acid remains the reference against which every anti-aging and acne topical is measured — initiation protocol, retinization timeline, and pairing with niacinamide or hydroquinone.",
+  "date": "June 20, 2026",
+  "readTime": "9 min read",
+  "metaDescription": "Tretinoin 0.025% cream guide: retinoid mechanism, 8-week retinization, acne and photoaging evidence, moisturizer buffering, pregnancy warnings.",
+  "bodyHtml": "<p>Tretinoin is all-trans retinoic acid — the biologically active form of vitamin A that binds retinoic acid receptors and reprograms keratinocyte gene expression. Compounded and generic 0.025% creams are the standard starting strength for acne and photoaging, titrating later to 0.05% or 0.1% as tolerance builds.</p>\n\n<h2>What tretinoin does</h2>\n\n<p>Increases epidermal turnover, reduces comedone formation, disperses melanin granules, and stimulates collagen synthesis in the dermis over months. FDA-approved indications include acne vulgaris and photodamage (Renova). Effects are evidence-backed across decades of trials; no cosmeceutical retinol converts efficiently enough to match prescription tretinoin's potency at equivalent tolerability.</p>\n\n<h2>Retinization: weeks 1 to 8</h2>\n\n<p>Peeling, erythema, and purging (acne flare from accelerated turnover) are expected. Apply pea-sized amount to dry skin nightly; buffer with moisturizer before or after if irritation is intense. Sunscreen every morning is mandatory. Most patients acclimate by week 6.</p>\n\n<h2>0.025% vs higher strengths</h2>\n\n<p>0.025% delivers meaningful collagen and acne benefits with lower irritation than 0.1%. Dermatologists start low and escalate. Compounded 45g tubes align with 90-day telehealth refill cycles.</p>\n\n<h2>Contraindications</h2>\n\n<p>Pregnancy and breastfeeding — absolute avoidance. Do not combine with benzoyl peroxide in same application (deactivates tretinoin unless formulated in stable combination products like branded Epiduo).</p>\n\n<p>CLYR Health offers tretinoin 0.025% cream as a preview skin SKU for provider-supervised acne and anti-aging protocols.</p>",
+  "sources": [
+    {"label": "Kang S, et al. Retinoids in the treatment of photoaging. <em>J Am Acad Dermatol</em>. 1997.", "url": "https://pubmed.ncbi.nlm.nih.gov/9092798/"},
+    {"label": "Leyden J, et al. Topical tretinoin for acne vulgaris. <em>Arch Dermatol</em>. 1987.", "url": "https://pubmed.ncbi.nlm.nih.gov/2956295/"},
+    {"label": "FDA. Tretinoin cream prescribing information.", "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2002/020380s004lbl.pdf"},
+    {"label": "Zaenglein AL, et al. Acne guidelines. <em>J Am Acad Dermatol</em>. 2016.", "url": "https://pubmed.ncbi.nlm.nih.gov/26897386/"}
+  ],
+  "related": [
+    {"slug": "clyr-tri-gel-triple-therapy-acne", "title": "Triple-Combination Acne Therapy", "category": "Skin & Hair"},
+    {"slug": "nad-face-cream-topical-longevity", "title": "NAD+ Face Cream", "category": "NAD+"},
+    {"slug": "womens-hair-regrowth-topical-stack", "title": "Women's Hair Regrowth Stack", "category": "Skin & Hair"}
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "slug": "estradiol-patches-hrt-explained",
+  "title": "Estradiol Patches for Menopause: Transdermal HRT Done Right",
+  "titleHtml": "Estradiol Patches for Menopause: <span class=\"serif\">Transdermal HRT.</span>",
+  "category": "Women's Hormone",
+  "categoryKey": "research",
+  "deck": "Transdermal estradiol bypasses first-pass liver metabolism, delivering steady hormone levels with favorable thrombotic risk profile compared to oral estrogen — the foundation of modern menopausal hormone therapy.",
+  "date": "June 20, 2026",
+  "readTime": "9 min read",
+  "metaDescription": "Estradiol patches 0.05mg/day for menopause: transdermal HRT benefits, VTE risk vs oral, dosing, progesterone pairing, and monitoring.",
+  "bodyHtml": "<p>Menopausal hormone therapy (MHT) replaces estrogen (and progestogen when the uterus is intact) to treat vasomotor symptoms, prevent bone loss, and improve quality of life. Estradiol transdermal patches at 0.05 mg per day are among the most prescribed maintenance doses in US women's health, delivering bioidentical 17-beta-estradiol through the skin into systemic circulation.</p>\n\n<h2>Why transdermal over oral</h2>\n\n<p>Oral estrogen undergoes hepatic first-pass metabolism, increasing hepatic synthesis of clotting factors and C-reactive protein. Epidemiologic data and the ESTHER study cohort suggest transdermal estradiol does not increase venous thromboembolism risk to the same degree as oral routes, making patches preferred in women with VTE risk factors, obesity, or hypertriglyceridemia.</p>\n\n<h2>Symptom relief and timing</h2>\n\n<p>Hot flashes and night sweats often improve within 1 to 2 weeks of starting patches. Genitourinary symptoms may take longer; local vaginal estrogen can be added without necessarily increasing systemic dose. The 2022 NAMS position statement supports MHT for symptomatic women under 60 or within 10 years of menopause onset when benefits outweigh risks.</p>\n\n<h2>Progesterone requirement</h2>\n\n<p>Women with a uterus need progestogen to prevent endometrial hyperplasia from unopposed estrogen. Micronized progesterone 100 mg nightly or compounded biest-progesterone creams are common pairings. Patch users without a uterus (hysterectomy) may use estrogen alone.</p>\n\n<h2>Monitoring</h2>\n\n<p>Follow-up at 6 to 12 weeks then annually: blood pressure, symptom review, mammography per guidelines, and reassessment of cardiovascular risk. Serum estradiol levels are not routinely required for patch dosing when symptoms are controlled.</p>\n\n<p>CLYR Health offers estradiol patches as a women's hormone preview SKU for patients whose providers determine transdermal MHT is appropriate.</p>",
+  "sources": [
+    {"label": "The 2022 NAMS Position Statement on hormone therapy. <em>Menopause</em>. 2022.", "url": "https://pubmed.ncbi.nlm.nih.gov/35797481/"},
+    {"label": "Canonico M, et al. Postmenopausal hormone therapy and VTE: transdermal vs oral. <em>Circulation</em>. 2007.", "url": "https://pubmed.ncbi.nlm.nih.gov/17606849/"},
+    {"label": "FDA. Estradiol transdermal system prescribing information.", "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2003/019922s020lbl.pdf"},
+    {"label": "WHI Steering Committee. Hormone therapy and health outcomes. <em>JAMA</em>. 2013.", "url": "https://pubmed.ncbi.nlm.nih.gov/24084921/"}
+  ],
+  "related": [
+    {"slug": "longevity-medicine-foundations", "title": "Longevity Medicine Foundations", "category": "Longevity"},
+    {"slug": "womens-hair-regrowth-topical-stack", "title": "Women's Hair Regrowth Stack", "category": "Skin & Hair"},
+    {"slug": "testosterone-cypionate-trt-explained", "title": "Testosterone Cypionate for TRT", "category": "Men's Hormone"}
+  ]
+}

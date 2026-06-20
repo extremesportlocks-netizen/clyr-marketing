@@ -1,0 +1,23 @@
+{
+  "slug": "finasteride-oral-hair-loss-dht",
+  "title": "Finasteride 1mg for Hair Loss: DHT Blockade Explained",
+  "titleHtml": "Finasteride 1mg for Hair Loss: <span class=\"serif\">DHT Blockade.</span>",
+  "category": "Skin & Hair",
+  "categoryKey": "research",
+  "deck": "The only FDA-approved oral dose for androgenetic alopecia in men lowers scalp DHT by roughly 60% — efficacy data, side-effect context, and how it pairs with topical minoxidil.",
+  "date": "June 20, 2026",
+  "readTime": "9 min read",
+  "metaDescription": "Finasteride 1mg for male pattern hair loss: 5-alpha-reductase mechanism, PROPECIA trial data, side effects, fertility, and combination with minoxidil.",
+  "bodyHtml": "<p>Finasteride inhibits 5-alpha-reductase type II, the enzyme converting testosterone to dihydrotestosterone (DHT) in scalp follicles and prostate. At 1 mg daily — the Propecia dose — it reduces serum DHT approximately 70% and scalp tissue DHT about 60%, slowing miniaturization in androgenetic alopecia.</p>\n\n<h2>Clinical evidence</h2>\n\n<p>Two-year placebo-controlled trials in men aged 18 to 41 demonstrated increased hair counts, improved patient and investigator ratings, and slowed hair loss progression. Five-year extensions confirmed maintained benefit while on drug. Finasteride is FDA-approved for male pattern hair loss; 5 mg (Proscar) is for benign prostatic hyperplasia and must not be split casually due to coating inconsistencies in some generics.</p>\n\n<h2>Side effects in context</h2>\n\n<p>Phase 3 trials reported sexual adverse events (decreased libido, erectile dysfunction, ejaculation disorder) in 2 to 4% versus 2% placebo — a small but real differential that drives interest in topical finasteride alternatives. Post-marketing reports of persistent symptoms exist but epidemiologic incidence is debated. Men attempting conception should avoid finasteride due to potential semen drug exposure and theoretical fetal risk.</p>\n\n<h2>Combination with minoxidil</h2>\n\n<p>Oral finasteride plus topical minoxidil is standard combination dermatology for men who want maximum medical therapy. Mechanisms are complementary: DHT blockade plus growth-phase extension. Compounded hair sprays that include topical finasteride aim for similar DHT suppression with lower systemic exposure — covered in our <a href=\"/journal/compounded-hair-regrowth-quad-stack-men/\">men's quad-stack article</a>.</p>\n\n<p>CLYR Health offers finasteride 1mg oral capsules as a preview SKU for men whose providers determine systemic DHT blockade is appropriate.</p>",
+  "sources": [
+    {"label": "Kaufman KD, et al. Finasteride in men with androgenetic alopecia. <em>J Am Acad Dermatol</em>. 1998.", "url": "https://pubmed.ncbi.nlm.nih.gov/9777765/"},
+    {"label": "McClellan KJ, Markham A. Finasteride: review of use in hair loss. <em>Drugs</em>. 1999.", "url": "https://pubmed.ncbi.nlm.nih.gov/10525322/"},
+    {"label": "FDA. Propecia (finasteride 1mg) prescribing information.", "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/1997/020788lbl.pdf"},
+    {"label": "Shin JW, et al. Minoxidil meta-analysis. <em>J Am Acad Dermatol</em>. 2019.", "url": "https://pubmed.ncbi.nlm.nih.gov/31002945/"}
+  ],
+  "related": [
+    {"slug": "compounded-hair-regrowth-quad-stack-men", "title": "Men's Hair Regrowth Quad Stack", "category": "Skin & Hair"},
+    {"slug": "womens-hair-regrowth-topical-stack", "title": "Women's Hair Regrowth Stack", "category": "Skin & Hair"},
+    {"slug": "testosterone-cypionate-trt-explained", "title": "Testosterone Cypionate for TRT", "category": "Men's Hormone"}
+  ]
+}
