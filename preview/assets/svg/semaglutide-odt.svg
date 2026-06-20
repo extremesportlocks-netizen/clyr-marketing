@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 480" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgb(245,255,252)"/>
+      <stop offset="100%" stop-color="rgb(180,235,230)"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="45%" stop-color="#e8f7f8" stop-opacity="0.78"/>
+      <stop offset="100%" stop-color="#b8e8ec" stop-opacity="0.55"/>
+    </linearGradient>
+    <linearGradient id="chrome" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f4f7f8"/>
+      <stop offset="50%" stop-color="#c5d0d6"/>
+      <stop offset="100%" stop-color="#8fa3ad"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="14" stdDeviation="14" flood-color="#0d1b2e" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+  <rect width="400" height="480" fill="url(#bg)"/>
+  <g filter="url(#shadow)">
+    <rect x="155" y="50" width="90" height="28" rx="8" fill="url(#chrome)" stroke="#9eb4be" stroke-width="1.2"/>
+    <path d="M142 78 h116 c10 0 18 8 18 18 v250 c0 28 -24 50 -54 50 h-76 c-30 0 -54 -22 -54 -50 V96 c0 -10 8 -18 18 -18z" fill="url(#glass)" stroke="#9fd9de" stroke-width="2"/>
+    <rect x="168" y="200" width="64" height="64" rx="10" fill="#00B4C5" fill-opacity="0.2" stroke="#00B4C5" stroke-width="1"/>
+    <text x="200" y="238" text-anchor="middle" font-family="DM Sans, Arial" font-size="10" font-weight="700" fill="#0d1b2e">ODT</text>
+    
+    <rect x="155" y="120" width="90" height="88" rx="8" fill="#ffffff" fill-opacity="0.85" stroke="#00B4C5" stroke-width="1.2"/>
+    <text x="200" y="148" text-anchor="middle" font-family="DM Sans, Arial, sans-serif" font-size="11" font-weight="700" fill="#007a8b">CLYR</text>
+    <text x="200" y="168" text-anchor="middle" font-family="DM Sans, Arial, sans-serif" font-size="13" font-weight="800" fill="#0d1b2e">Semaglutide ODT</text>
+    <text x="200" y="184" text-anchor="middle" font-family="DM Sans, Arial, sans-serif" font-size="8" font-weight="600" fill="#6b7c8a">Oral GLP-1</text>
+    <text x="200" y="198" text-anchor="middle" font-family="DM Sans, Arial, sans-serif" font-size="7.5" font-weight="600" fill="#6b7c8a">4 mg + ondansetron</text></g>
+</svg>

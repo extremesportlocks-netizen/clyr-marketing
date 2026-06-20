@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 480" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgb(240,252,250)"/>
+      <stop offset="100%" stop-color="rgb(190,235,230)"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="45%" stop-color="#e8f7f8" stop-opacity="0.78"/>
+      <stop offset="100%" stop-color="#b8e8ec" stop-opacity="0.55"/>
+    </linearGradient>
+    <linearGradient id="chrome" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f4f7f8"/>
+      <stop offset="50%" stop-color="#c5d0d6"/>
+      <stop offset="100%" stop-color="#8fa3ad"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="14" stdDeviation="14" flood-color="#0d1b2e" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+  <rect width="400" height="480" fill="url(#bg)"/>
+  <g filter="url(#shadow)">
+    <rect x="175" y="18" width="50" height="70" rx="8" fill="url(#chrome)" stroke="#9eb4be" stroke-width="1.5"/>
+    <rect x="188" y="4" width="24" height="20" rx="5" fill="url(#chrome)" stroke="#9eb4be" stroke-width="1.2"/>
+    <ellipse cx="200" cy="88" rx="28" ry="6" fill="#dfe9ec"/>
+    <path d="M138 92 h124 c10 0 18 8 18 18 v220 c0 26 -22 46 -50 46 h-60 c-28 0 -50 -20 -50 -46 V110 c0 -10 8 -18 18 -18z" fill="url(#glass)" stroke="#9fd9de" stroke-width="2"/>
+    <path d="M150 130 h100 v170 c0 16 -14 28 -32 28 h-36 c-18 0 -32 -12 -32 -28 V130z" fill="#00B4C5" fill-opacity="0.1"/>
+    <path d="M156 108 v250" stroke="#ffffff" stroke-width="5" stroke-linecap="round" opacity="0.5"/>
+    
+    <rect x="155" y="240" width="90" height="88" rx="8" fill="#ffffff" fill-opacity="0.85" stroke="#00B4C5" stroke-width="1.2"/>
+    <text x="200" y="268" text-anchor="middle" font-family="DM Sans, Arial, sans-serif" font-size="11" font-weight="700" fill="#007a8b">CLYR</text>
+    <text x="200" y="288" text-anchor="middle" font-family="DM Sans, Arial, sans-serif" font-size="13" font-weight="800" fill="#0d1b2e">Hair Regrowth</text>
+    <text x="200" y="304" text-anchor="middle" font-family="DM Sans, Arial, sans-serif" font-size="8" font-weight="600" fill="#6b7c8a">Men's 7% Quad</text>
+    <text x="200" y="318" text-anchor="middle" font-family="DM Sans, Arial, sans-serif" font-size="7.5" font-weight="600" fill="#6b7c8a">60 ml spray</text></g>
+</svg>

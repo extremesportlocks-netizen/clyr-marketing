@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 480" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgb(245,255,252)"/>
+      <stop offset="100%" stop-color="rgb(180,235,230)"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="45%" stop-color="#e8f7f8" stop-opacity="0.78"/>
+      <stop offset="100%" stop-color="#b8e8ec" stop-opacity="0.55"/>
+    </linearGradient>
+    <linearGradient id="chrome" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f4f7f8"/>
+      <stop offset="50%" stop-color="#c5d0d6"/>
+      <stop offset="100%" stop-color="#8fa3ad"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="14" stdDeviation="14" flood-color="#0d1b2e" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+  <rect width="400" height="480" fill="url(#bg)"/>
+  <g filter="url(#shadow)">
+    <rect x="188" y="20" width="24" height="55" rx="6" fill="url(#chrome)" stroke="#9eb4be" stroke-width="1.2"/>
+    <ellipse cx="200" cy="78" rx="18" ry="6" fill="#9eb4be"/>
+    <path d="M148 84 h104 c8 0 14 6 14 14 v260 c0 26 -22 46 -50 46 h-32 c-28 0 -50 -20 -50 -46 V98 c0 -8 6 -14 14 -14z" fill="url(#glass)" stroke="#9fd9de" stroke-width="2"/>
+    <path d="M160 130 h80 v180" stroke="#00B4C5" stroke-width="2" fill="#00B4C5" fill-opacity="0.15"/>
+    
+    <rect x="155" y="230" width="90" height="88" rx="8" fill="#ffffff" fill-opacity="0.85" stroke="#00B4C5" stroke-width="1.2"/>
+    <text x="200" y="258" text-anchor="middle" font-family="DM Sans, Arial, sans-serif" font-size="11" font-weight="700" fill="#007a8b">CLYR</text>
+    <text x="200" y="278" text-anchor="middle" font-family="DM Sans, Arial, sans-serif" font-size="13" font-weight="800" fill="#0d1b2e">Tirzepatide SL</text>
+    <text x="200" y="294" text-anchor="middle" font-family="DM Sans, Arial, sans-serif" font-size="8" font-weight="600" fill="#6b7c8a">Sublingual GLP-1</text>
+    <text x="200" y="308" text-anchor="middle" font-family="DM Sans, Arial, sans-serif" font-size="7.5" font-weight="600" fill="#6b7c8a">Dropper bottle</text></g>
+</svg>
