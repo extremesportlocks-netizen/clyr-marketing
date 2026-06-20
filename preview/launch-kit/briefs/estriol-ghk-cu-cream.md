@@ -18,7 +18,7 @@
 | **Pharmacy dispense name** | Estriol /Niacinamide/GHK-Cu /Hyaluronic Acid Cream |
 | **Standard strength (CLYR pick)** | Compounded anti-aging |
 | **Package** | 30g |
-| **Page (live/preview)** | [www.clyr.health/estriol-ghk-cu-cream.html](https://www.clyr.health/estriol-ghk-cu-cream.html) |
+| **Page (live/preview)** | [www.clyr.health/preview/products/estriol-ghk-cu-cream.html](https://www.clyr.health/preview/products/estriol-ghk-cu-cream.html) |
 | **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/estriol-ghk-cu-cream.html) |
 
 > **Strength selection note:** Single industry-standard strength selected from pharmacy menu.

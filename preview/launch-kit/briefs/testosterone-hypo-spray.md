@@ -18,7 +18,7 @@
 | **Pharmacy dispense name** | Testosterone 20mg/0.2ml Hypo Spray - 14ml |
 | **Standard strength (CLYR pick)** | 20mg/0.2ml |
 | **Package** | 14ml spray |
-| **Page (live/preview)** | [www.clyr.health/testosterone-hypo-spray.html](https://www.clyr.health/testosterone-hypo-spray.html) |
+| **Page (live/preview)** | [www.clyr.health/preview/products/testosterone-hypo-spray.html](https://www.clyr.health/preview/products/testosterone-hypo-spray.html) |
 | **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/testosterone-hypo-spray.html) |
 
 > **Strength selection note:** PICK: 20mg/0.2ml — mid-strength industry protocol.

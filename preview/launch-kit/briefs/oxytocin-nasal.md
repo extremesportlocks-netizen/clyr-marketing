@@ -18,7 +18,7 @@
 | **Pharmacy dispense name** | Oxytocin Nasal Spray |
 | **Standard strength (CLYR pick)** | Per spray protocol |
 | **Package** | Nasal bottle |
-| **Page (live/preview)** | [www.clyr.health/oxytocin-nasal.html](https://www.clyr.health/oxytocin-nasal.html) |
+| **Page (live/preview)** | [www.clyr.health/preview/products/oxytocin-nasal.html](https://www.clyr.health/preview/products/oxytocin-nasal.html) |
 | **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/oxytocin-nasal.html) |
 
 > **Strength selection note:** Single industry-standard strength selected from pharmacy menu.

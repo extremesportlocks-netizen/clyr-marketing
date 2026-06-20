@@ -18,7 +18,7 @@
 | **Pharmacy dispense name** | Naltrexone Capsule compounded LDN |
 | **Standard strength (CLYR pick)** | 4.5mg |
 | **Package** | 90-count |
-| **Page (live/preview)** | [www.clyr.health/naltrexone-ldn.html](https://www.clyr.health/naltrexone-ldn.html) |
+| **Page (live/preview)** | [www.clyr.health/preview/products/naltrexone-ldn.html](https://www.clyr.health/preview/products/naltrexone-ldn.html) |
 | **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/naltrexone-ldn.html) |
 
 > **Strength selection note:** PICK: 4.5mg — standard LDN maintenance dose.

@@ -18,7 +18,7 @@
 | **Pharmacy dispense name** | Finasteride |
 | **Standard strength (CLYR pick)** | 1mg |
 | **Package** | 30-count |
-| **Page (live/preview)** | [www.clyr.health/finasteride-oral.html](https://www.clyr.health/finasteride-oral.html) |
+| **Page (live/preview)** | [www.clyr.health/preview/products/finasteride-oral.html](https://www.clyr.health/preview/products/finasteride-oral.html) |
 | **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/finasteride-oral.html) |
 
 > **Strength selection note:** PICK: 1mg — only FDA-approved hair loss dose.

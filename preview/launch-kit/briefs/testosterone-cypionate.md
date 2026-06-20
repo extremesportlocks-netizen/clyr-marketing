@@ -18,7 +18,7 @@
 | **Pharmacy dispense name** | Testosterone Cypionate 200mg/ml x 10ml |
 | **Standard strength (CLYR pick)** | 200mg/ml |
 | **Package** | 10ml vial |
-| **Page (live/preview)** | [www.clyr.health/testosterone-cypionate.html](https://www.clyr.health/testosterone-cypionate.html) |
+| **Page (live/preview)** | [www.clyr.health/preview/products/testosterone-cypionate.html](https://www.clyr.health/preview/products/testosterone-cypionate.html) |
 | **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/testosterone-cypionate.html) |
 
 > **Strength selection note:** PICK: 200mg/ml 10ml — industry standard TRT vial (most telehealth uses this).

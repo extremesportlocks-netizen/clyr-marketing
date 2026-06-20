@@ -18,7 +18,7 @@
 | **Pharmacy dispense name** | PT141 Strip |
 | **Standard strength (CLYR pick)** | Per strip protocol |
 | **Package** | Strips |
-| **Page (live/preview)** | [www.clyr.health/pt141-strips.html](https://www.clyr.health/pt141-strips.html) |
+| **Page (live/preview)** | [www.clyr.health/preview/products/pt141-strips.html](https://www.clyr.health/preview/products/pt141-strips.html) |
 | **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/pt141-strips.html) |
 
 > **Strength selection note:** Single industry-standard strength selected from pharmacy menu.

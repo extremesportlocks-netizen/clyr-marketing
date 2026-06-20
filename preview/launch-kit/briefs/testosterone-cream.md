@@ -18,7 +18,7 @@
 | **Pharmacy dispense name** | Testosterone 1% (10mg/gm) Cream - 30g |
 | **Standard strength (CLYR pick)** | 1% |
 | **Package** | 30g tube |
-| **Page (live/preview)** | [www.clyr.health/testosterone-cream.html](https://www.clyr.health/testosterone-cream.html) |
+| **Page (live/preview)** | [www.clyr.health/preview/products/testosterone-cream.html](https://www.clyr.health/preview/products/testosterone-cream.html) |
 | **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/testosterone-cream.html) |
 
 > **Strength selection note:** PICK: 1% 30g — standard starting topical strength.

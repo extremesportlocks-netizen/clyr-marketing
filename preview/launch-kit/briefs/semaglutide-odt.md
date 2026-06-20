@@ -18,7 +18,7 @@
 | **Pharmacy dispense name** | Semaglutide 4mg / Ondansetron 2mg ODT |
 | **Standard strength (CLYR pick)** | 4mg sema + 2mg ondansetron |
 | **Package** | 30-count ODT |
-| **Page (live/preview)** | [www.clyr.health/semaglutide-odt.html](https://www.clyr.health/semaglutide-odt.html) |
+| **Page (live/preview)** | [www.clyr.health/preview/products/semaglutide-odt.html](https://www.clyr.health/preview/products/semaglutide-odt.html) |
 | **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/semaglutide-odt.html) |
 
 > **Strength selection note:** PICK: 4mg/2mg — mid-titration industry sweet spot; ondansetron built in.

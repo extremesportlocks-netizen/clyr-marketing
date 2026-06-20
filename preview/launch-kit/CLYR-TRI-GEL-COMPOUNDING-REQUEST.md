@@ -43,7 +43,7 @@
 
 ## Links
 
-- Product page: https://www.clyr.health/clyr-tri-gel.html
+- Product page: https://www.clyr.health/preview/products/clyr-tri-gel.html
 - Pharmacy brief: https://www.clyr.health/preview/launch-kit/briefs/clyr-tri-gel.html
 - Launch kit: https://www.clyr.health/preview/launch-kit/
 

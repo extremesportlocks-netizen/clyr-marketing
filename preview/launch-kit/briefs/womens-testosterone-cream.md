@@ -18,7 +18,7 @@
 | **Pharmacy dispense name** | Women Testosterone cream low dose |
 | **Standard strength (CLYR pick)** | 0.5–1mg/day typical |
 | **Package** | 30g |
-| **Page (live/preview)** | [www.clyr.health/womens-testosterone-cream.html](https://www.clyr.health/womens-testosterone-cream.html) |
+| **Page (live/preview)** | [www.clyr.health/preview/products/womens-testosterone-cream.html](https://www.clyr.health/preview/products/womens-testosterone-cream.html) |
 | **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/womens-testosterone-cream.html) |
 
 > **Strength selection note:** PICK: low-dose cream — sub-male physiological dosing.

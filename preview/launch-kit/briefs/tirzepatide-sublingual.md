@@ -18,7 +18,7 @@
 | **Pharmacy dispense name** | Tirzepatide sublingual drops Olympia |
 | **Standard strength (CLYR pick)** | Titrated per protocol |
 | **Package** | Dropper bottle |
-| **Page (live/preview)** | [www.clyr.health/tirzepatide-sublingual.html](https://www.clyr.health/tirzepatide-sublingual.html) |
+| **Page (live/preview)** | [www.clyr.health/preview/products/tirzepatide-sublingual.html](https://www.clyr.health/preview/products/tirzepatide-sublingual.html) |
 | **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/tirzepatide-sublingual.html) |
 
 > **Strength selection note:** Lead SKU for needle-averse segment.

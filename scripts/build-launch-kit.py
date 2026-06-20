@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Build CLYR pharmacy launch kit: briefs, specs, master preview hub."""
 from __future__ import annotations
-import json
 import re
 from pathlib import Path
 
@@ -227,7 +226,7 @@ BRIEF_TEMPLATE = """# CLYR Health — Pharmacy Partner Brief
 | **Pharmacy dispense name** | {pharmacy_dispense} |
 | **Standard strength (CLYR pick)** | {standard_strength} |
 | **Package** | {package} |
-| **Page (live/preview)** | [www.clyr.health/{slug}.html](https://www.clyr.health/{slug}.html) |
+| **Page (live/preview)** | [www.clyr.health{page_path}](https://www.clyr.health{page_path}) |
 | **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/{slug}.html) |
 
 > **Strength selection note:** {notes}
@@ -311,6 +310,20 @@ WAVES = {
     "preview": "Wave 2–5 (preview built, awaiting wholesale)",
     "live": "Live — requesting volume discount on existing fills",
 }
+
+PREVIEW_HUBS = frozenset({"mens-hormone", "womens-hormone", "skin-hair", "peptides", "recovery"})
+
+
+def product_page_path(slug: str, status: str) -> str:
+    if status == "preview":
+        return f"/preview/products/{slug}.html"
+    return f"/{slug}.html"
+
+
+def hub_page_path(hub: str) -> str:
+    if hub in PREVIEW_HUBS:
+        return f"/preview/hubs/{hub}.html"
+    return f"/{hub}.html"
 
 
 def _inline(text: str) -> str:
@@ -462,12 +475,14 @@ def main():
          competitor, volume, notes) = row
         tp, km, cs = TARGETS.get(vertical, ("General wellness patients", "• Provider-supervised\n• Pharmacy-compounded", "Cross-vertical CLYR catalog"))
         wave = WAVES[status]
+        page_path = product_page_path(slug, status)
         md = BRIEF_TEMPLATE.format(
             title=title, slug=slug, status=status.upper(), vertical=vertical,
             pharmacy_dispense=pharm, standard_strength=strength, package=pkg,
             positioning=positioning, competitor=competitor, volume_ask=volume,
             notes=notes or "Single industry-standard strength selected from pharmacy menu.",
             wave=wave, target_patient=tp, key_messages=km.replace('\n', '\n\n'), cross_sell=cs,
+            page_path=page_path,
         )
         (BRIEFS / f"{slug}.md").write_text(md)
         (BRIEFS / f"{slug}.html").write_text(brief_html(md, title))
@@ -477,12 +492,10 @@ def main():
         kit_data.append({
             "slug": slug, "title": title, "vertical": vertical, "hub": hub,
             "status": status, "strength": strength, "package": pkg,
-            "pharmacy": pharm, "page": f"/{slug}.html",
+            "pharmacy": pharm, "page": page_path,
+            "hub_page": hub_page_path(hub),
             "brief": f"/preview/launch-kit/briefs/{slug}.html",
         })
-
-    # JSON
-    (KIT / "launch-kit.json").write_text(json.dumps({"products": kit_data, "count": len(kit_data)}, indent=2))
 
     # Master pharmacy pack MD
     pack_lines = ["# CLYR Health — Pharmacy Partner Pack\n", "**52 products · June 2026 · Orlando Smith**\n", "Send this pack with the launch kit link: https://www.clyr.health/preview/launch-kit/\n", "---\n"]
@@ -516,7 +529,7 @@ def main():
   <div class="links">
     <a href="{k['page']}">Product page</a>
     <a href="{k['brief']}">Pharmacy brief</a>
-    <a href="/{k['hub']}.html">Hub</a>
+    <a href="{k['hub_page']}">Hub</a>
   </div>
 </div>''')
         sections.append(f'<section class="vertical" id="{v.lower().replace(" ","-")}"><h2>{v} <span>{len(by_v[v])}</span></h2><div class="grid">{"".join(cards)}</div></section>')
@@ -563,7 +576,6 @@ main{{max-width:1200px;margin:0 auto;padding:0 20px 80px}}
     <a class="btn btn-primary" href="/preview/launch-kit/PHARMACY-PARTNER-PACK.html">Open Partner Pack</a>
     <a class="btn btn-ghost" href="/preview/launch-kit/PHARMACY-PARTNER-PACK.md">Partner Pack (MD)</a>
     <a class="btn btn-ghost" href="/preview/launch-kit/CLYR-TRI-GEL-COMPOUNDING-REQUEST.html">Tri Gel compound request</a>
-    <a class="btn btn-ghost" href="/preview/launch-kit/launch-kit.json">JSON export</a>
     <a class="btn btn-ghost" href="/preview/catalog/">Catalog index</a>
     <a class="btn btn-ghost" href="/">← CLYR Health</a>
   </div>
@@ -685,7 +697,7 @@ a{{color:#00B4C5;font-weight:600;text-decoration:none}}a:hover{{text-decoration:
 
 ## Links
 
-- Product page: https://www.clyr.health/clyr-tri-gel.html
+- Product page: https://www.clyr.health/preview/products/clyr-tri-gel.html
 - Pharmacy brief: https://www.clyr.health/preview/launch-kit/briefs/clyr-tri-gel.html
 - Launch kit: https://www.clyr.health/preview/launch-kit/
 

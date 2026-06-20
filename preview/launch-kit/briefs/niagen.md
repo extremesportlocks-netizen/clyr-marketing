@@ -18,7 +18,7 @@
 | **Pharmacy dispense name** | Niagen 100mg/ml - 5ml Vial Olympia |
 | **Standard strength (CLYR pick)** | 100mg/ml |
 | **Package** | 5ml vial |
-| **Page (live/preview)** | [www.clyr.health/niagen.html](https://www.clyr.health/niagen.html) |
+| **Page (live/preview)** | [www.clyr.health/preview/products/niagen.html](https://www.clyr.health/preview/products/niagen.html) |
 | **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/niagen.html) |
 
 > **Strength selection note:** PICK: 100mg/ml 5ml Olympia vial.

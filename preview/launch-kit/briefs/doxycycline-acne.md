@@ -18,7 +18,7 @@
 | **Pharmacy dispense name** | Doxycycline Capsules |
 | **Standard strength (CLYR pick)** | 100mg |
 | **Package** | 30-count |
-| **Page (live/preview)** | [www.clyr.health/doxycycline-acne.html](https://www.clyr.health/doxycycline-acne.html) |
+| **Page (live/preview)** | [www.clyr.health/preview/products/doxycycline-acne.html](https://www.clyr.health/preview/products/doxycycline-acne.html) |
 | **Marketing brief** | [Pharmacy brief](https://www.clyr.health/preview/launch-kit/briefs/doxycycline-acne.html) |
 
 > **Strength selection note:** PICK: 100mg — standard anti-acne antibiotic dose.
