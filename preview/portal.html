@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Patient Portal | CLYR Health (preview)</title>
+<meta name="description" content="Dark preview mock of the CLYR patient portal dashboard.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/preview/assets/clyr-vibe.css">
+<style>
+.pwrap{display:grid;grid-template-columns:248px 1fr;min-height:100vh}
+.side{border-right:1px solid var(--line);padding:22px 16px;display:flex;flex-direction:column;gap:6px;position:sticky;top:0;height:100vh}
+.side .logo{padding:6px 10px 22px}
+.snav{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:11px;color:#C7CCD6;font-size:14.5px;font-weight:500;cursor:pointer}
+.snav svg{width:18px;height:18px;color:#8A93A3}
+.snav:hover{background:rgba(255,255,255,0.04);color:#fff}
+.snav.on{background:rgba(0,180,197,0.12);color:#fff}.snav.on svg{color:var(--teal)}
+.side .sp{margin-top:auto;border-top:1px solid var(--line);padding-top:14px}
+.acct{display:flex;align-items:center;gap:11px;padding:8px 10px}
+.acct .av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--teal),#46d5e3);color:#04181b;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
+.acct .nm{font-size:13.5px;font-weight:600}.acct .nm small{display:block;color:#8A93A3;font-weight:400;font-size:11.5px}
+.main{padding:34px 38px 80px;max-width:1080px}
+.phead{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:28px}
+.phead h1{font-size:30px;font-weight:700;letter-spacing:-0.02em}
+.phead h1 .serif{font-family:var(--serif);font-style:italic;color:var(--teal)}
+.statuspill{font-size:12px;font-weight:700;padding:7px 14px;border-radius:100px;background:rgba(0,180,197,0.14);color:#46d5e3}
+.cards{display:grid;grid-template-columns:1.4fr 1fr;gap:18px}
+.pcard{background:linear-gradient(180deg,#161B26,#10141D);border:1px solid var(--line);border-radius:18px;padding:24px}
+.pcard h3{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:#8A93A3;margin-bottom:16px}
+.tx{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.tx .nm{font-size:21px;font-weight:700}.tx .nm small{display:block;color:#8A93A3;font-weight:400;font-size:13px;margin-top:2px}
+.tx .badge{font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:5px 11px;border-radius:100px;background:rgba(0,180,197,0.14);color:#46d5e3}
+.meta{display:flex;gap:26px;flex-wrap:wrap;margin:18px 0}
+.meta .k{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#8A93A3}
+.meta .v{font-size:16px;font-weight:700;margin-top:3px}
+.toggle{display:flex;align-items:center;gap:12px;border-top:1px solid var(--line);padding-top:16px;margin-top:4px;font-size:14px}
+.sw{margin-left:auto;width:44px;height:25px;border-radius:100px;background:var(--teal);position:relative;flex-shrink:0}
+.sw::after{content:"";position:absolute;top:3px;right:3px;width:19px;height:19px;border-radius:50%;background:#04181b}
+.ship .big{font-size:24px;font-weight:700;margin:6px 0}
+.track{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--teal);font-weight:600;margin-top:8px}
+.qa{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0}
+.qab{display:flex;flex-direction:column;gap:10px;align-items:flex-start;background:linear-gradient(180deg,#161B26,#10141D);border:1px solid var(--line);border-radius:14px;padding:18px;cursor:pointer;transition:border-color .2s,transform .2s}
+.qab:hover{border-color:rgba(0,180,197,0.4);transform:translateY(-2px)}
+.qab svg{width:22px;height:22px;color:var(--teal)}.qab span{font-size:14px;font-weight:600}
+.tbl{width:100%;border-collapse:collapse;margin-top:6px}
+.tbl th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#8A93A3;font-weight:600;padding:10px 8px;border-bottom:1px solid var(--line)}
+.tbl td{padding:13px 8px;border-bottom:1px solid var(--line);font-size:14px}
+.tbl tr:last-child td{border-bottom:0}
+.st{font-size:11px;font-weight:700;padding:4px 10px;border-radius:100px}
+.st.ok{background:rgba(0,180,197,0.14);color:#46d5e3}.st.tr{background:rgba(255,107,74,0.14);color:#FF8A6E}
+.msg{display:flex;gap:13px;padding:14px 0;border-bottom:1px solid var(--line)}
+.msg:last-child{border-bottom:0}
+.msg .ma{width:36px;height:36px;border-radius:50%;background:rgba(196,140,255,0.18);color:#C99CFF;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0}
+.msg .mb{flex-grow:1}.msg .mt{font-size:14px}.msg .mn{font-size:12px;color:#8A93A3;margin-bottom:3px}.msg .mn b{color:#EAE7E1}
+.mt2{margin-top:18px}
+@media(max-width:880px){.pwrap{grid-template-columns:1fr}.side{position:static;height:auto;flex-direction:row;flex-wrap:wrap;overflow:auto}.side .sp{display:none}.cards{grid-template-columns:1fr}.qa{grid-template-columns:1fr 1fr}.main{padding:24px 20px 70px}}
+</style>
+</head>
+<body>
+<div class="pwrap">
+  <aside class="side">
+    <div class="logo"><svg viewBox="0 0 120 32" height="26"><text x="0" y="24" font-family="DM Sans,sans-serif" font-weight="700" font-size="26" letter-spacing="-1"><tspan fill="#fff">CLY</tspan><tspan fill="#00B4C5">R</tspan></text></svg></div>
+    <div class="snav on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>Dashboard</div>
+    <div class="snav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 12 5 5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7Z"/></svg>My Treatments</div>
+    <div class="snav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 4v5h5"/></svg>Refills</div>
+    <div class="snav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg>Messages</div>
+    <div class="snav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="13" height="11" rx="1"/><path d="M14 9h4l3 3v5h-7z"/></svg>Orders</div>
+    <div class="snav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Account</div>
+    <div class="sp">
+      <div class="snav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg>Back to site</div>
+      <div class="acct"><div class="av">AS</div><div class="nm">Alex Stone<small>alex@email.com</small></div></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="phead">
+      <h1>Welcome back, <span class="serif">Alex.</span></h1>
+      <span class="statuspill">Active patient</span>
+    </div>
+
+    <div class="cards">
+      <div class="pcard">
+        <h3>Your treatment</h3>
+        <div class="tx"><div class="nm">Tirzepatide + B12<small>Compounded, once weekly</small></div><span class="badge">Active</span></div>
+        <div class="meta">
+          <div><div class="k">Current dose</div><div class="v">5 mg / week</div></div>
+          <div><div class="k">Plan</div><div class="v">3-Month</div></div>
+          <div><div class="k">Next refill opens</div><div class="v">Jul 2, 2026</div></div>
+        </div>
+        <div class="toggle">Auto-refill<span style="color:#8A93A3;font-size:12.5px">Ships automatically when your window opens</span><span class="sw"></span></div>
+      </div>
+      <div class="pcard ship">
+        <h3>Next shipment</h3>
+        <div class="big">Arriving Jun 24</div>
+        <div style="color:#8A93A3;font-size:14px">Tirzepatide + B12 &middot; 4-week supply</div>
+        <div class="track"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="13" height="11" rx="1"/><path d="M14 9h4l3 3v5h-7z"/></svg>Track package</div>
+      </div>
+    </div>
+
+    <div class="qa">
+      <div class="qab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 4v5h5"/></svg><span>Request a refill</span></div>
+      <div class="qab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg><span>Log a dose</span></div>
+      <div class="qab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg><span>Message provider</span></div>
+      <div class="qab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg><span>Shop treatments</span></div>
+    </div>
+
+    <div class="cards">
+      <div class="pcard">
+        <h3>Recent orders</h3>
+        <table class="tbl">
+          <tr><th>Date</th><th>Item</th><th>Status</th><th>Total</th></tr>
+          <tr><td>Jun 20</td><td>Tirzepatide + B12</td><td><span class="st tr">Shipping</span></td><td>$597</td></tr>
+          <tr><td>May 22</td><td>Tirzepatide + B12</td><td><span class="st ok">Delivered</span></td><td>$597</td></tr>
+          <tr><td>Apr 24</td><td>Tirzepatide + B12</td><td><span class="st ok">Delivered</span></td><td>$597</td></tr>
+        </table>
+      </div>
+      <div class="pcard">
+        <h3>Messages</h3>
+        <div class="msg"><div class="ma">DR</div><div class="mb"><div class="mn"><b>Dr. Patel</b> &middot; 2 days ago</div><div class="mt">Your labs look good. We can move to the next dose at your refill.</div></div></div>
+        <div class="msg"><div class="ma">CS</div><div class="mb"><div class="mn"><b>CLYR Care</b> &middot; 1 week ago</div><div class="mt">Your shipment is on the way. Here is your tracking link.</div></div></div>
+        <a class="track mt2" style="cursor:pointer">Open inbox &rarr;</a>
+      </div>
+    </div>
+
+    <div class="pcard" style="margin-top:18px">
+      <h3>Billing &amp; shipping</h3>
+      <div class="meta">
+        <div><div class="k">Payment</div><div class="v">Visa ending 4242</div></div>
+        <div><div class="k">Next charge</div><div class="v">Sep 2, 2026</div></div>
+        <div><div class="k">Ships to</div><div class="v">123 Main St, Austin TX</div></div>
+      </div>
+    </div>
+
+    <p style="color:#6b7382;font-size:12px;margin-top:28px">Preview mock of the patient portal. Not wired to live data. Protected Health Information is shown for layout only.</p>
+  </main>
+</div>
+</body>
+</html>
