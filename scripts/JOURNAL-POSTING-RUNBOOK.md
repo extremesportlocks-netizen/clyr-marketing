@@ -51,10 +51,33 @@ Do not write the token into the JSON, the script, or any committed file.
 ## 5. Verify after posting
 - The script prints the live URL. After ~1-2 min, load `https://www.clyr.health/journal/<slug>/`
   (hard-refresh) and confirm it renders, and that the new card shows on `/journal/`.
-- An OG image at `/img/journal-og/<slug>.png` makes social shares look right; if it does
-  not exist yet, the page still works — add the image to the repo later.
+- OG images are auto-generated at `/img/journal-og/<slug>.png` (1200×630) when you rebuild.
 
-## 6. Files
+## 6. SEO + tracking (built into post-journal.py)
+Every published article gets:
+- **GTM** `GTM-T4FVQ87G` + `article_view` dataLayer event (`article_slug`, `article_category`, `article_title`)
+- **PostHog** `article_slug` / `article_category` registration
+- **JSON-LD** Article + BreadcrumbList `@graph`
+- Canonical URL, `robots`, OG/Twitter tags, `/js/clyr-tracking.js`
+
+## 7. Batch rebuild & sitemap (local git workflow)
+When `CLYR_GH_TOKEN` is unavailable, publish locally and push with git:
+```bash
+python3 scripts/rebuild-all-journals.py      # all JSON → journal/<slug>/index.html + OG PNGs
+python3 scripts/polish-legacy-journals.py  # SEO pass for non-JSON legacy articles only
+python3 scripts/update-sitemap-journals.py # refresh journal URLs in sitemap.xml + sitemap-images.xml
+python3 scripts/link-products-to-journals.py  # product page → journal deep-links
+git add journal/ img/journal-og/ sitemap*.xml scripts/ preview/products/ *.html
+git commit -m "journal: …" && git push origin main
+```
+
+## 8. Files
 - `scripts/post-journal.py` — the publisher (stdlib only).
+- `scripts/publish-journal-local.py` — local render + index card (no GitHub API).
+- `scripts/rebuild-all-journals.py` — rebuild all JSON articles + OG images.
+- `scripts/generate-journal-og.py` — OG PNG generator (requires Pillow).
+- `scripts/polish-legacy-journals.py` — legacy article SEO polish.
+- `scripts/update-sitemap-journals.py` — sitemap refresh.
+- `scripts/link-products-to-journals.py` — product ↔ journal internal links.
 - `scripts/journal-content.example.json` — the standard form to copy.
 - Reference post (chrome source): `journal/niagen-nicotinamide-riboside-explained/index.html`.
