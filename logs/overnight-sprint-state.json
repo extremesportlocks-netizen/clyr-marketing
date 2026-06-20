@@ -1,10 +1,10 @@
 {
-  "cycle": 6,
+  "cycle": 7,
   "ends": "2026-06-20T15:35:09.417796+00:00",
   "report": {
     "homepage": 200,
     "sitemap": 200,
-    "sitemap_urls": 97,
+    "sitemap_urls": 98,
     "gbp_schema": true,
     "gbp_footer": true,
     "verify_tag": true,
