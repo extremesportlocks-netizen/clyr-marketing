@@ -67,6 +67,7 @@ python3 scripts/rebuild-all-journals.py      # all JSON → journal/<slug>/index
 python3 scripts/polish-legacy-journals.py  # SEO pass for non-JSON legacy articles only
 python3 scripts/update-sitemap-journals.py # refresh journal URLs in sitemap.xml + sitemap-images.xml
 python3 scripts/link-products-to-journals.py  # product page → journal deep-links
+python3 scripts/fix-journal-urls.py           # trailing-slash URLs (avoid GSC redirect warnings)
 git add journal/ img/journal-og/ sitemap*.xml scripts/ preview/products/ *.html
 git commit -m "journal: …" && git push origin main
 ```

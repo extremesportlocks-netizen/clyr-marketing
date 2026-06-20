@@ -24,9 +24,12 @@ def polish(path):
     with open(path, encoding="utf-8") as f:
         html = f.read()
     og_url = extract_meta(html, "og:url", True) or ""
-    m = re.search(r"/journal/([^/]+)/", og_url)
+    m = re.search(r"/journal/([a-z0-9-]+)", og_url)
     if not m:
-        m = re.search(r'canonical" href="https://www\.clyr\.health/journal/([^/]+)/', html)
+        m = re.search(
+            r'canonical" href="https://www\.clyr\.health/journal/([a-z0-9-]+)',
+            html,
+        )
     slug = m.group(1) if m else None
     if not slug:
         return False
@@ -79,6 +82,22 @@ def polish(path):
         f"posthog.register({{article_slug:'{slug}',article_category:'journal'}});",
         html,
         count=1,
+    )
+
+    html = re.sub(
+        r'(<meta property="og:url" content="https://www\.clyr\.health/journal/'
+        + re.escape(slug)
+        + r')(">)',
+        rf"\1/\2",
+        html,
+        count=1,
+    )
+    html = re.sub(
+        r'''(href=["'])/journal/'''
+        + re.escape(slug)
+        + r'''(?=["'])''',
+        rf"\1/journal/{slug}/",
+        html,
     )
 
     with open(path, "w", encoding="utf-8") as f:
