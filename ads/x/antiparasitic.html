@@ -462,8 +462,16 @@ body {
     });
   });
 
-  cta.href = intakeUrl(selected);
-  track('AdLPView', {});
+  var params = new URLSearchParams(window.location.search);
+  var preset = params.get('product') || (params.get('utm_campaign') === 'combo-jun26' ? 'ivermectin-mebendazole' : null);
+  if (preset) {
+    cards.forEach(function (card) {
+      if (card.getAttribute('data-product') === preset) select(card);
+    });
+  } else {
+    cta.href = intakeUrl(selected);
+  }
+  track('AdLPView', { product: selected });
 })();
 </script>
 </body>
