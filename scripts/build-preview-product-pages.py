@@ -29,14 +29,22 @@ def cut(start_marker, end_marker, *, include_end=True, after=0):
 # ── Reusable verbatim chunks from the gold standard ──
 HEAD_OPEN = src[src.index("<!DOCTYPE"):src.index("<title>")]                 # doctype..viewport (GTM, favicons, robots noindex)
 FONTS_STYLE = src[src.index('<link rel="preconnect"'):src.index("</head>")] # preconnect, fonts, product-page.css, full <style> blocks
-NAV, nav_end = cut('<nav class="nav"', "</nav>")
+# Canonical nav: adopt the complete 7-vertical hub nav (Men's/Women's Hormone +
+# Peptides included), read from a hub page, and add the mobile menu button it lacks
+# so the preview product pages match the hubs and surface every vertical.
+_HUBNAV = (ROOT / "preview" / "hubs" / "mens-hormone.html").read_text(encoding="utf-8")
+_NAVRAW = _HUBNAV[_HUBNAV.index('<nav class="nav"'):_HUBNAV.index("</nav>") + len("</nav>")]
+_MOBILE = ('      <button class="mobile-menu-btn" aria-label="Menu" '
+           'onclick="document.getElementById(\'nav\').classList.toggle(\'mobile-open\')">'
+           '<span></span><span></span><span></span></button>\n    ')
+NAV_FULL = _NAVRAW[:_NAVRAW.rindex("</div></nav>")] + _MOBILE + "</div></nav>"
 QUALITY, _ = cut('<section class="quality">', "</section>")
 HOW, _ = cut('<section class="how-it-works">', "</section>")
 HOW = HOW.replace("injectable Niagen is appropriate for you", "this treatment is appropriate for you")
 FOOTER, _ = cut('<footer class="footer">', "</footer>")
 SCRIPTS = src[src.index("<script>\nfunction toggleFaq"):src.index("</html>") + len("</html>")]
 
-for name, chunk in [("HEAD_OPEN", HEAD_OPEN), ("FONTS_STYLE", FONTS_STYLE), ("NAV", NAV),
+for name, chunk in [("HEAD_OPEN", HEAD_OPEN), ("FONTS_STYLE", FONTS_STYLE), ("NAV_FULL", NAV_FULL),
                     ("QUALITY", QUALITY), ("HOW", HOW), ("FOOTER", FOOTER), ("SCRIPTS", SCRIPTS)]:
     if not chunk or len(chunk) < 40:
         sys.exit(f"FATAL: failed to extract {name} from niagen.html")
@@ -83,9 +91,8 @@ def faq_html(items, name):
     return "\n".join(f'  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">{q}{plus}</button><div class="faq-a"><p>{a}</p></div></div>' for q, a in items)
 
 def nav_for(hub):
-    n = NAV.replace('class="nav-item nav-active" data-nav="daily-wellness"', 'class="nav-item" data-nav="daily-wellness"')
-    n = n.replace(f'class="nav-item" data-nav="{hub}"', f'class="nav-item nav-active" data-nav="{hub}"', 1)
-    return n
+    n = NAV_FULL.replace('nav-item nav-active', 'nav-item')
+    return n.replace(f'class="nav-item" data-nav="{hub}"', f'class="nav-item nav-active" data-nav="{hub}"', 1)
 
 def page(c):
     slug = c["slug"]
@@ -222,6 +229,8 @@ WOMEN = dict(hub="womens-hormone",  hub_name="Women's Hormone", hub_url="/previe
 WL    = dict(hub="weight-loss",     hub_name="Weight Loss",     hub_url="/weight-loss.html")
 SEX   = dict(hub="sexual-health",   hub_name="Sexual Health",   hub_url="/sexual-health.html")
 WELL  = dict(hub="daily-wellness",  hub_name="Daily Wellness",  hub_url="/daily-wellness.html")
+PEPT  = dict(hub="peptides",         hub_name="Peptides",        hub_url="/preview/hubs/peptides.html")
+REC   = dict(hub="recovery",         hub_name="Recovery",        hub_url="/preview/hubs/recovery.html")
 
 # ════════════════════════════════════════════════════════════════════
 # WAVE 1 — Skin & Hair (6)
@@ -904,7 +913,7 @@ CONTENT = [
     cta_heading='Support your<br><span class="serif">libido?</span>'),
 
   # ════════ WAVE 6 — Peptides & Recovery (4) ════════
-  dict(**WELL, slug="bpc-157", intake="bpc_157",
+  dict(**PEPT, slug="bpc-157", intake="bpc_157",
     title_plain="BPC-157", title_html='BPC-<span class="serif">157</span>',
     badge="Peptide", category="Daily Wellness · Peptides",
     meta_desc="BPC-157 peptide explored for tissue repair and recovery, a research-stage compound prescribed by licensed providers.",
@@ -928,7 +937,7 @@ CONTENT = [
     isi="BPC-157 is a prescription, compounded peptide. These statements have not been evaluated by the Food and Drug Administration. Compounded medications are not FDA-approved and are not reviewed by the FDA for safety, efficacy, or quality before reaching patients. BPC-157 is a research-stage compound; the majority of evidence is from animal studies and rigorous human safety and efficacy data is limited. It should be avoided during pregnancy or breastfeeding and by individuals with active cancer, and may be prohibited in competitive sport. Inform your provider of all conditions and medications. The decision to use any compounded peptide should be made with a licensed provider. Individual results may vary.",
     cta_heading='Explore recovery<br><span class="serif">peptides?</span>'),
 
-  dict(**WELL, slug="tb-500", intake="tb_500",
+  dict(**PEPT, slug="tb-500", intake="tb_500",
     title_plain="TB-500", title_html='TB-<span class="serif">500</span>',
     badge="Peptide", category="Daily Wellness · Peptides",
     meta_desc="TB-500 (thymosin beta-4) peptide explored for recovery and flexibility, a research-stage compound prescribed by licensed providers.",
@@ -952,7 +961,7 @@ CONTENT = [
     isi="TB-500 is a prescription, compounded peptide. These statements have not been evaluated by the Food and Drug Administration. Compounded medications are not FDA-approved and are not reviewed by the FDA for safety, efficacy, or quality before reaching patients. TB-500 is a research-stage compound; most evidence is from animal studies and rigorous human safety and efficacy data is limited. It should be avoided during pregnancy or breastfeeding and by individuals with active cancer, and may be prohibited in competitive sport. Inform your provider of all conditions and medications. Individual results may vary.",
     cta_heading='Support your<br><span class="serif">recovery?</span>'),
 
-  dict(**WELL, slug="ghk-cu-injectable", intake="ghk_cu_injectable",
+  dict(**PEPT, slug="ghk-cu-injectable", intake="ghk_cu_injectable",
     title_plain="GHK-Cu Injectable", title_html='GHK-Cu <span class="serif">Injectable</span>',
     badge="Copper Peptide", category="Daily Wellness · Peptides",
     meta_desc="GHK-Cu injectable copper peptide explored for collagen and tissue remodeling, a research-stage compound prescribed by licensed providers.",
@@ -976,7 +985,7 @@ CONTENT = [
     isi="GHK-Cu injectable is a prescription, compounded peptide. These statements have not been evaluated by the Food and Drug Administration. Compounded medications are not FDA-approved and are not reviewed by the FDA for safety, efficacy, or quality before reaching patients. The injectable form is research-stage with limited human data; topical GHK-Cu is more established. It should be avoided during pregnancy or breastfeeding and by individuals with active cancer. Inform your provider of all conditions and medications. The decision to use any compounded peptide should be made with a licensed provider. Individual results may vary.",
     cta_heading='Layer your<br><span class="serif">skin routine?</span>'),
 
-  dict(**WELL, slug="naltrexone-ldn", intake="naltrexone_ldn",
+  dict(**REC, slug="naltrexone-ldn", intake="naltrexone_ldn",
     title_plain="Low-Dose Naltrexone", title_html='Low-Dose <span class="serif">Naltrexone</span>',
     badge="LDN", category="Daily Wellness · Recovery",
     meta_desc="Low-dose naltrexone (LDN) explored for autoimmune, chronic pain, and wellness protocols, prescribed by licensed providers.",
