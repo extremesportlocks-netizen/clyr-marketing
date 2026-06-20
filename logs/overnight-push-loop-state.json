@@ -1,0 +1,19 @@
+{
+  "started": "2026-06-20T06:59:45.339906+00:00",
+  "ends": "2026-06-20T18:59:45.339906+00:00",
+  "last_cycle": 1,
+  "last_run": "2026-06-20T06:59:47.249580+00:00",
+  "last_report": {
+    "ok": true,
+    "checks": {
+      "homepage_status": 200,
+      "gbp_schema": true,
+      "gbp_footer": true,
+      "google_verification": false,
+      "sitemap_status": 200,
+      "sitemap_urls": 135,
+      "broken_pages": []
+    }
+  },
+  "last_pushed": true
+}
