@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T4FVQ87G');</script>
+<!-- End Google Tag Manager -->
+<meta charset="UTF-8">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Start your visit | CLYR Health (preview)</title>
+<meta name="description" content="A two-minute online visit. Dark preview mock of the CLYR intake flow.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/preview/assets/clyr-vibe.css">
+<style>
+.top{height:64px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:sticky;top:0;background:rgba(11,14,20,0.85);backdrop-filter:blur(14px);z-index:10}
+.top .sec{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:#8A93A3;font-weight:600}
+.shell{max-width:640px;margin:0 auto;padding:34px 22px 90px}
+.prog{height:6px;background:rgba(255,255,255,0.08);border-radius:100px;overflow:hidden;margin-bottom:10px}
+.prog i{display:block;height:100%;width:11%;background:linear-gradient(90deg,var(--teal),#46d5e3);border-radius:100px;transition:width .35s}
+.steplabel{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:26px}
+.istep{display:none}.istep.active{display:block;animation:fade .35s}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.istep h2{font-size:28px;font-weight:700;letter-spacing:-0.02em;line-height:1.1}
+.istep .sub{color:#AEB6C2;font-size:15px;margin:10px 0 26px}
+label.fl{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#8A93A3;margin:18px 0 7px;font-weight:600}
+input,select,textarea{width:100%;background:#11151F;border:1px solid var(--line);color:#EAE7E1;border-radius:12px;padding:14px 16px;font-family:inherit;font-size:15px;outline:none;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{border-color:var(--teal)}
+textarea{min-height:120px;resize:vertical}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.planopt{display:flex;align-items:center;gap:14px;border:1.5px solid var(--line);border-radius:16px;padding:18px 20px;margin-bottom:12px;cursor:pointer;transition:border-color .2s,background .2s}
+.planopt:hover{border-color:rgba(0,180,197,0.4)}
+.planopt.sel{border-color:var(--teal);background:rgba(0,180,197,0.07)}
+.planopt .r{width:20px;height:20px;border-radius:50%;border:2px solid #46d5e3;flex-shrink:0;position:relative}
+.planopt.sel .r::after{content:"";position:absolute;inset:4px;border-radius:50%;background:var(--teal)}
+.planopt .pn{flex-grow:1;font-weight:700;font-size:16px}
+.planopt .pn small{display:block;color:#8A93A3;font-weight:400;font-size:13px;margin-top:2px}
+.planopt .pp{font-weight:700;font-size:18px;color:#7FD8D2}
+.opt{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:9px;cursor:pointer}
+.opt:hover{border-color:rgba(0,180,197,0.4)}
+.opt input{width:auto}
+.bmi{display:flex;align-items:center;gap:18px;border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:20px;background:rgba(255,255,255,0.02)}
+.bmi .circ{width:74px;height:74px;border-radius:50%;border:5px solid var(--teal);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;flex-shrink:0}
+.bmi .bt{font-size:13px;color:#8A93A3}.bmi .bv{font-weight:700;font-size:16px}
+.nav-btns{display:flex;gap:12px;margin-top:32px}
+.nav-btns .btn{flex:0 0 auto}
+.nav-btns .btn-p{flex:1;justify-content:center}
+.rev{border:1px solid var(--line);border-radius:16px;padding:8px 22px;margin-top:8px}
+.rev .li{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.rev .li:last-child{border-bottom:0}.rev .li .k{color:#8A93A3}
+.sumtot{display:flex;justify-content:space-between;font-size:20px;font-weight:700;margin-top:18px}
+.fineprint{font-size:12px;color:#6b7382;margin-top:18px;line-height:1.6}
+.lock{color:var(--teal)}
+</style>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T4FVQ87G" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<div class="top">
+  <a href="/" aria-label="CLYR home"><svg viewBox="0 0 120 32" height="26"><text x="0" y="24" font-family="DM Sans,sans-serif" font-weight="700" font-size="26" letter-spacing="-1"><tspan fill="#fff">CLY</tspan><tspan fill="#00B4C5">R</tspan></text></svg></a>
+  <span class="sec"><svg class="lock" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Secure &middot; HIPAA compliant</span>
+</div>
+
+<div class="shell">
+  <div class="prog"><i id="bar"></i></div>
+  <div class="steplabel"><span id="lbl">Step 1 of 9</span></div>
+
+  <section class="istep active" data-step>
+    <h2>Choose your plan</h2>
+    <p class="sub">Tirzepatide + B12. You can change this anytime with your provider.</p>
+    <div class="planopt sel" onclick="pick(this)"><span class="r"></span><span class="pn">3-Month plan<small>Best value, billed quarterly</small></span><span class="pp">$199/mo</span></div>
+    <div class="planopt" onclick="pick(this)"><span class="r"></span><span class="pn">Monthly plan<small>Billed monthly, cancel anytime</small></span><span class="pp">$249/mo</span></div>
+    <div class="nav-btns"><a class="btn btn-p" onclick="go(1)">Continue</a></div>
+  </section>
+
+  <section class="istep" data-step>
+    <h2>About you</h2>
+    <p class="sub">So your provider can verify your identity.</p>
+    <label class="fl">Legal first name</label><input placeholder="First name">
+    <label class="fl">Legal last name</label><input placeholder="Last name">
+    <label class="fl">Email</label><input type="email" placeholder="you@email.com">
+    <label class="fl">Date of birth</label>
+    <div class="three"><input placeholder="MM"><input placeholder="DD"><input placeholder="YYYY"></div>
+    <div class="nav-btns"><a class="btn btn-g" onclick="go(-1)">Back</a><a class="btn btn-p" onclick="go(1)">Continue</a></div>
+  </section>
+
+  <section class="istep" data-step>
+    <h2>Your measurements</h2>
+    <p class="sub">Used to calculate BMI and tailor your dose.</p>
+    <label class="fl">Height</label>
+    <div class="two"><input id="ft" placeholder="ft" oninput="bmi()"><input id="in" placeholder="in" oninput="bmi()"></div>
+    <label class="fl">Current weight (lb)</label><input id="wt" placeholder="lb" oninput="bmi()">
+    <label class="fl">Goal weight (lb)</label><input placeholder="lb">
+    <div class="bmi"><div class="circ" id="bc">--</div><div><div class="bt">Your BMI</div><div class="bv" id="bcat">Enter height and weight</div></div></div>
+    <div class="nav-btns"><a class="btn btn-g" onclick="go(-1)">Back</a><a class="btn btn-p" onclick="go(1)">Continue</a></div>
+  </section>
+
+  <section class="istep" data-step>
+    <h2>Health history</h2>
+    <p class="sub">Check anything that applies. Your provider reviews all of it.</p>
+    <label class="opt"><input type="checkbox">Type 2 diabetes or prediabetes</label>
+    <label class="opt"><input type="checkbox">High blood pressure</label>
+    <label class="opt"><input type="checkbox">Thyroid disease</label>
+    <label class="opt"><input type="checkbox">Gallbladder or pancreas problems</label>
+    <label class="opt"><input type="checkbox">None of the above</label>
+    <label class="fl">Current medications</label><textarea placeholder="List any medications you take, or write None"></textarea>
+    <label class="fl">Drug allergies</label><input placeholder="e.g. penicillin, or None">
+    <div class="nav-btns"><a class="btn btn-g" onclick="go(-1)">Back</a><a class="btn btn-p" onclick="go(1)">Continue</a></div>
+  </section>
+
+  <section class="istep" data-step>
+    <h2>Safety screening</h2>
+    <p class="sub">Required for GLP-1 medications. Please answer honestly.</p>
+    <label class="opt"><input type="checkbox">Personal or family history of medullary thyroid cancer or MEN2</label>
+    <label class="opt"><input type="checkbox">History of pancreatitis</label>
+    <label class="opt"><input type="checkbox">Currently pregnant, breastfeeding, or trying to conceive</label>
+    <label class="opt"><input type="checkbox">History of an eating disorder</label>
+    <label class="opt"><input type="checkbox">None of these apply to me</label>
+    <div class="nav-btns"><a class="btn btn-g" onclick="go(-1)">Back</a><a class="btn btn-p" onclick="go(1)">Continue</a></div>
+  </section>
+
+  <section class="istep" data-step>
+    <h2>Shipping address</h2>
+    <p class="sub">Where we send your discreet, unmarked package.</p>
+    <label class="fl">Street address</label><input placeholder="123 Main St">
+    <label class="fl">Apt / unit (optional)</label><input placeholder="Apt 4B">
+    <div class="two"><div><label class="fl">City</label><input placeholder="City"></div><div><label class="fl">State</label><input placeholder="State"></div></div>
+    <label class="fl">ZIP</label><input placeholder="ZIP">
+    <div class="nav-btns"><a class="btn btn-g" onclick="go(-1)">Back</a><a class="btn btn-p" onclick="go(1)">Continue</a></div>
+  </section>
+
+  <section class="istep" data-step>
+    <h2>Anything for your provider?</h2>
+    <p class="sub">Optional. Goals, concerns, questions, all welcome.</p>
+    <label class="fl">Message to your provider</label><textarea placeholder="Tell your provider anything that would help them care for you."></textarea>
+    <div class="nav-btns"><a class="btn btn-g" onclick="go(-1)">Back</a><a class="btn btn-p" onclick="go(1)">Continue</a></div>
+  </section>
+
+  <section class="istep" data-step>
+    <h2>Review your visit</h2>
+    <p class="sub">Make sure everything looks right before checkout.</p>
+    <div class="rev">
+      <div class="li"><span class="k">Treatment</span><span>Tirzepatide + B12</span></div>
+      <div class="li"><span class="k">Plan</span><span>3-Month</span></div>
+      <div class="li"><span class="k">Provider review</span><span>Included</span></div>
+      <div class="li"><span class="k">Shipping</span><span>Free, discreet</span></div>
+    </div>
+    <div class="nav-btns"><a class="btn btn-g" onclick="go(-1)">Back</a><a class="btn btn-p" onclick="go(1)">Looks good</a></div>
+  </section>
+
+  <section class="istep" data-step>
+    <h2>Checkout</h2>
+    <p class="sub">You are only charged if a provider approves your treatment.</p>
+    <div class="rev">
+      <div class="li"><span class="k">Tirzepatide + B12, 3-Month</span><span>$597</span></div>
+      <div class="li"><span class="k">Provider consultation</span><span>Included</span></div>
+      <div class="li"><span class="k">Shipping</span><span>Free</span></div>
+    </div>
+    <div class="sumtot"><span>Due today</span><span>$597</span></div>
+    <label class="fl">Card information</label><input placeholder="Card number">
+    <div class="two"><input placeholder="MM / YY"><input placeholder="CVC"></div>
+    <div class="nav-btns"><a class="btn btn-g" onclick="go(-1)">Back</a><a class="btn btn-p" onclick="done()">Submit for review</a></div>
+    <p class="fineprint">By submitting, you agree to a telehealth consultation. If a licensed provider determines this treatment is not appropriate for you, you will not be charged. Compounded medications are not FDA-approved. This is a non-functional preview.</p>
+  </section>
+
+  <section class="istep" data-step>
+    <h2>You are all set.</h2>
+    <p class="sub">A licensed provider will review your visit within 24 hours. Watch your email and the patient portal for updates.</p>
+    <div class="nav-btns"><a class="btn btn-p" href="/preview/portal.html">Go to my portal</a></div>
+  </section>
+
+</div>
+
+<script>
+var steps=[].slice.call(document.querySelectorAll('[data-step]')),cur=0,total=9;
+function show(){steps.forEach(function(s,i){s.classList.toggle('active',i===cur)});
+  document.getElementById('bar').style.width=Math.min(100,((cur+1)/total)*100)+'%';
+  var n=Math.min(cur+1,total);document.getElementById('lbl').textContent=cur>=total?'Submitted':'Step '+n+' of '+total;
+  window.scrollTo({top:0,behavior:'smooth'});}
+function go(d){cur=Math.max(0,Math.min(steps.length-1,cur+d));show();}
+function done(){cur=steps.length-1;show();}
+function pick(el){document.querySelectorAll('.planopt').forEach(function(p){p.classList.remove('sel')});el.classList.add('sel');}
+function bmi(){var ft=+document.getElementById('ft').value,inch=+document.getElementById('in').value,wt=+document.getElementById('wt').value;
+  var h=ft*12+inch;if(h>0&&wt>0){var b=(wt/(h*h))*703;document.getElementById('bc').textContent=b.toFixed(0);
+  var c=b<18.5?'Underweight':b<25?'Healthy range':b<30?'Overweight':'Obese';document.getElementById('bcat').textContent=c;}}
+show();
+</script>
+</body>
+</html>
