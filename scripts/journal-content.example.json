@@ -1,0 +1,23 @@
+{
+  "slug": "example-post-slug",
+  "title": "The Plain-Title of the Article",
+  "titleHtml": "The Plain-Title of <span class=\"serif\">the Article.</span>",
+  "category": "GLP-1",
+  "categoryKey": "metabolic",
+  "deck": "One or two sentences that sit under the headline and summarize the piece.",
+  "date": "June 20, 2026",
+  "readTime": "8 min read",
+  "author": "CLYR Editorial",
+  "metaDescription": "A 150-160 character SEO/social description. Specific, no fluff, mentions the topic and the angle.",
+  "ogTitle": "Optional shorter title for social cards (defaults to title)",
+  "ogImage": "/img/journal-og/example-post-slug.png",
+  "bodyHtml": "<p>Opening paragraph. Use plain HTML: &lt;p&gt; for paragraphs, &lt;h2&gt; for section headers, &lt;h3&gt; for sub-sections, &lt;ul&gt;/&lt;ol&gt;/&lt;li&gt; for lists, &lt;strong&gt;/&lt;em&gt; for emphasis, and &lt;a href&gt; for links.</p><h2>A section heading</h2><p>Body text. Journals are editorial and educational: you may cite and discuss clinical trials with sources, but keep it informative rather than a product pitch. Do not make efficacy or 'cure' claims about CLYR products themselves.</p><p>Link internally where useful, e.g. <a href=\"/tirzepatide.html\">our tirzepatide page</a> or another <a href=\"/journal/what-is-nad-plus/\">journal article</a>.</p>",
+  "sources": [
+    {"label": "Author AB, Author CD. Title of the study. <em>Journal Name</em>. 2026.", "url": "https://example.com/study"},
+    {"label": "Second source, formatted the same way.", "url": "https://example.com/source2"}
+  ],
+  "related": [
+    {"slug": "what-is-nad-plus", "title": "What Is NAD+ and Why It Matters", "category": "NAD+"},
+    {"slug": "semaglutide-vs-tirzepatide", "title": "Semaglutide vs. Tirzepatide", "category": "Metabolic Health"}
+  ]
+}
