@@ -1,0 +1,22 @@
+{
+  "slug": "hydroquinone-triple-cream-hyperpigmentation",
+  "title": "Hydroquinone Triple Cream: Prescription-Strength Hyperpigmentation Treatment",
+  "titleHtml": "Hydroquinone Triple Cream: <span class=\"serif\">Hyperpigmentation Treatment.</span>",
+  "category": "Skin & Hair",
+  "categoryKey": "research",
+  "deck": "The Kligman formula class — hydroquinone, tretinoin, and fluocinolone — remains dermatology's workhorse for melasma and post-inflammatory hyperpigmentation when OTC fading serums fail.",
+  "date": "June 20, 2026",
+  "readTime": "8 min read",
+  "metaDescription": "Hydroquinone tretinoin fluocinolone triple cream for melasma: mechanism, 8-12 week protocols, ochronosis risk, and sun protection requirements.",
+  "bodyHtml": "<p>Triple combination creams (hydroquinone 4%, tretinoin 0.05%, fluocinolone 0.01% in branded Tri-Luma) target melasma through three simultaneous mechanisms: tyrosinase inhibition (hydroquinone), accelerated turnover (tretinoin), and inflammation control (fluocinolone). Compounded versions follow the same pharmacologic logic for refractory hyperpigmentation.</p>\n\n<p>Hydroquinone blocks melanin synthesis; results appear over 8 to 12 weeks. Tretinoin drives pigment dispersion; fluocinolone reduces the inflammation that triggers post-inflammatory hyperpigmentation, especially in darker skin phototypes.</p>\n\n<h2>Safety and duration</h2>\n\n<p>Use for limited cycles (typically 3 to 5 months) under supervision. Prolonged unsupervised hydroquinone risks exogenous ochronosis. Strict SPF 50+ daily is non-negotiable; UV re-triggers melasma faster than cream fades it.</p>\n\n<p>CLYR Health offers hydroquinone triple cream as a preview skin SKU for provider-supervised hyperpigmentation protocols.</p>",
+  "sources": [
+    {"label": "Taylor SC, et al. Tri-Luma for melasma. <em>Cutis</em>. 2003.", "url": "https://pubmed.ncbi.nlm.nih.gov/12971145/"},
+    {"label": "FDA. Tri-Luma prescribing information.", "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2002/021475s000lbl.pdf"},
+    {"label": "Grimes PE. Melasma management. <em>J Am Acad Dermatol</em>. 2019.", "url": "https://pubmed.ncbi.nlm.nih.gov/30885405/"}
+  ],
+  "related": [
+    {"slug": "tretinoin-retinoid-starter-guide", "title": "Tretinoin Starter Guide", "category": "Skin & Hair"},
+    {"slug": "clyr-tri-gel-triple-therapy-acne", "title": "Triple Therapy Acne", "category": "Skin & Hair"},
+    {"slug": "nad-face-cream-topical-longevity", "title": "NAD+ Face Cream", "category": "NAD+"}
+  ]
+}

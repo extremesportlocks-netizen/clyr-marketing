@@ -1,0 +1,22 @@
+{
+  "slug": "doxycycline-oral-acne-antibiotic",
+  "title": "Doxycycline for Acne: When Topicals Need an Oral Anti-Inflammatory Boost",
+  "titleHtml": "Doxycycline for Acne: <span class=\"serif\">Oral Anti-Inflammatory Support.</span>",
+  "category": "Skin & Hair",
+  "categoryKey": "research",
+  "deck": "Sub-antimicrobial-dose doxycycline modulates inflammation in moderate papulopustular acne — how 100 mg protocols work, duration limits, and why dermatologists pair with topicals not monotherapy.",
+  "date": "June 20, 2026",
+  "readTime": "8 min read",
+  "metaDescription": "Doxycycline 100mg for acne: anti-inflammatory mechanism, 12-week limits, antibiotic stewardship, photosensitivity, and combination with retinoids.",
+  "bodyHtml": "<p>Doxycycline is a tetracycline antibiotic used for inflammatory acne at 100 mg daily (or 40 mg modified-release anti-inflammatory dose in Oracea). Beyond direct antibacterial effects, doxycycline inhibits matrix metalloproteinases and neutrophil chemotaxis at sub-antimicrobial doses, reducing inflammatory papules and pustules.</p>\n\n<p>AAD guidelines recommend limiting oral antibiotic monotherapy to 12 weeks where possible, always pairing with topical retinoids and benzoyl peroxide to prevent resistance. Doxycycline is not maintenance therapy; it bridges until topicals control disease.</p>\n\n<h2>Side effects</h2>\n\n<p>Photosensitivity (sunscreen essential), GI upset, esophagitis if taken without water, rare intracranial hypertension. Avoid in pregnancy and children under 8 due to teeth staining.</p>\n\n<p>CLYR Health offers doxycycline 100 mg capsules as a preview acne SKU for provider-supervised inflammatory acne protocols combined with topicals like <a href=\"/journal/clyr-tri-gel-triple-therapy-acne/\">triple-combination gel</a>.</p>",
+  "sources": [
+    {"label": "Zaenglein AL, et al. Acne guidelines. <em>J Am Acad Dermatol</em>. 2016.", "url": "https://pubmed.ncbi.nlm.nih.gov/26897386/"},
+    {"label": "Skidmore R, et al. Subantimicrobial-dose doxycycline for acne. <em>Arch Dermatol</em>. 2003.", "url": "https://pubmed.ncbi.nlm.nih.gov/12925337/"},
+    {"label": "FDA. Doxycycline prescribing information.", "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2010/050795s027lbl.pdf"}
+  ],
+  "related": [
+    {"slug": "clyr-tri-gel-triple-therapy-acne", "title": "Triple-Combination Acne Therapy", "category": "Skin & Hair"},
+    {"slug": "tretinoin-retinoid-starter-guide", "title": "Tretinoin Guide", "category": "Skin & Hair"},
+    {"slug": "hydroquinone-triple-cream-hyperpigmentation", "title": "Hydroquinone Triple Cream", "category": "Skin & Hair"}
+  ]
+}

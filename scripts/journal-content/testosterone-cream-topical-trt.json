@@ -1,0 +1,22 @@
+{
+  "slug": "testosterone-cream-topical-trt",
+  "title": "Testosterone Cream 1%: Needle-Free TRT Through the Skin",
+  "titleHtml": "Testosterone Cream 1%: <span class=\"serif\">Needle-Free TRT.</span>",
+  "category": "Men's Hormone",
+  "categoryKey": "research",
+  "deck": "Transdermal testosterone at 1% (10 mg/g) delivers daily androgen replacement without injections — absorption variables, transfer risk, and how it compares to cypionate.",
+  "date": "June 20, 2026",
+  "readTime": "8 min read",
+  "metaDescription": "Testosterone cream 1% 30g for TRT: transdermal absorption, transfer precautions, dosing 50-100mg daily, vs injectable testosterone cypionate.",
+  "bodyHtml": "<p>Testosterone 1% cream (10 mg per gram) applied to shoulders, upper arms, or inner thighs provides needle-free androgen replacement. A typical starting dose delivers 50 to 100 mg testosterone daily (5 to 10 grams of cream), titrated to morning total testosterone and symptom response.</p>\n\n<h2>Absorption and variability</h2>\n\n<p>Transdermal delivery avoids injection peaks and troughs but shows higher inter-patient variability than cypionate. Skin thickness, application site, and adherence affect levels. Washing hands after application and covering skin until dry prevents transfer to partners and children — a serious safety issue with topical androgens.</p>\n\n<h2>Who chooses cream</h2>\n\n<p>Needle-averse patients, those with injection site reactions, or men wanting daily fine-tuning. Fertility preservation is not better with cream than injection; both suppress the HPG axis at therapeutic doses.</p>\n\n<h2>Monitoring</h2>\n\n<p>Same as injectable TRT: hematocrit, PSA, lipids, symptom review. Apply to clean dry skin; rotate sites. Compounded 30g tubes are standard telehealth packaging.</p>\n\n<p>CLYR Health offers testosterone 1% cream as a men's hormone preview SKU.</p>",
+  "sources": [
+    {"label": "Bhasin S, et al. Testosterone therapy guideline. Endocrine Society. 2018.", "url": "https://www.endocrine.org/clinical-practice-guidelines/testosterone-therapy"},
+    {"label": "FDA. AndroGel 1% prescribing information.", "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2003/021015s018lbl.pdf"},
+    {"label": "Snyder PJ, et al. TRAVERSE cardiovascular safety trial. <em>N Engl J Med</em>. 2023.", "url": "https://pubmed.ncbi.nlm.nih.gov/37058265/"}
+  ],
+  "related": [
+    {"slug": "testosterone-cypionate-trt-explained", "title": "Testosterone Cypionate for TRT", "category": "Men's Hormone"},
+    {"slug": "enclomiphene-fertility-preserving-testosterone", "title": "Enclomiphene Explained", "category": "Men's Hormone"},
+    {"slug": "anastrozole-trt-estrogen-management", "title": "Anastrozole on TRT", "category": "Men's Hormone"}
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "slug": "progesterone-capsules-hrt-sleep",
+  "title": "Micronized Progesterone 100mg: The Progestogen Women Actually Tolerate",
+  "titleHtml": "Micronized Progesterone 100mg: <span class=\"serif\">HRT's Calming Progestogen.</span>",
+  "category": "Women's Hormone",
+  "categoryKey": "research",
+  "deck": "Oral micronized progesterone is structurally identical to ovarian progesterone, converts to allopregnanolone for sleep and anxiety support, and protects the endometrium when paired with estrogen.",
+  "date": "June 20, 2026",
+  "readTime": "8 min read",
+  "metaDescription": "Progesterone 100mg capsules for HRT: micronized oral progesterone vs progestins, endometrial protection, sleep benefits, and menopause pairing.",
+  "bodyHtml": "<p>Women on systemic estrogen with an intact uterus require progestogen to prevent endometrial hyperplasia. Micronized progesterone 100 mg at bedtime is the preferred bioidentical option in contemporary guidelines over synthetic progestins, which carry different metabolic and mood profiles.</p>\n\n<h2>Allopregnanolone and sleep</h2>\n\n<p>Oral micronized progesterone is metabolized to allopregnanolone, a neurosteroid that modulates GABA-A receptors — explaining why many women report improved sleep quality on nightly progesterone versus medroxyprogesterone acetate.</p>\n\n<h2>Endometrial protection</h2>\n\n<p>PEPI trial data support micronized progesterone for endometrial safety when paired with estrogen. Continuous combined or sequential cycling depends on years since menopause and bleeding tolerance.</p>\n\n<h2>Side effects</h2>\n\n<p>Drowsiness (take at night), breast tenderness, occasional mood changes. Not for use in peanut allergy (some formulations use peanut oil). Progesterone alone without estrogen is sometimes used off-label for perimenopausal insomnia at lower doses under specialist care.</p>\n\n<p>CLYR Health offers progesterone 100mg capsules as a women's hormone preview SKU paired with estradiol protocols.</p>",
+  "sources": [
+    {"label": "The 2022 NAMS Position Statement on hormone therapy.", "url": "https://pubmed.ncbi.nlm.nih.gov/35797481/"},
+    {"label": "Fitzpatrick LA, et al. Micronized progesterone and endometrial protection. <em>Obstet Gynecol</em>. 2000.", "url": "https://pubmed.ncbi.nlm.nih.gov/10725822/"},
+    {"label": "Schüssler P, et al. Progesterone and sleep. <em>Psychoneuroendocrinology</em>. 2008.", "url": "https://pubmed.ncbi.nlm.nih.gov/18378246/"}
+  ],
+  "related": [
+    {"slug": "estradiol-patches-hrt-explained", "title": "Estradiol Patches for HRT", "category": "Women's Hormone"},
+    {"slug": "womens-hair-regrowth-topical-stack", "title": "Women's Hair Regrowth", "category": "Skin & Hair"},
+    {"slug": "longevity-medicine-foundations", "title": "Longevity Medicine Foundations", "category": "Longevity"}
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "slug": "liraglutide-weight-loss-glp1",
+  "title": "Liraglutide for Weight Loss: The Daily GLP-1 Option",
+  "titleHtml": "Liraglutide for Weight Loss: <span class=\"serif\">The Daily GLP-1.</span>",
+  "category": "GLP-1",
+  "categoryKey": "metabolic",
+  "deck": "Before weekly semaglutide dominated obesity care, liraglutide 3.0 mg daily (Saxenda) established that GLP-1 agonism alone could produce meaningful weight loss — still relevant for semaglutide-intolerant patients.",
+  "date": "June 20, 2026",
+  "readTime": "8 min read",
+  "metaDescription": "Liraglutide 3mg daily for weight loss: SCALE trials, vs semaglutide, compounded options, nausea titration, and when clinicians still prescribe it.",
+  "bodyHtml": "<p>Liraglutide is a GLP-1 receptor agonist with 97% homology to native GLP-1 and a half-life of approximately 13 hours, requiring once-daily injection. At 3.0 mg daily (Saxenda dose), it is FDA-approved for chronic weight management. SCALE trials demonstrated roughly 8% mean weight loss at 56 weeks versus 2.6% with placebo, with improved cardiometabolic markers.</p>\n\n<p>Weekly semaglutide and tirzepatide have largely supplanted liraglutide for new obesity prescriptions due to superior weight loss magnitude and weekly convenience. Liraglutide remains valuable for patients who tolerate daily dosing better than weekly peaks, who experience adverse effects on longer-acting molecules, or who need a GLP-1 class alternative during supply transitions.</p>\n\n<p>Compounded liraglutide from 503A pharmacies follows the same titration ladder (0.6 mg daily escalating over weeks to 3.0 mg). Monitoring mirrors the class: GI symptoms, gallbladder events, thyroid cancer history screening, and pregnancy avoidance.</p>\n\n<p>CLYR Health offers liraglutide as a weight-loss preview SKU for patients whose providers select daily GLP-1 therapy.</p>",
+  "sources": [
+    {"label": "Pi-Sunyer X, et al. SCALE trial: liraglutide 3.0 mg and weight loss. <em>N Engl J Med</em>. 2015.", "url": "https://pubmed.ncbi.nlm.nih.gov/26284720/"},
+    {"label": "FDA. Saxenda (liraglutide) prescribing information.", "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2014/206321Orig1s009lbl.pdf"},
+    {"label": "Wilding JPH, et al. STEP 8: semaglutide vs liraglutide. <em>Nat Med</em>. 2022.", "url": "https://pubmed.ncbi.nlm.nih.gov/35022582/"}
+  ],
+  "related": [
+    {"slug": "semaglutide-vs-tirzepatide", "title": "Semaglutide vs. Tirzepatide", "category": "Metabolic Health"},
+    {"slug": "glp1-side-effects-management", "title": "GLP-1 Side Effects Management", "category": "GLP-1"},
+    {"slug": "metformin-er-glp1-companion", "title": "Metformin ER GLP-1 Companion", "category": "GLP-1"}
+  ]
+}

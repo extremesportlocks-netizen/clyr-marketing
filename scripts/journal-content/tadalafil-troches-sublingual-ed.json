@@ -1,0 +1,22 @@
+{
+  "slug": "tadalafil-troches-sublingual-ed",
+  "title": "Tadalafil Troches: Sublingual On-Demand ED Therapy",
+  "titleHtml": "Tadalafil Troches: <span class=\"serif\">Sublingual On-Demand ED.</span>",
+  "category": "Sexual Health",
+  "categoryKey": "research",
+  "deck": "Compounded 22 mg tadalafil troches dissolve under the tongue for faster absorption than swallowed tablets — on-demand erectile support with hours-long duration.",
+  "date": "June 20, 2026",
+  "readTime": "7 min read",
+  "metaDescription": "Tadalafil 22mg troches for ED: sublingual absorption, vs Cialis tablets, duration, nitrate contraindication, and compounded sexual health protocols.",
+  "bodyHtml": "<p>Tadalafil is a long-acting PDE5 inhibitor with 17.5-hour half-life, enabling on-demand and daily low-dose protocols. Compounded 22 mg troches (sublingual lozenges) are an industry-standard telehealth dose for as-needed erectile dysfunction, absorbed partially through oral mucosa before swallowing.</p>\n\n<p>Sublingual delivery may reduce time-to-peak versus oral tablets for some patients, though compounded troches are not FDA-approved with bioequivalence data to Cialis. Effects last up to 36 hours in label language for branded product; patients should plan around nitrates (absolute contraindication) and alpha-blocker interactions.</p>\n\n<p>Common side effects: headache, flushing, dyspepsia, nasal congestion. Visual disturbances are rare. CLYR Health offers tadalafil 22 mg troches as a preview sexual health SKU.</p>",
+  "sources": [
+    {"label": "FDA. Cialis (tadalafil) prescribing information.", "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2011/021368s020lbl.pdf"},
+    {"label": "AUA Erectile Dysfunction Guideline. 2018.", "url": "https://pubmed.ncbi.nlm.nih.gov/29562364/"},
+    {"label": "Carson CC, et al. Tadalafil in erectile dysfunction. <em>BJU Int</em>. 2004.", "url": "https://pubmed.ncbi.nlm.nih.gov/15217473/"}
+  ],
+  "related": [
+    {"slug": "trimix-injection-ed-rescue", "title": "Trimix for ED", "category": "Sexual Health"},
+    {"slug": "testosterone-cypionate-trt-explained", "title": "Testosterone Cypionate TRT", "category": "Men's Hormone"},
+    {"slug": "longevity-medicine-foundations", "title": "Longevity Medicine Foundations", "category": "Longevity"}
+  ]
+}
