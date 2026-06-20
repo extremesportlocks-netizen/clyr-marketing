@@ -1,0 +1,17 @@
+{
+  "campaign_name": "CLYR · Ivermectin · X · Jun26",
+  "line_item_name": "Ivermectin · Website Clicks · US",
+  "objective": "WEBSITE_CLICKS",
+  "daily_budget_dollars": 50,
+  "total_budget_dollars": 500,
+  "bid_dollars": 2.5,
+  "destination_url": "https://www.clyr.health/ads/x/antiparasitic.html?utm_campaign=ivermectin-jun26",
+  "tweet_text": "Doctor-prescribed antiparasitic protocols from licensed U.S. providers. 5-minute intake. From $139/mo. Start free →",
+  "targeting": [],
+  "notes": {
+    "location": "After OAuth, run: node scripts/x-ads-targeting.js us — then paste id into targeting[]",
+    "creative": "Upload hero image in ads.x.com or via POST accounts/:id/cards for website card",
+    "compliance": "Compounded medication not FDA-approved. Prescription required when clinically appropriate.",
+    "activate": "Campaign + line item created PAUSED. Set ACTIVE in ads.x.com after card review."
+  }
+}
