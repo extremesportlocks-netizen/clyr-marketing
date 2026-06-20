@@ -1,0 +1,22 @@
+{
+  "campaign_name": "CLYR · Combo · X · Jun26 · $100/d",
+  "line_item_name": "Ivermectin+Mebendazole · Website Clicks · US",
+  "objective": "WEBSITE_CLICKS",
+  "daily_budget_dollars": 100,
+  "total_budget_dollars": 3000,
+  "bid_dollars": 3.5,
+  "destination_url": "https://www.clyr.health/ads/x/antiparasitic.html?utm_source=twitter&utm_medium=paid&utm_campaign=combo-jun26&product=ivermectin-mebendazole",
+  "tweet_text": "Broader coverage: physician-guided Ivermectin + Mebendazole protocol from $169/mo. Licensed U.S. providers · 5-min intake · discreet shipping. Start free →",
+  "creative_url": "https://www.clyr.health/ads/x/creatives/combo-jun26.jpg",
+  "targeting": {
+    "locations": ["United States"],
+    "age_min": 30,
+    "age_max": 65,
+    "gender": "all",
+    "interests": ["Health", "Wellness", "Alternative medicine"],
+    "keywords": ["ivermectin", "parasite cleanse", "gut health", "mebendazole"]
+  },
+  "placements": ["X timeline", "X search"],
+  "optimization": "Website clicks",
+  "entity_status": "ACTIVE"
+}
