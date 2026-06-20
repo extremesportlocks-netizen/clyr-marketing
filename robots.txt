@@ -12,3 +12,4 @@ Disallow: /preview/hubs/
 Disallow: /ads/
 
 Sitemap: https://www.clyr.health/sitemap.xml
+Sitemap: https://www.clyr.health/sitemap-images.xml
