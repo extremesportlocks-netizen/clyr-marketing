@@ -77,6 +77,77 @@ NEUTRAL_COVER = 'background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)'
 
 def esc(s): return _html.escape(s or "", quote=True)
 
+MONTHS = {"january":1,"february":2,"march":3,"april":4,"may":5,"june":6,
+          "july":7,"august":8,"september":9,"october":10,"november":11,"december":12}
+IMG_KEYS = {"metabolic","cost","nad","research","longevity","peptides",
+            "pennsylvania","florida","texas"}
+
+def parse_date_iso(date_str):
+    m = re.match(r"([A-Za-z]+)\s+(\d{1,2}),\s*(\d{4})", (date_str or "").strip())
+    if not m:
+        return "2026-06-20"
+    mo = MONTHS.get(m.group(1).lower(), 6)
+    return f"{m.group(3)}-{mo:02d}-{int(m.group(2)):02d}"
+
+def img_data_key(c):
+    k = (c.get("categoryKey") or "research").strip().lower()
+    return k if k in IMG_KEYS else "research"
+
+def build_article_img(c):
+    key = img_data_key(c)
+    cat = esc(c["category"])
+    return (f'<div class="article-img" data-img="{key}">\n'
+            f'  <div class="article-img-inner">\n'
+            f'    <div class="article-img-decoration" style="opacity:0.22">\n'
+            f'      <svg viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg" width="100%" style="max-width:720px;height:auto">\n'
+            f'        <text x="320" y="72" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="700" fill="#00B4C5" letter-spacing="4">CLYR JOURNAL</text>\n'
+            f'        <text x="320" y="108" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#6B7C8A" letter-spacing="2">{cat.upper()}</text>\n'
+            f'        <line x1="120" y1="128" x2="520" y2="128" stroke="#00B4C5" stroke-width="1" opacity="0.35"/>\n'
+            f'      </svg>\n'
+            f'    </div>\n'
+            f'  </div>\n'
+            f'</div>')
+
+def build_json_ld(c, url, ogimg):
+    slug = c["slug"].strip("/")
+    iso = parse_date_iso(c.get("date"))
+    data = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Article",
+                "@id": url + "#article",
+                "headline": c["title"],
+                "description": c["metaDescription"],
+                "image": ogimg,
+                "datePublished": iso,
+                "dateModified": iso,
+                "author": {"@type": "Organization", "name": c.get("author", "CLYR Editorial")},
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "CLYR Health",
+                    "url": "https://www.clyr.health/",
+                    "logo": {"@type": "ImageObject", "url": "https://www.clyr.health/ogimageclyrfinal.png"},
+                },
+                "mainEntityOfPage": {"@type": "WebPage", "@id": url},
+                "articleSection": c["category"],
+                "inLanguage": "en-US",
+                "isAccessibleForFree": True,
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": url + "#breadcrumb",
+                "itemListElement": [
+                    {"@type": "ListItem", "position": 1, "name": "CLYR Health", "item": "https://www.clyr.health/"},
+                    {"@type": "ListItem", "position": 2, "name": "Journal", "item": "https://www.clyr.health/journal/"},
+                    {"@type": "ListItem", "position": 3, "name": c["title"], "item": url},
+                ],
+            },
+        ],
+    }
+    payload = json.dumps(data, ensure_ascii=False)
+    return f'<script type="application/ld+json">{payload}</script>'
+
 def build_article(c):
     cat = esc(c["category"])
     title_html = c.get("titleHtml") or esc(c["title"])
@@ -112,10 +183,14 @@ def build_article(c):
                    '<div class="related-title">More from <span class="serif">the Journal</span></div>'
                    '<a href="/journal/" class="related-back">All articles &rarr;</a></div>\n'
                    f'  <div class="related-grid">\n{cards}\n  </div>\n</section>')
-    return f"{hero}\n\n{body}{sources}{related}"
+    return f"{hero}\n\n{build_article_img(c)}\n\n{body}{sources}{related}"
 
 def replace_head(pre, c, url, ogimg):
+    slug = c["slug"].strip("/")
+    cat_key = esc(c.get("categoryKey", "research"))
+    iso = parse_date_iso(c.get("date"))
     t = esc(c["title"]); d = esc(c["metaDescription"]); ot = esc(c.get("ogTitle", c["title"]))
+    auth = esc(c.get("author", "CLYR Editorial"))
     subs = [
         (r"<title>.*?</title>", f"<title>{t} | CLYR Health</title>"),
         (r'(<meta name="description" content=")[^"]*(">)', rf"\g<1>{d}\g<2>"),
@@ -127,9 +202,36 @@ def replace_head(pre, c, url, ogimg):
         (r'(<meta name="twitter:description" content=")[^"]*(">)', rf"\g<1>{d}\g<2>"),
         (r'(<meta name="twitter:image" content=")[^"]*(">)', rf"\g<1>{ogimg}\g<2>"),
         (r'(<link rel="canonical" href=")[^"]*(">)', rf"\g<1>{url}\g<2>"),
+        (r"posthog\.register\(\{[^}]+\}\);",
+         f"posthog.register({{article_slug:'{slug}',article_category:'{cat_key}'}});"),
     ]
     for pat, rep in subs:
         pre = re.sub(pat, rep, pre, count=1, flags=re.S)
+    seo_block = (
+        f'<meta name="robots" content="index, follow, max-image-preview:large">\n'
+        f'<meta name="author" content="{auth}">\n'
+        f'<meta property="og:site_name" content="CLYR Health">\n'
+        f'<meta property="og:locale" content="en_US">\n'
+        f'<meta property="article:published_time" content="{iso}">\n'
+        f'<meta property="article:modified_time" content="{iso}">\n'
+        f'<meta property="article:author" content="{auth}">\n'
+        f'<meta property="article:section" content="{esc(c["category"])}">\n'
+        f'<meta name="twitter:site" content="@ClyrHealth">\n'
+        f'{build_json_ld(c, url, ogimg)}\n'
+        f'<script>window.dataLayer=window.dataLayer||[];dataLayer.push({{event:"article_view",'
+        f'article_slug:"{slug}",article_category:"{cat_key}",article_title:{json.dumps(c["title"])}}});</script>\n'
+    )
+    dlayer = (
+        f'<script>window.dataLayer=window.dataLayer||[];dataLayer.push({{event:"article_view",'
+        f'article_slug:"{slug}",article_category:"{cat_key}",article_title:{json.dumps(c["title"])}}});</script>\n'
+    )
+    if '<meta name="robots"' not in pre:
+        pre = pre.replace("</head>", seo_block + "</head>", 1)
+    else:
+        pre = re.sub(r'<script type="application/ld\+json">.*?</script>\s*', "", pre, flags=re.S)
+        pre = pre.replace("</head>", build_json_ld(c, url, ogimg) + "\n</head>", 1)
+        if 'event:"article_view"' not in pre:
+            pre = pre.replace("</head>", dlayer + "</head>", 1)
     return pre
 
 def render_page(ref_html, c):
@@ -141,15 +243,20 @@ def render_page(ref_html, c):
     pre = ref_html[: ref_html.index("</nav>") + len("</nav>")]
     post = ref_html[ref_html.index("<footer"):]
     pre = replace_head(pre, c, url, ogimg)
-    return f"{pre}\n\n{build_article(c)}\n\n{post}"
+    page = f"{pre}\n\n{build_article(c)}\n\n{post}"
+    if 'src="/js/clyr-tracking.js"' not in page:
+        page = page.replace("</body>", '<script src="/js/clyr-tracking.js"></script>\n</body>', 1)
+    return page
 
 def index_card(c):
     slug = c["slug"].strip("/")
-    return (f'    <a href="/journal/{slug}/" class="feature-card" data-category="{esc(c.get("categoryKey","new"))}">\n'
+    key = img_data_key(c)
+    title = c["title"].rstrip(".")
+    return (f'    <a href="/journal/{slug}/" class="feature-card" data-category="{esc(c.get("categoryKey","new"))}" data-img="{key}">\n'
             f'      <div class="feature-card-img" style="{NEUTRAL_COVER}"></div>\n'
             f'      <div class="feature-card-body">\n'
             f'        <div class="feature-card-cat">{esc(c["category"])}</div>\n'
-            f'        <h3 class="feature-card-title">{esc(c["title"])}.</h3>\n'
+            f'        <h3 class="feature-card-title">{esc(title)}</h3>\n'
             f'        <p class="feature-card-dek">{esc(c["deck"])}</p>\n'
             f'        <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>{esc(c["readTime"])}</span></div>\n'
             f'      </div>\n    </a>\n')

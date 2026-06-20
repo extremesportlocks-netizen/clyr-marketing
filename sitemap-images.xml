@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-  <url><loc>https://www.clyr.health/protocol-gallery/</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+<url><loc>https://www.clyr.health/protocol-gallery/</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
   <url>
     <loc>https://www.clyr.health/protocol-gallery/ivermectin-protocol-doctor-prescribed.html</loc>
     <changefreq>weekly</changefreq>
@@ -100,6 +100,474 @@
       <image:loc>https://www.clyr.health/protocol-gallery/images/ivermectin-protocol-licensed-us-providers-clyr.jpg</image:loc>
       <image:title>Ivermectin Protocol — Licensed US Providers | CLYR Health</image:title>
       <image:caption>Antiparasitic protocols with licensed US providers. Ivermectin $139/mo, combo $169/mo.</image:caption>
+    </image:image>
+  </url>
+      <url>
+    <loc>https://www.clyr.health/journal/anastrozole-trt-estrogen-management/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/anastrozole-trt-estrogen-management.png</image:loc>
+      <image:title>Anastrozole Trt Estrogen Management | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/biest-progesterone-compounded-hrt/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/biest-progesterone-compounded-hrt.png</image:loc>
+      <image:title>Biest Progesterone Compounded Hrt | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/bpc-157-peptide-recovery-explained/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/bpc-157-peptide-recovery-explained.png</image:loc>
+      <image:title>Bpc 157 Peptide Recovery Explained | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/clyr-tri-gel-triple-therapy-acne/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/clyr-tri-gel-triple-therapy-acne.png</image:loc>
+      <image:title>Clyr Tri Gel Triple Therapy Acne | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/compounded-hair-regrowth-quad-stack-men/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/compounded-hair-regrowth-quad-stack-men.png</image:loc>
+      <image:title>Compounded Hair Regrowth Quad Stack Men | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/compounded-semaglutide-cost/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/compounded-semaglutide-cost.png</image:loc>
+      <image:title>Compounded Semaglutide Cost | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/dhea-pregnenolone-adrenal-precursors/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/dhea-pregnenolone-adrenal-precursors.png</image:loc>
+      <image:title>Dhea Pregnenolone Adrenal Precursors | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/doxycycline-oral-acne-antibiotic/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/doxycycline-oral-acne-antibiotic.png</image:loc>
+      <image:title>Doxycycline Oral Acne Antibiotic | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/enclomiphene-fertility-preserving-testosterone/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/enclomiphene-fertility-preserving-testosterone.png</image:loc>
+      <image:title>Enclomiphene Fertility Preserving Testosterone | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/estradiol-patches-hrt-explained/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/estradiol-patches-hrt-explained.png</image:loc>
+      <image:title>Estradiol Patches Hrt Explained | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/estradiol-vaginal-cream-gsm/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/estradiol-vaginal-cream-gsm.png</image:loc>
+      <image:title>Estradiol Vaginal Cream Gsm | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/estriol-ghk-cu-anti-aging-cream/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/estriol-ghk-cu-anti-aging-cream.png</image:loc>
+      <image:title>Estriol Ghk Cu Anti Aging Cream | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/finasteride-oral-hair-loss-dht/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/finasteride-oral-hair-loss-dht.png</image:loc>
+      <image:title>Finasteride Oral Hair Loss Dht | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/ghk-cu-injectable-copper-peptide/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/ghk-cu-injectable-copper-peptide.png</image:loc>
+      <image:title>Ghk Cu Injectable Copper Peptide | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/glp1-protein-resistance-training/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/glp1-protein-resistance-training.png</image:loc>
+      <image:title>Glp1 Protein Resistance Training | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/glp1-side-effects-management/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/glp1-side-effects-management.png</image:loc>
+      <image:title>Glp1 Side Effects Management | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/glutathione-master-antioxidant/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/glutathione-master-antioxidant.png</image:loc>
+      <image:title>Glutathione Master Antioxidant | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/hcg-trt-adjunct-explained/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/hcg-trt-adjunct-explained.png</image:loc>
+      <image:title>Hcg Trt Adjunct Explained | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/hydroquinone-triple-cream-hyperpigmentation/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/hydroquinone-triple-cream-hyperpigmentation.png</image:loc>
+      <image:title>Hydroquinone Triple Cream Hyperpigmentation | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/liraglutide-weight-loss-glp1/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/liraglutide-weight-loss-glp1.png</image:loc>
+      <image:title>Liraglutide Weight Loss Glp1 | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/longevity-medicine-foundations/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/longevity-medicine-foundations.png</image:loc>
+      <image:title>Longevity Medicine Foundations | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/metformin-er-glp1-companion/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/metformin-er-glp1-companion.png</image:loc>
+      <image:title>Metformin Er Glp1 Companion | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/nad-face-cream-topical-longevity/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/nad-face-cream-topical-longevity.png</image:loc>
+      <image:title>Nad Face Cream Topical Longevity | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/nad-iv-vs-injection/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/nad-iv-vs-injection.png</image:loc>
+      <image:title>Nad Iv Vs Injection | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/nad-vs-nmn-vs-nr/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/nad-vs-nmn-vs-nr.png</image:loc>
+      <image:title>Nad Vs Nmn Vs Nr | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/naltrexone-ldn-wellness-protocol/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/naltrexone-ldn-wellness-protocol.png</image:loc>
+      <image:title>Naltrexone Ldn Wellness Protocol | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/niagen-nicotinamide-riboside-explained/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/niagen-nicotinamide-riboside-explained.png</image:loc>
+      <image:title>Niagen Nicotinamide Riboside Explained | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/oxytocin-nasal-spray-bonding/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/oxytocin-nasal-spray-bonding.png</image:loc>
+      <image:title>Oxytocin Nasal Spray Bonding | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/progesterone-capsules-hrt-sleep/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/progesterone-capsules-hrt-sleep.png</image:loc>
+      <image:title>Progesterone Capsules Hrt Sleep | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/pt141-bremelanotide-libido/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/pt141-bremelanotide-libido.png</image:loc>
+      <image:title>Pt141 Bremelanotide Libido | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/select-trial-cardiovascular/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/select-trial-cardiovascular.png</image:loc>
+      <image:title>Select Trial Cardiovascular | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/semaglutide-florida/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/semaglutide-florida.png</image:loc>
+      <image:title>Semaglutide Florida | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/semaglutide-near-me/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/semaglutide-near-me.png</image:loc>
+      <image:title>Semaglutide Near Me | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/semaglutide-odt-nausea-managed-oral-glp1/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/semaglutide-odt-nausea-managed-oral-glp1.png</image:loc>
+      <image:title>Semaglutide Odt Nausea Managed Oral Glp1 | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/semaglutide-pennsylvania/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/semaglutide-pennsylvania.png</image:loc>
+      <image:title>Semaglutide Pennsylvania | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/semaglutide-texas/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/semaglutide-texas.png</image:loc>
+      <image:title>Semaglutide Texas | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/semaglutide-vs-tirzepatide/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/semaglutide-vs-tirzepatide.png</image:loc>
+      <image:title>Semaglutide Vs Tirzepatide | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/sermorelin-explained/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/sermorelin-explained.png</image:loc>
+      <image:title>Sermorelin Explained | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/sildenafil-tadalafil-dual-gummy-ed/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/sildenafil-tadalafil-dual-gummy-ed.png</image:loc>
+      <image:title>Sildenafil Tadalafil Dual Gummy Ed | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/surmount-5-deep-dive/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/surmount-5-deep-dive.png</image:loc>
+      <image:title>Surmount 5 Deep Dive | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/tadalafil-apomorphine-dual-ed/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/tadalafil-apomorphine-dual-ed.png</image:loc>
+      <image:title>Tadalafil Apomorphine Dual Ed | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/tadalafil-troches-sublingual-ed/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/tadalafil-troches-sublingual-ed.png</image:loc>
+      <image:title>Tadalafil Troches Sublingual Ed | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/tb-500-recovery-peptide/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/tb-500-recovery-peptide.png</image:loc>
+      <image:title>Tb 500 Recovery Peptide | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/testosterone-cream-topical-trt/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/testosterone-cream-topical-trt.png</image:loc>
+      <image:title>Testosterone Cream Topical Trt | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/testosterone-cypionate-trt-explained/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/testosterone-cypionate-trt-explained.png</image:loc>
+      <image:title>Testosterone Cypionate Trt Explained | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/testosterone-hypo-spray-transdermal/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/testosterone-hypo-spray-transdermal.png</image:loc>
+      <image:title>Testosterone Hypo Spray Transdermal | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/tirzepatide-sublingual-drops-explained/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/tirzepatide-sublingual-drops-explained.png</image:loc>
+      <image:title>Tirzepatide Sublingual Drops Explained | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/tretinoin-retinoid-starter-guide/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/tretinoin-retinoid-starter-guide.png</image:loc>
+      <image:title>Tretinoin Retinoid Starter Guide | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/trimix-injection-ed-rescue/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/trimix-injection-ed-rescue.png</image:loc>
+      <image:title>Trimix Injection Ed Rescue | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/what-is-nad-plus/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/what-is-nad-plus.png</image:loc>
+      <image:title>What Is Nad Plus | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/womens-hair-regrowth-topical-stack/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/womens-hair-regrowth-topical-stack.png</image:loc>
+      <image:title>Womens Hair Regrowth Topical Stack | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/womens-testosterone-cream-libido/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/womens-testosterone-cream-libido.png</image:loc>
+      <image:title>Womens Testosterone Cream Libido | CLYR Journal</image:title>
     </image:image>
   </url>
 </urlset>

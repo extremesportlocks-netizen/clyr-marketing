@@ -29,6 +29,7 @@ def main():
 
     slug = c["slug"].strip("/")
     page = pj.render_page(ref, c)
+    skip_index = "--no-index" in sys.argv
     out_dir = os.path.join(ROOT, "journal", slug)
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "index.html")
@@ -36,18 +37,19 @@ def main():
         f.write(page)
     print(f"✓ wrote {out_path} ({len(page.splitlines())} lines)")
 
-    idx_path = os.path.join(ROOT, "journal", "index.html")
-    with open(idx_path, encoding="utf-8") as f:
-        idx = f.read()
-    anchor = '<div class="featured-grid">'
-    needle = f'href="/journal/{slug}/"'
-    if needle in idx:
-        print("• index already lists this post")
-    else:
-        idx = idx.replace(anchor, anchor + "\n" + pj.index_card(c), 1)
-        with open(idx_path, "w", encoding="utf-8") as f:
-            f.write(idx)
-        print("✓ prepended card to journal/index.html")
+    if not skip_index:
+        idx_path = os.path.join(ROOT, "journal", "index.html")
+        with open(idx_path, encoding="utf-8") as f:
+            idx = f.read()
+        anchor = '<div class="featured-grid">'
+        needle = f'href="/journal/{slug}/"'
+        if needle in idx:
+            print("• index already lists this post")
+        else:
+            idx = idx.replace(anchor, anchor + "\n" + pj.index_card(c), 1)
+            with open(idx_path, "w", encoding="utf-8") as f:
+                f.write(idx)
+            print("✓ prepended card to journal/index.html")
 
     print(f"Preview: file://{out_path}")
     print(f"Live after push: https://www.clyr.health/journal/{slug}/")
