@@ -102,7 +102,7 @@
       <image:caption>Antiparasitic protocols with licensed US providers. Ivermectin $139/mo, combo $169/mo.</image:caption>
     </image:image>
   </url>
-            <url>
+              <url>
     <loc>https://www.clyr.health/journal/anastrozole-trt-estrogen-management/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -154,6 +154,15 @@
     <image:image>
       <image:loc>https://www.clyr.health/img/journal-og/compounded-semaglutide-cost.png</image:loc>
       <image:title>Compounded Semaglutide Cost | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/compounded-tirzepatide-ohio/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/compounded-tirzepatide-ohio.png</image:loc>
+      <image:title>Compounded Tirzepatide Ohio | CLYR Journal</image:title>
     </image:image>
   </url>
   <url>
@@ -247,6 +256,15 @@
     </image:image>
   </url>
   <url>
+    <loc>https://www.clyr.health/journal/glp1-weight-loss-north-carolina/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/glp1-weight-loss-north-carolina.png</image:loc>
+      <image:title>Glp1 Weight Loss North Carolina | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://www.clyr.health/journal/glutathione-master-antioxidant/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -274,6 +292,15 @@
     </image:image>
   </url>
   <url>
+    <loc>https://www.clyr.health/journal/ivermectin-wellness-protocol-overview/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/ivermectin-wellness-protocol-overview.png</image:loc>
+      <image:title>Ivermectin Wellness Protocol Overview | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://www.clyr.health/journal/liraglutide-weight-loss-glp1/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -298,6 +325,15 @@
     <image:image>
       <image:loc>https://www.clyr.health/img/journal-og/metformin-er-glp1-companion.png</image:loc>
       <image:title>Metformin Er Glp1 Companion | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/micc-lipotropic-injection-explained/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/micc-lipotropic-injection-explained.png</image:loc>
+      <image:title>Micc Lipotropic Injection Explained | CLYR Journal</image:title>
     </image:image>
   </url>
   <url>
@@ -382,6 +418,15 @@
     </image:image>
   </url>
   <url>
+    <loc>https://www.clyr.health/journal/semaglutide-california/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/semaglutide-california.png</image:loc>
+      <image:title>Semaglutide California | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://www.clyr.health/journal/semaglutide-florida/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -397,6 +442,15 @@
     <image:image>
       <image:loc>https://www.clyr.health/img/journal-og/semaglutide-near-me.png</image:loc>
       <image:title>Semaglutide Near Me | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/semaglutide-new-york/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/semaglutide-new-york.png</image:loc>
+      <image:title>Semaglutide New York | CLYR Journal</image:title>
     </image:image>
   </url>
   <url>
@@ -490,6 +544,15 @@
     </image:image>
   </url>
   <url>
+    <loc>https://www.clyr.health/journal/telehealth-weight-loss-how-it-works/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/telehealth-weight-loss-how-it-works.png</image:loc>
+      <image:title>Telehealth Weight Loss How It Works | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://www.clyr.health/journal/testosterone-cream-topical-trt/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -544,6 +607,24 @@
     </image:image>
   </url>
   <url>
+    <loc>https://www.clyr.health/journal/weight-loss-plateau-glp1/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/weight-loss-plateau-glp1.png</image:loc>
+      <image:title>Weight Loss Plateau Glp1 | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/weight-loss-telehealth-georgia/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/weight-loss-telehealth-georgia.png</image:loc>
+      <image:title>Weight Loss Telehealth Georgia | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://www.clyr.health/journal/what-is-nad-plus/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -568,6 +649,15 @@
     <image:image>
       <image:loc>https://www.clyr.health/img/journal-og/womens-testosterone-cream-libido.png</image:loc>
       <image:title>Womens Testosterone Cream Libido | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/zepbound-vs-compounded-tirzepatide/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/zepbound-vs-compounded-tirzepatide.png</image:loc>
+      <image:title>Zepbound Vs Compounded Tirzepatide | CLYR Journal</image:title>
     </image:image>
   </url>
 </urlset>
