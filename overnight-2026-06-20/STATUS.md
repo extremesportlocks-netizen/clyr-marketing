@@ -1,13 +1,13 @@
 # Overnight Sprint Status
 
-**Updated:** 2026-06-20T09:20:24.399096+00:00  
-**Cycle:** 8  
+**Updated:** 2026-06-20T09:35:26.067683+00:00  
+**Cycle:** 9  
 **Ends:** 2026-06-20T15:35:09.417796+00:00  
 **Last push:** yes
 
 ## Live checks
 - Homepage: 200
-- Sitemap URLs: 99
+- Sitemap URLs: 100
 - GBP schema/footer: True / True
 - Google verify tag: True
 
