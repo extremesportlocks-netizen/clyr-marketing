@@ -1,0 +1,24 @@
+{
+  "slug": "semaglutide-odt-nausea-managed-oral-glp1",
+  "title": "Oral Semaglutide ODT: Needle-Free GLP-1 With Built-In Nausea Support",
+  "titleHtml": "Oral Semaglutide ODT: <span class=\"serif\">Needle-Free GLP-1.</span>",
+  "category": "GLP-1",
+  "categoryKey": "metabolic",
+  "deck": "Compounded semaglutide orally disintegrating tablets paired with ondansetron address the two biggest GLP-1 adoption barriers — injections and GI side effects — in a single prescription format.",
+  "date": "June 20, 2026",
+  "readTime": "9 min read",
+  "metaDescription": "Semaglutide ODT plus ondansetron explained: oral GLP-1 absorption, nausea management, 4mg/2mg dosing, and how it compares to Rybelsus and injections.",
+  "bodyHtml": "<p>Semaglutide revolutionized obesity pharmacotherapy as a weekly injection (Wegovy, Ozempic) and later as a daily oral tablet (Rybelsus) using absorption enhancer SNAC. Nausea remains the leading reason patients discontinue GLP-1 therapy during dose escalation. Compounded semaglutide orally disintegrating tablets (ODT) co-formulated with ondansetron — a 5-HT3 antagonist used for chemotherapy nausea — represent a telehealth innovation aimed at needle-free delivery with proactive antiemetic support.</p>\n\n<h2>Oral semaglutide pharmacology</h2>\n\n<p>Semaglutide is a GLP-1 receptor agonist with 94% homology to native GLP-1 and albumin binding for extended half-life. Injectable forms achieve therapeutic plasma levels reliably. Oral Rybelsus requires fasting administration, limited water, and SNAC enhancer to survive gastric degradation — strict rules that affect real-world adherence.</p>\n\n<p>Compounded ODT formulations dissolve on the tongue, potentially bypassing some gastric variability and allowing flexible compounding concentrations (commonly 4 mg semaglutide with 2 mg ondansetron per tablet in mid-titration protocols). Bioavailability differs from branded Rybelsus; compounded products are not bioequivalent and require prescriber-managed titration.</p>\n\n<h2>Why ondansetron is paired</h2>\n\n<p>GLP-1 nausea is centrally mediated and related to delayed gastric emptying. Ondansetron blocks serotonin 5-HT3 receptors in the gut and chemoreceptor trigger zone, reducing vomiting and nausea severity. Co-administration in one ODT ensures patients take antiemetic support during the highest-risk titration weeks rather than as a separate prescription they may skip.</p>\n\n<p>Ondansetron carries its own considerations: QT prolongation at high IV doses (less relevant at low oral adjunct doses), constipation, and headache. Providers screen cardiac history before prescribing.</p>\n\n<h2>Who fits oral compounded semaglutide</h2>\n\n<ul>\n<li>Needle-averse patients seeking weight loss pharmacotherapy</li>\n<li>Patients who failed injectable semaglutide primarily due to injection burden, not efficacy</li>\n<li>Those who discontinued prior GLP-1 titration because of nausea</li>\n<li>Patients wanting daily dose flexibility versus weekly peaks</li>\n</ul>\n\n<h2>Monitoring and class warnings</h2>\n\n<p>Same as all GLP-1 agonists: pancreatitis history, thyroid medullary carcinoma risk, pregnancy avoidance, gallbladder events, and hypoglycemia risk if combined with insulin or sulfonylureas. Weight, heart rate, and GI symptoms are tracked through telehealth follow-up.</p>\n\n<p>Compounded semaglutide exists in a complex FDA regulatory environment when branded product is available. Patients should use licensed 503A pharmacies with valid prescriptions.</p>\n\n<p>CLYR Health's semaglutide ODT plus ondansetron preview SKU targets patients whose providers determine oral compounded GLP-1 with nausea management is the right adherence strategy.</p>",
+  "sources": [
+    {"label": "FDA. Rybelsus (oral semaglutide) prescribing information.", "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2021/213051s000lbl.pdf"},
+    {"label": "Wilding JPH, et al. STEP 1: semaglutide for obesity. <em>N Engl J Med</em>. 2021.", "url": "https://pubmed.ncbi.nlm.nih.gov/33567185/"},
+    {"label": "FDA. Compounded semaglutide: patient and provider alert.", "url": "https://www.fda.gov/drugs/drug-safety-and-availability/fda-alerts-patients-and-providers-about-compounded-semaglutide"},
+    {"label": "Kushner RF, et al. Semaglutide for obesity: GI adverse events management. <em>Diabetes Obes Metab</em>. 2020.", "url": "https://pubmed.ncbi.nlm.nih.gov/32337890/"},
+    {"label": "Ondansetron drug label. FDA.", "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2016/019627s040lbl.pdf"}
+  ],
+  "related": [
+    {"slug": "glp1-side-effects-management", "title": "GLP-1 Side Effects Management", "category": "GLP-1"},
+    {"slug": "compounded-semaglutide-cost", "title": "Compounded Semaglutide Cost", "category": "Metabolic Health"},
+    {"slug": "semaglutide-vs-tirzepatide", "title": "Semaglutide vs. Tirzepatide", "category": "Metabolic Health"}
+  ]
+}
