@@ -10,7 +10,14 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parents[1]
-VIAL_MASTER = ROOT / "preview" / "vial-review" / "final" / "nad.png"
+VIAL_BLANK = ROOT / "preview" / "vial-review" / "final" / "clyr-vial-blank.png"
+VIAL_BG_REF: dict[str, Path] = {
+    "longevity": ROOT / "preview" / "vial-review" / "final" / "nad.png",
+    "glp": ROOT / "preview" / "vial-review" / "final" / "semaglutide.png",
+    "hormone": ROOT / "preview" / "vial-review" / "final" / "nad.png",
+    "sexual": ROOT / "preview" / "vial-review" / "final" / "nad.png",
+    "skin": ROOT / "preview" / "vial-review" / "final" / "glutathione.png",
+}
 OUT = ROOT / "preview" / "assets"
 HEROES = OUT / "heroes"
 CARDS = OUT / "cards"
@@ -66,77 +73,121 @@ WASH_BG = {
 }
 
 
-def _fonts() -> tuple:
+def _font(size: int, bold: bool = False) -> ImageFont.FreeTypeFont | ImageFont.ImageFont:
     bold_path = "/System/Library/Fonts/Supplemental/Arial Bold.ttf"
     reg_path = "/System/Library/Fonts/Supplemental/Arial.ttf"
     if not Path(reg_path).exists():
         reg_path = "/System/Library/Fonts/Supplemental/Helvetica.ttc"
+    path = bold_path if bold else reg_path
     try:
-        bold = ImageFont.truetype(bold_path, 52) if Path(bold_path).exists() else ImageFont.truetype(reg_path, 52)
-        regular = ImageFont.truetype(reg_path, 28)
+        return ImageFont.truetype(path, size) if Path(path).exists() else ImageFont.truetype(reg_path, size)
     except OSError:
-        bold = regular = ImageFont.load_default()
-    return bold, regular
+        return ImageFont.load_default()
+
+
+def _fonts() -> tuple:
+    return _font(52, bold=True), _font(28)
 
 
 def _draw_clyr_logo(draw: ImageDraw.ImageDraw, cx: int, y: int, size: int = 36):
-    bold, _ = _fonts()
-    bold_path = "/System/Library/Fonts/Supplemental/Arial Bold.ttf"
-    try:
-        f = ImageFont.truetype(bold_path, size) if Path(bold_path).exists() else bold
-    except OSError:
-        f = bold
+    f = _font(size, bold=True)
     cly = "CLY"
     r = "R"
     w_cly = draw.textlength(cly, font=f)
-    w_r = draw.textlength(r, font=f)
-    x = int(cx - (w_cly + w_r) / 2)
-    draw.text((x, y), cly, fill="#0d1b2e", font=f)
-    draw.text((x + w_cly, y), r, fill="#00B4C5", font=f)
+    x = int(cx - (w_cly + draw.textlength(r, font=f)) / 2)
+    draw.text((x, y), cly, fill="#0d1b2e", font=f, anchor="lm")
+    draw.text((x + w_cly, y), r, fill="#00B4C5", font=f, anchor="lm")
+
+
+def _gradient_bg_from_ref(ref_path: Path, size: tuple[int, int] = (600, 600)) -> Image.Image:
+    ref = Image.open(ref_path).convert("RGB")
+    top = ref.getpixel((40, 40))
+    bot = ref.getpixel((40, size[1] - 30))
+    img = Image.new("RGBA", size)
+    draw = ImageDraw.Draw(img)
+    for y in range(size[1]):
+        t = y / max(size[1] - 1, 1)
+        color = (
+            int(top[0] * (1 - t) + bot[0] * t),
+            int(top[1] * (1 - t) + bot[1] * t),
+            int(top[2] * (1 - t) + bot[2] * t),
+            255,
+        )
+        draw.line([(0, y), (size[0], y)], fill=color)
+    return img
+
+
+def _extract_vial_layer(blank_path: Path) -> Image.Image:
+    im = Image.open(blank_path).convert("RGBA")
+    px = im.load()
+    for y in range(im.height):
+        for x in range(im.width):
+            r, g, b, a = px[x, y]
+            if r > 242 and g > 242 and b > 242:
+                px[x, y] = (255, 255, 255, 0)
+    return im
+
+
+def _fit_font(
+    draw: ImageDraw.ImageDraw,
+    text: str,
+    max_w: float,
+    start_size: int,
+    bold: bool = True,
+) -> tuple[str, ImageFont.FreeTypeFont | ImageFont.ImageFont]:
+    size = start_size
+    while size > 14:
+        f = _font(size, bold=bold)
+        if draw.textlength(text, font=f) <= max_w:
+            return text, f
+        size -= 2
+    short = textwrap.shorten(text, 12, placeholder="…")
+    return short, _font(14, bold=bold)
 
 
 def composite_vial(title: str, subtitle: str, detail: str, wash: str) -> Image.Image:
-    base = Image.open(VIAL_MASTER).convert("RGBA")
-    img = base.copy()
-    draw = ImageDraw.Draw(img)
-    bold, regular = _fonts()
+    """Match live finals: Canva blank vial + frosted on-glass labels (no floating card)."""
+    blank = VIAL_BLANK if VIAL_BLANK.exists() else VIAL_BG_REF["longevity"]
+    bg_ref = VIAL_BG_REF.get(wash, VIAL_BG_REF["longevity"])
+    canvas = _gradient_bg_from_ref(bg_ref)
+    canvas = Image.alpha_composite(canvas, _extract_vial_layer(blank))
 
-    # Cover existing label
-    lx, ly, rx, ry = 168, 228, 432, 468
-    draw.rounded_rectangle((lx, ly, rx, ry), radius=18, fill=(255, 255, 255, 245))
+    # Frost entire vial body (covers Canva CLYR print) — matches live vial-nad-new style
+    frost = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
+    fd = ImageDraw.Draw(frost)
+    fd.rounded_rectangle((218, 198, 382, 532), radius=6, fill=(255, 255, 255, 252))
+    canvas = Image.alpha_composite(canvas, frost)
 
+    draw = ImageDraw.Draw(canvas)
     cx = 300
+    max_w = 132.0
 
-    def fit_line(text: str, max_w: float, font, start_size: int) -> tuple[str, ImageFont.FreeTypeFont]:
-        size = start_size
-        bold_path = "/System/Library/Fonts/Supplemental/Arial Bold.ttf"
-        while size > 18:
-            try:
-                f = ImageFont.truetype(bold_path, size) if Path(bold_path).exists() else font
-            except OSError:
-                f = font
-            if draw.textlength(text, font=f) <= max_w:
-                return text, f
-            size -= 2
-        return text[:20], font
+    label_rows: list[tuple[str, int, bool, str]] = []
+    if wash == "glp":
+        label_rows = [
+            ("Compounded", 18, False, "#4a5568"),
+            (title, 32, True, "#0d1b2e"),
+            (subtitle, 21, False, "#6b7c8a"),
+        ]
+        if detail:
+            label_rows.append((detail, 19, False, "#6b7c8a"))
+        y_start, y_step = 278, 32
+    else:
+        label_rows = [(title, 40, True, "#0d1b2e")]
+        if subtitle:
+            label_rows.append((subtitle, 24, False, "#6b7c8a"))
+        if detail:
+            label_rows.append((detail, 22, False, "#6b7c8a"))
+        y_start, y_step = 295, 36
 
-    t1, f1 = fit_line(title, 220, bold, 52)
-    draw.text((cx, 258), t1, fill="#0d1b2e", font=f1, anchor="mm")
-    draw.text((cx, 318), subtitle, fill="#6b7c8a", font=regular, anchor="mm")
-    draw.text((cx, 358), detail, fill="#6b7c8a", font=regular, anchor="mm")
-    _draw_clyr_logo(draw, cx, 400, 34)
+    y = y_start
+    for text, size, bold, color in label_rows:
+        line, font = _fit_font(draw, text, max_w, size, bold=bold)
+        draw.text((cx, y), line, fill=color, font=font, anchor="mm")
+        y += y_step
 
-    # Soft wash overlay at edges
-    ov = Image.new("RGBA", img.size, (0, 0, 0, 0))
-    od = ImageDraw.Draw(ov)
-    c1, c2 = WASH_BG.get(wash, WASH_BG["longevity"])
-    for y in range(img.height):
-        t = y / img.height
-        r = int(c1[0] * (1 - t) + c2[0] * t)
-        g = int(c1[1] * (1 - t) + c2[1] * t)
-        b = int(c1[2] * (1 - t) + c2[2] * t)
-        od.line([(0, y), (img.width, y)], fill=(r, g, b, 28))
-    return Image.alpha_composite(img, ov)
+    _draw_clyr_logo(draw, cx, 498, 28)
+    return canvas.convert("RGB")
 
 
 def _svg_wrap(inner: str, wash: str) -> str:
@@ -493,7 +544,7 @@ h1{{font-size:28px;margin-bottom:6px}} .lead{{color:#6b7c8a;margin-bottom:32px;f
 </style></head><body><div class="wrap">
 <div class="banner">ASSET REVIEW — not live · approve here before promoting to /img/</div>
 <h1>36 preview product heroes</h1>
-<p class="lead">Vials composited from your NAD master (<code>preview/vial-review/final/nad.png</code>). Pump, spray, tube, capsule, and other forms use frosted-glass SVG templates matching CLYR Tri Gel. Wired into preview product pages only.</p>
+<p class="lead">Vials composited from your Canva blank (<code>preview/vial-review/final/clyr-vial-blank.png</code>) with on-glass labels matching live <code>vial-nad-new</code> / <code>vial-semaglutide-new</code> style. Pump, spray, tube, capsule, and other forms use frosted-glass SVG templates. Wired into preview product pages only.</p>
 <div class="grid">{"".join(cards)}</div>
 <p class="note"><strong>Next:</strong> approve visuals here, then run <code>python3 scripts/apply-preview-assets.py</code> to refresh pages (already run once). To promote to live <code>/img/</code>, say the word after sign-off.</p>
 </div></body></html>'''

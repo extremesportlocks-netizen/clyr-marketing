@@ -6,6 +6,8 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+PRODUCTS_DIR = ROOT / "preview" / "products"
+HUBS_DIR = ROOT / "preview" / "hubs"
 
 # slug, title, category_label, hub_slug, hub_name, badge, subtitle, pharmacy_ref, benefits[3], img
 PRODUCTS = [
@@ -109,38 +111,38 @@ EXISTING = {
 PREVIEW_STRIP = '<div class="preview-strip">Preview launch — pricing confirmed at consultation. <a href="/preview/strategy/CLYR-CEO-PLAYBOOK-JUN2026.md">CEO playbook</a> · <a href="/preview/catalog/">50-product roadmap</a></div>'
 
 NAV_SKIN = '''      <div class="nav-item" data-nav="skin-hair">
-        <a href="/skin-hair.html">Skin &amp; Hair <svg class="chev" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <a href="/preview/hubs/skin-hair.html">Skin &amp; Hair <svg class="chev" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></a>
         <div class="megamenu">
           <div class="mm-grid">
-            <a href="/clyr-tri-gel.html" class="mm-link"><img src="/img/clyr-tri-gel-pump.svg" alt="" style="width:34px;height:48px;object-fit:contain"><span class="mm-link-text"><strong>CLYR Tri Gel</strong><span>Master acne formulation</span></span></a>
-            <a href="/minoxidil.html" class="mm-link"><img src="/img/cardv2/nad.webp" alt=""><span class="mm-link-text"><strong>Hair Regrowth (Men)</strong><span>7% quad-stack</span></span></a>
-            <a href="/nad-face-cream.html" class="mm-link"><img src="/img/cardv2/nad.webp" alt=""><span class="mm-link-text"><strong>NAD+ Face Cream</strong><span>Topical longevity</span></span></a>
+            <a href="/preview/products/clyr-tri-gel.html" class="mm-link"><img src="/img/clyr-tri-gel-pump.svg" alt="" style="width:34px;height:48px;object-fit:contain"><span class="mm-link-text"><strong>CLYR Tri Gel</strong><span>Master acne formulation</span></span></a>
+            <a href="/preview/products/minoxidil.html" class="mm-link"><img src="/img/cardv2/nad.webp" alt=""><span class="mm-link-text"><strong>Hair Regrowth (Men)</strong><span>7% quad-stack</span></span></a>
+            <a href="/preview/products/nad-face-cream.html" class="mm-link"><img src="/img/cardv2/nad.webp" alt=""><span class="mm-link-text"><strong>NAD+ Face Cream</strong><span>Topical longevity</span></span></a>
           </div>
-          <div class="mm-footer"><span class="mm-count">Skin &amp; hair catalog</span><a href="/skin-hair.html">Explore &rarr;</a></div>
+          <div class="mm-footer"><span class="mm-count">Skin &amp; hair catalog</span><a href="/preview/hubs/skin-hair.html">Explore &rarr;</a></div>
         </div>
       </div>'''
 
 NAV_MENS = '''      <div class="nav-item" data-nav="mens-hormone">
-        <a href="/mens-hormone.html">Men's Hormone <svg class="chev" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <a href="/preview/hubs/mens-hormone.html">Men's Hormone <svg class="chev" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></a>
         <div class="megamenu">
           <div class="mm-grid">
-            <a href="/testosterone-cypionate.html" class="mm-link"><img src="/img/vial-sermorelin-new.png" alt="" style="width:34px;height:48px;object-fit:contain"><span class="mm-link-text"><strong>Testosterone Cypionate</strong><span>Injectable TRT</span></span></a>
-            <a href="/enclomiphene.html" class="mm-link"><img src="/img/cardv2/pill-tadalafil-tad25-new.webp" alt=""><span class="mm-link-text"><strong>Enclomiphene</strong><span>Fertility-preserving T</span></span></a>
-            <a href="/hcg.html" class="mm-link"><img src="/img/vial-nad-new.png" alt="" style="width:34px;height:48px;object-fit:contain"><span class="mm-link-text"><strong>HCG</strong><span>TRT adjunct</span></span></a>
+            <a href="/preview/products/testosterone-cypionate.html" class="mm-link"><img src="/img/vial-sermorelin-new.png" alt="" style="width:34px;height:48px;object-fit:contain"><span class="mm-link-text"><strong>Testosterone Cypionate</strong><span>Injectable TRT</span></span></a>
+            <a href="/preview/products/enclomiphene.html" class="mm-link"><img src="/img/cardv2/pill-tadalafil-tad25-new.webp" alt=""><span class="mm-link-text"><strong>Enclomiphene</strong><span>Fertility-preserving T</span></span></a>
+            <a href="/preview/products/hcg.html" class="mm-link"><img src="/img/vial-nad-new.png" alt="" style="width:34px;height:48px;object-fit:contain"><span class="mm-link-text"><strong>HCG</strong><span>TRT adjunct</span></span></a>
           </div>
-          <div class="mm-footer"><span class="mm-count">21 TRT SKUs</span><a href="/mens-hormone.html">Explore &rarr;</a></div>
+          <div class="mm-footer"><span class="mm-count">21 TRT SKUs</span><a href="/preview/hubs/mens-hormone.html">Explore &rarr;</a></div>
         </div>
       </div>'''
 
 NAV_WOMENS = '''      <div class="nav-item" data-nav="womens-hormone">
-        <a href="/womens-hormone.html">Women's Hormone <svg class="chev" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <a href="/preview/hubs/womens-hormone.html">Women's Hormone <svg class="chev" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></a>
         <div class="megamenu">
           <div class="mm-grid">
-            <a href="/estradiol-patches.html" class="mm-link"><img src="/img/cardv2/glutathione.webp" alt=""><span class="mm-link-text"><strong>Estradiol Patches</strong><span>Transdermal HRT</span></span></a>
-            <a href="/biest-progesterone-cream.html" class="mm-link"><img src="/img/cardv2/glutathione.webp" alt=""><span class="mm-link-text"><strong>Biest + Progesterone</strong><span>Compounded cream</span></span></a>
-            <a href="/progesterone-capsules.html" class="mm-link"><img src="/img/cardv2/pill-tadalafil-tad25-new.webp" alt=""><span class="mm-link-text"><strong>Progesterone</strong><span>Oral capsules</span></span></a>
+            <a href="/preview/products/estradiol-patches.html" class="mm-link"><img src="/img/cardv2/glutathione.webp" alt=""><span class="mm-link-text"><strong>Estradiol Patches</strong><span>Transdermal HRT</span></span></a>
+            <a href="/preview/products/biest-progesterone-cream.html" class="mm-link"><img src="/img/cardv2/glutathione.webp" alt=""><span class="mm-link-text"><strong>Biest + Progesterone</strong><span>Compounded cream</span></span></a>
+            <a href="/preview/products/progesterone-capsules.html" class="mm-link"><img src="/img/cardv2/pill-tadalafil-tad25-new.webp" alt=""><span class="mm-link-text"><strong>Progesterone</strong><span>Oral capsules</span></span></a>
           </div>
-          <div class="mm-footer"><span class="mm-count">39 HRT SKUs</span><a href="/womens-hormone.html">Explore &rarr;</a></div>
+          <div class="mm-footer"><span class="mm-count">39 HRT SKUs</span><a href="/preview/hubs/womens-hormone.html">Explore &rarr;</a></div>
         </div>
       </div>'''
 
@@ -202,7 +204,7 @@ def nav_block(active: str = "") -> str:
       {NAV_WOMENS}
       {NAV_SKIN}
       <div class="nav-item" data-nav="sexual-health"><a href="/sexual-health.html">Sexual Health</a></div>
-      <div class="nav-item" data-nav="peptides"><a href="/peptides.html">Peptides</a></div>
+      <div class="nav-item" data-nav="peptides"><a href="/preview/hubs/peptides.html">Peptides</a></div>
       <a href="/wellness.html">All Treatments</a>
       <a href="/portal/" class="nav-portal">Patient Portal</a>
       <a href="/wellness.html" class="nav-cta">Get Started</a>
@@ -212,7 +214,7 @@ def nav_block(active: str = "") -> str:
 def footer_block() -> str:
     return '''<footer class="footer"><div class="footer-inner"><div class="footer-top">
       <div><svg viewBox="0 0 120 32" width="100"><text x="0" y="26" font-family="DM Sans" font-weight="700" font-size="28"><tspan fill="#fff">CLY</tspan><tspan fill="#00B4C5">R</tspan></text></svg></div>
-      <div class="footer-col"><h4>Verticals</h4><a href="/weight-loss.html">Weight Loss</a><a href="/mens-hormone.html">Men's Hormone</a><a href="/womens-hormone.html">Women's Hormone</a><a href="/skin-hair.html">Skin &amp; Hair</a><a href="/preview/catalog/">Full Catalog</a></div>
+      <div class="footer-col"><h4>Preview</h4><a href="/preview/catalog/">Catalog index</a><a href="/preview/asset-review/">Asset review</a><a href="/preview/launch-kit/">Launch kit</a></div>
       <div class="footer-col"><h4>Strategy</h4><a href="/preview/strategy/CLYR-CEO-PLAYBOOK-JUN2026.md">CEO Playbook</a><a href="/preview/catalog/">50-Product Roadmap</a></div>
       <div class="footer-col"><h4>Legal</h4><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div>
     </div><div class="footer-bottom"><p>&copy; 2026 CLYR Health. Preview pages — noindex until wholesale pricing locked.</p></div></div></footer>
@@ -255,7 +257,7 @@ def product_page(p) -> str:
 {nav_block()}
   <button class="mobile-menu-btn" onclick="document.getElementById('nav').classList.toggle('mobile-open')"><span></span><span></span><span></span></button>
 </div></nav>
-<div class="breadcrumb"><a href="/">CLYR Health</a> &nbsp;/&nbsp; <a href="/{hub_slug}.html">{hub_name}</a> &nbsp;/&nbsp; {title}</div>
+<div class="breadcrumb"><a href="/">CLYR Health</a> &nbsp;/&nbsp; <a href="/preview/hubs/{hub_slug}.html">{hub_name}</a> &nbsp;/&nbsp; {title}</div>
 <section class="product-hero">
   <div class="product-image"><div class="product-badge">{badge}</div><img src="{img}" alt="{title}" style="width:82%;height:82%;object-fit:contain;filter:drop-shadow(0 18px 40px rgba(0,0,0,.12))"></div>
   <div class="product-info">
@@ -288,7 +290,7 @@ def hub_page(slug: str, info: dict, products: list) -> str:
     cards = []
     for p in products:
         s, title, cat, hub_slug, hub_name, badge, subtitle, pharm, benefits, img = p
-        cards.append(f'''<a href="/{s}.html" class="pc"><div class="ci"><div class="cb">{badge}</div><img src="{img}" alt="{title}"></div><div class="cd"><div class="cc">{cat.split("·")[-1].strip()}</div><h3>{title}</h3><p class="ds">{subtitle[:120]}…</p><div class="pr-tbd">Pricing at consultation</div><div class="ct">Learn more →</div></div></a>''')
+        cards.append(f'''<a href="/preview/products/{s}.html" class="pc"><div class="ci"><div class="cb">{badge}</div><img src="{img}" alt="{title}"></div><div class="cd"><div class="cc">{cat.split("·")[-1].strip()}</div><h3>{title}</h3><p class="ds">{subtitle[:120]}…</p><div class="pr-tbd">Pricing at consultation</div><div class="ct">Learn more →</div></div></a>''')
     ben = "".join(f'<div class="benefit"><h3>{t}</h3><p>{d}</p></div>' for t, d in info["benefits"])
     return f'''<!DOCTYPE html>
 <html lang="en">
@@ -317,15 +319,18 @@ def hub_page(slug: str, info: dict, products: list) -> str:
 
 
 def main():
+    PRODUCTS_DIR.mkdir(parents=True, exist_ok=True)
+    HUBS_DIR.mkdir(parents=True, exist_ok=True)
     generated = []
     by_hub: dict[str, list] = {}
     for p in PRODUCTS:
         slug = p[0]
-        if (ROOT / f"{slug}.html").exists():
-            print(f"skip exists {slug}.html")
+        dst = PRODUCTS_DIR / f"{slug}.html"
+        if dst.exists():
+            print(f"skip exists preview/products/{slug}.html")
             continue
         html = product_page(p)
-        (ROOT / f"{slug}.html").write_text(html)
+        dst.write_text(html)
         generated.append(slug)
         hub = p[3]
         by_hub.setdefault(hub, []).append(p)
@@ -334,8 +339,8 @@ def main():
         prods = by_hub.get(slug, [])
         if not prods:
             continue
-        (ROOT / f"{slug}.html").write_text(hub_page(slug, info, prods))
-        print(f"hub {slug}.html ({len(prods)} products)")
+        (HUBS_DIR / f"{slug}.html").write_text(hub_page(slug, info, prods))
+        print(f"hub preview/hubs/{slug}.html ({len(prods)} products)")
 
     # manifest
     all_products = []

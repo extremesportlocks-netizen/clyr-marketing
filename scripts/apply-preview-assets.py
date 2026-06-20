@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Wire preview/assets heroes into product pages, hubs, and megamenu thumbs."""
+"""Wire preview/assets heroes into preview product + hub pages only."""
 from __future__ import annotations
 
 import json
@@ -8,6 +8,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "preview" / "assets" / "manifest.json"
+PRODUCTS_DIR = ROOT / "preview" / "products"
+HUBS_DIR = ROOT / "preview" / "hubs"
+PREVIEW_HTML = (ROOT / "preview",)
 
 HUB_SLUGS = {
     "mens-hormone": [
@@ -25,21 +28,19 @@ HUB_SLUGS = {
         "tretinoin", "estriol-ghk-cu-cream", "hydroquinone-triple-cream",
         "doxycycline-acne", "finasteride-oral",
     ],
-    "weight-loss": ["semaglutide-odt", "tirzepatide-sublingual", "metformin-er", "liraglutide"],
-    "daily-wellness": ["niagen", "naltrexone-ldn"],
 }
 
 
 def _hero_img_tag(hero: str, alt: str) -> str:
     return (
         f'<img src="{hero}" alt="{alt}" '
-        'style="width:78%;height:78%;object-fit:contain;display:block;'
-        'filter:drop-shadow(0 18px 40px rgba(0,0,0,0.12))" loading="lazy">'
+        'style="width:88%;height:88%;object-fit:contain;display:block;'
+        'filter:drop-shadow(0 18px 40px rgba(0,0,0,0.15))" loading="lazy">'
     )
 
 
 def patch_product_page(slug: str, hero: str, card: str):
-    path = ROOT / f"{slug}.html"
+    path = PRODUCTS_DIR / f"{slug}.html"
     if not path.exists():
         return
     text = path.read_text()
@@ -66,9 +67,8 @@ def patch_product_page(slug: str, hero: str, card: str):
         count=1,
         flags=re.S,
     )
-    # megamenu thumb for this slug's own link
     text = re.sub(
-        rf'(<a href="/{slug}\.html" class="mm-link"><img src=")[^"]+(")',
+        rf'(<a href="/preview/products/{slug}\.html" class="mm-link"><img src=")[^"]+(")',
         rf'\1{card}\2',
         text,
         count=1,
@@ -76,13 +76,11 @@ def patch_product_page(slug: str, hero: str, card: str):
     path.write_text(text)
 
 
-def patch_all_megamenu_for_slug(slug: str, card: str):
-    for html in ROOT.glob("*.html"):
-        if html.name.startswith("_"):
-            continue
+def patch_preview_megamenu_for_slug(slug: str, card: str):
+    for html in ROOT.joinpath("preview").rglob("*.html"):
         text = html.read_text()
         new = re.sub(
-            rf'(<a href="/{slug}\.html" class="mm-link"><img src=")[^"]+(")',
+            rf'(<a href="/preview/products/{slug}\.html" class="mm-link"><img src=")[^"]+(")',
             rf'\1{card}\2',
             text,
         )
@@ -99,7 +97,7 @@ def _hub_card_img(card: str, alt: str = "") -> str:
 
 
 def patch_hub(hub: str, slug_cards: list[tuple[str, str]]):
-    path = ROOT / f"{hub}.html"
+    path = HUBS_DIR / f"{hub}.html"
     if not path.exists():
         return
     text = path.read_text()
@@ -125,57 +123,8 @@ def patch_hub(hub: str, slug_cards: list[tuple[str, str]]):
             )
 
         text = re.sub(
-            rf'<a href="/{slug}\.html" class="pc">.*?</a>',
+            rf'<a href="/preview/products/{slug}\.html" class="pc">.*?</a>',
             _replace_pc_card,
-            text,
-            count=1,
-            flags=re.S,
-        )
-    path.write_text(text)
-
-
-def patch_weight_loss_section():
-    path = ROOT / "weight-loss.html"
-    if not path.exists():
-        return
-    text = path.read_text()
-    mapping = {
-        "semaglutide-odt": "Semaglutide ODT",
-        "tirzepatide-sublingual": "Tirzepatide Sublingual",
-        "metformin-er": "Metformin ER",
-        "liraglutide": "Liraglutide",
-    }
-    data = {p["slug"]: p["card"] for p in json.loads(MANIFEST.read_text())["products"]}
-    for slug, label in mapping.items():
-        card = data.get(slug)
-        if not card:
-            continue
-        text = re.sub(
-            rf'(<a href="/{slug}\.html" class="product-card">.*?<img src=")[^"]+(" alt="{re.escape(label)}")',
-            rf'\1{card}\2',
-            text,
-            count=1,
-            flags=re.S,
-        )
-    path.write_text(text)
-
-
-def patch_sexual_health_section():
-    path = ROOT / "sexual-health.html"
-    if not path.exists():
-        return
-    text = path.read_text()
-    data = {p["slug"]: p["card"] for p in json.loads(MANIFEST.read_text())["products"]}
-    for slug in [
-        "trimix", "tadalafil-troches", "tadalafil-apomorphine",
-        "sildenafil-tadalafil-gummy", "oxytocin-nasal", "pt141-strips",
-    ]:
-        card = data.get(slug)
-        if not card:
-            continue
-        text = re.sub(
-            rf'(<a href="/{slug}\.html" class="product-card[^"]*">.*?<img src=")[^"]+(")',
-            rf'\1{card}\2',
             text,
             count=1,
             flags=re.S,
@@ -205,16 +154,14 @@ def main():
     products = json.loads(MANIFEST.read_text())["products"]
     for p in products:
         patch_product_page(p["slug"], p["hero"], p["card"])
-        patch_all_megamenu_for_slug(p["slug"], p["card"])
+        patch_preview_megamenu_for_slug(p["slug"], p["card"])
 
     card_map = {p["slug"]: p["card"] for p in products}
     for hub, slugs in HUB_SLUGS.items():
         patch_hub(hub, [(s, card_map[s]) for s in slugs if s in card_map])
 
-    patch_weight_loss_section()
-    patch_sexual_health_section()
     update_catalog_generator_manifest()
-    print(f"Applied assets to {len(products)} preview SKUs")
+    print(f"Applied assets to {len(products)} preview SKUs under /preview/")
 
 
 if __name__ == "__main__":

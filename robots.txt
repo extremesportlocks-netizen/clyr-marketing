@@ -7,5 +7,7 @@ Disallow: /preview/launch-kit/
 Disallow: /preview/strategy/
 Disallow: /preview/catalog/
 Disallow: /preview/asset-review/
+Disallow: /preview/products/
+Disallow: /preview/hubs/
 
 Sitemap: https://www.clyr.health/sitemap.xml
