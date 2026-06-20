@@ -727,10 +727,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
 
   .pricing-tiers {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 20px;
-    max-width: 880px;
+    max-width: 1040px;
     margin: 0 auto;
   }
   .tier-card {
@@ -746,6 +747,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex: 1 1 220px;
+    max-width: 248px;
   }
   .tier-card:hover { border-color: rgba(0,180,197,0.3); box-shadow: 0 16px 48px rgba(0,180,197,0.1); transform: translateY(-5px); }
   .tier-card.popular {
@@ -1168,7 +1171,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .product-price { font-size: 36px; }
     .product-cta { padding: 14px; font-size: 14px; border-radius: 12px; }
     .pricing-tiers { max-width: 440px; margin: 0 auto; gap: 14px; }
-    .tier-card { padding: 28px 20px; border-radius: 16px; }
+    .tier-card { padding: 28px 20px; border-radius: 16px; max-width: 100%; }
     .tier-price { font-size: 38px; }
     .tier-cta { padding: 13px; border-radius: 12px; }
     .features-grid { max-width: 440px; margin: 0 auto; gap: 14px; }
