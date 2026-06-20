@@ -1,0 +1,11 @@
+[2026-06-20 06:59:45 UTC] START 12h loop — until 2026-06-20T18:59:45.339906+00:00 (every 20m)
+[2026-06-20 06:59:45 UTC] === CYCLE 1 — 11:59:59.999741 remaining ===
+[2026-06-20 06:59:46 UTC] LIVE: home=200 gbp_schema=True gbp_footer=True verify_tag=False sitemap_urls=135
+[2026-06-20 06:59:46 UTC] SCRIPT wire-gbp.py: Updated 0 files
+[2026-06-20 06:59:46 UTC] SCRIPT polish-indexable-pages.py:  = ET.parse(ROOT / "sitemap.xml")
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/xml/etree/ElementTree.py", line 1229, in parse
+    tree.pa
+[2026-06-20 06:59:46 UTC] SCRIPT fix-journal-urls.py: Done: 0 URL fixes across 0 files
+[2026-06-20 06:59:46 UTC] SCRIPT link-products-to-journals.py: Linked 0 product pages to journal articles
+[2026-06-20 06:59:46 UTC] SCRIPT update-sitemap-journals.py: ✓ sitemap.xml — 52 journal articles
+✓ sitemap-images.xml — 52 journal OG images
