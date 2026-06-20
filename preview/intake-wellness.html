@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T4FVQ87G');</script>
+<!-- End Google Tag Manager -->
+<meta charset="UTF-8">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Start your wellness visit | CLYR Health (preview)</title>
+<meta name="description" content="Dark preview mock of the CLYR wellness intake and waitlist flow.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/preview/assets/clyr-vibe.css">
+<style>
+.top{height:64px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:sticky;top:0;background:rgba(11,14,20,0.85);backdrop-filter:blur(14px);z-index:10}
+.top .sec{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:#8A93A3;font-weight:600}
+.shell{max-width:640px;margin:0 auto;padding:34px 22px 90px}
+.prog{height:6px;background:rgba(255,255,255,0.08);border-radius:100px;overflow:hidden;margin-bottom:10px}
+.prog i{display:block;height:100%;width:14%;background:linear-gradient(90deg,var(--teal),#46d5e3);border-radius:100px;transition:width .35s}
+.steplabel{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:18px}
+.wl-banner{display:flex;align-items:center;gap:12px;border:1px dashed rgba(255,107,74,0.5);background:rgba(255,107,74,0.06);border-radius:14px;padding:14px 18px;margin-bottom:24px;font-size:13.5px;color:#C7CCD6}
+.wl-banner b{color:#FF8A6E}.wl-banner a{margin-left:auto;color:var(--teal);font-weight:700;white-space:nowrap;cursor:pointer}
+.istep{display:none}.istep.active{display:block;animation:fade .35s}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.istep h2{font-size:28px;font-weight:700;letter-spacing:-0.02em;line-height:1.1}
+.istep .sub{color:#AEB6C2;font-size:15px;margin:10px 0 26px}
+label.fl{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#8A93A3;margin:18px 0 7px;font-weight:600}
+input,select,textarea{width:100%;background:#11151F;border:1px solid var(--line);color:#EAE7E1;border-radius:12px;padding:14px 16px;font-family:inherit;font-size:15px;outline:none;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{border-color:var(--teal)}
+textarea{min-height:110px;resize:vertical}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.goalgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
+.goalc{border:1.5px solid var(--line);border-radius:16px;padding:20px;cursor:pointer;transition:border-color .2s,background .2s}
+.goalc:hover{border-color:rgba(0,180,197,0.4)}.goalc.sel{border-color:var(--teal);background:rgba(0,180,197,0.07)}
+.goalc .gi{font-size:22px}.goalc .gt{font-weight:700;margin-top:8px}.goalc .gd{font-size:12.5px;color:#8A93A3;margin-top:3px}
+.planopt{display:flex;align-items:center;gap:14px;border:1.5px solid var(--line);border-radius:16px;padding:18px 20px;margin-bottom:12px;cursor:pointer;transition:border-color .2s,background .2s}
+.planopt:hover{border-color:rgba(0,180,197,0.4)}.planopt.sel{border-color:var(--teal);background:rgba(0,180,197,0.07)}
+.planopt .r{width:20px;height:20px;border-radius:50%;border:2px solid #46d5e3;flex-shrink:0;position:relative}
+.planopt.sel .r::after{content:"";position:absolute;inset:4px;border-radius:50%;background:var(--teal)}
+.planopt .pn{flex-grow:1;font-weight:700;font-size:16px}.planopt .pn small{display:block;color:#8A93A3;font-weight:400;font-size:13px;margin-top:2px}
+.planopt .pp{font-weight:700;font-size:17px;color:#7FD8D2}
+.opt{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:9px;cursor:pointer}
+.opt:hover{border-color:rgba(0,180,197,0.4)}.opt input{width:auto}
+.nav-btns{display:flex;gap:12px;margin-top:32px}.nav-btns .btn-p{flex:1;justify-content:center}
+.rev{border:1px solid var(--line);border-radius:16px;padding:8px 22px;margin-top:8px}
+.rev .li{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.rev .li:last-child{border-bottom:0}.rev .li .k{color:#8A93A3}
+.sumtot{display:flex;justify-content:space-between;font-size:20px;font-weight:700;margin-top:18px}
+.fineprint{font-size:12px;color:#6b7382;margin-top:18px;line-height:1.6}
+.lock{color:var(--teal)}
+#waitlist{display:none}
+</style>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T4FVQ87G" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<div class="top">
+  <a href="/" aria-label="CLYR home"><svg viewBox="0 0 120 32" height="26"><text x="0" y="24" font-family="DM Sans,sans-serif" font-weight="700" font-size="26" letter-spacing="-1"><tspan fill="#fff">CLY</tspan><tspan fill="#00B4C5">R</tspan></text></svg></a>
+  <span class="sec"><svg class="lock" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Secure &middot; HIPAA compliant</span>
+</div>
+
+<div class="shell">
+
+  <!-- WAITLIST MODE -->
+  <div id="waitlist">
+    <div class="steplabel">Launching soon</div>
+    <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.02em">Join the waitlist.</h2>
+    <p class="sub">This treatment is coming soon. Add your email and we will let you know the moment it is available, plus early-access pricing.</p>
+    <label class="fl">Treatment</label><input value="Selected wellness treatment" readonly>
+    <label class="fl">Email</label><input type="email" placeholder="you@email.com">
+    <label class="fl">Phone (optional, for SMS updates)</label><input placeholder="(555) 555-5555">
+    <div class="nav-btns"><a class="btn btn-g" onclick="setMode(false)">Back to visit</a><a class="btn btn-p" onclick="alert('Preview only: you would be added to the waitlist.')">Join waitlist</a></div>
+  </div>
+
+  <!-- VISIT WIZARD -->
+  <div id="wizard">
+    <div class="prog"><i id="bar"></i></div>
+    <div class="steplabel"><span id="lbl">Step 1 of 7</span></div>
+    <div class="wl-banner">Some treatments are <b>launching soon</b>. On a waitlist product? <a onclick="setMode(true)">Join the waitlist &rarr;</a></div>
+
+    <section class="istep active" data-step>
+      <h2>What are you here for?</h2>
+      <p class="sub">Pick a focus. Your provider tailors the rest.</p>
+      <div class="goalgrid">
+        <div class="goalc sel" onclick="pickGoal(this)"><div class="gi">&#9889;</div><div class="gt">Energy &amp; longevity</div><div class="gd">NAD+, Niagen, MICC</div></div>
+        <div class="goalc" onclick="pickGoal(this)"><div class="gi">&#128170;</div><div class="gt">Recovery</div><div class="gd">Sermorelin, peptides</div></div>
+        <div class="goalc" onclick="pickGoal(this)"><div class="gi">&#10024;</div><div class="gt">Skin &amp; glow</div><div class="gd">Glutathione, NAD cream</div></div>
+        <div class="goalc" onclick="pickGoal(this)"><div class="gi">&#129516;</div><div class="gt">Something specific</div><div class="gd">I know the product</div></div>
+      </div>
+      <div class="nav-btns"><a class="btn btn-p" onclick="go(1)">Continue</a></div>
+    </section>
+
+    <section class="istep" data-step>
+      <h2>Choose your treatment</h2>
+      <p class="sub">You can adjust this with your provider anytime.</p>
+      <div class="planopt sel" onclick="pick(this)"><span class="r"></span><span class="pn">NAD+ Injections<small>Cellular energy and longevity</small></span><span class="pp">$169/mo</span></div>
+      <div class="planopt" onclick="pick(this)"><span class="r"></span><span class="pn">Sermorelin<small>Sleep, recovery, lean mass</small></span><span class="pp">$149/mo</span></div>
+      <div class="planopt" onclick="pick(this)"><span class="r"></span><span class="pn">Glutathione<small>Master antioxidant</small></span><span class="pp">$109/mo</span></div>
+      <div class="planopt" onclick="pick(this)"><span class="r"></span><span class="pn">MICC + B12<small>Metabolism and energy</small></span><span class="pp">$129/mo</span></div>
+      <div class="nav-btns"><a class="btn btn-g" onclick="go(-1)">Back</a><a class="btn btn-p" onclick="go(1)">Continue</a></div>
+    </section>
+
+    <section class="istep" data-step>
+      <h2>About you</h2>
+      <p class="sub">So your provider can verify your identity.</p>
+      <label class="fl">Legal first name</label><input placeholder="First name">
+      <label class="fl">Legal last name</label><input placeholder="Last name">
+      <label class="fl">Email</label><input type="email" placeholder="you@email.com">
+      <label class="fl">Date of birth</label><div class="three"><input placeholder="MM"><input placeholder="DD"><input placeholder="YYYY"></div>
+      <div class="nav-btns"><a class="btn btn-g" onclick="go(-1)">Back</a><a class="btn btn-p" onclick="go(1)">Continue</a></div>
+    </section>
+
+    <section class="istep" data-step>
+      <h2>Health basics</h2>
+      <p class="sub">Check anything that applies. Your provider reviews all of it.</p>
+      <label class="opt"><input type="checkbox">Any chronic medical conditions</label>
+      <label class="opt"><input type="checkbox">Currently pregnant or breastfeeding</label>
+      <label class="opt"><input type="checkbox">History of cancer</label>
+      <label class="opt"><input type="checkbox">None of the above</label>
+      <label class="fl">Current medications</label><textarea placeholder="List any medications you take, or write None"></textarea>
+      <label class="fl">Drug allergies</label><input placeholder="e.g. penicillin, or None">
+      <div class="nav-btns"><a class="btn btn-g" onclick="go(-1)">Back</a><a class="btn btn-p" onclick="go(1)">Continue</a></div>
+    </section>
+
+    <section class="istep" data-step>
+      <h2>Shipping address</h2>
+      <p class="sub">Where we send your discreet, unmarked package.</p>
+      <label class="fl">Street address</label><input placeholder="123 Main St">
+      <div class="two"><div><label class="fl">City</label><input placeholder="City"></div><div><label class="fl">State</label><input placeholder="State"></div></div>
+      <label class="fl">ZIP</label><input placeholder="ZIP">
+      <div class="nav-btns"><a class="btn btn-g" onclick="go(-1)">Back</a><a class="btn btn-p" onclick="go(1)">Continue</a></div>
+    </section>
+
+    <section class="istep" data-step>
+      <h2>Review your visit</h2>
+      <p class="sub">Make sure everything looks right before checkout.</p>
+      <div class="rev">
+        <div class="li"><span class="k">Treatment</span><span>NAD+ Injections</span></div>
+        <div class="li"><span class="k">Plan</span><span>Monthly</span></div>
+        <div class="li"><span class="k">Provider review</span><span>Included</span></div>
+        <div class="li"><span class="k">Shipping</span><span>Free, discreet</span></div>
+      </div>
+      <div class="nav-btns"><a class="btn btn-g" onclick="go(-1)">Back</a><a class="btn btn-p" onclick="go(1)">Looks good</a></div>
+    </section>
+
+    <section class="istep" data-step>
+      <h2>Checkout</h2>
+      <p class="sub">You are only charged if a provider approves your treatment.</p>
+      <div class="rev">
+        <div class="li"><span class="k">NAD+ Injections, monthly</span><span>$169</span></div>
+        <div class="li"><span class="k">Provider consultation</span><span>Included</span></div>
+        <div class="li"><span class="k">Shipping</span><span>Free</span></div>
+      </div>
+      <div class="sumtot"><span>Due today</span><span>$169</span></div>
+      <label class="fl">Card information</label><input placeholder="Card number">
+      <div class="two"><input placeholder="MM / YY"><input placeholder="CVC"></div>
+      <div class="nav-btns"><a class="btn btn-g" onclick="go(-1)">Back</a><a class="btn btn-p" onclick="done()">Submit for review</a></div>
+      <p class="fineprint">By submitting, you agree to a telehealth consultation. If a licensed provider determines this treatment is not appropriate for you, you will not be charged. Compounded medications are not FDA-approved. This is a non-functional preview.</p>
+    </section>
+
+    <section class="istep" data-step>
+      <h2>You are all set.</h2>
+      <p class="sub">A licensed provider will review your visit within 24 hours. Watch your email and the patient portal for updates.</p>
+      <div class="nav-btns"><a class="btn btn-p" href="/preview/portal.html">Go to my portal</a></div>
+    </section>
+  </div>
+
+</div>
+
+<script>
+var steps=[].slice.call(document.querySelectorAll('[data-step]')),cur=0,total=7;
+function show(){steps.forEach(function(s,i){s.classList.toggle('active',i===cur)});
+  document.getElementById('bar').style.width=Math.min(100,((cur+1)/total)*100)+'%';
+  var n=Math.min(cur+1,total);document.getElementById('lbl').textContent=cur>=total?'Submitted':'Step '+n+' of '+total;
+  window.scrollTo({top:0,behavior:'smooth'});}
+function go(d){cur=Math.max(0,Math.min(steps.length-1,cur+d));show();}
+function done(){cur=steps.length-1;show();}
+function pick(el){el.parentNode.querySelectorAll('.planopt').forEach(function(p){p.classList.remove('sel')});el.classList.add('sel');}
+function pickGoal(el){el.parentNode.querySelectorAll('.goalc').forEach(function(p){p.classList.remove('sel')});el.classList.add('sel');}
+function setMode(wl){document.getElementById('waitlist').style.display=wl?'block':'none';document.getElementById('wizard').style.display=wl?'none':'block';window.scrollTo({top:0});}
+show();
+</script>
+</body>
+</html>
