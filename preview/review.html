@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLYR Redesign Review Board (preview)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/preview/assets/clyr-vibe.css">
+<style>
+.board{max-width:1000px;margin:0 auto;padding:0 28px 90px}
+.grp{margin-top:46px}
+.grp h2{font-size:24px;font-weight:700;letter-spacing:-0.01em;margin-bottom:4px}
+.grp .gsub{color:#8A93A3;font-size:13.5px;margin-bottom:18px}
+.row{display:flex;align-items:center;gap:14px;padding:14px 18px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,#161B26,#10141D);margin-bottom:10px}
+.row .box{flex-shrink:0;width:20px;height:20px;border-radius:6px;border:1.5px solid #46d5e3;background:rgba(0,180,197,0.10)}
+.row .nm{flex-grow:1;font-weight:600;font-size:15.5px}
+.row .nm small{display:block;color:#8A93A3;font-weight:400;font-size:12.5px;margin-top:2px}
+.row a{font-size:13px;font-weight:700;padding:7px 14px;border-radius:100px;white-space:nowrap}
+.row a.dk{background:var(--teal);color:#04181b}
+.row a.lv{border:1px solid rgba(255,255,255,0.2);color:#C7CCD6}
+.row a:hover{transform:translateY(-1px)}
+.st{flex-shrink:0;font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:100px}
+.st.done{background:rgba(0,180,197,0.14);color:#46d5e3}
+.st.wip{background:rgba(255,107,74,0.14);color:#FF8A6E}
+.st.todo{background:rgba(255,255,255,0.07);color:#9aa3b0}
+@media(max-width:640px){.row{flex-wrap:wrap}.row .nm{flex-basis:100%}}
+</style>
+</head>
+<body>
+<nav class="nav" id="nav"><div class="nav-inner">
+  <a href="/" aria-label="CLYR home"><svg viewBox="0 0 120 32" height="30"><text x="0" y="25" font-family="DM Sans,sans-serif" font-weight="700" font-size="27" letter-spacing="-1"><tspan fill="#fff">CLY</tspan><tspan fill="#00B4C5">R</tspan></text></svg></a>
+  <div class="nav-links"><a href="#marketing">Marketing</a><a href="#hubs">Hubs</a><a href="#products">Products</a><a href="#flows">Flows</a><a href="#utility">Utility</a></div>
+</div></nav>
+
+<header class="hero" style="padding:96px 0 56px"><div class="wrap">
+  <div class="hero-eyebrow">Internal &middot; Redesign Review</div>
+  <h1>The review <span class="serif">board.</span></h1>
+  <p>Every dark/premium preview in one place. Open each, compare it to the live page, and we check it off together. Nothing here is live; all previews are noindex.</p>
+</div></header>
+
+<div class="board">
+
+  <div class="grp" id="marketing">
+    <h2>Marketing surfaces</h2>
+    <div class="gsub">Top-level pages</div>
+    <div class="row"><div class="box"></div><div class="nm">Home<small>Brand hero + all 8 verticals</small></div><span class="st done">Done</span><a class="dk" href="/preview/home.html">Dark</a><a class="lv" href="/index.html">Live</a></div>
+    <div class="row"><div class="box"></div><div class="nm">Weight Loss<small>Compounded / brand / oral, dose-tiered</small></div><span class="st done">Done</span><a class="dk" href="/preview/weight-loss.html">Dark</a><a class="lv" href="/weight-loss.html">Live</a></div>
+    <div class="row"><div class="box"></div><div class="nm">Daily Wellness<small>NAD+, peptides, longevity</small></div><span class="st done">Done</span><a class="dk" href="/preview/daily-wellness.html">Dark</a><a class="lv" href="/daily-wellness.html">Live</a></div>
+    <div class="row"><div class="box"></div><div class="nm">Sexual Health<small>The template, "Own the moment"</small></div><span class="st done">Done</span><a class="dk" href="/preview/sexual-health.html">Dark</a><a class="lv" href="/sexual-health.html">Live</a></div>
+    <div class="row"><div class="box"></div><div class="nm">Antiparasitic<small>2 protocols, no body-weight language</small></div><span class="st done">Done</span><a class="dk" href="/preview/antiparasitic.html">Dark</a><a class="lv" href="/antiparasitic.html">Live</a></div>
+    <div class="row"><div class="box"></div><div class="nm">All Treatments<small>Full catalog, 47 links</small></div><span class="st done">Done</span><a class="dk" href="/preview/wellness.html">Dark</a><a class="lv" href="/wellness.html">Live</a></div>
+  </div>
+
+  <div class="grp" id="hubs">
+    <h2>Vertical hubs</h2>
+    <div class="gsub">preview/hubs2/</div>
+    <div class="row"><div class="box"></div><div class="nm">Men's Hormone<small>TRT, ember accent</small></div><span class="st done">Done</span><a class="dk" href="/preview/hubs2/mens-hormone.html">Dark</a></div>
+    <div class="row"><div class="box"></div><div class="nm">Women's Hormone<small>HRT, violet accent</small></div><span class="st done">Done</span><a class="dk" href="/preview/hubs2/womens-hormone.html">Dark</a></div>
+    <div class="row"><div class="box"></div><div class="nm">Skin &amp; Hair<small>Hair, acne, anti-aging, pigment</small></div><span class="st done">Done</span><a class="dk" href="/preview/hubs2/skin-hair.html">Dark</a></div>
+    <div class="row"><div class="box"></div><div class="nm">Peptides &amp; Recovery<small>Honest, research-stage</small></div><span class="st done">Done</span><a class="dk" href="/preview/hubs2/peptides.html">Dark</a></div>
+    <div class="row"><div class="box"></div><div class="nm">Recovery &amp; Wellness<small>LDN + recovery peptides</small></div><span class="st done">Done</span><a class="dk" href="/preview/hubs2/recovery.html">Dark</a></div>
+  </div>
+
+  <div class="grp" id="products">
+    <h2>Product-detail pages</h2>
+    <div class="gsub">preview/products2/ &middot; dark, image-free</div>
+    <div class="row"><div class="box"></div><div class="nm">Tirzepatide + B12</div><span class="st done">Done</span><a class="dk" href="/preview/products2/tirzepatide.html">Dark</a><a class="lv" href="/tirzepatide.html">Live</a></div>
+    <div class="row"><div class="box"></div><div class="nm">Semaglutide + B12</div><span class="st done">Done</span><a class="dk" href="/preview/products2/semaglutide.html">Dark</a><a class="lv" href="/semaglutide.html">Live</a></div>
+    <div class="row"><div class="box"></div><div class="nm">NAD+ Injections</div><span class="st done">Done</span><a class="dk" href="/preview/products2/nad.html">Dark</a><a class="lv" href="/nad.html">Live</a></div>
+    <div class="row"><div class="box"></div><div class="nm">Sermorelin</div><span class="st done">Done</span><a class="dk" href="/preview/products2/sermorelin.html">Dark</a><a class="lv" href="/sermorelin.html">Live</a></div>
+    <div class="row"><div class="box"></div><div class="nm">Glutathione</div><span class="st done">Done</span><a class="dk" href="/preview/products2/glutathione.html">Dark</a><a class="lv" href="/glutathione.html">Live</a></div>
+    <div class="row"><div class="box"></div><div class="nm">MICC + B12</div><span class="st done">Done</span><a class="dk" href="/preview/products2/micc.html">Dark</a><a class="lv" href="/micc.html">Live</a></div>
+    <div class="row"><div class="box"></div><div class="nm">Lipo-Mino + L-Carnitine</div><span class="st done">Done</span><a class="dk" href="/preview/products2/lipo-mino.html">Dark</a><a class="lv" href="/lipo-mino.html">Live</a></div>
+    <div class="row"><div class="box"></div><div class="nm">Tadalafil + Vardenafil</div><span class="st done">Done</span><a class="dk" href="/preview/products2/tadalafil.html">Dark</a><a class="lv" href="/tadalafil.html">Live</a></div>
+    <div class="row"><div class="box"></div><div class="nm">Sildenafil Gummy</div><span class="st done">Done</span><a class="dk" href="/preview/products2/sildenafil-gummy.html">Dark</a><a class="lv" href="/sildenafil-gummy.html">Live</a></div>
+    <div class="row"><div class="box"></div><div class="nm">Combo ODT</div><span class="st done">Done</span><a class="dk" href="/preview/products2/sild-tadal-oxy.html">Dark</a><a class="lv" href="/sild-tadal-oxy.html">Live</a></div>
+    <div class="row"><div class="box"></div><div class="nm">PT-141</div><span class="st done">Done</span><a class="dk" href="/preview/products2/pt141.html">Dark</a><a class="lv" href="/pt141.html">Live</a></div>
+    <div class="row"><div class="box"></div><div class="nm">Ivermectin Protocol</div><span class="st done">Done</span><a class="dk" href="/preview/products2/ivermectin.html">Dark</a><a class="lv" href="/ivermectin.html">Live</a></div>
+    <div class="row"><div class="box"></div><div class="nm">Ivermectin + Mebendazole</div><span class="st done">Done</span><a class="dk" href="/preview/products2/ivermectin-mebendazole.html">Dark</a><a class="lv" href="/ivermectin-mebendazole.html">Live</a></div>
+    <div class="row"><div class="box"></div><div class="nm">Foundayo (Orforglipron)</div><span class="st done">Done</span><a class="dk" href="/preview/products2/foundayo.html">Dark</a><a class="lv" href="/foundayo.html">Live</a></div>
+    <div class="row"><div class="box"></div><div class="nm">Zepbound (Tirzepatide)</div><span class="st done">Done</span><a class="dk" href="/preview/products2/zepbound.html">Dark</a><a class="lv" href="/zepbound.html">Live</a></div>
+    <div class="row"><div class="box"></div><div class="nm">Wegovy Tablets</div><span class="st done">Done</span><a class="dk" href="/preview/products2/wegovy-tablets.html">Dark</a><a class="lv" href="/wegovy-tablets.html">Live</a></div>
+  </div>
+
+  <div class="grp" id="flows">
+    <h2>Flows &amp; app</h2>
+    <div class="gsub">Intake + patient portal (in progress this loop)</div>
+    <div class="row"><div class="box"></div><div class="nm">Intake (medication)<small>Multi-step visit flow</small></div><span class="st wip">Building</span><a class="dk" href="/preview/intake.html">Dark</a><a class="lv" href="/intake.html">Live</a></div>
+    <div class="row"><div class="box"></div><div class="nm">Intake (wellness)<small>Wellness + waitlist flow</small></div><span class="st wip">Building</span><a class="dk" href="/preview/intake-wellness.html">Dark</a><a class="lv" href="/intake-wellness.html">Live</a></div>
+    <div class="row"><div class="box"></div><div class="nm">Patient Portal<small>Dashboard, subscriptions, refills</small></div><span class="st wip">Building</span><a class="dk" href="/preview/portal.html">Dark</a><a class="lv" href="/portal/">Live</a></div>
+  </div>
+
+  <div class="grp" id="utility">
+    <h2>Utility &amp; legal</h2>
+    <div class="gsub">Lower priority, queued this loop</div>
+    <div class="row"><div class="box"></div><div class="nm">Contact</div><span class="st todo">Queued</span><a class="dk" href="/preview/contact.html">Dark</a><a class="lv" href="/contact.html">Live</a></div>
+    <div class="row"><div class="box"></div><div class="nm">Success / Thank You</div><span class="st todo">Queued</span><a class="dk" href="/preview/success.html">Dark</a><a class="lv" href="/success.html">Live</a></div>
+    <div class="row"><div class="box"></div><div class="nm">Legal (privacy / terms / consent)</div><span class="st todo">Queued</span><a class="dk" href="/preview/legal.html">Dark</a><a class="lv" href="/privacy.html">Live</a></div>
+  </div>
+
+</div>
+
+<footer class="foot"><div class="wrap"><div class="foot-row"><p>&copy; 2026 CLYR Health &middot; internal review board</p><div class="foot-legal"><a href="/preview/home.html">Start at Home</a></div></div></div></footer>
+</body>
+</html>
