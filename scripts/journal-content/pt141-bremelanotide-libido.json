@@ -1,0 +1,22 @@
+{
+  "slug": "pt141-bremelanotide-libido",
+  "title": "PT-141 (Bremelanotide): Central Libido Peptide Therapy",
+  "titleHtml": "PT-141 (Bremelanotide): <span class=\"serif\">Central Libido Therapy.</span>",
+  "category": "Sexual Health",
+  "categoryKey": "research",
+  "deck": "Unlike PDE5 drugs that act peripherally, PT-141 is a melanocortin receptor agonist that works through brain pathways for desire — FDA-approved as Vyleesi for women, compounded for men in strip and ODT formats.",
+  "date": "June 20, 2026",
+  "readTime": "8 min read",
+  "metaDescription": "PT-141 bremelanotide for libido: melanocortin MC3R/MC4R mechanism, Vyleesi approval, compounded strips, nausea, and blood pressure effects.",
+  "bodyHtml": "<p>PT-141 (bremelanotide) activates melanocortin-4 receptors in the central nervous system, modulating sexual desire and arousal independent of genital blood flow pathways. Subcutaneous bremelanotide is FDA-approved as Vyleesi for acquired HSDD in premenopausal women.</p>\n\n<p>Compounded PT-141 strips and troches extend the mechanism to men and alternative delivery formats in telehealth sexual health. Onset is typically 45 to 60 minutes; effects last hours. Nausea is common (40% in trials); transient blood pressure increase requires caution in cardiovascular disease.</p>\n\n<p>Not for daily use; on-demand dosing before sexual activity. CLYR Health offers PT-141 strips as a preview sexual health SKU alongside live PT-141 + oxytocin ODT products.</p>",
+  "sources": [
+    {"label": "FDA. Vyleesi (bremelanotide) prescribing information.", "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/210557s000lbl.pdf"},
+    {"label": "Kingsberg SA, et al. Bremelanotide for HSDD. <em>Obstet Gynecol</em>. 2019.", "url": "https://pubmed.ncbi.nlm.nih.gov/31568364/"},
+    {"label": "Diamond LE, et al. PT-141 phase 2 men with ED. <em>J Sex Med</em>. 2004.", "url": "https://pubmed.ncbi.nlm.nih.gov/16422868/"}
+  ],
+  "related": [
+    {"slug": "oxytocin-nasal-spray-bonding", "title": "Oxytocin Nasal Spray", "category": "Sexual Health"},
+    {"slug": "womens-testosterone-cream-libido", "title": "Women's Testosterone Cream", "category": "Women's Hormone"},
+    {"slug": "tadalafil-apomorphine-dual-ed", "title": "Tadalafil + Apomorphine", "category": "Sexual Health"}
+  ]
+}

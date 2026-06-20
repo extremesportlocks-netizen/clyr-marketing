@@ -1,0 +1,22 @@
+{
+  "slug": "dhea-pregnenolone-adrenal-precursors",
+  "title": "DHEA and Pregnenolone: Adrenal Hormone Precursors in HRT",
+  "titleHtml": "DHEA and Pregnenolone: <span class=\"serif\">Adrenal Precursors.</span>",
+  "category": "Women's Hormone",
+  "categoryKey": "longevity",
+  "deck": "The adrenal glands produce DHEA and pregnenolone as upstream steroid precursors — supplementation in perimenopause and aging remains controversial but widely compounded.",
+  "date": "June 20, 2026",
+  "readTime": "7 min read",
+  "metaDescription": "DHEA and pregnenolone for women: adrenal hormone precursors, perimenopause support, evidence quality, and monitoring on compounded protocols.",
+  "bodyHtml": "<p>DHEA (dehydroepiandrosterone) is the most abundant adrenal steroid in humans, converting peripherally to androstenedione and testosterone. Pregnenolone sits upstream of all steroid hormones, earning the nickname \"mother hormone.\" Both decline with age, peaking in the 20s.</p>\n\n<p>DHEA 25 to 50 mg daily has modest RCT support for improving bone density, skin aging, and libido in some postmenopausal women; effects are subtle and not universal. Pregnenolone evidence is thinner. Compounded combination capsules appear in women's HRT and longevity menus as adrenal support alongside estradiol and progesterone.</p>\n\n<p>Monitor for androgenic side effects (acne, hair growth) with DHEA. Avoid in hormone-sensitive cancers without specialist clearance. CLYR Health offers DHEA + pregnenolone as a women's hormone preview SKU.</p>",
+  "sources": [
+    {"label": "Labrie F, et al. DHEA and postmenopausal women. <em>J Steroid Biochem Mol Biol</em>. 2003.", "url": "https://pubmed.ncbi.nlm.nih.gov/12711045/"},
+    {"label": "NAMS 2022 hormone therapy position statement.", "url": "https://pubmed.ncbi.nlm.nih.gov/35797481/"},
+    {"label": "FDA. DHEA consumer information.", "url": "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/warning-letters/dhea-dietary-supplements"}
+  ],
+  "related": [
+    {"slug": "estradiol-patches-hrt-explained", "title": "Estradiol Patches", "category": "Women's Hormone"},
+    {"slug": "longevity-medicine-foundations", "title": "Longevity Foundations", "category": "Longevity"},
+    {"slug": "womens-testosterone-cream-libido", "title": "Women's Testosterone Cream", "category": "Women's Hormone"}
+  ]
+}

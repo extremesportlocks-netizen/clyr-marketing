@@ -1,0 +1,21 @@
+{
+  "slug": "biest-progesterone-compounded-hrt",
+  "title": "Biest + Progesterone Cream: Compounded Bioidentical HRT",
+  "titleHtml": "Biest + Progesterone Cream: <span class=\"serif\">Compounded Bioidentical HRT.</span>",
+  "category": "Women's Hormone",
+  "categoryKey": "research",
+  "deck": "Estradiol and estriol in an 80/20 or 50/50 biest ratio plus micronized progesterone in one transdermal cream — compounding logic, evidence limits, and endometrial safety.",
+  "date": "June 20, 2026",
+  "readTime": "8 min read",
+  "metaDescription": "Biest progesterone cream HRT: estradiol estriol 50/50 0.1% with progesterone 4%, compounded menopause therapy, and endometrial monitoring.",
+  "bodyHtml": "<p>Biest (bi-estrogen) creams combine estradiol (E2) and estriol (E3), often in 50:50 or 80:20 ratios, with micronized progesterone 4% for transdermal menopausal hormone therapy. Estriol is a weaker estrogen thought to favor genitourinary tissue; estradiol provides systemic symptom relief.</p>\n\n<p>Compounded bioidentical HRT is popular in functional medicine but lacks large RCT equivalence to FDA-approved patches. Endometrial protection requires adequate progestogen exposure; unmonitored bleeding warrants evaluation. Salivary hormone testing is not guideline-recommended for dosing.</p>\n\n<p>CLYR Health offers biest + progesterone cream as a women's hormone preview SKU with prescriber-supervised monitoring.</p>",
+  "sources": [
+    {"label": "The 2022 NAMS Position Statement on hormone therapy.", "url": "https://pubmed.ncbi.nlm.nih.gov/35797481/"},
+    {"label": "FDA. Compounded bioidentical hormones: consumer advisory.", "url": "https://www.fda.gov/consumers/consumer-updates/compounded-bioidentical-hormones-menopause"}
+  ],
+  "related": [
+    {"slug": "estradiol-patches-hrt-explained", "title": "Estradiol Patches", "category": "Women's Hormone"},
+    {"slug": "progesterone-capsules-hrt-sleep", "title": "Progesterone Capsules", "category": "Women's Hormone"},
+    {"slug": "estradiol-vaginal-cream-gsm", "title": "Estradiol Vaginal Cream", "category": "Women's Hormone"}
+  ]
+}

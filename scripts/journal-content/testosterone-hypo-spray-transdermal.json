@@ -1,0 +1,21 @@
+{
+  "slug": "testosterone-hypo-spray-transdermal",
+  "title": "Testosterone Hypo Spray: Metered Transdermal TRT",
+  "titleHtml": "Testosterone Hypo Spray: <span class=\"serif\">Metered Transdermal TRT.</span>",
+  "category": "Men's Hormone",
+  "categoryKey": "research",
+  "deck": "Axillary testosterone sprays deliver precise daily doses through the skin — 20 mg per actuation protocols without vials, needles, or cream transfer risk.",
+  "date": "June 20, 2026",
+  "readTime": "7 min read",
+  "metaDescription": "Testosterone hypo spray 20mg/0.2ml for TRT: metered transdermal dosing, vs cream and injection, absorption, and monitoring.",
+  "bodyHtml": "<p>Testosterone hypo spray (metered transdermal solution) applies to clean dry underarm skin, delivering approximately 20 mg testosterone per actuation. Compounded 14 mL bottles provide roughly 60 doses in standard telehealth menus.</p>\n\n<p>Metered spray improves dose consistency versus cream weighing and reduces partner transfer risk when applied to covered axillary sites. Pharmacokinetics sit between daily gel and weekly injection — steady daily input without injection peaks.</p>\n\n<p>Monitoring matches standard TRT: hematocrit, PSA, symptoms. Avoid application if skin is broken or irritated. CLYR Health offers testosterone hypo spray as a premium UX men's hormone preview SKU.</p>",
+  "sources": [
+    {"label": "Bhasin S, et al. Testosterone therapy guideline. Endocrine Society. 2018.", "url": "https://www.endocrine.org/clinical-practice-guidelines/testosterone-therapy"},
+    {"label": "FDA. Natesto nasal testosterone — transdermal alternative reference.", "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2014/205488s000lbl.pdf"}
+  ],
+  "related": [
+    {"slug": "testosterone-cream-topical-trt", "title": "Testosterone Cream TRT", "category": "Men's Hormone"},
+    {"slug": "testosterone-cypionate-trt-explained", "title": "Testosterone Cypionate TRT", "category": "Men's Hormone"},
+    {"slug": "enclomiphene-fertility-preserving-testosterone", "title": "Enclomiphene Explained", "category": "Men's Hormone"}
+  ]
+}

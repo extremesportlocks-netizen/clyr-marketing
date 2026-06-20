@@ -1,0 +1,22 @@
+{
+  "slug": "tadalafil-apomorphine-dual-ed",
+  "title": "Tadalafil + Apomorphine Troches: Dual-Mechanism On-Demand ED",
+  "titleHtml": "Tadalafil + Apomorphine: <span class=\"serif\">Dual-Mechanism ED.</span>",
+  "category": "Sexual Health",
+  "categoryKey": "research",
+  "deck": "PDE5 inhibition plus dopamine agonism in one sublingual troche — central arousal signaling combined with peripheral vasodilation for compounded on-demand erectile support.",
+  "date": "June 20, 2026",
+  "readTime": "8 min read",
+  "metaDescription": "Tadalafil 22mg plus apomorphine 2mg troches: dual ED mechanism, dopamine D2 agonism, nausea risk, and compounded sexual health protocols.",
+  "bodyHtml": "<p>Apomorphine is a dopamine D2 agonist that facilitates erection through central nervous system pathways involved in sexual arousal. Subcutaneous apomorphine (brand withdrawn in US) caused nausea; low-dose sublingual combinations with tadalafil 22 mg aim for synergistic effect: apomorphine for initiation, tadalafil for sustained vasodilation over 24 to 36 hours.</p>\n\n<p>Compounded 22 mg / 2 mg troches are telehealth-standard \"dual on-demand\" doses. Apomorphine nausea is dose-dependent; take on empty stomach sublingually. Contraindicated with nitrates and caution with antihypertensives. Not FDA-approved as combination product.</p>\n\n<p>CLYR Health offers tadalafil + apomorphine troches as a preview sexual health SKU.</p>",
+  "sources": [
+    {"label": "Heaton JP, et al. Apomorphine for erectile dysfunction. <em>Int J Impot Res</em>. 2001.", "url": "https://pubmed.ncbi.nlm.nih.gov/11545292/"},
+    {"label": "FDA. Cialis (tadalafil) prescribing information.", "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2011/021368s020lbl.pdf"},
+    {"label": "AUA ED Guideline. 2018.", "url": "https://pubmed.ncbi.nlm.nih.gov/29562364/"}
+  ],
+  "related": [
+    {"slug": "tadalafil-troches-sublingual-ed", "title": "Tadalafil Troches", "category": "Sexual Health"},
+    {"slug": "trimix-injection-ed-rescue", "title": "Trimix for ED", "category": "Sexual Health"},
+    {"slug": "oxytocin-nasal-spray-bonding", "title": "Oxytocin Nasal Spray", "category": "Sexual Health"}
+  ]
+}

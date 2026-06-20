@@ -1,0 +1,22 @@
+{
+  "slug": "sildenafil-tadalafil-dual-gummy-ed",
+  "title": "Sildenafil + Tadalafil Gummies: Dual PDE5 On-Demand ED",
+  "titleHtml": "Sildenafil + Tadalafil Gummies: <span class=\"serif\">Dual PDE5 On-Demand.</span>",
+  "category": "Sexual Health",
+  "categoryKey": "research",
+  "deck": "Fast-onset sildenafil plus long-duration tadalafil in one compounded gummy — Rugiet-class dual inhibition for men who want rapid and sustained erectile support.",
+  "date": "June 20, 2026",
+  "readTime": "7 min read",
+  "metaDescription": "Sildenafil 40mg tadalafil 10mg gummy for ED: dual PDE5 mechanism, fast and sustained effect, compounded on-demand erectile support.",
+  "bodyHtml": "<p>Sildenafil (short half-life, rapid onset) and tadalafil (long half-life, extended window) inhibit PDE5 through complementary pharmacokinetics. Compounded gummies at 40 mg sildenafil / 10 mg tadalafil deliver Rugiet-style dual action in a single edible dose taken 30 to 60 minutes before activity.</p>\n\n<p>Combining PDE5 inhibitors increases side-effect risk (headache, hypotension, flushing) versus single-agent dosing. Absolute contraindication with nitrates. Not FDA-approved as fixed combination. Food delays sildenafil absorption less with gummy format than tablets for some patients.</p>\n\n<p>CLYR Health offers sildenafil + tadalafil gummies as a preview sexual health SKU.</p>",
+  "sources": [
+    {"label": "FDA. Viagra (sildenafil) prescribing information.", "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2012/020895s042lbl.pdf"},
+    {"label": "FDA. Cialis (tadalafil) prescribing information.", "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2011/021368s020lbl.pdf"},
+    {"label": "AUA ED Guideline. 2018.", "url": "https://pubmed.ncbi.nlm.nih.gov/29562364/"}
+  ],
+  "related": [
+    {"slug": "tadalafil-troches-sublingual-ed", "title": "Tadalafil Troches", "category": "Sexual Health"},
+    {"slug": "tadalafil-apomorphine-dual-ed", "title": "Tadalafil + Apomorphine", "category": "Sexual Health"},
+    {"slug": "trimix-injection-ed-rescue", "title": "Trimix for ED", "category": "Sexual Health"}
+  ]
+}

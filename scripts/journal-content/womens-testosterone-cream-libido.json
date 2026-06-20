@@ -1,0 +1,22 @@
+{
+  "slug": "womens-testosterone-cream-libido",
+  "title": "Low-Dose Testosterone Cream for Women: Energy, Libido, and the Evidence",
+  "titleHtml": "Low-Dose Testosterone for Women: <span class=\"serif\">Energy and Libido.</span>",
+  "category": "Women's Hormone",
+  "categoryKey": "research",
+  "deck": "Women produce testosterone from ovaries and adrenals; levels fall with age and oophorectomy. Compounded low-dose creams aim to restore physiologic range for hypoactive desire — not male TRT doses.",
+  "date": "June 20, 2026",
+  "readTime": "8 min read",
+  "metaDescription": "Women's testosterone cream low dose: physiologic androgen replacement, HSDD evidence, 0.5-1mg daily targets, monitoring, and voice/acne risks.",
+  "bodyHtml": "<p>Testosterone is the most abundant biologically active sex steroid in women across the lifespan, peaking in the 20s and declining with age and menopause. Hypoactive sexual desire disorder (HSDD) in postmenopausal women with distress has modest evidence for transdermal testosterone in guideline reviews, though no FDA-approved female testosterone exists in the US as of 2026.</p>\n\n<p>Compounded low-dose creams (targeting 0.5 to 1 mg daily absorbed testosterone, far below male TRT) aim for mid-range female physiologic levels. Benefits may include improved libido, energy, and muscle maintenance; risks include acne, hair growth, voice deepening if overdosed, and HDL reduction.</p>\n\n<p>Monitor total testosterone, hematocrit, lipids, and clinical virilization signs. Avoid in pregnancy and hormone-sensitive cancers without oncology input.</p>\n\n<p>CLYR Health offers women's testosterone cream as a preview SKU for individualized androgen protocols.</p>",
+  "sources": [
+    {"label": "Davis SR, et al. Global consensus on testosterone therapy for women. <em>J Clin Endocrinol Metab</em>. 2019.", "url": "https://pubmed.ncbi.nlm.nih.gov/30932108/"},
+    {"label": "Santen RJ, et al. Is testosterone therapy safe and effective for women? <em>J Clin Endocrinol Metab</em>. 2024.", "url": "https://pubmed.ncbi.nlm.nih.gov/38252037/"},
+    {"label": "The 2022 NAMS Position Statement.", "url": "https://pubmed.ncbi.nlm.nih.gov/35797481/"}
+  ],
+  "related": [
+    {"slug": "estradiol-patches-hrt-explained", "title": "Estradiol Patches", "category": "Women's Hormone"},
+    {"slug": "womens-hair-regrowth-topical-stack", "title": "Women's Hair Regrowth", "category": "Skin & Hair"},
+    {"slug": "testosterone-cream-topical-trt", "title": "Men's Testosterone Cream", "category": "Men's Hormone"}
+  ]
+}

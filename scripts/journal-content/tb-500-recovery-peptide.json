@@ -1,0 +1,22 @@
+{
+  "slug": "tb-500-recovery-peptide",
+  "title": "TB-500 (Thymosin Beta-4): The Recovery Peptide Explained",
+  "titleHtml": "TB-500: <span class=\"serif\">The Recovery Peptide.</span>",
+  "category": "Peptides",
+  "categoryKey": "peptides",
+  "deck": "A fragment of thymosin beta-4 that promotes cell migration and actin polymerization — popular in sports recovery circles with preclinical wound-healing data and limited human trials.",
+  "date": "June 20, 2026",
+  "readTime": "8 min read",
+  "metaDescription": "TB-500 peptide explained: thymosin beta-4 mechanism, 2.5mg protocols, tissue repair preclinical data, WADA ban, and evidence gaps.",
+  "bodyHtml": "<p>TB-500 is a synthetic peptide corresponding to a region of thymosin beta-4, a 43-amino-acid protein involved in actin sequestration, cell migration, and angiogenesis. It is used in compounded injectable protocols (often 2.5 mg twice weekly) for musculoskeletal recovery, often stacked with BPC-157.</p>\n\n<p>Preclinical models show accelerated wound closure and tendon repair. Human RCT evidence for athletic injury is sparse. TB-500 is prohibited in sport by WADA. Compounded product requires licensed pharmacy sourcing.</p>\n\n<p>CLYR Health offers TB-500 as a peptides preview SKU for off-label recovery protocols under prescriber supervision.</p>",
+  "sources": [
+    {"label": "Goldstein AL, et al. Thymosin beta-4: actin-sequestering protein. <em>Ann NY Acad Sci</em>. 2007.", "url": "https://pubmed.ncbi.nlm.nih.gov/18081176/"},
+    {"label": "WADA Prohibited List.", "url": "https://www.wada-ama.org/en/prohibited-list"},
+    {"label": "Philp D, et al. Thymosin beta-4 and wound healing. <em>Ann NY Acad Sci</em>. 2012.", "url": "https://pubmed.ncbi.nlm.nih.gov/22413730/"}
+  ],
+  "related": [
+    {"slug": "bpc-157-peptide-recovery-explained", "title": "BPC-157 Explained", "category": "Peptides"},
+    {"slug": "sermorelin-explained", "title": "Sermorelin Explained", "category": "Peptides"},
+    {"slug": "glutathione-master-antioxidant", "title": "Glutathione Explained", "category": "Peptides"}
+  ]
+}

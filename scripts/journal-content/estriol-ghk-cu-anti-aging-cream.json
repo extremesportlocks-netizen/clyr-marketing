@@ -1,0 +1,22 @@
+{
+  "slug": "estriol-ghk-cu-anti-aging-cream",
+  "title": "Estriol + GHK-Cu Cream: Women's Compounded Anti-Aging Topical",
+  "titleHtml": "Estriol + GHK-Cu Cream: <span class=\"serif\">Women's Anti-Aging Topical.</span>",
+  "category": "Skin & Hair",
+  "categoryKey": "longevity",
+  "deck": "Weak estrogen estriol plus copper peptide GHK-Cu, niacinamide, and hyaluronic acid in one compounded face cream — localized skin aging support without full systemic HRT.",
+  "date": "June 20, 2026",
+  "readTime": "8 min read",
+  "metaDescription": "Estriol GHK-Cu niacinamide cream for women: topical anti-aging, estriol skin benefits, copper peptide collagen support, compounded facial longevity.",
+  "bodyHtml": "<p>Estriol (E3) is the weakest of the three major estrogens, abundant in pregnancy and used topically for skin thickness and hydration in perimenopausal women. GHK-Cu stimulates collagen gene expression and tissue remodeling. Niacinamide supports barrier function; hyaluronic acid hydrates.</p>\n\n<p>Compounded estriol/GHK-Cu/niacinamide/HA creams target facial aging with lower systemic estrogen exposure than oral or patch HRT, though some absorption occurs. Popular in med-spa and telehealth longevity skin stacks paired with <a href=\"/journal/nad-face-cream-topical-longevity/\">NAD+ face cream</a> or injectable peptides.</p>\n\n<p>Not for use in estrogen-receptor-positive breast cancer without oncology guidance. CLYR Health offers estriol + GHK-Cu cream as a preview skin SKU.</p>",
+  "sources": [
+    {"label": "Pickart L, Margolina A. GHK-Cu regenerative actions. <em>Biomed Res Int</em>. 2018.", "url": "https://pubmed.ncbi.nlm.nih.gov/29686826/"},
+    {"label": "Bissett DL, et al. Niacinamide facial skin appearance. <em>Dermatol Surg</em>. 2005.", "url": "https://pubmed.ncbi.nlm.nih.gov/16029679/"},
+    {"label": "FDA. Compounded bioidentical hormones advisory.", "url": "https://www.fda.gov/consumers/consumer-updates/compounded-bioidentical-hormones-menopause"}
+  ],
+  "related": [
+    {"slug": "ghk-cu-injectable-copper-peptide", "title": "GHK-Cu Injectable", "category": "Peptides"},
+    {"slug": "nad-face-cream-topical-longevity", "title": "NAD+ Face Cream", "category": "NAD+"},
+    {"slug": "tretinoin-retinoid-starter-guide", "title": "Tretinoin Guide", "category": "Skin & Hair"}
+  ]
+}
