@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>X OAuth · CLYR Health</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#f8fafb;color:#1a1a1a;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+.card{max-width:520px;width:100%;background:#fff;border:1px solid #e2e7eb;border-radius:16px;padding:32px 28px;box-shadow:0 8px 30px rgba(0,0,0,.06)}
+h1{font-size:22px;margin-bottom:8px}
+p{color:#6b7c8a;line-height:1.6;font-size:15px;margin-bottom:16px}
+.ok{color:#10b981;font-weight:700}
+.err{color:#dc2626;font-weight:700}
+code{display:block;background:#f0fafb;border:1px solid #cce8ec;border-radius:10px;padding:14px;font-size:13px;word-break:break-all;margin:12px 0 20px}
+.btn{display:inline-block;background:#00b4c5;color:#fff;text-decoration:none;font-weight:700;font-size:14px;padding:12px 20px;border-radius:100px;border:none;cursor:pointer}
+.btn:hover{background:#009baa}
+.small{font-size:12px;color:#94a3b0;margin-top:16px}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1 id="title">Completing X authorization…</h1>
+  <p id="msg">If you see this page after signing in to X, copy the verifier below and return to your terminal.</p>
+  <p id="status"></p>
+  <code id="verifier">—</code>
+  <button class="btn" id="copy" type="button" hidden>Copy verifier</button>
+  <p class="small">CLYR Health · internal OAuth callback · not a public page</p>
+</div>
+<script>
+(function () {
+  var params = new URLSearchParams(window.location.search);
+  var verifier = params.get('oauth_verifier');
+  var denied = params.get('denied');
+  var title = document.getElementById('title');
+  var status = document.getElementById('status');
+  var box = document.getElementById('verifier');
+  var copy = document.getElementById('copy');
+  if (denied) {
+    title.textContent = 'Authorization declined';
+    status.innerHTML = '<span class="err">You denied access on X. Run ./clyr-x-ads auth again.</span>';
+    box.textContent = 'denied';
+    return;
+  }
+  if (!verifier) {
+    title.textContent = 'No verifier in URL';
+    status.innerHTML = '<span class="err">Expected oauth_verifier in the query string. Re-run auth from the terminal.</span>';
+    return;
+  }
+  title.textContent = 'Authorization complete';
+  status.innerHTML = '<span class="ok">Paste this into:</span> <code style="display:inline;padding:2px 8px">./clyr-x-ads auth --verifier YOUR_VERIFIER</code>';
+  box.textContent = verifier;
+  copy.hidden = false;
+  copy.addEventListener('click', function () {
+    navigator.clipboard.writeText(verifier).then(function () {
+      copy.textContent = 'Copied!';
+      setTimeout(function () { copy.textContent = 'Copy verifier'; }, 2000);
+    });
+  });
+})();
+</script>
+</body>
+</html>
