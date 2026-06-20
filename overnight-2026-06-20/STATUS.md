@@ -1,18 +1,18 @@
 # Overnight Sprint Status
 
-**Updated:** 2026-06-20T08:05:14.758908+00:00  
-**Cycle:** 3  
+**Updated:** 2026-06-20T08:20:16.650772+00:00  
+**Cycle:** 4  
 **Ends:** 2026-06-20T15:35:09.417796+00:00  
 **Last push:** yes
 
 ## Live checks
 - Homepage: 200
-- Sitemap URLs: 94
+- Sitemap URLs: 95
 - GBP schema/footer: True / True
 - Google verify tag: True
 
 ## Articles
-- Pending JSON not yet on site: 5
+- Pending JSON not yet on site: 4
 - Published this sprint: see `articles-published.log`
 
 ## When you return
