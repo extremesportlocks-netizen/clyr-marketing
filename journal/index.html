@@ -118,6 +118,7 @@ body{font-family:var(--sans);color:var(--dark);background:var(--white);overflow-
 .article-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding-bottom:80px}
 .article-card{text-decoration:none;color:inherit;display:flex;flex-direction:column;background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);overflow:hidden;transition:all 0.3s}
 .article-card:hover{border-color:var(--teal);box-shadow:var(--shadow-md);transform:translateY(-4px)}
+.feature-card.is-hidden{display:none!important}
 .article-card.is-hidden{opacity:0;height:0;overflow:hidden;margin:0;padding:0;border:0;pointer-events:none}
 .article-card-img{aspect-ratio:16/11;position:relative;overflow:hidden}
 .article-card-img::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,#f0fafb 0%,#e8f4f8 100%)}
@@ -330,13 +331,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="filter-strip">
   <div class="filter-inner">
     <span class="filter-label">Browse</span>
-    <button class="filter-btn is-active" data-filter="all">All<span class="count">15</span></button>
-    <button class="filter-btn" data-filter="longevity">Longevity<span class="count">1</span></button>
-    <button class="filter-btn" data-filter="metabolic">Metabolic Health<span class="count">3</span></button>
-    <button class="filter-btn" data-filter="nad">NAD+<span class="count">3</span></button>
-    <button class="filter-btn" data-filter="peptides">Peptides<span class="count">2</span></button>
-    <button class="filter-btn" data-filter="research">Research<span class="count">2</span></button>
-    <button class="filter-btn" data-filter="cost">Cost &amp; Access<span class="count">4</span></button>
+    <button class="filter-btn is-active" data-filter="all">All<span class="count">70</span></button>
+    <button class="filter-btn" data-filter="antiparasitic">Antiparasitic<span class="count">1</span></button>
+    <button class="filter-btn" data-filter="skin">Skin & Hair<span class="count">10</span></button>
+    <button class="filter-btn" data-filter="hormones">Hormones<span class="count">12</span></button>
+    <button class="filter-btn" data-filter="sexual">Sexual Health<span class="count">7</span></button>
+    <button class="filter-btn" data-filter="peptides">Peptides<span class="count">5</span></button>
+    <button class="filter-btn" data-filter="longevity">Longevity & NAD<span class="count">7</span></button>
+    <button class="filter-btn" data-filter="access">Cost & Access<span class="count">1</span></button>
+    <button class="filter-btn" data-filter="weightloss">Weight Loss<span class="count">27</span></button>
+  
   </div>
 </div>
 
@@ -346,17 +350,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <span class="section-badge">Editor&#8217;s Picks &middot; May 2026</span>
   </div>
   <div class="featured-grid">
-    <a href="/journal/wegovy-tablets-oral-semaglutide-guide/" class="feature-card" data-category="metabolic" data-img="metabolic">
+    <a href="/journal/wegovy-tablets-oral-semaglutide-guide/" class="feature-card" data-category="weightloss" data-img="metabolic">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg1p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg1)"/><rect width="480" height="330" fill="url(#cg1p)"/><g transform="rotate(-28 250 165)"><rect x="170" y="146" width="160" height="40" rx="20" fill="none" stroke="#3fd0e0" stroke-width="2.5" opacity="0.85"/><rect x="170" y="146" width="80" height="40" rx="20" fill="#3fd0e0" opacity="0.8"/><line x1="250" y1="146" x2="250" y2="186" stroke="#3fd0e0" stroke-width="2.5" opacity="0.85"/></g><circle cx="120" cy="110" r="4" fill="#3fd0e0" opacity="0.4"/><circle cx="360" cy="210" r="4" fill="#3fd0e0" opacity="0.4"/><circle cx="140" cy="235" r="4" fill="#3fd0e0" opacity="0.4"/><circle cx="380" cy="120" r="4" fill="#3fd0e0" opacity="0.4"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">GLP-1</div>
+        <div class="feature-card-cat">Weight Loss</div>
         <h3 class="feature-card-title">Wegovy Tablets: A Complete Guide to Oral Semaglutide for Weight Management</h3>
         <p class="feature-card-dek">FDA-approved Wegovy tablets bring semaglutide weight-loss pharmacotherapy into a daily pill, no needles, no refrigeration. Here is how oral semaglutide works, how it compares to injectable GLP-1s and compounded oral options, and what titration looks like in practice.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>11 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/sexual-health-telehealth-guide/" class="feature-card" data-category="research" data-img="research">
+    <a href="/journal/sexual-health-telehealth-guide/" class="feature-card" data-category="sexual" data-img="research">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg2p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg2)"/><rect width="480" height="330" fill="url(#cg2p)"/><circle cx="368" cy="120" r="26" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.5"/><circle cx="368" cy="120" r="48" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.25"/><polyline points="48,170 130,170 158,170 178,120 202,224 226,150 250,170 432,170" fill="none" stroke="#3fd0e0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="202" cy="224" r="5" fill="#3fd0e0"/></svg></div>
       <div class="feature-card-body">
         <div class="feature-card-cat">Sexual Health</div>
@@ -366,177 +370,177 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </a>
 
-    <a href="/journal/semaglutide-michigan/" class="feature-card" data-category="cost" data-img="cost">
+    <a href="/journal/semaglutide-michigan/" class="feature-card" data-category="weightloss" data-img="cost">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef2f6"/><stop offset="1" stop-color="#dbe3ec"/></linearGradient><pattern id="cg3p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#5b7c93" stroke-width="0.5" opacity="0.12"/></pattern></defs><rect width="480" height="330" fill="url(#cg3)"/><rect width="480" height="330" fill="url(#cg3p)"/><path d="M40,120 C140,102 240,138 440,110" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><path d="M40,168 C140,150 240,186 440,158" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><path d="M40,216 C140,198 240,234 440,206" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><path d="M40,264 C140,246 240,282 440,254" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><circle cx="120" cy="150" r="3.5" fill="#5b7c93" opacity="0.5"/><circle cx="360" cy="130" r="3.5" fill="#5b7c93" opacity="0.5"/><circle cx="380" cy="220" r="3.5" fill="#5b7c93" opacity="0.5"/><circle cx="140" cy="240" r="3.5" fill="#5b7c93" opacity="0.5"/><path d="M250,92 a46,46 0 0 1 46,46 c0,34 -46,86 -46,86 c0,0 -46,-52 -46,-86 a46,46 0 0 1 46,-46 Z" fill="#5b7c93" opacity="0.9"/><circle cx="250" cy="138" r="17" fill="#ffffff" opacity="0.92"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">Cost &amp; Access</div>
+        <div class="feature-card-cat">Weight Loss</div>
         <h3 class="feature-card-title">Semaglutide in Michigan: Telehealth Access, Medicaid Rules, and Great Lakes Logistics</h3>
         <p class="feature-card-dek">Michigan allows GLP-1 prescribing via synchronous telehealth without an in-person visit. Here&#x27;s how LARA licensure, Medicaid policy, pharmacy regulation, and Detroit-to-Upper-Peninsula fulfillment shape semaglutide access for Michigan residents.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>9 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/semaglutide-illinois/" class="feature-card" data-category="cost" data-img="cost">
+    <a href="/journal/semaglutide-illinois/" class="feature-card" data-category="weightloss" data-img="cost">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef2f6"/><stop offset="1" stop-color="#dbe3ec"/></linearGradient><pattern id="cg4p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#5b7c93" stroke-width="0.5" opacity="0.12"/></pattern></defs><rect width="480" height="330" fill="url(#cg4)"/><rect width="480" height="330" fill="url(#cg4p)"/><path d="M40,120 C140,102 240,138 440,110" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><path d="M40,168 C140,150 240,186 440,158" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><path d="M40,216 C140,198 240,234 440,206" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><path d="M40,264 C140,246 240,282 440,254" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><circle cx="120" cy="150" r="3.5" fill="#5b7c93" opacity="0.5"/><circle cx="360" cy="130" r="3.5" fill="#5b7c93" opacity="0.5"/><circle cx="380" cy="220" r="3.5" fill="#5b7c93" opacity="0.5"/><circle cx="140" cy="240" r="3.5" fill="#5b7c93" opacity="0.5"/><path d="M250,92 a46,46 0 0 1 46,46 c0,34 -46,86 -46,86 c0,0 -46,-52 -46,-86 a46,46 0 0 1 46,-46 Z" fill="#5b7c93" opacity="0.9"/><circle cx="250" cy="138" r="17" fill="#ffffff" opacity="0.92"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">Cost &amp; Access</div>
+        <div class="feature-card-cat">Weight Loss</div>
         <h3 class="feature-card-title">Semaglutide in Illinois: Telehealth Prescribing, Medicaid Policy, and Midwest Access</h3>
         <p class="feature-card-dek">Illinois permits GLP-1 prescribing through synchronous telehealth without an in-person visit. Here&#x27;s how IDFPR licensure, Medicaid formulary rules, pharmacy oversight, and Chicago-to-downstate logistics shape what Illinois patients pay for semaglutide in 2026.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>9 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/lipo-mino-injection-weight-loss/" class="feature-card" data-category="metabolic" data-img="metabolic">
+    <a href="/journal/lipo-mino-injection-weight-loss/" class="feature-card" data-category="weightloss" data-img="metabolic">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg5" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg5p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg5)"/><rect width="480" height="330" fill="url(#cg5p)"/><path d="M62,108 132,138 202,164 272,190 342,214 420,240 L420,300 L62,300 Z" fill="#3fd0e0" opacity="0.13"/><polyline points="62,108 132,138 202,164 272,190 342,214 420,240" fill="none" stroke="#3fd0e0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="62" cy="108" r="4.5" fill="#3fd0e0"/><circle cx="132" cy="138" r="4.5" fill="#3fd0e0"/><circle cx="202" cy="164" r="4.5" fill="#3fd0e0"/><circle cx="272" cy="190" r="4.5" fill="#3fd0e0"/><circle cx="342" cy="214" r="4.5" fill="#3fd0e0"/><circle cx="420" cy="240" r="4.5" fill="#3fd0e0"/><path d="M398,236 l22,4 -8,-21 z" fill="#3fd0e0" opacity="0.9"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">GLP-1</div>
+        <div class="feature-card-cat">Weight Loss</div>
         <h3 class="feature-card-title">Lipo-Mino Injection for Weight Loss: L-Carnitine, Lipotropics, and GLP-1 Companion Therapy</h3>
         <p class="feature-card-dek">Lipo-Mino + L-Carnitine expands the classic MIC lipotropic stack with mitochondrial fatty-acid transport and a fuller B-vitamin complex, a metabolic adjunct telehealth clinicians pair with GLP-1 when patients need energy and fat-processing support beyond appetite suppression.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>10 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/legitscript-telehealth-certification-explained/" class="feature-card" data-category="cost" data-img="cost">
+    <a href="/journal/legitscript-telehealth-certification-explained/" class="feature-card" data-category="access" data-img="cost">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg6" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef2f6"/><stop offset="1" stop-color="#dbe3ec"/></linearGradient><pattern id="cg6p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#5b7c93" stroke-width="0.5" opacity="0.12"/></pattern></defs><rect width="480" height="330" fill="url(#cg6)"/><rect width="480" height="330" fill="url(#cg6p)"/><path d="M250,86 l64,24 v52 c0,52 -36,82 -64,96 c-28,-14 -64,-44 -64,-96 v-52 Z" fill="none" stroke="#5b7c93" stroke-width="2.6" opacity="0.9"/><path d="M250,96 l54,20 v44 c0,44 -30,70 -54,82 z" fill="#5b7c93" opacity="0.16"/><polyline points="222,168 242,190 286,142" fill="none" stroke="#5b7c93" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">Cost &amp; Access</div>
+        <div class="feature-card-cat">Cost & Access</div>
         <h3 class="feature-card-title">LegitScript Telehealth Certification: What It Means and Why Patients Should Verify It</h3>
         <p class="feature-card-dek">LegitScript certification is the closest thing telehealth has to a universal trust standard, but most patients click the badge without understanding what it verifies. Here&#x27;s the audit process, what it covers, and how to check any platform.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>10 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/foundayo-hair-regrowth-science/" class="feature-card" data-category="research" data-img="research">
+    <a href="/journal/foundayo-hair-regrowth-science/" class="feature-card" data-category="skin" data-img="research">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg7" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg7p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg7)"/><rect width="480" height="330" fill="url(#cg7p)"/><circle cx="250" cy="150" r="34" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.5"/><circle cx="250" cy="150" r="64" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.3"/><circle cx="250" cy="150" r="96" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.16"/><path d="M250,96 C284,140 300,162 300,186 a50,50 0 1 1 -100,0 C200,162 216,140 250,96 Z" fill="#3fd0e0" opacity="0.85"/><circle cx="234" cy="196" r="12" fill="#ffffff" opacity="0.35"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">Skin &amp; Hair</div>
+        <div class="feature-card-cat">Skin & Hair</div>
         <h3 class="feature-card-title">GLP-1 Weight Loss and Hair Regrowth: The Science Behind Shedding, Recovery, and Oral Options Like Foundayo</h3>
         <p class="feature-card-dek">Rapid weight loss on semaglutide, tirzepatide, or oral GLP-1s like Foundayo can trigger telogen effluvium months into treatment. Here&#x27;s the follicle biology, timeline expectations, and evidence-based regrowth strategies that actually work.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>11 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/glutathione-push-injection-benefits/" class="feature-card" data-category="nad" data-img="nad">
+    <a href="/journal/glutathione-push-injection-benefits/" class="feature-card" data-category="longevity" data-img="nad">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg8" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eaf6f8"/><stop offset="1" stop-color="#d2ecf0"/></linearGradient><pattern id="cg8p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#0098a8" stroke-width="0.5" opacity="0.12"/></pattern></defs><rect width="480" height="330" fill="url(#cg8)"/><rect width="480" height="330" fill="url(#cg8p)"/><path d="M300,158 275,201 225,201 200,158 225,115 275,115 Z" fill="none" stroke="#0098a8" stroke-width="2.4" opacity="0.85"/><line x1="300" y1="158" x2="355" y2="100" stroke="#0098a8" stroke-width="2" opacity="0.6"/><line x1="200" y1="158" x2="140" y2="208" stroke="#0098a8" stroke-width="2" opacity="0.6"/><line x1="225" y1="201" x2="346" y2="232" stroke="#0098a8" stroke-width="2" opacity="0.6"/><circle cx="300" cy="158" r="7" fill="#0098a8"/><circle cx="275" cy="201" r="7" fill="#0098a8"/><circle cx="225" cy="201" r="7" fill="#0098a8"/><circle cx="200" cy="158" r="7" fill="#0098a8"/><circle cx="225" cy="115" r="7" fill="#0098a8"/><circle cx="275" cy="115" r="7" fill="#0098a8"/><circle cx="355" cy="100" r="11" fill="#0098a8" opacity="0.85"/><circle cx="140" cy="208" r="11" fill="#0098a8" opacity="0.85"/><circle cx="346" cy="232" r="11" fill="#0098a8" opacity="0.85"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">NAD+</div>
+        <div class="feature-card-cat">Longevity & NAD</div>
         <h3 class="feature-card-title">Glutathione Push and Injection Benefits: Antioxidant Therapy Beyond Oral Supplements</h3>
         <p class="feature-card-dek">Glutathione IV pushes and injectable protocols bypass the digestive destruction that cripples oral supplements, delivering the body&#x27;s master antioxidant directly to tissues for detox, immune, and skin support. Here is what parenteral glutathione does and how home injection compares to clinic pushes.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>10 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/glp1-weight-loss-north-carolina/" class="feature-card" data-category="cost" data-img="cost">
+    <a href="/journal/glp1-weight-loss-north-carolina/" class="feature-card" data-category="weightloss" data-img="cost">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg9" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef2f6"/><stop offset="1" stop-color="#dbe3ec"/></linearGradient><pattern id="cg9p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#5b7c93" stroke-width="0.5" opacity="0.12"/></pattern></defs><rect width="480" height="330" fill="url(#cg9)"/><rect width="480" height="330" fill="url(#cg9p)"/><path d="M40,120 C140,102 240,138 440,110" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><path d="M40,168 C140,150 240,186 440,158" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><path d="M40,216 C140,198 240,234 440,206" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><path d="M40,264 C140,246 240,282 440,254" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><circle cx="120" cy="150" r="3.5" fill="#5b7c93" opacity="0.5"/><circle cx="360" cy="130" r="3.5" fill="#5b7c93" opacity="0.5"/><circle cx="380" cy="220" r="3.5" fill="#5b7c93" opacity="0.5"/><circle cx="140" cy="240" r="3.5" fill="#5b7c93" opacity="0.5"/><path d="M250,92 a46,46 0 0 1 46,46 c0,34 -46,86 -46,86 c0,0 -46,-52 -46,-86 a46,46 0 0 1 46,-46 Z" fill="#5b7c93" opacity="0.9"/><circle cx="250" cy="138" r="17" fill="#ffffff" opacity="0.92"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">Cost &amp; Access</div>
+        <div class="feature-card-cat">Weight Loss</div>
         <h3 class="feature-card-title">GLP-1 Weight Loss in North Carolina: Telehealth Rules, Coverage, and Patient Access</h3>
         <p class="feature-card-dek">North Carolina allows GLP-1 weight-loss prescribing via synchronous telehealth. Here&#x27;s how state licensure, collaborative practice rules, Medicaid policy, and Research Triangle pharmacy infrastructure affect NC patient access in 2026.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>9 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/weight-loss-telehealth-georgia/" class="feature-card" data-category="cost" data-img="cost">
+    <a href="/journal/weight-loss-telehealth-georgia/" class="feature-card" data-category="weightloss" data-img="cost">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg10" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef2f6"/><stop offset="1" stop-color="#dbe3ec"/></linearGradient><pattern id="cg10p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#5b7c93" stroke-width="0.5" opacity="0.12"/></pattern></defs><rect width="480" height="330" fill="url(#cg10)"/><rect width="480" height="330" fill="url(#cg10p)"/><path d="M40,120 C140,102 240,138 440,110" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><path d="M40,168 C140,150 240,186 440,158" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><path d="M40,216 C140,198 240,234 440,206" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><path d="M40,264 C140,246 240,282 440,254" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><circle cx="120" cy="150" r="3.5" fill="#5b7c93" opacity="0.5"/><circle cx="360" cy="130" r="3.5" fill="#5b7c93" opacity="0.5"/><circle cx="380" cy="220" r="3.5" fill="#5b7c93" opacity="0.5"/><circle cx="140" cy="240" r="3.5" fill="#5b7c93" opacity="0.5"/><path d="M250,92 a46,46 0 0 1 46,46 c0,34 -46,86 -46,86 c0,0 -46,-52 -46,-86 a46,46 0 0 1 46,-46 Z" fill="#5b7c93" opacity="0.9"/><circle cx="250" cy="138" r="17" fill="#ffffff" opacity="0.92"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">Cost &amp; Access</div>
+        <div class="feature-card-cat">Weight Loss</div>
         <h3 class="feature-card-title">Weight Loss Telehealth in Georgia: GLP-1 Access, Prescribing Rules, and Pricing</h3>
         <p class="feature-card-dek">Georgia permits GLP-1 weight-loss prescribing through synchronous telehealth without an in-person visit. Here&#x27;s how state licensure, APRN rules, Medicaid policy, and Southeast fulfillment logistics shape access for Georgia residents.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>9 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/compounded-tirzepatide-ohio/" class="feature-card" data-category="cost" data-img="cost">
+    <a href="/journal/compounded-tirzepatide-ohio/" class="feature-card" data-category="weightloss" data-img="cost">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg11" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef2f6"/><stop offset="1" stop-color="#dbe3ec"/></linearGradient><pattern id="cg11p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#5b7c93" stroke-width="0.5" opacity="0.12"/></pattern></defs><rect width="480" height="330" fill="url(#cg11)"/><rect width="480" height="330" fill="url(#cg11p)"/><path d="M40,120 C140,102 240,138 440,110" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><path d="M40,168 C140,150 240,186 440,158" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><path d="M40,216 C140,198 240,234 440,206" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><path d="M40,264 C140,246 240,282 440,254" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><circle cx="120" cy="150" r="3.5" fill="#5b7c93" opacity="0.5"/><circle cx="360" cy="130" r="3.5" fill="#5b7c93" opacity="0.5"/><circle cx="380" cy="220" r="3.5" fill="#5b7c93" opacity="0.5"/><circle cx="140" cy="240" r="3.5" fill="#5b7c93" opacity="0.5"/><path d="M250,92 a46,46 0 0 1 46,46 c0,34 -46,86 -46,86 c0,0 -46,-52 -46,-86 a46,46 0 0 1 46,-46 Z" fill="#5b7c93" opacity="0.9"/><circle cx="250" cy="138" r="17" fill="#ffffff" opacity="0.92"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">Cost &amp; Access</div>
+        <div class="feature-card-cat">Weight Loss</div>
         <h3 class="feature-card-title">Compounded Tirzepatide in Ohio: Telehealth Access, Pharmacy Rules, and What to Verify</h3>
         <p class="feature-card-dek">Ohio allows tirzepatide prescribing via synchronous telehealth and has an active State Board of Pharmacy. Here&#x27;s how compounded access, Medicaid policy, and Midwest fulfillment logistics work for Ohio patients in 2026.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>9 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/semaglutide-new-york/" class="feature-card" data-category="cost" data-img="cost">
+    <a href="/journal/semaglutide-new-york/" class="feature-card" data-category="weightloss" data-img="cost">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg12" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef2f6"/><stop offset="1" stop-color="#dbe3ec"/></linearGradient><pattern id="cg12p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#5b7c93" stroke-width="0.5" opacity="0.12"/></pattern></defs><rect width="480" height="330" fill="url(#cg12)"/><rect width="480" height="330" fill="url(#cg12p)"/><path d="M40,120 C140,102 240,138 440,110" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><path d="M40,168 C140,150 240,186 440,158" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><path d="M40,216 C140,198 240,234 440,206" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><path d="M40,264 C140,246 240,282 440,254" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><circle cx="120" cy="150" r="3.5" fill="#5b7c93" opacity="0.5"/><circle cx="360" cy="130" r="3.5" fill="#5b7c93" opacity="0.5"/><circle cx="380" cy="220" r="3.5" fill="#5b7c93" opacity="0.5"/><circle cx="140" cy="240" r="3.5" fill="#5b7c93" opacity="0.5"/><path d="M250,92 a46,46 0 0 1 46,46 c0,34 -46,86 -46,86 c0,0 -46,-52 -46,-86 a46,46 0 0 1 46,-46 Z" fill="#5b7c93" opacity="0.9"/><circle cx="250" cy="138" r="17" fill="#ffffff" opacity="0.92"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">Cost &amp; Access</div>
+        <div class="feature-card-cat">Weight Loss</div>
         <h3 class="feature-card-title">Semaglutide in New York: Telehealth Prescribing, Medicaid Policy, and Access in 2026</h3>
         <p class="feature-card-dek">New York permits GLP-1 prescribing through synchronous telehealth without an in-person visit. Here&#x27;s how state licensure, Medicaid policy, pharmacy regulation, and NYC logistics affect what New York patients pay for semaglutide.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>9 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/semaglutide-california/" class="feature-card" data-category="cost" data-img="cost">
+    <a href="/journal/semaglutide-california/" class="feature-card" data-category="weightloss" data-img="cost">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg13" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef2f6"/><stop offset="1" stop-color="#dbe3ec"/></linearGradient><pattern id="cg13p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#5b7c93" stroke-width="0.5" opacity="0.12"/></pattern></defs><rect width="480" height="330" fill="url(#cg13)"/><rect width="480" height="330" fill="url(#cg13p)"/><path d="M40,120 C140,102 240,138 440,110" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><path d="M40,168 C140,150 240,186 440,158" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><path d="M40,216 C140,198 240,234 440,206" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><path d="M40,264 C140,246 240,282 440,254" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><circle cx="120" cy="150" r="3.5" fill="#5b7c93" opacity="0.5"/><circle cx="360" cy="130" r="3.5" fill="#5b7c93" opacity="0.5"/><circle cx="380" cy="220" r="3.5" fill="#5b7c93" opacity="0.5"/><circle cx="140" cy="240" r="3.5" fill="#5b7c93" opacity="0.5"/><path d="M250,92 a46,46 0 0 1 46,46 c0,34 -46,86 -46,86 c0,0 -46,-52 -46,-86 a46,46 0 0 1 46,-46 Z" fill="#5b7c93" opacity="0.9"/><circle cx="250" cy="138" r="17" fill="#ffffff" opacity="0.92"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">Cost &amp; Access</div>
+        <div class="feature-card-cat">Weight Loss</div>
         <h3 class="feature-card-title">Semaglutide in California: Telehealth Rules, Medi-Cal Coverage, and Cash-Pay Pricing</h3>
         <p class="feature-card-dek">California allows GLP-1 prescribing via synchronous telehealth without an in-person visit. Here&#x27;s how state licensure, Medi-Cal policy, pharmacy oversight, and West Coast logistics shape what California patients pay and how they access semaglutide in 2026.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>9 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/ivermectin-wellness-protocol-overview/" class="feature-card" data-category="longevity" data-img="longevity">
+    <a href="/journal/ivermectin-wellness-protocol-overview/" class="feature-card" data-category="antiparasitic" data-img="longevity">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg14" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eaf6f8"/><stop offset="1" stop-color="#d2ecf0"/></linearGradient><pattern id="cg14p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#0098a8" stroke-width="0.5" opacity="0.12"/></pattern></defs><rect width="480" height="330" fill="url(#cg14)"/><rect width="480" height="330" fill="url(#cg14p)"/><circle cx="64" cy="137" r="13" fill="#0098a8" opacity="0.55"/><line x1="64" y1="137" x2="112" y2="193" stroke="#0098a8" stroke-width="2.2" opacity="0.55"/><circle cx="112" cy="193" r="9" fill="#0098a8" opacity="0.6000000000000001"/><line x1="112" y1="193" x2="160" y2="137" stroke="#0098a8" stroke-width="2.2" opacity="0.55"/><circle cx="160" cy="137" r="13" fill="#0098a8" opacity="0.65"/><line x1="160" y1="137" x2="208" y2="193" stroke="#0098a8" stroke-width="2.2" opacity="0.55"/><circle cx="208" cy="193" r="9" fill="#0098a8" opacity="0.55"/><line x1="208" y1="193" x2="256" y2="137" stroke="#0098a8" stroke-width="2.2" opacity="0.55"/><circle cx="256" cy="137" r="13" fill="#0098a8" opacity="0.6000000000000001"/><line x1="256" y1="137" x2="304" y2="193" stroke="#0098a8" stroke-width="2.2" opacity="0.55"/><circle cx="304" cy="193" r="9" fill="#0098a8" opacity="0.65"/><line x1="304" y1="193" x2="352" y2="137" stroke="#0098a8" stroke-width="2.2" opacity="0.55"/><circle cx="352" cy="137" r="13" fill="#0098a8" opacity="0.55"/><line x1="352" y1="137" x2="400" y2="193" stroke="#0098a8" stroke-width="2.2" opacity="0.55"/><circle cx="400" cy="193" r="9" fill="#0098a8" opacity="0.6000000000000001"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">Recovery</div>
+        <div class="feature-card-cat">Antiparasitic</div>
         <h3 class="feature-card-title">Ivermectin Wellness Protocol Overview: Antiparasitic Pharmacology and Physician-Guided Use</h3>
         <p class="feature-card-dek">Ivermectin is an FDA-approved antiparasitic with decades of safety data in labeled indications, and a separate, contested conversation in off-label wellness protocols. This overview explains the drug, typical prescribing patterns, evidence limits, and what patients should expect without cure claims.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>10 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/telehealth-weight-loss-how-it-works/" class="feature-card" data-category="metabolic" data-img="metabolic">
+    <a href="/journal/telehealth-weight-loss-how-it-works/" class="feature-card" data-category="weightloss" data-img="metabolic">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg15" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg15p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg15)"/><rect width="480" height="330" fill="url(#cg15p)"/><path d="M40,120 C140,102 240,138 440,110" fill="none" stroke="#3fd0e0" stroke-width="1.4" opacity="0.22"/><path d="M40,168 C140,150 240,186 440,158" fill="none" stroke="#3fd0e0" stroke-width="1.4" opacity="0.22"/><path d="M40,216 C140,198 240,234 440,206" fill="none" stroke="#3fd0e0" stroke-width="1.4" opacity="0.22"/><path d="M40,264 C140,246 240,282 440,254" fill="none" stroke="#3fd0e0" stroke-width="1.4" opacity="0.22"/><circle cx="120" cy="150" r="3.5" fill="#3fd0e0" opacity="0.5"/><circle cx="360" cy="130" r="3.5" fill="#3fd0e0" opacity="0.5"/><circle cx="380" cy="220" r="3.5" fill="#3fd0e0" opacity="0.5"/><circle cx="140" cy="240" r="3.5" fill="#3fd0e0" opacity="0.5"/><path d="M250,92 a46,46 0 0 1 46,46 c0,34 -46,86 -46,86 c0,0 -46,-52 -46,-86 a46,46 0 0 1 46,-46 Z" fill="#3fd0e0" opacity="0.9"/><circle cx="250" cy="138" r="17" fill="#ffffff" opacity="0.92"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">Metabolic Health</div>
+        <div class="feature-card-cat">Weight Loss</div>
         <h3 class="feature-card-title">Telehealth Weight Loss: How Online GLP-1 Programs Work From Intake to Delivery</h3>
         <p class="feature-card-dek">Modern obesity telehealth is more than a prescription PDF, it is asynchronous clinical intake, licensed provider review, pharmacy fulfillment, cold-chain shipping, and structured follow-up. Here is what happens at each step when you start GLP-1 therapy online.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>10 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/weight-loss-plateau-glp1/" class="feature-card" data-category="metabolic" data-img="metabolic">
+    <a href="/journal/weight-loss-plateau-glp1/" class="feature-card" data-category="weightloss" data-img="metabolic">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg16" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg16p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg16)"/><rect width="480" height="330" fill="url(#cg16p)"/><path d="M62,108 132,138 202,164 272,190 342,214 420,240 L420,300 L62,300 Z" fill="#3fd0e0" opacity="0.13"/><polyline points="62,108 132,138 202,164 272,190 342,214 420,240" fill="none" stroke="#3fd0e0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="62" cy="108" r="4.5" fill="#3fd0e0"/><circle cx="132" cy="138" r="4.5" fill="#3fd0e0"/><circle cx="202" cy="164" r="4.5" fill="#3fd0e0"/><circle cx="272" cy="190" r="4.5" fill="#3fd0e0"/><circle cx="342" cy="214" r="4.5" fill="#3fd0e0"/><circle cx="420" cy="240" r="4.5" fill="#3fd0e0"/><path d="M398,236 l22,4 -8,-21 z" fill="#3fd0e0" opacity="0.9"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">GLP-1</div>
+        <div class="feature-card-cat">Weight Loss</div>
         <h3 class="feature-card-title">Weight Loss Plateau on GLP-1: Why Progress Stalls and What Clinicians Adjust</h3>
         <p class="feature-card-dek">Three to six months into GLP-1 therapy, many patients hit a weight-loss plateau, not because the drug stopped working, but because metabolic adaptation, dose ceilings, dietary drift, and muscle-preservation needs converge. Here is how competent telehealth programs respond.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>10 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/zepbound-vs-compounded-tirzepatide/" class="feature-card" data-category="metabolic" data-img="metabolic">
+    <a href="/journal/zepbound-vs-compounded-tirzepatide/" class="feature-card" data-category="weightloss" data-img="metabolic">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg17" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg17p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg17)"/><rect width="480" height="330" fill="url(#cg17p)"/><circle cx="368" cy="120" r="26" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.5"/><circle cx="368" cy="120" r="48" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.25"/><polyline points="48,170 130,170 158,170 178,120 202,224 226,150 250,170 432,170" fill="none" stroke="#3fd0e0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="202" cy="224" r="5" fill="#3fd0e0"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">GLP-1</div>
+        <div class="feature-card-cat">Weight Loss</div>
         <h3 class="feature-card-title">Zepbound vs. Compounded Tirzepatide: Brand Pens, Pharmacy Copies, and What Patients Should Know</h3>
         <p class="feature-card-dek">FDA-approved Zepbound KwikPens deliver validated tirzepatide pharmacokinetics; compounded injectable and sublingual copies fill access gaps but carry different regulatory, cost, and bioavailability profiles patients must understand before choosing.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>11 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/micc-lipotropic-injection-explained/" class="feature-card" data-category="metabolic" data-img="metabolic">
+    <a href="/journal/micc-lipotropic-injection-explained/" class="feature-card" data-category="weightloss" data-img="metabolic">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg18" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg18p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg18)"/><rect width="480" height="330" fill="url(#cg18p)"/><path d="M62,108 132,138 202,164 272,190 342,214 420,240 L420,300 L62,300 Z" fill="#3fd0e0" opacity="0.13"/><polyline points="62,108 132,138 202,164 272,190 342,214 420,240" fill="none" stroke="#3fd0e0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="62" cy="108" r="4.5" fill="#3fd0e0"/><circle cx="132" cy="138" r="4.5" fill="#3fd0e0"/><circle cx="202" cy="164" r="4.5" fill="#3fd0e0"/><circle cx="272" cy="190" r="4.5" fill="#3fd0e0"/><circle cx="342" cy="214" r="4.5" fill="#3fd0e0"/><circle cx="420" cy="240" r="4.5" fill="#3fd0e0"/><path d="M398,236 l22,4 -8,-21 z" fill="#3fd0e0" opacity="0.9"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">GLP-1</div>
+        <div class="feature-card-cat">Weight Loss</div>
         <h3 class="feature-card-title">MICC Lipotropic Injection Explained: Methionine, Inositol, Choline, and B12 for Metabolic Support</h3>
         <p class="feature-card-dek">MICC injections combine four lipotropic nutrients, methionine, inositol, choline, and cyanocobalamin, into a weekly metabolic adjunct that weight-loss clinicians pair with GLP-1 therapy when patients need energy and liver-fat support beyond appetite suppression alone.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>10 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/estriol-ghk-cu-anti-aging-cream/" class="feature-card" data-category="longevity">
+    <a href="/journal/estriol-ghk-cu-anti-aging-cream/" class="feature-card" data-category="skin">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg19" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg19p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg19)"/><rect width="480" height="330" fill="url(#cg19p)"/><circle cx="64" cy="137" r="13" fill="#3fd0e0" opacity="0.55"/><line x1="64" y1="137" x2="112" y2="193" stroke="#3fd0e0" stroke-width="2.2" opacity="0.55"/><circle cx="112" cy="193" r="9" fill="#3fd0e0" opacity="0.6000000000000001"/><line x1="112" y1="193" x2="160" y2="137" stroke="#3fd0e0" stroke-width="2.2" opacity="0.55"/><circle cx="160" cy="137" r="13" fill="#3fd0e0" opacity="0.65"/><line x1="160" y1="137" x2="208" y2="193" stroke="#3fd0e0" stroke-width="2.2" opacity="0.55"/><circle cx="208" cy="193" r="9" fill="#3fd0e0" opacity="0.55"/><line x1="208" y1="193" x2="256" y2="137" stroke="#3fd0e0" stroke-width="2.2" opacity="0.55"/><circle cx="256" cy="137" r="13" fill="#3fd0e0" opacity="0.6000000000000001"/><line x1="256" y1="137" x2="304" y2="193" stroke="#3fd0e0" stroke-width="2.2" opacity="0.55"/><circle cx="304" cy="193" r="9" fill="#3fd0e0" opacity="0.65"/><line x1="304" y1="193" x2="352" y2="137" stroke="#3fd0e0" stroke-width="2.2" opacity="0.55"/><circle cx="352" cy="137" r="13" fill="#3fd0e0" opacity="0.55"/><line x1="352" y1="137" x2="400" y2="193" stroke="#3fd0e0" stroke-width="2.2" opacity="0.55"/><circle cx="400" cy="193" r="9" fill="#3fd0e0" opacity="0.6000000000000001"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">Skin &amp; Hair</div>
+        <div class="feature-card-cat">Skin & Hair</div>
         <h3 class="feature-card-title">Estriol + GHK-Cu Cream: Women&#x27;s Compounded Anti-Aging Topical.</h3>
         <p class="feature-card-dek">Weak estrogen estriol plus copper peptide GHK-Cu, niacinamide, and hyaluronic acid in one compounded face cream, localized skin aging support without full systemic HRT.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>8 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/pt141-bremelanotide-libido/" class="feature-card" data-category="research">
+    <a href="/journal/pt141-bremelanotide-libido/" class="feature-card" data-category="sexual">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg20" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg20p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg20)"/><rect width="480" height="330" fill="url(#cg20p)"/><circle cx="368" cy="120" r="26" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.5"/><circle cx="368" cy="120" r="48" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.25"/><polyline points="48,170 130,170 158,170 178,120 202,224 226,150 250,170 432,170" fill="none" stroke="#3fd0e0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="202" cy="224" r="5" fill="#3fd0e0"/></svg></div>
       <div class="feature-card-body">
         <div class="feature-card-cat">Sexual Health</div>
@@ -546,7 +550,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </a>
 
-    <a href="/journal/sildenafil-tadalafil-dual-gummy-ed/" class="feature-card" data-category="research">
+    <a href="/journal/sildenafil-tadalafil-dual-gummy-ed/" class="feature-card" data-category="sexual">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg21" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg21p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg21)"/><rect width="480" height="330" fill="url(#cg21p)"/><circle cx="368" cy="120" r="26" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.5"/><circle cx="368" cy="120" r="48" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.25"/><polyline points="48,170 130,170 158,170 178,120 202,224 226,150 250,170 432,170" fill="none" stroke="#3fd0e0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="202" cy="224" r="5" fill="#3fd0e0"/></svg></div>
       <div class="feature-card-body">
         <div class="feature-card-cat">Sexual Health</div>
@@ -556,7 +560,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </a>
 
-    <a href="/journal/oxytocin-nasal-spray-bonding/" class="feature-card" data-category="research">
+    <a href="/journal/oxytocin-nasal-spray-bonding/" class="feature-card" data-category="sexual">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg22" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg22p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg22)"/><rect width="480" height="330" fill="url(#cg22p)"/><circle cx="368" cy="120" r="26" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.5"/><circle cx="368" cy="120" r="48" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.25"/><polyline points="48,170 130,170 158,170 178,120 202,224 226,150 250,170 432,170" fill="none" stroke="#3fd0e0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="202" cy="224" r="5" fill="#3fd0e0"/></svg></div>
       <div class="feature-card-body">
         <div class="feature-card-cat">Sexual Health</div>
@@ -566,7 +570,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </a>
 
-    <a href="/journal/tadalafil-apomorphine-dual-ed/" class="feature-card" data-category="research">
+    <a href="/journal/tadalafil-apomorphine-dual-ed/" class="feature-card" data-category="sexual">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg23" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg23p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg23)"/><rect width="480" height="330" fill="url(#cg23p)"/><circle cx="368" cy="120" r="26" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.5"/><circle cx="368" cy="120" r="48" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.25"/><polyline points="48,170 130,170 158,170 178,120 202,224 226,150 250,170 432,170" fill="none" stroke="#3fd0e0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="202" cy="224" r="5" fill="#3fd0e0"/></svg></div>
       <div class="feature-card-body">
         <div class="feature-card-cat">Sexual Health</div>
@@ -576,50 +580,50 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </a>
 
-    <a href="/journal/dhea-pregnenolone-adrenal-precursors/" class="feature-card" data-category="longevity">
+    <a href="/journal/dhea-pregnenolone-adrenal-precursors/" class="feature-card" data-category="hormones">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg24" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg24p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg24)"/><rect width="480" height="330" fill="url(#cg24p)"/><path d="M300,158 275,201 225,201 200,158 225,115 275,115 Z" fill="none" stroke="#3fd0e0" stroke-width="2.4" opacity="0.85"/><line x1="300" y1="158" x2="355" y2="100" stroke="#3fd0e0" stroke-width="2" opacity="0.6"/><line x1="200" y1="158" x2="140" y2="208" stroke="#3fd0e0" stroke-width="2" opacity="0.6"/><line x1="225" y1="201" x2="346" y2="232" stroke="#3fd0e0" stroke-width="2" opacity="0.6"/><circle cx="300" cy="158" r="7" fill="#3fd0e0"/><circle cx="275" cy="201" r="7" fill="#3fd0e0"/><circle cx="225" cy="201" r="7" fill="#3fd0e0"/><circle cx="200" cy="158" r="7" fill="#3fd0e0"/><circle cx="225" cy="115" r="7" fill="#3fd0e0"/><circle cx="275" cy="115" r="7" fill="#3fd0e0"/><circle cx="355" cy="100" r="11" fill="#3fd0e0" opacity="0.85"/><circle cx="140" cy="208" r="11" fill="#3fd0e0" opacity="0.85"/><circle cx="346" cy="232" r="11" fill="#3fd0e0" opacity="0.85"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">Women&#x27;s Hormone</div>
+        <div class="feature-card-cat">Hormones</div>
         <h3 class="feature-card-title">DHEA and Pregnenolone: Adrenal Hormone Precursors in HRT.</h3>
         <p class="feature-card-dek">The adrenal glands produce DHEA and pregnenolone as upstream steroid precursors, supplementation in perimenopause and aging remains controversial but widely compounded.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>7 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/womens-testosterone-cream-libido/" class="feature-card" data-category="research">
+    <a href="/journal/womens-testosterone-cream-libido/" class="feature-card" data-category="hormones">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg25" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg25p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg25)"/><rect width="480" height="330" fill="url(#cg25p)"/><circle cx="368" cy="120" r="26" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.5"/><circle cx="368" cy="120" r="48" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.25"/><polyline points="48,170 130,170 158,170 178,120 202,224 226,150 250,170 432,170" fill="none" stroke="#3fd0e0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="202" cy="224" r="5" fill="#3fd0e0"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">Women&#x27;s Hormone</div>
+        <div class="feature-card-cat">Hormones</div>
         <h3 class="feature-card-title">Low-Dose Testosterone Cream for Women: Energy, Libido, and the Evidence.</h3>
         <p class="feature-card-dek">Women produce testosterone from ovaries and adrenals; levels fall with age and oophorectomy. Compounded low-dose creams aim to restore physiologic range for hypoactive desire, not male TRT doses.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>8 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/estradiol-vaginal-cream-gsm/" class="feature-card" data-category="research">
+    <a href="/journal/estradiol-vaginal-cream-gsm/" class="feature-card" data-category="hormones">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg26" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg26p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg26)"/><rect width="480" height="330" fill="url(#cg26p)"/><path d="M300,158 275,201 225,201 200,158 225,115 275,115 Z" fill="none" stroke="#3fd0e0" stroke-width="2.4" opacity="0.85"/><line x1="300" y1="158" x2="355" y2="100" stroke="#3fd0e0" stroke-width="2" opacity="0.6"/><line x1="200" y1="158" x2="140" y2="208" stroke="#3fd0e0" stroke-width="2" opacity="0.6"/><line x1="225" y1="201" x2="346" y2="232" stroke="#3fd0e0" stroke-width="2" opacity="0.6"/><circle cx="300" cy="158" r="7" fill="#3fd0e0"/><circle cx="275" cy="201" r="7" fill="#3fd0e0"/><circle cx="225" cy="201" r="7" fill="#3fd0e0"/><circle cx="200" cy="158" r="7" fill="#3fd0e0"/><circle cx="225" cy="115" r="7" fill="#3fd0e0"/><circle cx="275" cy="115" r="7" fill="#3fd0e0"/><circle cx="355" cy="100" r="11" fill="#3fd0e0" opacity="0.85"/><circle cx="140" cy="208" r="11" fill="#3fd0e0" opacity="0.85"/><circle cx="346" cy="232" r="11" fill="#3fd0e0" opacity="0.85"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">Women&#x27;s Hormone</div>
+        <div class="feature-card-cat">Hormones</div>
         <h3 class="feature-card-title">Estradiol Vaginal Cream: Local Estrogen for Genitourinary Syndrome of Menopause.</h3>
         <p class="feature-card-dek">Low-dose vaginal estradiol 0.01% treats dryness, dyspareunia, and urinary symptoms with minimal systemic absorption, the most under-prescribed effective menopause therapy.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>8 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/biest-progesterone-compounded-hrt/" class="feature-card" data-category="research">
+    <a href="/journal/biest-progesterone-compounded-hrt/" class="feature-card" data-category="hormones">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg27" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg27p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg27)"/><rect width="480" height="330" fill="url(#cg27p)"/><circle cx="368" cy="120" r="26" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.5"/><circle cx="368" cy="120" r="48" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.25"/><polyline points="48,170 130,170 158,170 178,120 202,224 226,150 250,170 432,170" fill="none" stroke="#3fd0e0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="202" cy="224" r="5" fill="#3fd0e0"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">Women&#x27;s Hormone</div>
+        <div class="feature-card-cat">Hormones</div>
         <h3 class="feature-card-title">Biest + Progesterone Cream: Compounded Bioidentical HRT.</h3>
         <p class="feature-card-dek">Estradiol and estriol in an 80/20 or 50/50 biest ratio plus micronized progesterone in one transdermal cream, compounding logic, evidence limits, and endometrial safety.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>8 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/testosterone-hypo-spray-transdermal/" class="feature-card" data-category="research">
+    <a href="/journal/testosterone-hypo-spray-transdermal/" class="feature-card" data-category="hormones">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg28" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg28p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg28)"/><rect width="480" height="330" fill="url(#cg28p)"/><path d="M300,158 275,201 225,201 200,158 225,115 275,115 Z" fill="none" stroke="#3fd0e0" stroke-width="2.4" opacity="0.85"/><line x1="300" y1="158" x2="355" y2="100" stroke="#3fd0e0" stroke-width="2" opacity="0.6"/><line x1="200" y1="158" x2="140" y2="208" stroke="#3fd0e0" stroke-width="2" opacity="0.6"/><line x1="225" y1="201" x2="346" y2="232" stroke="#3fd0e0" stroke-width="2" opacity="0.6"/><circle cx="300" cy="158" r="7" fill="#3fd0e0"/><circle cx="275" cy="201" r="7" fill="#3fd0e0"/><circle cx="225" cy="201" r="7" fill="#3fd0e0"/><circle cx="200" cy="158" r="7" fill="#3fd0e0"/><circle cx="225" cy="115" r="7" fill="#3fd0e0"/><circle cx="275" cy="115" r="7" fill="#3fd0e0"/><circle cx="355" cy="100" r="11" fill="#3fd0e0" opacity="0.85"/><circle cx="140" cy="208" r="11" fill="#3fd0e0" opacity="0.85"/><circle cx="346" cy="232" r="11" fill="#3fd0e0" opacity="0.85"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">Men&#x27;s Hormone</div>
+        <div class="feature-card-cat">Hormones</div>
         <h3 class="feature-card-title">Testosterone Hypo Spray: Metered Transdermal TRT.</h3>
         <p class="feature-card-dek">Axillary testosterone sprays deliver precise daily doses through the skin, 20 mg per actuation protocols without vials, needles, or cream transfer risk.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>7 min read</span></div>
@@ -646,27 +650,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </a>
 
-    <a href="/journal/doxycycline-oral-acne-antibiotic/" class="feature-card" data-category="research">
+    <a href="/journal/doxycycline-oral-acne-antibiotic/" class="feature-card" data-category="skin">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg31" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg31p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg31)"/><rect width="480" height="330" fill="url(#cg31p)"/><circle cx="250" cy="150" r="34" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.5"/><circle cx="250" cy="150" r="64" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.3"/><circle cx="250" cy="150" r="96" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.16"/><path d="M250,96 C284,140 300,162 300,186 a50,50 0 1 1 -100,0 C200,162 216,140 250,96 Z" fill="#3fd0e0" opacity="0.85"/><circle cx="234" cy="196" r="12" fill="#ffffff" opacity="0.35"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">Skin &amp; Hair</div>
+        <div class="feature-card-cat">Skin & Hair</div>
         <h3 class="feature-card-title">Doxycycline for Acne: When Topicals Need an Oral Anti-Inflammatory Boost.</h3>
         <p class="feature-card-dek">Sub-antimicrobial-dose doxycycline modulates inflammation in moderate papulopustular acne, how 100 mg protocols work, duration limits, and why dermatologists pair with topicals not monotherapy.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>8 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/hydroquinone-triple-cream-hyperpigmentation/" class="feature-card" data-category="research">
+    <a href="/journal/hydroquinone-triple-cream-hyperpigmentation/" class="feature-card" data-category="skin">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg32" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg32p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg32)"/><rect width="480" height="330" fill="url(#cg32p)"/><circle cx="250" cy="150" r="34" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.5"/><circle cx="250" cy="150" r="64" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.3"/><circle cx="250" cy="150" r="96" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.16"/><path d="M250,96 C284,140 300,162 300,186 a50,50 0 1 1 -100,0 C200,162 216,140 250,96 Z" fill="#3fd0e0" opacity="0.85"/><circle cx="234" cy="196" r="12" fill="#ffffff" opacity="0.35"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">Skin &amp; Hair</div>
+        <div class="feature-card-cat">Skin & Hair</div>
         <h3 class="feature-card-title">Hydroquinone Triple Cream: Prescription-Strength Hyperpigmentation Treatment.</h3>
         <p class="feature-card-dek">The Kligman formula class, hydroquinone, tretinoin, and fluocinolone, remains dermatology&#x27;s workhorse for melasma and post-inflammatory hyperpigmentation when OTC fading serums fail.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>8 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/tadalafil-troches-sublingual-ed/" class="feature-card" data-category="research">
+    <a href="/journal/tadalafil-troches-sublingual-ed/" class="feature-card" data-category="sexual">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg33" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg33p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg33)"/><rect width="480" height="330" fill="url(#cg33p)"/><circle cx="368" cy="120" r="26" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.5"/><circle cx="368" cy="120" r="48" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.25"/><polyline points="48,170 130,170 158,170 178,120 202,224 226,150 250,170 432,170" fill="none" stroke="#3fd0e0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="202" cy="224" r="5" fill="#3fd0e0"/></svg></div>
       <div class="feature-card-body">
         <div class="feature-card-cat">Sexual Health</div>
@@ -676,67 +680,67 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </a>
 
-    <a href="/journal/progesterone-capsules-hrt-sleep/" class="feature-card" data-category="research">
+    <a href="/journal/progesterone-capsules-hrt-sleep/" class="feature-card" data-category="hormones">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg34" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg34p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg34)"/><rect width="480" height="330" fill="url(#cg34p)"/><path d="M300,158 275,201 225,201 200,158 225,115 275,115 Z" fill="none" stroke="#3fd0e0" stroke-width="2.4" opacity="0.85"/><line x1="300" y1="158" x2="355" y2="100" stroke="#3fd0e0" stroke-width="2" opacity="0.6"/><line x1="200" y1="158" x2="140" y2="208" stroke="#3fd0e0" stroke-width="2" opacity="0.6"/><line x1="225" y1="201" x2="346" y2="232" stroke="#3fd0e0" stroke-width="2" opacity="0.6"/><circle cx="300" cy="158" r="7" fill="#3fd0e0"/><circle cx="275" cy="201" r="7" fill="#3fd0e0"/><circle cx="225" cy="201" r="7" fill="#3fd0e0"/><circle cx="200" cy="158" r="7" fill="#3fd0e0"/><circle cx="225" cy="115" r="7" fill="#3fd0e0"/><circle cx="275" cy="115" r="7" fill="#3fd0e0"/><circle cx="355" cy="100" r="11" fill="#3fd0e0" opacity="0.85"/><circle cx="140" cy="208" r="11" fill="#3fd0e0" opacity="0.85"/><circle cx="346" cy="232" r="11" fill="#3fd0e0" opacity="0.85"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">Women&#x27;s Hormone</div>
+        <div class="feature-card-cat">Hormones</div>
         <h3 class="feature-card-title">Micronized Progesterone 100mg: The Progestogen Women Actually Tolerate.</h3>
         <p class="feature-card-dek">Oral micronized progesterone is structurally identical to ovarian progesterone, converts to allopregnanolone for sleep and anxiety support, and protects the endometrium when paired with estrogen.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>8 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/testosterone-cream-topical-trt/" class="feature-card" data-category="research">
+    <a href="/journal/testosterone-cream-topical-trt/" class="feature-card" data-category="hormones">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg35" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg35p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg35)"/><rect width="480" height="330" fill="url(#cg35p)"/><path d="M300,158 275,201 225,201 200,158 225,115 275,115 Z" fill="none" stroke="#3fd0e0" stroke-width="2.4" opacity="0.85"/><line x1="300" y1="158" x2="355" y2="100" stroke="#3fd0e0" stroke-width="2" opacity="0.6"/><line x1="200" y1="158" x2="140" y2="208" stroke="#3fd0e0" stroke-width="2" opacity="0.6"/><line x1="225" y1="201" x2="346" y2="232" stroke="#3fd0e0" stroke-width="2" opacity="0.6"/><circle cx="300" cy="158" r="7" fill="#3fd0e0"/><circle cx="275" cy="201" r="7" fill="#3fd0e0"/><circle cx="225" cy="201" r="7" fill="#3fd0e0"/><circle cx="200" cy="158" r="7" fill="#3fd0e0"/><circle cx="225" cy="115" r="7" fill="#3fd0e0"/><circle cx="275" cy="115" r="7" fill="#3fd0e0"/><circle cx="355" cy="100" r="11" fill="#3fd0e0" opacity="0.85"/><circle cx="140" cy="208" r="11" fill="#3fd0e0" opacity="0.85"/><circle cx="346" cy="232" r="11" fill="#3fd0e0" opacity="0.85"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">Men&#x27;s Hormone</div>
+        <div class="feature-card-cat">Hormones</div>
         <h3 class="feature-card-title">Testosterone Cream 1%: Needle-Free TRT Through the Skin.</h3>
         <p class="feature-card-dek">Transdermal testosterone at 1% (10 mg/g) delivers daily androgen replacement without injections, absorption variables, transfer risk, and how it compares to cypionate.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>8 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/liraglutide-weight-loss-glp1/" class="feature-card" data-category="metabolic">
+    <a href="/journal/liraglutide-weight-loss-glp1/" class="feature-card" data-category="weightloss">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg36" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg36p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg36)"/><rect width="480" height="330" fill="url(#cg36p)"/><path d="M62,108 132,138 202,164 272,190 342,214 420,240 L420,300 L62,300 Z" fill="#3fd0e0" opacity="0.13"/><polyline points="62,108 132,138 202,164 272,190 342,214 420,240" fill="none" stroke="#3fd0e0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="62" cy="108" r="4.5" fill="#3fd0e0"/><circle cx="132" cy="138" r="4.5" fill="#3fd0e0"/><circle cx="202" cy="164" r="4.5" fill="#3fd0e0"/><circle cx="272" cy="190" r="4.5" fill="#3fd0e0"/><circle cx="342" cy="214" r="4.5" fill="#3fd0e0"/><circle cx="420" cy="240" r="4.5" fill="#3fd0e0"/><path d="M398,236 l22,4 -8,-21 z" fill="#3fd0e0" opacity="0.9"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">GLP-1</div>
+        <div class="feature-card-cat">Weight Loss</div>
         <h3 class="feature-card-title">Liraglutide for Weight Loss: The Daily GLP-1 Option.</h3>
         <p class="feature-card-dek">Before weekly semaglutide dominated obesity care, liraglutide 3.0 mg daily (Saxenda) established that GLP-1 agonism alone could produce meaningful weight loss, still relevant for semaglutide-intolerant patients.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>8 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/naltrexone-ldn-wellness-protocol/" class="feature-card" data-category="longevity">
+    <a href="/journal/naltrexone-ldn-wellness-protocol/" class="feature-card" data-category="peptides">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg37" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg37p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg37)"/><rect width="480" height="330" fill="url(#cg37p)"/><circle cx="64" cy="137" r="13" fill="#3fd0e0" opacity="0.55"/><line x1="64" y1="137" x2="112" y2="193" stroke="#3fd0e0" stroke-width="2.2" opacity="0.55"/><circle cx="112" cy="193" r="9" fill="#3fd0e0" opacity="0.6000000000000001"/><line x1="112" y1="193" x2="160" y2="137" stroke="#3fd0e0" stroke-width="2.2" opacity="0.55"/><circle cx="160" cy="137" r="13" fill="#3fd0e0" opacity="0.65"/><line x1="160" y1="137" x2="208" y2="193" stroke="#3fd0e0" stroke-width="2.2" opacity="0.55"/><circle cx="208" cy="193" r="9" fill="#3fd0e0" opacity="0.55"/><line x1="208" y1="193" x2="256" y2="137" stroke="#3fd0e0" stroke-width="2.2" opacity="0.55"/><circle cx="256" cy="137" r="13" fill="#3fd0e0" opacity="0.6000000000000001"/><line x1="256" y1="137" x2="304" y2="193" stroke="#3fd0e0" stroke-width="2.2" opacity="0.55"/><circle cx="304" cy="193" r="9" fill="#3fd0e0" opacity="0.65"/><line x1="304" y1="193" x2="352" y2="137" stroke="#3fd0e0" stroke-width="2.2" opacity="0.55"/><circle cx="352" cy="137" r="13" fill="#3fd0e0" opacity="0.55"/><line x1="352" y1="137" x2="400" y2="193" stroke="#3fd0e0" stroke-width="2.2" opacity="0.55"/><circle cx="400" cy="193" r="9" fill="#3fd0e0" opacity="0.6000000000000001"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">Recovery</div>
+        <div class="feature-card-cat">Peptides</div>
         <h3 class="feature-card-title">Low-Dose Naltrexone: Microdosing an Opioid Antagonist for Inflammation.</h3>
         <p class="feature-card-dek">At 1.5 to 4.5 mg nightly, far below the 50 mg addiction-treatment dose, naltrexone may briefly block opioid receptors and trigger a rebound endorphin response with immunomodulatory effects. What evidence supports and what remains anecdotal.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>9 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/finasteride-oral-hair-loss-dht/" class="feature-card" data-category="research">
+    <a href="/journal/finasteride-oral-hair-loss-dht/" class="feature-card" data-category="skin">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg38" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg38p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg38)"/><rect width="480" height="330" fill="url(#cg38p)"/><circle cx="250" cy="150" r="34" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.5"/><circle cx="250" cy="150" r="64" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.3"/><circle cx="250" cy="150" r="96" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.16"/><path d="M250,96 C284,140 300,162 300,186 a50,50 0 1 1 -100,0 C200,162 216,140 250,96 Z" fill="#3fd0e0" opacity="0.85"/><circle cx="234" cy="196" r="12" fill="#ffffff" opacity="0.35"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">Skin &amp; Hair</div>
+        <div class="feature-card-cat">Skin & Hair</div>
         <h3 class="feature-card-title">Finasteride 1mg for Hair Loss: DHT Blockade Explained.</h3>
         <p class="feature-card-dek">The only FDA-approved oral dose for androgenetic alopecia in men lowers scalp DHT by roughly 60%, efficacy data, side-effect context, and how it pairs with topical minoxidil.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>9 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/tretinoin-retinoid-starter-guide/" class="feature-card" data-category="research">
+    <a href="/journal/tretinoin-retinoid-starter-guide/" class="feature-card" data-category="skin">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg39" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg39p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg39)"/><rect width="480" height="330" fill="url(#cg39p)"/><circle cx="250" cy="150" r="34" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.5"/><circle cx="250" cy="150" r="64" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.3"/><circle cx="250" cy="150" r="96" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.16"/><path d="M250,96 C284,140 300,162 300,186 a50,50 0 1 1 -100,0 C200,162 216,140 250,96 Z" fill="#3fd0e0" opacity="0.85"/><circle cx="234" cy="196" r="12" fill="#ffffff" opacity="0.35"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">Skin &amp; Hair</div>
+        <div class="feature-card-cat">Skin & Hair</div>
         <h3 class="feature-card-title">Tretinoin 0.025%: The Gold-Standard Retinoid for Skin Renewal.</h3>
         <p class="feature-card-dek">Prescription all-trans retinoic acid remains the reference against which every anti-aging and acne topical is measured, initiation protocol, retinization timeline, and pairing with niacinamide or hydroquinone.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>9 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/trimix-injection-ed-rescue/" class="feature-card" data-category="research">
+    <a href="/journal/trimix-injection-ed-rescue/" class="feature-card" data-category="sexual">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg40" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg40p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg40)"/><rect width="480" height="330" fill="url(#cg40p)"/><circle cx="368" cy="120" r="26" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.5"/><circle cx="368" cy="120" r="48" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.25"/><polyline points="48,170 130,170 158,170 178,120 202,224 226,150 250,170 432,170" fill="none" stroke="#3fd0e0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="202" cy="224" r="5" fill="#3fd0e0"/></svg></div>
       <div class="feature-card-body">
         <div class="feature-card-cat">Sexual Health</div>
@@ -746,60 +750,60 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </a>
 
-    <a href="/journal/estradiol-patches-hrt-explained/" class="feature-card" data-category="research">
+    <a href="/journal/estradiol-patches-hrt-explained/" class="feature-card" data-category="hormones">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg41" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg41p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg41)"/><rect width="480" height="330" fill="url(#cg41p)"/><path d="M300,158 275,201 225,201 200,158 225,115 275,115 Z" fill="none" stroke="#3fd0e0" stroke-width="2.4" opacity="0.85"/><line x1="300" y1="158" x2="355" y2="100" stroke="#3fd0e0" stroke-width="2" opacity="0.6"/><line x1="200" y1="158" x2="140" y2="208" stroke="#3fd0e0" stroke-width="2" opacity="0.6"/><line x1="225" y1="201" x2="346" y2="232" stroke="#3fd0e0" stroke-width="2" opacity="0.6"/><circle cx="300" cy="158" r="7" fill="#3fd0e0"/><circle cx="275" cy="201" r="7" fill="#3fd0e0"/><circle cx="225" cy="201" r="7" fill="#3fd0e0"/><circle cx="200" cy="158" r="7" fill="#3fd0e0"/><circle cx="225" cy="115" r="7" fill="#3fd0e0"/><circle cx="275" cy="115" r="7" fill="#3fd0e0"/><circle cx="355" cy="100" r="11" fill="#3fd0e0" opacity="0.85"/><circle cx="140" cy="208" r="11" fill="#3fd0e0" opacity="0.85"/><circle cx="346" cy="232" r="11" fill="#3fd0e0" opacity="0.85"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">Women&#x27;s Hormone</div>
+        <div class="feature-card-cat">Hormones</div>
         <h3 class="feature-card-title">Estradiol Patches for Menopause: Transdermal HRT Done Right.</h3>
         <p class="feature-card-dek">Transdermal estradiol bypasses first-pass liver metabolism, delivering steady hormone levels with favorable thrombotic risk profile compared to oral estrogen, the foundation of modern menopausal hormone therapy.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>9 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/anastrozole-trt-estrogen-management/" class="feature-card" data-category="research">
+    <a href="/journal/anastrozole-trt-estrogen-management/" class="feature-card" data-category="hormones">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg42" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg42p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg42)"/><rect width="480" height="330" fill="url(#cg42p)"/><path d="M300,158 275,201 225,201 200,158 225,115 275,115 Z" fill="none" stroke="#3fd0e0" stroke-width="2.4" opacity="0.85"/><line x1="300" y1="158" x2="355" y2="100" stroke="#3fd0e0" stroke-width="2" opacity="0.6"/><line x1="200" y1="158" x2="140" y2="208" stroke="#3fd0e0" stroke-width="2" opacity="0.6"/><line x1="225" y1="201" x2="346" y2="232" stroke="#3fd0e0" stroke-width="2" opacity="0.6"/><circle cx="300" cy="158" r="7" fill="#3fd0e0"/><circle cx="275" cy="201" r="7" fill="#3fd0e0"/><circle cx="225" cy="201" r="7" fill="#3fd0e0"/><circle cx="200" cy="158" r="7" fill="#3fd0e0"/><circle cx="225" cy="115" r="7" fill="#3fd0e0"/><circle cx="275" cy="115" r="7" fill="#3fd0e0"/><circle cx="355" cy="100" r="11" fill="#3fd0e0" opacity="0.85"/><circle cx="140" cy="208" r="11" fill="#3fd0e0" opacity="0.85"/><circle cx="346" cy="232" r="11" fill="#3fd0e0" opacity="0.85"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">Men&#x27;s Hormone</div>
+        <div class="feature-card-cat">Hormones</div>
         <h3 class="feature-card-title">Anastrozole on TRT: Managing Estradiol Without Over-Suppression.</h3>
         <p class="feature-card-dek">Aromatase converts testosterone to estradiol, necessary for bone and brain health, problematic when excessive. Why TRT patients sometimes use low-dose anastrozole and why less is often more.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>8 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/metformin-er-glp1-companion/" class="feature-card" data-category="metabolic">
+    <a href="/journal/metformin-er-glp1-companion/" class="feature-card" data-category="weightloss">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg43" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg43p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg43)"/><rect width="480" height="330" fill="url(#cg43p)"/><path d="M62,108 132,138 202,164 272,190 342,214 420,240 L420,300 L62,300 Z" fill="#3fd0e0" opacity="0.13"/><polyline points="62,108 132,138 202,164 272,190 342,214 420,240" fill="none" stroke="#3fd0e0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="62" cy="108" r="4.5" fill="#3fd0e0"/><circle cx="132" cy="138" r="4.5" fill="#3fd0e0"/><circle cx="202" cy="164" r="4.5" fill="#3fd0e0"/><circle cx="272" cy="190" r="4.5" fill="#3fd0e0"/><circle cx="342" cy="214" r="4.5" fill="#3fd0e0"/><circle cx="420" cy="240" r="4.5" fill="#3fd0e0"/><path d="M398,236 l22,4 -8,-21 z" fill="#3fd0e0" opacity="0.9"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">GLP-1</div>
+        <div class="feature-card-cat">Weight Loss</div>
         <h3 class="feature-card-title">Metformin ER as a GLP-1 Companion: Insulin Sensitivity Beyond Weight Loss.</h3>
         <p class="feature-card-dek">The oldest diabetes drug in modern use still earns its place alongside GLP-1 therapy, AMPK activation, insulin sensitization, and emerging longevity interest at 500mg extended-release.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>8 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/semaglutide-odt-nausea-managed-oral-glp1/" class="feature-card" data-category="metabolic">
+    <a href="/journal/semaglutide-odt-nausea-managed-oral-glp1/" class="feature-card" data-category="weightloss">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg44" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg44p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg44)"/><rect width="480" height="330" fill="url(#cg44p)"/><circle cx="368" cy="120" r="26" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.5"/><circle cx="368" cy="120" r="48" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.25"/><polyline points="48,170 130,170 158,170 178,120 202,224 226,150 250,170 432,170" fill="none" stroke="#3fd0e0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="202" cy="224" r="5" fill="#3fd0e0"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">GLP-1</div>
+        <div class="feature-card-cat">Weight Loss</div>
         <h3 class="feature-card-title">Oral Semaglutide ODT: Needle-Free GLP-1 With Built-In Nausea Support.</h3>
         <p class="feature-card-dek">Compounded semaglutide orally disintegrating tablets paired with ondansetron address the two biggest GLP-1 adoption barriers, injections and GI side effects, in a single prescription format.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>9 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/nad-face-cream-topical-longevity/" class="feature-card" data-category="nad">
+    <a href="/journal/nad-face-cream-topical-longevity/" class="feature-card" data-category="skin">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg45" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg45p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg45)"/><rect width="480" height="330" fill="url(#cg45p)"/><path d="M300,158 275,201 225,201 200,158 225,115 275,115 Z" fill="none" stroke="#3fd0e0" stroke-width="2.4" opacity="0.85"/><line x1="300" y1="158" x2="355" y2="100" stroke="#3fd0e0" stroke-width="2" opacity="0.6"/><line x1="200" y1="158" x2="140" y2="208" stroke="#3fd0e0" stroke-width="2" opacity="0.6"/><line x1="225" y1="201" x2="346" y2="232" stroke="#3fd0e0" stroke-width="2" opacity="0.6"/><circle cx="300" cy="158" r="7" fill="#3fd0e0"/><circle cx="275" cy="201" r="7" fill="#3fd0e0"/><circle cx="225" cy="201" r="7" fill="#3fd0e0"/><circle cx="200" cy="158" r="7" fill="#3fd0e0"/><circle cx="225" cy="115" r="7" fill="#3fd0e0"/><circle cx="275" cy="115" r="7" fill="#3fd0e0"/><circle cx="355" cy="100" r="11" fill="#3fd0e0" opacity="0.85"/><circle cx="140" cy="208" r="11" fill="#3fd0e0" opacity="0.85"/><circle cx="346" cy="232" r="11" fill="#3fd0e0" opacity="0.85"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">NAD+</div>
+        <div class="feature-card-cat">Skin & Hair</div>
         <h3 class="feature-card-title">Topical NAD+ for Skin: Can a Face Cream Deliver Cellular Energy Benefits?.</h3>
         <p class="feature-card-dek">NAD+ injections dominate longevity conversation, but compounded face creams at 10% NAD+ target a different question, local skin biology, barrier function, and what topical delivery can realistically achieve.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>9 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/tirzepatide-sublingual-drops-explained/" class="feature-card" data-category="metabolic">
+    <a href="/journal/tirzepatide-sublingual-drops-explained/" class="feature-card" data-category="weightloss">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg46" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg46p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg46)"/><rect width="480" height="330" fill="url(#cg46p)"/><g transform="rotate(-28 250 165)"><rect x="170" y="146" width="160" height="40" rx="20" fill="none" stroke="#3fd0e0" stroke-width="2.5" opacity="0.85"/><rect x="170" y="146" width="80" height="40" rx="20" fill="#3fd0e0" opacity="0.8"/><line x1="250" y1="146" x2="250" y2="186" stroke="#3fd0e0" stroke-width="2.5" opacity="0.85"/></g><circle cx="120" cy="110" r="4" fill="#3fd0e0" opacity="0.4"/><circle cx="360" cy="210" r="4" fill="#3fd0e0" opacity="0.4"/><circle cx="140" cy="235" r="4" fill="#3fd0e0" opacity="0.4"/><circle cx="380" cy="120" r="4" fill="#3fd0e0" opacity="0.4"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">GLP-1</div>
+        <div class="feature-card-cat">Weight Loss</div>
         <h3 class="feature-card-title">Sublingual Tirzepatide: Needle-Free GLP-1/GIP Therapy and the Science of Absorption.</h3>
         <p class="feature-card-dek">Compounded sublingual tirzepatide drops aim to deliver dual incretin action without injection, pharmacokinetic challenges, titration logic, and how they compare to FDA-approved pens.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>10 min read</span></div>
@@ -816,88 +820,88 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </a>
 
-    <a href="/journal/hcg-trt-adjunct-explained/" class="feature-card" data-category="research">
+    <a href="/journal/hcg-trt-adjunct-explained/" class="feature-card" data-category="hormones">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg48" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg48p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg48)"/><rect width="480" height="330" fill="url(#cg48p)"/><path d="M300,158 275,201 225,201 200,158 225,115 275,115 Z" fill="none" stroke="#3fd0e0" stroke-width="2.4" opacity="0.85"/><line x1="300" y1="158" x2="355" y2="100" stroke="#3fd0e0" stroke-width="2" opacity="0.6"/><line x1="200" y1="158" x2="140" y2="208" stroke="#3fd0e0" stroke-width="2" opacity="0.6"/><line x1="225" y1="201" x2="346" y2="232" stroke="#3fd0e0" stroke-width="2" opacity="0.6"/><circle cx="300" cy="158" r="7" fill="#3fd0e0"/><circle cx="275" cy="201" r="7" fill="#3fd0e0"/><circle cx="225" cy="201" r="7" fill="#3fd0e0"/><circle cx="200" cy="158" r="7" fill="#3fd0e0"/><circle cx="225" cy="115" r="7" fill="#3fd0e0"/><circle cx="275" cy="115" r="7" fill="#3fd0e0"/><circle cx="355" cy="100" r="11" fill="#3fd0e0" opacity="0.85"/><circle cx="140" cy="208" r="11" fill="#3fd0e0" opacity="0.85"/><circle cx="346" cy="232" r="11" fill="#3fd0e0" opacity="0.85"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">Men&#x27;s Hormone</div>
+        <div class="feature-card-cat">Hormones</div>
         <h3 class="feature-card-title">HCG on TRT: Why Some Men Add Chorionic Gonadotropin to Testosterone Therapy.</h3>
         <p class="feature-card-dek">Human chorionic gonadotropin mimics LH at the testis, maintaining intratesticular testosterone and testicular volume when exogenous testosterone shuts down the axis, dosing, evidence, and limitations.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>10 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/enclomiphene-fertility-preserving-testosterone/" class="feature-card" data-category="research">
+    <a href="/journal/enclomiphene-fertility-preserving-testosterone/" class="feature-card" data-category="hormones">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg49" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg49p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg49)"/><rect width="480" height="330" fill="url(#cg49p)"/><path d="M300,158 275,201 225,201 200,158 225,115 275,115 Z" fill="none" stroke="#3fd0e0" stroke-width="2.4" opacity="0.85"/><line x1="300" y1="158" x2="355" y2="100" stroke="#3fd0e0" stroke-width="2" opacity="0.6"/><line x1="200" y1="158" x2="140" y2="208" stroke="#3fd0e0" stroke-width="2" opacity="0.6"/><line x1="225" y1="201" x2="346" y2="232" stroke="#3fd0e0" stroke-width="2" opacity="0.6"/><circle cx="300" cy="158" r="7" fill="#3fd0e0"/><circle cx="275" cy="201" r="7" fill="#3fd0e0"/><circle cx="225" cy="201" r="7" fill="#3fd0e0"/><circle cx="200" cy="158" r="7" fill="#3fd0e0"/><circle cx="225" cy="115" r="7" fill="#3fd0e0"/><circle cx="275" cy="115" r="7" fill="#3fd0e0"/><circle cx="355" cy="100" r="11" fill="#3fd0e0" opacity="0.85"/><circle cx="140" cy="208" r="11" fill="#3fd0e0" opacity="0.85"/><circle cx="346" cy="232" r="11" fill="#3fd0e0" opacity="0.85"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">Men&#x27;s Hormone</div>
+        <div class="feature-card-cat">Hormones</div>
         <h3 class="feature-card-title">Enclomiphene: Fertility-Preserving Testosterone Stimulation Explained.</h3>
         <p class="feature-card-dek">The isolated trans-isomer of clomiphene raises LH and FSH to stimulate endogenous testosterone without shutting down sperm production, how it works, who it fits, and how it compares to injectable TRT.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>12 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/testosterone-cypionate-trt-explained/" class="feature-card" data-category="research">
+    <a href="/journal/testosterone-cypionate-trt-explained/" class="feature-card" data-category="hormones">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg50" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg50p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg50)"/><rect width="480" height="330" fill="url(#cg50p)"/><path d="M300,158 275,201 225,201 200,158 225,115 275,115 Z" fill="none" stroke="#3fd0e0" stroke-width="2.4" opacity="0.85"/><line x1="300" y1="158" x2="355" y2="100" stroke="#3fd0e0" stroke-width="2" opacity="0.6"/><line x1="200" y1="158" x2="140" y2="208" stroke="#3fd0e0" stroke-width="2" opacity="0.6"/><line x1="225" y1="201" x2="346" y2="232" stroke="#3fd0e0" stroke-width="2" opacity="0.6"/><circle cx="300" cy="158" r="7" fill="#3fd0e0"/><circle cx="275" cy="201" r="7" fill="#3fd0e0"/><circle cx="225" cy="201" r="7" fill="#3fd0e0"/><circle cx="200" cy="158" r="7" fill="#3fd0e0"/><circle cx="225" cy="115" r="7" fill="#3fd0e0"/><circle cx="275" cy="115" r="7" fill="#3fd0e0"/><circle cx="355" cy="100" r="11" fill="#3fd0e0" opacity="0.85"/><circle cx="140" cy="208" r="11" fill="#3fd0e0" opacity="0.85"/><circle cx="346" cy="232" r="11" fill="#3fd0e0" opacity="0.85"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">Men&#x27;s Hormone</div>
+        <div class="feature-card-cat">Hormones</div>
         <h3 class="feature-card-title">Testosterone Cypionate for TRT: Dosing, Monitoring, and What the Guidelines Say.</h3>
         <p class="feature-card-dek">The most widely prescribed injectable testosterone ester in American telehealth TRT, how cypionate works pharmacokinetically, how clinicians dose and monitor it, and what patients should understand before starting.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>13 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/womens-hair-regrowth-topical-stack/" class="feature-card" data-category="research">
+    <a href="/journal/womens-hair-regrowth-topical-stack/" class="feature-card" data-category="skin">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg51" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg51p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg51)"/><rect width="480" height="330" fill="url(#cg51p)"/><circle cx="250" cy="150" r="34" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.5"/><circle cx="250" cy="150" r="64" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.3"/><circle cx="250" cy="150" r="96" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.16"/><path d="M250,96 C284,140 300,162 300,186 a50,50 0 1 1 -100,0 C200,162 216,140 250,96 Z" fill="#3fd0e0" opacity="0.85"/><circle cx="234" cy="196" r="12" fill="#ffffff" opacity="0.35"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">Skin &amp; Hair</div>
+        <div class="feature-card-cat">Skin & Hair</div>
         <h3 class="feature-card-title">Women&#x27;s Pattern Hair Loss: Why Compounded Topical Stacks Skip Finasteride.</h3>
         <p class="feature-card-dek">Female androgenetic alopecia follows different hormonal rules than male pattern baldness. How compounded minoxidil-based sprays add tretinoin, fluocinolone, biotin, and melatonin, and why finasteride is often left out.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>11 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/compounded-hair-regrowth-quad-stack-men/" class="feature-card" data-category="research">
+    <a href="/journal/compounded-hair-regrowth-quad-stack-men/" class="feature-card" data-category="skin">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg52" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg52p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg52)"/><rect width="480" height="330" fill="url(#cg52p)"/><circle cx="368" cy="120" r="26" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.5"/><circle cx="368" cy="120" r="48" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.25"/><polyline points="48,170 130,170 158,170 178,120 202,224 226,150 250,170 432,170" fill="none" stroke="#3fd0e0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="202" cy="224" r="5" fill="#3fd0e0"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">Skin &amp; Hair</div>
+        <div class="feature-card-cat">Skin & Hair</div>
         <h3 class="feature-card-title">Compounded Hair Regrowth Sprays: The Science Behind Multi-Ingredient Topical Stacks.</h3>
         <p class="feature-card-dek">Why telehealth and compounding pharmacies pair minoxidil with finasteride, tretinoin, and low-dose corticosteroids in a single scalp spray, and what the evidence actually supports for each mechanism.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>12 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/clyr-tri-gel-triple-therapy-acne/" class="feature-card" data-category="research">
+    <a href="/journal/clyr-tri-gel-triple-therapy-acne/" class="feature-card" data-category="skin">
       <div class="feature-card-img" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a3045 100%)"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg53" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg53p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg53)"/><rect width="480" height="330" fill="url(#cg53p)"/><circle cx="250" cy="150" r="34" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.5"/><circle cx="250" cy="150" r="64" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.3"/><circle cx="250" cy="150" r="96" fill="none" stroke="#3fd0e0" stroke-width="1.6" opacity="0.16"/><path d="M250,96 C284,140 300,162 300,186 a50,50 0 1 1 -100,0 C200,162 216,140 250,96 Z" fill="#3fd0e0" opacity="0.85"/><circle cx="234" cy="196" r="12" fill="#ffffff" opacity="0.35"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">Skin &amp; Hair</div>
+        <div class="feature-card-cat">Skin & Hair</div>
         <h3 class="feature-card-title">Triple-Combination Acne Therapy: Clindamycin, Benzoyl Peroxide, and Adapalene Explained.</h3>
         <p class="feature-card-dek">Why dermatology has moved toward fixed triple therapy for moderate acne, what each ingredient does, how fixed combinations compare to stacking separate products, and where niacinamide fits in a compounded formulation.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>11 min read</span></div>
       </div>
     </a>
 
-    <a href="/journal/what-is-nad-plus/" class="feature-card is-primary" data-img="nad" data-category="nad">
+    <a href="/journal/what-is-nad-plus/" class="feature-card is-primary" data-img="nad" data-category="longevity">
       <div class="feature-card-img"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg54" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eaf6f8"/><stop offset="1" stop-color="#d2ecf0"/></linearGradient><pattern id="cg54p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#0098a8" stroke-width="0.5" opacity="0.12"/></pattern></defs><rect width="480" height="330" fill="url(#cg54)"/><rect width="480" height="330" fill="url(#cg54p)"/><path d="M300,158 275,201 225,201 200,158 225,115 275,115 Z" fill="none" stroke="#0098a8" stroke-width="2.4" opacity="0.85"/><line x1="300" y1="158" x2="355" y2="100" stroke="#0098a8" stroke-width="2" opacity="0.6"/><line x1="200" y1="158" x2="140" y2="208" stroke="#0098a8" stroke-width="2" opacity="0.6"/><line x1="225" y1="201" x2="346" y2="232" stroke="#0098a8" stroke-width="2" opacity="0.6"/><circle cx="300" cy="158" r="7" fill="#0098a8"/><circle cx="275" cy="201" r="7" fill="#0098a8"/><circle cx="225" cy="201" r="7" fill="#0098a8"/><circle cx="200" cy="158" r="7" fill="#0098a8"/><circle cx="225" cy="115" r="7" fill="#0098a8"/><circle cx="275" cy="115" r="7" fill="#0098a8"/><circle cx="355" cy="100" r="11" fill="#0098a8" opacity="0.85"/><circle cx="140" cy="208" r="11" fill="#0098a8" opacity="0.85"/><circle cx="346" cy="232" r="11" fill="#0098a8" opacity="0.85"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">NAD+</div>
+        <div class="feature-card-cat">Longevity & NAD</div>
         <h3 class="feature-card-title">What Is NAD+? A Field Guide to the Molecule Behind the Longevity Conversation.</h3>
         <p class="feature-card-dek">Why a coenzyme most people have never heard of has become the centerpiece of modern longevity protocols, and what the research actually shows.</p>
         <div class="feature-card-meta"><span class="new">NEW</span><span class="dot"></span><span>14 min read</span></div>
       </div>
     </a>
-    <a href="/journal/semaglutide-vs-tirzepatide/" class="feature-card" data-img="metabolic" data-category="metabolic">
+    <a href="/journal/semaglutide-vs-tirzepatide/" class="feature-card" data-img="metabolic" data-category="weightloss">
       <div class="feature-card-img"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg55" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg55p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg55)"/><rect width="480" height="330" fill="url(#cg55p)"/><path d="M62,108 132,138 202,164 272,190 342,214 420,240 L420,300 L62,300 Z" fill="#3fd0e0" opacity="0.13"/><polyline points="62,108 132,138 202,164 272,190 342,214 420,240" fill="none" stroke="#3fd0e0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="62" cy="108" r="4.5" fill="#3fd0e0"/><circle cx="132" cy="138" r="4.5" fill="#3fd0e0"/><circle cx="202" cy="164" r="4.5" fill="#3fd0e0"/><circle cx="272" cy="190" r="4.5" fill="#3fd0e0"/><circle cx="342" cy="214" r="4.5" fill="#3fd0e0"/><circle cx="420" cy="240" r="4.5" fill="#3fd0e0"/><path d="M398,236 l22,4 -8,-21 z" fill="#3fd0e0" opacity="0.9"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">Metabolic Health</div>
+        <div class="feature-card-cat">Weight Loss</div>
         <h3 class="feature-card-title">Semaglutide vs. Tirzepatide: What SURMOUNT-5 Actually Settled.</h3>
         <p class="feature-card-dek">The first head-to-head trial of the two leading GLP-1s, decoded in plain English.</p>
         <div class="feature-card-meta"><span>9 min read</span></div>
       </div>
     </a>
-    <a href="/journal/semaglutide-pennsylvania/" class="feature-card" data-img="pennsylvania" data-category="cost">
+    <a href="/journal/semaglutide-pennsylvania/" class="feature-card" data-img="pennsylvania" data-category="weightloss">
       <div class="feature-card-img"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg56" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef2f6"/><stop offset="1" stop-color="#dbe3ec"/></linearGradient><pattern id="cg56p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#5b7c93" stroke-width="0.5" opacity="0.12"/></pattern></defs><rect width="480" height="330" fill="url(#cg56)"/><rect width="480" height="330" fill="url(#cg56p)"/><path d="M40,120 C140,102 240,138 440,110" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><path d="M40,168 C140,150 240,186 440,158" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><path d="M40,216 C140,198 240,234 440,206" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><path d="M40,264 C140,246 240,282 440,254" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><circle cx="120" cy="150" r="3.5" fill="#5b7c93" opacity="0.5"/><circle cx="360" cy="130" r="3.5" fill="#5b7c93" opacity="0.5"/><circle cx="380" cy="220" r="3.5" fill="#5b7c93" opacity="0.5"/><circle cx="140" cy="240" r="3.5" fill="#5b7c93" opacity="0.5"/><path d="M250,92 a46,46 0 0 1 46,46 c0,34 -46,86 -46,86 c0,0 -46,-52 -46,-86 a46,46 0 0 1 46,-46 Z" fill="#5b7c93" opacity="0.9"/><circle cx="250" cy="138" r="17" fill="#ffffff" opacity="0.92"/></svg></div>
       <div class="feature-card-body">
-        <div class="feature-card-cat">Cost &amp; Access</div>
+        <div class="feature-card-cat">Weight Loss</div>
         <h3 class="feature-card-title">Pennsylvania Just Cut Medicaid GLP-1 Coverage. Here&#8217;s What to Do.</h3>
         <p class="feature-card-dek">A guide for the thousands of PA residents whose coverage ended January 1.</p>
         <div class="feature-card-meta"><span>13 min read</span></div>
@@ -912,18 +916,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <span class="section-badge">12 articles</span>
   </div>
   <div class="article-grid" id="articleGrid">
-    <a href="/journal/niagen-nicotinamide-riboside-explained/" class="article-card" data-img="nad" data-category="nad">
+    <a href="/journal/niagen-nicotinamide-riboside-explained/" class="article-card" data-img="nad" data-category="longevity">
       <div class="article-card-img"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg57" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eaf6f8"/><stop offset="1" stop-color="#d2ecf0"/></linearGradient><pattern id="cg57p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#0098a8" stroke-width="0.5" opacity="0.12"/></pattern></defs><rect width="480" height="330" fill="url(#cg57)"/><rect width="480" height="330" fill="url(#cg57p)"/><path d="M300,158 275,201 225,201 200,158 225,115 275,115 Z" fill="none" stroke="#0098a8" stroke-width="2.4" opacity="0.85"/><line x1="300" y1="158" x2="355" y2="100" stroke="#0098a8" stroke-width="2" opacity="0.6"/><line x1="200" y1="158" x2="140" y2="208" stroke="#0098a8" stroke-width="2" opacity="0.6"/><line x1="225" y1="201" x2="346" y2="232" stroke="#0098a8" stroke-width="2" opacity="0.6"/><circle cx="300" cy="158" r="7" fill="#0098a8"/><circle cx="275" cy="201" r="7" fill="#0098a8"/><circle cx="225" cy="201" r="7" fill="#0098a8"/><circle cx="200" cy="158" r="7" fill="#0098a8"/><circle cx="225" cy="115" r="7" fill="#0098a8"/><circle cx="275" cy="115" r="7" fill="#0098a8"/><circle cx="355" cy="100" r="11" fill="#0098a8" opacity="0.85"/><circle cx="140" cy="208" r="11" fill="#0098a8" opacity="0.85"/><circle cx="346" cy="232" r="11" fill="#0098a8" opacity="0.85"/></svg></div>
       <div class="article-card-body">
-        <div class="article-card-cat">NAD+</div>
+        <div class="article-card-cat">Longevity & NAD</div>
         <div class="article-card-title">Niagen (Nicotinamide Riboside): The NAD+ Precursor, Explained</div>
         <div class="article-card-meta"><span class="new">NEW</span><span class="dot"></span><span>12 min read</span></div>
       </div>
     </a>
-    <a href="/journal/nad-iv-vs-injection/" class="article-card" data-img="nad" data-category="nad">
+    <a href="/journal/nad-iv-vs-injection/" class="article-card" data-img="nad" data-category="longevity">
       <div class="article-card-img"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg58" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eaf6f8"/><stop offset="1" stop-color="#d2ecf0"/></linearGradient><pattern id="cg58p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#0098a8" stroke-width="0.5" opacity="0.12"/></pattern></defs><rect width="480" height="330" fill="url(#cg58)"/><rect width="480" height="330" fill="url(#cg58p)"/><path d="M300,158 275,201 225,201 200,158 225,115 275,115 Z" fill="none" stroke="#0098a8" stroke-width="2.4" opacity="0.85"/><line x1="300" y1="158" x2="355" y2="100" stroke="#0098a8" stroke-width="2" opacity="0.6"/><line x1="200" y1="158" x2="140" y2="208" stroke="#0098a8" stroke-width="2" opacity="0.6"/><line x1="225" y1="201" x2="346" y2="232" stroke="#0098a8" stroke-width="2" opacity="0.6"/><circle cx="300" cy="158" r="7" fill="#0098a8"/><circle cx="275" cy="201" r="7" fill="#0098a8"/><circle cx="225" cy="201" r="7" fill="#0098a8"/><circle cx="200" cy="158" r="7" fill="#0098a8"/><circle cx="225" cy="115" r="7" fill="#0098a8"/><circle cx="275" cy="115" r="7" fill="#0098a8"/><circle cx="355" cy="100" r="11" fill="#0098a8" opacity="0.85"/><circle cx="140" cy="208" r="11" fill="#0098a8" opacity="0.85"/><circle cx="346" cy="232" r="11" fill="#0098a8" opacity="0.85"/></svg></div>
       <div class="article-card-body">
-        <div class="article-card-cat">NAD+</div>
+        <div class="article-card-cat">Longevity & NAD</div>
         <h3 class="article-card-title">NAD+ IV vs. Injection vs. Oral: Which Delivery Method Actually Works?</h3>
         <p class="article-card-dek">Bioavailability data, cost comparisons, and the honest pros and cons of each route.</p>
         <span class="article-card-meta">8 min read &middot; Apr 2026</span>
@@ -932,70 +936,70 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="/journal/longevity-medicine-foundations/" class="article-card" data-img="longevity" data-category="longevity">
       <div class="article-card-img"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg59" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eaf6f8"/><stop offset="1" stop-color="#d2ecf0"/></linearGradient><pattern id="cg59p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#0098a8" stroke-width="0.5" opacity="0.12"/></pattern></defs><rect width="480" height="330" fill="url(#cg59)"/><rect width="480" height="330" fill="url(#cg59p)"/><path d="M300,158 275,201 225,201 200,158 225,115 275,115 Z" fill="none" stroke="#0098a8" stroke-width="2.4" opacity="0.85"/><line x1="300" y1="158" x2="355" y2="100" stroke="#0098a8" stroke-width="2" opacity="0.6"/><line x1="200" y1="158" x2="140" y2="208" stroke="#0098a8" stroke-width="2" opacity="0.6"/><line x1="225" y1="201" x2="346" y2="232" stroke="#0098a8" stroke-width="2" opacity="0.6"/><circle cx="300" cy="158" r="7" fill="#0098a8"/><circle cx="275" cy="201" r="7" fill="#0098a8"/><circle cx="225" cy="201" r="7" fill="#0098a8"/><circle cx="200" cy="158" r="7" fill="#0098a8"/><circle cx="225" cy="115" r="7" fill="#0098a8"/><circle cx="275" cy="115" r="7" fill="#0098a8"/><circle cx="355" cy="100" r="11" fill="#0098a8" opacity="0.85"/><circle cx="140" cy="208" r="11" fill="#0098a8" opacity="0.85"/><circle cx="346" cy="232" r="11" fill="#0098a8" opacity="0.85"/></svg></div>
       <div class="article-card-body">
-        <div class="article-card-cat">Longevity</div>
+        <div class="article-card-cat">Longevity & NAD</div>
         <h3 class="article-card-title">The Five Pillars of Modern Longevity Medicine.</h3>
         <p class="article-card-dek">A working framework for thinking about healthspan, biological age, and the interventions that move them.</p>
         <span class="article-card-meta">11 min read &middot; Apr 2026</span>
       </div>
     </a>
-    <a href="/journal/compounded-semaglutide-cost/" class="article-card" data-img="cost" data-category="cost">
+    <a href="/journal/compounded-semaglutide-cost/" class="article-card" data-img="cost" data-category="weightloss">
       <div class="article-card-img"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg60" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef2f6"/><stop offset="1" stop-color="#dbe3ec"/></linearGradient><pattern id="cg60p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#5b7c93" stroke-width="0.5" opacity="0.12"/></pattern></defs><rect width="480" height="330" fill="url(#cg60)"/><rect width="480" height="330" fill="url(#cg60p)"/><ellipse cx="96" cy="250" rx="30" ry="9" fill="#5b7c93" opacity="0.5"/><ellipse cx="96" cy="234" rx="30" ry="9" fill="#5b7c93" opacity="0.42"/><ellipse cx="96" cy="218" rx="30" ry="9" fill="#5b7c93" opacity="0.33999999999999997"/><rect x="132" y="192" width="40" height="70" rx="3" fill="#5b7c93" opacity="0.32"/><rect x="200" y="154" width="40" height="108" rx="3" fill="#5b7c93" opacity="0.45"/><rect x="268" y="112" width="40" height="150" rx="3" fill="#5b7c93" opacity="0.5800000000000001"/><rect x="336" y="66" width="40" height="196" rx="3" fill="#5b7c93" opacity="0.71"/><rect x="404" y="112" width="40" height="150" rx="3" fill="#5b7c93" opacity="0.8400000000000001"/><line x1="62" y1="262" x2="430" y2="262" stroke="#5b7c93" stroke-width="1.4" opacity="0.4"/></svg></div>
       <div class="article-card-body">
-        <div class="article-card-cat">Cost &amp; Access</div>
+        <div class="article-card-cat">Weight Loss</div>
         <h3 class="article-card-title">How Much Does Compounded Semaglutide Actually Cost in 2026?</h3>
         <p class="article-card-dek">A pricing breakdown of every legitimate path, compounded, branded, manufacturer direct, and insurance.</p>
         <span class="article-card-meta">10 min read &middot; Apr 2026</span>
       </div>
     </a>
-    <a href="/journal/semaglutide-near-me/" class="article-card" data-img="cost" data-category="cost">
+    <a href="/journal/semaglutide-near-me/" class="article-card" data-img="cost" data-category="weightloss">
       <div class="article-card-img"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg61" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef2f6"/><stop offset="1" stop-color="#dbe3ec"/></linearGradient><pattern id="cg61p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#5b7c93" stroke-width="0.5" opacity="0.12"/></pattern></defs><rect width="480" height="330" fill="url(#cg61)"/><rect width="480" height="330" fill="url(#cg61p)"/><path d="M40,120 C140,102 240,138 440,110" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><path d="M40,168 C140,150 240,186 440,158" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><path d="M40,216 C140,198 240,234 440,206" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><path d="M40,264 C140,246 240,282 440,254" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><circle cx="120" cy="150" r="3.5" fill="#5b7c93" opacity="0.5"/><circle cx="360" cy="130" r="3.5" fill="#5b7c93" opacity="0.5"/><circle cx="380" cy="220" r="3.5" fill="#5b7c93" opacity="0.5"/><circle cx="140" cy="240" r="3.5" fill="#5b7c93" opacity="0.5"/><path d="M250,92 a46,46 0 0 1 46,46 c0,34 -46,86 -46,86 c0,0 -46,-52 -46,-86 a46,46 0 0 1 46,-46 Z" fill="#5b7c93" opacity="0.9"/><circle cx="250" cy="138" r="17" fill="#ffffff" opacity="0.92"/></svg></div>
       <div class="article-card-body">
-        <div class="article-card-cat">Cost &amp; Access</div>
+        <div class="article-card-cat">Weight Loss</div>
         <h3 class="article-card-title">Semaglutide Near Me: A Practical Guide to Finding a Legitimate Provider.</h3>
         <p class="article-card-dek">How telehealth, local clinics, and manufacturer programs compare, and the seven questions to ask any provider.</p>
         <span class="article-card-meta">9 min read &middot; Apr 2026</span>
       </div>
     </a>
-    <a href="/journal/surmount-5-deep-dive/" class="article-card" data-img="research" data-category="research">
+    <a href="/journal/surmount-5-deep-dive/" class="article-card" data-img="research" data-category="weightloss">
       <div class="article-card-img"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg62" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg62p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg62)"/><rect width="480" height="330" fill="url(#cg62p)"/><path d="M62,108 132,138 202,164 272,190 342,214 420,240 L420,300 L62,300 Z" fill="#3fd0e0" opacity="0.13"/><polyline points="62,108 132,138 202,164 272,190 342,214 420,240" fill="none" stroke="#3fd0e0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="62" cy="108" r="4.5" fill="#3fd0e0"/><circle cx="132" cy="138" r="4.5" fill="#3fd0e0"/><circle cx="202" cy="164" r="4.5" fill="#3fd0e0"/><circle cx="272" cy="190" r="4.5" fill="#3fd0e0"/><circle cx="342" cy="214" r="4.5" fill="#3fd0e0"/><circle cx="420" cy="240" r="4.5" fill="#3fd0e0"/><path d="M398,236 l22,4 -8,-21 z" fill="#3fd0e0" opacity="0.9"/></svg></div>
       <div class="article-card-body">
-        <div class="article-card-cat">Research</div>
+        <div class="article-card-cat">Weight Loss</div>
         <h3 class="article-card-title">Inside SURMOUNT-5: What 751 Patients Just Taught Us About GLP-1s.</h3>
         <p class="article-card-dek">A close reading of the first head-to-head trial, beyond the headlines.</p>
         <span class="article-card-meta">12 min read &middot; Mar 2026</span>
       </div>
     </a>
-    <a href="/journal/semaglutide-florida/" class="article-card" data-img="florida" data-category="cost">
+    <a href="/journal/semaglutide-florida/" class="article-card" data-img="florida" data-category="weightloss">
       <div class="article-card-img"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg63" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eaf6f8"/><stop offset="1" stop-color="#d2ecf0"/></linearGradient><pattern id="cg63p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#0098a8" stroke-width="0.5" opacity="0.12"/></pattern></defs><rect width="480" height="330" fill="url(#cg63)"/><rect width="480" height="330" fill="url(#cg63p)"/><path d="M40,120 C140,102 240,138 440,110" fill="none" stroke="#0098a8" stroke-width="1.4" opacity="0.22"/><path d="M40,168 C140,150 240,186 440,158" fill="none" stroke="#0098a8" stroke-width="1.4" opacity="0.22"/><path d="M40,216 C140,198 240,234 440,206" fill="none" stroke="#0098a8" stroke-width="1.4" opacity="0.22"/><path d="M40,264 C140,246 240,282 440,254" fill="none" stroke="#0098a8" stroke-width="1.4" opacity="0.22"/><circle cx="120" cy="150" r="3.5" fill="#0098a8" opacity="0.5"/><circle cx="360" cy="130" r="3.5" fill="#0098a8" opacity="0.5"/><circle cx="380" cy="220" r="3.5" fill="#0098a8" opacity="0.5"/><circle cx="140" cy="240" r="3.5" fill="#0098a8" opacity="0.5"/><path d="M250,92 a46,46 0 0 1 46,46 c0,34 -46,86 -46,86 c0,0 -46,-52 -46,-86 a46,46 0 0 1 46,-46 Z" fill="#0098a8" opacity="0.9"/><circle cx="250" cy="138" r="17" fill="#ffffff" opacity="0.92"/></svg></div>
       <div class="article-card-body">
-        <div class="article-card-cat">Cost &amp; Access</div>
+        <div class="article-card-cat">Weight Loss</div>
         <h3 class="article-card-title">Semaglutide in Florida: Cost, Access, and the State Laws You Need to Know.</h3>
         <p class="article-card-dek">From Miami to Pensacola, the legitimate options, the legal framework, and the climate factor most articles ignore.</p>
         <span class="article-card-meta">12 min read &middot; Apr 2026</span>
       </div>
     </a>
-    <a href="/journal/semaglutide-texas/" class="article-card" data-img="texas" data-category="cost">
+    <a href="/journal/semaglutide-texas/" class="article-card" data-img="texas" data-category="weightloss">
       <div class="article-card-img"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg64" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef2f6"/><stop offset="1" stop-color="#dbe3ec"/></linearGradient><pattern id="cg64p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#5b7c93" stroke-width="0.5" opacity="0.12"/></pattern></defs><rect width="480" height="330" fill="url(#cg64)"/><rect width="480" height="330" fill="url(#cg64p)"/><path d="M40,120 C140,102 240,138 440,110" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><path d="M40,168 C140,150 240,186 440,158" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><path d="M40,216 C140,198 240,234 440,206" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><path d="M40,264 C140,246 240,282 440,254" fill="none" stroke="#5b7c93" stroke-width="1.4" opacity="0.22"/><circle cx="120" cy="150" r="3.5" fill="#5b7c93" opacity="0.5"/><circle cx="360" cy="130" r="3.5" fill="#5b7c93" opacity="0.5"/><circle cx="380" cy="220" r="3.5" fill="#5b7c93" opacity="0.5"/><circle cx="140" cy="240" r="3.5" fill="#5b7c93" opacity="0.5"/><path d="M250,92 a46,46 0 0 1 46,46 c0,34 -46,86 -46,86 c0,0 -46,-52 -46,-86 a46,46 0 0 1 46,-46 Z" fill="#5b7c93" opacity="0.9"/><circle cx="250" cy="138" r="17" fill="#ffffff" opacity="0.92"/></svg></div>
       <div class="article-card-body">
-        <div class="article-card-cat">Cost &amp; Access</div>
+        <div class="article-card-cat">Weight Loss</div>
         <h3 class="article-card-title">Semaglutide in Texas: The 2026 Guide to Cost and Access.</h3>
         <p class="article-card-dek">Texas-specific telehealth law, the post-shortage compounding shift, and what changed for patients in 2025.</p>
         <span class="article-card-meta">13 min read &middot; Apr 2026</span>
       </div>
     </a>
-    <a href="/journal/nad-vs-nmn-vs-nr/" class="article-card" data-img="nad" data-category="nad">
+    <a href="/journal/nad-vs-nmn-vs-nr/" class="article-card" data-img="nad" data-category="longevity">
       <div class="article-card-img"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg65" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eaf6f8"/><stop offset="1" stop-color="#d2ecf0"/></linearGradient><pattern id="cg65p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#0098a8" stroke-width="0.5" opacity="0.12"/></pattern></defs><rect width="480" height="330" fill="url(#cg65)"/><rect width="480" height="330" fill="url(#cg65p)"/><path d="M300,158 275,201 225,201 200,158 225,115 275,115 Z" fill="none" stroke="#0098a8" stroke-width="2.4" opacity="0.85"/><line x1="300" y1="158" x2="355" y2="100" stroke="#0098a8" stroke-width="2" opacity="0.6"/><line x1="200" y1="158" x2="140" y2="208" stroke="#0098a8" stroke-width="2" opacity="0.6"/><line x1="225" y1="201" x2="346" y2="232" stroke="#0098a8" stroke-width="2" opacity="0.6"/><circle cx="300" cy="158" r="7" fill="#0098a8"/><circle cx="275" cy="201" r="7" fill="#0098a8"/><circle cx="225" cy="201" r="7" fill="#0098a8"/><circle cx="200" cy="158" r="7" fill="#0098a8"/><circle cx="225" cy="115" r="7" fill="#0098a8"/><circle cx="275" cy="115" r="7" fill="#0098a8"/><circle cx="355" cy="100" r="11" fill="#0098a8" opacity="0.85"/><circle cx="140" cy="208" r="11" fill="#0098a8" opacity="0.85"/><circle cx="346" cy="232" r="11" fill="#0098a8" opacity="0.85"/></svg></div>
       <div class="article-card-body">
-        <div class="article-card-cat">NAD+</div>
+        <div class="article-card-cat">Longevity & NAD</div>
         <h3 class="article-card-title">NAD+ vs. NMN vs. NR: Decoding the Letters Behind the Longevity Supplements.</h3>
         <p class="article-card-dek">Three molecules, three different paths to the same end state. Which actually raises NAD+ levels?</p>
         <span class="article-card-meta">9 min read &middot; Apr 2026</span>
       </div>
     </a>
-    <a href="/journal/select-trial-cardiovascular/" class="article-card" data-img="research" data-category="research">
+    <a href="/journal/select-trial-cardiovascular/" class="article-card" data-img="research" data-category="weightloss">
       <div class="article-card-img"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg66" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg66p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg66)"/><rect width="480" height="330" fill="url(#cg66p)"/><path d="M62,108 132,138 202,164 272,190 342,214 420,240 L420,300 L62,300 Z" fill="#3fd0e0" opacity="0.13"/><polyline points="62,108 132,138 202,164 272,190 342,214 420,240" fill="none" stroke="#3fd0e0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="62" cy="108" r="4.5" fill="#3fd0e0"/><circle cx="132" cy="138" r="4.5" fill="#3fd0e0"/><circle cx="202" cy="164" r="4.5" fill="#3fd0e0"/><circle cx="272" cy="190" r="4.5" fill="#3fd0e0"/><circle cx="342" cy="214" r="4.5" fill="#3fd0e0"/><circle cx="420" cy="240" r="4.5" fill="#3fd0e0"/><path d="M398,236 l22,4 -8,-21 z" fill="#3fd0e0" opacity="0.9"/></svg></div>
       <div class="article-card-body">
-        <div class="article-card-cat">Research</div>
+        <div class="article-card-cat">Weight Loss</div>
         <h3 class="article-card-title">SELECT and the Cardiovascular Case for Semaglutide.</h3>
         <p class="article-card-dek">The 17,604-patient trial that changed how cardiologists think about GLP-1s.</p>
         <span class="article-card-meta">10 min read &middot; Mar 2026</span>
@@ -1010,28 +1014,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="article-card-meta">10 min read &middot; May 2026</span>
       </div>
     </a>
-    <a href="/journal/glutathione-master-antioxidant/" class="article-card" data-img="peptides" data-category="peptides">
+    <a href="/journal/glutathione-master-antioxidant/" class="article-card" data-img="peptides" data-category="longevity">
       <div class="article-card-img"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg68" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4f0e7"/><stop offset="1" stop-color="#e7ddc9"/></linearGradient><pattern id="cg68p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#b8923f" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg68)"/><rect width="480" height="330" fill="url(#cg68p)"/><circle cx="64" cy="137" r="13" fill="#b8923f" opacity="0.55"/><line x1="64" y1="137" x2="112" y2="193" stroke="#b8923f" stroke-width="2.2" opacity="0.55"/><circle cx="112" cy="193" r="9" fill="#b8923f" opacity="0.6000000000000001"/><line x1="112" y1="193" x2="160" y2="137" stroke="#b8923f" stroke-width="2.2" opacity="0.55"/><circle cx="160" cy="137" r="13" fill="#b8923f" opacity="0.65"/><line x1="160" y1="137" x2="208" y2="193" stroke="#b8923f" stroke-width="2.2" opacity="0.55"/><circle cx="208" cy="193" r="9" fill="#b8923f" opacity="0.55"/><line x1="208" y1="193" x2="256" y2="137" stroke="#b8923f" stroke-width="2.2" opacity="0.55"/><circle cx="256" cy="137" r="13" fill="#b8923f" opacity="0.6000000000000001"/><line x1="256" y1="137" x2="304" y2="193" stroke="#b8923f" stroke-width="2.2" opacity="0.55"/><circle cx="304" cy="193" r="9" fill="#b8923f" opacity="0.65"/><line x1="304" y1="193" x2="352" y2="137" stroke="#b8923f" stroke-width="2.2" opacity="0.55"/><circle cx="352" cy="137" r="13" fill="#b8923f" opacity="0.55"/><line x1="352" y1="137" x2="400" y2="193" stroke="#b8923f" stroke-width="2.2" opacity="0.55"/><circle cx="400" cy="193" r="9" fill="#b8923f" opacity="0.6000000000000001"/></svg></div>
       <div class="article-card-body">
-        <div class="article-card-cat">Peptides</div>
+        <div class="article-card-cat">Longevity & NAD</div>
         <h3 class="article-card-title">Glutathione: The Master Antioxidant, Explained.</h3>
         <p class="article-card-dek">What the research shows about the body's most important detoxification molecule, why oral supplements fail, and how injection compares.</p>
         <span class="article-card-meta">9 min read &middot; May 2026</span>
       </div>
     </a>
-    <a href="/journal/glp1-side-effects-management/" class="article-card" data-img="metabolic" data-category="metabolic">
+    <a href="/journal/glp1-side-effects-management/" class="article-card" data-img="metabolic" data-category="weightloss">
       <div class="article-card-img"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg69" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg69p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg69)"/><rect width="480" height="330" fill="url(#cg69p)"/><path d="M62,108 132,138 202,164 272,190 342,214 420,240 L420,300 L62,300 Z" fill="#3fd0e0" opacity="0.13"/><polyline points="62,108 132,138 202,164 272,190 342,214 420,240" fill="none" stroke="#3fd0e0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="62" cy="108" r="4.5" fill="#3fd0e0"/><circle cx="132" cy="138" r="4.5" fill="#3fd0e0"/><circle cx="202" cy="164" r="4.5" fill="#3fd0e0"/><circle cx="272" cy="190" r="4.5" fill="#3fd0e0"/><circle cx="342" cy="214" r="4.5" fill="#3fd0e0"/><circle cx="420" cy="240" r="4.5" fill="#3fd0e0"/><path d="M398,236 l22,4 -8,-21 z" fill="#3fd0e0" opacity="0.9"/></svg></div>
       <div class="article-card-body">
-        <div class="article-card-cat">Metabolic Health</div>
+        <div class="article-card-cat">Weight Loss</div>
         <h3 class="article-card-title">Living With GLP-1 Side Effects: The Practical Playbook.</h3>
         <p class="article-card-dek">Nausea, fatigue, GI changes, what causes each, what helps, and when to call your provider.</p>
         <span class="article-card-meta">8 min read &middot; Mar 2026</span>
       </div>
     </a>
-    <a href="/journal/glp1-protein-resistance-training/" class="article-card" data-img="metabolic" data-category="metabolic">
+    <a href="/journal/glp1-protein-resistance-training/" class="article-card" data-img="metabolic" data-category="weightloss">
       <div class="article-card-img"><svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg70" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b2e"/><stop offset="1" stop-color="#17293f"/></linearGradient><pattern id="cg70p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#3fd0e0" stroke-width="0.5" opacity="0.14"/></pattern></defs><rect width="480" height="330" fill="url(#cg70)"/><rect width="480" height="330" fill="url(#cg70p)"/><path d="M62,108 132,138 202,164 272,190 342,214 420,240 L420,300 L62,300 Z" fill="#3fd0e0" opacity="0.13"/><polyline points="62,108 132,138 202,164 272,190 342,214 420,240" fill="none" stroke="#3fd0e0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="62" cy="108" r="4.5" fill="#3fd0e0"/><circle cx="132" cy="138" r="4.5" fill="#3fd0e0"/><circle cx="202" cy="164" r="4.5" fill="#3fd0e0"/><circle cx="272" cy="190" r="4.5" fill="#3fd0e0"/><circle cx="342" cy="214" r="4.5" fill="#3fd0e0"/><circle cx="420" cy="240" r="4.5" fill="#3fd0e0"/><path d="M398,236 l22,4 -8,-21 z" fill="#3fd0e0" opacity="0.9"/></svg></div>
       <div class="article-card-body">
-        <div class="article-card-cat">Metabolic Health</div>
+        <div class="article-card-cat">Weight Loss</div>
         <h3 class="article-card-title">Protein, Resistance Training, and the Lean-Mass Question on GLP-1s.</h3>
         <p class="article-card-dek">Why how you eat and move on a GLP-1 matters as much as the medication itself.</p>
         <span class="article-card-meta">9 min read &middot; Mar 2026</span>
@@ -1102,7 +1106,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <script>
 var filterButtons=document.querySelectorAll('.filter-btn');
-var articleCards=document.querySelectorAll('.article-grid .article-card');
+var articleCards=document.querySelectorAll('.feature-card, .article-grid .article-card');
 var emptyState=document.getElementById('emptyState');
 filterButtons.forEach(function(btn){
   btn.addEventListener('click',function(){
