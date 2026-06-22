@@ -348,7 +348,23 @@ textarea.q-input{resize:vertical;min-height:80px}
 .ship-link svg{width:15px;height:15px}
 .msg-panel .msg-cta-txt{font-size:14px;color:var(--gray-600);line-height:1.55}
 @media(max-width:900px){.dash-hero,.dash-2,.tx-grid{grid-template-columns:1fr}}
-@media(max-width:520px){.hero-fact{padding:13px 16px}.main .page{padding-left:0;padding-right:0}}
+@media(max-width:520px){.hero-fact{padding:13px 16px}}
+/* dose tracker + compact status */
+.status-card .status-foot{padding:14px 22px;border-top:1px solid var(--gray-100)}
+.dose-card .dose-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}
+.dose-sub{font-size:13px;color:var(--gray-500)}
+.dose-log-btn{white-space:nowrap;flex-shrink:0}
+.dose-list{display:flex;flex-direction:column}
+.dose-item{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--gray-100)}
+.dose-item:last-child{border-bottom:none}
+.dose-dot{width:10px;height:10px;border-radius:50%;background:var(--teal);flex-shrink:0;box-shadow:0 0 0 4px rgba(0,180,197,0.12)}
+.dose-when{font-weight:700;font-size:14px}
+.dose-what{font-size:12.5px;color:var(--gray-500);margin-top:1px}
+.dose-empty{text-align:center;padding:22px 12px}
+.dose-empty-ico{width:48px;height:48px;border-radius:14px;background:var(--teal-light);display:flex;align-items:center;justify-content:center;margin:0 auto 12px}
+.dose-empty-ico svg{width:22px;height:22px;color:var(--teal)}
+.dose-empty-txt{font-size:14px;color:var(--gray-600);max-width:250px;margin:0 auto;line-height:1.5}
+@media(max-width:520px){.dose-card .dose-head{flex-direction:column;align-items:stretch}.dose-log-btn{width:100%;justify-content:center}}
 </style>
 <!-- PostHog for portal behavioral analytics. Same project as intake.html so
      a single funnel can stitch lead_captured (intake) -> portal_signed_in ->
@@ -453,6 +469,10 @@ window.track = function(event, props){ try { if (window.posthog && window.postho
             <button class="quick-action" onclick="showPage('shop')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>Shop treatments</button>
           </div>
 
+          <div class="section">
+            <div id="myTreatmentArea"></div>
+          </div>
+
           <div class="section" id="suggestedSection" style="display:none">
             <div class="section-head">
               <h2 class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Suggested for you</h2>
@@ -461,14 +481,7 @@ window.track = function(event, props){ try { if (window.posthog && window.postho
             <div class="suggest-row" id="suggestedRow"></div>
           </div>
 
-          <div class="section">
-            <div class="section-head">
-              <h2 class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/></svg>My treatment</h2>
-            </div>
-            <div id="myTreatmentArea"></div>
-          </div>
-
-          <div class="section">
+          <div class="section" id="journeySection" style="display:none">
             <div class="section-head">
               <h2 class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Treatment journey</h2>
             </div>
@@ -1001,6 +1014,7 @@ async function loadHome(){
     $('homeSubtitle').textContent=`${getGreeting()}, ${first}. Here's where your treatment stands.`;
 
     // Render
+    try{const _dd=await api('/api/portal/doses?limit=200');dosesCache=(_dd.doses||[]).map(d=>({...d,takenAt:new Date(d.takenAt)})).sort((a,b)=>b.takenAt-a.takenAt);}catch(_){}
     renderActionBanner();
     renderMyTreatment();
     renderJourneyPicker();
@@ -1283,6 +1297,47 @@ function renderOrdersStrip(list){
   const rows=list.map(t=>`<div class="order-row"><div class="o-name">${escapeHtml(t.productDisplay||t.product||'Treatment')}</div><div class="o-meta">${escapeHtml(_planLabel(t.plan))}</div><div class="o-amt">${t.amount!=null?$fmtMoney(t.amount):''}</div><div class="o-status">${escapeHtml(t.status||'active')}</div></div>`).join('');
   return `<div class="card orders-card"><div class="card-title-sm">Recent orders</div>${rows}</div>`;
 }
+function renderTreatmentStatusCard(tx){
+  const img=resolveProductThumb(tx);
+  const rw=tx.refillWindow||portalData.refillWindow||{};
+  const ar=!!(portalData&&portalData.patient&&portalData.patient.autoRefillEnabled);
+  const nextRefill=rw.opensAt?fmtDate(rw.opensAt):'—';
+  const planLabel=_planLabel(tx.plan);
+  return `
+    <div class="treatment-card hero status-card">
+      <div class="treatment-card-head">
+        <div class="treatment-card-img"><img src="${img}" alt="" onerror="this.style.display='none'"></div>
+        <div class="treatment-card-info">
+          <div class="treatment-card-name">${escapeHtml(tx.productDisplay||tx.product||'Treatment')}</div>
+          <div class="treatment-card-meta">${escapeHtml(planLabel)}${tx.amount!=null?` · ${$fmtMoney(tx.amount)}`:''} · ${escapeHtml(verticalLabel(tx.vertical||'wellness'))}</div>
+        </div>
+        <div class="treatment-card-badge${tx.status==='active'?'':' pending'}">${escapeHtml(tx.status||'active')}</div>
+      </div>
+      <div class="hero-facts">
+        <div class="hero-fact"><div class="k">Plan</div><div class="v">${escapeHtml(planLabel||'—')}</div></div>
+        <div class="hero-fact"><div class="k">Next refill</div><div class="v">${escapeHtml(nextRefill)}</div></div>
+        <div class="hero-fact"><div class="k">Auto-refill</div><div class="v"><span class="mini-toggle ${ar?'on':''}" onclick="heroToggleAR()"><span></span></span>${ar?'On':'Off'}</div></div>
+      </div>
+      <div class="status-foot"><a onclick="showPage('treatments')" class="ship-link" style="cursor:pointer;margin-top:0">Manage treatment &rarr;</a></div>
+    </div>`;
+}
+function _doseName(pk){const t=(portalData.treatments||[]).find(x=>x.product===pk);return t?(t.productDisplay||t.product):(pk||'Dose');}
+function renderDoseTracker(){
+  const doses=(typeof dosesCache!=='undefined'&&dosesCache)?dosesCache:[];
+  const last5=doses.slice(0,5);
+  const recent=doses.filter(d=>(Date.now()-new Date(d.takenAt))<30*86400000).length;
+  let body;
+  if(!last5.length){
+    body=`<div class="dose-empty"><div class="dose-empty-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2l4 4M11 13l-3 3M13 17l-2 2M3 21l3-3M7 8l9 9M15 4l5 5-9 9-5 1 1-5 8-10z" stroke-linejoin="round"/></svg></div><div class="dose-empty-txt">No doses logged yet. Tap <b>Log a dose</b> to start tracking your routine.</div></div>`;
+  }else{
+    body=`<div class="dose-list">${last5.map(d=>`<div class="dose-item"><span class="dose-dot"></span><div class="dose-main"><div class="dose-when">${fmtDate(d.takenAt)}</div><div class="dose-what">${escapeHtml(_doseName(d.productKey))}${d.amount?` · ${escapeHtml(String(d.amount))}${escapeHtml(d.unit||'')}`:''}</div></div></div>`).join('')}</div>`;
+  }
+  return `<div class="card dose-card">
+    <div class="dose-head"><div><div class="card-title-sm" style="margin-bottom:3px">Dose log</div><div class="dose-sub">${recent} logged in the last 30 days</div></div>
+    <button class="btn btn-primary dose-log-btn" onclick="showPage('shots')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="15" height="15"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Log a dose</button></div>
+    ${body}
+  </div>`;
+}
 function renderNextShipmentCard(tx){
   const enc=(tx&&tx.encounter)||portalData.encounter||null;
   const rw=(tx&&tx.refillWindow)||portalData.refillWindow||{};
@@ -1328,9 +1383,7 @@ function renderMyTreatment(){
     return;
   }
 
-  area.innerHTML='<div class="dash-hero">'+renderHeroCard(list[0])+renderNextShipmentCard(list[0])+'</div>'
-    +(list.length>1?'<div class="tx-grid">'+list.slice(1).map(renderTreatmentCardHtml).join('')+'</div>':'')
-    +'<div class="dash-2">'+renderOrdersStrip(list)+renderMessagesPanel()+'</div>';
+  area.innerHTML='<div class="dash-hero">'+renderTreatmentStatusCard(list[0])+renderDoseTracker()+'</div>';
 }
 
 // Unified view of "what treatment is the patient currently on". Recurring
