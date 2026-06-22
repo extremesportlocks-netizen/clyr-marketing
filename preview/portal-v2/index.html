@@ -1,0 +1,3156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>My Portal · CLYR Health</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#FFF;--black:#0A0A0A;--dark:#1A1A1A;
+  --teal:#00B4C5;--teal-dark:#009BAA;--teal-light:#E0F7FA;
+  --gray-50:#F8FAFB;--gray-100:#F1F4F6;--gray-200:#E2E7EB;--gray-300:#CBD3DA;
+  --gray-400:#94A3B0;--gray-500:#6B7C8A;--gray-600:#4A5568;--gray-700:#374151;--gray-800:#2D3748;
+  --green:#10B981;--amber:#F59E0B;--red:#EF4444;--blue:#3B82F6;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+  --radius:16px;--radius-sm:10px;--radius-lg:24px;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04);
+  --shadow-md:0 4px 20px rgba(0,0,0,0.06);
+  --shadow-lg:0 12px 40px rgba(0,0,0,0.08);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:var(--sans);color:var(--dark);background:var(--gray-50);line-height:1.5;min-height:100vh}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+a{color:inherit;text-decoration:none}
+
+/* ─── LOGIN VIEW ─── */
+.login-wrap{min-height:100vh;display:grid;place-items:center;padding:40px 20px;background:var(--white)}
+.login-topbar{position:fixed;top:0;left:0;right:0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:rgba(255,255,255,0.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,0.05);z-index:50}
+.login-topbar-logo{display:inline-flex;align-items:center}
+.login-topbar-logo svg{height:28px}
+.login-topbar-links{display:flex;align-items:center;gap:24px}
+.login-topbar-links a{font-size:14px;font-weight:500;color:#4A5568;text-decoration:none;transition:color 0.2s}
+.login-topbar-links a:hover{color:var(--teal)}
+@media(max-width:480px){.login-topbar{padding:0 18px}.login-topbar-links{gap:16px}.login-topbar-links a{font-size:13px}}
+.login-card{width:100%;max-width:440px;text-align:center}
+.login-logo{display:inline-block;margin-bottom:32px}
+.login-logo svg{height:36px}
+.login-title{font-size:32px;font-weight:700;letter-spacing:-0.02em;margin-bottom:8px}
+.login-title .serif{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--teal)}
+.login-sub{font-size:15px;color:var(--gray-500);margin-bottom:32px;line-height:1.6}
+.login-field{margin-bottom:16px;text-align:left}
+.login-label{display:block;font-size:12px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px}
+.login-input{width:100%;padding:14px 16px;font-size:15px;font-family:var(--sans);background:var(--white);border:1.5px solid var(--gray-200);border-radius:12px;color:var(--dark);outline:none;transition:all 0.15s}
+.login-input:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,180,197,0.15)}
+.login-input-code{text-align:center;font-size:24px;letter-spacing:8px;font-weight:700;font-family:'Courier New',monospace}
+.login-btn{width:100%;padding:15px;background:var(--teal);color:white;border-radius:100px;font-size:15px;font-weight:700;margin-top:8px;transition:all 0.15s}
+.login-btn:hover:not(:disabled){background:var(--teal-dark)}
+.login-btn:disabled{opacity:0.6;cursor:not-allowed}
+.login-hint{font-size:13px;color:var(--gray-400);margin-top:16px}
+.login-back{color:var(--teal);font-size:13px;font-weight:600;background:none;border:none;cursor:pointer;margin-top:12px}
+.login-err{color:var(--red);font-size:13px;margin-top:12px;padding:10px 14px;background:rgba(239,68,68,0.08);border-radius:10px;border:1px solid rgba(239,68,68,0.2)}
+
+/* ─── APP SHELL ─── */
+.app-shell{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+.sidebar{background:var(--white);border-right:1px solid var(--gray-200);padding:20px 16px;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto}
+.sidebar-logo{padding:8px 12px 28px}
+.sidebar-logo svg{height:28px}
+.sidebar-nav{display:flex;flex-direction:column;gap:2px;flex:1}
+.nav-item{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:10px;font-size:14px;font-weight:500;color:var(--gray-600);transition:all 0.15s;cursor:pointer;text-align:left;background:none;border:none;font-family:inherit;width:100%}
+.nav-item:hover{background:var(--gray-50);color:var(--dark)}
+.nav-item.active{background:var(--teal-light);color:var(--teal-dark);font-weight:600}
+.nav-item svg{width:18px;height:18px;flex-shrink:0}
+.nav-bottom{padding-top:16px;border-top:1px solid var(--gray-100);display:flex;flex-direction:column;gap:2px}
+.main{display:flex;flex-direction:column;min-height:100vh}
+.topbar{background:var(--white);border-bottom:1px solid var(--gray-100);padding:18px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10}
+.greeting{font-size:18px;font-weight:600}
+.greeting .serif{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--teal);margin-right:4px}
+.topbar-actions{display:flex;align-items:center;gap:12px}
+.icon-btn{width:38px;height:38px;border-radius:50%;background:var(--gray-50);display:flex;align-items:center;justify-content:center;color:var(--gray-600);transition:all 0.15s;border:1px solid var(--gray-100)}
+.icon-btn:hover{background:var(--gray-100);color:var(--dark)}
+.icon-btn svg{width:18px;height:18px}
+.avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--teal) 0%,var(--teal-dark) 100%);color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
+.content{flex:1;padding:24px 32px 48px;max-width:1200px;margin:0 auto;width:100%}
+
+/* ─── REQUIRED ACTION BANNER ─── */
+.action-banner{background:linear-gradient(90deg,rgba(245,158,11,0.08) 0%,rgba(59,130,246,0.06) 100%);border:1px solid rgba(245,158,11,0.18);border-radius:var(--radius);padding:18px 22px;margin-bottom:28px;display:flex;align-items:flex-start;gap:14px}
+.action-banner-dot{width:8px;height:8px;border-radius:50%;background:var(--amber);margin-top:7px;flex-shrink:0;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}
+.action-banner-body{flex:1}
+.action-banner-label{font-size:13px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px}
+.action-banner-msg{font-size:14px;color:var(--gray-700);line-height:1.5}
+.action-banner-cta{padding:9px 18px;background:var(--dark);color:white;border-radius:100px;font-size:13px;font-weight:600;flex-shrink:0;transition:background 0.15s}
+.action-banner-cta:hover{background:var(--black)}
+
+/* ─── PAGE TITLES ─── */
+.page{display:none}
+.page.active{display:block}
+.page-title{font-size:22px;font-weight:700;margin-bottom:4px;letter-spacing:-0.01em}
+.page-sub{font-size:14px;color:var(--gray-500);margin-bottom:28px}
+
+/* ─── SECTION ─── */
+.section{margin-bottom:32px}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.section-title{font-size:13px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.08em;display:flex;align-items:center;gap:8px}
+.section-title svg{width:16px;height:16px;color:var(--teal)}
+.section-link{font-size:13px;color:var(--teal);font-weight:600}
+
+/* ─── CARDS ─── */
+.card{background:var(--white);border:1px solid var(--gray-100);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow-sm)}
+.card-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;font-size:14px}
+.card-row+.card-row{border-top:1px solid var(--gray-100)}
+.card-row-label{color:var(--gray-500)}
+.card-row-value{font-weight:600;color:var(--dark)}
+
+/* ─── QUICK ACTIONS ─── */
+.quick-actions{display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap}
+.quick-action{padding:11px 18px;background:var(--white);border:1px solid var(--gray-200);border-radius:100px;font-size:14px;font-weight:600;color:var(--gray-700);display:inline-flex;align-items:center;gap:8px;transition:all 0.15s;cursor:pointer;font-family:inherit}
+.quick-action:hover{border-color:var(--teal);color:var(--teal-dark);background:var(--teal-light)}
+.quick-action svg{width:15px;height:15px}
+
+/* ─── SUGGESTED ROW ─── */
+.suggest-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.suggest-card{background:var(--white);border:1px solid var(--gray-100);border-radius:var(--radius);padding:18px;display:flex;gap:14px;align-items:center;cursor:pointer;transition:all 0.2s}
+.suggest-card:hover{border-color:var(--teal);box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.suggest-card-img{width:64px;height:64px;background:var(--gray-50);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:8px}
+.suggest-card-img img{max-width:100%;max-height:100%;object-fit:contain}
+.suggest-card-body{flex:1;min-width:0}
+.suggest-card-cat{font-size:11px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px}
+.suggest-card-name{font-size:15px;font-weight:700;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.suggest-card-price{font-size:13px;color:var(--gray-500)}
+
+/* ─── TIMELINE ─── */
+.timeline{position:relative;padding-left:24px}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:var(--gray-100)}
+.timeline-step{position:relative;padding-bottom:18px}
+.timeline-step:last-child{padding-bottom:0}
+.timeline-dot{position:absolute;left:-24px;top:2px;width:16px;height:16px;border-radius:50%;background:var(--white);border:2px solid var(--gray-200);display:flex;align-items:center;justify-content:center}
+.timeline-step.done .timeline-dot{background:var(--teal);border-color:var(--teal)}
+.timeline-step.done .timeline-dot::after{content:'';width:6px;height:6px;background:white;border-radius:50%}
+.timeline-step.current .timeline-dot{background:var(--teal-light);border-color:var(--teal)}
+.timeline-step.current .timeline-dot::after{content:'';width:5px;height:5px;background:var(--teal);border-radius:50%;animation:pulse 1.5s ease-in-out infinite}
+.timeline-label{font-size:14px;font-weight:600;color:var(--dark);margin-bottom:2px}
+.timeline-desc{font-size:13px;color:var(--gray-500);line-height:1.5}
+.timeline-date{font-size:12px;color:var(--gray-400);margin-top:4px}
+
+/* ─── TREATMENT CARD ─── */
+.treatment-card{background:var(--white);border:1px solid var(--gray-100);border-radius:var(--radius);padding:0;overflow:hidden}
+.treatment-card-head{padding:18px 22px;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--gray-100)}
+.treatment-card-img{width:72px;height:72px;background:var(--gray-50);border-radius:12px;display:flex;align-items:center;justify-content:center;padding:6px;flex-shrink:0}
+.treatment-card-img img{max-width:100%;max-height:100%;object-fit:contain}
+.treatment-card-info{flex:1}
+.treatment-card-name{font-size:16px;font-weight:700}
+.treatment-card-meta{font-size:13px;color:var(--gray-500)}
+.treatment-card-badge{padding:5px 12px;background:rgba(16,185,129,0.1);color:var(--green);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;border-radius:100px}
+.treatment-card-badge.pending{background:rgba(245,158,11,0.1);color:var(--amber)}
+.treatment-card-badge.error{background:rgba(239,68,68,0.1);color:var(--red)}
+.treatment-card-badge.review{background:rgba(59,130,246,0.1);color:var(--blue)}
+.state-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.state-chip{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;font-size:11px;font-weight:600;border-radius:100px;background:var(--gray-100);color:var(--gray-600);text-transform:uppercase;letter-spacing:0.04em}
+.state-chip svg{width:11px;height:11px}
+.state-chip.warn{background:rgba(245,158,11,0.12);color:var(--amber)}
+.state-chip.error{background:rgba(239,68,68,0.12);color:var(--red)}
+.state-chip.info{background:rgba(59,130,246,0.12);color:var(--blue)}
+.state-chip.ok{background:rgba(16,185,129,0.12);color:var(--green)}
+.treatment-card-body{padding:18px 22px}
+
+/* ─── TABS ─── */
+.tabs{display:flex;gap:4px;background:var(--gray-100);padding:4px;border-radius:12px;margin-bottom:24px}
+.tab{flex:1;padding:10px 16px;font-size:14px;font-weight:600;color:var(--gray-500);background:transparent;border:none;border-radius:9px;cursor:pointer;transition:all 0.15s;font-family:inherit}
+.tab:hover{color:var(--dark)}
+.tab.active{background:var(--white);color:var(--dark);box-shadow:var(--shadow-sm)}
+
+/* ─── EMPTY STATE ─── */
+.empty{text-align:center;padding:48px 24px;color:var(--gray-500)}
+.empty-icon{font-size:48px;margin-bottom:14px;opacity:0.4;line-height:1}
+.empty-title{font-size:16px;font-weight:700;color:var(--dark);margin-bottom:6px}
+.empty-msg{font-size:13px;color:var(--gray-500);max-width:340px;margin:0 auto}
+
+/* ─── SHOTS ─── */
+.shot-stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
+.shot-stat{background:var(--white);border:1px solid var(--gray-100);border-radius:var(--radius);padding:18px}
+.shot-stat-label{font-size:12px;font-weight:600;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px}
+.shot-stat-val{font-size:28px;font-weight:700;letter-spacing:-0.02em}
+.shot-stat-val .unit{font-size:14px;font-weight:500;color:var(--gray-500);margin-left:4px}
+
+/* ─── SHOP ─── */
+.shop-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.filter-pill{padding:8px 16px;background:var(--white);border:1px solid var(--gray-200);border-radius:100px;font-size:13px;font-weight:600;color:var(--gray-600);cursor:pointer;transition:all 0.15s;font-family:inherit}
+.filter-pill:hover{border-color:var(--teal);color:var(--teal-dark)}
+.filter-pill.active{background:var(--dark);border-color:var(--dark);color:white}
+.shop-search{width:100%;max-width:420px;padding:11px 16px;border:1px solid var(--gray-200);border-radius:100px;font-size:14px;font-family:inherit;outline:none;margin-bottom:18px}
+.shop-search:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,180,197,0.1)}
+.shop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.shop-card{background:var(--white);border:1px solid var(--gray-100);border-radius:var(--radius);padding:20px;cursor:pointer;transition:all 0.2s;text-align:center}
+.shop-card:hover{border-color:var(--teal);box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.shop-card-img{aspect-ratio:1;background:var(--gray-50);border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:14px}
+.shop-card-img img{width:100%;height:100%;object-fit:cover;display:block}
+.shop-card-cat{font-size:11px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px}
+.shop-card-name{font-size:15px;font-weight:700;margin-bottom:6px;line-height:1.3}
+.shop-card-price{font-size:13px;color:var(--gray-500)}
+.shop-card-price strong{color:var(--dark);font-weight:700}
+.shop-card-img{position:relative}
+.shop-card-badge{position:absolute;top:8px;left:8px;background:var(--teal);color:#fff;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;padding:4px 9px;border-radius:100px;z-index:2}
+.shop-card.coming-soon .shop-card-img img{opacity:0.92}
+
+/* ─── ACCOUNT ─── */
+.acc-tabs{display:flex;gap:0;border-bottom:1px solid var(--gray-100);margin-bottom:24px}
+.acc-tab{padding:12px 18px;font-size:14px;font-weight:600;color:var(--gray-500);background:transparent;border:none;border-bottom:2px solid transparent;cursor:pointer;transition:all 0.15s;font-family:inherit;margin-bottom:-1px}
+.acc-tab:hover{color:var(--dark)}
+.acc-tab.active{color:var(--teal-dark);border-bottom-color:var(--teal)}
+.acc-section{display:none}
+.acc-section.active{display:block}
+.acc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+.acc-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--gray-100);font-size:14px}
+.acc-row:last-child{border-bottom:none}
+.acc-row-label{color:var(--gray-500);font-weight:500}
+.acc-row-val{font-weight:600;color:var(--dark)}
+
+/* ─── BUTTONS ─── */
+.btn{padding:11px 22px;font-size:14px;font-weight:600;border-radius:100px;cursor:pointer;font-family:inherit;transition:all 0.15s;display:inline-flex;align-items:center;gap:8px;border:none}
+.btn-primary{background:var(--teal);color:white}
+.btn-primary:hover{background:var(--teal-dark)}
+.btn-secondary{background:var(--white);color:var(--gray-700);border:1px solid var(--gray-200)}
+.btn-secondary:hover{border-color:var(--gray-400);background:var(--gray-50)}
+.btn-dark{background:var(--dark);color:white}
+.btn-dark:hover{background:var(--black)}
+
+/* ─── MESSAGES ─── */
+.msg-list{display:flex;flex-direction:column;gap:12px;margin-bottom:18px;max-height:440px;overflow-y:auto;padding-right:4px}
+.msg{padding:14px 18px;border-radius:14px;font-size:14px;line-height:1.5;max-width:80%;animation:fadeUp 0.2s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.msg-from-patient{background:var(--teal);color:white;align-self:flex-end;border-bottom-right-radius:4px}
+.msg-from-provider{background:var(--gray-100);color:var(--dark);align-self:flex-start;border-bottom-left-radius:4px}
+.msg-meta{font-size:11px;color:var(--gray-400);margin-top:4px;padding:0 4px}
+.msg-input-wrap{display:flex;gap:10px;background:var(--white);border:1px solid var(--gray-200);border-radius:14px;padding:8px;align-items:center}
+.msg-input{flex:1;padding:10px 14px;border:none;outline:none;font-size:14px;font-family:inherit;background:transparent;resize:none;max-height:120px}
+.msg-send{padding:10px 22px;background:var(--teal);color:white;border-radius:100px;font-size:14px;font-weight:700}
+.msg-send:disabled{opacity:0.4;cursor:not-allowed}
+
+/* ─── REFILL FORM ─── */
+.refill-card{background:var(--white);border:1px solid var(--gray-100);border-radius:var(--radius);padding:24px;margin-bottom:18px}
+.q-item{padding:18px 0;border-bottom:1px solid var(--gray-100)}
+.q-item:last-child{border-bottom:none}
+.q-label{display:block;font-size:14px;font-weight:600;margin-bottom:10px;color:var(--dark)}
+.q-label.q-required::after{content:' *';color:var(--red)}
+.q-input,.q-select{width:100%;padding:12px 14px;border:1px solid var(--gray-200);border-radius:10px;font-size:14px;font-family:inherit;outline:none;background:var(--white)}
+.q-input:focus,.q-select:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,180,197,0.1)}
+textarea.q-input{resize:vertical;min-height:80px}
+.q-radios{display:flex;flex-direction:column;gap:8px}
+.q-radio{display:flex;align-items:center;gap:10px;padding:11px 14px;border:1.5px solid var(--gray-200);border-radius:10px;cursor:pointer;transition:all 0.15s;font-size:14px}
+.q-radio:hover{border-color:var(--teal-light);background:var(--gray-50)}
+.q-radio input{margin:0;cursor:pointer}
+.q-radio.selected{border-color:var(--teal);background:var(--teal-light);color:var(--teal-dark);font-weight:600}
+
+/* ─── ONBOARDING TOUR ─── */
+.tour-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;z-index:2000;padding:20px;animation:fadeIn 0.2s}
+.tour-overlay-step{align-items:flex-end;background:rgba(0,0,0,0.3);backdrop-filter:none;padding:24px 20px}
+.tour-card{background:white;border-radius:20px;padding:28px 26px 22px;max-width:460px;width:100%;box-shadow:0 24px 80px rgba(0,0,0,0.18);text-align:center;animation:fadeUp 0.25s ease}
+.tour-card-step{max-width:520px;text-align:left}
+.tour-step-num{font-size:11px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px}
+.tour-title{font-size:24px;font-weight:700;margin-bottom:8px;letter-spacing:-0.02em}
+.tour-title .serif{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--teal)}
+.tour-step-title{font-size:18px;font-weight:700;margin-bottom:6px;letter-spacing:-0.01em}
+.tour-body{font-size:14px;color:var(--gray-500);line-height:1.55;margin-bottom:18px}
+.tour-chips{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+.tour-chip{display:flex;align-items:center;gap:10px;padding:13px 16px;background:var(--gray-50);border:1.5px solid var(--gray-100);border-radius:12px;font-size:14px;font-weight:600;color:var(--gray-700);cursor:pointer;transition:all 0.15s;font-family:inherit;text-align:left}
+.tour-chip:hover{border-color:var(--teal);background:var(--teal-light);color:var(--teal-dark)}
+.tour-chip svg{color:var(--teal);flex-shrink:0}
+.tour-skip{font-size:13px;color:var(--gray-400);background:none;border:none;cursor:pointer;padding:8px 12px;font-family:inherit;font-weight:500}
+.tour-skip:hover{color:var(--gray-600)}
+.tour-step-buttons{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:8px}
+.tour-spotlight{position:absolute;pointer-events:none;border:2px solid var(--teal);border-radius:14px;box-shadow:0 0 0 9999px rgba(0,0,0,0.45);z-index:1999;transition:all 0.25s ease}
+@media(max-width:768px){
+  .tour-card{padding:24px 20px 18px}
+  .tour-title{font-size:20px}
+}
+
+/* ─── LOADING ─── */
+.loading{text-align:center;padding:60px 20px;color:var(--gray-500)}
+.spinner{display:inline-block;width:28px;height:28px;border:2.5px solid var(--gray-200);border-top-color:var(--teal);border-radius:50%;animation:spin 0.8s linear infinite;margin-bottom:12px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:920px){
+  .app-shell{grid-template-columns:1fr}
+  .sidebar{position:fixed;top:0;left:0;right:0;bottom:auto;height:auto;flex-direction:row;align-items:center;padding:12px 16px;border-bottom:1px solid var(--gray-200);border-right:none;z-index:100;overflow-x:auto;overflow-y:hidden}
+  .sidebar-logo{padding:0 12px 0 0}
+  .sidebar-nav{flex-direction:row;flex:1;gap:4px}
+  .nav-item{padding:8px 12px;white-space:nowrap;font-size:13px}
+  .nav-item span{display:none}
+  .nav-bottom{display:none}
+  .main{padding-top:60px}
+  .topbar{padding:14px 18px}
+  .content{padding:18px 16px 36px}
+  .suggest-row{grid-template-columns:1fr}
+  .shop-grid{grid-template-columns:repeat(2,1fr)}
+  .shot-stat-grid{grid-template-columns:1fr}
+  .acc-grid{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+  .shop-grid{grid-template-columns:1fr}
+  .action-banner{flex-direction:column}
+  .quick-actions{flex-direction:column}
+  .quick-action{justify-content:center}
+}
+</style>
+<!-- PostHog for portal behavioral analytics. Same project as intake.html so
+     a single funnel can stitch lead_captured (intake) -> portal_signed_in ->
+     portal_addproduct_* -> portal_addproduct_paid. Autocapture is off so we
+     only see explicit business events, not every clicked button. -->
+<script>
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug getPageviewId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+posthog.init('phc_nrXbGLjvPVa8CpGe3yC27ET4y8se3s3KJyr98anxt2eR', { api_host: 'https://us.i.posthog.com', autocapture: false, capture_pageview: true });
+// Tiny wrapper so the rest of the portal code can call track('event', {props}) safely whether or not the PostHog script has loaded yet.
+window.track = function(event, props){ try { if (window.posthog && window.posthog.capture) window.posthog.capture(event, props || {}); } catch(_){} };
+</script>
+</head>
+<body>
+
+<!-- ═══ LOGIN VIEW ═══ -->
+<div id="loginView" class="login-wrap">
+  <div class="login-topbar">
+    <a href="/" class="login-topbar-logo" aria-label="CLYR Health home">
+      <svg viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg" height="28"><text x="0" y="26" font-family="DM Sans, sans-serif" font-weight="700" font-size="28" letter-spacing="-1"><tspan fill="#1A1A1A">CLY</tspan><tspan fill="#00B4C5">R</tspan></text></svg>
+    </a>
+    <div class="login-topbar-links">
+      <a href="/">← Back to site</a>
+      <a href="/contact.html">Contact</a>
+    </div>
+  </div>
+  <div class="login-card">
+    <a href="/" class="login-logo">
+      <svg viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="0" y="26" font-family="DM Sans, sans-serif" font-weight="700" font-size="28" letter-spacing="-1"><tspan fill="#1A1A1A">CLY</tspan><tspan fill="#00B4C5">R</tspan></text></svg>
+    </a>
+    <h1 class="login-title">Your <span class="serif">health portal.</span></h1>
+    <p class="login-sub">Check treatment status, message your provider, request refills, and manage your subscription.</p>
+
+    <div id="loginStepEmail">
+      <div class="login-field">
+        <label class="login-label" for="emailInput">Email address</label>
+        <input class="login-input" type="email" id="emailInput" placeholder="you@email.com" autocomplete="email" autofocus>
+      </div>
+      <button class="login-btn" id="btnSendCode">Send verification code</button>
+      <div class="login-err" id="loginErr1" style="display:none"></div>
+    </div>
+
+    <div id="loginStepCode" style="display:none">
+      <div class="login-field">
+        <label class="login-label" for="codeInput">6-digit code</label>
+        <input class="login-input login-input-code" type="text" id="codeInput" maxlength="6" inputmode="numeric" placeholder="000000">
+      </div>
+      <button class="login-btn" id="btnVerifyCode">Verify and sign in</button>
+      <button class="login-back" id="btnBackToEmail">← Use a different email</button>
+      <p class="login-hint" id="codeHint">We sent a code to your email. It expires in 10 minutes.</p>
+      <div class="login-err" id="loginErr2" style="display:none"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ APP SHELL ═══ -->
+<div id="appView" class="app-shell" style="display:none">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <a href="/" class="sidebar-logo">
+      <svg viewBox="0 0 120 32" fill="none"><text x="0" y="26" font-family="DM Sans, sans-serif" font-weight="700" font-size="26" letter-spacing="-1"><tspan fill="#1A1A1A">CLY</tspan><tspan fill="#00B4C5">R</tspan></text></svg>
+    </a>
+    <nav class="sidebar-nav">
+      <button class="nav-item active" data-page="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9v9a2 2 0 0 1-2 2h-4v-7H10v7H6a2 2 0 0 1-2-2v-9z" stroke-linejoin="round"/></svg><span>Home</span></button>
+      <button class="nav-item" data-page="chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-9 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.2A8.38 8.38 0 0 1 3 11.5 8.5 8.5 0 0 1 12 3a8.38 8.38 0 0 1 9 8.5z" stroke-linejoin="round"/></svg><span>Chat</span></button>
+      <button class="nav-item" data-page="treatments"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M12 7v10M7 12h10"/></svg><span>Treatments</span></button>
+      <button class="nav-item" data-page="shots"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2l4 4M11 13l-3 3M13 17l-2 2M3 21l3-3M7 8l9 9M15 4l5 5-9 9-5 1 1-5 8-10z" stroke-linejoin="round"/></svg><span>Shots</span></button>
+      <button class="nav-item" data-page="shop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" stroke-linejoin="round"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span>Shop</span></button>
+    </nav>
+    <div class="nav-bottom">
+      <button class="nav-item" data-page="account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke-linejoin="round"/><circle cx="12" cy="7" r="4"/></svg><span>Account</span></button>
+      <a class="nav-item" href="/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span>CLYR.health</span></a>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <header class="topbar">
+      <div class="greeting"><span class="serif">Hi,</span> <span id="greetName">there</span></div>
+      <div class="topbar-actions">
+        <button class="icon-btn" title="Sign out" id="btnSignOut"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></button>
+        <div class="avatar" id="avatarInitials">U</div>
+      </div>
+    </header>
+
+    <div class="content">
+
+      <!-- Required Action banner (persistent across pages) -->
+      <div id="actionBanner"></div>
+
+      <!-- HOME -->
+      <div class="page active" id="pageHome">
+        <div id="homeLoading" class="loading"><div class="spinner"></div><div>Loading your portal...</div></div>
+        <div id="homeContent" style="display:none">
+          <h1 class="page-title">Your treatment</h1>
+          <p class="page-sub" id="homeSubtitle">Welcome back to CLYR.</p>
+
+          <div class="quick-actions">
+            <button class="quick-action" onclick="showPage('shots')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add dose</button>
+            <button class="quick-action" onclick="showPage('chat')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 9a3 3 0 0 1 6 0c0 2-3 2-3 4"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Get help</button>
+            <button class="quick-action" onclick="showPage('treatments')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 12 8 12 11 21 13 3 16 12 21 12"/></svg>Treatment status</button>
+          </div>
+
+          <div class="section" id="suggestedSection" style="display:none">
+            <div class="section-head">
+              <h2 class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Suggested for you</h2>
+              <button class="section-link" onclick="showPage('shop')">View all →</button>
+            </div>
+            <div class="suggest-row" id="suggestedRow"></div>
+          </div>
+
+          <div class="section">
+            <div class="section-head">
+              <h2 class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/></svg>My treatment</h2>
+            </div>
+            <div id="myTreatmentArea"></div>
+          </div>
+
+          <div class="section">
+            <div class="section-head">
+              <h2 class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Treatment journey</h2>
+            </div>
+            <div id="journeyPicker" style="display:none;gap:8px;flex-wrap:wrap;margin-bottom:12px;padding:4px"></div>
+            <div class="card">
+              <div class="timeline" id="timelineSteps"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHAT -->
+      <div class="page" id="pageChat">
+        <h1 class="page-title">Chat</h1>
+        <p class="page-sub">Two channels. Doctor goes to your provider. Support goes to the CLYR team.</p>
+        <div class="tabs" style="max-width:360px;margin-bottom:16px">
+          <button class="tab active" data-chat-tab="doctor">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" style="vertical-align:-2px;margin-right:5px"><path d="M19 14V8a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4z"/><path d="M9 14h.01M15 14h.01"/></svg>Doctor</button>
+          <button class="tab" data-chat-tab="support">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" style="vertical-align:-2px;margin-right:5px"><path d="M21 11.5a8.38 8.38 0 0 1-9 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.2A8.38 8.38 0 0 1 3 11.5 8.5 8.5 0 0 1 12 3a8.38 8.38 0 0 1 9 8.5z"/></svg>Support</button>
+        </div>
+        <div class="card">
+          <div class="msg-list" id="msgList"><div class="loading"><div class="spinner"></div>Loading messages...</div></div>
+          <div class="msg-input-wrap">
+            <textarea class="msg-input" id="msgInput" placeholder="Type a message to your provider..." rows="1"></textarea>
+            <button class="msg-send" id="btnSendMsg">Send</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TREATMENTS -->
+      <div class="page" id="pageTreatments">
+        <h1 class="page-title">Treatments</h1>
+        <p class="page-sub">View your active and past treatments.</p>
+        <div class="tabs">
+          <button class="tab active" data-tx-tab="active">Active</button>
+          <button class="tab" data-tx-tab="pending">Pending</button>
+        </div>
+        <div id="treatmentsActive"></div>
+        <div id="treatmentsPending" style="display:none"></div>
+
+        <div class="section" id="refillSection" style="display:none;margin-top:32px">
+          <div class="section-head"><h2 class="section-title">Request a refill</h2></div>
+          <div id="refillFormArea" class="refill-card"></div>
+        </div>
+      </div>
+
+      <!-- SHOTS -->
+      <div class="page" id="pageShots">
+        <h1 class="page-title">Shots</h1>
+        <p class="page-sub">Track your doses, schedule, and history.</p>
+        <div id="shotsContent"></div>
+      </div>
+
+      <!-- SHOP -->
+      <div class="page" id="pageShop">
+        <h1 class="page-title">Shop</h1>
+        <p class="page-sub">Discover treatments that fit your goals. All Rx, all provider-supervised.</p>
+        <input class="shop-search" id="shopSearch" placeholder="Search products..." type="search">
+        <div class="shop-filters" id="shopFilters">
+          <button class="filter-pill active" data-vertical="all">All</button>
+          <button class="filter-pill" data-vertical="weight-loss">Weight Loss</button>
+          <button class="filter-pill" data-vertical="wellness">Daily Wellness</button>
+          <button class="filter-pill" data-vertical="sexual-health">Sexual Health</button>
+          <button class="filter-pill" data-vertical="protocol">Antiparasitic</button>
+        </div>
+        <div class="shop-grid" id="shopGrid"></div>
+      </div>
+
+      <!-- ACCOUNT -->
+      <div class="page" id="pageAccount">
+        <h1 class="page-title">Account</h1>
+        <p class="page-sub">Manage your profile, billing, and health records.</p>
+        <div class="acc-tabs">
+          <button class="acc-tab active" data-acc-tab="profile">Profile</button>
+          <button class="acc-tab" data-acc-tab="billing">Billing &amp; Shipping</button>
+          <button class="acc-tab" data-acc-tab="phi">Health Records</button>
+        </div>
+
+        <div class="acc-section active" id="accProfile">
+          <div class="card">
+            <div class="acc-row"><span class="acc-row-label">Name</span><span class="acc-row-val" id="accName">—</span></div>
+            <div class="acc-row"><span class="acc-row-label">Email</span><span class="acc-row-val" id="accEmail">—</span></div>
+            <div class="acc-row"><span class="acc-row-label">Phone</span><span class="acc-row-val" id="accPhone">—</span></div>
+            <div class="acc-row"><span class="acc-row-label">Member since</span><span class="acc-row-val" id="accMemberSince">—</span></div>
+          </div>
+        </div>
+
+        <div class="acc-section" id="accBilling">
+          <div class="card" style="margin-bottom:14px">
+            <div class="acc-row"><span class="acc-row-label">Current plan</span><span class="acc-row-val" id="billPlan">—</span></div>
+            <div class="acc-row"><span class="acc-row-label">Plan status</span><span class="acc-row-val" id="billStatus">—</span></div>
+            <div class="acc-row"><span class="acc-row-label">Shipping address</span>
+              <span class="acc-row-val" id="billAddress" style="display:flex;align-items:center;gap:8px">
+                <span id="billAddressText">—</span>
+                <button onclick="openAddressEditor()" style="background:none;border:none;color:var(--teal);cursor:pointer;font-size:12px;font-weight:600;padding:0">Edit</button>
+              </span>
+            </div>
+            <div class="acc-row"><span class="acc-row-label" id="billNextLabel">Next billing date</span><span class="acc-row-val" id="billNextDate">—</span></div>
+          </div>
+          <button class="btn btn-primary" onclick="manageSubscription()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>Manage payment in Stripe</button>
+        </div>
+
+        <div class="acc-section" id="accAutoRefill" style="display:none">
+          <div class="card">
+            <h3 style="font-size:16px;font-weight:700;margin-bottom:6px">Auto-refill</h3>
+            <p style="font-size:14px;color:var(--gray-500);margin-bottom:16px;line-height:1.6">When this is on, we'll ship your next supply automatically 3 days before your current one runs out. You'll get an email confirmation when each shipment goes out. You can turn this off any time.</p>
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 14px;background:#f8fafb;border:1px solid var(--gray-100);border-radius:12px">
+              <div>
+                <div style="font-weight:600;font-size:14px" id="autoRefillStateLabel">Auto-refill is off</div>
+                <div style="font-size:12px;color:var(--gray-500);margin-top:2px" id="autoRefillRemainingLabel">&mdash;</div>
+              </div>
+              <label class="toggle" style="position:relative;display:inline-block;width:48px;height:28px;flex-shrink:0;cursor:pointer">
+                <input type="checkbox" id="autoRefillToggle" style="opacity:0;width:0;height:0" onchange="toggleAutoRefill(this.checked)">
+                <span id="autoRefillTrack" style="position:absolute;inset:0;background:var(--gray-200);border-radius:999px;transition:background 0.2s"></span>
+                <span id="autoRefillThumb" style="position:absolute;top:3px;left:3px;width:22px;height:22px;background:white;border-radius:50%;transition:transform 0.2s;box-shadow:0 1px 3px rgba(0,0,0,0.2)"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-section" id="accPhi">
+          <div class="card">
+            <h3 style="font-size:16px;font-weight:700;margin-bottom:6px">Protected Health Information</h3>
+            <p style="font-size:14px;color:var(--gray-500);margin-bottom:16px;line-height:1.6">You have the right to view and download all your past intake questionnaires and provider consultations. This is your HIPAA right of access.</p>
+            <button class="btn btn-secondary" onclick="downloadPhi()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download my records</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════
+// CLYR Portal v2, vertical-aware, multi-product, GLM-inspired
+// ═══════════════════════════════════════════════════════════════════
+
+const API = 'https://clyr-backend.onrender.com';
+const TOKEN_KEY = 'th_portal_token';
+const EMAIL_KEY = 'th_portal_email';
+
+// ─── State ───
+let token = localStorage.getItem(TOKEN_KEY);
+let portalData = null;     // /me response
+let suggestions = [];      // /suggested response
+let requiredActions = [];  // /required-actions response
+let timelineEvents = [];   // /timeline response — drives the Treatment Journey card
+let selectedJourneyProduct = null; // for multi-product patients, which treatment's journey is currently focused
+let catalog = null;        // /catalog response
+let currentPage = 'home';
+
+// ─── Per-product educational info ───────────────────────────────────────
+// Canonical copy mirrored from the clyr.health landing pages so patients can
+// learn what a treatment does, what's in it, and how to take it WITHOUT
+// leaving the portal. Keep in sync with the product pages. Each entry:
+//   tagline   one-line "what it is"
+//   supply    what arrives + cadence (answers "how many do I get?")
+//   dosing    how/when to take it
+//   onset     how fast / how long (sexual health especially)
+//   benefits  [{h, p}] short benefit cards
+const PRODUCT_INFO = {
+  tadalafil: {
+    tagline: 'A dual-action daily ED tablet combining Tadalafil 2.5mg + Vardenafil 2.5mg — two PDE5 inhibitors in one low-dose tablet, taken every day for always-ready performance.',
+    supply: '30-tablet monthly supply (Tadalafil 2.5mg + Vardenafil 2.5mg each). One tablet per day.',
+    dosing: 'Take one tablet daily, with or without food. Daily dosing keeps you ready without planning around a dose.',
+    onset: 'Once daily · always-ready, no timing required',
+    benefits: [
+      { h: 'Two actives, one tablet', p: 'Combines Tadalafil (Cialis) and Vardenafil (Levitra) for enhanced blood flow and reliable performance.' },
+      { h: 'Daily, low-dose', p: 'A low 2.5mg/2.5mg dose taken every day keeps you consistently ready, no need to plan around activity.' },
+      { h: 'Always ready', p: 'Because it builds steady levels, you can be spontaneous instead of timing a dose 30–60 minutes ahead.' },
+      { h: 'Discreet & at-home', p: 'No clinic visit. Provider consultation online, medication shipped discreetly to your door.' },
+    ],
+  },
+  sildenafil_gummy: {
+    tagline: 'Chewable 50mg sildenafil gummies for on-demand ED treatment — same active ingredient as branded sildenafil, no pills, no water.',
+    supply: '10-gummy monthly supply (50mg sildenafil each).',
+    dosing: 'Chew one gummy 30–60 minutes before activity. Maximum one in any 24 hours.',
+    onset: 'Works in 30–60 min · lasts 4–6 hours',
+    benefits: [
+      { h: 'Chewable, no water', p: 'Just chew and go. Easier to take than tablets, especially on the move.' },
+      { h: 'Fast-acting', p: 'Effects typically begin within 30–60 minutes and last 4–6 hours.' },
+      { h: 'PDE5 inhibitor', p: 'Sildenafil increases blood flow to support erection during sexual stimulation.' },
+      { h: 'One per day max', p: 'Take no more than one gummy in any 24-hour period. Same active strength as 50mg sildenafil.' },
+    ],
+  },
+  pt141: {
+    tagline: "Bremelanotide + Oxytocin sublingual ODT. PT-141 works on the brain's melanocortin pathways — distinct from PDE5 inhibitors — to support desire, arousal, and intimacy in men and women.",
+    supply: '8-ODT monthly supply (Bremelanotide 2mg + Oxytocin 40IU per dose).',
+    dosing: 'Dissolve one ODT under the tongue 45 minutes before intimacy. Maximum one in any 24 hours, eight per month.',
+    onset: 'Works in 30–60 min · lasts 4–6 hours',
+    benefits: [
+      { h: 'Acts on the brain', p: 'Stimulates the melanocortin pathway — distinct from PDE5 inhibitors that work on blood vessels — to support libido and desire.' },
+      { h: 'Sublingual ODT', p: 'Dissolves under the tongue. No water, no pills to swallow.' },
+      { h: 'For men & women', p: 'Supports desire and arousal in both. Many patients pair it with a PDE5 inhibitor.' },
+      { h: 'For low desire', p: 'Designed for hypoactive sexual desire. Max one tablet per 24 hours, eight per month.' },
+    ],
+  },
+  sild_tadal_oxy: {
+    tagline: 'A triple-action orally-dissolving tablet — sildenafil for fast onset, tadalafil for duration, and oxytocin for intimacy — in one ODT.',
+    supply: '10-ODT monthly supply (Sildenafil 50mg / Tadalafil 20mg / Oxytocin 125IU each).',
+    dosing: 'Dissolve one ODT under the tongue 30–60 minutes before activity. Maximum one in any 24 hours.',
+    onset: 'Sildenafil in 30 min · Tadalafil lasts up to 36 hours',
+    benefits: [
+      { h: 'Sildenafil — fast onset', p: 'Begins working in about 30 minutes. Same active as Viagra®.' },
+      { h: 'Tadalafil — long duration', p: 'Effects can last up to 36 hours. Same active as Cialis®.' },
+      { h: 'Oxytocin — connection', p: 'Low-dose oxytocin supports bonding and intimacy alongside the PDE5 inhibitors.' },
+      { h: 'Most potent option', p: 'Two PDE5 inhibitors plus oxytocin make this more potent than any single-agent. Max one per 24 hours.' },
+    ],
+  },
+  sermorelin: {
+    tagline: "A synthetic peptide that stimulates your body's natural growth hormone production — supporting deeper sleep, faster recovery, lean muscle, and healthy aging, without synthetic HGH.",
+    supply: 'One-month supply: Sermorelin 0.9mg/ml vial (10ml) + injection homekit (syringes + alcohol pads).',
+    dosing: 'Inject 30 units (0.3mg) subcutaneously at bedtime, five nights per week with two nights off.',
+    onset: '5 nights per week · feel the difference in weeks',
+    benefits: [
+      { h: 'Natural GH support', p: "Stimulates your body's own growth hormone production rather than replacing it with synthetic HGH." },
+      { h: 'Sleep & recovery', p: 'Supports deeper sleep, faster recovery, and lean muscle as part of a longevity protocol.' },
+      { h: 'Simple homekit', p: 'Syringes and alcohol pads included. Quick subcutaneous self-injection.' },
+      { h: 'Bedtime dosing', p: 'Inject 30 units (0.3mg) at bedtime on an empty stomach, five nights per week with two nights off.' },
+    ],
+  },
+  nad: {
+    tagline: 'Pharmaceutical-grade NAD+ injections for cellular energy and longevity — delivered subcutaneously for rapid absorption.',
+    supply: 'One-month supply: NAD+ injection vial + injection homekit (syringes + alcohol pads).',
+    dosing: 'Start at 20 units, titrate toward 80 units as tolerated, two to three times per week.',
+    onset: '2 to 3 times per week · feel the difference in weeks',
+    benefits: [
+      { h: 'Cellular energy', p: 'NAD+ is a coenzyme central to how your cells produce energy and repair themselves.' },
+      { h: 'Higher bioavailability', p: 'Injections bypass digestion, delivering NAD+ directly to your bloodstream — unlike oral supplements.' },
+      { h: 'Longevity support', p: 'Part of a daily-wellness protocol for cellular health and healthy aging.' },
+      { h: 'Titrated dosing', p: 'Start at 20 units and increase toward 80 units as tolerated, two to three times per week.' },
+    ],
+  },
+  glutathione: {
+    tagline: "The body's master antioxidant — a tripeptide of cysteine, glycine, and glutamine that neutralizes free radicals, supports liver detox, immune function, and healthier skin.",
+    supply: 'One-month supply: two Glutathione 200mg/ml vials (5ml each) + injection homekit (syringes + alcohol pads).',
+    dosing: 'Inject 0.5ml (100mg) subcutaneously five times per week. Keep refrigerated.',
+    onset: '5 times per week · feel the difference in weeks',
+    benefits: [
+      { h: 'Master antioxidant', p: 'Protects every cell from oxidative damage and supports your liver and immune system.' },
+      { h: 'Skin & detox', p: 'Supports liver detoxification and promotes healthier skin from the inside out.' },
+      { h: 'Simple homekit', p: 'Syringes and alcohol pads included for a quick subcutaneous injection.' },
+      { h: '100mg, 5x weekly', p: 'Inject 0.5ml (100mg) subcutaneously five times per week. Keep refrigerated.' },
+    ],
+  },
+  micc: {
+    tagline: 'A compounded MICC injection with methionine, inositol, choline, and a real B12 boost to support energy, focus, and how efficiently your body burns fat. A clean companion to any GLP-1 protocol.',
+    supply: 'One-month supply: MICC + B12 vial (10ml: Methionine 25, Inositol 50, Choline 50, B12 0.33 mg/mL) plus injection homekit (syringes + alcohol pads).',
+    dosing: 'Inject 1ml intramuscularly twice per week. Self-administered in under a minute.',
+    onset: 'Twice weekly',
+    benefits: [
+      { h: 'Energy & focus', p: 'A real B12 boost supports energy, focus, and red blood cell production.' },
+      { h: 'Fat metabolism', p: 'Methionine, inositol, and choline help the body process and mobilize fat rather than store it.' },
+      { h: 'Liver support', p: 'Choline and methionine help move fat out of the liver, supporting healthy liver function.' },
+      { h: 'Pairs with GLP-1', p: 'Commonly used alongside Tirzepatide or Semaglutide as a clean metabolic companion.' },
+    ],
+  },
+  lipo_mino: {
+    tagline: 'An enhanced lipotropic injection for weight management. The classic MIC + B12 stack plus L-Carnitine and added B-vitamins (B1, B2, B6) to support fat metabolism and energy.',
+    supply: 'One-month supply: Lipo-Mino + L-Carnitine vial (10ml: Methionine 12.4, Inositol 25, Choline 25, Carnitine 125, B1 50, B2 5, B6 2 mg/mL) plus injection homekit (syringes + alcohol pads).',
+    dosing: 'Inject 1ml intramuscularly twice per week in the thigh. Self-administered in under a minute.',
+    onset: 'Twice weekly',
+    benefits: [
+      { h: 'L-Carnitine engine', p: 'L-Carnitine helps shuttle fatty acids into cells to be burned for energy, the step the classic MIC blend skips.' },
+      { h: 'Lipotropic base', p: 'Methionine, inositol, and choline help the body process and mobilize fat rather than store it.' },
+      { h: 'Fuller B-complex', p: 'B1, B2, and B6 together support energy production and metabolism.' },
+      { h: 'Pairs with GLP-1', p: 'A natural add-on to Tirzepatide or Semaglutide for patients who want extra metabolic and energy support.' },
+    ],
+  },
+  tirzepatide: {
+    tagline: 'A once-weekly dual GIP/GLP-1 injection for weight management, compounded with B12.',
+    supply: 'Monthly supply with injection homekit. Dose titrates over time per your provider.',
+    dosing: 'Once-weekly subcutaneous injection. Refer to your prescription for your current dose.',
+    onset: 'Once weekly',
+    benefits: [
+      { h: 'Dual-action', p: 'Targets two appetite-regulating pathways (GIP and GLP-1) to support weight management.' },
+      { h: 'Once weekly', p: 'A single weekly subcutaneous injection, self-administered at home.' },
+      { h: 'Provider-managed dosing', p: 'Your provider titrates your dose over time. Each refill requires a quick check-in.' },
+      { h: 'B12 included', p: 'Compounded with B12 to support energy. One vial plus injection supplies ships each cycle.' },
+    ],
+  },
+  semaglutide: {
+    tagline: 'A once-weekly GLP-1 injection for weight management, compounded with B12.',
+    supply: 'Monthly supply with injection homekit. Dose titrates over time per your provider.',
+    dosing: 'Once-weekly subcutaneous injection. Refer to your prescription for your current dose.',
+    onset: 'Once weekly',
+    benefits: [
+      { h: 'GLP-1 action', p: 'Targets the GLP-1 appetite-regulating pathway to support weight management.' },
+      { h: 'Once weekly', p: 'A single weekly subcutaneous injection, self-administered at home.' },
+      { h: 'Provider-managed dosing', p: 'Your provider titrates your dose over time. Each refill requires a quick check-in.' },
+      { h: 'B12 included', p: 'Compounded with B12 to support energy. One vial plus injection supplies ships each cycle.' },
+    ],
+  },
+};
+
+// ─── Helpers ───
+function $(id){return document.getElementById(id);}
+function fmtDate(iso){if(!iso)return '—';const d=new Date(iso);return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}
+function timeAgo(iso){if(!iso)return '';const d=new Date(iso),now=new Date(),s=(now-d)/1000;if(s<60)return 'just now';if(s<3600)return Math.floor(s/60)+'m ago';if(s<86400)return Math.floor(s/3600)+'h ago';if(s<604800)return Math.floor(s/86400)+'d ago';return d.toLocaleDateString('en-US',{month:'short',day:'numeric'});}
+function $fmtPrice(n){if(n===null||n===undefined)return '—';return '$'+n.toLocaleString();}
+function $fmtMoney(cents){if(cents===null||cents===undefined)return '—';return '$'+(cents/100).toFixed(2);}
+function escapeHtml(s){if(!s)return '';return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function verticalLabel(v){return ({'weight-loss':'Weight Loss','wellness':'Daily Wellness','sexual-health':'Sexual Health','hair':'Hair','protocol':'Antiparasitic'})[v]||v;}
+function getGreeting(){const h=new Date().getHours();if(h<12)return 'Good morning';if(h<18)return 'Good afternoon';return 'Good evening';}
+
+// ─── API ───
+async function api(path,opts={}){
+  const headers={'Content-Type':'application/json'};
+  if(token)headers['Authorization']='Bearer '+token;
+  const r=await fetch(API+path,{...opts,headers:{...headers,...(opts.headers||{})}});
+  if(r.status===401){signOut();throw new Error('Session expired');}
+  const data=await r.json().catch(()=>({error:'Invalid response'}));
+  if(!r.ok)throw new Error(data.error||'Request failed');
+  return data;
+}
+
+// ═══ AUTH ═══
+async function sendCode(){
+  const email=$('emailInput').value.trim();
+  if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    showErr('loginErr1','Please enter a valid email address.');return;
+  }
+  const btn=$('btnSendCode');btn.disabled=true;btn.textContent='Sending...';
+  try{
+    await api('/api/portal/auth/send-code',{method:'POST',body:JSON.stringify({email})});
+    localStorage.setItem(EMAIL_KEY,email);
+    $('loginStepEmail').style.display='none';
+    $('loginStepCode').style.display='block';
+    $('codeInput').focus();
+    $('codeHint').textContent=`We sent a code to ${email}. It expires in 10 minutes.`;
+  }catch(e){
+    showErr('loginErr1',e.message);
+  }finally{
+    btn.disabled=false;btn.textContent='Send verification code';
+  }
+}
+
+async function verifyCode(){
+  const code=$('codeInput').value.trim();
+  const email=localStorage.getItem(EMAIL_KEY);
+  if(!code||code.length<6){showErr('loginErr2','Enter the 6-digit code.');return;}
+  const btn=$('btnVerifyCode');btn.disabled=true;btn.textContent='Verifying...';
+  try{
+    const data=await api('/api/portal/auth/verify',{method:'POST',body:JSON.stringify({email,code})});
+    token=data.token;
+    localStorage.setItem(TOKEN_KEY,token);
+    enterApp();
+  }catch(e){
+    showErr('loginErr2',e.message);
+    btn.disabled=false;btn.textContent='Verify and sign in';
+  }
+}
+
+function showErr(id,msg){const el=$(id);el.textContent=msg;el.style.display='block';setTimeout(()=>el.style.display='none',5000);}
+
+function signOut(){
+  localStorage.removeItem(TOKEN_KEY);
+  localStorage.removeItem(EMAIL_KEY);
+  token=null;portalData=null;
+  $('appView').style.display='none';
+  $('loginView').style.display='grid';
+  $('loginStepEmail').style.display='block';
+  $('loginStepCode').style.display='none';
+  $('emailInput').value='';
+  $('codeInput').value='';
+}
+
+// ═══ ENTER APP ═══
+async function enterApp(){
+  $('loginView').style.display='none';
+  $('appView').style.display='grid';
+  await loadHome();
+  // Fire onboarding tour for first-time visitors
+  maybeStartTour();
+}
+
+// ═══ ONBOARDING TOUR ═══
+// GLM-inspired chip picker that lets the patient choose what they want to
+// learn about first, then walks them through it. Skip-able. Idempotent
+// across sessions via localStorage flag 'th_portal_toured'.
+function maybeStartTour(){
+  if (localStorage.getItem('th_portal_toured')) return;
+  // Wait a beat so the home page is visible before the tour layers on top
+  setTimeout(() => startTour(), 600);
+}
+
+function endTour(){
+  localStorage.setItem('th_portal_toured', '1');
+  const m = $('tourModal');
+  if (m) m.remove();
+  const sp = $('tourSpotlight');
+  if (sp) sp.remove();
+}
+
+function startTour(){
+  const firstName = portalData?.patient?.firstName || 'there';
+  document.body.insertAdjacentHTML('beforeend', `
+    <div id="tourModal" class="tour-overlay">
+      <div class="tour-card">
+        <div class="tour-step-num">Welcome</div>
+        <h2 class="tour-title">Hi, <span class="serif">${escapeHtml(firstName)}.</span> Welcome to your portal.</h2>
+        <p class="tour-body">This is your home base for everything CLYR. Want a quick walkthrough? Pick what you want to see first.</p>
+        <div class="tour-chips">
+          <button class="tour-chip" onclick="tourStep('nav')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            Show me around
+          </button>
+          <button class="tour-chip" onclick="tourStep('actions')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            Quick actions
+          </button>
+          <button class="tour-chip" onclick="tourStep('treatment')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M12 7v10M7 12h10"/></svg>
+            My treatment
+          </button>
+        </div>
+        <button class="tour-skip" onclick="endTour()">Skip for now</button>
+      </div>
+    </div>`);
+}
+
+function tourStep(which){
+  const m = $('tourModal');
+  if (m) m.remove();
+  const sp = $('tourSpotlight');
+  if (sp) sp.remove();
+
+  const steps = {
+    nav: {
+      anchor: '.sidebar',
+      pos: 'right',
+      title: 'Sidebar navigation',
+      body: 'Home, Chat, Treatments, Shots, Shop, and Account. Everything you need is one click away. Tap any item to jump there.',
+      next: 'actions',
+    },
+    actions: {
+      anchor: '.quick-actions',
+      pos: 'bottom',
+      title: 'Quick actions',
+      body: 'Log a dose, get help, or check your treatment status in one tap. These adapt to what you have going on.',
+      next: 'treatment',
+    },
+    treatment: {
+      anchor: '#myTreatmentArea',
+      pos: 'top',
+      title: 'Your treatment',
+      body: 'Your current plan, refill window, and treatment journey live here. State chips let you see at a glance if anything needs attention.',
+      next: null,
+    },
+  };
+  const s = steps[which];
+  if (!s) { endTour(); return; }
+
+  const target = document.querySelector(s.anchor);
+  if (target) {
+    const r = target.getBoundingClientRect();
+    // Render spotlight outline
+    document.body.insertAdjacentHTML('beforeend', `
+      <div id="tourSpotlight" class="tour-spotlight" style="top:${r.top + window.scrollY - 8}px;left:${r.left - 8}px;width:${r.width + 16}px;height:${r.height + 16}px"></div>`);
+    target.scrollIntoView({behavior: 'smooth', block: 'center'});
+  }
+
+  // Render step card centered at bottom of viewport
+  document.body.insertAdjacentHTML('beforeend', `
+    <div id="tourModal" class="tour-overlay tour-overlay-step">
+      <div class="tour-card tour-card-step">
+        <div class="tour-step-num">Step ${Object.keys(steps).indexOf(which) + 1} of 3</div>
+        <h3 class="tour-step-title">${escapeHtml(s.title)}</h3>
+        <p class="tour-body">${escapeHtml(s.body)}</p>
+        <div class="tour-step-buttons">
+          <button class="tour-skip" onclick="endTour()">${s.next ? 'Skip' : 'Close'}</button>
+          ${s.next ? `<button class="btn btn-primary" onclick="tourStep('${s.next}')">Next →</button>` : `<button class="btn btn-primary" onclick="endTour()">Got it</button>`}
+        </div>
+      </div>
+    </div>`);
+}
+
+// ═══ HOME ═══
+async function loadHome(){
+  $('homeLoading').style.display='block';
+  $('homeContent').style.display='none';
+  try{
+    // Parallel fetch
+    const [me,sugg,actions,timeline]=await Promise.all([
+      api('/api/portal/me'),
+      api('/api/portal/suggested').catch(()=>({suggestions:[]})),
+      api('/api/portal/required-actions').catch(()=>({actions:[]})),
+      api('/api/portal/timeline').catch(()=>({events:[]})),
+    ]);
+    portalData=me;
+    suggestions=sugg.suggestions||[];
+    requiredActions=actions.actions||[];
+    timelineEvents=timeline.events||[];
+
+    // Identify the patient in PostHog so events stitch to their lead_captured
+    // / lead_purchased history. Fire portal_signed_in once per loadHome so
+    // we can measure portal engagement vs intake conversions. The identify
+    // is idempotent — PostHog dedupes on email.
+    try {
+      if (window.posthog && me?.patient?.email) {
+        window.posthog.identify(me.patient.email, {
+          first_name: me.patient.firstName,
+          last_name: me.patient.lastName,
+          treatment_count: (me.treatments||[]).length,
+          intake_status: me.patient.intakeStatus
+        });
+      }
+      track('portal_signed_in', {
+        treatment_count: (me.treatments||[]).length,
+        intake_status: me.patient.intakeStatus,
+        has_recurring: (me.treatments||[]).some(t=>t.isRecurring),
+        has_one_time: (me.treatments||[]).some(t=>!t.isRecurring)
+      });
+    } catch(_) {}
+
+    // Default the Journey to the most-recent treatment (treatments[0]) unless
+    // the user already picked one (selectedJourneyProduct persists across
+    // page-load calls so a manual selection survives a refresh).
+    const firstTreatmentProduct = (me?.treatments||[])[0]?.product;
+    if (!selectedJourneyProduct || !(me?.treatments||[]).find(t => t.product === selectedJourneyProduct)) {
+      selectedJourneyProduct = firstTreatmentProduct || null;
+    }
+
+    // Greeting + avatar
+    const first=me.patient.firstName||'there';
+    $('greetName').textContent=first;
+    $('avatarInitials').textContent=(first[0]||'U').toUpperCase()+(me.patient.lastName?.[0]||'').toUpperCase();
+    $('homeSubtitle').textContent=`${getGreeting()}, ${first}. Here's where your treatment stands.`;
+
+    // Render
+    renderActionBanner();
+    renderMyTreatment();
+    renderJourneyPicker();
+    renderTimeline();
+    renderSuggested();
+    populateAccount();
+
+    $('homeLoading').style.display='none';
+    $('homeContent').style.display='block';
+  }catch(e){
+    $('homeLoading').innerHTML=`<div style="color:var(--red);padding:20px">Failed to load portal: ${escapeHtml(e.message)}</div>`;
+  }
+}
+
+function renderActionBanner(){
+  const el=$('actionBanner');
+  // Abandoned-intake patients (intake_status = 'abandoned' or 'intake_abandoned')
+  // have no order, encounter, or subscription. Without a banner they see only
+  // the bland "No active treatment" empty state. Surface a resume CTA that
+  // takes them back to the intake flow so they have a path forward.
+  const intakeStatus = portalData?.patient?.intakeStatus || '';
+  const hasTreatments = (portalData?.treatments||[]).length > 0;
+  const isAbandoned = !hasTreatments && /aband/i.test(intakeStatus);
+  if (isAbandoned) {
+    el.innerHTML=`<div class="action-banner"><div class="action-banner-dot" style="background:#f59e0b"></div><div class="action-banner-body"><div class="action-banner-label">Finish your CLYR intake</div><div class="action-banner-msg">You started signing up but didn't complete checkout. Pick up where you left off to see a provider and get your medication shipped.</div></div><a href="/intake.html" class="action-banner-cta" style="text-decoration:none;display:inline-flex;align-items:center;justify-content:center">Resume intake</a></div>`;
+    return;
+  }
+  if(!requiredActions.length){el.innerHTML='';return;}
+  // Render the highest-severity action
+  const order={high:0,info:1};
+  const a=[...requiredActions].sort((x,y)=>(order[x.severity]??99)-(order[y.severity]??99))[0];
+  let ctaHandler='';
+  if(a.cta){
+    if(a.cta.action==='manage_billing')ctaHandler='manageSubscription()';
+    else if(a.cta.action==='open_refill')ctaHandler='showPage(\'treatments\');startRefill()';
+    else ctaHandler='showPage(\'chat\')';
+  }
+  const ctaHtml=a.cta?`<button class="action-banner-cta" onclick="${ctaHandler}">${escapeHtml(a.cta.label)}</button>`:'';
+  el.innerHTML=`<div class="action-banner"><div class="action-banner-dot"></div><div class="action-banner-body"><div class="action-banner-label">${escapeHtml(a.label)}</div><div class="action-banner-msg">${escapeHtml(a.message)}</div></div>${ctaHtml}</div>`;
+}
+
+// Compute lifecycle state chips for the current treatment.
+// Returns an array of {label, kind} where kind in: ok | warn | error | info
+function computeStateChips(){
+  const chips=[];
+  const sub=portalData?.subscription;
+  const stage=portalData?.stage;
+  const rw=portalData?.refillWindow;
+  const actions=requiredActions||[];
+
+  // Payment-error from required actions
+  if(actions.find(a=>a.type==='payment_error')){
+    chips.push({label:'Payment Issue',kind:'error',icon:'card'});
+  }
+  // Provider review pending
+  if(actions.find(a=>a.type==='provider_review')||stage==='provider'){
+    chips.push({label:'Provider Review',kind:'info',icon:'eye'});
+  }
+  // Refill window open
+  if(rw?.isOpen){
+    chips.push({label:'Refill Ready',kind:'warn',icon:'refresh'});
+  }
+  // Expired supply
+  if(rw?.isExpired){
+    chips.push({label:'Refill Due',kind:'warn',icon:'clock'});
+  }
+  // Shipping
+  if(stage==='shipped'){
+    chips.push({label:'Shipping',kind:'info',icon:'truck'});
+  }
+  // Cancel-at-period-end
+  if(sub?.cancelAt){
+    chips.push({label:'Cancels Soon',kind:'warn',icon:'clock'});
+  }
+  // Active+no issues
+  if(!chips.length&&sub?.status==='active'){
+    chips.push({label:'Active',kind:'ok',icon:'check'});
+  }
+  return chips;
+}
+
+function renderStateChips(){
+  const chips=computeStateChips();
+  if(!chips.length)return '';
+  const icons={
+    card:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>',
+    eye:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>',
+    refresh:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>',
+    clock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
+    truck:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>',
+    check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>',
+  };
+  return `<div class="state-chips">${chips.map(c=>`<span class="state-chip ${c.kind}">${icons[c.icon]||''}${escapeHtml(c.label)}</span>`).join('')}</div>`;
+}
+
+// Compute per-treatment state chips. The legacy version read from the global
+// portalData (single treatment); this one accepts a treatment-view object so
+// every card in a multi-product portal can render its own status accurately.
+function computeStateChipsForTreatment(tx){
+  const chips=[];
+  const actions=requiredActions||[];
+  if(actions.find(a=>a.type==='payment_error')){
+    chips.push({label:'Payment Issue',kind:'error',icon:'card'});
+  }
+  const enc=tx.encounter||{};
+  const rw=tx.refillWindow||{};
+  if(enc.status==='pending'||enc.status==='waiting'||enc.status==='approved'){
+    chips.push({label:'Provider Review',kind:'info',icon:'eye'});
+  }
+  if(rw.isOpen){
+    chips.push({label:'Refill Ready',kind:'warn',icon:'refresh'});
+  }
+  if(rw.isExpired){
+    chips.push({label:'Refill Due',kind:'warn',icon:'clock'});
+  }
+  if(enc.pharmacyStatus==='shipped'){
+    chips.push({label:'Shipping',kind:'info',icon:'truck'});
+  }
+  if(tx.cancelAt){
+    chips.push({label:'Cancels Soon',kind:'warn',icon:'clock'});
+  }
+  if(!chips.length && tx.status==='active'){
+    chips.push({label:'Active',kind:'ok',icon:'check'});
+  }
+  return chips;
+}
+
+function renderChipsForTreatment(tx){
+  const chips=computeStateChipsForTreatment(tx);
+  if(!chips.length)return '';
+  const icons={
+    card:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>',
+    eye:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>',
+    refresh:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>',
+    clock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
+    truck:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>',
+    check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>',
+  };
+  return `<div class="state-chips">${chips.map(c=>`<span class="state-chip ${c.kind}">${icons[c.icon]||''}${escapeHtml(c.label)}</span>`).join('')}</div>`;
+}
+
+// Per-treatment refill summary. Replaces the legacy renderRefillSummary which
+// read from the global portalData. AUTO_REFILL_PENDING products show a
+// care-team message; otherwise show the open window or the countdown.
+function renderRefillSummaryForTreatment(tx){
+  const rw=tx.refillWindow||{};
+  if(!rw)return '';
+  if(AUTO_REFILL_PENDING.includes(tx.product)){
+    return `<div style="display:flex;justify-content:space-between;align-items:center;gap:14px">
+      <div><div style="font-size:14px;font-weight:700;margin-bottom:2px">Auto-refill in progress</div><div style="font-size:13px;color:var(--gray-500)">Our care team is handling your next refill. Questions? <a href="mailto:care@clyr.health" style="color:var(--teal);font-weight:600">care@clyr.health</a></div></div>
+      <button class="btn btn-secondary" onclick="showPage('treatments');startRefill('${escapeAttr(tx.product)}')">View status</button>
+    </div>`;
+  }
+  if(rw.isOpen){
+    return `<div style="display:flex;justify-content:space-between;align-items:center;gap:14px">
+      <div><div style="font-size:14px;font-weight:700;margin-bottom:2px">Your refill window is open</div><div style="font-size:13px;color:var(--gray-500)">${rw.message||'Complete the questionnaire to get your next prescription.'}</div></div>
+      <button class="btn btn-primary" onclick="showPage('treatments');startRefill('${escapeAttr(tx.product)}')">Request refill</button>
+    </div>`;
+  }
+  return `<div style="display:flex;justify-content:space-between;align-items:center;gap:14px">
+    <div><div style="font-size:14px;font-weight:700;margin-bottom:2px">${tx.isRecurring?'Refill opens':'Plan ends'} ${fmtDate(tx.isRecurring?rw.opensAt:rw.cycleEndsAt)}</div><div style="font-size:13px;color:var(--gray-500)">${rw.daysRemaining??0} days remaining in your current supply.</div></div>
+    <button class="btn btn-secondary" onclick="showPage('shots')">Track doses</button>
+  </div>`;
+}
+
+// Map product names to the new product thumbnails (frontend override so the
+// updated artwork shows regardless of what productImage the backend sends).
+const PRODUCT_THUMBS=[
+  [/zepbound/i,'/img/portal/zepbound.png'],
+  [/foundayo|orforglipron/i,'/img/portal/foundayo.png'],
+  [/wegovy/i,'/img/portal/wegovy.png'],
+  [/tirzep/i,'/img/portal/tirzepatide.png'],
+  [/semaglu/i,'/img/portal/semaglutide.png'],
+  [/nad/i,'/img/portal/nad.png'],
+  [/sermorel/i,'/img/portal/sermorelin.png'],
+  [/glutath/i,'/img/portal/glutathione.png'],
+  [/micc/i,'/img/portal/micc.png'],
+  [/lipo|mic\b|carnitine/i,'/img/portal/lipo-mino.png'],
+  [/sild.*tadal.*oxy|tadal.*oxy|triple|combo\s*odt/i,'/img/portal/sild-tadal-oxy.png'],
+  [/sildenafil.*gummy|gummy/i,'/img/portal/sildenafil-gummy.png'],
+  [/tadalafil|vardenafil|\btad\b/i,'/img/portal/tadalafil.png'],
+  [/pt-?141|oxytocin|bremelanotide/i,'/img/portal/pt141.png'],
+  [/ivermectin|mebendazole|antiparasit/i,'/img/portal/antiparasitic.png'],
+  // Foundayo confirmed: correct orforglipron bottle asset placed (img/portal/foundayo.png), mapped above.
+];
+// Resolve a thumbnail from any object that carries product name fields.
+// Accepts treatment objects (productDisplay/product), catalog objects
+// (displayName/key/shortName), or a raw string.
+function thumbFromName(name, fallbackImg){
+  name=(name||'').toString();
+  for(const [re,src] of PRODUCT_THUMBS){ if(re.test(name)) return src; }
+  return fallbackImg || '/img/portal/tirzepatide.png';
+}
+function resolveProductThumb(tx){
+  const name=((tx.productDisplay||'')+' '+(tx.product||'')).trim();
+  return thumbFromName(name, tx.productImage);
+}
+// For Shop / suggest / detail catalog objects.
+function resolveCatalogThumb(p){
+  const name=((p.displayName||'')+' '+(p.shortName||'')+' '+(p.key||'')).trim();
+  return thumbFromName(name, p.image);
+}
+
+// Render a single treatment card. Used both on the home stack and the
+// Treatments tab — the layout is identical so we don't fork the HTML.
+function renderTreatmentCardHtml(tx){
+  const planLabel=({monthly:'Monthly','3month':'3 months','6month':'6 months','12month':'12 months'})[tx.plan]||tx.plan||'';
+  const img=resolveProductThumb(tx);
+  const cancelPending=!!tx.cancelAt;
+  const productKey=escapeAttr(tx.product||'');
+  return `
+    <div class="treatment-card">
+      <div class="treatment-card-head">
+        <div class="treatment-card-img"><img src="${img}" alt="" onerror="this.style.display='none'"></div>
+        <div class="treatment-card-info">
+          <div class="treatment-card-name">${escapeHtml(tx.productDisplay||tx.product||'Treatment')}</div>
+          <div class="treatment-card-meta">${escapeHtml(planLabel)}${tx.amount!=null?` · ${$fmtMoney(tx.amount)}`:''} · ${escapeHtml(verticalLabel(tx.vertical||'wellness'))}</div>
+          ${renderChipsForTreatment(tx)}
+          ${cancelPending?`<div style="margin-top:6px;font-size:12px;color:var(--gray-500)">Ends ${fmtDate(tx.cancelAt)} \u00b7 <a href="#" onclick="event.preventDefault();resumeTreatment('${productKey}')" style="color:var(--teal);font-weight:600">Resume</a></div>`:''}
+        </div>
+        <div class="treatment-card-badge${tx.status==='active'?'':' pending'}">${escapeHtml(tx.status||'active')}</div>
+      </div>
+      <div class="treatment-card-body">
+        ${renderRefillSummaryForTreatment(tx)}
+      </div>
+      <div style="border-top:1px solid var(--gray-100);padding-top:10px;margin-top:12px;display:flex;justify-content:flex-end">
+        <button onclick="openTreatmentActions('${productKey}')" style="background:none;border:none;color:var(--gray-500);font-size:13px;font-weight:600;cursor:pointer;padding:4px 8px;border-radius:6px;display:inline-flex;align-items:center;gap:6px" onmouseover="this.style.background='var(--gray-50)'" onmouseout="this.style.background='none'">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+          Manage
+        </button>
+      </div>
+    </div>`;
+}
+
+function renderMyTreatment(){
+  const area=$('myTreatmentArea');
+  const list=portalData.treatments||[];
+
+  if(!list.length){
+    // Fallback: no treatments[] from API (older deploys) — use the legacy
+    // single-treatment view via currentTreatmentView.
+    const legacy=currentTreatmentView();
+    if(!legacy){
+      area.innerHTML=`<div class="card"><div class="empty"><div class="empty-icon">💊</div><div class="empty-title">No active treatment</div><div class="empty-msg">Once you complete an intake and are approved by a provider, your treatment will appear here.</div></div></div>`;
+      return;
+    }
+    // Synthesize a treatment-view shape for the renderer.
+    const synth={
+      product: legacy.product,
+      productDisplay: legacy.productDisplay,
+      productImage: legacy.productImage,
+      vertical: legacy.vertical,
+      plan: legacy.plan,
+      isRecurring: legacy.isRecurring,
+      amount: legacy.amount,
+      status: legacy.statusLabel,
+      cancelAt: null,
+      refillWindow: portalData.refillWindow || {},
+      encounter: portalData.encounter || null
+    };
+    area.innerHTML=renderTreatmentCardHtml(synth);
+    return;
+  }
+
+  area.innerHTML=list.map(renderTreatmentCardHtml).join('');
+}
+
+// Unified view of "what treatment is the patient currently on". Recurring
+// monthly buyers have a subscription row in /me; one-time 3-month and 6-month
+// buyers don't (their Stripe purchase is a Payment, not a Subscription). Both
+// groups have an /me order. This helper returns the same shape for either, so
+// every UI surface (home Treatment card, Treatments tab, Shots tab, Account
+// Billing) can render uniformly without each one re-deriving the rules.
+function currentTreatmentView(){
+  if(!portalData) return null;
+  // Prefer the multi-product treatments[] if available — first entry is the
+  // most-recent treatment by order date.
+  const first=(portalData.treatments||[])[0];
+  if(first){
+    return {
+      product:           first.product,
+      productDisplay:    first.productDisplay,
+      productImage:      first.productImage,
+      vertical:          first.vertical,
+      plan:              first.plan,
+      amount:            first.amount,
+      isRecurring:       first.isRecurring,
+      statusLabel:       first.status,
+      currentPeriodEnd:  first.currentPeriodEnd,
+      planEndsAt:        !first.isRecurring ? (first.refillWindow && first.refillWindow.cycleEndsAt) : null,
+    };
+  }
+  const sub=portalData.subscription;
+  const order=portalData.order;
+  const p=portalData.patient||{};
+  // No treatment when there's neither an active subscription nor a paid order.
+  if(!sub && (!order || order.status!=='paid')) return null;
+  return {
+    product:           sub?.product || order?.product || p.treatment,
+    productDisplay:    sub?.productDisplay || order?.productDisplay || p.treatmentDisplay,
+    productImage:      sub?.productImage || p.productImage,
+    vertical:          sub?.vertical || p.vertical,
+    plan:              sub?.plan || p.plan,
+    amount:            sub?.amount != null ? sub.amount : order?.amount,
+    isRecurring:       !!sub,
+    statusLabel:       sub ? (sub.status || 'active') : 'active',
+    currentPeriodEnd:  sub?.currentPeriodEnd || null,
+    // For one-time orders, "plan ends" comes from the refill window cycle end.
+    planEndsAt:        !sub ? (portalData.refillWindow && portalData.refillWindow.cycleEndsAt) : null,
+  };
+}
+
+function renderRefillSummary(){
+  const rw=portalData.refillWindow||{};
+  if(!rw)return '';
+  const tx=(portalData.patient&&portalData.patient.treatment)||'';
+  if(['glutathione','micc','pt141'].includes(tx)){
+    return `<div style="display:flex;justify-content:space-between;align-items:center;gap:14px">
+      <div><div style="font-size:14px;font-weight:700;margin-bottom:2px">Auto-refill in progress</div><div style="font-size:13px;color:var(--gray-500)">Our care team is handling your next refill. Questions? <a href="mailto:care@clyr.health" style="color:var(--teal);font-weight:600">care@clyr.health</a></div></div>
+      <button class="btn btn-secondary" onclick="showPage('treatments');startRefill()">View status</button>
+    </div>`;
+  }
+  if(rw.isOpen){
+    return `<div style="display:flex;justify-content:space-between;align-items:center;gap:14px">
+      <div><div style="font-size:14px;font-weight:700;margin-bottom:2px">Your refill window is open</div><div style="font-size:13px;color:var(--gray-500)">${rw.message||'Complete the questionnaire to get your next prescription.'}</div></div>
+      <button class="btn btn-primary" onclick="showPage('treatments');startRefill()">Request refill</button>
+    </div>`;
+  }
+  return `<div style="display:flex;justify-content:space-between;align-items:center;gap:14px">
+    <div><div style="font-size:14px;font-weight:700;margin-bottom:2px">Refill opens ${fmtDate(rw.opensAt)}</div><div style="font-size:13px;color:var(--gray-500)">${rw.daysRemaining??0} days remaining in your current supply.</div></div>
+    <button class="btn btn-secondary" onclick="showPage('shots')">Track doses</button>
+  </div>`;
+}
+
+// Build a clickable tracking link if we recognize the carrier from the
+// number format. UPS is the dominant carrier for compounded shipments
+// (1Z prefix). FedEx and USPS fall back to a parcel-lookup link.
+function trackingLink(num, carrier){
+  if(!num) return '';
+  const n=String(num).trim();
+  let url=null;
+  const c=(carrier||'').toLowerCase();
+  if(c.includes('ups') || /^1Z/i.test(n)){
+    url=`https://www.ups.com/track?tracknum=${encodeURIComponent(n)}`;
+  } else if(c.includes('fedex') || /^\d{12}$|^\d{15}$/.test(n)){
+    url=`https://www.fedex.com/fedextrack/?trknbr=${encodeURIComponent(n)}`;
+  } else if(c.includes('usps') || /^9\d{15,21}$/.test(n)){
+    url=`https://tools.usps.com/go/TrackConfirmAction?tLabels=${encodeURIComponent(n)}`;
+  } else {
+    url=`https://parcelsapp.com/en/tracking/${encodeURIComponent(n)}`;
+  }
+  return `<a href="${url}" target="_blank" rel="noopener" style="color:var(--teal);font-weight:600;text-decoration:none">${escapeHtml(n)} \u2197</a>`;
+}
+
+function renderTimeline(){
+  const el=$('timelineSteps');
+  if(!el) return;
+  // Drive the journey card directly from /api/portal/timeline.
+  // Each event arrives with its own status (done | active | pending | cancelled)
+  // and timestamp, so we don't need to re-derive anything from portalData.stage.
+  if(!timelineEvents || !timelineEvents.length){
+    // Defensive fallback for the rare case where /timeline failed to load.
+    el.innerHTML='<div class="timeline-step"><div class="timeline-dot"></div><div class="timeline-label">Loading your treatment journey...</div></div>';
+    return;
+  }
+  el.innerHTML=timelineEvents.map(ev=>{
+    const cls = ev.status==='done' ? 'done'
+              : ev.status==='active' ? 'current'
+              : ev.status==='cancelled' ? 'cancelled'
+              : '';
+    const date = ev.timestamp ? fmtDate(ev.timestamp) : '';
+    // Step 5 gets a clickable tracking link if a tracking number is present.
+    const trackHtml = ev.trackingNumber
+      ? `<div class="timeline-desc" style="margin-top:4px">Tracking: ${trackingLink(ev.trackingNumber, ev.carrier)}</div>`
+      : '';
+    return `<div class="timeline-step ${cls}"><div class="timeline-dot"></div><div class="timeline-label">${escapeHtml(ev.label)}</div><div class="timeline-desc">${escapeHtml(ev.description||'')}</div>${trackHtml}${date?`<div class="timeline-date">${date}</div>`:''}</div>`;
+  }).join('');
+}
+
+// Render the per-treatment Journey picker. Hidden when the patient has only
+// one treatment (the picker would be a no-op pill row). Selecting a pill
+// fetches /timeline?productKey=X and re-renders the Journey card.
+function renderJourneyPicker(){
+  const picker=$('journeyPicker');
+  if(!picker)return;
+  const list=portalData?.treatments||[];
+  if(list.length<2){
+    picker.style.display='none';
+    picker.innerHTML='';
+    return;
+  }
+  picker.style.display='flex';
+  picker.innerHTML=list.map(t=>{
+    const isActive=t.product===selectedJourneyProduct;
+    return `<button onclick="switchJourneyProduct('${escapeAttr(t.product)}')" style="padding:8px 14px;border-radius:999px;border:1.5px solid ${isActive?'var(--teal)':'var(--gray-100)'};background:${isActive?'rgba(43,188,179,0.06)':'white'};color:${isActive?'var(--teal)':'var(--gray-600)'};font-weight:600;font-size:13px;cursor:pointer;font-family:inherit">${escapeHtml(t.productDisplay||t.product)}</button>`;
+  }).join('');
+}
+
+// Picker click — refetch the timeline for the selected product and re-render
+// the Journey card. Picker pill highlight updates too.
+async function switchJourneyProduct(productKey){
+  selectedJourneyProduct=productKey;
+  // Show a quick loading state while the fetch is in flight so the patient
+  // sees feedback for their click.
+  const el=$('timelineSteps');
+  if(el)el.innerHTML='<div class="timeline-step"><div class="timeline-dot"></div><div class="timeline-label">Loading...</div></div>';
+  try{
+    const t=await api(`/api/portal/timeline?productKey=${encodeURIComponent(productKey)}`);
+    timelineEvents=t.events||[];
+  }catch(e){
+    timelineEvents=[];
+  }
+  renderJourneyPicker();
+  renderTimeline();
+}
+
+function renderSuggested(){
+  // Filter out products the patient already has an active treatment for so we
+  // don't suggest something they bought yesterday.
+  const owned=new Set((portalData?.treatments||[]).map(t=>t.product));
+  const filtered=(suggestions||[]).filter(p=>!owned.has(p.key));
+  if(!filtered.length){$('suggestedSection').style.display='none';return;}
+  $('suggestedSection').style.display='block';
+  $('suggestedRow').innerHTML=filtered.slice(0,3).map(p=>`
+    <div class="suggest-card" onclick="openProductDetail('${escapeAttr(p.key)}')">
+      <div class="suggest-card-img"><img src="${resolveCatalogThumb(p)}" alt="" onerror="this.parentElement.innerHTML='💊'"></div>
+      <div class="suggest-card-body">
+        <div class="suggest-card-cat">${verticalLabel(p.vertical)}</div>
+        <div class="suggest-card-name">${escapeHtml(p.shortName)}</div>
+        <div class="suggest-card-price">From $${p.monthlyPrice}/mo</div>
+      </div>
+    </div>`).join('');
+}
+
+// ═══ ACCOUNT POPULATION ═══
+function populateAccount(){
+  const p=portalData.patient,tx=currentTreatmentView();
+  $('accName').textContent=`${p.firstName||''} ${p.lastName||''}`.trim()||'—';
+  $('accEmail').textContent=p.email||'—';
+  $('accPhone').textContent=p.phone||'—';
+  $('accMemberSince').textContent=fmtDate(p.memberSince);
+  // Current plan card — same line works for recurring and one-time.
+  if(tx){
+    const planLabel=({monthly:'Monthly','3month':'3 months','6month':'6 months','12month':'12 months'})[tx.plan]||tx.plan;
+    $('billPlan').textContent=`${tx.productDisplay} · ${planLabel}`;
+  } else {
+    $('billPlan').textContent='No active plan';
+  }
+  // Status — "active" for both recurring and a paid one-time, otherwise the sub status.
+  $('billStatus').textContent=tx?tx.statusLabel:'—';
+  const addr=p.shippingAddress;
+  $('billAddressText').textContent=addr?.street?`${addr.street}${addr.apt?`, ${addr.apt}`:''}, ${addr.city}, ${addr.state} ${addr.zip}`:'—';
+  // For monthly subs: show next billing date from Stripe. For one-time 3/6mo
+  // plans: there is no "next billing" — show when the current supply ends.
+  const billNextLabel=$('billNextLabel');
+  if(tx && !tx.isRecurring){
+    if(billNextLabel) billNextLabel.textContent='Plan ends';
+    $('billNextDate').textContent=tx.planEndsAt?fmtDate(tx.planEndsAt):'—';
+  } else {
+    if(billNextLabel) billNextLabel.textContent='Next billing date';
+    $('billNextDate').textContent=tx?.currentPeriodEnd?fmtDate(tx.currentPeriodEnd):'—';
+  }
+
+  // B6 auto-refill toggle. Only show the whole section to patients who
+  // actually have authorized refills — otherwise the toggle is a dead end
+  // (the cron's findEligible filters on refills_remaining > 0 too).
+  renderAutoRefillToggle();
+}
+
+// Render the Account page's auto-refill toggle based on the patient's
+// authorized refill count + current opt-in state. Hidden entirely for
+// patients with no refills (GLP-1 or pre-prescription wellness patients).
+function renderAutoRefillToggle(){
+  const sec=$('accAutoRefill');
+  if(!sec)return;
+  const refillsRemaining=portalData?.patient?.refillsRemaining||0;
+  const treatments=portalData?.treatments||[];
+  // Hide if no refills OR no active treatments. A patient with 11 refills
+  // but no current treatments (abandoned intake, all cancelled, etc.) has
+  // nothing to auto-refill, so the toggle would be a misleading green light.
+  if(refillsRemaining<=0 || treatments.length===0){
+    // Hide the whole section. The patient has nothing to auto-refill.
+    sec.style.display='none';
+    return;
+  }
+  sec.style.display='block';
+  const enabled=!!portalData?.patient?.autoRefillEnabled;
+  // Reflect current state on the toggle widget.
+  const checkbox=$('autoRefillToggle');
+  const track=$('autoRefillTrack');
+  const thumb=$('autoRefillThumb');
+  const stateLabel=$('autoRefillStateLabel');
+  const remainingLabel=$('autoRefillRemainingLabel');
+  if(checkbox)checkbox.checked=enabled;
+  if(track)track.style.background=enabled?'var(--teal)':'var(--gray-200)';
+  if(thumb)thumb.style.transform=enabled?'translateX(20px)':'translateX(0)';
+  if(stateLabel)stateLabel.textContent=enabled?'Auto-refill is on':'Auto-refill is off';
+  if(remainingLabel){
+    const word=refillsRemaining===1?'refill':'refills';
+    remainingLabel.textContent=`${refillsRemaining} authorized ${word} remaining on your script`;
+  }
+}
+
+// Toggle handler — POSTs to /preferences/auto-refill, then re-reads /me
+// so the UI reflects the server-side truth (the backend can refuse to
+// flip ON for patients with refills_remaining <= 0).
+async function toggleAutoRefill(enabled){
+  // Optimistic UI lock so a double-click can't fire two requests.
+  const checkbox=$('autoRefillToggle');
+  if(checkbox)checkbox.disabled=true;
+  try {
+    await api('/api/portal/preferences/auto-refill',{
+      method:'POST',
+      body:JSON.stringify({enabled})
+    });
+    track('portal_auto_refill_toggled',{enabled});
+    // Local mutation so the toggle reflects immediately; /me on next load
+    // will confirm.
+    if(portalData?.patient)portalData.patient.autoRefillEnabled=enabled;
+    renderAutoRefillToggle();
+  } catch(e) {
+    // Revert checkbox state on failure (e.g. backend refused because
+    // refills_remaining == 0)
+    if(checkbox)checkbox.checked=!enabled;
+    renderAutoRefillToggle();
+    alert(e.message||'Could not update auto-refill setting.');
+  } finally {
+    if(checkbox)checkbox.disabled=false;
+  }
+}
+
+// ═══ PAGE ROUTING ═══
+function showPage(page){
+  currentPage=page;
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.toggle('active',n.dataset.page===page));
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  $('page'+page.charAt(0).toUpperCase()+page.slice(1)).classList.add('active');
+
+  if(page==='chat')setChatChannel(chatChannel);
+  if(page==='treatments')loadTreatments();
+  if(page==='shots')loadShots();
+  if(page==='shop')loadShop();
+}
+
+// ═══ MESSAGES ═══
+// Chat channel state (persisted across reloads)
+let chatChannel = localStorage.getItem('th_chat_channel') || 'doctor';
+
+function setChatChannel(channel){
+  chatChannel = channel;
+  localStorage.setItem('th_chat_channel', channel);
+  document.querySelectorAll('[data-chat-tab]').forEach(t => t.classList.toggle('active', t.dataset.chatTab === channel));
+  // Re-skin the input placeholder for context
+  const inp = $('msgInput');
+  if (inp) inp.placeholder = channel === 'doctor'
+    ? 'Type a message to your provider...'
+    : 'Type a message to the CLYR support team...';
+  loadMessages();
+}
+
+async function loadMessages(){
+  const list=$('msgList');
+  list.innerHTML='<div class="loading"><div class="spinner"></div>Loading messages...</div>';
+  const channel = chatChannel || 'doctor';
+  const url = channel === 'support' ? '/api/portal/support-messages' : '/api/portal/messages';
+  const emptyTitle = channel === 'support' ? 'No support messages yet' : 'No messages yet';
+  const emptyMsg = channel === 'support'
+    ? 'Ask the CLYR team anything about billing, shipping, or your account. Non-medical questions go here.'
+    : 'Send a message below to start a conversation with your provider.';
+  try{
+    const data=await api(url);
+    const msgs=data.messages||[];
+    if(!msgs.length){
+      const noteHtml=data.note?`<div class="empty-msg" style="margin-top:8px;font-style:italic">${escapeHtml(data.note)}</div>`:'';
+      list.innerHTML=`<div class="empty"><div class="empty-icon">💬</div><div class="empty-title">${emptyTitle}</div><div class="empty-msg">${emptyMsg}</div>${noteHtml}</div>`;
+      return;
+    }
+    list.innerHTML=msgs.map(m=>{
+      const fromPatient=m.senderType==='patient'||m.fromPatient;
+      const text=m.text||m.body||'';
+      const cls=fromPatient?'msg-from-patient':'msg-from-provider';
+      return `<div><div class="msg ${cls}">${escapeHtml(text)}</div><div class="msg-meta" style="text-align:${fromPatient?'right':'left'}">${timeAgo(m.createdAt)}</div></div>`;
+    }).join('');
+    list.scrollTop=list.scrollHeight;
+  }catch(e){
+    list.innerHTML=`<div class="empty"><div class="empty-icon">💬</div><div class="empty-title">${emptyTitle}</div><div class="empty-msg">${emptyMsg}</div></div>`;
+  }
+}
+
+async function sendMessage(){
+  const text=$('msgInput').value.trim();
+  if(!text)return;
+  const btn=$('btnSendMsg');btn.disabled=true;
+  const url = chatChannel === 'support' ? '/api/portal/support-messages' : '/api/portal/messages';
+  try{
+    await api(url,{method:'POST',body:JSON.stringify({text})});
+    $('msgInput').value='';
+    await loadMessages();
+  }catch(e){
+    alert('Failed to send: '+e.message);
+  }finally{
+    btn.disabled=false;
+  }
+}
+
+// ═══ TREATMENTS ═══
+function loadTreatments(){
+  if(!portalData)return;
+  const active=$('treatmentsActive');
+  const list=portalData.treatments||[];
+
+  if(!list.length){
+    // Fallback path for older /me responses without treatments[].
+    const legacy=currentTreatmentView();
+    if(!legacy){
+      active.innerHTML=`<div class="card"><div class="empty"><div class="empty-icon">🩺</div><div class="empty-title">No active treatments</div><div class="empty-msg">Once your provider approves your treatment, it will appear here.</div></div></div>${renderAddTreatmentCta()}`;
+    } else {
+      const synth={
+        product: legacy.product,
+        productDisplay: legacy.productDisplay,
+        productImage: legacy.productImage,
+        vertical: legacy.vertical,
+        plan: legacy.plan,
+        isRecurring: legacy.isRecurring,
+        amount: legacy.amount,
+        status: legacy.statusLabel,
+        cancelAt: null,
+        refillWindow: portalData.refillWindow || {},
+        encounter: portalData.encounter || null
+      };
+      active.innerHTML=renderTreatmentCardHtml(synth)+renderAddTreatmentCta();
+    }
+  } else {
+    active.innerHTML=list.map(renderTreatmentCardHtml).join('')+renderAddTreatmentCta();
+  }
+  $('treatmentsPending').innerHTML=`<div class="card"><div class="empty"><div class="empty-icon">📋</div><div class="empty-title">No pending treatments</div><div class="empty-msg">Treatments awaiting provider review will show here.</div></div></div>`;
+}
+
+// "Add a treatment" CTA shown at the bottom of the treatments list. Click
+// opens the in-portal Shop page where each product opens its detail modal.
+function renderAddTreatmentCta(){
+  return `<div style="margin-top:16px;text-align:center">
+    <button class="btn btn-secondary" onclick="showPage('shop')" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Add a treatment
+    </button>
+  </div>`;
+}
+
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-tx-tab]');
+  if(t){
+    document.querySelectorAll('[data-tx-tab]').forEach(b=>b.classList.toggle('active',b===t));
+    const which=t.dataset.txTab;
+    $('treatmentsActive').style.display=which==='active'?'block':'none';
+    $('treatmentsPending').style.display=which==='pending'?'block':'none';
+  }
+  const c=e.target.closest('[data-chat-tab]');
+  if(c){
+    setChatChannel(c.dataset.chatTab);
+  }
+});
+
+// ═══ REFILL FLOW (branches on patient.refillFlow) ═══
+// Treatments awaiting Karin's approved refill questionnaire — show the manual-care message
+// instead of the in-portal refill form until MDI templates are live.
+const AUTO_REFILL_PENDING = ['glutathione','micc','pt141'];
+function startRefill(){
+  if(!portalData)return;
+  const tx=(portalData.patient&&portalData.patient.treatment)||'';
+  if(AUTO_REFILL_PENDING.includes(tx)){
+    $('refillSection').style.display='block';
+    $('refillFormArea').innerHTML=`
+      <div class="empty" style="padding:32px 20px">
+        <div class="empty-icon">🔄</div>
+        <div class="empty-title">Auto-refill in progress</div>
+        <div class="empty-msg">
+          Your next ${escapeHtml(portalData.patient.treatmentDisplay||'treatment')} refill is being handled by our care team. No questionnaire needed on your end.
+          If you have questions or want to adjust your plan, email <a href="mailto:care@clyr.health" style="color:var(--teal);font-weight:600">care@clyr.health</a> and we'll respond within one business day.
+        </div>
+        <div style="margin-top:18px">
+          <button class="btn btn-secondary" onclick="$('refillSection').style.display='none'">Got it</button>
+        </div>
+      </div>`;
+    $('refillFormArea').scrollIntoView({behavior:'smooth',block:'start'});
+    return;
+  }
+  const rw=portalData.refillWindow;
+  $('refillSection').style.display='block';
+  // Gate by window state. Allow if open OR expired (overdue patients still need to request).
+  if(rw && !rw.isOpen && !rw.isExpired){
+    const opensAt=rw.opensAt?new Date(rw.opensAt):null;
+    const daysLeft=rw.daysRemaining??(opensAt?Math.max(0,Math.ceil((opensAt-new Date())/86400000)):null);
+    const opensLabel=opensAt?opensAt.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):'soon';
+    $('refillFormArea').innerHTML=`
+      <div class="empty" style="padding:32px 20px">
+        <div class="empty-icon">📅</div>
+        <div class="empty-title">Refill window not open yet</div>
+        <div class="empty-msg">
+          Your refill window opens on <strong>${escapeHtml(opensLabel)}</strong>${daysLeft?`, about ${daysLeft} day${daysLeft===1?'':'s'} from now`:''}.
+          We open it 10 days before your supply runs out so your provider has time to review and your pharmacy has time to ship.
+        </div>
+        <div style="margin-top:18px">
+          <button class="btn btn-secondary" onclick="$('refillSection').style.display='none'">Got it</button>
+        </div>
+      </div>`;
+    $('refillFormArea').scrollIntoView({behavior:'smooth',block:'start'});
+    return;
+  }
+  const flow=portalData.patient.refillFlow||'generic';
+  if(flow==='glp1')renderGlp1Refill();
+  else renderGenericRefill();
+  $('refillFormArea').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function renderGenericRefill(){
+  const productLabel=portalData.patient.treatmentDisplay||'your treatment';
+  $('refillFormArea').innerHTML=`
+    <h3 style="font-size:16px;font-weight:700;margin-bottom:6px">Refill request · ${escapeHtml(productLabel)}</h3>
+    <p style="font-size:14px;color:var(--gray-500);margin-bottom:18px">Quick check-in so your provider can issue your next prescription.</p>
+
+    <div class="q-item"><label class="q-label q-required">How is your treatment going?</label>
+      <select class="q-select" id="r_progress"><option value="">Select...</option><option>Going well, no issues</option><option>Mild side effects but tolerable</option><option>Noticeable side effects, want to discuss</option><option>Not seeing the results I expected</option></select></div>
+
+    <div class="q-item"><label class="q-label">Any side effects since your last visit?</label>
+      <textarea class="q-input" id="r_sideeffects" rows="2" placeholder="Optional. Briefly describe anything you've noticed."></textarea></div>
+
+    <div class="q-item"><label class="q-label">Any new medications, supplements, or medical changes?</label>
+      <textarea class="q-input" id="r_changes" rows="2" placeholder="Optional. List anything new your provider should know."></textarea></div>
+
+    <div class="q-item"><label class="q-label q-required">For your next supply, would you like to:</label>
+      <select class="q-select" id="r_continue"><option value="">Select...</option><option>Continue the same plan</option><option>Discuss dose or frequency adjustment</option><option>Discuss pausing or stopping</option></select></div>
+
+    <button class="btn btn-primary" style="margin-top:10px" onclick="submitGenericRefill()">Submit refill request →</button>`;
+}
+
+async function submitGenericRefill(){
+  const payload={
+    refillFlow:'generic',
+    answers:{
+      progress:$('r_progress').value,
+      sideEffects:$('r_sideeffects').value.trim(),
+      changes:$('r_changes').value.trim(),
+      continueOrChange:$('r_continue').value,
+    }
+  };
+  if(!payload.answers.progress||!payload.answers.continueOrChange){
+    alert('Please answer the required questions.');return;
+  }
+  try{
+    await api('/api/portal/refill',{method:'POST',body:JSON.stringify(payload)});
+    $('refillFormArea').innerHTML=`<div class="empty"><div class="empty-icon">✅</div><div class="empty-title">Refill request submitted</div><div class="empty-msg">Your provider will review and reach out within 24 to 48 hours.</div></div>`;
+  }catch(e){alert('Could not submit: '+e.message);}
+}
+
+function renderGlp1Refill(){
+  $('refillFormArea').innerHTML=`
+    <h3 style="font-size:16px;font-weight:700;margin-bottom:6px">Refill request · ${escapeHtml(portalData.patient.treatmentDisplay)}</h3>
+    <p style="font-size:14px;color:var(--gray-500);margin-bottom:18px">A few quick questions so your provider can issue your next prescription.</p>
+
+    <div class="q-item"><label class="q-label q-required">Over the past 4 weeks, approximately how many pounds have you lost?</label>
+      <select class="q-select" id="g_pounds"><option value="">Select...</option><option>0-3 pounds</option><option>4-6 pounds</option><option>7-12 pounds</option><option>13-20 pounds</option><option>More than 20 pounds</option><option>I&#39;m gaining weight</option></select></div>
+
+    <div class="q-item"><label class="q-label q-required">Current weight (lbs)</label>
+      <input class="q-input" type="number" id="g_weight" min="80" max="600" placeholder="e.g. 185"></div>
+
+    <div class="q-item"><label class="q-label q-required">How is your appetite suppression?</label>
+      <select class="q-select" id="g_appetite"><option value="">Select...</option><option>Strong, eating much less</option><option>Moderate, noticeable reduction</option><option>Mild, small change</option><option>None, appetite is back</option></select></div>
+
+    <div class="q-item"><label class="q-label q-required">For your next dose, would you like to:</label>
+      <select class="q-select" id="g_dose"><option value="">Select...</option><option>Stay at the same dose</option><option>Decrease the dose</option></select>
+      <div style="font-size:11.5px;color:var(--gray-400);margin-top:4px">Looking to increase your dose? Message your provider so they can review it directly.</div></div>
+
+    <div class="q-item"><label class="q-label">Any side effects to discuss?</label>
+      <textarea class="q-input" id="g_se" rows="2" placeholder="Optional."></textarea></div>
+
+    <button class="btn btn-primary" style="margin-top:10px" onclick="submitGlp1Refill()">Submit refill request →</button>`;
+}
+
+// GLP-1 refills are PAYMENT-FIRST (fix June 2026): collect the refill answers,
+// then have the patient pick a term and pay BEFORE any prescription is created.
+// The backend /refill/checkout returns a Stripe clientSecret; the webhook builds
+// the Strive case only after payment succeeds. (Renewal incident root-cause fix.)
+function glp1RefillAnswers(){
+  const a={
+    q30: ($('g_pounds').value || '').trim(),
+    q40: ($('g_weight').value || '').trim(),
+    q60: ($('g_appetite').value || '').trim(),
+    q159: 'No', q160: '',
+    q200: ($('g_se').value || '').trim() || 'NONE of the above',
+    q260: 'I agree',
+    q300: ($('g_dose').value || '').trim(),
+    q400: ($('g_se').value || '').trim()
+  };
+  return a;
+}
+
+function submitGlp1Refill(){
+  const answers = glp1RefillAnswers();
+  if(!answers.q30 || !answers.q40 || !answers.q60 || !answers.q300){
+    alert('Please answer the required questions.');return;
+  }
+  // Determine pricing from the patient's product (Tirz vs Sema).
+  const tx=((portalData.patient&&portalData.patient.treatment)||'').toLowerCase();
+  const isTirz=tx.includes('tirz');
+  const oneMo=isTirz?320:225;
+  const threeMo=isTirz?777:537;
+  const threePer=Math.round(threeMo/3);
+  // Stash answers on window so the term buttons can read them.
+  window._glp1RefillAnswers=answers;
+  $('refillFormArea').innerHTML=`
+    <h3 style="font-size:16px;font-weight:700;margin-bottom:6px">Choose your plan</h3>
+    <p style="font-size:14px;color:var(--gray-500);margin-bottom:18px">Your provider reviews every refill. We ship 30 days at a time for freshness; the 3-month plan is billed once and refills automatically each month.</p>
+    <div style="display:flex;flex-direction:column;gap:10px;max-width:430px">
+      <button class="refill-term-btn" onclick="startGlp1RefillCheckout('1month')" style="text-align:left;background:var(--white);border:1px solid var(--gray-200);border-radius:14px;padding:16px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center">
+        <span><span style="font-weight:700;font-size:15.5px;display:block">1 Month</span><span style="font-size:12.5px;color:var(--gray-500)">30-day supply · cancel anytime</span></span>
+        <span style="font-weight:800;font-size:19px">$${oneMo}<span style="font-size:12px;font-weight:600;color:var(--gray-500)">/mo</span></span>
+      </button>
+      <button class="refill-term-btn" onclick="startGlp1RefillCheckout('3month')" style="text-align:left;background:var(--teal-light,#e6f7f5);border:1.5px solid var(--teal,#2bbcb3);border-radius:14px;padding:16px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center">
+        <span><span style="font-weight:700;font-size:15.5px;display:block">3 Months <span style="font-size:11px;color:var(--teal,#2bbcb3);font-weight:700;text-transform:uppercase;letter-spacing:.04em">Best value</span></span><span style="font-size:12.5px;color:var(--gray-500)">Billed once · ships monthly · ~$${threePer}/mo</span></span>
+        <span style="font-weight:800;font-size:19px">$${threeMo}</span>
+      </button>
+    </div>
+    <div id="glp1CheckoutMount" style="display:none;margin-top:20px"></div>`;
+}
+
+async function startGlp1RefillCheckout(term){
+  const answers = window._glp1RefillAnswers;
+  if(!answers){alert('Please complete the questionnaire again.');return;}
+  document.querySelectorAll('.refill-term-btn').forEach(b=>{b.disabled=true;b.style.opacity='0.5';});
+  const mount=$('glp1CheckoutMount');
+  mount.style.display='block';
+  mount.innerHTML='<div style="color:var(--gray-500);font-size:14px">Preparing secure checkout...</div>';
+  try{
+    const [stripe, session] = await Promise.all([
+      loadStripeJs(),
+      api('/api/portal/refill/checkout',{method:'POST',body:JSON.stringify({answers, term})})
+    ]);
+    if(!session.clientSecret) throw new Error(session.error||'No checkout session returned');
+    mount.innerHTML='<div id="glp1CheckoutContainer"></div>';
+    const ec = await stripe.initEmbeddedCheckout({
+      clientSecret: session.clientSecret,
+      onComplete: async () => {
+        try{ track('portal_glp1_refill_paid',{term}); }catch(e){}
+        mount.innerHTML=`
+          <div style="text-align:center;padding:32px 20px">
+            <div style="font-size:48px;margin-bottom:12px">✓</div>
+            <div style="font-size:20px;font-weight:700;margin-bottom:6px">Payment received</div>
+            <div style="font-size:14px;color:var(--gray-500);margin-bottom:18px">Your provider will review your refill and your prescription will be sent to the pharmacy. You'll get tracking once it ships.</div>
+            <button class="btn btn-primary" onclick="showPage('home');loadHome()">Back to portal</button>
+          </div>`;
+    }});
+    ec.mount('#glp1CheckoutContainer');
+  }catch(e){
+    if(e && (e.paymentRequired || /payment/i.test(e.message||''))){
+      mount.innerHTML='<div style="color:#c0392b;font-size:14px">'+(e.message||'Payment is required to submit your refill.')+'</div>';
+    } else {
+      mount.innerHTML='<div style="color:#c0392b;font-size:14px">Could not start checkout: '+(e.message||'unknown error')+'. Please contact care@clyr.health.</div>';
+    }
+    document.querySelectorAll('.refill-term-btn').forEach(b=>{b.disabled=false;b.style.opacity='1';});
+  }
+}
+// ═══ SHOTS ═══
+let dosesCache=[];  // current patient's doses, populated by loadShots
+let shotsProduct=null; // resolved product object for the patient's current treatment
+let selectedShotsProductKey=null; // for multi-product patients, which treatment the Shots view is currently focused on
+
+async function loadShots(forceRefresh){
+  if(!portalData){return;}
+  // When called after a dose mutation (log/delete/clear) pass forceRefresh=true
+  // so the in-memory dosesCache is re-fetched. Without this the view re-renders
+  // off the stale pre-mutation cache and the new dose appears to vanish until a
+  // full page reload.
+  if(forceRefresh){dosesCache=[];}
+  // Ensure catalog is loaded so we can resolve product metadata (form, half-life, dose).
+  if(!catalog){
+    try{const d=await api('/api/portal/catalog');catalog=d.catalog;}catch(e){}
+  }
+
+  // Build the list of injectable treatments — Shots is a shot/injection log, so
+  // we filter out oral SKUs (tablets, gummies, ODTs). A patient on five products
+  // might have only two that are injections; the picker shows only those.
+  const allTreatments = portalData?.treatments || [];
+  const injectables = allTreatments
+    .map(t => ({tx: t, prod: findCatalogProductGlobal(t.product)}))
+    .filter(x => x.prod && x.prod.form === 'injection');
+
+  if (!injectables.length){
+    // No injectable treatments — show empty state but keep the door open for
+    // oral logging later (could route to a "Doses" tab eventually).
+    $('shotsContent').innerHTML=`<div class="card"><div class="empty"><div class="empty-icon">💉</div><div class="empty-title">No injectable treatments yet</div><div class="empty-msg">Once you're on an injectable like Tirzepatide, NAD+, or Sermorelin, this is where you'll log doses and see your medication schedule.</div></div></div>`;
+    return;
+  }
+
+  // Pick which injectable the view is focused on. Honor an explicit user choice
+  // first; otherwise default to whichever this patient has logged a dose for
+  // most recently, falling back to the first treatment in the list.
+  let chosen = injectables.find(x => x.tx.product === selectedShotsProductKey);
+  if (!chosen) {
+    // Pre-load doses cache so we can pick based on usage. Cheap because the
+    // doses query is unfiltered already.
+    try { const data=await api('/api/portal/doses?limit=200'); dosesCache=(data.doses||[]).map(d=>({...d,takenAt:new Date(d.takenAt)})).sort((a,b)=>b.takenAt-a.takenAt); } catch(e){ dosesCache=[]; }
+    const mostRecent = dosesCache.find(d => injectables.find(x => x.tx.product === d.productKey));
+    if (mostRecent) chosen = injectables.find(x => x.tx.product === mostRecent.productKey);
+    if (!chosen) chosen = injectables[0];
+    selectedShotsProductKey = chosen.tx.product;
+  }
+  shotsProduct = chosen.prod;
+
+  // Refresh doses if we haven't already
+  if (!dosesCache.length) {
+    $('shotsContent').innerHTML=`<div class="loading"><div class="spinner"></div>Loading your dose history...</div>`;
+    try{
+      const data=await api('/api/portal/doses?limit=200');
+      dosesCache=(data.doses||[]).map(d=>({...d,takenAt:new Date(d.takenAt)})).sort((a,b)=>b.takenAt-a.takenAt);
+    }catch(e){
+      $('shotsContent').innerHTML=`<div class="card"><div class="empty"><div class="empty-icon">⚠️</div><div class="empty-title">Could not load doses</div><div class="empty-msg">${escapeHtml(e.message)}</div></div></div>`;
+      return;
+    }
+  }
+  renderShots(injectables);
+}
+
+function findCatalogProduct(treatment){
+  if(!catalog||!treatment)return null;
+  const key=String(treatment).toLowerCase();
+  for(const products of Object.values(catalog)){
+    for(const p of products){
+      if(p.key===key)return p;
+    }
+  }
+  return null;
+}
+
+function renderShots(injectables){
+  // Filter dose history to the selected product only — a patient on three
+  // injectables sees only THIS product's doses in the log and PK chart.
+  const allDoses = dosesCache;
+  const doses = allDoses.filter(d => d.productKey === selectedShotsProductKey);
+  const last=doses[0]||null;
+  const thisMonth=doses.filter(d=>(new Date()-d.takenAt)<30*86400000).length;
+  const halfLife=shotsProduct?.halfLifeHours;
+  const defaultDose=shotsProduct?.defaultDose;
+  const defaultUnit=shotsProduct?.defaultDoseUnit||'mg';
+  const schedule=shotsProduct?.doseSchedule||'';
+
+  // Build the treatment picker pill row — only shown when the patient has more
+  // than one injectable. Single-injectable patients see the existing layout.
+  const pickerHtml = (injectables && injectables.length > 1) ? `
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;padding:4px">
+      ${injectables.map(x => {
+        const isActive = x.tx.product === selectedShotsProductKey;
+        return `<button onclick="switchShotsProduct('${escapeAttr(x.tx.product)}')" style="padding:8px 14px;border-radius:999px;border:1.5px solid ${isActive?'var(--teal)':'var(--gray-100)'};background:${isActive?'rgba(43,188,179,0.06)':'white'};color:${isActive?'var(--teal)':'var(--gray-600)'};font-weight:600;font-size:13px;cursor:pointer;font-family:inherit">${escapeHtml(x.prod.displayName||x.tx.productDisplay||x.tx.product)}</button>`;
+      }).join('')}
+    </div>` : '';
+
+  $('shotsContent').innerHTML=`
+    ${pickerHtml}
+    <div class="card" style="margin-bottom:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap">
+        <div>
+          <div style="font-size:13px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">Current treatment</div>
+          <div style="font-size:18px;font-weight:700">${escapeHtml(shotsProduct?.displayName||'Your treatment')}</div>
+          <div style="font-size:13px;color:var(--gray-500);margin-top:2px">${(shotsProduct?.key==='tirzepatide'||shotsProduct?.key==='semaglutide'||/tirzepatide|semaglutide/i.test(shotsProduct?.displayName||''))?'Refer to your prescription for dosage':escapeHtml(schedule)+(defaultDose?` · ${defaultDose} ${defaultUnit} per dose`:'')}</div>
+        </div>
+        <button class="btn btn-primary" onclick="openDoseModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="15" height="15"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Log a dose</button>
+      </div>
+    </div>
+
+    <div class="shot-stat-grid">
+      <div class="shot-stat"><div class="shot-stat-label">Doses taken</div><div class="shot-stat-val">${doses.length}</div></div>
+      <div class="shot-stat"><div class="shot-stat-label">Last dose</div><div class="shot-stat-val" style="font-size:16px">${last?fmtDate(last.takenAt):'—'}</div></div>
+      <div class="shot-stat"><div class="shot-stat-label">This month</div><div class="shot-stat-val">${thisMonth}</div></div>
+    </div>
+
+    ${halfLife&&doses.length?`<div class="card" style="margin-bottom:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+        <div>
+          <div style="font-size:13px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Estimated medication level</div>
+          <div style="font-size:12px;color:var(--gray-400)">Based on a ${halfLife}-hour half-life. Estimate only, not a clinical measurement.</div>
+        </div>
+        <div style="font-size:11px;color:var(--gray-400)">Last 60 days</div>
+      </div>
+      <div id="pkChartArea">${renderPkChart(doses,halfLife,defaultUnit)}</div>
+    </div>`:''}
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+        <div style="font-size:13px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.06em">Dose history</div>
+        ${doses.length?`<button class="quick-action" style="padding:6px 12px;font-size:12px" onclick="clearAllDoses()">Clear log</button>`:''}
+      </div>
+      ${doses.length?doses.map(d=>`
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--gray-100);font-size:14px">
+          <div style="flex:1">
+            <div style="font-weight:600">${fmtDate(d.takenAt)} <span style="color:var(--gray-400);font-weight:500">· ${d.takenAt.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})}</span></div>
+            <div style="font-size:12px;color:var(--gray-500);margin-top:2px">${d.amount?`${d.amount} ${d.unit||''}`:''}${d.site?` · ${escapeHtml(d.site)}`:''}${d.note?` · ${escapeHtml(d.note)}`:''}</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-size:13px;color:var(--gray-500)">${timeAgo(d.takenAt)}</span>
+            <button onclick="deleteDose(${d.id})" title="Delete dose" style="background:none;border:none;color:var(--gray-400);cursor:pointer;padding:4px;font-size:18px;line-height:1">×</button>
+          </div>
+        </div>`).join(''):'<div class="empty" style="padding:24px"><div style="font-size:13px;color:var(--gray-500)">No doses logged for this treatment yet. Tap "Log a dose" after your next injection.</div></div>'}
+    </div>`;
+}
+
+// Picker click handler — update which injectable Shots is focused on, then
+// re-render. Doses cache is shared across products (one query covers all),
+// so this is purely a client-side filter swap.
+function switchShotsProduct(productKey){
+  selectedShotsProductKey = productKey;
+  loadShots();
+}
+
+// Render an SVG line chart of estimated medication level over time.
+// Time axis: 60 days back through today.
+// Y axis: sum-of-exponential-decay of all doses up to point t.
+function renderPkChart(doses,halfLifeHours,unit){
+  const W=720,H=180,P=24;  // viewBox + padding
+  const now=Date.now();
+  const startMs=now-60*86400000;
+  const buckets=80; // samples across 60d window
+  const k=Math.LN2/halfLifeHours; // decay constant per hour
+  // For each bucket, compute sum over all doses where doseTime<=bucketTime of amount*exp(-k*(bucketTime-doseTime)/hours)
+  const xs=[];const ys=[];
+  for(let i=0;i<=buckets;i++){
+    const t=startMs+(now-startMs)*(i/buckets);
+    let level=0;
+    for(const d of doses){
+      const dt=d.takenAt.getTime();
+      if(dt>t)continue;
+      const hoursSince=(t-dt)/3_600_000;
+      level+=(d.amount||shotsProduct?.defaultDose||1)*Math.exp(-k*hoursSince);
+    }
+    xs.push(t);ys.push(level);
+  }
+  const maxY=Math.max(...ys,0.001);
+  const pts=xs.map((t,i)=>{
+    const x=P+(W-2*P)*((t-startMs)/(now-startMs));
+    const y=H-P-(H-2*P)*(ys[i]/maxY);
+    return `${x.toFixed(1)},${y.toFixed(1)}`;
+  });
+  // Build path with smooth line + filled area
+  const linePath='M '+pts.join(' L ');
+  const areaPath=`M ${P} ${H-P} L ${pts.join(' L ')} L ${W-P} ${H-P} Z`;
+  // X-axis labels (4 ticks: -60d, -45d, -30d, -15d, today)
+  const xTicks=[60,45,30,15,0].map(daysBack=>{
+    const t=now-daysBack*86400000;
+    const x=P+(W-2*P)*((t-startMs)/(now-startMs));
+    const lab=daysBack===0?'Today':`-${daysBack}d`;
+    return `<text x="${x.toFixed(1)}" y="${H-6}" font-size="10" fill="#94A3B0" text-anchor="middle" font-family="DM Sans, sans-serif">${lab}</text>`;
+  }).join('');
+  // Today indicator
+  const todayX=W-P;
+  // Dose dots
+  const dots=doses.filter(d=>d.takenAt.getTime()>=startMs).map(d=>{
+    const t=d.takenAt.getTime();
+    const x=P+(W-2*P)*((t-startMs)/(now-startMs));
+    // y = level at exactly this point
+    let level=0;
+    for(const d2 of doses){const dt=d2.takenAt.getTime();if(dt>t)continue;level+=(d2.amount||shotsProduct?.defaultDose||1)*Math.exp(-k*(t-dt)/3_600_000);}
+    const y=H-P-(H-2*P)*(level/maxY);
+    return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.5" fill="#00B4C5" stroke="white" stroke-width="1.5"/>`;
+  }).join('');
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="none" style="display:block;height:180px">
+    <defs>
+      <linearGradient id="pkGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#00B4C5" stop-opacity="0.25"/>
+        <stop offset="100%" stop-color="#00B4C5" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <line x1="${P}" y1="${H-P}" x2="${W-P}" y2="${H-P}" stroke="#E2E7EB" stroke-width="1"/>
+    <line x1="${todayX}" y1="${P}" x2="${todayX}" y2="${H-P}" stroke="#E2E7EB" stroke-width="1" stroke-dasharray="3,3"/>
+    <path d="${areaPath}" fill="url(#pkGrad)"/>
+    <path d="${linePath}" fill="none" stroke="#00B4C5" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+    ${dots}
+    ${xTicks}
+    <text x="${W-P-2}" y="${P-4}" font-size="10" fill="#00B4C5" text-anchor="end" font-family="DM Sans, sans-serif" font-weight="600">~${maxY.toFixed(1)} ${unit||''} peak</text>
+  </svg>`;
+}
+
+// ─── Dose modal ───
+function openDoseModal(){
+  const tx=currentTreatmentView();
+  const product=shotsProduct;
+  const defaultDose=product?.defaultDose||'';
+  const defaultUnit=product?.defaultDoseUnit||'mg';
+  const productLabel=tx?.productDisplay||product?.displayName||'your treatment';
+  const sites=product?.form==='injection'?['Abdomen','Upper thigh','Upper arm','Buttock','Other']:[];
+  const siteHtml=sites.length?`<div class="q-item"><label class="q-label">Injection site</label>
+      <select class="q-select" id="dose_site"><option value="">(skip)</option>${sites.map(s=>`<option>${s}</option>`).join('')}</select></div>`:'';
+  document.body.insertAdjacentHTML('beforeend',`
+    <div id="doseModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;z-index:1000;padding:20px;animation:fadeIn 0.15s">
+      <div style="background:white;border-radius:18px;padding:24px;max-width:440px;width:100%;box-shadow:var(--shadow-lg);max-height:90vh;overflow-y:auto">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px">
+          <div>
+            <h3 style="font-size:18px;font-weight:700;margin-bottom:4px">Log a dose</h3>
+            <div style="font-size:13px;color:var(--gray-500)">${escapeHtml(productLabel)}</div>
+          </div>
+          <button onclick="closeDoseModal()" style="background:none;border:none;font-size:24px;line-height:1;color:var(--gray-400);cursor:pointer;padding:0">&times;</button>
+        </div>
+        <div class="q-item" style="padding:8px 0"><label class="q-label">When did you take it?</label>
+          <input class="q-input" type="datetime-local" id="dose_when" value="${nowDatetimeLocal()}"></div>
+        <div class="q-item" style="padding:8px 0"><label class="q-label">Amount${defaultDose?` <span style="color:var(--gray-400);font-weight:500">(typical: ${defaultDose} ${defaultUnit})</span>`:''}</label>
+          <div style="display:flex;gap:8px">
+            <input class="q-input" type="number" id="dose_amount" step="0.01" placeholder="${defaultDose||'e.g. 2.5'}" style="flex:1">
+            <input class="q-input" type="text" id="dose_unit" value="${defaultUnit}" style="width:80px;text-align:center">
+          </div></div>
+        ${siteHtml}
+        <div class="q-item" style="padding:8px 0"><label class="q-label">Note <span style="color:var(--gray-400);font-weight:500">(optional)</span></label>
+          <textarea class="q-input" id="dose_note" rows="2" placeholder="Anything you want to remember about this dose"></textarea></div>
+        <div style="display:flex;gap:10px;margin-top:14px">
+          <button class="btn btn-secondary" style="flex:1" onclick="closeDoseModal()">Cancel</button>
+          <button class="btn btn-primary" style="flex:1" id="btnSubmitDose" onclick="submitDose()">Log dose</button>
+        </div>
+      </div>
+    </div>`);
+}
+
+function nowDatetimeLocal(){
+  const d=new Date();
+  const pad=n=>String(n).padStart(2,'0');
+  return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+
+function closeDoseModal(){const m=$('doseModal');if(m)m.remove();}
+
+async function submitDose(){
+  const btn=$('btnSubmitDose');btn.disabled=true;btn.textContent='Logging...';
+  // Always tag the dose with which treatment it's for — for a multi-product
+  // patient the backend's fallback to customer.treatment would mis-attribute
+  // the dose. Pick from selectedShotsProductKey (set when the Shots tab is
+  // open) or fall back to the patient's current product view.
+  const productKey = selectedShotsProductKey || currentTreatmentView()?.product;
+  const payload={
+    productKey,
+    takenAt:new Date($('dose_when').value).toISOString(),
+    amount:$('dose_amount').value||undefined,
+    unit:$('dose_unit').value||undefined,
+    site:$('dose_site')?.value||undefined,
+    note:$('dose_note').value||undefined,
+  };
+  try{
+    await api('/api/portal/doses',{method:'POST',body:JSON.stringify(payload)});
+    closeDoseModal();
+    await loadShots(true);
+  }catch(e){
+    btn.disabled=false;btn.textContent='Log dose';
+    alert('Could not log dose: '+e.message);
+  }
+}
+
+async function deleteDose(id){
+  if(!confirm('Delete this dose entry?'))return;
+  try{
+    await api(`/api/portal/doses/${id}`,{method:'DELETE'});
+    await loadShots(true);
+  }catch(e){alert('Could not delete: '+e.message);}
+}
+
+async function clearAllDoses(){
+  if(!confirm('Clear your entire dose history? This cannot be undone.'))return;
+  try{
+    await api('/api/portal/doses',{method:'DELETE'});
+    await loadShots(true);
+  }catch(e){alert('Could not clear: '+e.message);}
+}
+
+// ═══ SHOP ═══
+async function loadShop(){
+  if(!catalog){
+    try{
+      const data=await api('/api/portal/catalog');
+      catalog=data.catalog;
+    }catch(e){
+      $('shopGrid').innerHTML=`<div style="grid-column:1/-1" class="empty"><div class="empty-msg">Could not load catalog.</div></div>`;
+      return;
+    }
+  }
+  renderShop();
+}
+
+function startProtocolWaitlist(key){
+  // Coming-soon antiparasitic protocols are not purchasable yet — route the
+  // patient to the eligibility screening / waitlist instead of Stripe checkout.
+  try{ track('portal_protocol_waitlist',{product:key}); }catch(e){}
+  window.location.href='/intake-wellness.html?product='+encodeURIComponent(key);
+}
+
+function renderShop(){
+  const filter=document.querySelector('.filter-pill.active')?.dataset.vertical||'all';
+  const query=($('shopSearch').value||'').toLowerCase().trim();
+
+  const all=[];
+  for(const [v,products] of Object.entries(catalog||{})){
+    if(filter!=='all'&&v!==filter)continue;
+    for(const p of products){
+      if(query&&!p.displayName.toLowerCase().includes(query)&&!p.shortName.toLowerCase().includes(query))continue;
+      all.push(p);
+    }
+  }
+
+  if(!all.length){
+    $('shopGrid').innerHTML=`<div style="grid-column:1/-1" class="empty"><div class="empty-icon">🔍</div><div class="empty-title">No products match</div><div class="empty-msg">Try a different search or filter.</div></div>`;
+    return;
+  }
+  $('shopGrid').innerHTML=all.map(p=>{
+    const cs=p.comingSoon;
+    const click=cs?`startProtocolWaitlist('${escapeAttr(p.waitlistKey||p.key)}')`:`openProductDetail('${escapeAttr(p.key)}')`;
+    const badge=cs?`<span class="shop-card-badge">Coming soon</span>`:'';
+    const price=cs?`<span>$${p.monthlyPrice}/mo · <strong style="color:var(--teal-dark)">Check eligibility</strong></span>`:`As low as <strong>$${p.monthlyPrice}/mo</strong>`;
+    return `
+    <div class="shop-card${cs?' coming-soon':''}" onclick="${click}">
+      <div class="shop-card-img">${badge}<img src="${resolveCatalogThumb(p)}" alt="" onerror="this.style.display='none'"></div>
+      <div class="shop-card-cat">${verticalLabel(p.vertical)} · RX</div>
+      <div class="shop-card-name">${escapeHtml(p.displayName)}</div>
+      <div class="shop-card-price">${price}</div>
+    </div>`;
+  }).join('');
+}
+
+document.addEventListener('click',e=>{
+  const f=e.target.closest('.filter-pill');
+  if(f){
+    document.querySelectorAll('.filter-pill').forEach(b=>b.classList.toggle('active',b===f));
+    renderShop();
+  }
+  const t=e.target.closest('.acc-tab');
+  if(t){
+    document.querySelectorAll('.acc-tab').forEach(b=>b.classList.toggle('active',b===t));
+    document.querySelectorAll('.acc-section').forEach(s=>s.classList.remove('active'));
+    $('acc'+t.dataset.accTab.charAt(0).toUpperCase()+t.dataset.accTab.slice(1)).classList.add('active');
+  }
+});
+
+// ════════════════════════════════════════════════════════════════════
+// PRODUCT DETAIL MODAL + EMBEDDED CHECKOUT
+// ════════════════════════════════════════════════════════════════════
+// Goal: when a patient clicks a Shop or Suggested product, keep them in the
+// portal. Show product detail + plan picker, and on "Add" mount Stripe's
+// embedded checkout iframe right inside the modal so the patient never leaves
+// clyr.health. After payment, refresh /me to surface the new treatment card.
+
+let stripeJsLoadPromise = null;
+let stripePublishableKey = null;
+let activeEmbeddedCheckout = null;
+
+function loadStripeJs(){
+  if (stripeJsLoadPromise) return stripeJsLoadPromise;
+  stripeJsLoadPromise = new Promise(async (resolve, reject) => {
+    try {
+      // Fetch the publishable key once — public, served by /api/config.
+      const cfg = await fetch(API + '/api/config').then(r => r.json());
+      stripePublishableKey = cfg.publishableKey;
+      if (!stripePublishableKey) {
+        reject(new Error('No Stripe publishable key configured'));
+        return;
+      }
+      if (window.Stripe) return resolve(window.Stripe(stripePublishableKey));
+      const s = document.createElement('script');
+      s.src = 'https://js.stripe.com/v3/';
+      s.onload = () => resolve(window.Stripe(stripePublishableKey));
+      s.onerror = () => reject(new Error('Failed to load Stripe.js'));
+      document.head.appendChild(s);
+    } catch (e) { reject(e); }
+  });
+  return stripeJsLoadPromise;
+}
+
+async function ensureCatalog(){
+  if (catalog) return catalog;
+  const d = await api('/api/portal/catalog');
+  catalog = d.catalog;
+  return catalog;
+}
+
+function findCatalogProductGlobal(key){
+  if (!catalog) return null;
+  for (const products of Object.values(catalog)) {
+    for (const p of products) { if (p.key === key) return p; }
+  }
+  return null;
+}
+
+async function openProductDetail(productKey){
+  // Make sure the catalog is loaded — Suggested cards can fire before Shop has
+  // been visited.
+  try { await ensureCatalog(); } catch (e) {
+    return alert('Could not load product details: ' + e.message);
+  }
+  const product = findCatalogProductGlobal(productKey);
+  if (!product) return alert('Unknown product: ' + productKey);
+  if (product.comingSoon) { startProtocolWaitlist(product.waitlistKey || product.key); return; }
+
+  track('portal_addproduct_opened', { product: productKey, vertical: product.vertical });
+
+  // Build the plan options actually offered for this SKU.
+  const plans = [];
+  plans.push({ key: 'monthly', label: 'Monthly', price: product.monthlyPrice, perMonth: product.monthlyPrice, recurring: true });
+  if (product.threeMonth) plans.push({ key: '3month', label: '3 months', price: product.threeMonth, perMonth: Math.round(product.threeMonth/3), recurring: false });
+  if (product.sixMonth) plans.push({ key: '6month', label: '6 months', price: product.sixMonth, perMonth: Math.round(product.sixMonth/6), recurring: false });
+  if (product.twelveMonth) plans.push({ key: '12month', label: '12 months', price: product.twelveMonth, perMonth: Math.round(product.twelveMonth/12*100)/100, recurring: false });
+
+  document.body.insertAdjacentHTML('beforeend', `
+    <div id="productModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;z-index:1000;padding:20px;animation:fadeIn 0.15s">
+      <div style="background:white;border-radius:18px;padding:24px;max-width:560px;width:100%;box-shadow:var(--shadow-lg);max-height:92vh;overflow-y:auto">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px">
+          <div style="display:flex;gap:14px;align-items:center">
+            <div style="width:56px;height:56px;background:var(--gray-50);border-radius:12px;display:flex;align-items:center;justify-content:center;padding:8px">
+              <img src="${resolveCatalogThumb(product)}" alt="" style="max-width:100%;max-height:100%;object-fit:contain" onerror="this.style.display='none'">
+            </div>
+            <div>
+              <div style="font-size:11px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:2px">${verticalLabel(product.vertical)} · RX</div>
+              <h3 style="font-size:20px;font-weight:700;margin:0">${escapeHtml(product.displayName)}</h3>
+              ${product.doseSchedule ? `<div style="font-size:13px;color:var(--gray-500);margin-top:2px">${escapeHtml(product.doseSchedule)}</div>` : ''}
+            </div>
+          </div>
+          <button onclick="closeProductDetail()" style="background:none;border:none;font-size:24px;line-height:1;color:var(--gray-400);cursor:pointer;padding:0">&times;</button>
+        </div>
+
+        <div id="productDetailBody">
+          ${(() => {
+            const info = PRODUCT_INFO[product.key];
+            if (!info) {
+              return `<div style="background:#f8fafb;border:1px solid var(--gray-100);border-radius:12px;padding:16px;margin-bottom:18px;font-size:13px;color:var(--gray-600);line-height:1.5">Provider-supervised. Compounded by a state-licensed pharmacy. Delivered to your door. All plans include the provider consultation, prescription, medication, and shipping.</div>`;
+            }
+            const benefitCards = (info.benefits || []).map(b => `
+              <div style="background:#f8fafb;border:1px solid var(--gray-100);border-radius:10px;padding:12px 14px">
+                <div style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:3px">${escapeHtml(b.h)}</div>
+                <div style="font-size:12px;color:var(--gray-500);line-height:1.45">${escapeHtml(b.p)}</div>
+              </div>`).join('');
+            const fact = (label, val) => val ? `
+              <div style="display:flex;gap:8px;padding:7px 0;border-bottom:1px solid var(--gray-100);font-size:13px">
+                <div style="min-width:78px;font-weight:700;color:var(--gray-500)">${label}</div>
+                <div style="color:var(--gray-700);line-height:1.45">${escapeHtml(val)}</div>
+              </div>` : '';
+            return `
+              <div style="font-size:14px;color:var(--gray-700);line-height:1.55;margin-bottom:16px">${escapeHtml(info.tagline)}</div>
+              ${info.onset ? `<div style="display:inline-flex;align-items:center;gap:6px;background:var(--teal-light, rgba(43,188,179,0.1));color:var(--teal-dark, #1a9b94);font-size:12px;font-weight:700;padding:6px 12px;border-radius:100px;margin-bottom:16px">${escapeHtml(info.onset)}</div>` : ''}
+              ${benefitCards ? `<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px">${benefitCards}</div>` : ''}
+              <div style="background:white;border:1px solid var(--gray-100);border-radius:12px;padding:6px 14px;margin-bottom:18px">
+                ${fact('What you get', info.supply)}
+                ${fact('How to take', info.dosing)}
+              </div>
+              <div style="font-size:11px;color:var(--gray-400);line-height:1.5;margin-bottom:18px">Compounded by a state-licensed pharmacy and not reviewed by the FDA. Provider consultation, prescription, and discreet shipping are included with every plan.</div>`;
+          })()}
+
+          <div style="font-size:13px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px">Choose your plan</div>
+          <div id="planPicker" style="display:flex;flex-direction:column;gap:8px;margin-bottom:18px">
+            ${plans.map((p, i) => `
+              <button data-plan="${p.key}" class="plan-row" style="text-align:left;padding:14px 16px;border:2px solid var(--gray-100);border-radius:12px;background:white;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit">
+                <div>
+                  <div style="font-weight:700;font-size:15px">${p.label}</div>
+                  <div style="font-size:12px;color:var(--gray-500);margin-top:2px">${p.recurring ? 'Billed monthly · cancel anytime' : `One-time payment · $${p.perMonth}/mo equivalent`}</div>
+                </div>
+                <div style="text-align:right">
+                  <div style="font-weight:700;font-size:16px">$${p.price}${p.recurring ? '/mo' : ''}</div>
+                  ${!p.recurring ? `<div style="font-size:11px;color:var(--gray-400)">total</div>` : ''}
+                </div>
+              </button>`).join('')}
+          </div>
+
+          <button id="btnAddTreatment" class="btn btn-primary" style="width:100%;padding:14px" disabled>Select a plan</button>
+          <button class="btn btn-secondary" style="width:100%;margin-top:8px" onclick="closeProductDetail()">Cancel</button>
+        </div>
+
+        <div id="embeddedCheckoutMount" style="display:none"></div>
+      </div>
+    </div>`);
+
+  // Plan-pick wiring
+  let selectedPlan = null;
+  const updateSelection = () => {
+    document.querySelectorAll('#productModal .plan-row').forEach(b => {
+      const isActive = b.dataset.plan === selectedPlan;
+      b.style.borderColor = isActive ? 'var(--teal)' : 'var(--gray-100)';
+      b.style.background = isActive ? 'rgba(43,188,179,0.06)' : 'white';
+    });
+    const btn = $('btnAddTreatment');
+    btn.disabled = !selectedPlan;
+    btn.textContent = selectedPlan ? 'Continue' : 'Select a plan';
+  };
+  document.querySelectorAll('#productModal .plan-row').forEach(b => {
+    b.addEventListener('click', () => { selectedPlan = b.dataset.plan; updateSelection(); });
+  });
+  $('btnAddTreatment').addEventListener('click', async () => {
+    if (!selectedPlan) return;
+    track('portal_addproduct_plan_selected', { product: productKey, plan: selectedPlan });
+    // Hand off to the clinical screening step rather than going straight to
+    // checkout. The screening collects vertical-aware safety answers (cardiac
+    // for sexual-health, thyroid/pregnancy for GLP-1) and validates blockers
+    // before any Stripe session is created.
+    showClinicalScreening(productKey, selectedPlan);
+  });
+}
+
+function closeProductDetail(){
+  if (activeEmbeddedCheckout) {
+    try { activeEmbeddedCheckout.destroy(); } catch (e) {}
+    activeEmbeddedCheckout = null;
+  }
+  const m = $('productModal'); if (m) m.remove();
+}
+
+async function beginEmbeddedCheckout(productKey, planType, screeningAnswers){
+  const screeningBtn = $('btnScreeningSubmit');
+  const fallbackBtn = $('btnAddTreatment');
+  const submitBtn = screeningBtn || fallbackBtn;
+  if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Preparing checkout...'; }
+  try {
+    const [stripe, session] = await Promise.all([
+      loadStripeJs(),
+      api('/api/portal/add-product/create-session', {
+        method: 'POST',
+        body: JSON.stringify({
+          productKey,
+          planType,
+          // Optional: when the patient came through the clinical screening
+          // step (which is the default path now), forward their answers so
+          // the backend can attach them to the Stripe session metadata for
+          // the admin alert. Falls back to undefined for any code path that
+          // skips screening.
+          screeningAnswers: screeningAnswers || undefined
+        })
+      })
+    ]);
+
+    // Swap the modal body for the embedded checkout.
+    $('productDetailBody').style.display = 'none';
+    $('embeddedCheckoutMount').style.display = 'block';
+    $('embeddedCheckoutMount').innerHTML = '<div id="checkoutContainer"></div>';
+
+    activeEmbeddedCheckout = await stripe.initEmbeddedCheckout({
+      clientSecret: session.clientSecret,
+      onComplete: async () => {
+        track('portal_addproduct_paid', { product: productKey, plan: planType, had_screening: !!screeningAnswers });
+        // Payment captured. Refresh /me so the new treatment surfaces in the
+        // home stack and Treatments tab without a full reload.
+        $('embeddedCheckoutMount').innerHTML = `
+          <div style="text-align:center;padding:32px 20px">
+            <div style="font-size:48px;margin-bottom:12px">✓</div>
+            <div style="font-size:20px;font-weight:700;margin-bottom:6px">You're all set</div>
+            <div style="font-size:14px;color:var(--gray-500);margin-bottom:18px">Your new treatment is being prepared. Our care team will reach out shortly to confirm clinical details.</div>
+            <button class="btn btn-primary" onclick="closeProductDetail();loadHome()">Back to portal</button>
+          </div>`;
+      }
+    });
+    activeEmbeddedCheckout.mount('#checkoutContainer');
+  } catch (err) {
+    // Server-side clinical hold — happens if the local screening was skipped
+    // somehow or a blocker slipped through. Show the care-team stop screen
+    // instead of the generic alert.
+    if (err && (err.reason === 'clinical_hold' || /clinical_hold/i.test(err.message || ''))) {
+      showCareTeamHold(productKey);
+      return;
+    }
+    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Continue to payment'; }
+    alert('Could not start checkout: ' + (err.message || err));
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════
+// PER-PRODUCT CLINICAL SCREENING
+// ════════════════════════════════════════════════════════════════════
+// Inserted between the plan picker and the embedded Stripe Checkout step
+// in the product detail modal. Asks a vertical-aware set of safety
+// questions (cardiac for sexual-health, thyroid/pregnancy for GLP-1) plus
+// a universal allergies + current-meds confirmation that prefills from
+// the patient's record. Hard-blocker "yes" answers route to a care-team
+// hold screen instead of checkout; the backend re-validates as a safety
+// net so a tampered request can't bypass.
+
+const SCREENING_QUESTIONS = {
+  'sexual-health': {
+    intro: 'A quick safety check before our care team reviews your order.',
+    blockers: [
+      { id: 'cardiac', q: 'In the last 6 months, have you had a heart attack, stroke, or unstable chest pain?' },
+      { id: 'nitrates', q: 'Are you currently taking nitrates (nitroglycerin, isosorbide) or amyl nitrite "poppers"?' }
+    ],
+    soft: [
+      { id: 'priapism', q: 'Have you ever had priapism (an erection lasting more than 4 hours)?' }
+    ]
+  },
+  'weight-loss': {
+    intro: 'A quick safety check before our care team reviews your order.',
+    blockers: [
+      { id: 'pregnancy', q: 'Are you pregnant, breastfeeding, or trying to conceive in the next 12 months?' },
+      { id: 'thyroid', q: 'Do you or any first-degree relative (parent, sibling, or child) have a personal history of medullary thyroid carcinoma (MTC) or MEN 2?' }
+    ],
+    soft: [
+      { id: 'pancreatitis', q: 'Have you ever been diagnosed with pancreatitis or gallbladder disease?' }
+    ]
+  },
+  'wellness': {
+    intro: 'Quick confirmation of your meds and allergies before our care team reviews your order.',
+    blockers: [],
+    soft: []
+  },
+  'hair': {
+    intro: 'A quick safety check before our care team reviews your order.',
+    blockers: [
+      { id: 'pregnancy_hair', q: 'Are you pregnant, breastfeeding, or trying to conceive in the next 12 months?' }
+    ],
+    soft: [
+      { id: 'sexual_sides', q: 'Have you had sexual side effects from finasteride or dutasteride before?' }
+    ]
+  }
+};
+
+// Build the screening UI for a specific product. Reads the product's vertical
+// off the catalog, picks the question set, prefills allergies + meds from
+// portalData.patient (set by /me), and wires the submit handler.
+async function showClinicalScreening(productKey, planType){
+  const product = findCatalogProductGlobal(productKey);
+  const verticalRaw = product ? product.vertical : 'wellness';
+  // Normalise vertical: backend product-catalog uses 'sexual_health',
+  // portal vocabulary uses 'sexual-health'. Same shape works for both.
+  const vertical = (verticalRaw || '').replace(/_/g, '-');
+
+  // Fetch the canonical question schema from the backend so we render
+  // exactly the same questions that MDI will receive. Falls back to the
+  // hard-coded SCREENING_QUESTIONS map if the fetch fails (offline / 5xx),
+  // so the modal still functions if the new endpoint is unavailable.
+  let config;
+  try {
+    const r = await fetch(API + '/api/portal/add-product/questions?productKey=' + encodeURIComponent(productKey), {
+      headers: { Authorization: 'Bearer ' + (localStorage.getItem('th_portal_token') || '') }
+    });
+    if (r.ok) {
+      const data = await r.json();
+      config = {
+        intro: vertical === 'sexual-health'
+          ? 'These conditions matter for sexual health medications. Please answer honestly — your safety is our priority.'
+          : (vertical === 'wellness'
+              ? 'Quick safety check before our care team reviews your order.'
+              : 'A quick safety check before our care team reviews your order.'),
+        blockers: data.blockers || [],
+        soft: data.soft || []
+      };
+    }
+  } catch (_) { /* fall through to hardcoded */ }
+  if (!config) {
+    config = SCREENING_QUESTIONS[vertical] || SCREENING_QUESTIONS.wellness;
+  }
+
+  const allergiesPrefill = portalData?.patient?.drugAllergies || '';
+  const medsPrefill = portalData?.patient?.currentMedications || '';
+
+  track('portal_screening_started', { product: productKey, plan: planType, vertical, blocker_count: config.blockers.length, soft_count: config.soft.length });
+
+  // Yes/No pill row for a single blocker or soft question.
+  const yesNoRow = (item, kind) => `
+    <div class="screen-q" data-qid="${escapeAttr(item.id)}" data-kind="${kind}" style="background:white;border:1px solid var(--gray-100);border-radius:12px;padding:14px;margin-bottom:8px">
+      <div style="font-size:14px;font-weight:600;color:var(--gray-700);margin-bottom:10px;line-height:1.4">${escapeHtml(item.q)}</div>
+      <div style="display:flex;gap:8px">
+        <button type="button" class="yn-btn" data-val="yes" style="flex:1;padding:10px;border-radius:10px;border:1.5px solid var(--gray-100);background:white;font-weight:600;font-size:14px;cursor:pointer;font-family:inherit">Yes</button>
+        <button type="button" class="yn-btn" data-val="no" style="flex:1;padding:10px;border-radius:10px;border:1.5px solid var(--gray-100);background:white;font-weight:600;font-size:14px;cursor:pointer;font-family:inherit">No</button>
+      </div>
+    </div>`;
+
+  const blockersHtml = config.blockers.map(b => yesNoRow(b, 'blocker')).join('');
+  const softHtml = config.soft.map(s => yesNoRow(s, 'soft')).join('');
+
+  $('productDetailBody').innerHTML = `
+    <div style="background:#f8fafb;border:1px solid var(--gray-100);border-radius:12px;padding:14px;margin-bottom:18px;font-size:13px;color:var(--gray-600);line-height:1.5">
+      ${escapeHtml(config.intro)} Your answers go straight to our care team and are kept with your medical record.
+    </div>
+
+    ${blockersHtml ? `<div style="font-size:13px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px">Safety check</div>${blockersHtml}` : ''}
+    ${softHtml ? `<div style="font-size:13px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.06em;margin:18px 0 10px">Medical history</div>${softHtml}` : ''}
+
+    <div style="font-size:13px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.06em;margin:18px 0 10px">Allergies and medications</div>
+
+    <div class="screen-q" data-qid="hasAllergies" data-kind="reveal" style="background:white;border:1px solid var(--gray-100);border-radius:12px;padding:14px;margin-bottom:8px">
+      <div style="font-size:14px;font-weight:600;color:var(--gray-700);margin-bottom:10px;line-height:1.4">Do you have any drug allergies?</div>
+      <div style="display:flex;gap:8px">
+        <button type="button" class="yn-btn" data-val="yes" style="flex:1;padding:10px;border-radius:10px;border:1.5px solid var(--gray-100);background:white;font-weight:600;font-size:14px;cursor:pointer;font-family:inherit">Yes</button>
+        <button type="button" class="yn-btn" data-val="no" style="flex:1;padding:10px;border-radius:10px;border:1.5px solid var(--gray-100);background:white;font-weight:600;font-size:14px;cursor:pointer;font-family:inherit">No</button>
+      </div>
+      <div id="scrAllergiesReveal" style="display:none;margin-top:10px">
+        <textarea id="scrAllergies" placeholder="Please list your drug allergies" style="width:100%;padding:10px;border-radius:10px;border:1.5px solid var(--gray-100);font-family:inherit;font-size:14px;resize:vertical;min-height:60px">${escapeHtml(allergiesPrefill)}</textarea>
+      </div>
+    </div>
+
+    <div class="screen-q" data-qid="hasMeds" data-kind="reveal" style="background:white;border:1px solid var(--gray-100);border-radius:12px;padding:14px;margin-bottom:8px">
+      <div style="font-size:14px;font-weight:600;color:var(--gray-700);margin-bottom:10px;line-height:1.4">Do you take any medications, supplements, or vitamins?</div>
+      <div style="display:flex;gap:8px">
+        <button type="button" class="yn-btn" data-val="yes" style="flex:1;padding:10px;border-radius:10px;border:1.5px solid var(--gray-100);background:white;font-weight:600;font-size:14px;cursor:pointer;font-family:inherit">Yes</button>
+        <button type="button" class="yn-btn" data-val="no" style="flex:1;padding:10px;border-radius:10px;border:1.5px solid var(--gray-100);background:white;font-weight:600;font-size:14px;cursor:pointer;font-family:inherit">No</button>
+      </div>
+      <div id="scrMedsReveal" style="display:none;margin-top:10px">
+        <textarea id="scrMeds" placeholder="Please list everything you take, with dosages if known" style="width:100%;padding:10px;border-radius:10px;border:1.5px solid var(--gray-100);font-family:inherit;font-size:14px;resize:vertical;min-height:60px">${escapeHtml(medsPrefill)}</textarea>
+      </div>
+    </div>
+
+    <div style="margin:8px 0 18px">
+      <label style="display:block;font-size:13px;font-weight:600;color:var(--gray-700);margin-bottom:6px">Anything else for your provider? <span style="color:var(--gray-500);font-weight:400">(optional)</span></label>
+      <textarea id="scrDoctorMessage" placeholder="Concerns, prior experiences, dosing preferences, or anything you'd like the provider to know" style="width:100%;padding:10px;border-radius:10px;border:1.5px solid var(--gray-100);font-family:inherit;font-size:14px;resize:vertical;min-height:50px"></textarea>
+    </div>
+
+    <button id="btnScreeningSubmit" class="btn btn-primary" style="width:100%;padding:14px" disabled>Answer all questions</button>
+    <button class="btn btn-secondary" style="width:100%;margin-top:8px" onclick="closeProductDetail()">Cancel</button>`;
+
+  // Track selections per question; require every blocker + soft answered,
+  // plus the two reveal questions (allergies / meds).
+  const answers = {};  // { qid: 'yes' | 'no' }
+  const REVEAL_QIDS = ['hasAllergies', 'hasMeds'];
+  const totalRequired = config.blockers.length + config.soft.length + REVEAL_QIDS.length;
+
+  // Every screening now has at least the two reveal questions, so the submit
+  // button always starts disabled until they're answered (handled by the
+  // click + input listeners below).
+
+  document.querySelectorAll('#productDetailBody .yn-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const row = btn.closest('.screen-q');
+      const qid = row.dataset.qid;
+      const val = btn.dataset.val;
+      answers[qid] = val;
+      // Repaint the row: highlight the picked button, dim the other.
+      row.querySelectorAll('.yn-btn').forEach(b => {
+        const isPicked = b.dataset.val === val;
+        b.style.borderColor = isPicked ? 'var(--teal)' : 'var(--gray-100)';
+        b.style.background = isPicked ? 'rgba(43,188,179,0.06)' : 'white';
+        b.style.color = isPicked ? 'var(--teal)' : 'var(--gray-700)';
+      });
+      // Reveal questions: show the textarea when "yes", hide + clear when "no".
+      if (row.dataset.kind === 'reveal') {
+        const revealId = qid === 'hasAllergies' ? 'scrAllergiesReveal' : 'scrMedsReveal';
+        const taId = qid === 'hasAllergies' ? 'scrAllergies' : 'scrMeds';
+        const reveal = $(revealId);
+        if (reveal) reveal.style.display = (val === 'yes') ? 'block' : 'none';
+        if (val === 'no') { const ta = $(taId); if (ta) ta.value = ''; }
+        if (val === 'yes') { const ta = $(taId); if (ta) setTimeout(() => ta.focus(), 50); }
+      }
+      // Update submit button state.
+      const submitBtn = $('btnScreeningSubmit');
+      if (validateScreening()) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Continue to payment';
+      } else {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Answer all questions';
+      }
+    });
+  });
+
+  // Also re-validate when a revealed textarea is typed into (a "yes" answer
+  // needs non-empty text to be considered complete).
+  ['scrAllergies', 'scrMeds'].forEach(id => {
+    const ta = $(id);
+    if (ta) ta.addEventListener('input', () => {
+      const submitBtn = $('btnScreeningSubmit');
+      if (validateScreening()) { submitBtn.disabled = false; submitBtn.textContent = 'Continue to payment'; }
+      else { submitBtn.disabled = true; submitBtn.textContent = 'Answer all questions'; }
+    });
+  });
+
+  // Validation: every blocker + soft + reveal answered; and if a reveal is
+  // "yes", its textarea must be non-empty.
+  function validateScreening() {
+    if (Object.keys(answers).length < totalRequired) return false;
+    if (answers.hasAllergies === 'yes' && !($('scrAllergies')?.value || '').trim()) return false;
+    if (answers.hasMeds === 'yes' && !($('scrMeds')?.value || '').trim()) return false;
+    return true;
+  }
+
+  $('btnScreeningSubmit').addEventListener('click', async () => {
+    // Split answers back into blocker/soft buckets for the backend payload.
+    const blockerAnswers = {};
+    const softAnswers = {};
+    config.blockers.forEach(b => { blockerAnswers[b.id] = answers[b.id] || 'no'; });
+    config.soft.forEach(s => { softAnswers[s.id] = answers[s.id] || 'no'; });
+
+    // Local hard-block check — show the care-team hold screen without
+    // making a network call so the patient gets fast feedback.
+    const tripped = Object.entries(blockerAnswers)
+      .filter(([_, v]) => v === 'yes')
+      .map(([k]) => k);
+    if (tripped.length > 0) {
+      showCareTeamHold(productKey, tripped);
+      return;
+    }
+
+    const screeningAnswers = {
+      vertical,
+      blockers: blockerAnswers,
+      soft: softAnswers,
+      allergies: answers.hasAllergies === 'yes' ? ($('scrAllergies').value || '').trim() : 'None',
+      medications: answers.hasMeds === 'yes' ? ($('scrMeds').value || '').trim() : 'None',
+      doctorMessage: ($('scrDoctorMessage')?.value || '').trim()
+    };
+    track('portal_screening_passed', { product: productKey, plan: planType, vertical, soft_yes_count: Object.values(softAnswers).filter(v => v === 'yes').length });
+    await beginEmbeddedCheckout(productKey, planType, screeningAnswers);
+  });
+}
+
+// Care-team hold screen — replaces the modal body when a hard-blocker
+// question came back yes. We avoid creating any Stripe session for these
+// patients; instead they're routed to email the care team for review.
+function showCareTeamHold(productKey, blockerIds){
+  track('portal_screening_blocked', { product: productKey, blockers: (blockerIds || []).join(',') || 'server' });
+  const product = findCatalogProductGlobal(productKey);
+  const productName = product ? product.displayName : 'this treatment';
+  $('productDetailBody').innerHTML = `
+    <div style="text-align:center;padding:24px 12px">
+      <div style="width:64px;height:64px;border-radius:50%;background:#fef3c7;display:flex;align-items:center;justify-content:center;margin:0 auto 16px">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2"><path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+      </div>
+      <div style="font-size:20px;font-weight:700;margin-bottom:8px">A clinician needs to review your order</div>
+      <div style="font-size:14px;color:var(--gray-500);line-height:1.5;margin-bottom:20px">Based on your answers, ${escapeHtml(productName)} isn't a safe self-checkout for you. We didn't take any payment. Reach out and our care team will recommend the right next step.</div>
+      <a href="mailto:care@clyr.health?subject=Care%20review%20request%20for%20${encodeURIComponent(productName)}" class="btn btn-primary" style="display:inline-block;text-decoration:none;padding:12px 24px;margin-bottom:8px">Email the care team</a>
+      <br>
+      <button class="btn btn-secondary" style="margin-top:8px" onclick="closeProductDetail()">Back to portal</button>
+    </div>`;
+}
+
+// ════════════════════════════════════════════════════════════════════
+// PER-TREATMENT ACTIONS (cancel, resume, change plan)
+// ════════════════════════════════════════════════════════════════════
+// Each treatment card has a "Manage" button that opens this modal. The
+// available actions depend on whether the treatment is recurring and whether
+// a cancellation is already pending.
+
+function findTreatmentByProduct(productKey){
+  return (portalData?.treatments||[]).find(t => t.product === productKey) || null;
+}
+
+function openTreatmentActions(productKey){
+  const tx = findTreatmentByProduct(productKey);
+  if (!tx) return;
+  const planLabel = ({monthly:'Monthly','3month':'3 months','6month':'6 months','12month':'12 months'})[tx.plan] || tx.plan;
+  const cancelPending = !!tx.cancelAt;
+
+  // Only show "Change plan" if the catalog actually has multiple plan tiers
+  // for this SKU. NAD+ / Glutathione / Sermorelin / etc. are monthly-only so
+  // there's nothing to switch to. Tirzepatide / Semaglutide offer monthly,
+  // 3-month, and 6-month tiers.
+  const product = findCatalogProductGlobal(productKey);
+  const hasOtherPlans = product && (
+    (product.threeMonth && tx.plan !== '3month') ||
+    (product.sixMonth && tx.plan !== '6month') ||
+    (product.twelveMonth && tx.plan !== '12month') ||
+    (product.monthlyPrice && tx.plan !== 'monthly')
+  );
+
+  // Recurring + active: Change plan (if other plans exist), Cancel
+  // Recurring + cancel-pending: Resume
+  // One-time: Renew now (re-buy)
+  const actions = [];
+  if (tx.isRecurring && !cancelPending) {
+    if (hasOtherPlans) {
+      actions.push({
+        label: 'Change plan',
+        sub: 'Switch to a different plan tier for this same treatment',
+        icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>',
+        onclick: `closeTreatmentActions();openSwitchPlanModal('${escapeAttr(productKey)}')`,
+        kind: 'default'
+      });
+    }
+    actions.push({
+      label: 'Cancel subscription',
+      sub: 'Stop future billing. Keep access through this billing period.',
+      icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>',
+      onclick: `confirmCancelTreatment('${escapeAttr(productKey)}')`,
+      kind: 'danger'
+    });
+  } else if (tx.isRecurring && cancelPending) {
+    actions.push({
+      label: 'Resume subscription',
+      sub: `Continue billing past ${fmtDate(tx.cancelAt)}`,
+      icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>',
+      onclick: `resumeTreatment('${escapeAttr(productKey)}')`,
+      kind: 'primary'
+    });
+  } else {
+    // One-time 3/6mo plan — no recurring billing to cancel. Offer a re-buy.
+    actions.push({
+      label: 'Renew this plan',
+      sub: 'Buy another supply of the same product',
+      icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>',
+      onclick: `closeTreatmentActions();openProductDetail('${escapeAttr(productKey)}')`,
+      kind: 'primary'
+    });
+  }
+
+  const kindStyles = {
+    primary: 'border-color:var(--teal);color:var(--teal)',
+    danger: 'border-color:#fca5a5;color:#dc2626',
+    default: 'border-color:var(--gray-100);color:var(--dark)'
+  };
+
+  document.getElementById('treatmentActionsModal')?.remove();
+  document.body.insertAdjacentHTML('beforeend', `
+    <div id="treatmentActionsModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;z-index:1000;padding:20px;animation:fadeIn 0.15s">
+      <div style="background:white;border-radius:18px;padding:24px;max-width:440px;width:100%;box-shadow:var(--shadow-lg);max-height:90vh;overflow-y:auto">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px">
+          <div>
+            <h3 style="font-size:18px;font-weight:700;margin-bottom:4px">${escapeHtml(tx.productDisplay)}</h3>
+            <div style="font-size:13px;color:var(--gray-500)">${escapeHtml(planLabel)} · ${escapeHtml(tx.status||'active')}${cancelPending?` · cancels ${fmtDate(tx.cancelAt)}`:''}</div>
+          </div>
+          <button onclick="closeTreatmentActions()" style="background:none;border:none;font-size:24px;line-height:1;color:var(--gray-400);cursor:pointer;padding:0">&times;</button>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          ${actions.map(a=>`
+            <button onclick="${a.onclick}" style="text-align:left;padding:14px 16px;border:1.5px solid var(--gray-100);border-radius:12px;background:white;cursor:pointer;display:flex;gap:12px;align-items:flex-start;font-family:inherit;${kindStyles[a.kind]||kindStyles.default}">
+              <div style="flex-shrink:0;margin-top:2px">${a.icon}</div>
+              <div style="flex:1">
+                <div style="font-weight:700;font-size:14px;line-height:1.3">${escapeHtml(a.label)}</div>
+                <div style="font-size:12px;color:var(--gray-500);margin-top:3px;line-height:1.4">${escapeHtml(a.sub)}</div>
+              </div>
+            </button>`).join('')}
+        </div>
+        <button class="btn btn-secondary" style="width:100%;margin-top:14px" onclick="closeTreatmentActions()">Close</button>
+      </div>
+    </div>`);
+}
+
+function closeTreatmentActions(){
+  const m = $('treatmentActionsModal'); if (m) m.remove();
+}
+
+// Two-step confirmation before destructive cancel. Spell out exactly what
+// happens so the patient can't fat-finger this.
+function confirmCancelTreatment(productKey){
+  const tx = findTreatmentByProduct(productKey);
+  if (!tx) return;
+  closeTreatmentActions();
+  const endDate = tx.currentPeriodEnd ? fmtDate(tx.currentPeriodEnd) : 'the end of this billing period';
+  document.body.insertAdjacentHTML('beforeend', `
+    <div id="confirmCancelModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;z-index:1001;padding:20px;animation:fadeIn 0.15s">
+      <div style="background:white;border-radius:18px;padding:24px;max-width:420px;width:100%;box-shadow:var(--shadow-lg)">
+        <h3 style="font-size:18px;font-weight:700;margin-bottom:8px">Cancel ${escapeHtml(tx.productDisplay)}?</h3>
+        <p style="font-size:14px;color:var(--gray-600);line-height:1.5;margin-bottom:18px">You'll keep access through ${escapeHtml(endDate)}. No charges will be made after that date, and your other treatments are unaffected. You can resume anytime before the end date.</p>
+        <div style="display:flex;gap:10px">
+          <button class="btn btn-secondary" style="flex:1" onclick="document.getElementById('confirmCancelModal').remove()">Keep subscription</button>
+          <button id="btnConfirmCancel" class="btn" style="flex:1;background:#dc2626;color:white" onclick="cancelTreatment('${escapeAttr(productKey)}')">Yes, cancel</button>
+        </div>
+      </div>
+    </div>`);
+}
+
+async function cancelTreatment(productKey){
+  const btn = $('btnConfirmCancel');
+  if (btn) { btn.disabled = true; btn.textContent = 'Canceling...'; }
+  try {
+    const result = await api('/api/portal/subscription/cancel', {
+      method: 'POST',
+      body: JSON.stringify({ productKey })
+    });
+    track('portal_treatment_cancelled', { product: productKey });
+    $('confirmCancelModal')?.remove();
+    // Reload /me so the badge flips to cancel-pending with the end date.
+    await loadHome();
+    // If they were on the Treatments tab, refresh that view too.
+    if (currentPage === 'treatments') loadTreatments();
+    // Light toast — reuse the alert pattern for now, swap to a real toast later.
+    alert(result.message || 'Your subscription will end at the close of the current billing period.');
+  } catch (e) {
+    if (btn) { btn.disabled = false; btn.textContent = 'Yes, cancel'; }
+    alert('Could not cancel: ' + e.message);
+  }
+}
+
+async function resumeTreatment(productKey){
+  try {
+    const result = await api('/api/portal/subscription/resume', {
+      method: 'POST',
+      body: JSON.stringify({ productKey })
+    });
+    track('portal_treatment_resumed', { product: productKey });
+    closeTreatmentActions();
+    await loadHome();
+    if (currentPage === 'treatments') loadTreatments();
+    alert(result.message || 'Your subscription will continue.');
+  } catch (e) {
+    alert('Could not resume: ' + e.message);
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════
+// SWITCH PLAN (atomic) — same SKU, different plan tier
+// ════════════════════════════════════════════════════════════════════
+// Unlike openProductDetail (which creates a brand-new subscription via
+// /add-product/create-session and is appropriate for adding a new SKU), this
+// flow routes through /subscription/change so the OLD subscription is
+// cancelled atomically:
+//   - Monthly → Multi-month: embedded checkout for the new one-time payment,
+//     metadata.cancel_subscription_id makes the webhook cancel the monthly
+//     sub after the payment captures (so no charge is lost if the patient
+//     abandons checkout).
+//   - Monthly → Different monthly tier: stripe.subscriptions.update() in
+//     place, no checkout needed. Returns inPlace: true and the portal just
+//     refreshes.
+//   - Multi-month → anything: there's no recurring sub to swap (one-time
+//     plans don't have one). Future iteration can handle this — for now,
+//     guard at the UI level and only show "Change plan" when the patient
+//     has an active recurring sub.
+async function openSwitchPlanModal(productKey){
+  try { await ensureCatalog(); } catch (e) {
+    return alert('Could not load plan options: ' + e.message);
+  }
+  const product = findCatalogProductGlobal(productKey);
+  const tx = findTreatmentByProduct(productKey);
+  if (!product || !tx) return alert('Could not find this treatment.');
+
+  // Build available plans for this SKU, exclude the patient's current plan.
+  const plans = [];
+  if (product.monthlyPrice && tx.plan !== 'monthly') plans.push({ key:'monthly', label:'Monthly', price:product.monthlyPrice, perMonth:product.monthlyPrice, recurring:true });
+  if (product.threeMonth && tx.plan !== '3month') plans.push({ key:'3month', label:'3 months', price:product.threeMonth, perMonth:Math.round(product.threeMonth/3), recurring:false });
+  if (product.sixMonth && tx.plan !== '6month') plans.push({ key:'6month', label:'6 months', price:product.sixMonth, perMonth:Math.round(product.sixMonth/6), recurring:false });
+  if (product.twelveMonth && tx.plan !== '12month') plans.push({ key:'12month', label:'12 months', price:product.twelveMonth, perMonth:Math.round(product.twelveMonth/12*100)/100, recurring:false });
+  if (!plans.length) return alert('No other plans available for this treatment.');
+
+  const currentPlanLabel = ({monthly:'Monthly','3month':'3 months','6month':'6 months','12month':'12 months'})[tx.plan] || tx.plan;
+
+  document.body.insertAdjacentHTML('beforeend', `
+    <div id="switchPlanModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;z-index:1000;padding:20px;animation:fadeIn 0.15s">
+      <div style="background:white;border-radius:18px;padding:24px;max-width:560px;width:100%;box-shadow:var(--shadow-lg);max-height:92vh;overflow-y:auto">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px">
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:2px">Switch plan</div>
+            <h3 style="font-size:20px;font-weight:700;margin:0">${escapeHtml(product.displayName)}</h3>
+            <div style="font-size:13px;color:var(--gray-500);margin-top:4px">Currently on <strong>${escapeHtml(currentPlanLabel)}</strong>. Pick a new tier below.</div>
+          </div>
+          <button onclick="closeSwitchPlanModal()" style="background:none;border:none;font-size:24px;line-height:1;color:var(--gray-400);cursor:pointer;padding:0">&times;</button>
+        </div>
+
+        <div id="switchPlanBody">
+          <div style="background:#f8fafb;border:1px solid var(--gray-100);border-radius:12px;padding:14px;margin-bottom:18px;font-size:13px;color:var(--gray-600);line-height:1.5">
+            ${tx.plan === 'monthly' ? "Switching to a multi-month plan locks in your current price. Your existing monthly subscription is canceled automatically when the new plan is paid for, so there's no double-billing." : "Your new plan replaces the current one. Any new billing follows the tier you pick."}
+          </div>
+
+          <div style="font-size:13px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px">Available plans</div>
+          <div id="switchPlanPicker" style="display:flex;flex-direction:column;gap:8px;margin-bottom:18px">
+            ${plans.map(p => `
+              <button data-plan="${p.key}" class="switch-plan-row" style="text-align:left;padding:14px 16px;border:2px solid var(--gray-100);border-radius:12px;background:white;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit">
+                <div>
+                  <div style="font-weight:700;font-size:15px">${p.label}</div>
+                  <div style="font-size:12px;color:var(--gray-500);margin-top:2px">${p.recurring ? 'Billed monthly · cancel anytime' : `One-time payment · $${p.perMonth}/mo equivalent`}</div>
+                </div>
+                <div style="text-align:right">
+                  <div style="font-weight:700;font-size:16px">$${p.price}${p.recurring ? '/mo' : ''}</div>
+                  ${!p.recurring ? `<div style="font-size:11px;color:var(--gray-400)">total</div>` : ''}
+                </div>
+              </button>`).join('')}
+          </div>
+
+          <button id="btnSwitchPlan" class="btn btn-primary" style="width:100%;padding:14px" disabled>Select a plan</button>
+          <button class="btn btn-secondary" style="width:100%;margin-top:8px" onclick="closeSwitchPlanModal()">Cancel</button>
+        </div>
+
+        <div id="switchPlanCheckoutMount" style="display:none"></div>
+      </div>
+    </div>`);
+
+  let selectedPlan = null;
+  const updateSelection = () => {
+    document.querySelectorAll('#switchPlanModal .switch-plan-row').forEach(b => {
+      const isActive = b.dataset.plan === selectedPlan;
+      b.style.borderColor = isActive ? 'var(--teal)' : 'var(--gray-100)';
+      b.style.background = isActive ? 'rgba(43,188,179,0.06)' : 'white';
+    });
+    const btn = $('btnSwitchPlan');
+    btn.disabled = !selectedPlan;
+    btn.textContent = selectedPlan ? 'Switch to this plan' : 'Select a plan';
+  };
+  document.querySelectorAll('#switchPlanModal .switch-plan-row').forEach(b => {
+    b.addEventListener('click', () => { selectedPlan = b.dataset.plan; updateSelection(); });
+  });
+  $('btnSwitchPlan').addEventListener('click', async () => {
+    if (!selectedPlan) return;
+    await beginSwitchCheckout(productKey, selectedPlan);
+  });
+}
+
+function closeSwitchPlanModal(){
+  if (activeEmbeddedCheckout) {
+    try { activeEmbeddedCheckout.destroy(); } catch (e) {}
+    activeEmbeddedCheckout = null;
+  }
+  const m = $('switchPlanModal'); if (m) m.remove();
+}
+
+async function beginSwitchCheckout(productKey, newPlan){
+  const btn = $('btnSwitchPlan'); btn.disabled = true; btn.textContent = 'Preparing...';
+  try {
+    // Resolve the Stripe price ID for the new plan. The catalog response
+    // doesn't expose price IDs (those are sensitive); /portal/plans was the
+    // legacy resolver but only covers GLP-1. Easier: call the existing
+    // /portal/add-product/create-session metadata to get the price... actually
+    // we need a direct mapping. Use the new helper endpoint or just rely on
+    // the catalog's keys aligning with the env-var SKU pattern in the backend.
+    // For now, we pass productKey + newPlanType and let the backend resolve
+    // the price via the same product-catalog logic.
+    const session = await api('/api/portal/subscription/change', {
+      method: 'POST',
+      body: JSON.stringify({
+        // Backend needs newPriceId, so resolve via the SKU
+        newPriceId: await resolvePriceIdForSku(productKey, newPlan),
+        newProductType: productKey,
+        newPlanType: newPlan,
+        currentProductType: productKey,  // scope sub lookup to this product
+        embedded: true
+      })
+    });
+
+    if (session.inPlace) {
+      track('portal_plan_swapped', { product: productKey, new_plan: newPlan, mode: 'in_place' });
+      // Monthly→Monthly was updated atomically — no checkout needed.
+      $('switchPlanBody').style.display = 'none';
+      $('switchPlanCheckoutMount').style.display = 'block';
+      $('switchPlanCheckoutMount').innerHTML = `
+        <div style="text-align:center;padding:32px 20px">
+          <div style="font-size:48px;margin-bottom:12px">✓</div>
+          <div style="font-size:20px;font-weight:700;margin-bottom:6px">Plan updated</div>
+          <div style="font-size:14px;color:var(--gray-500);margin-bottom:18px">${escapeHtml(session.message || 'Your plan has been changed.')}</div>
+          <button class="btn btn-primary" onclick="closeSwitchPlanModal();loadHome()">Back to portal</button>
+        </div>`;
+      return;
+    }
+
+    if (!session.clientSecret) {
+      throw new Error(session.error || 'Unexpected checkout response');
+    }
+
+    const stripe = await loadStripeJs();
+    $('switchPlanBody').style.display = 'none';
+    $('switchPlanCheckoutMount').style.display = 'block';
+    $('switchPlanCheckoutMount').innerHTML = '<div id="switchCheckoutContainer"></div>';
+
+    activeEmbeddedCheckout = await stripe.initEmbeddedCheckout({
+      clientSecret: session.clientSecret,
+      onComplete: async () => {
+        track('portal_plan_swapped', { product: productKey, new_plan: newPlan, mode: 'checkout' });
+        // Webhook will cancel the old sub via metadata.cancel_subscription_id.
+        // Patient sees only the new plan after refresh.
+        $('switchPlanCheckoutMount').innerHTML = `
+          <div style="text-align:center;padding:32px 20px">
+            <div style="font-size:48px;margin-bottom:12px">✓</div>
+            <div style="font-size:20px;font-weight:700;margin-bottom:6px">Plan switched</div>
+            <div style="font-size:14px;color:var(--gray-500);margin-bottom:18px">Your previous plan has been canceled and your new plan is now active.</div>
+            <button class="btn btn-primary" onclick="closeSwitchPlanModal();loadHome()">Back to portal</button>
+          </div>`;
+      }
+    });
+    activeEmbeddedCheckout.mount('#switchCheckoutContainer');
+  } catch (err) {
+    btn.disabled = false; btn.textContent = 'Switch to this plan';
+    alert('Could not switch plan: ' + (err.message || err));
+  }
+}
+
+// Tiny helper: the catalog exposes plan prices but not Stripe price IDs (env-
+// var values stay backend-only). The backend's /add-product/create-session
+// resolves SKU→price-id internally. For the swap path we need to send the
+// newPriceId though, since /subscription/change predates SKU resolution.
+// Fetch the catalog product, look up its plan-specific stripePriceId via the
+// dedicated resolver endpoint.
+async function resolvePriceIdForSku(productKey, planType){
+  // Hit /api/portal/sku-price which we'll add as a tiny resolver. If that
+  // endpoint is not deployed yet, fall back to /portal/plans (GLP-1 only) or
+  // surface a clear error so a missing env var doesn't silently fail.
+  try {
+    const r = await api(`/api/portal/sku-price?productKey=${encodeURIComponent(productKey)}&planType=${encodeURIComponent(planType)}`);
+    if (r.priceId) return r.priceId;
+    throw new Error(r.error || 'Price not configured for this plan');
+  } catch (e) {
+    throw new Error('Could not resolve plan price: ' + e.message);
+  }
+}
+
+// ═══ BILLING ═══
+// ─── Shipping address editor ───
+function openAddressEditor(){
+  const addr=portalData?.patient?.shippingAddress||{};
+  const STATES=['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY','DC'];
+  document.body.insertAdjacentHTML('beforeend',`
+    <div id="addrModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;z-index:1000;padding:20px;animation:fadeIn 0.15s">
+      <div style="background:white;border-radius:18px;padding:24px;max-width:480px;width:100%;box-shadow:var(--shadow-lg);max-height:90vh;overflow-y:auto">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px">
+          <div>
+            <h3 style="font-size:18px;font-weight:700;margin-bottom:4px">Update shipping address</h3>
+            <div style="font-size:13px;color:var(--gray-500)">Future shipments will use this address.</div>
+          </div>
+          <button onclick="closeAddressEditor()" style="background:none;border:none;font-size:24px;line-height:1;color:var(--gray-400);cursor:pointer;padding:0">&times;</button>
+        </div>
+        <div class="q-item" style="padding:8px 0"><label class="q-label">Street address</label>
+          <input class="q-input" type="text" id="addr_street" value="${escapeAttr(addr.street||'')}" placeholder="123 Main Street"></div>
+        <div class="q-item" style="padding:8px 0"><label class="q-label">Apartment or suite <span style="color:var(--gray-400);font-weight:500">(optional)</span></label>
+          <input class="q-input" type="text" id="addr_apt" value="${escapeAttr(addr.apt||'')}" placeholder="Apt 4B"></div>
+        <div style="display:flex;gap:8px">
+          <div class="q-item" style="padding:8px 0;flex:2"><label class="q-label">City</label>
+            <input class="q-input" type="text" id="addr_city" value="${escapeAttr(addr.city||'')}"></div>
+          <div class="q-item" style="padding:8px 0;flex:1"><label class="q-label">State</label>
+            <select class="q-select" id="addr_state">${STATES.map(s=>`<option value="${s}"${addr.state===s?' selected':''}>${s}</option>`).join('')}</select></div>
+          <div class="q-item" style="padding:8px 0;flex:1"><label class="q-label">ZIP</label>
+            <input class="q-input" type="text" id="addr_zip" value="${escapeAttr(addr.zip||'')}" maxlength="10"></div>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:14px">
+          <button class="btn btn-secondary" style="flex:1" onclick="closeAddressEditor()">Cancel</button>
+          <button class="btn btn-primary" style="flex:1" id="btnSaveAddress" onclick="saveAddress()">Save address</button>
+        </div>
+      </div>
+    </div>`);
+}
+
+function escapeAttr(s){return String(s||'').replace(/"/g,'&quot;');}
+
+function closeAddressEditor(){const m=$('addrModal');if(m)m.remove();}
+
+async function saveAddress(){
+  const btn=$('btnSaveAddress');btn.disabled=true;btn.textContent='Saving...';
+  const payload={
+    street:$('addr_street').value.trim(),
+    apt:$('addr_apt').value.trim(),
+    city:$('addr_city').value.trim(),
+    state:$('addr_state').value,
+    zip:$('addr_zip').value.trim(),
+  };
+  if(!payload.street||!payload.city||!payload.state||!payload.zip){
+    btn.disabled=false;btn.textContent='Save address';
+    alert('Please fill out street, city, state, and ZIP.');
+    return;
+  }
+  try{
+    const res=await api('/api/portal/shipping-address',{method:'PUT',body:JSON.stringify(payload)});
+    // Update local cache so UI re-renders correctly
+    if(!portalData.patient.shippingAddress)portalData.patient.shippingAddress={};
+    Object.assign(portalData.patient.shippingAddress,payload);
+    closeAddressEditor();
+    // Re-render billing tab values
+    const addr=portalData.patient.shippingAddress;
+    $('billAddressText').textContent=`${addr.street}${addr.apt?`, ${addr.apt}`:''}, ${addr.city}, ${addr.state} ${addr.zip}`;
+  }catch(e){
+    btn.disabled=false;btn.textContent='Save address';
+    alert('Could not save: '+e.message);
+  }
+}
+
+async function manageSubscription(){
+  try{
+    const data=await api('/api/portal/subscription/manage',{method:'POST'});
+    if(data.url)window.location.href=data.url;
+  }catch(e){alert('Could not open billing: '+e.message);}
+}
+
+async function downloadPhi(){
+  const btn = event?.target?.closest('button');
+  if (btn) { btn.disabled = true; btn.style.opacity = '0.6'; }
+  try {
+    // The endpoint returns a JSON attachment scoped to req.patient.customerId
+    // so we just stream the response into a Blob and trigger a browser
+    // download. No backend mailing infrastructure needed for self-service
+    // export — the patient is already authenticated and pulling their own
+    // record over HTTPS.
+    const response = await fetch(`${API}/api/portal/phi-export`, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+    if (!response.ok) {
+      let msg = response.statusText;
+      try { const j = await response.json(); msg = j.error || msg; } catch (e) {}
+      throw new Error(msg);
+    }
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+    // Pull the suggested filename out of Content-Disposition if present, else
+    // build one client-side.
+    const dispo = response.headers.get('Content-Disposition') || '';
+    const match = /filename="([^"]+)"/.exec(dispo);
+    const filename = match ? match[1] : `clyr-health-records-${new Date().toISOString().split('T')[0]}.json`;
+    const a = document.createElement('a');
+    a.href = url; a.download = filename; document.body.appendChild(a); a.click();
+    setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
+  } catch (e) {
+    alert('Could not export your records: ' + e.message + '. Email care@clyr.health if this keeps happening.');
+  } finally {
+    if (btn) { btn.disabled = false; btn.style.opacity = '1'; }
+  }
+}
+
+// ═══ EVENT WIRING ═══
+document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
+$('btnSendCode').addEventListener('click',sendCode);
+$('btnVerifyCode').addEventListener('click',verifyCode);
+$('btnBackToEmail').addEventListener('click',()=>{
+  $('loginStepCode').style.display='none';
+  $('loginStepEmail').style.display='block';
+});
+$('btnSignOut').addEventListener('click',signOut);
+$('emailInput').addEventListener('keydown',e=>{if(e.key==='Enter')sendCode();});
+$('codeInput').addEventListener('keydown',e=>{if(e.key==='Enter')verifyCode();});
+$('codeInput').addEventListener('input',e=>{e.target.value=e.target.value.replace(/\D/g,'').slice(0,6);if(e.target.value.length===6)verifyCode();});
+$('msgInput').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}});
+$('btnSendMsg').addEventListener('click',sendMessage);
+$('shopSearch').addEventListener('input',renderShop);
+
+// ═══ INIT ═══
+if(token){enterApp().catch(()=>signOut());}
+else{$('loginView').style.display='grid';}
+
+</script>
+</body>
+</html>
