@@ -336,6 +336,19 @@ textarea.q-input{resize:vertical;min-height:80px}
 .order-row .o-amt{font-weight:700}
 .order-row .o-status{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;padding:4px 11px;border-radius:100px;background:rgba(16,185,129,0.12);color:var(--green)}
 .shop-card:hover,.product-card:hover,.shop-grid>div:hover{box-shadow:var(--shadow-md)}
+/* command-center grid composition */
+.dash-hero{display:grid;grid-template-columns:1.5fr 1fr;gap:16px;align-items:start}
+.dash-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.tx-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.hero-facts{grid-template-columns:repeat(auto-fit,minmax(124px,1fr))}
+.card-title-sm{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--gray-500);margin-bottom:14px}
+.ship-card .ship-big{font-size:22px;font-weight:700;letter-spacing:-0.01em;color:var(--dark)}
+.ship-card .ship-sub{font-size:13.5px;color:var(--gray-500);margin-top:4px}
+.ship-link{display:inline-flex;align-items:center;gap:7px;color:var(--teal);font-weight:700;font-size:13.5px;margin-top:16px}
+.ship-link svg{width:15px;height:15px}
+.msg-panel .msg-cta-txt{font-size:14px;color:var(--gray-600);line-height:1.55}
+@media(max-width:900px){.dash-hero,.dash-2,.tx-grid{grid-template-columns:1fr}}
+@media(max-width:520px){.hero-fact{padding:13px 16px}.main .page{padding-left:0;padding-right:0}}
 </style>
 <!-- PostHog for portal behavioral analytics. Same project as intake.html so
      a single funnel can stitch lead_captured (intake) -> portal_signed_in ->
@@ -1259,7 +1272,6 @@ function renderHeroCard(tx){
         <div class="hero-fact"><div class="k">Refills left</div><div class="v">${refillsLeft}</div></div>
         <div class="hero-fact"><div class="k">Auto-refill</div><div class="v"><span class="mini-toggle ${ar?'on':''}" onclick="heroToggleAR()"><span></span></span>${ar?'On':'Off'}</div></div>
       </div>
-      ${ship}
       <div class="treatment-card-body">${renderRefillSummaryForTreatment(tx)}</div>
       <div style="border-top:1px solid var(--gray-100);padding-top:10px;margin-top:12px;display:flex;justify-content:flex-end">
         <button onclick="openTreatmentActions('${productKey}')" style="background:none;border:none;color:var(--gray-500);font-size:13px;font-weight:600;cursor:pointer;padding:4px 8px;border-radius:6px;display:inline-flex;align-items:center;gap:6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>Manage</button>
@@ -1269,7 +1281,22 @@ function renderHeroCard(tx){
 function renderOrdersStrip(list){
   if(!list||!list.length)return '';
   const rows=list.map(t=>`<div class="order-row"><div class="o-name">${escapeHtml(t.productDisplay||t.product||'Treatment')}</div><div class="o-meta">${escapeHtml(_planLabel(t.plan))}</div><div class="o-amt">${t.amount!=null?$fmtMoney(t.amount):''}</div><div class="o-status">${escapeHtml(t.status||'active')}</div></div>`).join('');
-  return `<div class="section orders-strip"><div class="section-head"><h2 class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="13" height="11" rx="1"/><path d="M14 9h4l3 3v5h-7z"/></svg>Recent orders</h2></div><div class="card">${rows}</div></div>`;
+  return `<div class="card orders-card"><div class="card-title-sm">Recent orders</div>${rows}</div>`;
+}
+function renderNextShipmentCard(tx){
+  const enc=(tx&&tx.encounter)||portalData.encounter||null;
+  const rw=(tx&&tx.refillWindow)||portalData.refillWindow||{};
+  let big,sub,link='';
+  if(enc&&enc.trackingNumber){
+    big=enc.deliveredAt?('Delivered '+fmtDate(enc.deliveredAt)):enc.shippedAt?('Shipped '+fmtDate(enc.shippedAt)):'In transit';
+    sub=escapeHtml((tx&&(tx.productDisplay||tx.product))||'Your treatment');
+    link=`<a href="${_trackUrl(enc.carrier,enc.trackingNumber)}" target="_blank" rel="noopener" class="ship-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="13" height="11" rx="1"/><path d="M14 9h4l3 3v5h-7z"/></svg>Track ${escapeHtml(enc.carrier||'package')}</a>`;
+  }else if(rw.opensAt){big='Next refill';sub='Opens '+fmtDate(rw.opensAt);}
+  else{big='No shipment yet';sub='Your next shipment will appear here.';}
+  return `<div class="card ship-card"><div class="card-title-sm">Next shipment</div><div class="ship-big">${escapeHtml(big)}</div><div class="ship-sub">${sub}</div>${link}</div>`;
+}
+function renderMessagesPanel(){
+  return `<div class="card msg-panel"><div class="card-title-sm">Messages</div><div class="msg-cta-txt">Message your provider or the CLYR care team, anytime.</div><a class="ship-link" style="cursor:pointer" onclick="showPage('chat')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg>Open inbox &rarr;</a></div>`;
 }
 function renderMyTreatment(){
   const area=$('myTreatmentArea');
@@ -1301,7 +1328,9 @@ function renderMyTreatment(){
     return;
   }
 
-  area.innerHTML=renderHeroCard(list[0])+list.slice(1).map(renderTreatmentCardHtml).join('')+renderOrdersStrip(list);
+  area.innerHTML='<div class="dash-hero">'+renderHeroCard(list[0])+renderNextShipmentCard(list[0])+'</div>'
+    +(list.length>1?'<div class="tx-grid">'+list.slice(1).map(renderTreatmentCardHtml).join('')+'</div>':'')
+    +'<div class="dash-2">'+renderOrdersStrip(list)+renderMessagesPanel()+'</div>';
 }
 
 // Unified view of "what treatment is the patient currently on". Recurring
