@@ -1102,6 +1102,7 @@ function goToStep(n) {
   document.querySelectorAll('.step').forEach(function(s){s.classList.remove('active')});
   document.getElementById('step' + n).classList.add('active');
   currentStep = n;
+  if(n===1&&!window._pvFired){window._pvFired=true;if(window.clyrTrack)clyrTrack('product_viewed',{product:(typeof state!=='undefined'&&state.productKey)||null,source:'intake_wellness'});}
   document.getElementById('progressFill').style.width = (n / totalSteps * 100) + '%';
   var labels = ['','Confirm your treatment','Health screening','Your details','Shipping address','Review & checkout'];
   document.getElementById('progressLabel').textContent = 'Step ' + n + ' of ' + totalSteps + ', ' + labels[n];
@@ -1110,6 +1111,7 @@ function goToStep(n) {
 }
 
 function onStep2Continue() {
+  if(window.clyrTrack)clyrTrack('screening_passed',{product:(typeof state!=='undefined'&&state.productKey)||null});
   goToStep(3);
 }
 
@@ -1140,6 +1142,8 @@ function onStep3Continue() {
   // Fire-and-forget returning-customer detection (mirrors intake.html).
   // Won't block the step transition, if it errors we just continue silently.
   if (state.details.email) {
+    if(window.clyrIdentify)clyrIdentify(state.details.email,{firstName:state.details.firstName,lastName:state.details.lastName});
+    if(window.clyrTrack)clyrTrack('lead_captured',{product:(state.productKey||state.product||null)});
     fetch('https://clyr-backend.onrender.com/api/intake/save-lead', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -1209,6 +1213,7 @@ function populateReview() {
 
 // ── CHECKOUT ──────────────────────────────────────────────────────────
 function initCheckout() {
+  if(window.clyrTrack)clyrTrack('checkout_started',{product:(typeof state!=='undefined'&&state.productKey)||null});
   var btn = document.getElementById('btnCheckout');
   btn.disabled = true;
   btn.innerHTML = 'Preparing checkout…';

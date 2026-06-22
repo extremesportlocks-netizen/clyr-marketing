@@ -405,5 +405,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 function toggleFaq(btn){var a=btn.nextElementSibling;var w=a.classList.contains('open');document.querySelectorAll('.faq-a').forEach(function(el){el.classList.remove('open')});document.querySelectorAll('.faq-q').forEach(function(el){el.classList.remove('open')});if(!w){a.classList.add('open');btn.classList.add('open')}}
 </script>
 <script src="/js/clyr-tracking.js"></script>
+<script>document.addEventListener('DOMContentLoaded',function(){if(window._pvFired)return;window._pvFired=true;var p=location.pathname.replace(/^\//,'').replace(/\.html$/,'')||'home';if(window.clyrTrack)clyrTrack('product_viewed',{product:p,source:'product_page'});});</script>
 </body>
 </html>
