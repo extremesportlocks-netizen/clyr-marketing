@@ -1231,7 +1231,7 @@ function _trackUrl(carrier,n){carrier=(carrier||'').toUpperCase();n=encodeURICom
 function heroToggleAR(){const cur=!!(portalData&&portalData.patient&&portalData.patient.autoRefillEnabled);toggleAutoRefill(!cur).then(()=>renderMyTreatment());}
 function renderHeroCard(tx){
   const img=resolveProductThumb(tx);
-  const rw=tx.refillWindow||{}; const enc=tx.encounter||null;
+  const rw=tx.refillWindow||{}; const enc=tx.encounter||portalData.encounter||null;
   const ar=!!(portalData&&portalData.patient&&portalData.patient.autoRefillEnabled);
   const refillsLeft=(portalData&&portalData.patient&&portalData.patient.refillsRemaining!=null)?portalData.patient.refillsRemaining:'—';
   const nextRefill=rw.opensAt?fmtDate(rw.opensAt):'—';
