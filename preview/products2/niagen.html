@@ -21,59 +21,140 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/preview/assets/clyr-vibe.css">
 <style>
-/* ===== Niagen blue-frost intro animation ===== */
-#frost{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;cursor:pointer;
-  background:radial-gradient(circle at 50% 38%,#0e2d4a 0%,#08111d 60%,#05070b 100%);
-  animation:frostThaw 2.5s cubic-bezier(.66,0,.2,1) .9s forwards}
-#frost::before{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;
-  background:radial-gradient(58% 48% at 50% 42%,rgba(108,200,255,0.30),transparent 72%),
-    repeating-linear-gradient(118deg,rgba(255,255,255,0.05) 0 2px,transparent 2px 9px),
-    repeating-linear-gradient(62deg,rgba(180,225,255,0.04) 0 2px,transparent 2px 11px);
-  animation:frostShimmer 2.4s ease 1s forwards}
-#frost::after{content:"";position:absolute;inset:-2px;pointer-events:none;
-  backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);
-  -webkit-mask:radial-gradient(60% 55% at 50% 42%,transparent 40%,#000 80%);
-  mask:radial-gradient(60% 55% at 50% 42%,transparent 40%,#000 80%)}
-.frost-mark{position:relative;text-align:center;z-index:2}
-.frost-logo{font-weight:700;letter-spacing:.42em;font-size:13px;color:#9ad6ff;opacity:0;
-  animation:fIn .8s ease .55s forwards}
-.frost-title{font-size:clamp(58px,13vw,150px);font-weight:800;letter-spacing:.14em;line-height:1;margin:10px 0 6px;
-  background:linear-gradient(180deg,#f2f9ff 0%,#bfe2ff 45%,#7fb6ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
-  filter:blur(20px);opacity:0;text-shadow:0 0 70px rgba(108,200,255,.55);
-  animation:titleThaw 1.5s cubic-bezier(.2,.7,.15,1) .9s forwards}
-.frost-sub{font-size:13px;font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:#7fb6ff;opacity:0;
-  animation:fIn 1s ease 1.5s forwards}
-@keyframes titleThaw{0%{filter:blur(22px);opacity:0;letter-spacing:.5em}55%{opacity:1}100%{filter:blur(0);opacity:1;letter-spacing:.14em}}
-@keyframes frostThaw{0%,52%{opacity:1}100%{opacity:0;transform:scale(1.14);filter:blur(14px);visibility:hidden}}
-@keyframes frostShimmer{0%{transform:translateX(-8%) translateY(2%)}100%{transform:translateX(8%) translateY(-2%);opacity:.2}}
+:root{--frost:#6CC8FF;--frost-2:#9ad6ff;--ice:#eaf6ff}
+body{background:#05080e}
+::selection{background:rgba(108,200,255,.3);color:#fff}
+
+/* ============ FROST INTRO ============ */
+#frost{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;
+  background:radial-gradient(circle at 50% 36%,#103351 0%,#0a1626 52%,#05070b 100%);
+  animation:frostThaw 2.6s cubic-bezier(.66,0,.18,1) 1.7s forwards}
+#frost .grain{position:absolute;inset:-20%;mix-blend-mode:screen;opacity:.6;
+  background:radial-gradient(60% 50% at 50% 42%,rgba(108,200,255,.28),transparent 72%),
+    repeating-linear-gradient(118deg,rgba(255,255,255,.05) 0 2px,transparent 2px 10px),
+    repeating-linear-gradient(60deg,rgba(180,225,255,.045) 0 2px,transparent 2px 13px);
+  animation:frostShimmer 3.4s ease 1.7s forwards}
+#frost .sweep{position:absolute;top:0;bottom:0;width:60%;left:-60%;pointer-events:none;
+  background:linear-gradient(105deg,transparent,rgba(200,235,255,.22),transparent);
+  filter:blur(6px);animation:sweep 2.3s ease .6s 1}
+#frost .flake{position:absolute;color:rgba(190,225,255,.0);animation:flakeIn 1s ease forwards}
+.fmark{position:relative;text-align:center;z-index:3}
+.fmark .lg{font-weight:700;letter-spacing:.46em;font-size:12.5px;color:#9ad6ff;opacity:0;animation:fIn .9s ease .7s forwards}
+.fmark .ti{font-size:clamp(60px,13.5vw,164px);font-weight:800;letter-spacing:.16em;line-height:1;margin:12px 0 8px;
+  background:linear-gradient(180deg,#f4faff 0%,#c3e3ff 46%,#7fb6ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:blur(22px);opacity:0;text-shadow:0 0 80px rgba(108,200,255,.6);animation:titleThaw 1.7s cubic-bezier(.2,.7,.12,1) 1s forwards}
+.fmark .sb{font-size:13px;font-weight:600;letter-spacing:.36em;text-transform:uppercase;color:#7fb6ff;opacity:0;animation:fIn 1s ease 1.7s forwards}
+.fmark .hint{position:absolute;left:50%;transform:translateX(-50%);bottom:-120px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#5f7d9c;opacity:0;animation:fIn 1s ease 2.6s forwards}
+@keyframes titleThaw{0%{filter:blur(24px);opacity:0;letter-spacing:.55em}55%{opacity:1}100%{filter:blur(0);opacity:1;letter-spacing:.16em}}
+@keyframes frostThaw{0%,46%{opacity:1}100%{opacity:0;transform:scale(1.16);filter:blur(16px);visibility:hidden}}
+@keyframes frostShimmer{0%{transform:translateX(-7%) translateY(2%)}100%{transform:translateX(7%) translateY(-2%);opacity:.15}}
+@keyframes sweep{0%{left:-60%}100%{left:120%}}
 @keyframes fIn{to{opacity:1}}
+@keyframes flakeIn{from{opacity:0;transform:translateY(-12px) scale(.6)}to{opacity:1;transform:none}}
 .frost-done{display:none!important}
-/* page enters from a soft frost */
 body.frosting{overflow:hidden}
-.reveal{opacity:0;transform:translateY(14px);animation:rise .9s cubic-bezier(.2,.7,.2,1) 2.5s forwards}
-@keyframes rise{to{opacity:1;transform:none}}
-/* exclusivity accents */
-.ex-badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
-  color:#bfe6ff;background:rgba(108,200,255,0.12);border:1px solid rgba(108,200,255,0.32);padding:8px 16px;border-radius:100px;margin-bottom:20px;
-  box-shadow:0 0 28px rgba(108,200,255,0.18)}
-.ex-badge .dot{width:7px;height:7px;border-radius:50%;background:#6CC8FF;box-shadow:0 0 10px #6CC8FF;animation:pulse 2s infinite}
-@keyframes pulse{50%{opacity:.4}}
-@media(prefers-reduced-motion:reduce){#frost{display:none}.reveal{opacity:1;transform:none;animation:none}.ex-badge .dot{animation:none}}
+
+/* ============ ambient page frost field ============ */
+.aurora{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.aurora b{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5;mix-blend-mode:screen}
+.aurora b:nth-child(1){width:780px;height:780px;left:-180px;top:-220px;background:radial-gradient(circle,rgba(108,200,255,.5),transparent 65%);animation:drift1 22s ease-in-out infinite}
+.aurora b:nth-child(2){width:620px;height:620px;right:-160px;top:120px;background:radial-gradient(circle,rgba(90,140,255,.42),transparent 65%);animation:drift2 26s ease-in-out infinite}
+.aurora b:nth-child(3){width:560px;height:560px;left:30%;bottom:-220px;background:radial-gradient(circle,rgba(140,235,255,.3),transparent 65%);animation:drift3 30s ease-in-out infinite}
+@keyframes drift1{50%{transform:translate(120px,90px) scale(1.1)}}
+@keyframes drift2{50%{transform:translate(-110px,70px) scale(1.08)}}
+@keyframes drift3{50%{transform:translate(80px,-90px) scale(1.12)}}
+
+/* ============ hero (two-col, custom) ============ */
+.nhero{position:relative;overflow:hidden;padding:118px 0 92px;
+  background:radial-gradient(120% 90% at 80% -10%,rgba(108,200,255,.20),transparent 55%),radial-gradient(90% 80% at 0% 100%,rgba(90,140,255,.12),transparent 60%),linear-gradient(180deg,#070b13,#0a0f1a)}
+.nhero .lattice{position:absolute;inset:0;opacity:.18;pointer-events:none;
+  background-image:linear-gradient(rgba(108,200,255,.18) 1px,transparent 1px),linear-gradient(90deg,rgba(108,200,255,.18) 1px,transparent 1px);
+  background-size:46px 46px;-webkit-mask:radial-gradient(70% 60% at 75% 20%,#000,transparent 75%);mask:radial-gradient(70% 60% at 75% 20%,#000,transparent 75%)}
+.nhero-grid{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.ex-badge{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;
+  color:#cdecff;background:rgba(108,200,255,.10);border:1px solid rgba(108,200,255,.34);padding:9px 17px;border-radius:100px;margin-bottom:22px;
+  box-shadow:0 0 34px rgba(108,200,255,.20);backdrop-filter:blur(6px)}
+.ex-badge .dot{width:7px;height:7px;border-radius:50%;background:#6CC8FF;box-shadow:0 0 12px #6CC8FF;animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.35}}
+.nhero h1{font-size:clamp(46px,7vw,88px);line-height:.96;letter-spacing:-.03em;font-weight:800;max-width:13ch}
+.nhero h1 .serif{color:#bfe2ff;background:linear-gradient(180deg,#eaf6ff,#7fb6ff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.nhero p{font-size:clamp(16.5px,1.7vw,20px);color:#C7CCD6;max-width:54ch;margin:24px 0 30px;line-height:1.6}
+.glassrow{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.gstat{flex:1;min-width:128px;background:rgba(255,255,255,.04);border:1px solid rgba(108,200,255,.18);border-radius:16px;padding:16px 18px;backdrop-filter:blur(8px)}
+.gstat .n{font-size:26px;font-weight:800;letter-spacing:-.02em;color:#eaf6ff}
+.gstat .l{font-size:12px;color:#9fb0c4;margin-top:3px}
+
+/* ============ animated vial ============ */
+.vialwrap{position:relative;display:flex;align-items:center;justify-content:center;min-height:440px}
+.vialwrap .halo{position:absolute;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(108,200,255,.5),transparent 62%);filter:blur(34px);animation:pulse 5s ease-in-out infinite}
+.vialwrap svg{position:relative;z-index:2;filter:drop-shadow(0 30px 50px rgba(0,0,0,.5)) drop-shadow(0 0 30px rgba(108,200,255,.35));animation:bob 6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-14px)}}
+.ring{position:absolute;border:1px solid rgba(108,200,255,.22);border-radius:50%;z-index:1}
+.ring.r1{width:300px;height:300px;animation:spin 26s linear infinite}
+.ring.r2{width:380px;height:380px;border-style:dashed;animation:spin 40s linear infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.frostbit{position:absolute;width:5px;height:5px;border-radius:50%;background:#bfe6ff;box-shadow:0 0 8px #6CC8FF;z-index:3;animation:float 7s ease-in-out infinite}
+
+/* ============ marquee ============ */
+.marq{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(108,200,255,.04);overflow:hidden;white-space:nowrap}
+.marq .run{display:inline-block;padding:16px 0;animation:run 28s linear infinite;font-weight:700;letter-spacing:.04em;font-size:15px;color:#bfe2ff}
+.marq .run span{margin:0 26px;opacity:.85}
+.marq .run i{color:var(--frost);font-style:normal;margin:0 26px}
+@keyframes run{to{transform:translateX(-50%)}}
+
+/* ============ science pathway ============ */
+.path{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;margin-top:46px}
+.node{position:relative;width:150px;height:150px;border-radius:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  background:linear-gradient(180deg,#121a28,#0c121d);border:1px solid rgba(108,200,255,.25);box-shadow:0 0 40px rgba(108,200,255,.08) inset}
+.node .big{font-size:24px;font-weight:800;color:#eaf6ff}
+.node .sm{font-size:11px;color:#9fb0c4;margin-top:4px;padding:0 8px}
+.arrow{width:84px;height:2px;background:linear-gradient(90deg,transparent,var(--frost),transparent);position:relative;margin:0 6px}
+.arrow::after{content:"";position:absolute;right:6px;top:-4px;width:9px;height:9px;border-top:2px solid var(--frost);border-right:2px solid var(--frost);transform:rotate(45deg)}
+.arrow .pip{position:absolute;top:-2.5px;left:0;width:7px;height:7px;border-radius:50%;background:var(--frost);box-shadow:0 0 10px var(--frost);animation:flow 2.4s linear infinite}
+@keyframes flow{from{left:0;opacity:0}10%{opacity:1}90%{opacity:1}to{left:74px;opacity:0}}
+
+/* ============ scroll reveal + frost hover ============ */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .85s ease,transform .85s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+.card{transition:transform .25s,border-color .25s,box-shadow .25s,background .25s}
+.card:hover{border-color:rgba(108,200,255,.5);box-shadow:0 24px 60px rgba(0,0,0,.5),0 0 0 1px rgba(108,200,255,.2)}
+.sec-label{color:var(--frost)!important}
+.pill{background:rgba(108,200,255,.12);color:#bfe6ff;border-color:rgba(108,200,255,.28)}
+.plan.feat{border-color:rgba(108,200,255,.5);box-shadow:0 0 50px rgba(108,200,255,.1)}
+.btn-p{background:linear-gradient(120deg,#6CC8FF,#3ea0ff);color:#04181b;box-shadow:0 12px 38px rgba(108,200,255,.34)}
+.btn-p:hover{box-shadow:0 18px 50px rgba(108,200,255,.5)}
+.step .n{color:var(--frost)}
+.q button svg,.strip svg{color:var(--frost)}
+
+/* ============ sticky CTA ============ */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:80;transform:translateY(120%);transition:transform .5s cubic-bezier(.2,.7,.2,1);
+  background:rgba(8,14,24,.86);backdrop-filter:blur(16px);border-top:1px solid rgba(108,200,255,.2)}
+.dock.on{transform:none}
+.dock-in{max-width:1200px;margin:0 auto;padding:13px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.dock-in .t{font-weight:700;font-size:15px}
+.dock-in .t b{color:var(--frost)}
+.dock-in .s{font-size:12.5px;color:#9fb0c4}
+@media(max-width:860px){.nhero-grid{grid-template-columns:1fr}.vialwrap{min-height:360px;order:-1}.path .arrow{transform:rotate(90deg)}.dock-in .s{display:none}}
+@media(prefers-reduced-motion:reduce){#frost{display:none}.rv{opacity:1;transform:none}*{animation:none!important}}
 </style>
 </head>
 <body class="frosting" style="--accent:#6CC8FF;--hero-glow-1:rgba(108,200,255,0.24);--hero-glow-2:rgba(90,140,255,0.12)">
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T4FVQ87G" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div id="frost" onclick="this.classList.add('frost-done')">
-  <div class="frost-mark">
-    <div class="frost-logo">CLYR&nbsp;HEALTH</div>
-    <div class="frost-title">NIAGEN</div>
-    <div class="frost-sub">First in. Now injectable.</div>
+  <div class="grain"></div><div class="sweep"></div>
+  <div class="fmark">
+    <div class="lg">CLYR&nbsp;HEALTH</div>
+    <div class="ti">NIAGEN</div>
+    <div class="sb">First in. Now injectable.</div>
+    <div class="hint">Tap to enter</div>
   </div>
 </div>
+
+<div class="aurora"><b></b><b></b><b></b></div>
 
 <nav class="nav" id="nav"><div class="nav-inner">
   <a href="/" aria-label="CLYR home"><svg viewBox="0 0 120 32" height="30"><text x="0" y="25" font-family="DM Sans,sans-serif" font-weight="700" font-size="27" letter-spacing="-1"><tspan fill="#fff">CLY</tspan><tspan fill="#00B4C5">R</tspan></text></svg></a>
@@ -91,22 +172,62 @@ body.frosting{overflow:hidden}
   <button class="mob" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('open')"><span></span><span></span><span></span></button>
 </div></nav>
 
-<header class="hero"><div class="wrap reveal">
-  <div class="ex-badge"><span class="dot"></span>Early access &middot; New to telehealth</div>
-  <div class="hero-eyebrow"><a href="/preview/daily-wellness.html" style="color:var(--accent)">Daily Wellness</a> &middot; Longevity</div>
-  <h1>Niagen <span class="serif">Injections.</span></h1>
-  <p>Niagen is the patented, branded form of nicotinamide riboside (NR), a direct precursor your body converts into NAD+. Now offered as a provider-supervised injection, and CLYR is among the first to make it available. Prescribed by a licensed US provider. Delivered to your door.</p>
-  <div class="pills">
-    <span class="pill">NAD+ precursor</span>
-    <span class="pill">Patented NR</span>
-    <span class="pill">Subcutaneous</span>
-    <span class="pill">Provider-supervised</span>
-  </div>
-  <div class="hero-actions" style="margin-top:30px">
-    <a href="/intake-wellness.html?product=niagen" class="btn btn-p">Claim early access <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-    <a href="#plans" class="btn btn-g">See pricing</a>
+<header class="nhero" id="hero"><div class="wrap">
+  <div class="lattice"></div>
+  <div class="nhero-grid">
+    <div class="rv in">
+      <div class="ex-badge"><span class="dot"></span>Early access &middot; New to telehealth</div>
+      <div class="hero-eyebrow"><a href="/preview/daily-wellness.html" style="color:var(--frost)">Daily Wellness</a> &middot; Longevity</div>
+      <h1>Niagen, <span class="serif">finally injectable.</span></h1>
+      <p>Niagen is the patented form of nicotinamide riboside (NR), a direct precursor your body converts into NAD+. Now provider-supervised and injectable, and CLYR is among the first to offer it. Prescribed by a licensed US provider. Delivered to your door.</p>
+      <div class="hero-actions">
+        <a href="/intake-wellness.html?product=niagen" class="btn btn-p">Claim early access <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="#plans" class="btn btn-g">See pricing</a>
+      </div>
+      <div class="glassrow">
+        <div class="gstat"><div class="n" data-count="1">1</div><div class="l">Of the first in telehealth</div></div>
+        <div class="gstat"><div class="n"><span data-count="100">100</span> mg/mL</div><div class="l">Pharmacy-filled potency</div></div>
+        <div class="gstat"><div class="n"><span data-count="2">2</span>-min</div><div class="l">Online visit to start</div></div>
+      </div>
+    </div>
+    <div class="vialwrap rv in">
+      <div class="halo"></div><div class="ring r1"></div><div class="ring r2"></div>
+      <svg width="220" height="420" viewBox="0 0 220 420" fill="none">
+        <defs>
+          <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#dff1ff" stop-opacity=".55"/><stop offset=".5" stop-color="#9cc9ef" stop-opacity=".25"/><stop offset="1" stop-color="#dff1ff" stop-opacity=".45"/></linearGradient>
+          <linearGradient id="liq" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8fe0ff"/><stop offset="1" stop-color="#3a8fe0"/></linearGradient>
+          <linearGradient id="cap" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9eef3"/><stop offset="1" stop-color="#9aa6b2"/></linearGradient>
+        </defs>
+        <!-- vapor -->
+        <g opacity=".7" stroke="#bfe6ff" stroke-width="3" stroke-linecap="round" fill="none">
+          <path d="M92 70 q-12 -22 4 -42 q14 -18 -2 -36"><animate attributeName="opacity" values="0;.7;0" dur="4s" repeatCount="indefinite"/><animateTransform attributeName="transform" type="translate" values="0 0; 0 -16; 0 0" dur="4s" repeatCount="indefinite"/></path>
+          <path d="M120 64 q14 -20 -2 -40 q-12 -16 4 -34"><animate attributeName="opacity" values="0;.6;0" dur="5s" begin=".8s" repeatCount="indefinite"/><animateTransform attributeName="transform" type="translate" values="0 0; 0 -18; 0 0" dur="5s" begin=".8s" repeatCount="indefinite"/></path>
+        </g>
+        <!-- cap -->
+        <rect x="86" y="78" width="48" height="30" rx="5" fill="url(#cap)"/>
+        <rect x="92" y="64" width="36" height="20" rx="4" fill="#cfd8e0"/>
+        <!-- body -->
+        <rect x="74" y="108" width="72" height="270" rx="30" fill="url(#glass)" stroke="#cfe6ff" stroke-opacity=".5"/>
+        <!-- liquid -->
+        <path d="M80 200 h60 v150 a24 24 0 0 1 -24 24 h-12 a24 24 0 0 1 -24 -24 Z" fill="url(#liq)" opacity=".9"/>
+        <ellipse cx="110" cy="200" rx="30" ry="7" fill="#aef0ff" opacity=".8"/>
+        <!-- shine -->
+        <rect x="84" y="124" width="12" height="230" rx="6" fill="#ffffff" opacity=".35"/>
+        <!-- glow nodes (molecule motif) -->
+        <g fill="#eaf9ff"><circle cx="110" cy="250" r="4" opacity=".9"/><circle cx="98" cy="290" r="3" opacity=".7"/><circle cx="124" cy="300" r="3" opacity=".7"/><circle cx="110" cy="330" r="3.5" opacity=".8"/></g>
+        <g stroke="#bfe6ff" stroke-width="1.2" opacity=".5"><line x1="110" y1="250" x2="98" y2="290"/><line x1="110" y1="250" x2="124" y2="300"/><line x1="98" y1="290" x2="110" y2="330"/><line x1="124" y1="300" x2="110" y2="330"/></g>
+      </svg>
+      <span class="frostbit" style="top:18%;left:24%"></span>
+      <span class="frostbit" style="top:70%;right:22%;animation-delay:1.5s"></span>
+      <span class="frostbit" style="top:40%;right:14%;animation-delay:3s"></span>
+      <span class="frostbit" style="bottom:14%;left:30%;animation-delay:2.2s"></span>
+    </div>
   </div>
 </div></header>
+
+<div class="marq"><div class="run">
+  <span>FIRST TO MARKET</span><i>&#10022;</i><span>PATENTED NR</span><i>&#10022;</i><span>NAD+ PRECURSOR</span><i>&#10022;</i><span>PROVIDER SUPERVISED</span><i>&#10022;</i><span>LICENSED US PHARMACY</span><i>&#10022;</i><span>EARLY ACCESS</span><i>&#10022;</i><span>FIRST TO MARKET</span><i>&#10022;</i><span>PATENTED NR</span><i>&#10022;</i><span>NAD+ PRECURSOR</span><i>&#10022;</i><span>PROVIDER SUPERVISED</span><i>&#10022;</i><span>LICENSED US PHARMACY</span><i>&#10022;</i><span>EARLY ACCESS</span><i>&#10022;</i>
+</div></div>
 
 <div class="strip"><div class="strip-inner">
   <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Licensed U.S. providers</span>
@@ -115,8 +236,8 @@ body.frosting{overflow:hidden}
   <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 4v5h5"/></svg>Cancel anytime</span>
 </div></div>
 
-<section class="sec wrap">
-  <div class="sec-label" style="color:var(--accent)">Exclusive</div>
+<section class="sec wrap rv">
+  <div class="sec-label">Exclusive</div>
   <h2>Be among the <span class="serif">first.</span></h2>
   <p class="lede">Injectable Niagen is brand new to telehealth. CLYR secured early access, so you can start now, before it is widely available. Enrollment is limited while early supply ramps.</p>
   <div class="grid">
@@ -126,8 +247,21 @@ body.frosting{overflow:hidden}
   </div>
 </section>
 
-<section class="sec wrap">
-  <div class="sec-label" style="color:var(--accent)">At a Glance</div>
+<section class="sec wrap rv">
+  <div class="sec-label">The Science</div>
+  <h2>From a precursor to <span class="serif">your cells.</span></h2>
+  <p class="lede">Niagen is NR. Your body runs it up a short pathway into NAD+, the coenzyme behind cellular energy and the repair enzymes tied to healthy aging.</p>
+  <div class="path">
+    <div class="node"><div class="big">Niagen</div><div class="sm">Patented NR</div></div>
+    <div class="arrow"><span class="pip"></span></div>
+    <div class="node"><div class="big">NMN</div><div class="sm">Intermediate</div></div>
+    <div class="arrow"><span class="pip"></span></div>
+    <div class="node" style="border-color:rgba(108,200,255,.6);box-shadow:0 0 50px rgba(108,200,255,.18) inset"><div class="big" style="color:#bfe6ff">NAD+</div><div class="sm">Cellular fuel</div></div>
+  </div>
+</section>
+
+<section class="sec wrap rv">
+  <div class="sec-label">At a Glance</div>
   <h2>The essentials, <span class="serif">up front.</span></h2>
   <div class="facts">
     <div class="fact"><div class="k">What it is</div><div class="v">Niagen (NR)</div></div>
@@ -137,8 +271,8 @@ body.frosting{overflow:hidden}
   </div>
 </section>
 
-<section class="sec wrap" id="plans">
-  <div class="sec-label" style="color:var(--accent)">Pricing</div>
+<section class="sec wrap rv" id="plans">
+  <div class="sec-label">Pricing</div>
   <h2>Pick your <span class="serif">strength.</span></h2>
   <p class="lede">Your provider recommends a starting strength and cadence. Prepaying for several months lowers the monthly rate.</p>
   <div class="plans">
@@ -148,8 +282,8 @@ body.frosting{overflow:hidden}
   <div class="hero-actions" style="margin-top:26px"><a href="/intake-wellness.html?product=niagen" class="btn btn-p">Check your eligibility <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
 </section>
 
-<section class="sec wrap">
-  <div class="sec-label" style="color:var(--accent)">The Details</div>
+<section class="sec wrap rv">
+  <div class="sec-label">The Details</div>
   <h2>What you are <span class="serif">actually getting.</span></h2>
   <div class="prose">
     <h3>Why Niagen</h3>
@@ -165,8 +299,8 @@ body.frosting{overflow:hidden}
   </div>
 </section>
 
-<section class="sec wrap">
-  <div class="sec-label" style="color:var(--accent)">How It Works</div>
+<section class="sec wrap rv">
+  <div class="sec-label">How It Works</div>
   <h2>Sorted in <span class="serif">minutes.</span></h2>
   <div class="steps">
     <div class="step"><div class="n">1</div><h4>Two-minute visit</h4><p>Tell us your energy and longevity goals in a short online visit.</p></div>
@@ -175,8 +309,8 @@ body.frosting{overflow:hidden}
   </div>
 </section>
 
-<section class="sec wrap">
-  <div class="sec-label" style="color:var(--accent)">Real Talk</div>
+<section class="sec wrap rv">
+  <div class="sec-label">Real Talk</div>
   <h2>Questions, <span class="serif">answered straight.</span></h2>
   <div class="faq" style="margin-top:34px">
     <div class="q"><button onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">What is Niagen?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><div class="a"><p>Niagen is the patented, branded form of nicotinamide riboside (NR), a precursor your body converts into NAD+. It is the studied NR ingredient many longevity programs are built around.</p></div></div>
@@ -187,7 +321,7 @@ body.frosting{overflow:hidden}
   </div>
 </section>
 
-<section class="cta"><div class="wrap">
+<section class="cta rv"><div class="wrap">
   <h2>Get in <span class="serif">early.</span></h2>
   <p>A short visit, a real provider, delivered to your door. Be one of the first on injectable Niagen.</p>
   <a href="/intake-wellness.html?product=niagen" class="btn btn-p">Claim early access <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
@@ -210,14 +344,39 @@ body.frosting{overflow:hidden}
   </div>
 </div></footer>
 
+<div class="dock" id="dock"><div class="dock-in">
+  <div><div class="t">Injectable <b>Niagen</b> &middot; Early access</div><div class="s">Limited enrollment while supply ramps</div></div>
+  <a href="/intake-wellness.html?product=niagen" class="btn btn-p" style="padding:12px 26px;font-size:14.5px">Claim access</a>
+</div></div>
+
 <script>
 (function(){
   var f=document.getElementById('frost');
   function clear(){document.body.classList.remove('frosting');if(f)f.classList.add('frost-done');}
-  // auto-clear after the thaw finishes; click skips
-  setTimeout(clear, 3500);
+  setTimeout(clear, 4600);
   if(f)f.addEventListener('click',clear);
-  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches){clear();}
+  var rm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if(rm)clear();
+
+  // scroll reveal
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.16});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+
+  // count up
+  function countUp(el){var t=+el.getAttribute('data-count'),d=1100,s=null;
+    function step(ts){if(!s)s=ts;var p=Math.min((ts-s)/d,1);el.textContent=Math.round(p*t);if(p<1)requestAnimationFrame(step);}
+    requestAnimationFrame(step);}
+  var cio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){countUp(e.target);cio.unobserve(e.target);}});},{threshold:.6});
+  setTimeout(function(){document.querySelectorAll('[data-count]').forEach(function(el){cio.observe(el);});}, rm?0:2600);
+
+  // hero glow parallax
+  var hero=document.getElementById('hero');
+  if(hero&&!rm)hero.addEventListener('mousemove',function(e){var r=hero.getBoundingClientRect();var x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;hero.style.backgroundPosition=(50+x*6)+'% '+(y*6)+'%';});
+
+  // sticky dock after hero
+  var dock=document.getElementById('dock');
+  var dio=new IntersectionObserver(function(es){es.forEach(function(e){dock.classList.toggle('on',!e.isIntersecting);});},{threshold:0});
+  if(hero)dio.observe(hero);
 })();
 </script>
 </body>
