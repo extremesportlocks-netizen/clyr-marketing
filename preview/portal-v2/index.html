@@ -312,6 +312,30 @@ textarea.q-input{resize:vertical;min-height:80px}
 .page-title{font-size:26px}
 @media(max-width:820px){.quick-actions{grid-template-columns:1fr 1fr}}
 @media(max-width:480px){.quick-actions{grid-template-columns:1fr}}
+/* hero treatment card */
+.treatment-card.hero{border-color:rgba(0,180,197,0.35);box-shadow:var(--shadow-md)}
+.treatment-card.hero .treatment-card-head{background:linear-gradient(135deg,#eefafb 0%,#e1f5f8 100%)}
+.treatment-card.hero .treatment-card-img{width:86px;height:86px}
+.treatment-card.hero .treatment-card-name{font-size:20px}
+.hero-facts{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--gray-100)}
+.hero-fact{padding:16px 22px;border-right:1px solid var(--gray-100)}
+.hero-fact:last-child{border-right:none}
+.hero-fact .k{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-500);font-weight:700;margin-bottom:5px}
+.hero-fact .v{font-size:15px;font-weight:700;color:var(--dark);display:flex;align-items:center;gap:8px}
+.mini-toggle{display:inline-block;width:38px;height:22px;border-radius:100px;background:var(--gray-200);position:relative;cursor:pointer;transition:background .2s;flex-shrink:0;vertical-align:middle}
+.mini-toggle.on{background:var(--teal)}
+.mini-toggle>span{position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .2s}
+.mini-toggle.on>span{transform:translateX(16px)}
+.hero-ship{display:flex;align-items:center;gap:9px;padding:14px 22px;font-size:13.5px;color:var(--gray-700);border-bottom:1px solid var(--gray-100)}
+.hero-ship svg{width:16px;height:16px;color:var(--teal);flex-shrink:0}
+.hero-ship a{color:var(--teal);font-weight:700;margin-left:auto}
+.orders-strip .card{padding:6px 20px}
+.order-row{display:grid;grid-template-columns:2fr 1fr auto auto;gap:14px;align-items:center;padding:13px 0;border-bottom:1px solid var(--gray-100);font-size:14px}
+.order-row:last-child{border-bottom:none}
+.order-row .o-name{font-weight:600}.order-row .o-meta{color:var(--gray-500);font-size:13px}
+.order-row .o-amt{font-weight:700}
+.order-row .o-status{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;padding:4px 11px;border-radius:100px;background:rgba(16,185,129,0.12);color:var(--green)}
+.shop-card:hover,.product-card:hover,.shop-grid>div:hover{box-shadow:var(--shadow-md)}
 </style>
 <!-- PostHog for portal behavioral analytics. Same project as intake.html so
      a single funnel can stitch lead_captured (intake) -> portal_signed_in ->
@@ -1198,6 +1222,55 @@ function renderTreatmentCardHtml(tx){
     </div>`;
 }
 
+function _planLabel(p){return ({monthly:'Monthly','3month':'3-Month','6month':'6-Month','12month':'12-Month'})[p]||p||'';}
+function _trackUrl(carrier,n){carrier=(carrier||'').toUpperCase();n=encodeURIComponent(n||'');
+  if(carrier.indexOf('FEDEX')>=0)return 'https://www.fedex.com/fedextrack/?trknbr='+n;
+  if(carrier.indexOf('UPS')>=0)return 'https://www.ups.com/track?tracknum='+n;
+  if(carrier.indexOf('USPS')>=0)return 'https://tools.usps.com/go/TrackConfirmAction?tLabels='+n;
+  return 'https://parcelsapp.com/en/tracking/'+n;}
+function heroToggleAR(){const cur=!!(portalData&&portalData.patient&&portalData.patient.autoRefillEnabled);toggleAutoRefill(!cur).then(()=>renderMyTreatment());}
+function renderHeroCard(tx){
+  const img=resolveProductThumb(tx);
+  const rw=tx.refillWindow||{}; const enc=tx.encounter||null;
+  const ar=!!(portalData&&portalData.patient&&portalData.patient.autoRefillEnabled);
+  const refillsLeft=(portalData&&portalData.patient&&portalData.patient.refillsRemaining!=null)?portalData.patient.refillsRemaining:'—';
+  const nextRefill=rw.opensAt?fmtDate(rw.opensAt):'—';
+  const planLabel=_planLabel(tx.plan);
+  let ship='';
+  if(enc&&enc.trackingNumber){
+    const when=enc.deliveredAt?('Delivered '+fmtDate(enc.deliveredAt)):enc.shippedAt?('Shipped '+fmtDate(enc.shippedAt)):'In transit';
+    ship=`<div class="hero-ship"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="13" height="11" rx="1"/><path d="M14 9h4l3 3v5h-7z"/></svg><span>${when}</span><a href="${_trackUrl(enc.carrier,enc.trackingNumber)}" target="_blank" rel="noopener">Track ${escapeHtml(enc.carrier||'package')}</a></div>`;
+  }
+  const productKey=escapeAttr(tx.product||'');
+  return `
+    <div class="treatment-card hero">
+      <div class="treatment-card-head">
+        <div class="treatment-card-img"><img src="${img}" alt="" onerror="this.style.display='none'"></div>
+        <div class="treatment-card-info">
+          <div class="treatment-card-name">${escapeHtml(tx.productDisplay||tx.product||'Treatment')}</div>
+          <div class="treatment-card-meta">${escapeHtml(planLabel)}${tx.amount!=null?` · ${$fmtMoney(tx.amount)}`:''} · ${escapeHtml(verticalLabel(tx.vertical||'wellness'))}</div>
+          ${renderChipsForTreatment(tx)}
+        </div>
+        <div class="treatment-card-badge${tx.status==='active'?'':' pending'}">${escapeHtml(tx.status||'active')}</div>
+      </div>
+      <div class="hero-facts">
+        <div class="hero-fact"><div class="k">Plan</div><div class="v">${escapeHtml(planLabel||'—')}</div></div>
+        <div class="hero-fact"><div class="k">Next refill</div><div class="v">${escapeHtml(nextRefill)}</div></div>
+        <div class="hero-fact"><div class="k">Refills left</div><div class="v">${refillsLeft}</div></div>
+        <div class="hero-fact"><div class="k">Auto-refill</div><div class="v"><span class="mini-toggle ${ar?'on':''}" onclick="heroToggleAR()"><span></span></span>${ar?'On':'Off'}</div></div>
+      </div>
+      ${ship}
+      <div class="treatment-card-body">${renderRefillSummaryForTreatment(tx)}</div>
+      <div style="border-top:1px solid var(--gray-100);padding-top:10px;margin-top:12px;display:flex;justify-content:flex-end">
+        <button onclick="openTreatmentActions('${productKey}')" style="background:none;border:none;color:var(--gray-500);font-size:13px;font-weight:600;cursor:pointer;padding:4px 8px;border-radius:6px;display:inline-flex;align-items:center;gap:6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>Manage</button>
+      </div>
+    </div>`;
+}
+function renderOrdersStrip(list){
+  if(!list||!list.length)return '';
+  const rows=list.map(t=>`<div class="order-row"><div class="o-name">${escapeHtml(t.productDisplay||t.product||'Treatment')}</div><div class="o-meta">${escapeHtml(_planLabel(t.plan))}</div><div class="o-amt">${t.amount!=null?$fmtMoney(t.amount):''}</div><div class="o-status">${escapeHtml(t.status||'active')}</div></div>`).join('');
+  return `<div class="section orders-strip"><div class="section-head"><h2 class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="13" height="11" rx="1"/><path d="M14 9h4l3 3v5h-7z"/></svg>Recent orders</h2></div><div class="card">${rows}</div></div>`;
+}
 function renderMyTreatment(){
   const area=$('myTreatmentArea');
   const list=portalData.treatments||[];
@@ -1228,7 +1301,7 @@ function renderMyTreatment(){
     return;
   }
 
-  area.innerHTML=list.map(renderTreatmentCardHtml).join('');
+  area.innerHTML=renderHeroCard(list[0])+list.slice(1).map(renderTreatmentCardHtml).join('')+renderOrdersStrip(list);
 }
 
 // Unified view of "what treatment is the patient currently on". Recurring
