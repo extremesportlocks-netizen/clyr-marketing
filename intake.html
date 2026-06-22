@@ -1588,10 +1588,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (smsTerms) smsTerms.style.display = (step === 1 || step === 7) ? 'block' : 'none';
     if(window.clyrTrack)clyrTrack('IntakeStep',{step:step,stepName:stepNames[step]||'Step'+step,treatment:formData.treatment,plan:formData.plan});
     if(window.posthog)posthog.capture('intake_step_viewed',{step:step,step_name:stepNames[step]||'Step'+step,treatment:formData.treatment,plan:formData.plan});
+    if(step===1&&!window._pvFired&&window.posthog){window._pvFired=true;posthog.capture('product_viewed',{source:'intake',treatment:formData.treatment,plan:formData.plan});}
   }
 
   function nextStep() {
     if (currentStep === 8) { submitIntake(); return; }
+    if (currentStep === 2 && formData.screeningClear && window.posthog) posthog.capture('screening_passed',{treatment:formData.treatment,plan:formData.plan});
 
     // Lead capture: save email, name, phone, profile when leaving step 3
     if (currentStep === 3) {

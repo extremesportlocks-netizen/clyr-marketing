@@ -178,6 +178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         if (successBadge) successBadge.style.opacity = '1';
         // Track confirmed checkout (PostHog + internal DB)
         if(window.clyrTrack)clyrTrack('CheckoutCompleted',{session_id:sid,value:data.amount_total?data.amount_total/100:0,currency:'USD'});
+        if(window.posthog&&data.customer_email)posthog.identify(data.customer_email);
         if(window.posthog)posthog.capture('checkout_completed',{session_id:sid,value:data.amount_total?data.amount_total/100:0,currency:'USD',treatment:data.treatment||''});
         // GTM dataLayer Purchase event, value + currency ONLY, no product/medication
         // (PHI-safe). Dedup id = session_id so browser pixel + server CAPI count once.
