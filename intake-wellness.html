@@ -638,6 +638,10 @@ function init() {
   // Parse ?product= and optional ?plan=
   var params = new URLSearchParams(window.location.search);
   var prod = (params.get('product') || '').toLowerCase().trim();
+  // Niagen has its own dedicated dark intake (intake-niagen.html) with the
+  // current MDI-backed pricing (monthly/30day/90day/180day). Redirect any
+  // legacy ?product=niagen hit there so it never uses this page's stale config.
+  if (prod === 'niagen') { window.location.replace('/intake-niagen.html' + window.location.search); return; }
   var plan = (params.get('plan') || 'monthly').toLowerCase().trim();
 
   // Handle alias for sildenafil, some marketing pages might pass "sildenafil"
