@@ -136,11 +136,15 @@ body.frosting{overflow:hidden}
   background:rgba(8,14,24,.86);backdrop-filter:blur(16px);border-top:1px solid rgba(108,200,255,.2)}
 .dock.on{transform:none}
 .dock-in{max-width:1200px;margin:0 auto;padding:13px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.dock-in .t{font-weight:700;font-size:15px}
+.dock-in .t{font-weight:700;font-size:15px;flex:1 1 auto;min-width:0}
 .dock-in .t b{color:var(--frost)}
-.dock-in .s{font-size:12.5px;color:#9fb0c4}
-@media(max-width:860px){.nhero-grid{grid-template-columns:1fr}.vialwrap{min-height:360px;order:-1}.nhero{padding:90px 0 64px}.path{flex-direction:column;gap:8px}.path .arrow{transform:none;width:2px;height:26px;margin:2px 0;background:var(--frost);opacity:.55}.path .arrow::after{display:none}.path .arrow .pip{display:none}.gstat{min-width:calc(50% - 6px)}.marq .run{font-size:13.5px}.dock-in .s{display:none}}
-@media(max-width:480px){.wrap{padding:0 18px}.nhero{padding:74px 0 50px}.nhero h1{font-size:clamp(36px,9.5vw,52px)}.gstat{min-width:100%}.glassrow{gap:10px}.dock-in{padding:11px 15px;gap:10px}.dock-in .t{font-size:13.5px}.dock-in a.btn{padding:11px 18px!important;font-size:13px!important}.vialwrap{min-height:300px}.vialwrap svg{max-width:74vw;height:auto}.node{width:132px;height:132px}.node .big{font-size:21px}}
+.dock-in .s{font-size:12.5px;color:#9fb0c4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dock-in .btn-i{flex:0 0 auto;white-space:nowrap}
+/* the fixed dock must never cover page content */
+body{padding-bottom:0}
+body.dock-room{padding-bottom:74px}
+@media(max-width:860px){body{padding-bottom:76px}.nhero-grid{grid-template-columns:1fr}.vialwrap{min-height:360px;order:-1}.nhero{padding:90px 0 70px}.sec{padding:54px 0}.path{flex-direction:column;gap:8px}.path .arrow{transform:none;width:2px;height:26px;margin:2px 0;background:var(--frost);opacity:.55}.path .arrow::after{display:none}.path .arrow .pip{display:none}.gstat{min-width:calc(50% - 6px)}.marq .run{font-size:13.5px}.dock-in .s{display:none}}
+@media(max-width:480px){.wrap{padding:0 20px}.nhero{padding:74px 0 54px}.nhero h1{font-size:clamp(36px,9.5vw,52px)}.nhero p{font-size:16px}.gstat{min-width:100%}.glassrow{gap:10px}.dock{}.dock-in{padding:10px 16px;gap:12px}.dock-in .t{font-size:13.5px;line-height:1.25}.dock-in a.btn{padding:12px 18px!important;font-size:13.5px!important}.vialwrap{min-height:300px}.vialwrap svg{max-width:74vw;height:auto}.node{width:132px;height:132px}.node .big{font-size:21px}}
 @media(prefers-reduced-motion:reduce){#frost{display:none}.rv{opacity:1;transform:none}*{animation:none!important}}
 </style>
 </head>
@@ -375,7 +379,7 @@ body.frosting{overflow:hidden}
 
   // sticky dock after hero
   var dock=document.getElementById('dock');
-  var dio=new IntersectionObserver(function(es){es.forEach(function(e){dock.classList.toggle('on',!e.isIntersecting);});},{threshold:0});
+  var dio=new IntersectionObserver(function(es){es.forEach(function(e){var show=!e.isIntersecting;dock.classList.toggle('on',show);document.body.classList.toggle('dock-room',show);});},{threshold:0});
   if(hero)dio.observe(hero);
 })();
 </script>
