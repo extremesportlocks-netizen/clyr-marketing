@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T4FVQ87G');</script>
+<!-- End Google Tag Manager -->
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Niagen Intake | CLYR Health</title>
+<meta name="description" content="Start your injectable Niagen visit. A short questionnaire, reviewed by a licensed US provider. If you are not eligible, you pay nothing.">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/preview/assets/clyr-vibe.css">
+<script src="https://js.stripe.com/v3/"></script>
+<style>
+:root{--frost:#6CC8FF;--frost-2:#9ad6ff;--ice:#eaf6ff}
+body{background:#05080e;color:#C7CCD6;min-height:100vh}
+.wrap-i{max-width:680px;margin:0 auto;padding:0 22px}
+.top{padding:22px 0 8px}
+.top a{display:inline-flex;align-items:center;gap:8px;color:#9fb0c4;font-size:14px}
+.logo{font-weight:800;letter-spacing:-1px;font-size:22px}.logo span{color:var(--frost)}
+.bar{height:4px;background:rgba(255,255,255,0.07);border-radius:99px;margin:18px 0 26px;overflow:hidden}
+.bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,#6CC8FF,#3ea0ff);transition:width .4s}
+.step{display:none;animation:fade .4s ease}
+.step.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.elabel{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--frost);margin-bottom:10px}
+.etitle{font-size:clamp(24px,4vw,34px);font-weight:800;line-height:1.1;letter-spacing:-.02em;color:#eaf6ff}
+.esub{color:#9fb0c4;font-size:15.5px;margin-top:10px;line-height:1.5}
+.q{margin-top:24px}
+.q .qt{font-size:16.5px;font-weight:600;color:#eaf6ff;margin-bottom:12px}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;align-items:center;gap:12px;padding:15px 18px;border:1.5px solid rgba(255,255,255,0.12);border-radius:14px;background:rgba(255,255,255,0.02);color:#dfe6ee;font-size:15px;font-weight:600;cursor:pointer;transition:all .15s;text-align:left}
+.opt:hover{border-color:rgba(108,200,255,0.5)}
+.opt.sel{border-color:var(--frost);background:rgba(108,200,255,0.12);color:#eaf6ff;box-shadow:0 0 0 1px var(--frost) inset}
+.opt.sel-no{border-color:#FF6B6B;background:rgba(255,107,107,0.10);color:#ffd9d9}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fld{margin-top:14px}
+.fld label{display:block;font-size:13px;font-weight:600;color:#aeb8c4;margin-bottom:6px}
+input,select,textarea{width:100%;padding:13px 14px;border:1.5px solid rgba(255,255,255,0.13);border-radius:12px;background:#0b121d;color:#eaf6ff;font-family:inherit;font-size:15px;outline:none;transition:border .15s}
+input:focus,select:focus,textarea:focus{border-color:var(--frost)}
+select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' stroke='%239fb0c4' stroke-width='2' viewBox='0 0 24 24'><path d='M6 9l6 6 6-6'/></svg>");background-repeat:no-repeat;background-position:right 14px center}
+textarea{min-height:84px;resize:vertical}
+.nav-row{display:flex;gap:12px;margin-top:28px;padding-bottom:40px}
+.btn-i{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:16px;border-radius:99px;font-weight:700;font-size:16px;cursor:pointer;border:none;font-family:inherit;transition:transform .15s,box-shadow .15s}
+.btn-p{background:linear-gradient(120deg,#6CC8FF,#3ea0ff);color:#04181b;box-shadow:0 10px 30px rgba(108,200,255,.3)}
+.btn-p:hover{transform:translateY(-2px)}
+.btn-p:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.btn-g{flex:0 0 auto;background:transparent;border:1.5px solid rgba(255,255,255,0.2);color:#dfe6ee;padding:16px 22px}
+.plan-card{border:1.5px solid rgba(108,200,255,0.3);border-radius:16px;padding:20px;background:rgba(108,200,255,0.05);margin-top:20px}
+.plan-card .pn{font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--frost)}
+.plan-card .pp{font-size:30px;font-weight:800;color:#eaf6ff;margin-top:6px}
+.plan-card .ps{font-size:14px;color:#9fb0c4;margin-top:4px}
+.deadend{text-align:center;padding:30px 0}
+.deadend .ico{width:60px;height:60px;border-radius:50%;background:rgba(255,107,107,0.12);display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
+.rev{border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:18px;margin-top:18px}
+.rev .rrow{display:flex;justify-content:space-between;gap:14px;padding:8px 0;font-size:14.5px;border-bottom:1px solid rgba(255,255,255,0.06)}
+.rev .rrow:last-child{border-bottom:none}.rev .rrow .k{color:#9fb0c4}.rev .rrow .v{color:#eaf6ff;font-weight:600;text-align:right}
+.note{font-size:12.5px;color:#7e8a98;margin-top:14px;line-height:1.5}
+.err{color:#FF8A8A;font-size:13px;margin-top:10px;min-height:16px}
+#checkout-mount{min-height:340px;margin-top:10px}
+@media(max-width:520px){.grid2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T4FVQ87G" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<div class="wrap-i">
+  <div class="top"><a href="/preview/products2/niagen.html">&larr; <span class="logo">CLY<span>R</span></span></a></div>
+  <div class="bar"><i id="bar"></i></div>
+
+  <!-- 0: plan confirm -->
+  <section class="step on" id="s0">
+    <div class="elabel">Injectable Niagen</div>
+    <h1 class="etitle">Start your <span class="serif" style="color:#bfe2ff">visit.</span></h1>
+    <p class="esub">A short questionnaire, reviewed by a licensed US provider. If you are not eligible, you pay nothing.</p>
+    <div class="plan-card"><div class="pn" id="planName">Monthly</div><div class="pp" id="planPrice">$329/mo</div><div class="ps" id="planSub">Auto-renews monthly. Cancel anytime.</div></div>
+    <div class="fld"><label>Change plan</label>
+      <select id="planSel">
+        <option value="monthly">Monthly &middot; $329/mo</option>
+        <option value="30day">30-Day &middot; $369 one-time</option>
+        <option value="90day">90-Day &middot; $899 one-time (best value)</option>
+        <option value="180day">180-Day &middot; $1,499 one-time (max value)</option>
+      </select>
+    </div>
+    <div class="nav-row"><button class="btn-i btn-p" onclick="go(1)">Begin <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
+  </section>
+
+  <!-- 1: screening -->
+  <section class="step" id="s1">
+    <div class="elabel">Safety screening</div>
+    <h1 class="etitle">A few <span class="serif" style="color:#bfe2ff">safety checks.</span></h1>
+    <p class="esub">Answer honestly. A Yes to any of these means Niagen is not a fit, and you will not be charged.</p>
+    <div id="dqHost"></div>
+    <div class="err" id="s1err"></div>
+    <div class="nav-row"><button class="btn-i btn-g" onclick="go(0)">Back</button><button class="btn-i btn-p" onclick="submitScreening()">Continue</button></div>
+  </section>
+
+  <!-- deadend -->
+  <section class="step" id="sDead">
+    <div class="deadend">
+      <div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FF8A8A" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg></div>
+      <h1 class="etitle">Niagen is not the right fit right now.</h1>
+      <p class="esub">Based on your answer, our providers cannot safely prescribe injectable Niagen. You have not been charged. If you think this was a mistake, contact our care team.</p>
+      <div class="nav-row" style="justify-content:center"><a class="btn-i btn-g" href="/preview/products2/niagen.html" style="flex:0 0 auto">Back to Niagen</a><a class="btn-i btn-p" href="/contact.html" style="flex:0 0 auto">Contact care team</a></div>
+    </div>
+  </section>
+
+  <!-- 2: profile/titration -->
+  <section class="step" id="s2">
+    <div class="elabel">About you</div>
+    <h1 class="etitle">Help the provider <span class="serif" style="color:#bfe2ff">tailor it.</span></h1>
+    <p class="esub">These shape your starting concentration and schedule. The clinician makes the final call.</p>
+    <div id="profHost"></div>
+    <div class="err" id="s2err"></div>
+    <div class="nav-row"><button class="btn-i btn-g" onclick="go(1)">Back</button><button class="btn-i btn-p" onclick="submitProfile()">Continue</button></div>
+  </section>
+
+  <!-- 3: details -->
+  <section class="step" id="s3">
+    <div class="elabel">Your details</div>
+    <h1 class="etitle">Who is this <span class="serif" style="color:#bfe2ff">for?</span></h1>
+    <div class="grid2"><div class="fld"><label>First name</label><input id="firstName"></div><div class="fld"><label>Last name</label><input id="lastName"></div></div>
+    <div class="fld"><label>Email</label><input id="email" type="email"></div>
+    <div class="fld"><label>Phone</label><input id="phone" type="tel"></div>
+    <div class="fld"><label>Date of birth</label><div class="grid2" style="grid-template-columns:1fr 1fr 1fr"><select id="dobMonth"></select><select id="dobDay"></select><select id="dobYear"></select></div></div>
+    <div class="grid2"><div class="fld"><label>Sex assigned at birth</label><select id="sex"><option value="">Select</option><option value="female">Female</option><option value="male">Male</option></select></div><div class="fld"><label>Weight (lbs)</label><input id="weight" type="number"></div></div>
+    <div class="fld"><label>Height</label><div class="grid2"><select id="heightFt"></select><select id="heightIn"></select></div></div>
+    <div class="fld"><label>Current medications (or write None)</label><textarea id="currentMedications" placeholder="None"></textarea></div>
+    <div class="fld"><label>Drug allergies (or write None)</label><textarea id="drugAllergies" placeholder="None"></textarea></div>
+    <div class="err" id="s3err"></div>
+    <div class="nav-row"><button class="btn-i btn-g" onclick="go(2)">Back</button><button class="btn-i btn-p" onclick="submitDetails()">Continue</button></div>
+  </section>
+
+  <!-- 4: shipping -->
+  <section class="step" id="s4">
+    <div class="elabel">Shipping</div>
+    <h1 class="etitle">Where should it <span class="serif" style="color:#bfe2ff">ship?</span></h1>
+    <div class="fld"><label>Street address</label><input id="address"></div>
+    <div class="fld"><label>Apt / Suite (optional)</label><input id="apt"></div>
+    <div class="grid2"><div class="fld"><label>City</label><input id="city"></div><div class="fld"><label>State</label><select id="state"></select></div></div>
+    <div class="fld"><label>ZIP</label><input id="zip"></div>
+    <div class="err" id="s4err"></div>
+    <div class="nav-row"><button class="btn-i btn-g" onclick="go(3)">Back</button><button class="btn-i btn-p" onclick="submitShipping()">Continue</button></div>
+  </section>
+
+  <!-- 5: review -->
+  <section class="step" id="s5">
+    <div class="elabel">Review</div>
+    <h1 class="etitle">Confirm and <span class="serif" style="color:#bfe2ff">sign.</span></h1>
+    <div class="rev" id="revHost"></div>
+    <div class="fld"><label>Type your full legal name (your signature)</label><input id="legalName"></div>
+    <div class="fld"><label>First message to your provider (optional)</label><textarea id="doctorMessage" placeholder="Anything you'd like your provider to know"></textarea></div>
+    <p class="note">By clicking Continue to Checkout, your information is sent to a licensed provider for review. If the provider determines you are not eligible, you receive a full refund. Niagen is compounded; compounded medications are not FDA-approved for safety, efficacy, or quality.</p>
+    <div class="err" id="s5err"></div>
+    <div class="nav-row"><button class="btn-i btn-g" onclick="go(4)">Back</button><button class="btn-i btn-p" id="payBtn" onclick="submitAll()">Continue to checkout</button></div>
+  </section>
+
+  <!-- 6: checkout -->
+  <section class="step" id="s6">
+    <div class="elabel">Secure checkout</div>
+    <h1 class="etitle">Almost <span class="serif" style="color:#bfe2ff">there.</span></h1>
+    <p class="esub" id="coStatus">Loading secure payment...</p>
+    <div id="checkout-mount"></div>
+    <div class="nav-row"><button class="btn-i btn-g" onclick="go(5)">Back</button></div>
+  </section>
+</div>
+
+<script>
+var API = 'https://clyr-backend.onrender.com';
+var PLANS = {
+  monthly: { name: 'Monthly', price: '$329/mo', sub: 'Auto-renews monthly. Cancel anytime.' },
+  '30day': { name: '30-Day', price: '$369', sub: 'One-time, 30-day supply.' },
+  '90day': { name: '90-Day', price: '$899', sub: 'One-time. 3 vials, 2 refills. Best value.' },
+  '180day': { name: '180-Day', price: '$1,499', sub: 'One-time. 6 vials, 5 refills. Max value.' }
+};
+var DQ = [
+  { key: 'pregnancy',  q: 'Are you currently pregnant, breastfeeding, or trying to conceive?' },
+  { key: 'cancer',     q: 'Do you have a current or prior cancer diagnosis?' },
+  { key: 'kidney',     q: 'Do you have current or prior kidney disease?' },
+  { key: 'liver',      q: 'Do you have current or prior liver disease?' },
+  { key: 'nadAllergy', q: 'Do you have a known allergy to NAD-related compounds (NAD, NADH, NAD+, ENADA, or Vitamin B3)?' }
+];
+var PROFILE = [
+  { key: 'nadHistory', type: 'single', q: 'Have you ever taken an NAD+ precursor supplement (nicotinamide, NR, NMN, nicotinic acid, NADH, or single-ingredient B3) for at least 30 days?', opts: [['currently', 'Currently taking one'], ['past', 'Taken one in the past'], ['no', 'Never']] },
+  { key: 'nadHistorySideEffects', type: 'text', q: 'If you took one in the past, any side effects while taking it? (optional)', showIf: function (a) { return a.nadHistory === 'past'; } },
+  { key: 'ivHistory', type: 'multi', q: 'Any prior injectable or IV wellness therapies? (Select all that apply)', opts: [['b12', 'B12 injections'], ['bcomplex', 'B-complex injections'], ['nad_iv', 'NAD+ IV'], ['niagen_iv', 'Niagen IV or injection'], ['other', 'Other'], ['none', 'None']] },
+  { key: 'ivReactions', type: 'multi', q: 'Any adverse reactions during or after those? (Select all that apply)', opts: [['none', 'None'], ['flushing', 'Flushing'], ['nausea', 'Nausea'], ['dizziness', 'Dizziness'], ['anxiety', 'Anxiety'], ['injection_site', 'Injection-site reaction'], ['other', 'Other']] },
+  { key: 'selfInject', type: 'single', q: 'Have you ever self-administered an injection at home?', opts: [['regularly', 'Yes, regularly'], ['occasionally', 'Yes, occasionally'], ['no', 'No, never']] },
+  { key: 'sensitivity', type: 'single', q: 'How sensitive are you to supplements or medications?', opts: [['very', 'Very sensitive'], ['moderately', 'Moderately sensitive'], ['not', 'Not sensitive'], ['notsure', 'Not sure']] },
+  { key: 'concentrationPref', type: 'single', q: 'Starting concentration preference?', opts: [['low', 'Lower concentration (gentler)'], ['higher', 'Higher concentration'], ['clinician', 'Let the clinician decide']] },
+  { key: 'reasons', type: 'multi', q: 'Primary reasons for treatment? (Select all that apply)', opts: [['wellness', 'General wellness'], ['energy', 'Energy'], ['cognitive', 'Cognitive or focus'], ['longevity', 'Longevity'], ['recovery', 'Recovery'], ['other', 'Other']] },
+  { key: 'healthRating', type: 'single', q: 'How would you rate your overall health?', opts: [['poor', 'Poor'], ['fair', 'Fair'], ['good', 'Good'], ['verygood', 'Very good'], ['excellent', 'Excellent']] },
+  { key: 'consentSideEffects', type: 'single', q: 'Do you understand the possible side effects, and that a lower concentration reduces risk?', opts: [['yes', 'Yes, I understand'], ['no', 'No']] },
+  { key: 'consentClinicianDosing', type: 'single', q: 'Do you agree the clinician sets the final concentration and schedule?', opts: [['yes', 'Yes, I agree'], ['no', 'No']] }
+];
+var STATES = 'AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY DC'.split(' ');
+
+var formData = { treatment: 'niagen', plan: 'monthly', screeningClear: false, flaggedConditions: [], dq: {}, mdiAnswers: {} };
+var stepIds = ['s0', 's1', 's2', 's3', 's4', 's5', 's6'];
+var stepIdx = 0;
+var stripe = null, embeddedCheckout = null;
+
+function $(id) { return document.getElementById(id); }
+function track(ev, meta) { try { if (window.clyrTrack) clyrTrack(ev, meta || {}); } catch (e) {} }
+
+function go(n) {
+  document.querySelectorAll('.step').forEach(function (s) { s.classList.remove('on'); });
+  $(stepIds[n]).classList.add('on');
+  stepIdx = n;
+  $('bar').style.width = Math.round((n / (stepIds.length - 1)) * 100) + '%';
+  window.scrollTo(0, 0);
+}
+function deadend() {
+  document.querySelectorAll('.step').forEach(function (s) { s.classList.remove('on'); });
+  $('sDead').classList.add('on'); window.scrollTo(0, 0);
+}
+
+function setPlan(plan) {
+  if (!PLANS[plan]) plan = 'monthly';
+  formData.plan = plan;
+  $('planName').textContent = PLANS[plan].name;
+  $('planPrice').textContent = PLANS[plan].price;
+  $('planSub').textContent = PLANS[plan].sub;
+  $('planSel').value = plan;
+}
+
+// ── DQ render ──
+function renderDQ() {
+  var h = '';
+  DQ.forEach(function (d) {
+    h += '<div class="q"><div class="qt">' + d.q + '</div><div class="opts" data-dq="' + d.key + '">' +
+      '<button type="button" class="opt" onclick="pickDQ(this,\'' + d.key + '\',\'yes\')">Yes</button>' +
+      '<button type="button" class="opt" onclick="pickDQ(this,\'' + d.key + '\',\'no\')">No</button></div></div>';
+  });
+  $('dqHost').innerHTML = h;
+}
+function pickDQ(el, key, val) {
+  var row = el.parentNode;
+  row.querySelectorAll('.opt').forEach(function (o) { o.classList.remove('sel', 'sel-no'); });
+  el.classList.add(val === 'yes' ? 'sel-no' : 'sel');
+  formData.dq[key] = val;
+}
+function submitScreening() {
+  for (var i = 0; i < DQ.length; i++) { if (!formData.dq[DQ[i].key]) { $('s1err').textContent = 'Please answer every question.'; return; } }
+  $('s1err').textContent = '';
+  var flagged = DQ.filter(function (d) { return formData.dq[d.key] === 'yes'; }).map(function (d) { return d.key; });
+  formData.flaggedConditions = flagged;
+  if (flagged.length) { formData.screeningClear = false; track('screening_failed', { product: 'niagen', flagged: flagged }); deadend(); return; }
+  formData.screeningClear = true;
+  track('screening_passed', { product: 'niagen', plan: formData.plan });
+  go(2);
+}
+
+// ── Profile render ──
+function renderProfile() {
+  var h = '';
+  PROFILE.forEach(function (p) {
+    h += '<div class="q" data-q="' + p.key + '"' + (p.showIf ? ' style="display:none"' : '') + '><div class="qt">' + p.q + '</div>';
+    if (p.type === 'text') {
+      h += '<input type="text" data-textkey="' + p.key + '" placeholder="Optional">';
+    } else {
+      h += '<div class="opts">';
+      p.opts.forEach(function (o) {
+        h += '<button type="button" class="opt" onclick="pick' + (p.type === 'multi' ? 'Multi' : 'One') + '(this,\'' + p.key + '\',\'' + o[0] + '\')">' + o[1] + '</button>';
+      });
+      h += '</div>';
+    }
+    h += '</div>';
+  });
+  $('profHost').innerHTML = h;
+}
+function pickOne(el, key, val) {
+  el.parentNode.querySelectorAll('.opt').forEach(function (o) { o.classList.remove('sel'); });
+  el.classList.add('sel');
+  formData.mdiAnswers[key] = val;
+  if (key === 'nadHistory') {
+    var se = document.querySelector('[data-q="nadHistorySideEffects"]');
+    if (se) se.style.display = (val === 'past') ? 'block' : 'none';
+  }
+}
+function pickMulti(el, key, val) {
+  var arr = Array.isArray(formData.mdiAnswers[key]) ? formData.mdiAnswers[key] : [];
+  var row = el.parentNode;
+  if (val === 'none') {
+    arr = ['none'];
+    row.querySelectorAll('.opt').forEach(function (o) { o.classList.remove('sel'); });
+    el.classList.add('sel');
+  } else {
+    arr = arr.filter(function (x) { return x !== 'none'; });
+    var noneBtn = row.querySelector('.opt'); // first is none
+    if (noneBtn && noneBtn.textContent === 'None') noneBtn.classList.remove('sel');
+    var i = arr.indexOf(val);
+    if (i >= 0) { arr.splice(i, 1); el.classList.remove('sel'); } else { arr.push(val); el.classList.add('sel'); }
+  }
+  formData.mdiAnswers[key] = arr;
+}
+function submitProfile() {
+  // capture conditional text
+  var seInput = document.querySelector('[data-textkey="nadHistorySideEffects"]');
+  if (seInput && seInput.value.trim()) formData.mdiAnswers.nadHistorySideEffects = seInput.value.trim();
+  var required = ['nadHistory', 'ivHistory', 'ivReactions', 'selfInject', 'sensitivity', 'concentrationPref', 'reasons', 'healthRating', 'consentSideEffects', 'consentClinicianDosing'];
+  for (var i = 0; i < required.length; i++) {
+    var v = formData.mdiAnswers[required[i]];
+    if (v == null || (Array.isArray(v) && v.length === 0)) { $('s2err').textContent = 'Please answer every question.'; return; }
+  }
+  if (formData.mdiAnswers.consentSideEffects === 'no' || formData.mdiAnswers.consentClinicianDosing === 'no') {
+    $('s2err').textContent = 'Both consents are required to continue with treatment.'; return;
+  }
+  $('s2err').textContent = '';
+  go(3);
+}
+
+function submitDetails() {
+  var need = ['firstName', 'lastName', 'email', 'phone', 'dobMonth', 'dobDay', 'dobYear', 'sex', 'weight', 'heightFt', 'heightIn'];
+  for (var i = 0; i < need.length; i++) { if (!$(need[i]).value) { $('s3err').textContent = 'Please complete every field.'; return; } }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($('email').value.trim())) { $('s3err').textContent = 'Please enter a valid email.'; return; }
+  $('s3err').textContent = '';
+  track('lead_captured', { product: 'niagen', plan: formData.plan });
+  try { if (window.posthog) posthog.identify($('email').value.trim()); } catch (e) {}
+  go(4);
+}
+function submitShipping() {
+  var need = ['address', 'city', 'state', 'zip'];
+  for (var i = 0; i < need.length; i++) { if (!$(need[i]).value) { $('s4err').textContent = 'Please complete address, city, state, and ZIP.'; return; } }
+  $('s4err').textContent = '';
+  renderReview();
+  go(5);
+}
+function renderReview() {
+  var p = PLANS[formData.plan];
+  var rows = [
+    ['Treatment', 'Injectable Niagen'],
+    ['Plan', p.name + ' (' + p.price + ')'],
+    ['Name', $('firstName').value + ' ' + $('lastName').value],
+    ['Ship to', $('address').value + ', ' + $('city').value + ' ' + $('state').value + ' ' + $('zip').value]
+  ];
+  $('revHost').innerHTML = rows.map(function (r) { return '<div class="rrow"><span class="k">' + r[0] + '</span><span class="v">' + r[1] + '</span></div>'; }).join('');
+}
+
+function submitAll() {
+  if (!$('legalName').value.trim()) { $('s5err').textContent = 'Please type your full legal name to sign.'; return; }
+  $('s5err').textContent = '';
+  var btn = $('payBtn'); btn.disabled = true; btn.textContent = 'Saving...';
+  var attr = (window.clyrAttribution && window.clyrAttribution()) || {};
+  var payload = {
+    firstName: $('firstName').value.trim(), lastName: $('lastName').value.trim(),
+    email: $('email').value.trim(), phone: $('phone').value.trim(),
+    dobMonth: $('dobMonth').value, dobDay: $('dobDay').value, dobYear: $('dobYear').value,
+    sex: $('sex').value, heightFt: $('heightFt').value, heightIn: $('heightIn').value, weight: $('weight').value,
+    treatment: 'niagen', screeningClear: formData.screeningClear, flaggedConditions: formData.flaggedConditions,
+    address: $('address').value.trim(), apt: $('apt').value.trim(), city: $('city').value.trim(),
+    state: $('state').value, zip: $('zip').value.trim(),
+    visitor_id: localStorage.getItem('clyr_vid') || null,
+    utm_source: attr.utm_source || null, utm_medium: attr.utm_medium || null, utm_campaign: attr.utm_campaign || null,
+    referrer: attr.referrer || document.referrer || null,
+    mdiAnswers: formData.mdiAnswers,
+    legalName: $('legalName').value.trim(),
+    doctorMessage: $('doctorMessage').value.trim() || null,
+    currentMedications: $('currentMedications').value.trim() || null,
+    drugAllergies: $('drugAllergies').value.trim() || null
+  };
+  fetch(API + '/api/intake', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+    .then(function (r) { return r.ok ? r.json() : r.json().then(function (d) { throw new Error(d.error || 'Server error'); }); })
+    .then(function (res) {
+      if (!res.success && !res.customerId) throw new Error(res.error || 'Could not save your information.');
+      track('checkout_started', { product: 'niagen', plan: formData.plan });
+      go(6);
+      return fetch(API + '/api/checkout', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: payload.email, productType: 'niagen', planType: formData.plan, firstName: payload.firstName, lastName: payload.lastName }) });
+    })
+    .then(function (r) { return r.ok ? r.json() : r.json().then(function (d) { throw new Error(d.error || 'Checkout error'); }); })
+    .then(function (co) {
+      if (!co.clientSecret) throw new Error(co.error || 'Unable to create payment session.');
+      $('coStatus').textContent = '';
+      if (embeddedCheckout) { try { embeddedCheckout.destroy(); } catch (e) {} embeddedCheckout = null; }
+      return stripe.initEmbeddedCheckout({ clientSecret: co.clientSecret });
+    })
+    .then(function (checkout) { embeddedCheckout = checkout; checkout.mount('#checkout-mount'); })
+    .catch(function (err) {
+      btn.disabled = false; btn.textContent = 'Continue to checkout';
+      $('s5err').textContent = err.message || 'Something went wrong. Please try again.';
+      $('coStatus').textContent = err.message || 'Payment could not load.';
+      if (stepIdx === 6) go(5);
+    });
+}
+
+// ── init ──
+(function init() {
+  // populate selects
+  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  $('dobMonth').innerHTML = '<option value="">Month</option>' + months.map(function (m, i) { return '<option value="' + (i + 1) + '">' + m + '</option>'; }).join('');
+  var days = '<option value="">Day</option>'; for (var d = 1; d <= 31; d++) days += '<option value="' + d + '">' + d + '</option>'; $('dobDay').innerHTML = days;
+  var ynow = new Date().getFullYear ? 2026 : 2026; var yrs = '<option value="">Year</option>'; for (var y = ynow - 18; y >= ynow - 90; y--) yrs += '<option value="' + y + '">' + y + '</option>'; $('dobYear').innerHTML = yrs;
+  var ft = '<option value="">ft</option>'; for (var f = 4; f <= 7; f++) ft += '<option value="' + f + '">' + f + ' ft</option>'; $('heightFt').innerHTML = ft;
+  var inch = '<option value="">in</option>'; for (var n = 0; n <= 11; n++) inch += '<option value="' + n + '">' + n + ' in</option>'; $('heightIn').innerHTML = inch;
+  $('state').innerHTML = '<option value="">State</option>' + STATES.map(function (s) { return '<option value="' + s + '">' + s + '</option>'; }).join('');
+
+  // plan from URL
+  var qp = new URLSearchParams(window.location.search);
+  setPlan(qp.get('plan') || 'monthly');
+  $('planSel').addEventListener('change', function () { setPlan(this.value); });
+
+  renderDQ();
+  renderProfile();
+  go(0);
+  track('product_viewed', { product: 'niagen', source: 'intake' });
+
+  // stripe
+  fetch(API + '/api/config').then(function (r) { return r.json(); }).then(function (cfg) { if (cfg.publishableKey) stripe = Stripe(cfg.publishableKey); }).catch(function () {});
+})();
+</script>
+<script src="/js/clyr-tracking.js"></script>
+</body>
+</html>
