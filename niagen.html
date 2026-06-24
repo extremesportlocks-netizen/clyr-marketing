@@ -189,6 +189,37 @@ body.dock-room{padding-bottom:74px}
 .mm-footer .mm-count{font-size:11.5px;color:#9fb0c4}
 .mm-footer a{font-size:12.5px;font-weight:600;color:var(--frost,#6CC8FF)!important;white-space:nowrap}
 @media(max-width:1080px){.nav-item{display:block;width:100%}.nav-item > a{justify-content:space-between}.nav-item .megamenu{display:none}}
+/* ===== cold-chain shipping ===== */
+.cold-grid{display:grid;grid-template-columns:1fr .92fr;gap:44px;align-items:center;margin-top:30px}
+.cold-lead{color:#aebccd;font-size:16px;line-height:1.7;margin:14px 0 24px;max-width:46ch}
+.cold-points{display:flex;flex-direction:column;gap:16px}
+.cp{display:flex;gap:14px;align-items:flex-start}
+.cp-ic{flex:0 0 auto;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:rgba(108,200,255,0.1);border:1px solid rgba(108,200,255,0.22);color:var(--frost,#6CC8FF)}
+.cp strong{display:block;color:#eaf6ff;font-size:15px;margin-bottom:3px}
+.cp span{color:#9fb0c4;font-size:13.5px;line-height:1.55}
+.cold-figure{text-align:center}
+.cold-figure img{max-width:100%;width:430px;height:auto;filter:drop-shadow(0 30px 60px rgba(0,0,0,.42))}
+@media(max-width:860px){.cold-grid{grid-template-columns:1fr;gap:26px}.cold-figure{order:-1}.cold-figure img{width:300px}}
+/* ===== protocol ===== */
+.proto-lead{color:#aebccd;font-size:16px;line-height:1.7;margin:14px 0 26px;max-width:62ch}
+.proto-stats{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:28px}
+.ps{flex:1;min-width:150px;background:rgba(255,255,255,0.03);border:1px solid var(--line);border-radius:16px;padding:20px}
+.ps-n{font-size:34px;font-weight:800;color:#fff;line-height:1}
+.ps-n small{font-size:14px;font-weight:600;color:var(--frost,#6CC8FF);margin-left:5px}
+.ps-l{color:#9fb0c4;font-size:13px;margin-top:9px}
+.proto-table{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:rgba(255,255,255,0.02)}
+.pt-head,.pt-row{display:grid;grid-template-columns:96px 1fr 1.3fr;gap:16px;align-items:center;padding:13px 22px}
+.pt-head{background:rgba(108,200,255,0.07);font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#bfe6ff}
+.pt-row{border-top:1px solid var(--line)}
+.pt-row:nth-child(even){background:rgba(255,255,255,0.018)}
+.pt-day{font-weight:700;color:#eaf6ff;font-size:14.5px}
+.pt-dose{color:#aebccd;font-size:13.5px}
+.pt-rem{display:flex;align-items:center;gap:12px}
+.pt-rem .bar{flex:1;height:8px;border-radius:6px;background:rgba(255,255,255,0.07);overflow:hidden}
+.pt-rem .bar i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,#3ea0ff,#6CC8FF)}
+.pt-rem b{width:52px;text-align:right;color:#eaf6ff;font-size:13.5px;font-weight:600}
+.proto-note{color:#7e8a98;font-size:12.5px;margin-top:16px;line-height:1.6;max-width:70ch}
+@media(max-width:600px){.pt-head,.pt-row{grid-template-columns:62px 1fr;gap:10px}.pt-dose,.pt-head span:nth-child(2){display:none}.proto-stats .ps{min-width:calc(50% - 7px)}}
 </style>
 </head>
 <body class="frosting" style="--accent:#6CC8FF;--hero-glow-1:rgba(108,200,255,0.24);--hero-glow-2:rgba(90,140,255,0.12)">
@@ -275,6 +306,7 @@ body.dock-room{padding-bottom:74px}
       <div class="hero-actions">
         <a href="/intake-niagen.html" class="btn btn-p">Claim early access <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         <a href="#plans" class="btn btn-g">See pricing</a>
+        <a href="#protocol" class="btn btn-g">See protocol</a>
       </div>
       <div class="glassrow">
         <div class="gstat"><div class="n" data-count="1">1</div><div class="l">Of the first in telehealth</div></div>
@@ -399,6 +431,47 @@ body.dock-room{padding-bottom:74px}
     <div class="step"><div class="n">2</div><h4>A provider reviews</h4><p>A licensed U.S. provider confirms Niagen&reg; is appropriate and sets your protocol.</p></div>
     <div class="step"><div class="n">3</div><h4>It ships discreetly</h4><p>Niagen&reg; and supplies at your door, with refills on your schedule.</p></div>
   </div>
+</section>
+
+<section class="sec wrap rv" id="shipping">
+  <div class="cold-grid">
+    <div class="cold-copy">
+      <div class="sec-label">Cold-Chain Shipping</div>
+      <h2>Shipped cold. <span class="serif">Kept potent.</span></h2>
+      <p class="cold-lead">NAD precursors are temperature-sensitive, so your vial never rides in a plain padded envelope. Every order goes out cold-chain, packed in an insulated mailer with gel ice packs, so it lands at your door chilled and ready to refrigerate.</p>
+      <div class="cold-points">
+        <div class="cp"><span class="cp-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8v8a2 2 0 0 1-1 1.73l-7 4a2 2 0 0 1-2 0l-7-4A2 2 0 0 1 3 16V8a2 2 0 0 1 1-1.73l7-4a2 2 0 0 1 2 0l7 4A2 2 0 0 1 21 8z"/><path d="M3.3 7L12 12l8.7-5M12 22V12"/></svg></span><div><strong>Insulated mailer</strong><span>A foam-lined box that holds temperature the whole way.</span></div></div>
+        <div class="cp"><span class="cp-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/></svg></span><div><strong>Gel ice packs</strong><span>Packed around the vial to keep it cold, door to door.</span></div></div>
+        <div class="cp"><span class="cp-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4 4 0 1 0 4 0z"/></svg></span><div><strong>Refrigerate on arrival</strong><span>Pop it in the fridge and it stays good through your cycle.</span></div></div>
+      </div>
+    </div>
+    <div class="cold-figure"><img src="/img/niagen-cold-pack.png" alt="Niagen vial shipped cold-chain in an insulated box with gel ice packs" loading="lazy"></div>
+  </div>
+</section>
+
+<section class="sec wrap rv" id="protocol">
+  <div class="sec-label">Your Protocol</div>
+  <h2>Simple by <span class="serif">design.</span></h2>
+  <p class="proto-lead">One clear rhythm: 50 units (50 mg) subcutaneously every 3 days, from day 1 through day 28 after the vial is first opened. Here is the full schedule, start to finish.</p>
+  <div class="proto-stats">
+    <div class="ps"><div class="ps-n">50<small>units</small></div><div class="ps-l">per dose &middot; 50 mg</div></div>
+    <div class="ps"><div class="ps-n">3<small>days</small></div><div class="ps-l">between each dose</div></div>
+    <div class="ps"><div class="ps-n">28<small>days</small></div><div class="ps-l">full cycle from first puncture</div></div>
+  </div>
+  <div class="proto-table">
+    <div class="pt-head"><span>Day</span><span>Dose</span><span>Remaining in vial</span></div>
+    <div class="pt-row"><span class="pt-day">Day 1</span><span class="pt-dose">50 mg &middot; 50 units</span><span class="pt-rem"><span class="bar"><i style="width:90%"></i></span><b>450</b></span></div>
+    <div class="pt-row"><span class="pt-day">Day 4</span><span class="pt-dose">50 mg &middot; 50 units</span><span class="pt-rem"><span class="bar"><i style="width:80%"></i></span><b>400</b></span></div>
+    <div class="pt-row"><span class="pt-day">Day 7</span><span class="pt-dose">50 mg &middot; 50 units</span><span class="pt-rem"><span class="bar"><i style="width:70%"></i></span><b>350</b></span></div>
+    <div class="pt-row"><span class="pt-day">Day 10</span><span class="pt-dose">50 mg &middot; 50 units</span><span class="pt-rem"><span class="bar"><i style="width:60%"></i></span><b>300</b></span></div>
+    <div class="pt-row"><span class="pt-day">Day 13</span><span class="pt-dose">50 mg &middot; 50 units</span><span class="pt-rem"><span class="bar"><i style="width:50%"></i></span><b>250</b></span></div>
+    <div class="pt-row"><span class="pt-day">Day 16</span><span class="pt-dose">50 mg &middot; 50 units</span><span class="pt-rem"><span class="bar"><i style="width:40%"></i></span><b>200</b></span></div>
+    <div class="pt-row"><span class="pt-day">Day 19</span><span class="pt-dose">50 mg &middot; 50 units</span><span class="pt-rem"><span class="bar"><i style="width:30%"></i></span><b>150</b></span></div>
+    <div class="pt-row"><span class="pt-day">Day 22</span><span class="pt-dose">50 mg &middot; 50 units</span><span class="pt-rem"><span class="bar"><i style="width:20%"></i></span><b>100</b></span></div>
+    <div class="pt-row"><span class="pt-day">Day 25</span><span class="pt-dose">50 mg &middot; 50 units</span><span class="pt-rem"><span class="bar"><i style="width:10%"></i></span><b>50</b></span></div>
+    <div class="pt-row"><span class="pt-day">Day 28</span><span class="pt-dose">50 mg &middot; 50 units</span><span class="pt-rem"><span class="bar"><i style="width:0%"></i></span><b>0</b></span></div>
+  </div>
+  <p class="proto-note">One vial covers the full cycle; use it within 28 days of the first puncture. Dosing shown is the standard protocol &mdash; your licensed provider sets and may adjust it for you.</p>
 </section>
 
 <section class="sec wrap rv">
