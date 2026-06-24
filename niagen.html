@@ -146,6 +146,21 @@ body.dock-room{padding-bottom:74px}
 @media(max-width:860px){body{padding-bottom:76px}.nhero-grid{grid-template-columns:1fr}.vialwrap{min-height:360px;order:-1}.nhero{padding:90px 0 70px}.sec{padding:54px 0}.path{flex-direction:column;gap:8px}.path .arrow{transform:none;width:2px;height:26px;margin:2px 0;background:var(--frost);opacity:.55}.path .arrow::after{display:none}.path .arrow .pip{display:none}.gstat{min-width:calc(50% - 6px)}.marq .run{font-size:13.5px}.dock-in .s{display:none}}
 @media(max-width:480px){.wrap{padding:0 20px}.nhero{padding:74px 0 54px}.nhero h1{font-size:clamp(36px,9.5vw,52px)}.nhero p{font-size:16px}.gstat{min-width:100%}.glassrow{gap:10px}.dock{}.dock-in{padding:10px 16px;gap:12px}.dock-in .t{font-size:13.5px;line-height:1.25}.dock-in a.btn{padding:12px 18px!important;font-size:13.5px!important}.vialwrap{min-height:300px}.vialwrap svg{max-width:74vw;height:auto}.node{width:132px;height:132px}.node .big{font-size:21px}}
 @media(prefers-reduced-motion:reduce){#frost{display:none}.rv{opacity:1;transform:none}*{animation:none!important}}
+/* ===== compliance footer (dark) ===== */
+.nfooter{background:#05070b;border-top:1px solid var(--line);padding:56px 0 44px}
+.nfooter-top{display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr;gap:34px}
+.nflogo{font-weight:800;font-size:22px;letter-spacing:-1px;color:#fff}.nflogo span{color:var(--frost)}
+.nfooter-brand p{color:#9fb0c4;font-size:14px;line-height:1.65;margin:14px 0 18px;max-width:38ch}
+.nfooter-brand img{opacity:.95;border-radius:6px}
+.nfooter-col h4{font-size:13px;font-weight:700;color:#eaf6ff;margin-bottom:14px}
+.nfooter-col a{display:block;color:#9fb0c4;font-size:14px;margin-bottom:11px;transition:color .15s}
+.nfooter-col a:hover{color:var(--frost)}
+.nfooter-trust{display:flex;flex-wrap:wrap;gap:10px;margin:34px 0 20px;padding-top:26px;border-top:1px solid var(--line)}
+.tchip{font-size:12px;color:#bfe6ff;background:rgba(108,200,255,0.08);border:1px solid rgba(108,200,255,0.22);padding:7px 13px;border-radius:100px;white-space:nowrap}
+.nfooter-disc{font-size:11.5px;color:#6b7382;line-height:1.7}
+.nfooter-copy{font-size:13px;color:#7e8a98;margin-top:16px}
+@media(max-width:860px){.nfooter-top{grid-template-columns:1fr 1fr;gap:28px}.nfooter-brand{grid-column:1 / -1}}
+@media(max-width:480px){.nfooter-top{grid-template-columns:1fr}}
 </style>
 </head>
 <body class="frosting" style="--accent:#6CC8FF;--hero-glow-1:rgba(108,200,255,0.24);--hero-glow-2:rgba(90,140,255,0.12)">
@@ -336,16 +351,46 @@ body.dock-room{padding-bottom:74px}
   <p>Niagen&reg; (nicotinamide riboside) injections are a prescription wellness treatment provided only after review by a licensed provider; not everyone qualifies. This product is compounded; compounded medications are not FDA-approved and are not reviewed by the FDA for safety, efficacy, or quality before reaching patients. Rapid administration can cause transient flushing, warmth, or nausea, so it is given slowly. Avoid during pregnancy or breastfeeding unless your provider advises otherwise. Tell your provider about all medications and conditions. Individual results vary.</p>
 </div></div>
 
-<footer class="foot"><div class="wrap">
-  <div class="foot-row">
-    <p>&copy; 2026 CLYR Health. All rights reserved.</p>
-    <div class="foot-legal">
-      <a href="/privacy.html">Privacy</a>
-      <a href="/terms.html">Terms</a>
+<footer class="nfooter"><div class="wrap">
+  <div class="nfooter-top">
+    <div class="nfooter-brand">
+      <div class="nflogo">CLY<span>R</span></div>
+      <p>Prescription weight loss, wellness, sexual health, and protocol treatments, prescribed by licensed providers and delivered to your door.</p>
+      <a href="https://www.legitscript.com/websites/?checker_keywords=clyr.health" target="_blank" rel="noopener" title="Verify LegitScript Approval for www.clyr.health"><img src="https://static.legitscript.com/seals/49414584.png" alt="LegitScript Certified" width="73" height="79"></a>
+    </div>
+    <div class="nfooter-col">
+      <h4>Treatments</h4>
+      <a href="/weight-loss.html">Weight Loss</a>
+      <a href="/daily-wellness.html">Daily Wellness</a>
+      <a href="/sexual-health.html">Sexual Health</a>
+      <a href="/antiparasitic.html">Ivermectin</a>
+      <a href="/wellness.html">All Treatments</a>
+    </div>
+    <div class="nfooter-col">
+      <h4>Company</h4>
+      <a href="/wellness.html">How It Works</a>
+      <a href="/journal/">Journal</a>
+      <a href="/contact.html">Contact Us</a>
+      <a href="https://www.google.com/maps/search/CLYR+Health/@27.2684733,-82.459881,15z/data=!4m2!2m1!6e6!16s%2Fg%2F11z94cc8v_" target="_blank" rel="noopener">Google Business Profile</a>
+      <a href="/portal/">Patient Portal</a>
+    </div>
+    <div class="nfooter-col">
+      <h4>Legal</h4>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/terms.html">Terms of Service</a>
       <a href="/telehealth-consent.html">Telehealth Consent</a>
-      <a href="/contact.html">Contact</a>
+      <a href="/sms-terms.html">SMS Terms</a>
     </div>
   </div>
+  <div class="nfooter-trust">
+    <span class="tchip">LegitScript Certified</span>
+    <span class="tchip">HIPAA Compliant</span>
+    <span class="tchip">Licensed Physicians</span>
+    <span class="tchip">503A Licensed Pharmacy</span>
+    <span class="tchip">Secure Payments via Stripe</span>
+  </div>
+  <p class="nfooter-disc">The information provided on this website is for informational purposes only and does not constitute medical advice. Compounded medications are not FDA-approved but are prepared by licensed pharmacies in compliance with applicable regulations. Individual results may vary. All treatments require a valid prescription from a licensed healthcare provider. Not all patients will qualify for treatment. Clyr Health is not a compounding pharmacy or chemical compounding facility as defined under 503A of the Federal Food, Drug, and Cosmetic Act.</p>
+  <p class="nfooter-copy">&copy; 2026 CLYR Health. All rights reserved.</p>
 </div></footer>
 
 <div class="dock" id="dock"><div class="dock-in">
