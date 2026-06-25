@@ -100,7 +100,8 @@ body.frosting{overflow:hidden}
 /* ============ animated vial ============ */
 .vialwrap{position:relative;display:flex;align-items:center;justify-content:center;min-height:440px}
 .vialwrap .halo{position:absolute;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(108,200,255,.5),transparent 62%);filter:blur(34px);animation:pulse 5s ease-in-out infinite}
-.vialwrap svg{position:relative;z-index:2;filter:drop-shadow(0 30px 50px rgba(0,0,0,.5)) drop-shadow(0 0 30px rgba(108,200,255,.35));animation:bob 6s ease-in-out infinite}
+.vialwrap svg,.vialwrap .hero-vial{position:relative;z-index:2;filter:drop-shadow(0 30px 50px rgba(0,0,0,.5)) drop-shadow(0 0 34px rgba(108,200,255,.4));animation:bob 6s ease-in-out infinite}
+.vialwrap .hero-vial{width:205px;height:auto}
 @keyframes bob{50%{transform:translateY(-14px)}}
 .ring{position:absolute;border:1px solid rgba(108,200,255,.22);border-radius:50%;z-index:1}
 .ring.r1{width:300px;height:300px;animation:spin 26s linear infinite}
@@ -152,7 +153,7 @@ body.frosting{overflow:hidden}
 body{padding-bottom:0}
 body.dock-room{padding-bottom:74px}
 @media(max-width:860px){body{padding-bottom:76px}.nhero-grid{grid-template-columns:1fr}.vialwrap{min-height:360px;order:-1}.nhero{padding:90px 0 70px}.sec{padding:54px 0}.path{flex-direction:column;gap:8px}.path .arrow{transform:none;width:2px;height:26px;margin:2px 0;background:var(--frost);opacity:.55}.path .arrow::after{display:none}.path .arrow .pip{display:none}.gstat{min-width:calc(50% - 6px)}.marq .run{font-size:13.5px}.dock-in .s{display:none}}
-@media(max-width:480px){.wrap{padding:0 20px}.nhero{padding:74px 0 54px}.nhero h1{font-size:clamp(36px,9.5vw,52px)}.nhero p{font-size:16px}.gstat{min-width:100%}.glassrow{gap:10px}.dock{}.dock-in{padding:10px 16px;gap:12px}.dock-in .t{font-size:13.5px;line-height:1.25}.dock-in a.btn{padding:12px 18px!important;font-size:13.5px!important}.vialwrap{min-height:300px}.vialwrap svg{max-width:74vw;height:auto}.node{width:132px;height:132px}.node .big{font-size:21px}}
+@media(max-width:480px){.wrap{padding:0 20px}.nhero{padding:74px 0 54px}.nhero h1{font-size:clamp(36px,9.5vw,52px)}.nhero p{font-size:16px}.gstat{min-width:100%}.glassrow{gap:10px}.dock{}.dock-in{padding:10px 16px;gap:12px}.dock-in .t{font-size:13.5px;line-height:1.25}.dock-in a.btn{padding:12px 18px!important;font-size:13.5px!important}.vialwrap{min-height:300px}.vialwrap svg,.vialwrap .hero-vial{max-width:62vw;height:auto}.node{width:132px;height:132px}.node .big{font-size:21px}}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}*{animation:none!important}#frost .fmark>*{opacity:1!important;filter:none!important}#frost .ti{letter-spacing:.16em}}
 /* ===== compliance footer (dark) ===== */
 .nfooter{background:#05070b;border-top:1px solid var(--line);padding:56px 0 44px}
@@ -316,31 +317,7 @@ body.dock-room{padding-bottom:74px}
     </div>
     <div class="vialwrap rv in">
       <div class="halo"></div><div class="ring r1"></div><div class="ring r2"></div>
-      <svg width="220" height="420" viewBox="0 0 220 420" fill="none">
-        <defs>
-          <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#dff1ff" stop-opacity=".55"/><stop offset=".5" stop-color="#9cc9ef" stop-opacity=".25"/><stop offset="1" stop-color="#dff1ff" stop-opacity=".45"/></linearGradient>
-          <linearGradient id="liq" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8fe0ff"/><stop offset="1" stop-color="#3a8fe0"/></linearGradient>
-          <linearGradient id="cap" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9eef3"/><stop offset="1" stop-color="#9aa6b2"/></linearGradient>
-        </defs>
-        <!-- vapor -->
-        <g opacity=".7" stroke="#bfe6ff" stroke-width="3" stroke-linecap="round" fill="none">
-          <path d="M92 70 q-12 -22 4 -42 q14 -18 -2 -36"><animate attributeName="opacity" values="0;.7;0" dur="4s" repeatCount="indefinite"/><animateTransform attributeName="transform" type="translate" values="0 0; 0 -16; 0 0" dur="4s" repeatCount="indefinite"/></path>
-          <path d="M120 64 q14 -20 -2 -40 q-12 -16 4 -34"><animate attributeName="opacity" values="0;.6;0" dur="5s" begin=".8s" repeatCount="indefinite"/><animateTransform attributeName="transform" type="translate" values="0 0; 0 -18; 0 0" dur="5s" begin=".8s" repeatCount="indefinite"/></path>
-        </g>
-        <!-- cap -->
-        <rect x="86" y="78" width="48" height="30" rx="5" fill="url(#cap)"/>
-        <rect x="92" y="64" width="36" height="20" rx="4" fill="#cfd8e0"/>
-        <!-- body -->
-        <rect x="74" y="108" width="72" height="270" rx="30" fill="url(#glass)" stroke="#cfe6ff" stroke-opacity=".5"/>
-        <!-- liquid -->
-        <path d="M80 200 h60 v150 a24 24 0 0 1 -24 24 h-12 a24 24 0 0 1 -24 -24 Z" fill="url(#liq)" opacity=".9"/>
-        <ellipse cx="110" cy="200" rx="30" ry="7" fill="#aef0ff" opacity=".8"/>
-        <!-- shine -->
-        <rect x="84" y="124" width="12" height="230" rx="6" fill="#ffffff" opacity=".35"/>
-        <!-- glow nodes (molecule motif) -->
-        <g fill="#eaf9ff"><circle cx="110" cy="250" r="4" opacity=".9"/><circle cx="98" cy="290" r="3" opacity=".7"/><circle cx="124" cy="300" r="3" opacity=".7"/><circle cx="110" cy="330" r="3.5" opacity=".8"/></g>
-        <g stroke="#bfe6ff" stroke-width="1.2" opacity=".5"><line x1="110" y1="250" x2="98" y2="290"/><line x1="110" y1="250" x2="124" y2="300"/><line x1="98" y1="290" x2="110" y2="330"/><line x1="124" y1="300" x2="110" y2="330"/></g>
-      </svg>
+      <img src="/img/vial-niagen-new.png" alt="CLYR Niagen vial" class="hero-vial">
       <span class="frostbit" style="top:18%;left:24%"></span>
       <span class="frostbit" style="top:70%;right:22%;animation-delay:1.5s"></span>
       <span class="frostbit" style="top:40%;right:14%;animation-delay:3s"></span>
