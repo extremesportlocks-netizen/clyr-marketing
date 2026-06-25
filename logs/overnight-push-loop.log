@@ -747,3 +747,27 @@ Polished 1 pages; removed 1 noindex URL(s) from sitemap
 ✓ sitemap-images.xml — 70 journal OG images
 [2026-06-25 12:15:49 UTC] SCRIPT update-sitemap-journals.py: ✓ sitemap.xml — 70 journal articles
 ✓ sitemap-images.xml — 70 journal OG images
+[main 4a1bdd2] chore(overnight): cycle 36 maintenance auto-push
+ 4 files changed, 24 insertions(+), 4 deletions(-)
+[2026-06-25 12:15:50 UTC] PUSHED cycle 36
+[2026-06-25 12:15:50 UTC] PUSHED cycle 36
+[2026-06-25 12:35:50 UTC] DONE — completed 36 cycles
+[2026-06-25 12:35:50 UTC] DONE — completed 36 cycles
+[2026-06-25 16:32:23 UTC] START 12h loop — until 2026-06-26T04:32:23.226504+00:00 (every 20m)
+[2026-06-25 16:32:23 UTC] START 12h loop — until 2026-06-26T04:32:23.226504+00:00 (every 20m)
+[2026-06-25 16:32:23 UTC] === CYCLE 1 — 11:59:59.999434 remaining ===
+[2026-06-25 16:32:23 UTC] === CYCLE 1 — 11:59:59.999434 remaining ===
+[2026-06-25 16:32:24 UTC] LIVE: home=200 gbp_schema=True gbp_footer=True verify_tag=True sitemap_urls=101
+[2026-06-25 16:32:24 UTC] LIVE: home=200 gbp_schema=True gbp_footer=True verify_tag=True sitemap_urls=101
+[2026-06-25 16:32:24 UTC] SCRIPT wire-gbp.py: Updated 0 files
+[2026-06-25 16:32:24 UTC] SCRIPT wire-gbp.py: Updated 0 files
+[2026-06-25 16:32:24 UTC] SCRIPT polish-indexable-pages.py: Polished 0 pages; removed 1 noindex URL(s) from sitemap
+[2026-06-25 16:32:24 UTC] SCRIPT polish-indexable-pages.py: Polished 0 pages; removed 1 noindex URL(s) from sitemap
+[2026-06-25 16:32:24 UTC] SCRIPT fix-journal-urls.py: Done: 0 URL fixes across 0 files
+[2026-06-25 16:32:24 UTC] SCRIPT fix-journal-urls.py: Done: 0 URL fixes across 0 files
+[2026-06-25 16:32:24 UTC] SCRIPT link-products-to-journals.py: Linked 0 product pages to journal articles
+[2026-06-25 16:32:24 UTC] SCRIPT link-products-to-journals.py: Linked 0 product pages to journal articles
+[2026-06-25 16:32:24 UTC] SCRIPT update-sitemap-journals.py: ✓ sitemap.xml — 70 journal articles
+✓ sitemap-images.xml — 70 journal OG images
+[2026-06-25 16:32:24 UTC] SCRIPT update-sitemap-journals.py: ✓ sitemap.xml — 70 journal articles
+✓ sitemap-images.xml — 70 journal OG images
