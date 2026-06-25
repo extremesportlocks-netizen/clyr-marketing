@@ -307,3 +307,23 @@ Polished 1 pages; removed 1 noindex URL(s) from sitemap
 ✓ sitemap-images.xml — 70 journal OG images
 [2026-06-25 04:54:48 UTC] SCRIPT update-sitemap-journals.py: ✓ sitemap.xml — 70 journal articles
 ✓ sitemap-images.xml — 70 journal OG images
+[main b4d5c6f] chore(overnight): cycle 14 maintenance auto-push
+ 4 files changed, 24 insertions(+), 4 deletions(-)
+[2026-06-25 04:54:49 UTC] PUSHED cycle 14
+[2026-06-25 04:54:49 UTC] PUSHED cycle 14
+[2026-06-25 05:14:49 UTC] === CYCLE 15 — 7:19:24.068444 remaining ===
+[2026-06-25 05:14:49 UTC] === CYCLE 15 — 7:19:24.068444 remaining ===
+[2026-06-25 05:14:50 UTC] LIVE: home=200 gbp_schema=True gbp_footer=True verify_tag=True sitemap_urls=101
+[2026-06-25 05:14:50 UTC] LIVE: home=200 gbp_schema=True gbp_footer=True verify_tag=True sitemap_urls=101
+[2026-06-25 05:14:51 UTC] SCRIPT wire-gbp.py: Updated 0 files
+[2026-06-25 05:14:51 UTC] SCRIPT wire-gbp.py: Updated 0 files
+[2026-06-25 05:14:51 UTC] SCRIPT polish-indexable-pages.py: Polished 0 pages; removed 1 noindex URL(s) from sitemap
+[2026-06-25 05:14:51 UTC] SCRIPT polish-indexable-pages.py: Polished 0 pages; removed 1 noindex URL(s) from sitemap
+[2026-06-25 05:14:51 UTC] SCRIPT fix-journal-urls.py: Done: 0 URL fixes across 0 files
+[2026-06-25 05:14:51 UTC] SCRIPT fix-journal-urls.py: Done: 0 URL fixes across 0 files
+[2026-06-25 05:14:51 UTC] SCRIPT link-products-to-journals.py: Linked 0 product pages to journal articles
+[2026-06-25 05:14:51 UTC] SCRIPT link-products-to-journals.py: Linked 0 product pages to journal articles
+[2026-06-25 05:14:51 UTC] SCRIPT update-sitemap-journals.py: ✓ sitemap.xml — 70 journal articles
+✓ sitemap-images.xml — 70 journal OG images
+[2026-06-25 05:14:51 UTC] SCRIPT update-sitemap-journals.py: ✓ sitemap.xml — 70 journal articles
+✓ sitemap-images.xml — 70 journal OG images
