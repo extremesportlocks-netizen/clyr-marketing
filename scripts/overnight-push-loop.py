@@ -32,6 +32,7 @@ POLISH_SCRIPTS = [
 
 CHECK_URLS = [
     SITE + "/",
+    SITE + "/niagen",
     SITE + "/contact.html",
     SITE + "/sitemap.xml",
     SITE + "/journal/",
