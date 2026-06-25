@@ -102,7 +102,7 @@
       <image:caption>Antiparasitic protocols with licensed US providers. Ivermectin $139/mo, combo $169/mo.</image:caption>
     </image:image>
   </url>
-                                                        <url>
+                                                          <url>
     <loc>https://www.clyr.health/journal/anastrozole-trt-estrogen-management/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -229,6 +229,15 @@
     </image:image>
   </url>
   <url>
+    <loc>https://www.clyr.health/journal/foundayo-hair-regrowth-science/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/foundayo-hair-regrowth-science.png</image:loc>
+      <image:title>Foundayo Hair Regrowth Science | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://www.clyr.health/journal/ghk-cu-injectable-copper-peptide/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -274,6 +283,15 @@
     </image:image>
   </url>
   <url>
+    <loc>https://www.clyr.health/journal/glutathione-push-injection-benefits/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/glutathione-push-injection-benefits.png</image:loc>
+      <image:title>Glutathione Push Injection Benefits | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://www.clyr.health/journal/hcg-trt-adjunct-explained/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -298,6 +316,24 @@
     <image:image>
       <image:loc>https://www.clyr.health/img/journal-og/ivermectin-wellness-protocol-overview.png</image:loc>
       <image:title>Ivermectin Wellness Protocol Overview | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/legitscript-telehealth-certification-explained/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/legitscript-telehealth-certification-explained.png</image:loc>
+      <image:title>Legitscript Telehealth Certification Explained | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/lipo-mino-injection-weight-loss/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/lipo-mino-injection-weight-loss.png</image:loc>
+      <image:title>Lipo Mino Injection Weight Loss | CLYR Journal</image:title>
     </image:image>
   </url>
   <url>
@@ -436,6 +472,24 @@
     </image:image>
   </url>
   <url>
+    <loc>https://www.clyr.health/journal/semaglutide-illinois/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/semaglutide-illinois.png</image:loc>
+      <image:title>Semaglutide Illinois | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/semaglutide-michigan/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/semaglutide-michigan.png</image:loc>
+      <image:title>Semaglutide Michigan | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://www.clyr.health/journal/semaglutide-near-me/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -496,6 +550,15 @@
     <image:image>
       <image:loc>https://www.clyr.health/img/journal-og/sermorelin-explained.png</image:loc>
       <image:title>Sermorelin Explained | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/sexual-health-telehealth-guide/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/sexual-health-telehealth-guide.png</image:loc>
+      <image:title>Sexual Health Telehealth Guide | CLYR Journal</image:title>
     </image:image>
   </url>
   <url>
@@ -604,6 +667,15 @@
     <image:image>
       <image:loc>https://www.clyr.health/img/journal-og/trimix-injection-ed-rescue.png</image:loc>
       <image:title>Trimix Injection Ed Rescue | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/wegovy-tablets-oral-semaglutide-guide/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/wegovy-tablets-oral-semaglutide-guide.png</image:loc>
+      <image:title>Wegovy Tablets Oral Semaglutide Guide | CLYR Journal</image:title>
     </image:image>
   </url>
   <url>
