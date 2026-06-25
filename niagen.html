@@ -39,7 +39,7 @@ body{background:#05080e}
 ::selection{background:rgba(108,200,255,.3);color:#fff}
 
 /* ============ FROST INTRO ============ */
-#frost{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;
+#frost{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;transition:opacity .7s ease,visibility .7s ease;
   background:radial-gradient(circle at 50% 36%,#103351 0%,#0a1626 52%,#05070b 100%);
   animation:frostThaw 2.6s cubic-bezier(.66,0,.18,1) 1.7s forwards}
 #frost .grain{position:absolute;inset:-20%;mix-blend-mode:screen;opacity:.6;
@@ -64,7 +64,7 @@ body{background:#05080e}
 @keyframes sweep{0%{left:-60%}100%{left:120%}}
 @keyframes fIn{to{opacity:1}}
 @keyframes flakeIn{from{opacity:0;transform:translateY(-12px) scale(.6)}to{opacity:1;transform:none}}
-.frost-done{display:none!important}
+.frost-done{opacity:0!important;visibility:hidden!important;pointer-events:none!important}
 body.frosting{overflow:hidden}
 
 /* ============ ambient page frost field ============ */
@@ -153,7 +153,7 @@ body{padding-bottom:0}
 body.dock-room{padding-bottom:74px}
 @media(max-width:860px){body{padding-bottom:76px}.nhero-grid{grid-template-columns:1fr}.vialwrap{min-height:360px;order:-1}.nhero{padding:90px 0 70px}.sec{padding:54px 0}.path{flex-direction:column;gap:8px}.path .arrow{transform:none;width:2px;height:26px;margin:2px 0;background:var(--frost);opacity:.55}.path .arrow::after{display:none}.path .arrow .pip{display:none}.gstat{min-width:calc(50% - 6px)}.marq .run{font-size:13.5px}.dock-in .s{display:none}}
 @media(max-width:480px){.wrap{padding:0 20px}.nhero{padding:74px 0 54px}.nhero h1{font-size:clamp(36px,9.5vw,52px)}.nhero p{font-size:16px}.gstat{min-width:100%}.glassrow{gap:10px}.dock{}.dock-in{padding:10px 16px;gap:12px}.dock-in .t{font-size:13.5px;line-height:1.25}.dock-in a.btn{padding:12px 18px!important;font-size:13.5px!important}.vialwrap{min-height:300px}.vialwrap svg{max-width:74vw;height:auto}.node{width:132px;height:132px}.node .big{font-size:21px}}
-@media(prefers-reduced-motion:reduce){#frost{display:none}.rv{opacity:1;transform:none}*{animation:none!important}}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}*{animation:none!important}#frost .fmark>*{opacity:1!important;filter:none!important}#frost .ti{letter-spacing:.16em}}
 /* ===== compliance footer (dark) ===== */
 .nfooter{background:#05070b;border-top:1px solid var(--line);padding:56px 0 44px}
 .nfooter-top{display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr;gap:34px}
@@ -198,7 +198,7 @@ body.dock-room{padding-bottom:74px}
 .cp strong{display:block;color:#eaf6ff;font-size:15px;margin-bottom:3px}
 .cp span{color:#9fb0c4;font-size:13.5px;line-height:1.55}
 .cold-figure{text-align:center}
-.cold-figure img{max-width:100%;width:430px;height:auto;filter:drop-shadow(0 30px 60px rgba(0,0,0,.42))}
+.cold-figure img{max-width:100%;width:440px;height:auto;border-radius:22px;border:1px solid var(--line);box-shadow:0 30px 70px rgba(0,0,0,.5)}
 @media(max-width:860px){.cold-grid{grid-template-columns:1fr;gap:26px}.cold-figure{order:-1}.cold-figure img{width:300px}}
 /* ===== protocol ===== */
 .proto-lead{color:#aebccd;font-size:16px;line-height:1.7;margin:14px 0 26px;max-width:62ch}
@@ -443,9 +443,10 @@ body.dock-room{padding-bottom:74px}
         <div class="cp"><span class="cp-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8v8a2 2 0 0 1-1 1.73l-7 4a2 2 0 0 1-2 0l-7-4A2 2 0 0 1 3 16V8a2 2 0 0 1 1-1.73l7-4a2 2 0 0 1 2 0l7 4A2 2 0 0 1 21 8z"/><path d="M3.3 7L12 12l8.7-5M12 22V12"/></svg></span><div><strong>Insulated mailer</strong><span>A foam-lined box that holds temperature the whole way.</span></div></div>
         <div class="cp"><span class="cp-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/></svg></span><div><strong>Gel ice packs</strong><span>Packed around the vial to keep it cold, door to door.</span></div></div>
         <div class="cp"><span class="cp-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4 4 0 1 0 4 0z"/></svg></span><div><strong>Refrigerate on arrival</strong><span>Pop it in the fridge and it stays good through your cycle.</span></div></div>
+        <div class="cp"><span class="cp-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 2 4 4"/><path d="m17 7 3-3"/><path d="M19 9 8.7 19.3c-1 1-2.5 1-3.4 0l-.6-.6c-1-1-1-2.5 0-3.4L15 5"/><path d="m9 11 4 4"/><path d="m5 19-3 3"/><path d="m14 4 6 6"/></svg></span><div><strong>Ready to inject &mdash; no reconstitution</strong><span>Arrives already constituted, so there is no powder to mix or dissolve. Kept stable by CLYR Chilly Ice Pack shipping.</span></div></div>
       </div>
     </div>
-    <div class="cold-figure"><img src="/img/niagen-cold-pack.png" alt="Niagen vial shipped cold-chain in an insulated box with gel ice packs" loading="lazy"></div>
+    <div class="cold-figure"><img src="/img/niagen-cold-shipping.jpg" alt="CLYR Niagen vial shipped cold in an insulated box with gel ice packs" loading="lazy"></div>
   </div>
 </section>
 
@@ -548,10 +549,9 @@ body.dock-room{padding-bottom:74px}
 (function(){
   var f=document.getElementById('frost');
   function clear(){document.body.classList.remove('frosting');if(f)f.classList.add('frost-done');}
-  setTimeout(clear, 4600);
   if(f)f.addEventListener('click',clear);
   var rm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-  if(rm)clear();
+  setTimeout(clear, rm?1900:4600);
 
   // scroll reveal
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.16});
