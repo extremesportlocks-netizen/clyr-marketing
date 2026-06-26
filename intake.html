@@ -1530,6 +1530,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     validateStep();
   });
 
+  // State select gates the step-7 hard stop (service area + per-product GLP-1
+  // shipping restrictions), so re-validate the moment it changes.
+  document.getElementById('state').addEventListener('change', function() { validateStep(); });
+  document.getElementById('city').addEventListener('input', function() { validateStep(); });
+  document.getElementById('address').addEventListener('input', function() { validateStep(); });
+
   // Address autofill splitter. The street field uses autocomplete="street-address",
   // so browser autofill and Stripe Link can drop a full single-line address
   // ("123 Main St, Naples, FL 34102") into it. Google Places (which would have
@@ -1747,16 +1753,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         var requiredConsents = [consents[0], consents[1], consents[2]];
         var allRequired = requiredConsents.every(function(c) { return c.classList.contains('checked'); });
         var selectedState = document.getElementById('state').value;
-        var excludedStates = ['AK', 'MS', 'LA'];
-        var stateExcluded = excludedStates.indexOf(selectedState) !== -1;
+        // CLYR cannot service these states for any treatment.
+        var baseExcluded = ['AK', 'MS', 'LA'];
+        // Per-product shipping restrictions for compounded GLP-1 injectables.
+        var glpRestricted = {
+          semaglutide: ['AR', 'IN', 'MN', 'SC'],
+          tirzepatide: ['AR', 'CA', 'IN', 'MN', 'SC']
+        };
+        var productExtra = glpRestricted[formData.treatment] || [];
+        var baseHit = baseExcluded.indexOf(selectedState) !== -1;
+        var productHit = !baseHit && productExtra.indexOf(selectedState) !== -1;
+        var stateExcluded = baseHit || productHit;
         var stateMsg = document.getElementById('stateExcludedMsg');
         if (stateExcluded) {
           if (!stateMsg) {
             stateMsg = document.createElement('div');
             stateMsg.id = 'stateExcludedMsg';
             stateMsg.style.cssText = 'background:#fff0f0;border:1px solid #ff4444;border-radius:12px;padding:16px 20px;margin:12px 0;color:#cc0000;font-size:14px;line-height:1.5;';
-            stateMsg.innerHTML = '<strong>We\'re sorry, we cannot service your state at this time.</strong><br>CLYR Health is not currently available in Alaska, Mississippi, or Louisiana. We are actively working to expand coverage. Please check back soon or <a href="/contact.html" style="color:#2bbcb3;">contact us</a> for updates.';
             document.getElementById('state').parentNode.insertAdjacentElement('afterend', stateMsg);
+          }
+          if (productHit) {
+            // State is serviceable, but THIS compounded GLP-1 can't ship there.
+            var medName = formData.treatment === 'tirzepatide' ? 'Tirzepatide' : 'Semaglutide';
+            var altTreatment = formData.treatment === 'tirzepatide' ? 'semaglutide' : 'tirzepatide';
+            var altAllowed = (glpRestricted[altTreatment] || []).indexOf(selectedState) === -1 && baseExcluded.indexOf(selectedState) === -1;
+            var altName = altTreatment === 'tirzepatide' ? 'Tirzepatide' : 'Semaglutide';
+            stateMsg.innerHTML = '<strong>Compounded ' + medName + ' isn\'t available in your state.</strong><br>Due to state regulations, we\'re unable to ship compounded ' + medName + ' injections to ' + selectedState + '.' + (altAllowed ? ' Compounded ' + altName + ' <em>is</em> available there — go back and select it instead.' : ' Please <a href="/contact.html" style="color:#2bbcb3;">contact us</a> about other options.');
+          } else {
+            stateMsg.innerHTML = '<strong>We\'re sorry, we cannot service your state at this time.</strong><br>CLYR Health is not currently available in Alaska, Mississippi, or Louisiana. We are actively working to expand coverage. Please check back soon or <a href="/contact.html" style="color:#2bbcb3;">contact us</a> for updates.';
           }
           stateMsg.style.display = 'block';
         } else if (stateMsg) {
