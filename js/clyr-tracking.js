@@ -271,7 +271,7 @@
         '<p class="cp-sub">Cold-chain shipped, clinician-reviewed care — now ' + label + ' through Sunday.</p>' +
         '<div class="cp-code"><span>Code <b>' + code + '</b></span>' +
           '<button class="cp-copy" type="button">Copy</button></div>' +
-        '<a class="cp-cta" href="/weight-loss.html">Claim ' + label + ' →</a>' +
+        '<button class="cp-cta" type="button" id="cpClaim">Claim ' + label + '</button>' +
         '<p class="cp-fine">Applied at checkout · no account needed</p>' +
       '</div>';
     document.body.appendChild(card);
@@ -289,7 +289,18 @@
 
     card.querySelector('.cp-x').addEventListener('click', function () { close('x'); });
     document.addEventListener('keydown', onKey);
-    card.querySelector('.cp-cta').addEventListener('click', function () { track('promo_popup_clicked', { code: code }); });
+    card.querySelector('#cpClaim').addEventListener('click', function () {
+      track('promo_popup_clicked', { code: code });
+      var body = card.querySelector('.cp-body');
+      body.innerHTML =
+        '<div class="cp-ok"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>' +
+        '<p class="cp-eyebrow">Offer claimed</p>' +
+        '<h3 class="cp-title">You’re all set</h3>' +
+        '<p class="cp-sub">Your <strong>' + label + '</strong> is locked in — it’ll be applied automatically at checkout. No code to enter.</p>' +
+        '<a class="cp-cta" href="/weight-loss.html">Browse treatments →</a>';
+      try { localStorage.setItem('clyr_promo_claimed', code); } catch (e) {}
+      setTimeout(function () { close('claimed_timeout'); }, 10000);
+    });
     card.querySelector('.cp-copy').addEventListener('click', function () {
       var btn = this;
       var done = function () { btn.textContent = 'Copied ✓'; setTimeout(function () { btn.textContent = 'Copy'; }, 1800); };
