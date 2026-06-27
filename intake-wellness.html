@@ -1143,6 +1143,11 @@ function onStep3Continue() {
   if (state.details.email) {
     if(window.clyrIdentify)clyrIdentify(state.details.email,{firstName:state.details.firstName,lastName:state.details.lastName});
     if(window.clyrTrack)clyrTrack('lead_captured',{product:(state.productKey||state.product||null)});
+    var _attr = (window.clyrAttribution && window.clyrAttribution()) || {};
+    var _p = new URLSearchParams(window.location.search);
+    var _dob = (state.details.dobYear && state.details.dobMonth && state.details.dobDay)
+      ? state.details.dobYear + '-' + String(state.details.dobMonth).padStart(2, '0') + '-' + String(state.details.dobDay).padStart(2, '0')
+      : null;
     fetch('https://clyr-backend.onrender.com/api/intake/save-lead', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -1151,7 +1156,15 @@ function onStep3Continue() {
         firstName: state.details.firstName,
         lastName: state.details.lastName,
         phone: state.details.phone,
-        treatment: state.product || state.treatment || null
+        treatment: state.productKey || null,
+        planType: state.planKey || null,
+        visitor_id: localStorage.getItem('clyr_vid') || null,
+        utm_source: _attr.utm_source || _p.get('utm_source') || null,
+        utm_medium: _attr.utm_medium || _p.get('utm_medium') || null,
+        utm_campaign: _attr.utm_campaign || _p.get('utm_campaign') || null,
+        referrer: _attr.referrer || document.referrer || null,
+        dob: _dob,
+        sex: state.details.sex || null
       })
     }).then(function(r) { return r.json(); }).then(function(data) {
       if (data.status === 'existing_active') {
