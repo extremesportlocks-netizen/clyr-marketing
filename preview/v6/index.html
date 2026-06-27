@@ -1906,95 +1906,133 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </nav>
 
 <!-- ========== HERO ========== -->
-<!-- ===================== MOCKUP v6 SECTIONS (mk- namespaced, mobile-first) ===================== -->
+<!-- ===================== MOCKUP v6 (rev2) — switcher + fixed graphics ===================== -->
 <style>
-/* ---- tokens reused from site: --teal #00B4C5, --serif Instrument Serif, --sans DM Sans, --gray-* ---- */
-.mk-wrap{--wl1:#0d8e9b;--wl2:#10b3c4;--dw1:#3b4d8f;--dw2:#5566b8;--sx1:#b03a63;--sx2:#d4587f;--iv1:#9a6b1f;--iv2:#c89331;}
-.mk-section{max-width:1200px;margin:0 auto;padding:64px 20px;}
+.mk-wrap{--wl1:#0d8e9b;--wl2:#13b6c6;--dw1:#3a4e93;--dw2:#5a6dc0;--sx1:#b23a64;--sx2:#d65d83;--iv1:#9a6b1f;--iv2:#c79330;--hr1:#5a8f63;--hr2:#7bb285;}
+.mk-section{max-width:1180px;margin:0 auto;padding:60px 20px;}
 .mk-eyebrow{font:700 11px/1.2 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--teal);margin:0 0 14px;}
-.mk-h{font:600 clamp(30px,7vw,52px)/1.05 var(--sans);letter-spacing:-.02em;color:var(--dark);margin:0 0 16px;}
+.mk-h{font:600 clamp(28px,6vw,48px)/1.06 var(--sans);letter-spacing:-.02em;color:var(--dark);margin:0 0 14px;}
 .mk-h .s{font-family:var(--serif);font-weight:400;font-style:italic;letter-spacing:0;}
-.mk-sub{font:400 clamp(15px,2.4vw,18px)/1.55 var(--sans);color:var(--gray-500);max-width:560px;margin:0 0 28px;}
-.mk-reveal{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);}
+.mk-sub{font:400 clamp(15px,2.3vw,18px)/1.55 var(--sans);color:var(--gray-500);max-width:560px;margin:0 0 26px;}
+.mk-reveal{opacity:0;transform:translateY(16px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);}
 .mk-reveal.in{opacity:1;transform:none;}
 @media(prefers-reduced-motion:reduce){.mk-reveal{opacity:1;transform:none;transition:none;}}
+.mk-center{text-align:center;}.mk-center .mk-sub{margin-left:auto;margin-right:auto;}.mk-center .mk-eyebrow{display:flex;justify-content:center;}
 
 /* ---------- HERO ---------- */
-.mk-hero{padding-top:52px;padding-bottom:28px;}
-.mk-hero-head{max-width:680px;}
+.mk-hero{padding:50px 20px 8px;max-width:1180px;margin:0 auto;}
+.mk-hero h1{font:600 clamp(30px,6.4vw,54px)/1.04 var(--sans);letter-spacing:-.025em;margin:0 0 16px;max-width:760px;}
+.mk-hero h1 .s{font-family:var(--serif);font-weight:400;font-style:italic;}
+.mk-hero .mk-sub{max-width:600px;}
 
-/* ---------- 4-CATEGORY GRID (the signature) ---------- */
-.mk-cats{display:grid;grid-template-columns:1fr;gap:14px;margin-top:30px;}
-@media(min-width:680px){.mk-cats{grid-template-columns:1fr 1fr;gap:16px;}}
-.mk-cat{position:relative;overflow:hidden;border-radius:22px;padding:24px 22px;min-height:188px;display:flex;flex-direction:column;justify-content:flex-start;text-decoration:none;color:#fff;isolation:isolate;transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s;}
-@media(min-width:680px){.mk-cat{min-height:248px;padding:30px 28px;}}
-.mk-cat::after{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(150deg,var(--c1),var(--c2));}
-.mk-cat::before{content:"";position:absolute;right:-30%;top:-30%;width:75%;height:90%;z-index:-1;background:radial-gradient(circle at 70% 30%,rgba(255,255,255,.22),transparent 60%);}
-.mk-cat:hover{transform:translateY(-6px);box-shadow:0 22px 48px rgba(13,27,46,.20);}
-.mk-cat:focus-visible{outline:3px solid #fff;outline-offset:3px;}
-.mk-wl{--c1:var(--wl1);--c2:var(--wl2);}
-.mk-dw{--c1:var(--dw1);--c2:var(--dw2);}
-.mk-sx{--c1:var(--sx1);--c2:var(--sx2);}
-.mk-iv{--c1:var(--iv1);--c2:var(--iv2);}
-.mk-cat-eye{font:700 10.5px/1.2 var(--sans);letter-spacing:.14em;text-transform:uppercase;opacity:.85;margin:0 0 8px;}
-.mk-cat-title{font:600 clamp(20px,4.4vw,27px)/1.12 var(--sans);letter-spacing:-.01em;margin:0 0 8px;max-width:62%;}
-.mk-cat-title .s{font-family:var(--serif);font-weight:400;font-style:italic;}
-.mk-cat-desc{font:400 13.5px/1.45 var(--sans);opacity:.92;max-width:60%;margin:0;}
-.mk-cat-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;padding-top:16px;}
-.mk-cat-price{font:600 14px/1 var(--sans);background:rgba(255,255,255,.18);backdrop-filter:blur(4px);padding:8px 12px;border-radius:999px;}
-.mk-cat-arrow{position:absolute;top:18px;right:18px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.18);display:grid;place-items:center;transition:transform .3s,background .3s;}
-.mk-cat:hover .mk-cat-arrow{transform:translateX(4px);background:rgba(255,255,255,.28);}
-.mk-cat-img{position:absolute;right:10px;bottom:-6px;height:80%;width:auto;max-height:206px;object-fit:contain;z-index:-1;filter:drop-shadow(0 18px 28px rgba(0,0,0,.32));transition:transform .45s cubic-bezier(.22,1,.36,1);pointer-events:none;}
-.mk-iv .mk-cat-img{height:auto;width:52%;max-height:none;bottom:20px;right:-2px;}
-.mk-sx .mk-cat-img{height:72%;right:6px;}
-@media(min-width:680px){.mk-cat-img{max-height:228px;}}
-.mk-cat:hover .mk-cat-img{transform:scale(1.06) translateY(-4px);}
-@media(max-width:679px){.mk-cat-title,.mk-cat-desc{max-width:57%;}.mk-cat-img{max-height:none;height:80%;bottom:-4px;right:6px;}.mk-iv .mk-cat-img{width:48%;height:auto;bottom:24px;}}
+/* ---------- SWITCHER ---------- */
+.mk-sw{max-width:1180px;margin:0 auto;padding:14px 20px 64px;}
+.mk-tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:26px;}
+.mk-tab{position:relative;overflow:hidden;border:1px solid var(--gray-200);background:#fff;border-radius:16px;padding:16px 14px 14px;cursor:pointer;text-align:left;transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s,border-color .3s;font-family:var(--sans);}
+.mk-tab:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(13,27,46,.09);}
+.mk-tab-eye{font:700 10px/1.2 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--gray-500);display:block;}
+.mk-tab-name{font:600 15px/1.2 var(--sans);color:var(--dark);display:block;margin-top:3px;}
+.mk-tab-thumb{height:46px;margin-top:10px;display:flex;align-items:flex-end;}
+.mk-tab-thumb img{max-height:46px;max-width:60px;object-fit:contain;filter:drop-shadow(0 6px 10px rgba(0,0,0,.16));}
+.mk-tab .mk-tab-bar{position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--bar);transform:scaleX(0);transform-origin:left;transition:transform .35s;}
+.mk-tab.on{border-color:transparent;box-shadow:0 14px 30px rgba(13,27,46,.14);}
+.mk-tab.on .mk-tab-bar{transform:scaleX(1);}
+.mk-tab.on .mk-tab-eye{color:var(--bar);}
+.mk-tab[data-cat="wl"]{--bar:var(--wl1);} .mk-tab[data-cat="dw"]{--bar:var(--dw1);} .mk-tab[data-cat="sx"]{--bar:var(--sx1);} .mk-tab[data-cat="iv"]{--bar:var(--iv1);} .mk-tab[data-cat="hr"]{--bar:var(--hr1);}
+.mk-tab-soon{font:700 9px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--hr1);padding:3px 7px;border-radius:99px;position:absolute;top:12px;right:12px;}
+@media(max-width:780px){.mk-tabs{grid-auto-flow:column;grid-template-columns:none;grid-auto-columns:minmax(150px,1fr);overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;-webkit-overflow-scrolling:touch;}.mk-tab{scroll-snap-align:start;}}
 
-.mk-match{display:inline-flex;align-items:center;gap:8px;margin-top:24px;font:600 15px/1 var(--sans);color:var(--teal);text-decoration:none;}
-.mk-match svg{transition:transform .3s;}
-.mk-match:hover svg{transform:translateX(4px);}
+.mk-panel{display:none;}
+.mk-panel.on{display:block;animation:mkfade .45s cubic-bezier(.22,1,.36,1);}
+@keyframes mkfade{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+.mk-panel-head{display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:18px;}
+.mk-panel-tag{font:500 16px/1.4 var(--sans);color:var(--gray-600);max-width:660px;}
+.mk-panel-tag b{color:var(--dark);font-weight:600;}
+.mk-panel-cta{font:600 14px/1 var(--sans);color:var(--teal);text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;}
+.mk-panel-cta svg{transition:transform .3s;}.mk-panel-cta:hover svg{transform:translateX(4px);}
+.mk-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+@media(min-width:620px){.mk-grid{grid-template-columns:repeat(3,1fr);}}
+@media(min-width:920px){.mk-grid{grid-template-columns:repeat(5,1fr);gap:14px;}}
+.mk-pc{display:flex;flex-direction:column;background:#fff;border:1px solid var(--gray-200);border-radius:16px;padding:14px 13px 15px;text-decoration:none;color:var(--dark);transition:transform .28s,box-shadow .28s,border-color .28s;}
+.mk-pc:hover{transform:translateY(-5px);box-shadow:0 16px 32px rgba(13,27,46,.10);border-color:var(--tint);}
+.mk-pc-img{height:128px;border-radius:12px;display:grid;place-items:center;margin-bottom:12px;background:radial-gradient(ellipse at 50% 80%,var(--plate),transparent 72%);}
+.mk-pc-img img{max-height:112px;max-width:84%;object-fit:contain;filter:drop-shadow(0 12px 18px rgba(0,0,0,.16));}
+.mk-pc-eye{font:700 9.5px/1.2 var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--tint);margin:0 0 5px;}
+.mk-pc h4{font:600 14.5px/1.2 var(--sans);margin:0 0 3px;}
+.mk-pc p{font:400 12px/1.4 var(--sans);color:var(--gray-500);margin:0 0 10px;flex-grow:1;}
+.mk-pc-price{font:800 16px/1 var(--sans);}.mk-pc-price small{font:500 11.5px/1 var(--sans);color:var(--gray-400);}
+.mk-panel[data-cat="wl"]{--tint:var(--wl1);--plate:rgba(19,182,198,.13);}
+.mk-panel[data-cat="dw"]{--tint:var(--dw1);--plate:rgba(90,109,192,.13);}
+.mk-panel[data-cat="sx"]{--tint:var(--sx1);--plate:rgba(214,93,131,.13);}
+.mk-panel[data-cat="iv"]{--tint:var(--iv1);--plate:rgba(199,147,48,.15);}
+.mk-soon-card{grid-column:1/-1;text-align:center;border:1px dashed var(--gray-200);border-radius:16px;padding:38px 20px;background:var(--gray-50);}
+.mk-soon-card h4{font:600 19px/1.2 var(--sans);margin:0 0 6px;}.mk-soon-card p{font:400 14px/1.5 var(--sans);color:var(--gray-500);margin:0 auto 16px;max-width:440px;}
 
-/* ---------- TRUST STRIP ---------- */
-.mk-trust{border-top:1px solid var(--gray-200);border-bottom:1px solid var(--gray-200);background:var(--gray-50);}
-.mk-trust-inner{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px 26px;justify-content:center;padding:18px 20px;}
-.mk-trust-inner span{font:500 13px/1.3 var(--sans);color:var(--gray-600);display:inline-flex;align-items:center;gap:7px;}
-.mk-trust-inner svg{color:var(--teal);flex-shrink:0;}
-
-/* ---------- CATALOG ---------- */
-.mk-cat-head{text-align:center;max-width:620px;margin:0 auto 34px;}
-.mk-cat-head .mk-eyebrow{display:flex;justify-content:center;}
-.mk-cat-head .mk-sub{margin-left:auto;margin-right:auto;}
-.mk-shop{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-@media(min-width:640px){.mk-shop{grid-template-columns:repeat(3,1fr);gap:14px;}}
-@media(min-width:980px){.mk-shop{grid-template-columns:repeat(5,1fr);}}
-.mk-prod{display:flex;flex-direction:column;background:#fff;border:1px solid var(--gray-200);border-radius:18px;padding:16px 14px 15px;text-decoration:none;color:var(--dark);transition:transform .28s,box-shadow .28s,border-color .28s;}
-.mk-prod:hover{transform:translateY(-5px);box-shadow:0 16px 34px rgba(13,27,46,.08);border-color:var(--teal);}
-.mk-prod-img{aspect-ratio:1;background:var(--gray-50);border-radius:13px;display:grid;place-items:center;padding:14px;margin-bottom:13px;}
-.mk-prod-img img{max-width:100%;max-height:100%;object-fit:contain;}
-.mk-prod-cat{font:700 9.5px/1.2 var(--sans);letter-spacing:.08em;text-transform:uppercase;margin:0 0 5px;}
-.mk-prod-cat.c-wl{color:var(--wl1);}.mk-prod-cat.c-dw{color:#6b54c6;}.mk-prod-cat.c-sx{color:var(--sx1);}.mk-prod-cat.c-iv{color:var(--iv1);}
-.mk-prod h4{font:600 15px/1.2 var(--sans);margin:0 0 3px;}
-.mk-prod p{font:400 12.5px/1.4 var(--sans);color:var(--gray-500);margin:0 0 11px;flex-grow:1;}
-.mk-prod .mk-prod-price{font:800 16px/1 var(--sans);}
-.mk-prod .mk-prod-price small{font:500 12px/1 var(--sans);color:var(--gray-400);}
-.mk-shop-all{text-align:center;margin-top:30px;}
+/* ---------- NIAGEN SPOTLIGHT (dark) ---------- */
+.mk-niagen{background:radial-gradient(1100px 500px at 78% 30%,#15324a,#0b1a2b 60%,#081320);color:#fff;position:relative;overflow:hidden;}
+.mk-niagen::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:46px 46px;-webkit-mask-image:radial-gradient(circle at 75% 35%,#000,transparent 70%);mask-image:radial-gradient(circle at 75% 35%,#000,transparent 70%);}
+.mk-niagen-in{position:relative;max-width:1180px;margin:0 auto;padding:64px 20px;display:grid;gap:28px;grid-template-columns:1fr;align-items:center;}
+@media(min-width:860px){.mk-niagen-in{grid-template-columns:1.15fr .85fr;}}
+.mk-niagen .mk-eyebrow{color:#7fd6e4;}
+.mk-niagen h2{font:600 clamp(28px,5vw,44px)/1.05 var(--sans);letter-spacing:-.02em;margin:0 0 14px;}
+.mk-niagen h2 .s{font-family:var(--serif);font-style:italic;font-weight:400;color:#bfe6ee;}
+.mk-niagen p{font:400 16px/1.6 var(--sans);color:rgba(255,255,255,.78);max-width:480px;margin:0 0 22px;}
+.mk-niagen-stats{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px;}
+.mk-nstat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:13px;padding:12px 16px;}
+.mk-nstat b{font:700 19px/1 var(--sans);display:block;}.mk-nstat span{font:500 11px/1.3 var(--sans);color:rgba(255,255,255,.6);}
+.mk-niagen-cta{display:inline-flex;align-items:center;gap:8px;background:#fff;color:#0b1a2b;font:600 15px/1 var(--sans);padding:14px 24px;border-radius:99px;text-decoration:none;transition:transform .25s,box-shadow .25s;}
+.mk-niagen-cta:hover{transform:translateY(-2px);box-shadow:0 16px 32px rgba(0,0,0,.35);}
+.mk-niagen-vial{position:relative;display:grid;place-items:center;min-height:280px;}
+.mk-niagen-vial::before{content:"";position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(127,214,228,.32),transparent 65%);}
+.mk-niagen-vial::after{content:"";position:absolute;width:260px;height:260px;border:1px solid rgba(127,214,228,.28);border-radius:50%;animation:mkspin 22s linear infinite;}
+@keyframes mkspin{to{transform:rotate(360deg);}}
+.mk-niagen-vial img{position:relative;max-height:300px;filter:drop-shadow(0 26px 40px rgba(0,0,0,.5));}
+@media(prefers-reduced-motion:reduce){.mk-niagen-vial::after{animation:none;}}
 
 /* ---------- COMPARISON ---------- */
-.mk-cmp-sec{background:var(--gray-50);border-radius:28px;}
-.mk-cmp{max-width:840px;margin:30px auto 0;background:#fff;border:1px solid var(--gray-200);border-radius:20px;overflow:hidden;}
-.mk-row{display:grid;grid-template-columns:1.3fr 1fr 1fr;align-items:center;}
+.mk-cmp{max-width:880px;margin:28px auto 0;background:#fff;border:1px solid var(--gray-200);border-radius:18px;overflow:hidden;}
+.mk-row{display:grid;grid-template-columns:1.25fr 1fr 1fr;}
 .mk-row+.mk-row{border-top:1px solid var(--gray-100);}
-.mk-row>div{padding:15px 14px;font:500 13.5px/1.4 var(--sans);}
+.mk-row>div{padding:15px 16px;font:500 13.5px/1.4 var(--sans);display:flex;align-items:center;gap:8px;}
 .mk-row .mk-feat{font-weight:600;color:var(--gray-600);}
-.mk-row .mk-clyr{color:var(--dark);font-weight:600;background:var(--teal-light);height:100%;display:flex;align-items:center;gap:8px;}
+.mk-row .mk-clyr{color:var(--dark);font-weight:600;background:var(--teal-light);}
 .mk-row .mk-other{color:var(--gray-500);}
-.mk-row.mk-head>div{font:700 11px/1.2 var(--sans);letter-spacing:.06em;text-transform:uppercase;padding:14px;}
+.mk-row.mk-head>div{font:700 11px/1.2 var(--sans);letter-spacing:.05em;text-transform:uppercase;}
 .mk-row.mk-head .mk-clyr{color:var(--teal-dark);}
-.mk-chk{color:var(--teal);flex-shrink:0;}
-@media(max-width:560px){.mk-row{grid-template-columns:1fr;}.mk-row>div{padding:9px 14px;}.mk-row .mk-feat{padding-top:14px;background:var(--gray-50);}.mk-row .mk-clyr{background:none;}.mk-row .mk-clyr::before{content:"CLYR · ";color:var(--teal);font-weight:700;}.mk-row .mk-other::before{content:"Typical · ";color:var(--gray-400);font-weight:700;}.mk-row.mk-head{display:none;}}
+.mk-chk{color:var(--teal);flex-shrink:0;}.mk-x{color:var(--gray-400);flex-shrink:0;}
+@media(max-width:580px){.mk-row{grid-template-columns:1fr;}.mk-row>div{padding:9px 16px;}.mk-row .mk-feat{padding-top:15px;background:var(--gray-50);}.mk-row .mk-clyr{background:none;}.mk-row .mk-clyr::before{content:"CLYR";color:var(--teal);font-weight:700;font-size:10px;letter-spacing:.05em;margin-right:6px;}.mk-row .mk-other::before{content:"TYPICAL";color:var(--gray-400);font-weight:700;font-size:10px;letter-spacing:.05em;margin-right:6px;}.mk-row.mk-head{display:none;}}
 
-/* ---------- STICKY CTA BAR ---------- */
+/* ---------- WHAT'S INCLUDED ---------- */
+.mk-incl{display:grid;grid-template-columns:1fr;gap:14px;margin-top:30px;}
+@media(min-width:640px){.mk-incl{grid-template-columns:1fr 1fr;}}
+@media(min-width:980px){.mk-incl{grid-template-columns:repeat(3,1fr);}}
+.mk-incl-card{background:#fff;border:1px solid var(--gray-200);border-radius:16px;padding:22px 20px;}
+.mk-incl-ic{width:42px;height:42px;border-radius:11px;background:var(--teal-light);color:var(--teal-dark);display:grid;place-items:center;margin-bottom:14px;}
+.mk-incl-card h4{font:600 16px/1.2 var(--sans);margin:0 0 6px;}
+.mk-incl-card p{font:400 13.5px/1.5 var(--sans);color:var(--gray-500);margin:0;}
+
+/* ---------- TESTIMONIALS ---------- */
+.mk-quotes{display:grid;grid-template-columns:1fr;gap:14px;margin-top:30px;}
+@media(min-width:680px){.mk-quotes{grid-template-columns:repeat(2,1fr);}}
+@media(min-width:1000px){.mk-quotes{grid-template-columns:repeat(4,1fr);}}
+.mk-q{background:#fff;border:1px solid var(--gray-200);border-radius:16px;padding:22px 20px;}
+.mk-q-stars{color:#f5b301;font-size:13px;letter-spacing:2px;margin-bottom:10px;}
+.mk-q p{font:400 14px/1.55 var(--sans);color:var(--gray-600);margin:0 0 16px;}
+.mk-q-who{display:flex;align-items:center;gap:10px;}
+.mk-q-av{width:34px;height:34px;border-radius:50%;background:var(--teal-light);color:var(--teal-dark);display:grid;place-items:center;font:700 14px/1 var(--sans);}
+.mk-q-who b{font:600 13px/1.2 var(--sans);display:block;}.mk-q-who span{font:400 11px/1.2 var(--sans);color:var(--gray-400);}
+
+/* ---------- FAQ ---------- */
+.mk-faq{max-width:780px;margin:24px auto 0;}
+.mk-fitem{border-bottom:1px solid var(--gray-200);}
+.mk-fq{width:100%;background:none;border:0;text-align:left;padding:20px 4px;font:600 16px/1.3 var(--sans);color:var(--dark);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px;}
+.mk-fq svg{flex-shrink:0;transition:transform .3s;color:var(--teal);}
+.mk-fitem.open .mk-fq svg{transform:rotate(45deg);}
+.mk-fa{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.mk-fa p{font:400 14.5px/1.6 var(--sans);color:var(--gray-500);margin:0 4px 20px;}
+.mk-fitem.open .mk-fa{max-height:260px;}
+
+/* ---------- STICKY CTA ---------- */
 .mk-sticky{position:fixed;left:0;right:0;bottom:0;z-index:900;background:var(--dark);color:#fff;transform:translateY(110%);transition:transform .5s cubic-bezier(.22,1,.36,1);}
 .mk-sticky.show{transform:none;}
 .mk-sticky-in{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 18px;}
@@ -2003,118 +2041,167 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 .mk-sticky-cta{background:var(--teal);color:#fff;font:600 14px/1 var(--sans);padding:13px 22px;border-radius:999px;text-decoration:none;white-space:nowrap;transition:background .25s,transform .25s;}
 .mk-sticky-cta:hover{background:var(--teal-dark);transform:translateY(-1px);}
 .mk-sticky-x{background:none;border:0;color:rgba(255,255,255,.5);font-size:22px;line-height:1;cursor:pointer;padding:4px 6px;}
-@media(max-width:560px){.mk-sticky-txt span{display:none;}.mk-sticky-in{padding:11px 14px;}.mk-sticky-cta{padding:12px 18px;}}
+@media(max-width:560px){.mk-sticky-txt span{display:none;}.mk-sticky-cta{padding:12px 18px;}}
 </style>
 
 <div class="mk-wrap">
 
 <!-- ===== HERO ===== -->
-<section class="mk-section mk-hero">
-  <div class="mk-hero-head mk-reveal">
-    <p class="mk-eyebrow">Prescription telehealth · 47 states</p>
-    <h1 class="mk-h">Real medicine. Real providers.<br><span class="s">One platform.</span></h1>
-    <p class="mk-sub">Weight loss, longevity, sexual health, and protocol care, prescribed by licensed U.S. providers and filled by a licensed compounding pharmacy. No insurance, no hidden fees, delivered to your door.</p>
-  </div>
-
-  <div class="mk-cats">
-    <a class="mk-cat mk-wl mk-reveal" href="/weight-loss.html" style="transition-delay:.04s">
-      <p class="mk-cat-eye">Weight Loss</p>
-      <h2 class="mk-cat-title">Lose the weight,<br><span class="s">keep your life.</span></h2>
-      <p class="mk-cat-desc">Compounded Tirzepatide & Semaglutide, plus oral GLP-1.</p>
-      <div class="mk-cat-foot"><span class="mk-cat-price">from $149/mo</span><span class="mk-cat-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-      <img class="mk-cat-img" src="/img/tirzepatide-cutout.png" alt="" loading="lazy">
-    </a>
-
-    <a class="mk-cat mk-dw mk-reveal" href="/daily-wellness.html" style="transition-delay:.10s">
-      <p class="mk-cat-eye">Daily Wellness</p>
-      <h2 class="mk-cat-title">Energy, recovery,<br><span class="s">longevity.</span></h2>
-      <p class="mk-cat-desc">NAD+, Niagen, Sermorelin, Glutathione, MICC.</p>
-      <div class="mk-cat-foot"><span class="mk-cat-price">from $109/mo</span><span class="mk-cat-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-      <img class="mk-cat-img" src="/img/nad-cutout.png" alt="" loading="lazy">
-    </a>
-
-    <a class="mk-cat mk-sx mk-reveal" href="/sexual-health.html" style="transition-delay:.16s">
-      <p class="mk-cat-eye">Sexual Health</p>
-      <h2 class="mk-cat-title">Performance,<br><span class="s">privately.</span></h2>
-      <p class="mk-cat-desc">Tadalafil, Sildenafil, PT-141, triple-action ODTs.</p>
-      <div class="mk-cat-foot"><span class="mk-cat-price">from $74/mo</span><span class="mk-cat-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-      <img class="mk-cat-img" src="/img/gummy-sildenafil.png" alt="" loading="lazy">
-    </a>
-
-    <a class="mk-cat mk-iv mk-reveal" href="/antiparasitic.html" style="transition-delay:.22s">
-      <p class="mk-cat-eye">Ivermectin & Protocols</p>
-      <h2 class="mk-cat-title">Targeted<br><span class="s">antiparasitic care.</span></h2>
-      <p class="mk-cat-desc">Ivermectin, and Ivermectin + Mebendazole.</p>
-      <div class="mk-cat-foot"><span class="mk-cat-price">from $139/mo</span><span class="mk-cat-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-      <img class="mk-cat-img" src="/img/pill-antiparasitic-new.png" alt="" loading="lazy">
-    </a>
-  </div>
-
-  <a class="mk-match mk-reveal" href="/wellness.html">Not sure where to start? Take the 2-minute match
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-  </a>
+<section class="mk-hero mk-reveal">
+  <p class="mk-eyebrow">Prescription telehealth · 47 states</p>
+  <h1>Real medicine. Real providers. <span class="s">One platform.</span></h1>
+  <p class="mk-sub">Weight loss, longevity, sexual health, and protocol care, prescribed by licensed U.S. providers and filled by a licensed compounding pharmacy. No insurance, no hidden fees, delivered to your door.</p>
 </section>
 
-<!-- ===== TRUST STRIP ===== -->
-<section class="mk-trust">
-  <div class="mk-trust-inner">
-    <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Licensed U.S. providers</span>
-    <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Licensed 503A pharmacy</span>
-    <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>HIPAA-compliant</span>
-    <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Ships to 47 states</span>
-    <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>No hidden fees</span>
+<!-- ===== SWITCHER ===== -->
+<section class="mk-sw">
+  <div class="mk-center mk-reveal" style="margin-bottom:26px;">
+    <p class="mk-eyebrow">Find what's right for you</p>
+    <h2 class="mk-h">Pick a category. <span class="s">See what's inside.</span></h2>
+  </div>
+
+  <div class="mk-tabs mk-reveal" role="tablist">
+    <button class="mk-tab on" data-cat="wl" onclick="mkCat('wl')"><span class="mk-tab-eye">Weight Loss</span><span class="mk-tab-name">Lose the weight</span><span class="mk-tab-thumb"><img src="/img/tirzepatide-cutout.png" alt=""></span><span class="mk-tab-bar"></span></button>
+    <button class="mk-tab" data-cat="dw" onclick="mkCat('dw')"><span class="mk-tab-eye">Daily Wellness</span><span class="mk-tab-name">Energy & longevity</span><span class="mk-tab-thumb"><img src="/img/nad-cutout.png" alt=""></span><span class="mk-tab-bar"></span></button>
+    <button class="mk-tab" data-cat="sx" onclick="mkCat('sx')"><span class="mk-tab-eye">Sexual Health</span><span class="mk-tab-name">Performance</span><span class="mk-tab-thumb"><img src="/img/pill-tadalafil-tad25-new.png" alt=""></span><span class="mk-tab-bar"></span></button>
+    <button class="mk-tab" data-cat="iv" onclick="mkCat('iv')"><span class="mk-tab-eye">Protocols</span><span class="mk-tab-name">Antiparasitic</span><span class="mk-tab-thumb"><img src="/img/pill-antiparasitic-new.png" alt=""></span><span class="mk-tab-bar"></span></button>
+    <button class="mk-tab" data-cat="hr" onclick="mkCat('hr')"><span class="mk-tab-soon">Soon</span><span class="mk-tab-eye">Hair</span><span class="mk-tab-name">Regrowth</span><span class="mk-tab-thumb"></span><span class="mk-tab-bar"></span></button>
+  </div>
+
+  <!-- WL -->
+  <div class="mk-panel on" data-cat="wl">
+    <div class="mk-panel-head"><span class="mk-panel-tag"><b>Compounded GLP-1, dosed for you.</b> Same molecule as the brand names, without the markup.</span><a class="mk-panel-cta" href="/weight-loss.html">Explore Weight Loss <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+    <div class="mk-grid">
+      <a class="mk-pc" href="/tirzepatide.html"><div class="mk-pc-img"><img src="/img/tirzepatide-cutout.png" alt="Tirzepatide"></div><p class="mk-pc-eye">Most popular</p><h4>Tirzepatide + B12</h4><p>Dual GLP-1/GIP</p><div class="mk-pc-price"><small>from</small> $149<small>/mo</small></div></a>
+      <a class="mk-pc" href="/semaglutide.html"><div class="mk-pc-img"><img src="/img/semaglutide-cutout.png" alt="Semaglutide"></div><p class="mk-pc-eye">Best value</p><h4>Semaglutide + B12</h4><p>GLP-1 agonist</p><div class="mk-pc-price"><small>from</small> $129<small>/mo</small></div></a>
+      <a class="mk-pc" href="/foundayo.html"><div class="mk-pc-img"><img src="/img/foundayo-bottle.png" alt="Foundayo"></div><p class="mk-pc-eye">Oral</p><h4>Foundayo&reg;</h4><p>Daily oral GLP-1</p><div class="mk-pc-price"><small>from</small> $99<small>/mo</small></div></a>
+      <a class="mk-pc" href="/lipo-mino.html"><div class="mk-pc-img"><img src="/img/vial-lipo-mino-new.png" alt="Lipo-Mino"></div><p class="mk-pc-eye">Add-on</p><h4>Lipo-Mino</h4><p>Fat metabolism + L-carnitine</p><div class="mk-pc-price"><small>from</small> $129<small>/mo</small></div></a>
+    </div>
+  </div>
+
+  <!-- DW -->
+  <div class="mk-panel" data-cat="dw">
+    <div class="mk-panel-head"><span class="mk-panel-tag"><b>The longevity stack.</b> Cellular energy, recovery, and healthy aging.</span><a class="mk-panel-cta" href="/daily-wellness.html">Explore Daily Wellness <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+    <div class="mk-grid">
+      <a class="mk-pc" href="/nad.html"><div class="mk-pc-img"><img src="/img/nad-cutout.png" alt="NAD+"></div><p class="mk-pc-eye">Cellular energy</p><h4>NAD+ Injections</h4><p>Energy & repair</p><div class="mk-pc-price"><small>from</small> $169<small>/mo</small></div></a>
+      <a class="mk-pc" href="/niagen.html"><div class="mk-pc-img"><img src="/img/vial-niagen-new.png" alt="Niagen"></div><p class="mk-pc-eye">First to market</p><h4>Niagen&reg;</h4><p>Injectable NAD+ precursor</p><div class="mk-pc-price"><small>from</small> $329<small>/mo</small></div></a>
+      <a class="mk-pc" href="/sermorelin.html"><div class="mk-pc-img"><img src="/img/sermorelin-cutout.png" alt="Sermorelin"></div><p class="mk-pc-eye">Peptide</p><h4>Sermorelin</h4><p>Sleep, recovery, lean mass</p><div class="mk-pc-price"><small>from</small> $149<small>/mo</small></div></a>
+      <a class="mk-pc" href="/glutathione.html"><div class="mk-pc-img"><img src="/img/glutathione-cutout.png" alt="Glutathione"></div><p class="mk-pc-eye">Antioxidant</p><h4>Glutathione</h4><p>Detox & immune</p><div class="mk-pc-price"><small>from</small> $109<small>/mo</small></div></a>
+      <a class="mk-pc" href="/micc.html"><div class="mk-pc-img"><img src="/img/vial-micc-new.png" alt="MICC + B12"></div><p class="mk-pc-eye">Lipotropic</p><h4>MICC + B12</h4><p>Metabolic support</p><div class="mk-pc-price"><small>from</small> $129<small>/mo</small></div></a>
+    </div>
+  </div>
+
+  <!-- SX -->
+  <div class="mk-panel" data-cat="sx">
+    <div class="mk-panel-head"><span class="mk-panel-tag"><b>Performance, privately.</b> Discreet packaging, on your schedule.</span><a class="mk-panel-cta" href="/sexual-health.html">Explore Sexual Health <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+    <div class="mk-grid">
+      <a class="mk-pc" href="/tadalafil.html"><div class="mk-pc-img"><img src="/img/pill-tadalafil-tad25-new.png" alt="Tadalafil"></div><p class="mk-pc-eye">Daily</p><h4>Tadalafil</h4><p>Long-lasting ED tablet</p><div class="mk-pc-price"><small>from</small> $74<small>/mo</small></div></a>
+      <a class="mk-pc" href="/sildenafil-gummy.html"><div class="mk-pc-img"><img src="/img/gummy-sildenafil.png" alt="Sildenafil Gummy"></div><p class="mk-pc-eye">On-demand</p><h4>Sildenafil Gummy</h4><p>Fast-onset chewable</p><div class="mk-pc-price"><small>from</small> $79<small>/mo</small></div></a>
+      <a class="mk-pc" href="/pt141.html"><div class="mk-pc-img"><img src="/img/pt141-odt-rose.png" alt="PT-141"></div><p class="mk-pc-eye">Libido</p><h4>PT-141</h4><p>Desire peptide, all genders</p><div class="mk-pc-price"><small>from</small> $83<small>/mo</small></div></a>
+      <a class="mk-pc" href="/sild-tadal-oxy.html"><div class="mk-pc-img"><img src="/img/sild-tadal-oxy-square.png" alt="Combo ODT"></div><p class="mk-pc-eye">Triple-action</p><h4>Combo ODT</h4><p>Sildenafil, tadalafil, oxytocin</p><div class="mk-pc-price"><small>from</small> $109<small>/mo</small></div></a>
+    </div>
+  </div>
+
+  <!-- IV -->
+  <div class="mk-panel" data-cat="iv">
+    <div class="mk-panel-head"><span class="mk-panel-tag"><b>Targeted antiparasitic protocols.</b> Provider-reviewed, pharmacy-filled.</span><a class="mk-panel-cta" href="/antiparasitic.html">Explore Protocols <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+    <div class="mk-grid">
+      <a class="mk-pc" href="/ivermectin.html"><div class="mk-pc-img"><img src="/img/pill-antiparasitic-new.png" alt="Ivermectin"></div><p class="mk-pc-eye">Single agent</p><h4>Ivermectin Protocol</h4><p>30-day, 18mg</p><div class="mk-pc-price"><small>from</small> $139<small>/mo</small></div></a>
+      <a class="mk-pc" href="/ivermectin-mebendazole.html"><div class="mk-pc-img"><img src="/img/pill-antiparasitic-new.png" alt="Ivermectin + Mebendazole"></div><p class="mk-pc-eye">Broad coverage</p><h4>Ivermectin + Mebendazole</h4><p>Combination protocol</p><div class="mk-pc-price"><small>from</small> $169<small>/mo</small></div></a>
+    </div>
+  </div>
+
+  <!-- HR -->
+  <div class="mk-panel" data-cat="hr">
+    <div class="mk-grid"><div class="mk-soon-card"><h4>Hair regrowth is coming soon.</h4><p>Provider-prescribed oral and topical formulas for hair loss, launching shortly. Join the waitlist for early access.</p><a class="btn-primary" href="/wellness.html">Join the waitlist</a></div></div>
   </div>
 </section>
 
-<!-- ===== CATALOG ===== -->
-<section class="mk-section">
-  <div class="mk-cat-head mk-reveal">
-    <p class="mk-eyebrow">The full catalog</p>
-    <h2 class="mk-h">One platform.<br><span class="s">Every prescription.</span></h2>
-    <p class="mk-sub">Real, compounded medications across every category, each filled by a licensed U.S. pharmacy and reviewed by a licensed provider.</p>
+<!-- ===== NIAGEN SPOTLIGHT ===== -->
+<section class="mk-niagen">
+  <div class="mk-niagen-in">
+    <div class="mk-reveal">
+      <p class="mk-eyebrow">Exclusive · first to market</p>
+      <h2>Niagen&reg;, <span class="s">finally injectable.</span></h2>
+      <p>The patented form of nicotinamide riboside your body converts straight into NAD+. Now provider-supervised and injectable, and CLYR is among the first in telehealth to offer it.</p>
+      <div class="mk-niagen-stats">
+        <div class="mk-nstat"><b>1</b><span>Of the first in telehealth</span></div>
+        <div class="mk-nstat"><b>100 mg/mL</b><span>Pharmacy-filled potency</span></div>
+        <div class="mk-nstat"><b>2-min</b><span>Online visit to start</span></div>
+      </div>
+      <a class="mk-niagen-cta" href="/niagen.html">See Niagen <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+    <div class="mk-niagen-vial mk-reveal"><img src="/img/vial-niagen-new.png" alt="Niagen injectable vial"></div>
   </div>
-  <div class="mk-shop">
-    <a class="mk-prod mk-reveal" href="/tirzepatide.html"><div class="mk-prod-img"><img src="/img/cardv2/tirzepatide.webp" alt="Tirzepatide" loading="lazy"></div><p class="mk-prod-cat c-wl">Weight Loss</p><h4>Tirzepatide + B12</h4><p>Dual GLP-1/GIP</p><div class="mk-prod-price"><small>from</small> $149<small>/mo</small></div></a>
-    <a class="mk-prod mk-reveal" href="/semaglutide.html"><div class="mk-prod-img"><img src="/img/cardv2/semaglutide.webp" alt="Semaglutide" loading="lazy"></div><p class="mk-prod-cat c-wl">Weight Loss</p><h4>Semaglutide + B12</h4><p>GLP-1 receptor agonist</p><div class="mk-prod-price"><small>from</small> $129<small>/mo</small></div></a>
-    <a class="mk-prod mk-reveal" href="/nad.html"><div class="mk-prod-img"><img src="/img/cardv2/nad.webp" alt="NAD+" loading="lazy"></div><p class="mk-prod-cat c-dw">Daily Wellness</p><h4>NAD+ Injections</h4><p>Cellular energy</p><div class="mk-prod-price"><small>from</small> $169<small>/mo</small></div></a>
-    <a class="mk-prod mk-reveal" href="/niagen.html"><div class="mk-prod-img"><img src="/img/cardv2/niagen.png" alt="Niagen" loading="lazy"></div><p class="mk-prod-cat c-dw">Daily Wellness</p><h4>Niagen&reg;</h4><p>NAD+ precursor</p><div class="mk-prod-price"><small>from</small> $329<small>/mo</small></div></a>
-    <a class="mk-prod mk-reveal" href="/sermorelin.html"><div class="mk-prod-img"><img src="/img/cardv2/sermorelin.webp" alt="Sermorelin" loading="lazy"></div><p class="mk-prod-cat c-dw">Daily Wellness</p><h4>Sermorelin</h4><p>Growth hormone peptide</p><div class="mk-prod-price"><small>from</small> $149<small>/mo</small></div></a>
-    <a class="mk-prod mk-reveal" href="/glutathione.html"><div class="mk-prod-img"><img src="/img/cardv2/glutathione.webp" alt="Glutathione" loading="lazy"></div><p class="mk-prod-cat c-dw">Daily Wellness</p><h4>Glutathione</h4><p>Master antioxidant</p><div class="mk-prod-price"><small>from</small> $109<small>/mo</small></div></a>
-    <a class="mk-prod mk-reveal" href="/micc.html"><div class="mk-prod-img"><img src="/img/cardv2/micc.webp" alt="MICC + B12" loading="lazy"></div><p class="mk-prod-cat c-dw">Daily Wellness</p><h4>MICC + B12</h4><p>Lipotropic support</p><div class="mk-prod-price"><small>from</small> $129<small>/mo</small></div></a>
-    <a class="mk-prod mk-reveal" href="/tadalafil.html"><div class="mk-prod-img"><img src="/img/cardv2/pill-tadalafil-tad25-new.webp" alt="Tadalafil" loading="lazy"></div><p class="mk-prod-cat c-sx">Sexual Health</p><h4>Tadalafil</h4><p>Daily ED tablet</p><div class="mk-prod-price"><small>from</small> $74<small>/mo</small></div></a>
-    <a class="mk-prod mk-reveal" href="/sildenafil-gummy.html"><div class="mk-prod-img"><img src="/img/cardv2/gummy-sildenafil-square.webp" alt="Sildenafil Gummy" loading="lazy"></div><p class="mk-prod-cat c-sx">Sexual Health</p><h4>Sildenafil Gummy</h4><p>On-demand</p><div class="mk-prod-price"><small>from</small> $79<small>/mo</small></div></a>
-    <a class="mk-prod mk-reveal" href="/pt141.html"><div class="mk-prod-img"><img src="/img/cardv2/pt141-odt-rose.webp" alt="PT-141" loading="lazy"></div><p class="mk-prod-cat c-sx">Sexual Health</p><h4>PT-141</h4><p>Libido peptide</p><div class="mk-prod-price"><small>from</small> $83<small>/mo</small></div></a>
-    <a class="mk-prod mk-reveal" href="/sild-tadal-oxy.html"><div class="mk-prod-img"><img src="/img/cardv2/sild-tadal-oxy-square.webp" alt="Combo ODT" loading="lazy"></div><p class="mk-prod-cat c-sx">Sexual Health</p><h4>Combo ODT</h4><p>Triple-action</p><div class="mk-prod-price"><small>from</small> $109<small>/mo</small></div></a>
-    <a class="mk-prod mk-reveal" href="/ivermectin.html"><div class="mk-prod-img"><img src="/img/cardv2/card-ivermectin.webp" alt="Ivermectin" loading="lazy"></div><p class="mk-prod-cat c-iv">Ivermectin</p><h4>Ivermectin Protocol</h4><p>30-day, 18mg</p><div class="mk-prod-price"><small>from</small> $139<small>/mo</small></div></a>
-    <a class="mk-prod mk-reveal" href="/ivermectin-mebendazole.html"><div class="mk-prod-img"><img src="/img/cardv2/card-mebendazole.webp" alt="Ivermectin + Mebendazole" loading="lazy"></div><p class="mk-prod-cat c-iv">Ivermectin</p><h4>Iverm. + Mebendazole</h4><p>Broader coverage</p><div class="mk-prod-price"><small>from</small> $169<small>/mo</small></div></a>
-    <a class="mk-prod mk-reveal" href="/lipo-mino.html"><div class="mk-prod-img"><img src="/img/cardv2/vial-lipo-mino-new.webp" alt="Lipo-Mino" loading="lazy"></div><p class="mk-prod-cat c-wl">Weight Loss</p><h4>Lipo-Mino + L-Carnitine</h4><p>Fat metabolism</p><div class="mk-prod-price"><small>from</small> $129<small>/mo</small></div></a>
-    <a class="mk-prod mk-reveal" href="/foundayo.html"><div class="mk-prod-img"><img src="/img/cardv2/foundayo-bottle.webp" alt="Foundayo" loading="lazy"></div><p class="mk-prod-cat c-wl">Weight Loss</p><h4>Foundayo&reg;</h4><p>Oral GLP-1</p><div class="mk-prod-price"><small>from</small> $99<small>/mo</small></div></a>
-  </div>
-  <div class="mk-shop-all"><a class="btn-primary" href="/wellness.html">Browse all treatments</a></div>
 </section>
 
 <!-- ===== COMPARISON ===== -->
 <section class="mk-section">
- <div class="mk-cmp-sec" style="padding:44px 20px;">
-  <div class="mk-cat-head mk-reveal" style="margin-bottom:6px;">
+  <div class="mk-center mk-reveal">
     <p class="mk-eyebrow">The difference</p>
     <h2 class="mk-h">Why <span class="s">CLYR.</span></h2>
-    <p class="mk-sub">Most telehealth sells one thing and hides the rest of the cost. We do the opposite.</p>
+    <p class="mk-sub">Most telehealth hides pricing, charges for visits, and locks you into 12-month contracts. We don't.</p>
   </div>
   <div class="mk-cmp mk-reveal">
-    <div class="mk-row mk-head"><div class="mk-feat">&nbsp;</div><div class="mk-clyr">CLYR</div><div class="mk-other">Typical telehealth</div></div>
-    <div class="mk-row"><div class="mk-feat">What you can treat</div><div class="mk-clyr"><svg class="mk-chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Four full categories, one visit</div><div class="mk-other">Usually one vertical</div></div>
-    <div class="mk-row"><div class="mk-feat">Pricing</div><div class="mk-clyr"><svg class="mk-chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Flat monthly, no hidden fees</div><div class="mk-other">Surprise consult & shipping fees</div></div>
-    <div class="mk-row"><div class="mk-feat">Pharmacy</div><div class="mk-clyr"><svg class="mk-chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Licensed U.S. 503A, on the label</div><div class="mk-other">Often undisclosed</div></div>
-    <div class="mk-row"><div class="mk-feat">Shipping</div><div class="mk-clyr"><svg class="mk-chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Free, cold-chain when needed</div><div class="mk-other">Paid, add-on</div></div>
-    <div class="mk-row"><div class="mk-feat">Commitment</div><div class="mk-clyr"><svg class="mk-chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Cancel anytime</div><div class="mk-other">Locked-in plans</div></div>
+    <div class="mk-row mk-head"><div class="mk-feat">&nbsp;</div><div class="mk-clyr">CLYR Health</div><div class="mk-other">Typical telehealth</div></div>
+    <div class="mk-row"><div class="mk-feat">Provider consultation</div><div class="mk-clyr"><svg class="mk-chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Included</div><div class="mk-other"><svg class="mk-x" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>$49 to $99 a visit</div></div>
+    <div class="mk-row"><div class="mk-feat">Expedited shipping</div><div class="mk-clyr"><svg class="mk-chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Included, free</div><div class="mk-other"><svg class="mk-x" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>$15 to $25 per ship</div></div>
+    <div class="mk-row"><div class="mk-feat">Cancellation</div><div class="mk-clyr"><svg class="mk-chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Anytime, no fee</div><div class="mk-other"><svg class="mk-x" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>12-month lock-in common</div></div>
+    <div class="mk-row"><div class="mk-feat">Who reviews you</div><div class="mk-clyr"><svg class="mk-chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>US-licensed provider</div><div class="mk-other"><svg class="mk-x" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>Often a chatbot</div></div>
+    <div class="mk-row"><div class="mk-feat">Pricing</div><div class="mk-clyr"><svg class="mk-chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Shown on every page</div><div class="mk-other"><svg class="mk-x" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>Behind an email gate</div></div>
+    <div class="mk-row"><div class="mk-feat">Dose tracking</div><div class="mk-clyr"><svg class="mk-chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Built into your portal</div><div class="mk-other"><svg class="mk-x" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>Rare</div></div>
   </div>
- </div>
+</section>
+
+<!-- ===== WHAT'S INCLUDED ===== -->
+<section class="mk-section" style="background:var(--gray-50);border-radius:28px;">
+  <div class="mk-center mk-reveal">
+    <p class="mk-eyebrow">What's included</p>
+    <h2 class="mk-h">More than just <span class="s">medication.</span></h2>
+    <p class="mk-sub">Every CLYR plan is one transparent price with the full support system behind it.</p>
+  </div>
+  <div class="mk-incl">
+    <div class="mk-incl-card mk-reveal"><div class="mk-incl-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><h4>Licensed providers</h4><p>Board-certified physicians and nurse practitioners review your history and prescribe your treatment.</p></div>
+    <div class="mk-incl-card mk-reveal"><div class="mk-incl-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h4>Ongoing care</h4><p>Message your care team anytime for dosing adjustments, check-ins, and guidance.</p></div>
+    <div class="mk-incl-card mk-reveal"><div class="mk-incl-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7zM5.5 18.5a2.5 2.5 0 1 0 .01 0M18.5 18.5a2.5 2.5 0 1 0 .01 0"/></svg></div><h4>Free discreet shipping</h4><p>Temperature-controlled, plain packaging. Cold-chain when needed, always free.</p></div>
+    <div class="mk-incl-card mk-reveal"><div class="mk-incl-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 3 4 6v6c0 5 3.5 7.5 8 9 4.5-1.5 8-4 8-9V6z"/></svg></div><h4>Eligibility guarantee</h4><p>If a provider determines you're not eligible after payment, you get a full refund. Zero risk to start.</p></div>
+    <div class="mk-incl-card mk-reveal"><div class="mk-incl-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><h4>Fast provider review</h4><p>Complete a 5-minute questionnaire and hear back from a licensed provider, usually same day.</p></div>
+    <div class="mk-incl-card mk-reveal"><div class="mk-incl-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/></svg></div><h4>B12 in every compound</h4><p>Our compounded injectables include B12 to support energy and metabolism.</p></div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="mk-section">
+  <div class="mk-center mk-reveal">
+    <p class="mk-eyebrow">Real patients</p>
+    <h2 class="mk-h">There's a reason patients <span class="s">trust CLYR.</span></h2>
+  </div>
+  <div class="mk-quotes">
+    <div class="mk-q mk-reveal"><div class="mk-q-stars">★★★★★</div><p>"My medicine actually came cold and on ice. Best packaging I've ever seen for refrigerated medicine."</p><div class="mk-q-who"><span class="mk-q-av">D</span><span><b>David S.</b><span>Verified CLYR patient</span></span></div></div>
+    <div class="mk-q mk-reveal"><div class="mk-q-stars">★★★★★</div><p>"I was hesitant switching from a name-brand to a compounded medicine. CLYR's process and quality are so good, I'm very pleased."</p><div class="mk-q-who"><span class="mk-q-av">B</span><span><b>Barrett L.</b><span>Verified CLYR patient</span></span></div></div>
+    <div class="mk-q mk-reveal"><div class="mk-q-stars">★★★★★</div><p>"Super easy and much more affordable than what I was previously paying. Highly recommend."</p><div class="mk-q-who"><span class="mk-q-av">S</span><span><b>Shawn S.</b><span>Verified CLYR patient</span></span></div></div>
+    <div class="mk-q mk-reveal"><div class="mk-q-stars">★★★★★</div><p>"The process couldn't have been easier. From order to my doorstep in days."</p><div class="mk-q-who"><span class="mk-q-av">W</span><span><b>Wendy M.</b><span>Verified CLYR patient</span></span></div></div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="mk-section">
+  <div class="mk-center mk-reveal">
+    <p class="mk-eyebrow">Questions, answered</p>
+    <h2 class="mk-h">Good to <span class="s">know.</span></h2>
+  </div>
+  <div class="mk-faq mk-reveal">
+    <div class="mk-fitem"><button class="mk-fq" onclick="this.parentElement.classList.toggle('open')">Who is CLYR Health?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><div class="mk-fa"><p>CLYR is a direct-to-consumer telehealth platform connecting patients with licensed providers and a state-licensed compounding pharmacy, across weight loss, daily wellness, sexual health, and protocols, all delivered to your door.</p></div></div>
+    <div class="mk-fitem"><button class="mk-fq" onclick="this.parentElement.classList.toggle('open')">How does the intake work?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><div class="mk-fa"><p>Choose your treatment, complete a brief medical questionnaire (under 5 minutes), and a licensed provider reviews your history. If approved, your prescription is compounded and shipped in 3 to 5 business days.</p></div></div>
+    <div class="mk-fitem"><button class="mk-fq" onclick="this.parentElement.classList.toggle('open')">Do I need insurance?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><div class="mk-fa"><p>No. CLYR is cash-pay only. Your medication, provider visit, and shipping are all included in one transparent price.</p></div></div>
+    <div class="mk-fitem"><button class="mk-fq" onclick="this.parentElement.classList.toggle('open')">What if I'm not approved?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><div class="mk-fa"><p>If a provider determines a treatment isn't right for you, you receive a full refund, including any subscription you selected.</p></div></div>
+    <div class="mk-fitem"><button class="mk-fq" onclick="this.parentElement.classList.toggle('open')">Is CLYR available in my state?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><div class="mk-fa"><p>CLYR ships to 47 states. We currently do not ship to Alaska, Mississippi, or Louisiana.</p></div></div>
+  </div>
 </section>
 
 </div><!-- /mk-wrap -->
 
-<!-- ===== STICKY CTA BAR ===== -->
+<!-- ===== STICKY CTA ===== -->
 <div class="mk-sticky" id="mkSticky">
   <div class="mk-sticky-in">
     <div class="mk-sticky-txt"><strong>Find your treatment in a 5-minute visit.</strong><span>Licensed provider review · pay nothing if you're not eligible.</span></div>
@@ -2126,16 +2213,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <script>
+function mkCat(id){
+  document.querySelectorAll('.mk-tab').forEach(function(b){b.classList.toggle('on', b.dataset.cat===id);});
+  document.querySelectorAll('.mk-panel').forEach(function(p){p.classList.toggle('on', p.dataset.cat===id);});
+}
 (function(){
-  // scroll reveal
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
   document.querySelectorAll('.mk-reveal').forEach(function(el){io.observe(el);});
-  // sticky bar shows after scrolling past hero
   var sb=document.getElementById('mkSticky');var shown=false;
-  window.addEventListener('scroll',function(){var y=window.scrollY||0;if(!shown&&y>620){sb.classList.add('show');shown=true;}if(y<=620&&shown){/*keep*/}},{passive:true});
+  window.addEventListener('scroll',function(){if(!shown&&(window.scrollY||0)>640){sb.classList.add('show');shown=true;}},{passive:true});
 })();
 </script>
-<!-- ===================== END MOCKUP v6 SECTIONS ===================== -->
+<!-- ===================== END MOCKUP v6 (rev2) ===================== -->
 
 <footer class="footer">
   <div class="footer-inner">
