@@ -1271,7 +1271,10 @@ function initCheckout() {
       utm_source: (window.clyrAttribution ? window.clyrAttribution().utm_source : null) || params.get('utm_source'),
       utm_medium: (window.clyrAttribution ? window.clyrAttribution().utm_medium : null) || params.get('utm_medium'),
       utm_campaign: (window.clyrAttribution ? window.clyrAttribution().utm_campaign : null) || params.get('utm_campaign'),
-      referrer: (window.clyrAttribution ? window.clyrAttribution().referrer : null) || document.referrer || null
+      referrer: (window.clyrAttribution ? window.clyrAttribution().referrer : null) || document.referrer || null,
+      twclid: (window.clyrAttribution ? window.clyrAttribution().twclid : null) || params.get('twclid'),
+      gclid: (window.clyrAttribution ? window.clyrAttribution().gclid : null) || params.get('gclid'),
+      fbclid: (window.clyrAttribution ? window.clyrAttribution().fbclid : null) || params.get('fbclid')
     };
 
     return fetch(API + '/api/intake', {

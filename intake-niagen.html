@@ -363,6 +363,7 @@ function submitAll() {
     visitor_id: localStorage.getItem('clyr_vid') || null,
     utm_source: attr.utm_source || null, utm_medium: attr.utm_medium || null, utm_campaign: attr.utm_campaign || null,
     referrer: attr.referrer || document.referrer || null,
+    twclid: attr.twclid || null, gclid: attr.gclid || null, fbclid: attr.fbclid || null,
     mdiAnswers: formData.mdiAnswers,
     legalName: $('legalName').value.trim(),
     doctorMessage: $('doctorMessage').value.trim() || null,
