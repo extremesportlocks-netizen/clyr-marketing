@@ -251,6 +251,8 @@
         'padding:13px 16px;border-radius:12px;box-shadow:0 6px 16px rgba(0,180,197,0.28)}' +
       '#clyrPromo .cp-cta:hover{filter:brightness(1.04)}' +
       '#clyrPromo .cp-fine{text-align:center;font-size:11px;color:#9aa6b2;margin:10px 0 0}' +
+      '#clyrPromo .cp-ok{width:48px;height:48px;border-radius:50%;background:#E0F7FA;display:flex;align-items:center;justify-content:center;margin:2px 0 14px}' +
+      '#clyrPromo .cp-ok svg{width:26px;height:26px;stroke:#00B4C5;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}' +
       '@media (max-width:520px){#clyrPromo{right:0;left:0;bottom:0;width:100%;max-width:100%;' +
         'border-radius:18px 18px 0 0;border-left:none;border-right:none;border-bottom:none}}' +
       (reduce ? '#clyrPromo{transition:opacity .25s ease}#clyrPromo.in{transform:none}#clyrPromo{transform:none}' : '');
