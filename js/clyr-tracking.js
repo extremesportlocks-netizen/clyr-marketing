@@ -200,7 +200,8 @@
 
   // Don't interrupt people who are already converting or reading legal copy.
   var SKIP = ['/intake', '/checkout', '/portal', '/resume', '/thank', '/confirm',
-              '/privacy', '/terms', '/telehealth-consent', '/sms-terms', '/hipaa', '/return', '/refund'];
+              '/privacy', '/terms', '/telehealth-consent', '/sms-terms', '/hipaa', '/return', '/refund',
+              '/ads/']; // dedicated ad landing pages — never let the popup compete with their CTA
   for (var i = 0; i < SKIP.length; i++) { if (path.indexOf(SKIP[i]) !== -1) return; }
 
   function seenKey(code) { return 'clyr_promo_card_' + code; }
