@@ -118,6 +118,41 @@ body {
 .card h2 { font-size: 13px; font-weight: 700; line-height: 1.25; margin-bottom: 6px; }
 .card .price { font-size: 14px; font-weight: 800; color: var(--teal-mid); }
 .card .price span { font-size: 12px; font-weight: 600; }
+.card-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  margin-top: 12px;
+  padding: 11px 10px;
+  background: linear-gradient(135deg, var(--teal-mid) 0%, var(--teal) 100%);
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0, 168, 158, 0.28);
+}
+.card.selected .card-cta { background: linear-gradient(135deg, #0ea5a0 0%, var(--teal-dark) 100%); }
+.card:not(.selected) .card-cta { opacity: 0.92; }
+.hero-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 16px 24px;
+  margin-bottom: 14px;
+  background: linear-gradient(135deg, var(--teal-mid) 0%, var(--teal) 100%);
+  color: var(--white);
+  font-size: 17px;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 12px;
+  box-shadow: 0 10px 28px rgba(0, 168, 158, 0.35);
+}
+.mid-cta { margin: 8px 0 32px; }
 .hub-link {
   display: block;
   text-align: center;
@@ -313,22 +348,29 @@ body {
   </ul>
 
   <div class="cards" role="radiogroup" aria-label="Choose your protocol">
-    <button type="button" class="card selected" data-product="ivermectin" aria-pressed="true">
+    <div class="card selected" data-product="ivermectin" aria-pressed="true">
       <div class="card-visual"><img src="/img/card/ivermectin.png" alt="" width="40" height="44"></div>
       <h2>Ivermectin protocol</h2>
       <p class="price">from $139<span>/mo</span></p>
-    </button>
-    <button type="button" class="card" data-product="ivermectin-mebendazole" aria-pressed="false">
+      <a href="/intake-wellness.html?product=ivermectin" class="card-cta" data-cta-product="ivermectin">Start consultation</a>
+    </div>
+    <div class="card" data-product="ivermectin-mebendazole" aria-pressed="false">
       <div class="card-visual combo">
         <img src="/img/card/mebendazole.png" alt="" width="36" height="40">
         <img src="/img/card/ivermectin.png" alt="" width="36" height="40">
       </div>
       <h2>Combo protocol</h2>
       <p class="price">from $169<span>/mo</span></p>
-    </button>
+      <a href="/intake-wellness.html?product=ivermectin-mebendazole" class="card-cta" data-cta-product="ivermectin-mebendazole">Start consultation</a>
+    </div>
   </div>
 
-  <a href="/antiparasitic.html" class="hub-link">Compare full protocol details on CLYR &rarr;</a>
+  <a href="/intake-wellness.html?product=ivermectin-mebendazole" class="hero-cta" id="hero-cta">
+    Start your consultation
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
+
+  <a href="/antiparasitic.html" class="hub-link" target="_blank" rel="noopener">Full protocol details (opens new tab) &rarr;</a>
 
   <div class="block">
     <div class="trust-scroll" aria-label="Trust and safety">
@@ -358,6 +400,13 @@ body {
         <tr><td>Commitment</td><td>Cancel anytime</td><td class="lead">Cancel anytime</td></tr>
       </tbody>
     </table>
+  </div>
+
+  <div class="mid-cta">
+    <a href="/intake-wellness.html?product=ivermectin-mebendazole" class="hero-cta" id="mid-cta" style="margin-bottom:0">
+      Check your eligibility
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
   </div>
 
   <div class="block">
@@ -402,7 +451,7 @@ body {
 <div class="sticky-cta">
   <div class="sticky-cta-inner">
     <a href="/intake-wellness.html?product=ivermectin" class="cta" id="cta">
-      Start free intake
+      Start your consultation
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
   </div>
@@ -412,7 +461,7 @@ body {
 <script>
 (function () {
   var cards = document.querySelectorAll('.card');
-  var cta = document.getElementById('cta');
+  var ctas = document.querySelectorAll('#cta, #hero-cta, #mid-cta, .card-cta');
   var selected = 'ivermectin';
 
   function intakeUrl(product) {
@@ -431,23 +480,39 @@ body {
     } catch (e) {}
   }
 
-  function select(card) {
-    selected = card.getAttribute('data-product');
+  function applyProduct(product) {
+    selected = product;
     cards.forEach(function (c) {
-      var on = c === card;
+      var on = c.getAttribute('data-product') === product;
       c.classList.toggle('selected', on);
       c.setAttribute('aria-pressed', on ? 'true' : 'false');
     });
-    cta.href = intakeUrl(selected);
-    track('AdLPProductSelect', { product: selected });
+    ctas.forEach(function (el) {
+      var p = el.getAttribute('data-cta-product') || selected;
+      if (!el.getAttribute('data-cta-product')) el.href = intakeUrl(selected);
+      else el.href = intakeUrl(p);
+    });
+  }
+
+  function select(card, fromUser) {
+    var product = card.getAttribute('data-product');
+    applyProduct(product);
+    if (fromUser) track('AdLPProductSelect', { product: product });
   }
 
   cards.forEach(function (card) {
-    card.addEventListener('click', function () { select(card); });
+    card.addEventListener('click', function (e) {
+      if (e.target.closest('a.card-cta')) return;
+      select(card, true);
+    });
   });
 
-  cta.addEventListener('click', function () {
-    track('AdLPCTAClick', { product: selected });
+  ctas.forEach(function (el) {
+    el.addEventListener('click', function () {
+      var product = el.getAttribute('data-cta-product') || selected;
+      track('AdLPCTAClick', { product: product, location: el.id || 'card-cta' });
+      if (window.clyrTrack) window.clyrTrack('ProductCTAClick', { product: product, location: 'x-adlp-' + (el.id || 'card') });
+    });
   });
 
   document.querySelectorAll('.faq-q').forEach(function (btn) {
@@ -463,15 +528,9 @@ body {
   });
 
   var params = new URLSearchParams(window.location.search);
-  var preset = params.get('product') || (params.get('utm_campaign') === 'combo-jun26' ? 'ivermectin-mebendazole' : null);
-  if (preset) {
-    cards.forEach(function (card) {
-      if (card.getAttribute('data-product') === preset) select(card);
-    });
-  } else {
-    cta.href = intakeUrl(selected);
-  }
-  track('AdLPView', { product: selected });
+  var preset = params.get('product') || (params.get('utm_campaign') === 'combo-jun26' ? 'ivermectin-mebendazole' : 'ivermectin');
+  applyProduct(preset);
+  track('AdLPView', { product: preset });
 })();
 </script>
 </body>
