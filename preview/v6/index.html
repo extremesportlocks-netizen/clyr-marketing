@@ -1928,12 +1928,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 /* ---------- SWITCHER ---------- */
 .mk-sw{max-width:1180px;margin:0 auto;padding:14px 20px 64px;}
 .mk-tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:26px;}
-.mk-tab{position:relative;overflow:hidden;border:1px solid var(--gray-200);background:#fff;border-radius:16px;padding:16px 14px 14px;cursor:pointer;text-align:left;transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s,border-color .3s;font-family:var(--sans);}
+.mk-tab{position:relative;overflow:hidden;border:1px solid var(--gray-200);background:#fff;border-radius:16px;padding:16px 14px 14px;cursor:pointer;text-align:left;min-height:122px;display:flex;flex-direction:column;transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s,border-color .3s;font-family:var(--sans);}
 .mk-tab:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(13,27,46,.09);}
 .mk-tab-eye{font:700 10px/1.2 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--gray-500);display:block;}
 .mk-tab-name{font:600 15px/1.2 var(--sans);color:var(--dark);display:block;margin-top:3px;}
-.mk-tab-thumb{height:46px;margin-top:10px;display:flex;align-items:flex-end;}
-.mk-tab-thumb img{max-height:46px;max-width:60px;object-fit:contain;filter:drop-shadow(0 6px 10px rgba(0,0,0,.16));}
+.mk-tab-thumb{height:54px;margin-top:auto;padding-top:8px;display:flex;align-items:flex-end;}
+.mk-tab-thumb img{max-height:54px;max-width:82px;object-fit:contain;filter:drop-shadow(0 8px 12px rgba(0,0,0,.18));}
 .mk-tab .mk-tab-bar{position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--bar);transform:scaleX(0);transform-origin:left;transition:transform .35s;}
 .mk-tab.on{border-color:transparent;box-shadow:0 14px 30px rgba(13,27,46,.14);}
 .mk-tab.on .mk-tab-bar{transform:scaleX(1);}
@@ -2049,7 +2049,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ===== HERO ===== -->
 <section class="mk-hero mk-reveal">
   <p class="mk-eyebrow">Prescription telehealth · 47 states</p>
-  <h1>Real medicine. Real providers. <span class="s">One platform.</span></h1>
+  <h1>Real medicine. Real providers.<br><span class="s">One platform.</span></h1>
   <p class="mk-sub">Weight loss, longevity, sexual health, and protocol care, prescribed by licensed U.S. providers and filled by a licensed compounding pharmacy. No insurance, no hidden fees, delivered to your door.</p>
 </section>
 
@@ -2062,7 +2062,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <div class="mk-tabs mk-reveal" role="tablist">
     <button class="mk-tab on" data-cat="wl" onclick="mkCat('wl')"><span class="mk-tab-eye">Weight Loss</span><span class="mk-tab-name">Lose the weight</span><span class="mk-tab-thumb"><img src="/img/tirzepatide-cutout.png" alt=""></span><span class="mk-tab-bar"></span></button>
-    <button class="mk-tab" data-cat="dw" onclick="mkCat('dw')"><span class="mk-tab-eye">Daily Wellness</span><span class="mk-tab-name">Energy & longevity</span><span class="mk-tab-thumb"><img src="/img/nad-cutout.png" alt=""></span><span class="mk-tab-bar"></span></button>
+    <button class="mk-tab" data-cat="dw" onclick="mkCat('dw')"><span class="mk-tab-eye">Daily Wellness</span><span class="mk-tab-name">Longevity</span><span class="mk-tab-thumb"><img src="/img/nad-cutout.png" alt=""></span><span class="mk-tab-bar"></span></button>
     <button class="mk-tab" data-cat="sx" onclick="mkCat('sx')"><span class="mk-tab-eye">Sexual Health</span><span class="mk-tab-name">Performance</span><span class="mk-tab-thumb"><img src="/img/pill-tadalafil-tad25-new.png" alt=""></span><span class="mk-tab-bar"></span></button>
     <button class="mk-tab" data-cat="iv" onclick="mkCat('iv')"><span class="mk-tab-eye">Protocols</span><span class="mk-tab-name">Antiparasitic</span><span class="mk-tab-thumb"><img src="/img/pill-antiparasitic-new.png" alt=""></span><span class="mk-tab-bar"></span></button>
     <button class="mk-tab" data-cat="hr" onclick="mkCat('hr')"><span class="mk-tab-soon">Soon</span><span class="mk-tab-eye">Hair</span><span class="mk-tab-name">Regrowth</span><span class="mk-tab-thumb"></span><span class="mk-tab-bar"></span></button>
