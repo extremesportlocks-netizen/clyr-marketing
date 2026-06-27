@@ -189,3 +189,132 @@
   initPostHog();
 
 })();
+
+// ── Promo offer card ──────────────────────────────────────────
+// Data-driven from /api/promo/active. Clean bottom-right slide-in
+// (bottom sheet on mobile) — deliberately NOT a full-screen blocker.
+// Shows once per 24h per visitor, never on funnel/legal pages.
+(function () {
+  var API = 'https://clyr-backend.onrender.com';
+  var path = (window.location.pathname || '').toLowerCase();
+
+  // Don't interrupt people who are already converting or reading legal copy.
+  var SKIP = ['/intake', '/checkout', '/portal', '/resume', '/thank', '/confirm',
+              '/privacy', '/terms', '/telehealth-consent', '/sms-terms', '/hipaa', '/return', '/refund'];
+  for (var i = 0; i < SKIP.length; i++) { if (path.indexOf(SKIP[i]) !== -1) return; }
+
+  function seenKey(code) { return 'clyr_promo_card_' + code; }
+  function recentlySeen(code) {
+    try {
+      var t = parseInt(localStorage.getItem(seenKey(code)) || '0', 10);
+      return t && (Date.now() - t) < 24 * 60 * 60 * 1000; // 24h cap
+    } catch (e) { return false; }
+  }
+  function markSeen(code) { try { localStorage.setItem(seenKey(code), String(Date.now())); } catch (e) {} }
+  function track(ev, props) { try { if (window.clyrTrack) window.clyrTrack(ev, props || {}); } catch (e) {} }
+
+  function discountLabel(p) {
+    var v = parseFloat(p.discount_value);
+    var n = (v % 1 === 0) ? String(v) : v.toFixed(2);
+    return p.discount_type === 'percent' ? (n + '% off') : ('$' + n + ' off');
+  }
+
+  function build(promo) {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var code = promo.code || '';
+    var label = discountLabel(promo);
+
+    var style = document.createElement('style');
+    style.textContent =
+      '#clyrPromo{position:fixed;z-index:99998;right:24px;bottom:24px;width:340px;max-width:calc(100vw - 32px);' +
+        'background:#fff;border:1px solid rgba(0,180,197,0.18);border-radius:18px;' +
+        'box-shadow:0 18px 50px rgba(16,28,44,0.18),0 2px 8px rgba(16,28,44,0.06);' +
+        'font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;' +
+        'opacity:0;transform:translateY(16px);transition:opacity .45s cubic-bezier(.2,.7,.2,1),transform .45s cubic-bezier(.2,.7,.2,1);overflow:hidden}' +
+      '#clyrPromo.in{opacity:1;transform:translateY(0)}' +
+      '#clyrPromo .cp-bar{height:4px;background:linear-gradient(90deg,#00B4C5,#009BAA)}' +
+      '#clyrPromo .cp-body{padding:20px 22px 22px}' +
+      '#clyrPromo .cp-x{position:absolute;top:10px;right:12px;width:28px;height:28px;border:none;background:transparent;' +
+        'color:#9aa6b2;font-size:18px;line-height:1;cursor:pointer;border-radius:8px}' +
+      '#clyrPromo .cp-x:hover{background:#f1f5f7;color:#4b5563}' +
+      '#clyrPromo .cp-eyebrow{font-size:11px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:#00B4C5;margin:0 0 8px}' +
+      '#clyrPromo .cp-title{font-size:20px;font-weight:700;color:#101c2c;margin:0 0 6px;line-height:1.25}' +
+      '#clyrPromo .cp-sub{font-size:13.5px;color:#5b6776;margin:0 0 16px;line-height:1.5}' +
+      '#clyrPromo .cp-code{display:flex;align-items:center;justify-content:space-between;gap:10px;' +
+        'background:#F2FBFC;border:1px dashed rgba(0,180,197,0.45);border-radius:12px;padding:10px 12px;margin:0 0 16px}' +
+      '#clyrPromo .cp-code b{font-size:16px;letter-spacing:.06em;color:#0a7a85;font-weight:800}' +
+      '#clyrPromo .cp-copy{border:none;background:#fff;border:1px solid rgba(0,180,197,0.35);color:#0a7a85;' +
+        'font-size:12px;font-weight:700;padding:6px 12px;border-radius:8px;cursor:pointer}' +
+      '#clyrPromo .cp-copy:hover{background:#E0F7FA}' +
+      '#clyrPromo .cp-cta{display:block;width:100%;box-sizing:border-box;text-align:center;text-decoration:none;' +
+        'background:linear-gradient(135deg,#00B4C5,#009BAA);color:#fff;font-size:15px;font-weight:700;' +
+        'padding:13px 16px;border-radius:12px;box-shadow:0 6px 16px rgba(0,180,197,0.28)}' +
+      '#clyrPromo .cp-cta:hover{filter:brightness(1.04)}' +
+      '#clyrPromo .cp-fine{text-align:center;font-size:11px;color:#9aa6b2;margin:10px 0 0}' +
+      '@media (max-width:520px){#clyrPromo{right:0;left:0;bottom:0;width:100%;max-width:100%;' +
+        'border-radius:18px 18px 0 0;border-left:none;border-right:none;border-bottom:none}}' +
+      (reduce ? '#clyrPromo{transition:opacity .25s ease}#clyrPromo.in{transform:none}#clyrPromo{transform:none}' : '');
+    document.head.appendChild(style);
+
+    var card = document.createElement('div');
+    card.id = 'clyrPromo';
+    card.setAttribute('role', 'dialog');
+    card.setAttribute('aria-label', 'Limited-time offer');
+    card.innerHTML =
+      '<div class="cp-bar"></div>' +
+      '<button class="cp-x" aria-label="Close">×</button>' +
+      '<div class="cp-body">' +
+        '<p class="cp-eyebrow">Weekend offer</p>' +
+        '<h3 class="cp-title">' + label.replace(/ off$/,'') + ' off any plan</h3>' +
+        '<p class="cp-sub">Cold-chain shipped, clinician-reviewed care — now ' + label + ' through Sunday.</p>' +
+        '<div class="cp-code"><span>Code <b>' + code + '</b></span>' +
+          '<button class="cp-copy" type="button">Copy</button></div>' +
+        '<a class="cp-cta" href="/weight-loss.html">Claim ' + label + ' →</a>' +
+        '<p class="cp-fine">Applied at checkout · no account needed</p>' +
+      '</div>';
+    document.body.appendChild(card);
+    requestAnimationFrame(function () { requestAnimationFrame(function () { card.classList.add('in'); }); });
+    markSeen(code);
+    track('promo_popup_shown', { code: code });
+
+    function close(reason) {
+      card.classList.remove('in');
+      setTimeout(function () { if (card.parentNode) card.parentNode.removeChild(card); }, 450);
+      document.removeEventListener('keydown', onKey);
+      track('promo_popup_dismissed', { code: code, reason: reason || 'close' });
+    }
+    function onKey(e) { if (e.key === 'Escape') close('esc'); }
+
+    card.querySelector('.cp-x').addEventListener('click', function () { close('x'); });
+    document.addEventListener('keydown', onKey);
+    card.querySelector('.cp-cta').addEventListener('click', function () { track('promo_popup_clicked', { code: code }); });
+    card.querySelector('.cp-copy').addEventListener('click', function () {
+      var btn = this;
+      var done = function () { btn.textContent = 'Copied ✓'; setTimeout(function () { btn.textContent = 'Copy'; }, 1800); };
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(code).then(done, done); }
+        else { var ta = document.createElement('textarea'); ta.value = code; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); done(); }
+      } catch (e) { done(); }
+      track('promo_code_copied', { code: code });
+    });
+  }
+
+  function arm(promo) {
+    if (recentlySeen(promo.code)) return;
+    var fired = false;
+    function go() { if (fired) return; fired = true; cleanup(); build(promo); }
+    function onLeave(e) { if (e.clientY <= 0) go(); } // exit-intent (desktop)
+    function cleanup() { clearTimeout(t); document.removeEventListener('mouseleave', onLeave); }
+    var t = setTimeout(go, 8000);                       // or 8s dwell, whichever first
+    document.addEventListener('mouseleave', onLeave);
+  }
+
+  function init() {
+    fetch(API + '/api/promo/active')
+      .then(function (r) { return r.json(); })
+      .then(function (d) { if (d && d.active && d.promo && d.promo.code) arm(d.promo); })
+      .catch(function () {});
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
