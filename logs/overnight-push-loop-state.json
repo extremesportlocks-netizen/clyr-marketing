@@ -1,8 +1,8 @@
 {
   "started": "2026-06-28T05:45:43.520546+00:00",
   "ends": "2026-06-28T17:45:43.520546+00:00",
-  "last_cycle": 20,
-  "last_run": "2026-06-28T12:06:35.792285+00:00",
+  "last_cycle": 21,
+  "last_run": "2026-06-28T12:26:37.634831+00:00",
   "last_report": {
     "ok": true,
     "checks": {
@@ -15,5 +15,5 @@
       "broken_pages": []
     }
   },
-  "last_pushed": true
+  "last_pushed": false
 }
