@@ -5139,3 +5139,23 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 ✓ sitemap-images.xml — 70 journal OG images
 [2026-06-28 09:26:12 UTC] SCRIPT update-sitemap-journals.py: ✓ sitemap.xml — 73 journal articles
 ✓ sitemap-images.xml — 70 journal OG images
+[main d45ad4d] chore(overnight): cycle 12 maintenance auto-push
+ 4 files changed, 24 insertions(+), 4 deletions(-)
+[2026-06-28 09:26:13 UTC] PUSHED cycle 12
+[2026-06-28 09:26:13 UTC] PUSHED cycle 12
+[2026-06-28 09:46:13 UTC] === CYCLE 13 — 7:59:29.573440 remaining ===
+[2026-06-28 09:46:13 UTC] === CYCLE 13 — 7:59:29.573440 remaining ===
+[2026-06-28 09:46:15 UTC] LIVE: home=200 gbp_schema=True gbp_footer=True verify_tag=True sitemap_urls=104
+[2026-06-28 09:46:15 UTC] LIVE: home=200 gbp_schema=True gbp_footer=True verify_tag=True sitemap_urls=104
+[2026-06-28 09:46:15 UTC] SCRIPT wire-gbp.py: Updated 0 files
+[2026-06-28 09:46:15 UTC] SCRIPT wire-gbp.py: Updated 0 files
+[2026-06-28 09:46:15 UTC] SCRIPT polish-indexable-pages.py: Polished 0 pages; removed 1 noindex URL(s) from sitemap
+[2026-06-28 09:46:15 UTC] SCRIPT polish-indexable-pages.py: Polished 0 pages; removed 1 noindex URL(s) from sitemap
+[2026-06-28 09:46:15 UTC] SCRIPT fix-journal-urls.py: Done: 0 URL fixes across 0 files
+[2026-06-28 09:46:15 UTC] SCRIPT fix-journal-urls.py: Done: 0 URL fixes across 0 files
+[2026-06-28 09:46:15 UTC] SCRIPT link-products-to-journals.py: Linked 0 product pages to journal articles
+[2026-06-28 09:46:15 UTC] SCRIPT link-products-to-journals.py: Linked 0 product pages to journal articles
+[2026-06-28 09:46:15 UTC] SCRIPT update-sitemap-journals.py: ✓ sitemap.xml — 73 journal articles
+✓ sitemap-images.xml — 70 journal OG images
+[2026-06-28 09:46:15 UTC] SCRIPT update-sitemap-journals.py: ✓ sitemap.xml — 73 journal articles
+✓ sitemap-images.xml — 70 journal OG images
