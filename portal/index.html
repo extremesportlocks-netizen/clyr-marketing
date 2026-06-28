@@ -735,6 +735,8 @@ function timeAgo(iso){if(!iso)return '';const d=new Date(iso),now=new Date(),s=(
 function $fmtPrice(n){if(n===null||n===undefined)return '—';return '$'+n.toLocaleString();}
 function $fmtMoney(cents){if(cents===null||cents===undefined)return '—';return '$'+(cents/100).toFixed(2);}
 function escapeHtml(s){if(!s)return '';return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+// Escape text, then turn bare URLs into clickable links (XSS-safe: everything is escaped first).
+function linkify(s){if(!s)return '';s=String(s);var re=/(https?:\/\/[^\s<]+)/g,out='',last=0,m;while((m=re.exec(s))){out+=escapeHtml(s.slice(last,m.index));var url=m[0].replace(/[.,;:!?)\]]+$/,''),href=escapeHtml(url);out+='<a href="'+href+'" target="_blank" rel="noopener noreferrer" style="color:var(--teal,#2bbcb3);text-decoration:underline;word-break:break-all">'+href+'</a>';last=m.index+url.length;}out+=escapeHtml(s.slice(last));return out;}
 function verticalLabel(v){return ({'weight-loss':'Weight Loss','wellness':'Daily Wellness','sexual-health':'Sexual Health','hair':'Hair','protocol':'Antiparasitic'})[v]||v;}
 function getGreeting(){const h=new Date().getHours();if(h<12)return 'Good morning';if(h<18)return 'Good afternoon';return 'Good evening';}
 
@@ -1545,7 +1547,7 @@ async function loadMessages(){
       const fromPatient=m.senderType==='patient'||m.fromPatient;
       const text=m.text||m.body||'';
       const cls=fromPatient?'msg-from-patient':'msg-from-provider';
-      return `<div><div class="msg ${cls}">${escapeHtml(text)}</div><div class="msg-meta" style="text-align:${fromPatient?'right':'left'}">${timeAgo(m.createdAt)}</div></div>`;
+      return `<div><div class="msg ${cls}">${linkify(text)}</div><div class="msg-meta" style="text-align:${fromPatient?'right':'left'}">${timeAgo(m.createdAt)}</div></div>`;
     }).join('');
     list.scrollTop=list.scrollHeight;
   }catch(e){
