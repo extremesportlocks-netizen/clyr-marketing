@@ -273,6 +273,22 @@ function deadend() {
   $('sDead').classList.add('on'); window.scrollTo(0, 0);
 }
 
+// Active-patient nudge: existing patients can add Niagen faster from the portal.
+function showNiagenReturningModal(firstName) {
+  if (document.getElementById('returningModal')) return;
+  var overlay = document.createElement('div');
+  overlay.id = 'returningModal';
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(2,5,10,0.72);z-index:999;display:flex;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(6px)';
+  overlay.innerHTML = '<div style="background:#0b121d;border:1px solid rgba(108,200,255,0.25);border-radius:20px;padding:34px 30px;max-width:430px;width:100%;text-align:center;box-shadow:0 24px 80px rgba(0,0,0,0.5)">' +
+    '<div style="width:54px;height:54px;border-radius:50%;background:rgba(108,200,255,0.12);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:24px">\uD83D\uDC4B</div>' +
+    '<h2 style="font-size:21px;font-weight:800;color:#eaf6ff;margin-bottom:8px">Welcome back' + (firstName ? ', ' + firstName : '') + '!</h2>' +
+    '<p style="color:#9fb0c4;font-size:14.5px;line-height:1.6;margin-bottom:22px">You already have an active CLYR Health account. Add Niagen right from your patient portal, it is faster and uses the info we already have on file.</p>' +
+    '<a href="/portal/" style="display:block;background:linear-gradient(120deg,#6CC8FF,#3ea0ff);color:#04181b;padding:14px;border-radius:99px;text-decoration:none;font-weight:700;font-size:15px;box-sizing:border-box">Go to Patient Portal</a>' +
+    '<button onclick="document.getElementById(\'returningModal\').remove()" style="background:none;border:none;color:#7e8a98;font-size:14px;cursor:pointer;padding:10px 16px;margin-top:8px;font-family:inherit">Continue as new patient</button>' +
+    '</div>';
+  document.body.appendChild(overlay);
+}
+
 function setPlan(plan) {
   if (!PLANS[plan]) plan = 'monthly';
   formData.plan = plan;
@@ -368,7 +384,10 @@ function submitDetails() {
   track('LeadCaptured', { treatment: 'niagen', plan: formData.plan });
   try { if (window.posthog) { posthog.identify(leadData.email, { first_name: leadData.firstName, last_name: leadData.lastName, treatment: 'niagen', plan: formData.plan }); posthog.capture('lead_captured', { treatment: 'niagen', plan: formData.plan }); } } catch (e) {}
   window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event: 'clyr_lead' });
-  fetch(API + '/api/intake/save-lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(leadData) }).catch(function () {});
+  fetch(API + '/api/intake/save-lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(leadData) })
+    .then(function (r) { return r.json(); })
+    .then(function (data) { if (data && data.status === 'existing_active') showNiagenReturningModal(data.firstName || leadData.firstName); })
+    .catch(function () {});
   go(2);
 }
 function checkState() {
@@ -421,8 +440,10 @@ function submitAll() {
     referrer: attr.referrer || document.referrer || null,
     twclid: attr.twclid || null, gclid: attr.gclid || null, fbclid: attr.fbclid || null,
     mdiAnswers: formData.mdiAnswers,
-    smsConsent: !!(formData.consents && formData.consents.cSms),
-    termsConsent: !!(formData.consents && formData.consents.cAgree),
+    consents: [
+      { text: 'terms_privacy_telehealth', accepted: !!(formData.consents && formData.consents.cAgree), timestamp: new Date().toISOString() },
+      { text: 'sms', accepted: !!(formData.consents && formData.consents.cSms), timestamp: new Date().toISOString() }
+    ],
     legalName: $('legalName').value.trim(),
     doctorMessage: $('doctorMessage').value.trim() || null,
     currentMedications: $('currentMedications').value.trim() || null,
