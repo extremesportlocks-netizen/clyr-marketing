@@ -120,6 +120,8 @@ a.tier-row.hl .tier-badge{box-shadow:0 2px 10px rgba(43,188,179,.45)}
 @media(max-width:900px){.mobile-menu-btn{display:block}.nav-links{display:none}.ghk-hero .benefits-grid,.benefits-grid{grid-template-columns:1fr}.included-inner,.steps{grid-template-columns:1fr}}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"MedicalWebPage","name":"GHK-Cu 3% Cream","description":"Provider-prescribed GHK-Cu 3% copper peptide cream, 30g tube.","url":"https://www.clyr.health/ghk-cu-cream.html","isPartOf":{"@type":"WebSite","name":"CLYR Health","url":"https://www.clyr.health/"}}</script>
+<!-- Hero layout: default v3 cinema · revert with ?hero=v2 or ?hero=classic -->
+<script>!function(){var h=new URLSearchParams(location.search).get("hero");document.documentElement.classList.add(h==="v2"||h==="classic"?"ghk-hero-classic":"ghk-hero-v3");}();</script>
 </head>
 <body class="ghk-page">
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T4FVQ87G" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -166,13 +168,39 @@ a.tier-row.hl .tier-badge{box-shadow:0 2px 10px rgba(43,188,179,.45)}
 
 <section class="ghk-hero">
   <div class="ghk-hero-glow" aria-hidden="true"></div>
+
+  <div class="ghk-hero-cinema" id="ghk-hero-cinema">
+    <canvas id="ghk-hero-molecules" class="ghk-hero-molecules-canvas" aria-hidden="true"></canvas>
+    <div class="ghk-cinema-spotlight" aria-hidden="true"></div>
+    <div class="ghk-cinema-stack">
+      <div class="ghk-product-stage ghk-product-stage-cinema" id="ghk-product-stage">
+        <div class="ghk-stage-light" aria-hidden="true"></div>
+        <div class="ghk-hero-photo-wrap">
+          <img src="/img/ghk-cu-cream-hero.jpg" alt="CLYR GHK-Cu 3% prescription copper peptide cream 30g" width="420" height="560" class="ghk-hero-photo" fetchpriority="high">
+        </div>
+        <div class="ghk-float-badge" aria-hidden="true"><span>Rx</span> 30 mg/g</div>
+      </div>
+      <div class="ghk-strength-pill ghk-strength-below-cream ghk-enter ghk-enter-4">
+        <div class="ghk-strength-top">
+          <span class="num">3%</span>
+          <span class="ghk-strength-title">Prescription strength</span>
+        </div>
+        <p class="ghk-strength-sub">Up to ~30&times; actual GHK-Cu vs typical OTC &ldquo;1%&rdquo; peptide serums*</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="ghk-hero-body">
   <div class="ghk-hero-copy product-info">
     <div class="ghk-eyebrow ghk-enter ghk-enter-1"><span class="dot"></span> New · Prescription skincare</div>
     <h1 class="ghk-title ghk-enter ghk-enter-2">GHK-Cu <span class="serif">3%</span> Cream</h1>
     <p class="ghk-lede ghk-enter ghk-enter-3">The copper peptide your shelf serums can&rsquo;t match. Provider-prescribed <strong>3% (30&nbsp;mg/g)</strong> GHK-Cu in a premium cream format — compounded in the US, reviewed by a licensed provider.</p>
-    <div class="ghk-strength-pill ghk-enter ghk-enter-4">
-      <span class="num" data-count="3">3%</span>
-      <span class="label"><strong>Prescription strength</strong>Up to ~30× actual GHK-Cu vs typical OTC &ldquo;1%&rdquo; peptide serums*</span>
+    <div class="ghk-strength-pill ghk-strength-in-copy ghk-enter ghk-enter-4">
+      <div class="ghk-strength-top">
+        <span class="num">3%</span>
+        <span class="ghk-strength-title">Prescription strength</span>
+      </div>
+      <p class="ghk-strength-sub">Up to ~30&times; actual GHK-Cu vs typical OTC &ldquo;1%&rdquo; peptide serums*</p>
     </div>
     <div class="product-price ghk-enter ghk-enter-5">
       <span class="period" style="font-size:16px;font-weight:600">from</span>
@@ -203,17 +231,18 @@ a.tier-row.hl .tier-badge{box-shadow:0 2px 10px rgba(43,188,179,.45)}
       <div class="product-includes-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>Full refund if provider deems you ineligible</div>
     </div>
   </div>
-  <div class="ghk-hero-visual ghk-enter ghk-enter-3">
-    <div class="ghk-product-stage" id="ghk-product-stage">
+  <div class="ghk-hero-visual ghk-hero-visual-classic ghk-enter ghk-enter-3">
+    <div class="ghk-product-stage" id="ghk-product-stage-classic">
       <div class="ghk-stage-light" aria-hidden="true"></div>
       <div class="ghk-ring" aria-hidden="true"></div>
       <div class="ghk-ring" aria-hidden="true"></div>
       <div class="ghk-hero-photo-wrap">
-        <img src="/img/ghk-cu-cream-hero.jpg" alt="CLYR GHK-Cu 3% prescription copper peptide cream 30g" width="420" height="560" class="ghk-hero-photo" fetchpriority="high">
+        <img src="/img/ghk-cu-cream-hero.jpg" alt="" width="420" height="560" class="ghk-hero-photo" loading="lazy">
       </div>
       <div class="ghk-cream-wave" aria-hidden="true"></div>
       <div class="ghk-float-badge" aria-hidden="true"><span>Rx</span> 30 mg/g</div>
     </div>
+  </div>
   </div>
 </section>
 

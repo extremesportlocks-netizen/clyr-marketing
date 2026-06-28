@@ -170,29 +170,161 @@ body.ghk-page {
   line-height: 1.65;
 }
 .ghk-strength-pill {
-  display: inline-flex;
+  padding: 16px 22px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(14px);
+}
+.ghk-strength-top {
+  display: flex;
   align-items: baseline;
   gap: 10px;
-  margin-bottom: 28px;
-  padding: 14px 22px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
+  flex-wrap: wrap;
+  margin-bottom: 6px;
 }
 .ghk-strength-pill .num {
   font-size: 42px;
   font-weight: 800;
   letter-spacing: -0.04em;
-  color: var(--copper-light);
+  color: #e8a87c;
   line-height: 1;
 }
-.ghk-strength-pill .label {
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.55);
-  line-height: 1.35;
+.ghk-strength-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
 }
-.ghk-strength-pill .label strong { color: #fff; display: block; font-size: 14px; }
+.ghk-strength-sub {
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.42);
+  line-height: 1.45;
+  margin: 0;
+}
+.ghk-strength-in-copy {
+  display: none;
+  margin-bottom: 28px;
+}
+.ghk-strength-below-cream {
+  width: min(100%, 420px);
+  margin-top: 20px;
+  text-align: left;
+}
+
+/* ── Hero v3: full-width cinema stage ── */
+html.ghk-hero-v3 .ghk-hero {
+  display: flex;
+  flex-direction: column;
+  min-height: auto;
+  max-width: none;
+  padding: 0;
+  gap: 0;
+}
+html.ghk-hero-v3 .ghk-hero-glow { display: none; }
+html.ghk-hero-v3 #ghk-particles { opacity: 0.35; }
+html.ghk-hero-v3 .ghk-hero-bg {
+  background: radial-gradient(ellipse 120% 80% at 50% 0%, #1a2430 0%, #0a0e14 45%, #06080c 100%);
+}
+
+.ghk-hero-cinema {
+  display: none;
+  position: relative;
+  width: 100%;
+  min-height: min(88vh, 920px);
+  overflow: hidden;
+  background: radial-gradient(ellipse 90% 70% at 50% 35%, rgba(201, 120, 74, 0.12) 0%, transparent 55%),
+              radial-gradient(ellipse 100% 100% at 50% 50%, #121820 0%, #0a0e14 50%, #06080c 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+html.ghk-hero-v3 .ghk-hero-cinema { display: block; }
+
+.ghk-hero-molecules-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+.ghk-cinema-spotlight {
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(680px, 90vw);
+  height: min(680px, 70vh);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(244, 201, 168, 0.14) 0%, rgba(201, 120, 74, 0.06) 35%, transparent 68%);
+  pointer-events: none;
+  z-index: 2;
+  animation: glowPulse 7s ease-in-out infinite;
+}
+.ghk-cinema-stack {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: inherit;
+  padding: 100px 24px 48px;
+}
+.ghk-product-stage-cinema {
+  width: min(100%, 340px);
+  aspect-ratio: auto;
+}
+html.ghk-hero-v3 .ghk-product-stage-cinema .ghk-hero-photo {
+  border-radius: 0;
+  background: transparent;
+  filter: drop-shadow(0 40px 80px rgba(0, 0, 0, 0.65));
+  animation: floatProduct 6s ease-in-out infinite;
+}
+html.ghk-hero-v3 .ghk-product-stage-cinema .ghk-float-badge {
+  top: 6%;
+  right: -8%;
+}
+
+html.ghk-hero-v3 .ghk-hero-body {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 56px 48px 80px;
+}
+html.ghk-hero-v3 .ghk-hero-copy {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+html.ghk-hero-v3 .ghk-hero-copy .ghk-eyebrow { margin-inline: auto; }
+html.ghk-hero-v3 .ghk-hero-copy .ghk-lede { margin-inline: auto; }
+html.ghk-hero-v3 .ghk-hero-copy .tier-list { margin-inline: auto; }
+html.ghk-hero-v3 .ghk-hero-copy .product-includes { align-items: center; }
+html.ghk-hero-v3 .ghk-hero-visual-classic { display: none !important; }
+
+/* ── Hero classic (v2) revert ── */
+html.ghk-hero-classic .ghk-hero-cinema { display: none !important; }
+html.ghk-hero-classic .ghk-strength-below-cream { display: none !important; }
+html.ghk-hero-classic .ghk-strength-in-copy {
+  display: block;
+  text-align: left;
+}
+html.ghk-hero-classic .ghk-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 48px;
+  padding: 100px 48px 80px;
+  max-width: 1320px;
+  margin: 0 auto;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+html.ghk-hero-classic .ghk-hero-body {
+  display: contents;
+}
+html.ghk-hero-classic .ghk-hero-visual-classic {
+  display: flex !important;
+}
 
 .ghk-hero-visual {
   position: relative;
@@ -1037,7 +1169,12 @@ body.ghk-page {
 .ghk-page .cta-btn:hover { box-shadow: var(--shadow-copper); }
 
 @media (max-width: 1024px) {
-  .ghk-hero { grid-template-columns: 1fr; padding: 88px 24px 60px; min-height: auto; }
+  html.ghk-hero-v3 .ghk-hero-cinema { min-height: min(78vh, 760px); }
+  html.ghk-hero-v3 .ghk-cinema-stack { padding: 88px 20px 36px; }
+  html.ghk-hero-v3 .ghk-product-stage-cinema { width: min(100%, 280px); }
+  html.ghk-hero-v3 .ghk-hero-body { padding: 40px 24px 60px; }
+  html.ghk-hero-classic .ghk-hero { grid-template-columns: 1fr; padding: 88px 24px 60px; min-height: auto; }
+  html.ghk-hero-classic .ghk-hero-visual-classic { order: -1; min-height: 320px; }
   .ghk-hero-visual { order: -1; min-height: 320px; }
   .ghk-molecule-grid { grid-template-columns: 1fr; }
   .ghk-routine-steps { grid-template-columns: 1fr 1fr; }
