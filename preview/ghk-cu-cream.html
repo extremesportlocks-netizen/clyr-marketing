@@ -122,7 +122,7 @@ a.tier-row.hl .tier-badge{box-shadow:0 2px 10px rgba(43,188,179,.45)}
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"MedicalWebPage","name":"GHK-Cu 3% Cream","description":"Provider-prescribed GHK-Cu 3% copper peptide cream, 30g tube.","url":"https://www.clyr.health/ghk-cu-cream.html","isPartOf":{"@type":"WebSite","name":"CLYR Health","url":"https://www.clyr.health/"}}</script>
 </head>
 <body class="ghk-page">
-<div style="position:fixed;top:0;left:0;right:0;z-index:9999;background:linear-gradient(90deg,#c9784a,#00B4C5);color:#fff;text-align:center;padding:10px 16px;font:700 13px/1.4 'DM Sans',sans-serif;letter-spacing:.04em">PREVIEW · GHK-Cu 3% Cream v2 · not indexed</div>
+<div style="position:fixed;top:0;left:0;right:0;z-index:9999;background:linear-gradient(90deg,#c9784a,#00B4C5);color:#fff;text-align:center;padding:10px 16px;font:700 13px/1.4 'DM Sans',sans-serif;letter-spacing:.04em">PREVIEW · GHK-Cu 3% Cream v3 Matrix · not indexed</div>
 <style>body.ghk-page .nav{top:40px}body.ghk-page .breadcrumb{padding-top:60px}</style>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T4FVQ87G" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
@@ -243,6 +243,54 @@ a.tier-row.hl .tier-badge{box-shadow:0 2px 10px rgba(43,188,179,.45)}
     <div class="ghk-stat">
       <div class="ghk-stat-num"><span data-prefix="$" data-count="129">0</span></div>
       <div class="ghk-stat-label">Subscribe &amp; save · ships monthly</div>
+    </div>
+  </div>
+</section>
+
+<section class="ghk-matrix reveal" id="ghk-matrix" aria-label="Interactive concentration and pricing analysis">
+  <canvas id="ghk-matrix-canvas" class="ghk-matrix-canvas" aria-hidden="true"></canvas>
+  <div class="ghk-matrix-inner">
+    <div class="ghk-matrix-head">
+      <div class="section-label">Molecular matrix</div>
+      <h2 class="section-heading" style="color:#fff;text-align:center">The science of <span class="serif" style="color:var(--copper-light)">copper peptide</span> strength</h2>
+      <p class="ghk-matrix-sub">Interactive clinical analysis — tap to animate concentration and pricing.</p>
+    </div>
+    <div class="ghk-matrix-grid">
+      <div class="ghk-matrix-conc" id="ghk-conc-widget">
+        <div class="ghk-conc-glow" aria-hidden="true"></div>
+        <h3 class="ghk-matrix-widget-label">Active GHK-Cu concentration</h3>
+        <div class="ghk-conc-value" id="ghk-conc-value" aria-live="polite">0.05%</div>
+        <p class="ghk-conc-caption" id="ghk-conc-caption">Typical OTC cosmetic baseline (~0.05–0.1% actual GHK-Cu)</p>
+      </div>
+      <div class="ghk-matrix-pricing">
+        <div class="ghk-price-card comp" id="ghk-comp-card">
+          <div>
+            <p class="ghk-price-tier">Rx comp · 3%</p>
+            <p class="ghk-price-name">UluRx 3% cream</p>
+            <p class="ghk-price-note">$249.99 / 60-day supply</p>
+          </div>
+          <div class="ghk-price-amount muted">~$125<span>/30g</span></div>
+        </div>
+        <div class="ghk-price-card clyr" id="ghk-clyr-card">
+          <div class="ghk-price-streak" aria-hidden="true"></div>
+          <div>
+            <p class="ghk-price-tier accent"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Direct-Rx lane</p>
+            <p class="ghk-price-name">CLYR GHK-Cu 3%</p>
+            <p class="ghk-price-note">Provider intake + 30g/mo included</p>
+          </div>
+          <div class="ghk-price-amount hero">$129<span>/mo</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="ghk-matrix-controls">
+      <button type="button" class="ghk-matrix-btn" id="ghk-btn-analyze" aria-pressed="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        <span>Analyze concentration</span>
+      </button>
+      <button type="button" class="ghk-matrix-btn" id="ghk-btn-compare" aria-pressed="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        <span>Compare pricing</span>
+      </button>
     </div>
   </div>
 </section>

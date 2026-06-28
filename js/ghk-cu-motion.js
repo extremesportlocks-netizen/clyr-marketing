@@ -281,6 +281,158 @@
     onScroll();
   }
 
+  /* ── Molecular Matrix dashboard ── */
+  function initMatrixDashboard() {
+    var section = document.getElementById('ghk-matrix');
+    var canvas = document.getElementById('ghk-matrix-canvas');
+    var concValue = document.getElementById('ghk-conc-value');
+    var concCaption = document.getElementById('ghk-conc-caption');
+    var btnAnalyze = document.getElementById('ghk-btn-analyze');
+    var btnCompare = document.getElementById('ghk-btn-compare');
+    if (!section) return;
+
+    var analyzing = false;
+    var comparing = false;
+    var concAnim = null;
+
+    function setConcentration(val) {
+      if (!concValue) return;
+      concValue.textContent = val.toFixed(2) + '%';
+    }
+
+    function runConcentrationAnim(toHigh) {
+      if (concAnim) cancelAnimationFrame(concAnim);
+      var startVal = toHigh ? 0.05 : 3.0;
+      var endVal = toHigh ? 3.0 : 0.05;
+      var duration = 2000;
+      var t0 = performance.now();
+
+      function tick(now) {
+        var t = Math.min(1, (now - t0) / duration);
+        var eased = 1 - Math.pow(1 - t, 3);
+        setConcentration(startVal + (endVal - startVal) * eased);
+        if (t < 1) {
+          concAnim = requestAnimationFrame(tick);
+        } else {
+          concAnim = null;
+        }
+      }
+      concAnim = requestAnimationFrame(tick);
+    }
+
+    function updateAnalyzeUI() {
+      section.classList.toggle('is-analyzing', analyzing);
+      if (btnAnalyze) {
+        btnAnalyze.setAttribute('aria-pressed', analyzing ? 'true' : 'false');
+        btnAnalyze.querySelector('span').textContent = analyzing ? 'Reset bio-metrics' : 'Analyze concentration';
+      }
+      if (concCaption) {
+        concCaption.textContent = analyzing
+          ? 'Prescription strength · 30 mg/g GHK-Cu (3%)'
+          : 'Typical OTC cosmetic baseline (~0.05–0.1% actual GHK-Cu)';
+      }
+      runConcentrationAnim(analyzing);
+      if (window.clyrTrack) {
+        clyrTrack('ghk_matrix_analyze', { active: analyzing, product: 'ghk-cu-cream' });
+      }
+    }
+
+    function updateCompareUI() {
+      section.classList.toggle('is-comparing', comparing);
+      if (btnCompare) {
+        btnCompare.setAttribute('aria-pressed', comparing ? 'true' : 'false');
+        btnCompare.querySelector('span').textContent = comparing ? 'Reset market data' : 'Compare pricing';
+      }
+      if (window.clyrTrack) {
+        clyrTrack('ghk_matrix_compare', { active: comparing, product: 'ghk-cu-cream' });
+      }
+    }
+
+    if (btnAnalyze) {
+      btnAnalyze.addEventListener('click', function () {
+        analyzing = !analyzing;
+        updateAnalyzeUI();
+      });
+    }
+    if (btnCompare) {
+      btnCompare.addEventListener('click', function () {
+        comparing = !comparing;
+        updateCompareUI();
+      });
+    }
+
+    setConcentration(0.05);
+
+    if (!canvas || reduced) return;
+    var ctx = canvas.getContext('2d');
+    var particles = [];
+    var running = true;
+
+    function resizeCanvas() {
+      var rect = section.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+      particles = [];
+      for (var i = 0; i < 60; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: (Math.random() - 0.5) * 0.5,
+          r: Math.random() * 2 + 1,
+          hue: Math.random() > 0.45 ? 186 : 24,
+        });
+      }
+    }
+
+    function drawMatrix() {
+      if (!running) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
+        var speed = analyzing ? 1.35 : 1;
+        p.x += p.vx * speed;
+        p.y += p.vy * speed;
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.hue === 186
+          ? 'rgba(0, 180, 197, 0.55)'
+          : 'rgba(201, 120, 74, 0.5)';
+        ctx.fill();
+
+        for (var j = i + 1; j < particles.length; j++) {
+          var p2 = particles[j];
+          var dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+          if (dist < 120) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = 'rgba(0, 180, 197, ' + (0.12 * (1 - dist / 120)) + ')';
+            ctx.lineWidth = 0.8;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(drawMatrix);
+    }
+
+    resizeCanvas();
+    drawMatrix();
+    window.addEventListener('resize', resizeCanvas);
+
+    var matrixObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        running = entry.isIntersecting;
+        if (running) drawMatrix();
+      });
+    }, { threshold: 0.05 });
+    matrixObs.observe(section);
+  }
+
   /* ── Parallax hero on scroll ── */
   function initParallax() {
     if (reduced) return;
@@ -332,6 +484,7 @@
     initMagnetic();
     initScroll();
     initSkinCinema();
+    initMatrixDashboard();
     initParallax();
     initStickyCta();
     initNav();
@@ -339,7 +492,7 @@
     if (window._pvFired) return;
     window._pvFired = true;
     if (window.clyrTrack) {
-      clyrTrack('product_viewed', { product: 'ghk-cu-cream', source: 'product_page', version: 'v2' });
+      clyrTrack('product_viewed', { product: 'ghk-cu-cream', source: 'product_page', version: 'v3-matrix' });
     }
   });
 })();
