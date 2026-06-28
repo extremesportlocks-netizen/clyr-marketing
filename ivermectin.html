@@ -98,14 +98,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 @media (max-width:1024px){.footer-top{grid-template-columns:1fr 1fr}}
 @media (max-width:768px){.footer{padding:40px 20px 28px}.footer-top{grid-template-columns:1fr;gap:28px}.footer-bottom{flex-direction:column;text-align:center}.footer-legal{justify-content:center}.trust-chip{padding:6px 12px;font-size:11px}}
 /* ===== end canonical footer ===== */
-.tier-list{display:flex;flex-direction:column;gap:10px;margin:22px 0 26px;max-width:430px}
-.tier-row{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:14px 18px}
-.tier-name{font-weight:700;font-size:15.5px;color:var(--dark,#1a1a2e)}
-.tier-caps{font-size:12.5px;color:#6b7280;margin-top:2px}
-.tier-right{text-align:right}
-.tier-price{font-weight:800;font-size:19px;color:var(--dark,#1a1a2e)}
-.tier-price span{font-size:12px;font-weight:600;color:#6b7280}
-.tier-save{font-size:11px;font-weight:700;color:#0f9d58;text-transform:uppercase;letter-spacing:0.04em;margin-top:2px}
+.plan-label{font-size:11px;font-weight:800;letter-spacing:0.11em;text-transform:uppercase;color:#0E9F6E;margin:4px 0 10px}
+.tier-list{display:flex;flex-direction:column;gap:10px;margin:22px 0 26px;max-width:460px}
+a.tier-row{display:flex;align-items:center;justify-content:space-between;gap:14px;background:#fff;border:1.5px solid #E3EDE8;border-radius:16px;padding:15px 20px;text-decoration:none;color:inherit;position:relative;transition:border-color .18s,transform .18s,box-shadow .18s}
+a.tier-row:hover{border-color:#10B981;transform:translateY(-2px);box-shadow:0 10px 26px rgba(16,185,129,0.16)}
+.tier-name{font-weight:700;font-size:15.5px;color:var(--dark,#1a1a2e);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.tier-caps{font-size:12.5px;color:#6b7280;margin-top:3px}
+.tier-right{text-align:right;flex-shrink:0}
+.tier-price{font-weight:800;font-size:20px;letter-spacing:-0.01em;color:var(--dark,#1a1a2e)}
+.tier-price span{font-size:12px;font-weight:600;color:#8a94a0;margin-left:1px}
+.tier-save{display:inline-block;font-size:10.5px;font-weight:700;color:#0E8F6B;background:#E3F9EE;padding:2.5px 9px;border-radius:100px;margin-top:6px;letter-spacing:0.03em}
+.tier-badge{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:0.06em;padding:3.5px 10px;border-radius:100px;background:#10B981;color:#fff}
+.tier-badge.bv{background:#E3F9EE;color:#0E8F6B}
+a.tier-row.hl{background:linear-gradient(135deg,#10B981 0%,#0E9F6E 100%);border-color:transparent;box-shadow:0 12px 32px rgba(16,159,110,0.30)}
+a.tier-row.hl::after{content:"";position:absolute;inset:0;border-radius:16px;background:radial-gradient(130% 110% at 100% 0%,rgba(255,255,255,0.22),transparent 55%);pointer-events:none}
+a.tier-row.hl>div{position:relative;z-index:1}
+a.tier-row.hl:hover{transform:translateY(-2px);box-shadow:0 16px 38px rgba(16,159,110,0.40)}
+a.tier-row.hl .tier-name{color:#fff}
+a.tier-row.hl .tier-caps{color:rgba(255,255,255,0.82)}
+a.tier-row.hl .tier-price{color:#fff}
+a.tier-row.hl .tier-price span{color:#D1FAE5}
+a.tier-row.hl .tier-save{background:rgba(255,255,255,0.20);color:#EAFBF3}
+a.tier-row.hl .tier-badge{background:#fff;color:#0E9F6E}
+@media(max-width:480px){a.tier-row{padding:13px 16px}.tier-price{font-size:18px}.tier-list{max-width:100%}}
 .payment-methods{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .payment-chip{display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:10px;background:#fff;border:1px solid #e5e7eb;font-size:11.5px;font-weight:600;color:#4b5563}
 .payment-chip img{width:16px;height:16px;border-radius:4px;object-fit:contain}
@@ -268,10 +283,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="section-label">Pricing</div>
       <h2 class="section-heading">Pick your plan,<br><span class="serif">nothing hidden.</span></h2>
       <p class="section-sub">Every plan covers the medication, the provider review, and discreet 2-day shipping. Billed monthly, or prepay once and save.</p>
+      <div class="plan-label">Choose your plan</div>
       <div class="tier-list">
-        <div class="tier-row"><div><div class="tier-name">Monthly</div><div class="tier-caps">30 capsules &middot; cancel anytime</div></div><div class="tier-right"><div class="tier-price">$139<span>/mo</span></div></div></div>
-        <div class="tier-row"><div><div class="tier-name">2-Month</div><div class="tier-caps">60 capsules &middot; one-time</div></div><div class="tier-right"><div class="tier-price">$249</div><div class="tier-save">Save $29</div></div></div>
-        <div class="tier-row"><div><div class="tier-name">3-Month</div><div class="tier-caps">90 capsules &middot; one-time</div></div><div class="tier-right"><div class="tier-price">$369</div><div class="tier-save">Save $48</div></div></div>
+        <a class="tier-row" href="/intake-wellness.html?product=ivermectin&amp;plan=monthly"><div><div class="tier-name">Monthly</div><div class="tier-caps">30 capsules &middot; cancel anytime</div></div><div class="tier-right"><div class="tier-price">$139<span>/mo</span></div></div></a>
+        <a class="tier-row" href="/intake-wellness.html?product=ivermectin&amp;plan=2month"><div><div class="tier-name">2-Month</div><div class="tier-caps">60 capsules &middot; one-time</div></div><div class="tier-right"><div class="tier-price">$249</div><div class="tier-save">Save $29</div></div></a>
+        <a class="tier-row hl" href="/intake-wellness.html?product=ivermectin&amp;plan=3month"><div><div class="tier-name">3-Month<span class="tier-badge">Best Value</span></div><div class="tier-caps">90 capsules &middot; one-time</div></div><div class="tier-right"><div class="tier-price">$369</div><div class="tier-save">Save $48</div></div></a>
       </div>
       <div class="payment-methods" style="justify-content:flex-start;padding:6px 0 0;gap:8px">
         <span style="font-size:11.5px;color:#9ca3af;margin-right:2px;">Payments:</span>
