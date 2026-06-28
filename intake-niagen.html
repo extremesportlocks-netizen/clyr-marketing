@@ -179,7 +179,7 @@ body::before{content:'';position:fixed;top:-140px;left:50%;transform:translateX(
     <h1 class="etitle">Who is this <span class="serif" style="color:#bfe2ff">for?</span></h1>
     <div class="grid2"><div class="fld"><label>First name</label><input id="firstName"></div><div class="fld"><label>Last name</label><input id="lastName"></div></div>
     <div class="fld"><label>Email</label><input id="email" type="email"></div>
-    <div class="fld"><label>Phone</label><input id="phone" type="tel"></div>
+    <div class="fld"><label>Phone</label><input id="phone" type="tel" placeholder="(555) 123-4567" autocomplete="tel" maxlength="14"></div>
     <div class="fld"><label>Date of birth</label><div class="grid2" style="grid-template-columns:1fr 1fr 1fr"><select id="dobMonth"></select><select id="dobDay"></select><select id="dobYear"></select></div></div>
     <div class="grid2"><div class="fld"><label>Sex assigned at birth</label><select id="sex"><option value="">Select</option><option value="female">Female</option><option value="male">Male</option></select></div><div class="fld"><label>Weight (lbs)</label><input id="weight" type="number"></div></div>
     <div class="fld"><label>Height</label><div class="grid2"><select id="heightFt"></select><select id="heightIn"></select></div></div>
@@ -336,6 +336,7 @@ function submitProfile() {
 function submitDetails() {
   var need = ['firstName', 'lastName', 'email', 'phone', 'dobMonth', 'dobDay', 'dobYear', 'sex', 'weight', 'heightFt', 'heightIn'];
   for (var i = 0; i < need.length; i++) { if (!$(need[i]).value) { $('s3err').textContent = 'Please complete every field.'; return; } }
+  if ($('phone').value.replace(/\D/g, '').length !== 10) { $('s3err').textContent = 'Please enter a valid 10-digit phone number.'; return; }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($('email').value.trim())) { $('s3err').textContent = 'Please enter a valid email.'; return; }
   $('s3err').textContent = '';
   var attr = (window.clyrAttribution && window.clyrAttribution()) || {};
@@ -438,6 +439,18 @@ function submitAll() {
 
   renderDQ();
   renderIvChips();
+
+  // phone format-as-you-type: (xxx) xxx-xxxx, strips a leading US "1"
+  $('phone').addEventListener('input', function (e) {
+    var d = e.target.value.replace(/\D/g, '');
+    if (d.length === 11 && d.charAt(0) === '1') d = d.substring(1);
+    var x = d.substring(0, 10), f = '';
+    if (x.length > 0) f = '(' + x.substring(0, 3);
+    if (x.length >= 3) f += ') ' + x.substring(3, 6);
+    if (x.length >= 6) f += '-' + x.substring(6, 10);
+    e.target.value = f;
+  });
+
   go(0);
   track('product_viewed', { product: 'niagen', source: 'intake' });
 
