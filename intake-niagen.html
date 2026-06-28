@@ -91,6 +91,16 @@ textarea{min-height:84px;resize:vertical}
 .chip.sel{border-color:var(--frost);background:rgba(108,200,255,0.12);color:#eaf6ff}
 body::before{content:'';position:fixed;top:-140px;left:50%;transform:translateX(-50%);width:760px;height:520px;background:radial-gradient(circle at 50% 30%,rgba(108,200,255,0.18),transparent 60%);filter:blur(44px);pointer-events:none;z-index:0}
 .wrap-i{position:relative;z-index:1}
+.consent{display:flex;gap:11px;align-items:flex-start;padding:12px 0;cursor:pointer}
+.consent .cbox{flex:0 0 22px;width:22px;height:22px;border:1.5px solid rgba(255,255,255,0.25);border-radius:6px;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.consent.on .cbox{background:var(--frost);border-color:var(--frost)}
+.consent .cbox svg{display:none;width:13px;height:13px}
+.consent.on .cbox svg{display:block}
+.consent .ctext{font-size:13px;color:#9fb0c4;line-height:1.5}
+.consent .ctext a{color:var(--frost);text-decoration:underline}
+.state-excl{margin-top:12px;padding:13px 15px;border:1px solid rgba(255,107,107,0.3);background:rgba(255,107,107,0.08);border-radius:12px;color:#ffd9d9;font-size:13.5px;line-height:1.5}
+.state-excl a{color:#ffb3b3;text-decoration:underline}
+.state-excl strong{color:#ffe2e2}
 </style>
 </head>
 <body>
@@ -193,8 +203,9 @@ body::before{content:'';position:fixed;top:-140px;left:50%;transform:translateX(
     <h1 class="etitle">Where should it <span class="serif" style="color:#bfe2ff">ship?</span></h1>
     <div class="fld"><label>Street address</label><input id="address"></div>
     <div class="fld"><label>Apt / Suite (optional)</label><input id="apt"></div>
-    <div class="grid2"><div class="fld"><label>City</label><input id="city"></div><div class="fld"><label>State</label><select id="state"></select></div></div>
+    <div class="grid2"><div class="fld"><label>City</label><input id="city"></div><div class="fld"><label>State</label><select id="state" onchange="checkState()"></select></div></div>
     <div class="fld"><label>ZIP</label><input id="zip"></div>
+    <div class="state-excl" id="stateExcl" style="display:none"></div>
     <div class="err" id="s4err"></div>
     <div class="nav-row"><button class="btn-i btn-g" onclick="go(3)">Back</button><button class="btn-i btn-p" onclick="submitShipping()">Continue</button></div>
   </section>
@@ -206,6 +217,8 @@ body::before{content:'';position:fixed;top:-140px;left:50%;transform:translateX(
     <div class="rev" id="revHost"></div>
     <div class="fld"><label>Type your full legal name (your signature)</label><input id="legalName"></div>
     <div class="fld"><label>First message to your provider (optional)</label><textarea id="doctorMessage" placeholder="Anything you'd like your provider to know"></textarea></div>
+    <div class="consent" id="cAgree" onclick="toggleConsentBox(this)"><span class="cbox"><svg viewBox="0 0 24 24" fill="none" stroke="#04181b" stroke-width="3.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="ctext">I agree to the <a href="/terms.html" target="_blank" onclick="event.stopPropagation()">Terms of Service</a>, <a href="/privacy.html" target="_blank" onclick="event.stopPropagation()">Privacy Policy</a>, and <a href="/telehealth-consent.html" target="_blank" onclick="event.stopPropagation()">Telehealth Consent</a>.</span></div>
+    <div class="consent" id="cSms" onclick="toggleConsentBox(this)"><span class="cbox"><svg viewBox="0 0 24 24" fill="none" stroke="#04181b" stroke-width="3.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="ctext">I consent to receive SMS text messages from CLYR Health about my treatment status, shipping updates, and appointment reminders at the phone number provided. Up to 10 messages per month. Message and data rates may apply. Reply STOP to opt out, HELP for help. See our <a href="/privacy.html" target="_blank" onclick="event.stopPropagation()">Privacy Policy</a>.</span></div>
     <p class="note">By clicking Continue to Checkout, your information is sent to a licensed provider for review. If the provider determines you are not eligible, you receive a full refund. Niagen is compounded; compounded medications are not FDA-approved for safety, efficacy, or quality.</p>
     <div class="err" id="s5err"></div>
     <div class="nav-row"><button class="btn-i btn-g" onclick="go(4)">Back</button><button class="btn-i btn-p" id="payBtn" onclick="submitAll()">Continue to checkout</button></div>
@@ -238,6 +251,7 @@ var DQ = [
 ];
 var IV_OPTS = [['b12', 'B12'], ['bcomplex', 'B-complex'], ['nad_iv', 'NAD+ IV'], ['niagen_iv', 'Niagen IV'], ['other', 'Other']];
 var STATES = 'AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY DC'.split(' ');
+var EXCLUDED_STATES = ['AK', 'MS', 'LA'];
 
 var formData = { treatment: 'niagen', plan: 'monthly', screeningClear: false, flaggedConditions: [], dq: {}, mdiAnswers: {} };
 var stepIds = ['s0', 's3', 's1', 's2', 's4', 's5', 's6'];
@@ -357,9 +371,22 @@ function submitDetails() {
   fetch(API + '/api/intake/save-lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(leadData) }).catch(function () {});
   go(2);
 }
+function checkState() {
+  var ex = EXCLUDED_STATES.indexOf($('state').value) !== -1;
+  var box = $('stateExcl');
+  if (ex) { box.innerHTML = '<strong>We cannot service your state yet.</strong> CLYR is not currently available in Alaska, Mississippi, or Louisiana. <a href="/contact.html">Contact us</a> for updates.'; box.style.display = 'block'; }
+  else { box.style.display = 'none'; }
+  return !ex;
+}
+function toggleConsentBox(el) {
+  var on = el.classList.toggle('on');
+  formData.consents = formData.consents || {};
+  formData.consents[el.id] = on;
+}
 function submitShipping() {
   var need = ['address', 'city', 'state', 'zip'];
   for (var i = 0; i < need.length; i++) { if (!$(need[i]).value) { $('s4err').textContent = 'Please complete address, city, state, and ZIP.'; return; } }
+  if (EXCLUDED_STATES.indexOf($('state').value) !== -1) { checkState(); $('s4err').textContent = 'We are not able to ship to the selected state.'; return; }
   $('s4err').textContent = '';
   renderReview();
   go(5);
@@ -377,6 +404,7 @@ function renderReview() {
 
 function submitAll() {
   if (!$('legalName').value.trim()) { $('s5err').textContent = 'Please type your full legal name to sign.'; return; }
+  if (!(formData.consents && formData.consents.cAgree && formData.consents.cSms)) { $('s5err').textContent = 'Please agree to the terms and the SMS consent to continue.'; return; }
   $('s5err').textContent = '';
   var btn = $('payBtn'); btn.disabled = true; btn.textContent = 'Saving...';
   var attr = (window.clyrAttribution && window.clyrAttribution()) || {};
@@ -393,6 +421,8 @@ function submitAll() {
     referrer: attr.referrer || document.referrer || null,
     twclid: attr.twclid || null, gclid: attr.gclid || null, fbclid: attr.fbclid || null,
     mdiAnswers: formData.mdiAnswers,
+    smsConsent: !!(formData.consents && formData.consents.cSms),
+    termsConsent: !!(formData.consents && formData.consents.cAgree),
     legalName: $('legalName').value.trim(),
     doctorMessage: $('doctorMessage').value.trim() || null,
     currentMedications: $('currentMedications').value.trim() || null,
