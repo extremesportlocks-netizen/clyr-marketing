@@ -70,6 +70,27 @@ textarea{min-height:84px;resize:vertical}
 .err{color:#FF8A8A;font-size:13px;margin-top:10px;min-height:16px}
 #checkout-mount{min-height:340px;margin-top:10px}
 @media(max-width:520px){.grid2{grid-template-columns:1fr}}
+.pcards{display:flex;flex-direction:column;gap:12px;margin-top:22px}
+.pcard{position:relative;border:1.5px solid rgba(255,255,255,0.12);border-radius:16px;padding:18px 20px;background:rgba(255,255,255,0.03);cursor:pointer;transition:all .15s;backdrop-filter:blur(8px)}
+.pcard:hover{border-color:rgba(108,200,255,0.5)}
+.pcard.sel{border-color:var(--frost);background:rgba(108,200,255,0.08);box-shadow:0 0 0 1px var(--frost) inset,0 0 22px rgba(108,200,255,.18)}
+.pcard .pc-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.pcard .pc-name{font-size:13px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--frost)}
+.pcard .pc-price{font-size:23px;font-weight:800;color:#eaf6ff;white-space:nowrap}
+.pcard .pc-price small{font-size:14px;font-weight:600;color:#9fb0c4}
+.pcard .pc-sub{font-size:13.5px;color:#9fb0c4;margin-top:5px}
+.pc-badge{position:absolute;top:-10px;left:18px;background:var(--frost-2);color:#062032;font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:7px}
+.opts.ab{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.opts.ab .opt{justify-content:center;text-align:center;padding:20px 16px;font-size:15.5px}
+.reveal{display:none;margin-top:12px}
+.rvp{background:rgba(108,200,255,0.05);border:1px solid rgba(108,200,255,0.18);border-radius:14px;padding:14px;margin-top:10px}
+.rvp label{display:block;font-size:13px;color:#9fb0c4;margin-bottom:8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1.5px solid rgba(255,255,255,0.13);background:rgba(255,255,255,0.03);color:#dfe6ee;border-radius:99px;padding:9px 15px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s}
+.chip:hover{border-color:rgba(108,200,255,0.5)}
+.chip.sel{border-color:var(--frost);background:rgba(108,200,255,0.12);color:#eaf6ff}
+body::before{content:'';position:fixed;top:-140px;left:50%;transform:translateX(-50%);width:760px;height:520px;background:radial-gradient(circle at 50% 30%,rgba(108,200,255,0.18),transparent 60%);filter:blur(44px);pointer-events:none;z-index:0}
+.wrap-i{position:relative;z-index:1}
 </style>
 </head>
 <body>
@@ -83,14 +104,11 @@ textarea{min-height:84px;resize:vertical}
     <div class="elabel">Injectable Niagen</div>
     <h1 class="etitle">Start your <span class="serif" style="color:#bfe2ff">visit.</span></h1>
     <p class="esub">A short questionnaire, reviewed by a licensed US provider. If you are not eligible, you pay nothing.</p>
-    <div class="plan-card"><div class="pn" id="planName">Monthly</div><div class="pp" id="planPrice">$329/mo</div><div class="ps" id="planSub">Auto-renews monthly. Cancel anytime.</div></div>
-    <div class="fld"><label>Change plan</label>
-      <select id="planSel">
-        <option value="monthly">Monthly &middot; $329/mo</option>
-        <option value="30day">30-Day &middot; $369 one-time</option>
-        <option value="90day">90-Day &middot; $899 one-time (best value)</option>
-        <option value="180day">180-Day &middot; $1,499 one-time (max value)</option>
-      </select>
+    <div class="pcards">
+      <div class="pcard" data-plan="monthly" onclick="setPlan('monthly')"><span class="pc-badge">Suggested</span><div class="pc-top"><span class="pc-name">Monthly Auto-Renew</span><span class="pc-price">$329<small>/mo</small></span></div><div class="pc-sub">Auto-renews monthly. Cancel anytime.</div></div>
+      <div class="pcard" data-plan="30day" onclick="setPlan('30day')"><div class="pc-top"><span class="pc-name">30-Day</span><span class="pc-price">$369</span></div><div class="pc-sub">One-time, 30-day supply.</div></div>
+      <div class="pcard" data-plan="90day" onclick="setPlan('90day')"><div class="pc-top"><span class="pc-name">90-Day</span><span class="pc-price">$899</span></div><div class="pc-sub">One-time. 3 vials, 2 refills. Best value.</div></div>
+      <div class="pcard" data-plan="180day" onclick="setPlan('180day')"><div class="pc-top"><span class="pc-name">180-Day</span><span class="pc-price">$1,499</span></div><div class="pc-sub">One-time. 6 vials, 5 refills. Max value.</div></div>
     </div>
     <div class="nav-row"><button class="btn-i btn-p" onclick="go(1)">Begin <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
   </section>
@@ -102,7 +120,7 @@ textarea{min-height:84px;resize:vertical}
     <p class="esub">Answer honestly. A Yes to any of these means Niagen is not a fit, and you will not be charged.</p>
     <div id="dqHost"></div>
     <div class="err" id="s1err"></div>
-    <div class="nav-row"><button class="btn-i btn-g" onclick="go(0)">Back</button><button class="btn-i btn-p" onclick="submitScreening()">Continue</button></div>
+    <div class="nav-row"><button class="btn-i btn-g" onclick="go(1)">Back</button><button class="btn-i btn-p" onclick="submitScreening()">Continue</button></div>
   </section>
 
   <!-- deadend -->
@@ -119,10 +137,40 @@ textarea{min-height:84px;resize:vertical}
   <section class="step" id="s2">
     <div class="elabel">About you</div>
     <h1 class="etitle">Help the provider <span class="serif" style="color:#bfe2ff">tailor it.</span></h1>
-    <p class="esub">These shape your starting concentration and schedule. The clinician makes the final call.</p>
-    <div id="profHost"></div>
+    <p class="esub">A few quick questions to help your provider. Tap an answer.</p>
+
+    <div class="q"><div class="qt">Have you taken an NAD+ supplement before?</div>
+      <div class="opts ab"><button type="button" class="opt" onclick="abPick(this,'nadHad','yes')">Yes</button><button type="button" class="opt" onclick="abPick(this,'nadHad','no')">No</button></div>
+      <div class="reveal" id="rv-nad">
+        <div class="rvp"><label>Which best describes it?</label><select id="sel-nadHistory" onchange="setMdi('nadHistory',this.value)"><option value="currently">Currently taking one</option><option value="past">Taken one in the past</option></select></div>
+        <div class="rvp" id="rv-nadse" style="display:none"><label>Any side effects while taking it? (optional)</label><input id="in-nadse" type="text" placeholder="Optional"></div>
+      </div>
+    </div>
+
+    <div class="q"><div class="qt">Any prior IV or injection therapies?</div>
+      <div class="opts ab"><button type="button" class="opt" onclick="abPick(this,'ivHad','yes')">Yes</button><button type="button" class="opt" onclick="abPick(this,'ivHad','no')">No</button></div>
+      <div class="reveal" id="rv-iv">
+        <div class="rvp"><label>Select all that apply</label><div class="chips" id="ivChips"></div></div>
+        <div class="rvp"><label>Any reactions?</label><select id="sel-ivReactions" onchange="setMdiArr('ivReactions',this.value)"><option value="none">No reactions</option><option value="flushing">Flushing or warmth</option><option value="nausea">Nausea</option><option value="dizziness">Dizziness</option><option value="injection_site">Injection-site reaction</option><option value="other">Other</option></select></div>
+      </div>
+    </div>
+
+    <div class="q"><div class="qt">Have you given yourself an injection at home before?</div>
+      <div class="opts ab"><button type="button" class="opt" onclick="abPick(this,'injHad','yes')">Yes</button><button type="button" class="opt" onclick="abPick(this,'injHad','no')">No</button></div>
+      <div class="reveal" id="rv-inj">
+        <div class="rvp"><label>How often?</label><select id="sel-selfInject" onchange="setMdi('selfInject',this.value)"><option value="regularly">Regularly</option><option value="occasionally">Occasionally</option></select></div>
+      </div>
+    </div>
+
+    <div class="fld" style="margin-top:24px"><label>Current medications (or write None)</label><textarea id="currentMedications" placeholder="None"></textarea></div>
+    <div class="fld"><label>Drug allergies (or write None)</label><textarea id="drugAllergies" placeholder="None"></textarea></div>
+
+    <div class="q"><div class="qt">Do you understand the possible side effects, and agree your clinician sets the dose and schedule?</div>
+      <div class="opts ab"><button type="button" class="opt" onclick="abPick(this,'consent','yes')">Yes, I agree</button><button type="button" class="opt" onclick="abPick(this,'consent','no')">No</button></div>
+    </div>
+
     <div class="err" id="s2err"></div>
-    <div class="nav-row"><button class="btn-i btn-g" onclick="go(1)">Back</button><button class="btn-i btn-p" onclick="submitProfile()">Continue</button></div>
+    <div class="nav-row"><button class="btn-i btn-g" onclick="go(2)">Back</button><button class="btn-i btn-p" onclick="submitProfile()">Continue</button></div>
   </section>
 
   <!-- 3: details -->
@@ -135,10 +183,8 @@ textarea{min-height:84px;resize:vertical}
     <div class="fld"><label>Date of birth</label><div class="grid2" style="grid-template-columns:1fr 1fr 1fr"><select id="dobMonth"></select><select id="dobDay"></select><select id="dobYear"></select></div></div>
     <div class="grid2"><div class="fld"><label>Sex assigned at birth</label><select id="sex"><option value="">Select</option><option value="female">Female</option><option value="male">Male</option></select></div><div class="fld"><label>Weight (lbs)</label><input id="weight" type="number"></div></div>
     <div class="fld"><label>Height</label><div class="grid2"><select id="heightFt"></select><select id="heightIn"></select></div></div>
-    <div class="fld"><label>Current medications (or write None)</label><textarea id="currentMedications" placeholder="None"></textarea></div>
-    <div class="fld"><label>Drug allergies (or write None)</label><textarea id="drugAllergies" placeholder="None"></textarea></div>
     <div class="err" id="s3err"></div>
-    <div class="nav-row"><button class="btn-i btn-g" onclick="go(2)">Back</button><button class="btn-i btn-p" onclick="submitDetails()">Continue</button></div>
+    <div class="nav-row"><button class="btn-i btn-g" onclick="go(0)">Back</button><button class="btn-i btn-p" onclick="submitDetails()">Continue</button></div>
   </section>
 
   <!-- 4: shipping -->
@@ -190,23 +236,11 @@ var DQ = [
   { key: 'liver',      q: 'Do you have current or prior liver disease?' },
   { key: 'nadAllergy', q: 'Do you have a known allergy to NAD-related compounds (NAD, NADH, NAD+, ENADA, or Vitamin B3)?' }
 ];
-var PROFILE = [
-  { key: 'nadHistory', type: 'single', q: 'Have you ever taken an NAD+ precursor supplement (nicotinamide, NR, NMN, nicotinic acid, NADH, or single-ingredient B3) for at least 30 days?', opts: [['currently', 'Currently taking one'], ['past', 'Taken one in the past'], ['no', 'Never']] },
-  { key: 'nadHistorySideEffects', type: 'text', q: 'If you took one in the past, any side effects while taking it? (optional)', showIf: function (a) { return a.nadHistory === 'past'; } },
-  { key: 'ivHistory', type: 'multi', q: 'Any prior injectable or IV wellness therapies? (Select all that apply)', opts: [['b12', 'B12 injections'], ['bcomplex', 'B-complex injections'], ['nad_iv', 'NAD+ IV'], ['niagen_iv', 'Niagen IV or injection'], ['other', 'Other'], ['none', 'None']] },
-  { key: 'ivReactions', type: 'multi', q: 'Any adverse reactions during or after those? (Select all that apply)', opts: [['none', 'None'], ['flushing', 'Flushing'], ['nausea', 'Nausea'], ['dizziness', 'Dizziness'], ['anxiety', 'Anxiety'], ['injection_site', 'Injection-site reaction'], ['other', 'Other']] },
-  { key: 'selfInject', type: 'single', q: 'Have you ever self-administered an injection at home?', opts: [['regularly', 'Yes, regularly'], ['occasionally', 'Yes, occasionally'], ['no', 'No, never']] },
-  { key: 'sensitivity', type: 'single', q: 'How sensitive are you to supplements or medications?', opts: [['very', 'Very sensitive'], ['moderately', 'Moderately sensitive'], ['not', 'Not sensitive'], ['notsure', 'Not sure']] },
-  { key: 'concentrationPref', type: 'single', q: 'Starting concentration preference?', opts: [['low', 'Lower concentration (gentler)'], ['higher', 'Higher concentration'], ['clinician', 'Let the clinician decide']] },
-  { key: 'reasons', type: 'multi', q: 'Primary reasons for treatment? (Select all that apply)', opts: [['wellness', 'General wellness'], ['energy', 'Energy'], ['cognitive', 'Cognitive or focus'], ['longevity', 'Longevity'], ['recovery', 'Recovery'], ['other', 'Other']] },
-  { key: 'healthRating', type: 'single', q: 'How would you rate your overall health?', opts: [['poor', 'Poor'], ['fair', 'Fair'], ['good', 'Good'], ['verygood', 'Very good'], ['excellent', 'Excellent']] },
-  { key: 'consentSideEffects', type: 'single', q: 'Do you understand the possible side effects, and that a lower concentration reduces risk?', opts: [['yes', 'Yes, I understand'], ['no', 'No']] },
-  { key: 'consentClinicianDosing', type: 'single', q: 'Do you agree the clinician sets the final concentration and schedule?', opts: [['yes', 'Yes, I agree'], ['no', 'No']] }
-];
+var IV_OPTS = [['b12', 'B12'], ['bcomplex', 'B-complex'], ['nad_iv', 'NAD+ IV'], ['niagen_iv', 'Niagen IV'], ['other', 'Other']];
 var STATES = 'AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY DC'.split(' ');
 
 var formData = { treatment: 'niagen', plan: 'monthly', screeningClear: false, flaggedConditions: [], dq: {}, mdiAnswers: {} };
-var stepIds = ['s0', 's1', 's2', 's3', 's4', 's5', 's6'];
+var stepIds = ['s0', 's3', 's1', 's2', 's4', 's5', 's6'];
 var stepIdx = 0;
 var stripe = null, embeddedCheckout = null;
 
@@ -228,17 +262,14 @@ function deadend() {
 function setPlan(plan) {
   if (!PLANS[plan]) plan = 'monthly';
   formData.plan = plan;
-  $('planName').textContent = PLANS[plan].name;
-  $('planPrice').textContent = PLANS[plan].price;
-  $('planSub').textContent = PLANS[plan].sub;
-  $('planSel').value = plan;
+  document.querySelectorAll('.pcard').forEach(function (c) { c.classList.toggle('sel', c.getAttribute('data-plan') === plan); });
 }
 
 // ── DQ render ──
 function renderDQ() {
   var h = '';
   DQ.forEach(function (d) {
-    h += '<div class="q"><div class="qt">' + d.q + '</div><div class="opts" data-dq="' + d.key + '">' +
+    h += '<div class="q"><div class="qt">' + d.q + '</div><div class="opts ab" data-dq="' + d.key + '">' +
       '<button type="button" class="opt" onclick="pickDQ(this,\'' + d.key + '\',\'yes\')">Yes</button>' +
       '<button type="button" class="opt" onclick="pickDQ(this,\'' + d.key + '\',\'no\')">No</button></div></div>';
   });
@@ -258,66 +289,48 @@ function submitScreening() {
   if (flagged.length) { formData.screeningClear = false; track('screening_failed', { product: 'niagen', flagged: flagged }); deadend(); return; }
   formData.screeningClear = true;
   track('screening_passed', { product: 'niagen', plan: formData.plan });
-  go(2);
+  go(3);
 }
 
-// ── Profile render ──
-function renderProfile() {
-  var h = '';
-  PROFILE.forEach(function (p) {
-    h += '<div class="q" data-q="' + p.key + '"' + (p.showIf ? ' style="display:none"' : '') + '><div class="qt">' + p.q + '</div>';
-    if (p.type === 'text') {
-      h += '<input type="text" data-textkey="' + p.key + '" placeholder="Optional">';
-    } else {
-      h += '<div class="opts">';
-      p.opts.forEach(function (o) {
-        h += '<button type="button" class="opt" onclick="pick' + (p.type === 'multi' ? 'Multi' : 'One') + '(this,\'' + p.key + '\',\'' + o[0] + '\')">' + o[1] + '</button>';
-      });
-      h += '</div>';
-    }
-    h += '</div>';
-  });
-  $('profHost').innerHTML = h;
+// ── Profile (A/B + conditional reveal) ──
+function renderIvChips() {
+  $('ivChips').innerHTML = IV_OPTS.map(function (o) { return '<button type="button" class="chip" onclick="toggleChip(this,\'' + o[0] + '\')">' + o[1] + '</button>'; }).join('');
 }
-function pickOne(el, key, val) {
+function toggle(id, show) { var e = $(id); if (e) e.style.display = show ? 'block' : 'none'; }
+function setMdi(k, v) { formData.mdiAnswers[k] = v; if (k === 'nadHistory') toggle('rv-nadse', v === 'past'); }
+function setMdiArr(k, v) { formData.mdiAnswers[k] = [v]; }
+function toggleChip(el, val) {
+  var arr = Array.isArray(formData.mdiAnswers.ivHistory) ? formData.mdiAnswers.ivHistory.filter(function (x) { return x !== 'none'; }) : [];
+  var i = arr.indexOf(val);
+  if (i >= 0) { arr.splice(i, 1); el.classList.remove('sel'); } else { arr.push(val); el.classList.add('sel'); }
+  formData.mdiAnswers.ivHistory = arr.length ? arr : ['none'];
+}
+function abPick(el, key, val) {
+  formData.ab = formData.ab || {};
   el.parentNode.querySelectorAll('.opt').forEach(function (o) { o.classList.remove('sel'); });
   el.classList.add('sel');
-  formData.mdiAnswers[key] = val;
-  if (key === 'nadHistory') {
-    var se = document.querySelector('[data-q="nadHistorySideEffects"]');
-    if (se) se.style.display = (val === 'past') ? 'block' : 'none';
+  formData.ab[key] = val;
+  if (key === 'nadHad') {
+    toggle('rv-nad', val === 'yes');
+    if (val === 'yes') { setMdi('nadHistory', $('sel-nadHistory').value); } else { setMdi('nadHistory', 'no'); toggle('rv-nadse', false); }
+  } else if (key === 'ivHad') {
+    toggle('rv-iv', val === 'yes');
+    if (val === 'yes') { setMdiArr('ivReactions', $('sel-ivReactions').value); if (!formData.mdiAnswers.ivHistory) formData.mdiAnswers.ivHistory = ['none']; }
+    else { formData.mdiAnswers.ivHistory = ['none']; formData.mdiAnswers.ivReactions = ['none']; }
+  } else if (key === 'injHad') {
+    toggle('rv-inj', val === 'yes');
+    setMdi('selfInject', val === 'yes' ? $('sel-selfInject').value : 'no');
+  } else if (key === 'consent') {
+    formData.mdiAnswers.consent = val;
   }
-}
-function pickMulti(el, key, val) {
-  var arr = Array.isArray(formData.mdiAnswers[key]) ? formData.mdiAnswers[key] : [];
-  var row = el.parentNode;
-  if (val === 'none') {
-    arr = ['none'];
-    row.querySelectorAll('.opt').forEach(function (o) { o.classList.remove('sel'); });
-    el.classList.add('sel');
-  } else {
-    arr = arr.filter(function (x) { return x !== 'none'; });
-    var noneBtn = row.querySelector('.opt'); // first is none
-    if (noneBtn && noneBtn.textContent === 'None') noneBtn.classList.remove('sel');
-    var i = arr.indexOf(val);
-    if (i >= 0) { arr.splice(i, 1); el.classList.remove('sel'); } else { arr.push(val); el.classList.add('sel'); }
-  }
-  formData.mdiAnswers[key] = arr;
 }
 function submitProfile() {
-  // capture conditional text
-  var seInput = document.querySelector('[data-textkey="nadHistorySideEffects"]');
-  if (seInput && seInput.value.trim()) formData.mdiAnswers.nadHistorySideEffects = seInput.value.trim();
-  var required = ['nadHistory', 'ivHistory', 'ivReactions', 'selfInject', 'sensitivity', 'concentrationPref', 'reasons', 'healthRating', 'consentSideEffects', 'consentClinicianDosing'];
-  for (var i = 0; i < required.length; i++) {
-    var v = formData.mdiAnswers[required[i]];
-    if (v == null || (Array.isArray(v) && v.length === 0)) { $('s2err').textContent = 'Please answer every question.'; return; }
-  }
-  if (formData.mdiAnswers.consentSideEffects === 'no' || formData.mdiAnswers.consentClinicianDosing === 'no') {
-    $('s2err').textContent = 'Both consents are required to continue with treatment.'; return;
-  }
+  var ab = formData.ab || {};
+  if (!ab.nadHad || !ab.ivHad || !ab.injHad || !ab.consent) { $('s2err').textContent = 'Please answer every question.'; return; }
+  var se = $('in-nadse'); if (se && se.value.trim()) formData.mdiAnswers.nadHistorySideEffects = se.value.trim();
+  if (formData.mdiAnswers.consent === 'no') { $('s2err').textContent = 'This consent is required to continue with treatment.'; return; }
   $('s2err').textContent = '';
-  go(3);
+  go(4);
 }
 
 function submitDetails() {
@@ -325,9 +338,23 @@ function submitDetails() {
   for (var i = 0; i < need.length; i++) { if (!$(need[i]).value) { $('s3err').textContent = 'Please complete every field.'; return; } }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($('email').value.trim())) { $('s3err').textContent = 'Please enter a valid email.'; return; }
   $('s3err').textContent = '';
-  track('lead_captured', { product: 'niagen', plan: formData.plan });
-  try { if (window.posthog) posthog.identify($('email').value.trim()); } catch (e) {}
-  go(4);
+  var attr = (window.clyrAttribution && window.clyrAttribution()) || {};
+  var leadData = {
+    firstName: $('firstName').value.trim(), lastName: $('lastName').value.trim(),
+    email: $('email').value.trim(), phone: $('phone').value.trim(),
+    treatment: 'niagen', planType: formData.plan,
+    dobMonth: $('dobMonth').value, dobDay: $('dobDay').value, dobYear: $('dobYear').value,
+    sex: $('sex').value, heightFt: $('heightFt').value, heightIn: $('heightIn').value, weight: $('weight').value,
+    visitor_id: (function () { try { return localStorage.getItem('clyr_vid'); } catch (e) { return null; } })(),
+    utm_source: attr.utm_source || null, utm_medium: attr.utm_medium || null, utm_campaign: attr.utm_campaign || null,
+    referrer: attr.referrer || document.referrer || null
+  };
+  if (window.clyrIdentify) clyrIdentify(leadData.email, { firstName: leadData.firstName, lastName: leadData.lastName, treatment: 'niagen' });
+  track('LeadCaptured', { treatment: 'niagen', plan: formData.plan });
+  try { if (window.posthog) { posthog.identify(leadData.email, { first_name: leadData.firstName, last_name: leadData.lastName, treatment: 'niagen', plan: formData.plan }); posthog.capture('lead_captured', { treatment: 'niagen', plan: formData.plan }); } } catch (e) {}
+  window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event: 'clyr_lead' });
+  fetch(API + '/api/intake/save-lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(leadData) }).catch(function () {});
+  go(2);
 }
 function submitShipping() {
   var need = ['address', 'city', 'state', 'zip'];
@@ -408,10 +435,9 @@ function submitAll() {
   // plan from URL
   var qp = new URLSearchParams(window.location.search);
   setPlan(qp.get('plan') || 'monthly');
-  $('planSel').addEventListener('change', function () { setPlan(this.value); });
 
   renderDQ();
-  renderProfile();
+  renderIvChips();
   go(0);
   track('product_viewed', { product: 'niagen', source: 'intake' });
 
