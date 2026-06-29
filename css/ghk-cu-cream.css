@@ -272,31 +272,7 @@ body.ghk-page {
 }
 .ghk-hero-panel .ghk-hero-photo {
   animation: none;
-}
-.ghk-hero-panel--cinema {
-  background: #080b10;
-}
-.ghk-hero-panel--cinema .ghk-product-stage {
-  width: 100%;
-  min-height: min(72vh, 620px);
-  margin: 0;
-}
-.ghk-hero-panel--cinema .ghk-hero-photo-wrap {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-.ghk-hero-panel--cinema .ghk-hero-photo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 42%;
-  filter: none;
-}
-.ghk-hero-panel--cinema .ghk-float-badge {
-  top: 10%;
-  right: 6%;
+  filter: drop-shadow(0 28px 56px rgba(0, 0, 0, 0.55));
 }
 .ghk-stage-light {
   position: absolute;
