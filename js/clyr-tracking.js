@@ -31,8 +31,9 @@
       var r = ref.toLowerCase();
       if (!r) return 'Direct';
       if (r.indexOf('clyr.health') !== -1 || r.indexOf('getclyrtoday.com') !== -1) return null; // internal nav, ignore
-      if (r.indexOf('ashsoil') !== -1 || r.indexOf('ash-soil') !== -1) return 'ashsoil';
-      if (r.indexOf('verde-cleanse') !== -1 || r.indexOf('verdecleanse') !== -1) return 'ashsoil';
+      if (r.indexOf('ashersoil') !== -1 || r.indexOf('ashers-soil') !== -1) return 'ashersoil';
+      if (r.indexOf('ashsoil') !== -1 || r.indexOf('ash-soil') !== -1) return 'ashersoil';
+      if (r.indexOf('verde-cleanse') !== -1 || r.indexOf('verdecleanse') !== -1) return 'ashersoil';
       if (r.indexOf('instagram') !== -1) return 'Instagram';
       if (r.indexOf('google') !== -1) return 'Google';
       if (r.indexOf('tiktok') !== -1) return 'TikTok';

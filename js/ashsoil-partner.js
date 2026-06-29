@@ -1,13 +1,13 @@
 /**
- * Ash·Soil partner funnel on antiparasitic hub.
- * Triggers on utm_source=ashsoil (or legacy verdecleanse) / 30day-cleanse campaign.
+ * Asher's Soil partner funnel on antiparasitic hub.
+ * Triggers on utm_source=ashersoil (or legacy ashsoil / verdecleanse).
  */
 (function () {
   'use strict';
 
   var params = new URLSearchParams(window.location.search);
   var src = (params.get('utm_source') || '').toLowerCase();
-  var isPartner = src === 'ashsoil' || src === 'verdecleanse'
+  var isPartner = src === 'ashersoil' || src === 'ashsoil' || src === 'verdecleanse'
     || params.get('utm_campaign') === '30day-cleanse'
     || params.get('plan') === 'onetime';
 
@@ -23,7 +23,7 @@
     ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].forEach(function (k) {
       if (params.get(k)) q.set(k, params.get(k));
     });
-    if (!q.get('utm_source')) q.set('utm_source', 'ashsoil');
+    if (!q.get('utm_source')) q.set('utm_source', 'ashersoil');
     if (!q.get('utm_medium')) q.set('utm_medium', 'referral');
     if (!q.get('utm_campaign')) q.set('utm_campaign', '30day-cleanse');
     return '/intake-wellness.html?' + q.toString();
@@ -33,11 +33,11 @@
   banner.className = 'verde-partner-banner';
   banner.innerHTML =
     '<div class="verde-partner-inner">' +
-      '<div class="verde-partner-mark">✦</div>' +
+      '<div class="verde-partner-mark">🌿</div>' +
       '<div class="verde-partner-copy">' +
-        '<div class="verde-partner-eyebrow">From Ash·Soil</div>' +
+        '<div class="verde-partner-eyebrow">From Asher\'s Soil</div>' +
         '<h2>30-day cleanse tiers — <span class="serif">one-time, no subscription</span></h2>' +
-        '<p>You came from our ash-to-soil education partner. Choose your protocol below — provider review and pharmacy fulfillment through CLYR Health.</p>' +
+        '<p>You came from our education partner. Choose your protocol below — provider review and pharmacy fulfillment through CLYR Health.</p>' +
       '</div>' +
       '<div class="verde-partner-prices">' +
         '<div class="verde-price-chip"><strong>$99</strong><span>Ivermectin · 30-day</span></div>' +
@@ -88,11 +88,11 @@
   });
 
   if (window.clyrTrack) {
-    window.clyrTrack('ashsoil_hub_view', {
+    window.clyrTrack('ashersoil_hub_view', {
       product: product || null,
       plan: plan,
       utm_content: params.get('utm_content') || null,
-      utm_source: params.get('utm_source') || 'ashsoil',
+      utm_source: params.get('utm_source') || 'ashersoil',
     });
   }
 })();
