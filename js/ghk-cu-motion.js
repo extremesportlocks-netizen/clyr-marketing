@@ -104,141 +104,10 @@
     draw();
   }
 
-  /* ── Hero cinema: floating copper ball-and-stick molecules ── */
-  function initHeroMolecules() {
-    if (reduced || !document.documentElement.classList.contains('ghk-hero-v3')) return;
-    var canvas = document.getElementById('ghk-hero-molecules');
-    var cinema = document.getElementById('ghk-hero-cinema');
-    if (!canvas || !cinema) return;
-
-    var ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    var templates = [
-      { atoms: [[0, 0, 5.5], [26, 4, 4.5], [-20, 16, 4], [18, -18, 4]], bonds: [[0, 1], [0, 2], [1, 3]] },
-      { atoms: [[0, 0, 5], [0, 28, 4], [24, 14, 4], [-24, 14, 4], [0, -22, 3.5]], bonds: [[0, 1], [0, 2], [0, 3], [0, 4], [2, 3]] },
-      { atoms: [[18, 0, 4], [9, 16, 4], [-9, 16, 4], [-18, 0, 4], [-9, -16, 4], [9, -16, 4]], bonds: [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 0]] },
-      { atoms: [[-30, 0, 4], [-10, 0, 4.5], [10, 0, 4.5], [30, 0, 4], [0, 18, 3.5]], bonds: [[0, 1], [1, 2], [2, 3], [1, 4], [2, 4]] },
-      { atoms: [[0, 0, 6], [22, 12, 4], [-16, 20, 3.5], [-18, -10, 4]], bonds: [[0, 1], [0, 2], [0, 3], [2, 3]] },
-    ];
-
-    var molecules = [];
-    var running = true;
-    var count = 14;
-
-    function resize() {
-      var rect = cinema.getBoundingClientRect();
-      canvas.width = rect.width;
-      canvas.height = rect.height;
-      molecules = [];
-      for (var i = 0; i < count; i++) {
-        var tpl = templates[i % templates.length];
-        molecules.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.35,
-          vy: (Math.random() - 0.5) * 0.35,
-          rot: Math.random() * Math.PI * 2,
-          rotSpeed: (Math.random() - 0.5) * 0.008,
-          scale: 0.75 + Math.random() * 0.85,
-          depth: 0.35 + Math.random() * 0.65,
-          tpl: tpl,
-        });
-      }
-    }
-
-    function drawAtom(x, y, r, depth) {
-      var g = ctx.createRadialGradient(x, y, 0, x, y, r * 2.2);
-      g.addColorStop(0, 'rgba(244, 201, 168, ' + (0.55 * depth) + ')');
-      g.addColorStop(0.45, 'rgba(201, 120, 74, ' + (0.75 * depth) + ')');
-      g.addColorStop(1, 'rgba(139, 79, 42, 0)');
-      ctx.fillStyle = g;
-      ctx.beginPath();
-      ctx.arc(x, y, r * 1.8, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.fillStyle = 'rgba(0, 180, 197, ' + (0.35 * depth) + ')';
-      ctx.beginPath();
-      ctx.arc(x, y, r * 0.55, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
-    function draw() {
-      if (!running) return;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      var cx = canvas.width * 0.5;
-      var cy = canvas.height * 0.42;
-      var avoidR = Math.min(canvas.width, canvas.height) * 0.22;
-
-      molecules.forEach(function (mol) {
-        mol.x += mol.vx;
-        mol.y += mol.vy;
-        mol.rot += mol.rotSpeed;
-
-        if (mol.x < -60) mol.x = canvas.width + 60;
-        if (mol.x > canvas.width + 60) mol.x = -60;
-        if (mol.y < -60) mol.y = canvas.height + 60;
-        if (mol.y > canvas.height + 60) mol.y = -60;
-
-        var dx = mol.x - cx;
-        var dy = mol.y - cy;
-        var dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < avoidR) {
-          mol.vx += (dx / dist) * 0.02;
-          mol.vy += (dy / dist) * 0.02;
-        }
-        mol.vx *= 0.995;
-        mol.vy *= 0.995;
-
-        var cos = Math.cos(mol.rot);
-        var sin = Math.sin(mol.rot);
-        var pts = mol.tpl.atoms.map(function (a) {
-          var sx = a[0] * mol.scale;
-          var sy = a[1] * mol.scale;
-          return {
-            x: mol.x + sx * cos - sy * sin,
-            y: mol.y + sx * sin + sy * cos,
-            r: a[2] * mol.scale,
-          };
-        });
-
-        ctx.lineWidth = 1.2 * mol.scale;
-        mol.tpl.bonds.forEach(function (b) {
-          var p1 = pts[b[0]];
-          var p2 = pts[b[1]];
-          ctx.strokeStyle = 'rgba(201, 120, 74, ' + (0.22 * mol.depth) + ')';
-          ctx.beginPath();
-          ctx.moveTo(p1.x, p1.y);
-          ctx.lineTo(p2.x, p2.y);
-          ctx.stroke();
-        });
-
-        pts.forEach(function (p) {
-          drawAtom(p.x, p.y, p.r, mol.depth);
-        });
-      });
-
-      requestAnimationFrame(draw);
-    }
-
-    resize();
-    draw();
-    window.addEventListener('resize', resize);
-
-    var obs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        running = entry.isIntersecting;
-        if (running) draw();
-      });
-    }, { threshold: 0.05 });
-    obs.observe(cinema);
-  }
-
   /* ── 3D product tilt ── */
   function initProductTilt() {
     if (reduced) return;
-    var isV3 = document.documentElement.classList.contains('ghk-hero-v3');
-    var stage = document.getElementById(isV3 ? 'ghk-product-stage' : 'ghk-product-stage-classic');
+    var stage = document.getElementById('ghk-product-stage');
     var wrap = stage && stage.querySelector('.ghk-hero-photo-wrap');
     if (!stage || !wrap) return;
 
@@ -567,14 +436,13 @@
   /* ── Parallax hero on scroll ── */
   function initParallax() {
     if (reduced) return;
-    var isV3 = document.documentElement.classList.contains('ghk-hero-v3');
-    var visual = document.getElementById(isV3 ? 'ghk-product-stage' : 'ghk-product-stage-classic');
+    var visual = document.querySelector('.ghk-product-stage');
     var mesh = document.querySelector('.ghk-mesh');
     if (!visual) return;
     window.addEventListener('scroll', function () {
       var y = window.scrollY;
       if (y > 800) return;
-      if (!isV3) visual.style.transform = 'translateY(' + (y * 0.06) + 'px)';
+      visual.style.transform = 'translateY(' + (y * 0.06) + 'px)';
       if (mesh) mesh.style.transform = 'translateY(' + (y * 0.03) + 'px)';
     }, { passive: true });
   }
@@ -611,7 +479,6 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     initLoad();
-    initHeroMolecules();
     initParticles();
     initProductTilt();
     initMagnetic();
