@@ -526,6 +526,15 @@ var CATALOG = {
       {key:'6month',label:'6-Month',sub:'60 ODTs · $109/mo · one-time',priceCents:65400,save:'Save $120'}
     ],
     desc:'Triple-action ODT for sexual performance.'
+  },
+  ghk_cu_cream: {
+    type:'ghk_cu', name:'GHK-Cu 3% Cream', emoji:'✨', img:'/img/svg/ghk-cu-cream-hero.svg', priceCents:12900,
+    plans:[
+      {key:'monthly',label:'Subscribe & Save',sub:'30g tube · ships monthly · cancel anytime',priceCents:12900,suffix:'/mo'},
+      {key:'onetime',label:'One-Time',sub:'Single 30g tube',priceCents:14900},
+      {key:'3month',label:'3-Month',sub:'3 tubes · $119/mo · one-time',priceCents:35700,save:'Save $30'}
+    ],
+    desc:'Prescription GHK-Cu 3% (30 mg/g) copper peptide cream. Direct-Rx provider review.'
   }
 };
 
@@ -560,6 +569,15 @@ var SCREENING = {
       {key:'liver',label:'Severe liver disease'},
       {key:'bloodthinner',label:'Currently take warfarin or other blood-thinning medications'},
       {key:'allergies',label:'Known allergy to ivermectin or mebendazole'}
+    ]
+  },
+  ghk_cu: {
+    sub:"Your safety is our priority. Tell us if any of the following apply before your provider reviews your case.",
+    items:[
+      {key:'pregnancy',label:'Currently pregnant, planning to become pregnant, or breastfeeding',critical:true},
+      {key:'copperAllergy',label:'Diagnosed severe copper allergy or Wilson\'s Disease',critical:true},
+      {key:'skinWounds',label:'Active or undiagnosed skin conditions, severe eczema, or open wounds on face or neck'},
+      {key:'otherTopicals',label:'Currently using other prescription facial topicals (e.g., Tretinoin, Accutane)'}
     ]
   }
 };
