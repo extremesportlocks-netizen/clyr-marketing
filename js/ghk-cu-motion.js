@@ -104,6 +104,143 @@
     draw();
   }
 
+  /* ── Hero panel: drifting copper ball-and-stick molecules ── */
+  function initHeroMolecules() {
+    if (reduced) return;
+    var panel = document.getElementById('ghk-hero-panel');
+    var canvas = document.getElementById('ghk-hero-molecules');
+    var stage = document.getElementById('ghk-product-stage');
+    if (!panel || !canvas || !stage) return;
+
+    var ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    var templates = [
+      { atoms: [[0, 0, 5.5], [26, 4, 4.5], [-20, 16, 4], [18, -18, 4]], bonds: [[0, 1], [0, 2], [1, 3]] },
+      { atoms: [[0, 0, 5], [0, 28, 4], [24, 14, 4], [-24, 14, 4], [0, -22, 3.5]], bonds: [[0, 1], [0, 2], [0, 3], [0, 4], [2, 3]] },
+      { atoms: [[18, 0, 4], [9, 16, 4], [-9, 16, 4], [-18, 0, 4], [-9, -16, 4], [9, -16, 4]], bonds: [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 0]] },
+      { atoms: [[-30, 0, 4], [-10, 0, 4.5], [10, 0, 4.5], [30, 0, 4], [0, 18, 3.5]], bonds: [[0, 1], [1, 2], [2, 3], [1, 4], [2, 4]] },
+      { atoms: [[0, 0, 6], [22, 12, 4], [-16, 20, 3.5], [-18, -10, 4]], bonds: [[0, 1], [0, 2], [0, 3], [2, 3]] },
+    ];
+
+    var molecules = [];
+    var running = true;
+    var count = 16;
+    var avoid = { x: 0, y: 0, r: 120 };
+
+    function resize() {
+      var rect = panel.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+      molecules = [];
+      for (var i = 0; i < count; i++) {
+        molecules.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4,
+          rot: Math.random() * Math.PI * 2,
+          rotSpeed: (Math.random() - 0.5) * 0.009,
+          scale: 0.7 + Math.random() * 0.9,
+          depth: 0.4 + Math.random() * 0.6,
+          tpl: templates[i % templates.length],
+        });
+      }
+    }
+
+    function updateAvoidZone() {
+      var panelRect = panel.getBoundingClientRect();
+      var stageRect = stage.getBoundingClientRect();
+      avoid.x = stageRect.left - panelRect.left + stageRect.width * 0.5;
+      avoid.y = stageRect.top - panelRect.top + stageRect.height * 0.46;
+      avoid.r = Math.min(stageRect.width, stageRect.height) * 0.34;
+    }
+
+    function drawAtom(x, y, r, depth) {
+      var g = ctx.createRadialGradient(x, y, 0, x, y, r * 2.4);
+      g.addColorStop(0, 'rgba(244, 201, 168, ' + (0.6 * depth) + ')');
+      g.addColorStop(0.45, 'rgba(201, 120, 74, ' + (0.8 * depth) + ')');
+      g.addColorStop(1, 'rgba(139, 79, 42, 0)');
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.arc(x, y, r * 2, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = 'rgba(0, 180, 197, ' + (0.4 * depth) + ')';
+      ctx.beginPath();
+      ctx.arc(x, y, r * 0.5, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    function draw() {
+      if (!running) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      updateAvoidZone();
+
+      molecules.forEach(function (mol) {
+        mol.x += mol.vx;
+        mol.y += mol.vy;
+        mol.rot += mol.rotSpeed;
+
+        if (mol.x < -70) mol.x = canvas.width + 70;
+        if (mol.x > canvas.width + 70) mol.x = -70;
+        if (mol.y < -70) mol.y = canvas.height + 70;
+        if (mol.y > canvas.height + 70) mol.y = -70;
+
+        var dx = mol.x - avoid.x;
+        var dy = mol.y - avoid.y;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < avoid.r + 40) {
+          var push = (avoid.r + 40 - dist) * 0.03;
+          mol.vx += (dx / (dist || 1)) * push;
+          mol.vy += (dy / (dist || 1)) * push;
+        }
+        mol.vx *= 0.992;
+        mol.vy *= 0.992;
+
+        var cos = Math.cos(mol.rot);
+        var sin = Math.sin(mol.rot);
+        var pts = mol.tpl.atoms.map(function (a) {
+          var sx = a[0] * mol.scale;
+          var sy = a[1] * mol.scale;
+          return {
+            x: mol.x + sx * cos - sy * sin,
+            y: mol.y + sx * sin + sy * cos,
+            r: a[2] * mol.scale,
+          };
+        });
+
+        ctx.lineWidth = 1.3 * mol.scale;
+        mol.tpl.bonds.forEach(function (b) {
+          var p1 = pts[b[0]];
+          var p2 = pts[b[1]];
+          ctx.strokeStyle = 'rgba(201, 120, 74, ' + (0.28 * mol.depth) + ')';
+          ctx.beginPath();
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.stroke();
+        });
+
+        pts.forEach(function (p) {
+          drawAtom(p.x, p.y, p.r, mol.depth);
+        });
+      });
+
+      requestAnimationFrame(draw);
+    }
+
+    resize();
+    draw();
+    window.addEventListener('resize', resize);
+
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        running = entry.isIntersecting;
+        if (running) draw();
+      });
+    }, { threshold: 0.05 });
+    obs.observe(panel);
+  }
+
   /* ── 3D product tilt ── */
   function initProductTilt() {
     if (reduced) return;
@@ -139,7 +276,7 @@
     function animateTilt() {
       currentX += (targetX - currentX) * 0.08;
       currentY += (targetY - currentY) * 0.08;
-      wrap.style.transform = 'rotateX(' + currentX + 'deg) rotateY(' + currentY + 'deg)';
+      wrap.style.transform = 'rotateX(' + currentX + 'deg) rotateY(' + currentY + 'deg) translateZ(12px)';
       requestAnimationFrame(animateTilt);
     }
     animateTilt();
@@ -436,13 +573,13 @@
   /* ── Parallax hero on scroll ── */
   function initParallax() {
     if (reduced) return;
-    var visual = document.querySelector('.ghk-product-stage');
+    var visual = document.querySelector('.ghk-hero-panel') || document.querySelector('.ghk-hero-visual');
     var mesh = document.querySelector('.ghk-mesh');
     if (!visual) return;
     window.addEventListener('scroll', function () {
       var y = window.scrollY;
       if (y > 800) return;
-      visual.style.transform = 'translateY(' + (y * 0.06) + 'px)';
+      visual.style.transform = 'translateY(' + (y * 0.05) + 'px)';
       if (mesh) mesh.style.transform = 'translateY(' + (y * 0.03) + 'px)';
     }, { passive: true });
   }
@@ -479,6 +616,7 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     initLoad();
+    initHeroMolecules();
     initParticles();
     initProductTilt();
     initMagnetic();
