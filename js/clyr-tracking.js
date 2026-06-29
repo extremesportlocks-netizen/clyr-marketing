@@ -319,7 +319,7 @@
     function go() { if (fired) return; fired = true; cleanup(); build(promo); }
     function onLeave(e) { if (e.clientY <= 0) go(); } // exit-intent (desktop)
     function cleanup() { clearTimeout(t); document.removeEventListener('mouseleave', onLeave); }
-    var t = setTimeout(go, 8000);                       // or 8s dwell, whichever first
+    var t = setTimeout(go, 30000);                      // 30s dwell, or exit-intent — whichever first
     document.addEventListener('mouseleave', onLeave);
   }
 
