@@ -110,7 +110,7 @@
     var panel = document.getElementById('ghk-hero-panel');
     var canvas = document.getElementById('ghk-hero-molecules');
     var stage = document.getElementById('ghk-product-stage');
-    if (!panel || !canvas || !stage) return;
+    if (!panel || !canvas || !stage || panel.classList.contains('ghk-hero-panel--cinema')) return;
 
     var ctx = canvas.getContext('2d');
     if (!ctx) return;
