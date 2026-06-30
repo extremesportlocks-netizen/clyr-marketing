@@ -1066,6 +1066,9 @@ body.ghk-page {
   z-index: 5;
   color: rgba(255, 255, 255, 0.35);
   padding-top: 20px;
+  font-size: 13px;
+  line-height: 1.5;
+  flex-wrap: wrap;
 }
 .ghk-page .breadcrumb a { color: rgba(255, 255, 255, 0.5); }
 .ghk-page .breadcrumb a:hover { color: var(--copper-light); }
@@ -1085,7 +1088,8 @@ body.ghk-page {
 
 @media (max-width: 1024px) {
   .ghk-hero { grid-template-columns: 1fr; padding: 88px 24px 60px; min-height: auto; }
-  .ghk-hero-visual { order: -1; min-height: 320px; }
+  .ghk-hero-visual { order: -1; min-height: 0; }
+  .ghk-hero-panel { min-height: 340px; max-height: 44vh; }
   .ghk-molecule-grid { grid-template-columns: 1fr; }
   .ghk-routine-steps { grid-template-columns: 1fr 1fr; }
   .ghk-bar-row { grid-template-columns: 1fr; gap: 8px; }
@@ -1106,6 +1110,18 @@ body.ghk-page {
 }
 @media (min-width: 641px) {
   .ghk-sticky-cta { display: none; }
+}
+@media (max-width: 480px) {
+  .ghk-hero { padding: 80px 18px 48px; }
+  .ghk-hero-panel { min-height: 260px; max-height: 38vh; }
+  .ghk-title { font-size: clamp(32px, 9vw, 40px); }
+  .ghk-lede { font-size: 15px; }
+  .ghk-page .breadcrumb { font-size: 12px; padding-top: 14px; }
+  .ghk-hero .tier-list { max-width: 100%; }
+  .ghk-stats-inner { grid-template-columns: 1fr 1fr; }
+  .ghk-stats { padding: 40px 18px; }
+  .benefits, .faq, .included, .how-it-works { padding-left: 18px; padding-right: 18px; }
+  .product-price .amount, .ghk-hero .product-price .amount { font-size: 40px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .ghk-marquee, .ghk-ring, .ghk-product-stage img, .ghk-hero-photo,
