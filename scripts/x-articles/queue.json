@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-06-30T02:12:25.854831+00:00",
+  "updated_at": "2026-06-30T03:45:45.736460+00:00",
   "articles": {
     "ivermectin-cancer-what-science-shows": {
       "slug": "ivermectin-cancer-what-science-shows",
@@ -79,7 +79,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/anastrozole-trt-estrogen-management/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -95,7 +95,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/biest-progesterone-compounded-hrt/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -111,7 +111,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/bpc-157-peptide-recovery-explained/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -127,7 +127,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/clyr-tri-gel-triple-therapy-acne/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -143,7 +143,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/compounded-hair-regrowth-quad-stack-men/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -159,7 +159,7 @@
       ],
       "source": "html",
       "journal_url": "https://www.clyr.health/journal/compounded-semaglutide-cost/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -175,7 +175,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/compounded-tirzepatide-ohio/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -190,7 +190,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/dhea-pregnenolone-adrenal-precursors/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -206,7 +206,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/doxycycline-oral-acne-antibiotic/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -222,7 +222,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/enclomiphene-fertility-preserving-testosterone/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -238,7 +238,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/estradiol-patches-hrt-explained/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -253,7 +253,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/estradiol-vaginal-cream-gsm/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -269,7 +269,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/estriol-ghk-cu-anti-aging-cream/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -285,7 +285,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/finasteride-oral-hair-loss-dht/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -302,7 +302,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/foundayo-hair-regrowth-science/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -318,7 +318,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/ghk-cu-injectable-copper-peptide/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -333,7 +333,7 @@
       ],
       "source": "html",
       "journal_url": "https://www.clyr.health/journal/glp1-protein-resistance-training/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -348,7 +348,7 @@
       ],
       "source": "html",
       "journal_url": "https://www.clyr.health/journal/glp1-side-effects-management/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -363,7 +363,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/glp1-weight-loss-north-carolina/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -379,7 +379,7 @@
       ],
       "source": "html",
       "journal_url": "https://www.clyr.health/journal/glutathione-master-antioxidant/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -394,7 +394,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/glutathione-push-injection-benefits/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -411,7 +411,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/hcg-trt-adjunct-explained/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -426,7 +426,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/hydroquinone-triple-cream-hyperpigmentation/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -441,7 +441,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/legitscript-telehealth-certification-explained/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -456,7 +456,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/lipo-mino-injection-weight-loss/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -471,7 +471,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/liraglutide-weight-loss-glp1/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -487,7 +487,7 @@
       ],
       "source": "html",
       "journal_url": "https://www.clyr.health/journal/longevity-medicine-foundations/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -502,7 +502,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/metformin-er-glp1-companion/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -518,7 +518,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/micc-lipotropic-injection-explained/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -533,7 +533,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/nad-face-cream-topical-longevity/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -548,7 +548,7 @@
       ],
       "source": "html",
       "journal_url": "https://www.clyr.health/journal/nad-iv-vs-injection/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -563,7 +563,7 @@
       ],
       "source": "html",
       "journal_url": "https://www.clyr.health/journal/nad-vs-nmn-vs-nr/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -578,7 +578,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/naltrexone-ldn-wellness-protocol/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -594,7 +594,7 @@
       ],
       "source": "html",
       "journal_url": "https://www.clyr.health/journal/niagen-nicotinamide-riboside-explained/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -609,7 +609,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/oxytocin-nasal-spray-bonding/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -625,7 +625,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/progesterone-capsules-hrt-sleep/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -641,7 +641,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/pt141-bremelanotide-libido/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -656,7 +656,7 @@
       ],
       "source": "html",
       "journal_url": "https://www.clyr.health/journal/select-trial-cardiovascular/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -672,7 +672,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/semaglutide-california/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -687,7 +687,7 @@
       ],
       "source": "html",
       "journal_url": "https://www.clyr.health/journal/semaglutide-florida/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -703,7 +703,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/semaglutide-illinois/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -719,7 +719,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/semaglutide-michigan/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -734,7 +734,7 @@
       ],
       "source": "html",
       "journal_url": "https://www.clyr.health/journal/semaglutide-near-me/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -750,7 +750,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/semaglutide-new-york/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -766,7 +766,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/semaglutide-odt-nausea-managed-oral-glp1/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -782,7 +782,7 @@
       ],
       "source": "html",
       "journal_url": "https://www.clyr.health/journal/semaglutide-pennsylvania/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -797,7 +797,7 @@
       ],
       "source": "html",
       "journal_url": "https://www.clyr.health/journal/semaglutide-texas/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -813,7 +813,7 @@
       ],
       "source": "html",
       "journal_url": "https://www.clyr.health/journal/semaglutide-vs-tirzepatide/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -829,7 +829,7 @@
       ],
       "source": "html",
       "journal_url": "https://www.clyr.health/journal/sermorelin-explained/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -844,7 +844,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/sexual-health-telehealth-guide/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -859,7 +859,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/sildenafil-tadalafil-dual-gummy-ed/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -875,7 +875,7 @@
       ],
       "source": "html",
       "journal_url": "https://www.clyr.health/journal/surmount-5-deep-dive/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -890,7 +890,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/tadalafil-apomorphine-dual-ed/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -905,7 +905,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/tadalafil-troches-sublingual-ed/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -921,7 +921,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/tb-500-recovery-peptide/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -936,7 +936,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/telehealth-weight-loss-how-it-works/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -952,7 +952,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/testosterone-cream-topical-trt/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -968,7 +968,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/testosterone-cypionate-trt-explained/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -984,7 +984,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/testosterone-hypo-spray-transdermal/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -1000,7 +1000,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/tirzepatide-sublingual-drops-explained/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -1015,7 +1015,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/tretinoin-retinoid-starter-guide/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -1030,7 +1030,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/trimix-injection-ed-rescue/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -1045,7 +1045,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/wegovy-tablets-oral-semaglutide-guide/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -1060,7 +1060,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/weight-loss-plateau-glp1/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -1075,7 +1075,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/weight-loss-telehealth-georgia/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -1090,7 +1090,7 @@
       ],
       "source": "html",
       "journal_url": "https://www.clyr.health/journal/what-is-nad-plus/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -1106,7 +1106,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/womens-hair-regrowth-topical-stack/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -1122,7 +1122,7 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/womens-testosterone-cream-libido/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
@@ -1138,17 +1138,21 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/zepbound-vs-compounded-tirzepatide/",
-      "status": "queued",
+      "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
       "companion_tweet": null
     }
   },
   "stats": {
-    "total": 73,
-    "queued": 72,
+    "catalog_total": 73,
+    "x_syndicate_tiers": [
+      "ashersoil"
+    ],
+    "queued": 3,
     "drafted": 0,
     "published": 1,
-    "ashersoil": 4
+    "catalog": 69,
+    "skipped": 0
   }
 }

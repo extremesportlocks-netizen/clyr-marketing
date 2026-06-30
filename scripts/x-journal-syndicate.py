@@ -43,6 +43,10 @@ DISCLAIMER = (
     "CLYR Health · LegitScript certified."
 )
 
+# Only these tiers are auto-queued for X Articles. Everything else stays catalog-only
+# until you explicitly `queue <slug>`. Journal SEO lives on clyr.health — not a 73-post dump.
+X_SYNDICATE_TIERS = frozenset({"ashersoil"})
+
 TIER_KEYWORDS = {
     "ashersoil": (
         "parasite", "ivermectin", "mebendazole", "antiparasitic", "cleanse", "gut",
@@ -259,15 +263,28 @@ def load_queue() -> dict[str, Any]:
     return {"version": 1, "updated_at": None, "articles": {}}
 
 
+def x_eligible(article: dict[str, Any]) -> bool:
+    return bool(X_SYNDICATE_TIERS.intersection(article.get("tiers", [])))
+
+
+def default_status(rec: ArticleRecord, prev: dict[str, Any]) -> str:
+    prev_status = prev.get("status")
+    if prev_status in ("published", "drafted", "queued", "skipped"):
+        return prev_status
+    return "queued" if x_eligible({"tiers": rec.tiers}) else "catalog"
+
+
 def save_queue(data: dict[str, Any]) -> None:
     STATE_DIR.mkdir(parents=True, exist_ok=True)
     articles = data.get("articles", {})
     data["stats"] = {
-        "total": len(articles),
+        "catalog_total": len(articles),
+        "x_syndicate_tiers": sorted(X_SYNDICATE_TIERS),
         "queued": sum(1 for a in articles.values() if a.get("status") == "queued"),
         "drafted": sum(1 for a in articles.values() if a.get("status") == "drafted"),
         "published": sum(1 for a in articles.values() if a.get("status") == "published"),
-        "ashersoil": sum(1 for a in articles.values() if "ashersoil" in a.get("tiers", [])),
+        "catalog": sum(1 for a in articles.values() if a.get("status") == "catalog"),
+        "skipped": sum(1 for a in articles.values() if a.get("status") == "skipped"),
     }
     data["updated_at"] = datetime.now(timezone.utc).isoformat()
     QUEUE_PATH.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
@@ -280,18 +297,13 @@ def cmd_index(_: argparse.Namespace) -> int:
     for rec in articles:
         prev = existing.get(rec.slug, {})
         merged = asdict(rec)
-        merged["status"] = prev.get("status", "queued")
+        merged["status"] = default_status(rec, prev)
         merged["x_draft_id"] = prev.get("x_draft_id")
         merged["x_published_at"] = prev.get("x_published_at")
+        merged["x_post_id"] = prev.get("x_post_id")
+        merged["x_tweet_id"] = prev.get("x_tweet_id")
         merged["companion_tweet"] = prev.get("companion_tweet")
         queue.setdefault("articles", {})[rec.slug] = merged
-    queue["stats"] = {
-        "total": len(articles),
-        "queued": sum(1 for a in queue["articles"].values() if a.get("status") == "queued"),
-        "drafted": sum(1 for a in queue["articles"].values() if a.get("status") == "drafted"),
-        "published": sum(1 for a in queue["articles"].values() if a.get("status") == "published"),
-        "ashersoil": sum(1 for a in queue["articles"].values() if "ashersoil" in a.get("tiers", [])),
-    }
     save_queue(queue)
     print(f"✓ Indexed {len(articles)} journal articles → {QUEUE_PATH}")
     print(json.dumps(queue["stats"], indent=2))
@@ -567,22 +579,56 @@ def cmd_drip(args: argparse.Namespace) -> int:
         raise
 
 
+def cmd_prune(_args: argparse.Namespace) -> int:
+    """Move non-syndicate-tier articles out of the X queue."""
+    queue = load_queue()
+    changed = 0
+    for rec in queue.get("articles", {}).values():
+        if rec.get("status") != "queued":
+            continue
+        if not x_eligible(rec):
+            rec["status"] = "catalog"
+            changed += 1
+    save_queue(queue)
+    print(f"✓ Pruned {changed} articles → catalog (X tiers: {', '.join(sorted(X_SYNDICATE_TIERS))})")
+    print(json.dumps(queue["stats"], indent=2))
+    return 0
+
+
+def cmd_enqueue(args: argparse.Namespace) -> int:
+    queue = load_queue()
+    rec = queue.get("articles", {}).get(args.slug)
+    if not rec:
+        raise SystemExit(f"Unknown slug: {args.slug} — run `index` first")
+    if rec.get("status") == "published":
+        raise SystemExit(f"Already published: {args.slug}")
+    rec["status"] = "queued"
+    save_queue(queue)
+    print(f"✓ Queued for X: {args.slug}")
+    return 0
+
+
+def cmd_skip(args: argparse.Namespace) -> int:
+    queue = load_queue()
+    rec = queue.get("articles", {}).get(args.slug)
+    if not rec:
+        raise SystemExit(f"Unknown slug: {args.slug}")
+    rec["status"] = "skipped"
+    save_queue(queue)
+    print(f"✓ Skipped: {args.slug}")
+    return 0
+
+
 def cmd_stats(_args: argparse.Namespace) -> int:
     queue = load_queue()
     articles = list(queue.get("articles", {}).values())
-    by_status: dict[str, int] = {}
-    by_tier: dict[str, int] = {}
-    for a in articles:
-        st = a.get("status", "unknown")
-        by_status[st] = by_status.get(st, 0) + 1
-        for t in a.get("tiers", []):
-            by_tier[t] = by_tier.get(t, 0) + 1
-    print(f"Total articles: {len(articles)}")
-    for st in ("queued", "drafted", "published"):
-        print(f"  {st}: {by_status.get(st, 0)}")
-    print("\nBy tier:")
-    for tier, n in sorted(by_tier.items(), key=lambda x: -x[1]):
-        print(f"  {tier}: {n}")
+    stats = queue.get("stats", {})
+    print(f"Journal catalog: {stats.get('catalog_total', len(articles))} articles on clyr.health")
+    print(f"X syndicate tiers: {', '.join(stats.get('x_syndicate_tiers', sorted(X_SYNDICATE_TIERS)))}")
+    for st in ("queued", "drafted", "published", "catalog", "skipped"):
+        n = stats.get(st) or sum(1 for a in articles if a.get("status") == st)
+        if n:
+            print(f"  {st}: {n}")
     published = [a for a in articles if a.get("status") == "published"]
     if published:
         print("\nLive on X:")
@@ -613,8 +659,19 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="CLYR Journal → X Articles agent")
     sub = parser.add_subparsers(dest="cmd", required=True)
 
-    p_index = sub.add_parser("index", help="Scan journal and build queue")
+    p_index = sub.add_parser("index", help="Scan journal catalog (auto-queue X tiers only)")
     p_index.set_defaults(func=cmd_index)
+
+    p_prune = sub.add_parser("prune", help="Demote non-X-tier articles to catalog")
+    p_prune.set_defaults(func=cmd_prune)
+
+    p_enqueue = sub.add_parser("queue", help="Manually add one article to X queue")
+    p_enqueue.add_argument("slug")
+    p_enqueue.set_defaults(func=cmd_enqueue)
+
+    p_skip = sub.add_parser("skip", help="Remove article from X queue")
+    p_skip.add_argument("slug")
+    p_skip.set_defaults(func=cmd_skip)
 
     p_list = sub.add_parser("list", help="List queue")
     p_list.add_argument("--tier")
