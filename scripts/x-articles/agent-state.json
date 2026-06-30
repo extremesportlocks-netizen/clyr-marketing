@@ -1,33 +1,33 @@
 {
   "version": 1,
   "started_at": "2026-06-30T03:28:43.160261+00:00",
-  "last_tick": "2026-06-30T03:29:03.072996+00:00",
-  "ticks": 3,
+  "last_tick": "2026-06-30T07:43:23.899968+00:00",
+  "ticks": 4,
   "intel": {
-    "at": "2026-06-30T03:29:01.244830+00:00",
+    "at": "2026-06-30T07:43:22.301573+00:00",
     "searches": [
       {
         "query": "parasite cleanse OR antiparasitic -is:retweet",
         "hits": [
           {
-            "id": "2071789214233203012",
-            "text": "@abierkhatib A good parasite cleanse is needed."
-          },
-          {
-            "id": "2071786133131010289",
+            "id": "2071851492437332104",
             "text": "RT @GenuisHealth: Parasite cleanse https://t.co/pJ8iAVKnJU"
           },
           {
-            "id": "2071782340687200464",
-            "text": "\ud83d\udea8 ATTENTION: Don't get ripped off by overpriced \"parasite cleanse kits\"!\n\nReal Fenben 444mg | 90 Count | 99% Purity Lab Tested\n\nCancer patients deserve AFFORDABLE access to real su"
+            "id": "2071850653727821891",
+            "text": "RT @GenuisHealth: Parasite cleanse https://t.co/pJ8iAVKnJU"
           },
           {
-            "id": "2071779927435653399",
-            "text": "RT @VanceE: Deep Research Parasite Cleanse:\n\nPhase 1: Preparation(~2 weeks) \n\nOpen detox pathways (\u201cdrainage\u201d) and prime the body for clean\u2026"
+            "id": "2071844907610669069",
+            "text": "RT @GenuisHealth: Parasite cleanse https://t.co/pJ8iAVKnJU"
           },
           {
-            "id": "2071778868315230499",
-            "text": "New on CLYR Journal: Parasite Cleanses vs. Real Antiparasitic Medicine\n\nProvider-guided 30-day cleanse tiers from $99 \u2192 https://t.co/ajdQs7sjMQ\n\nFull read: https://t.co/yRwFTF53lR\n"
+            "id": "2071843013928612042",
+            "text": "RT @GenuisHealth: Parasite cleanse https://t.co/pJ8iAVKnJU"
+          },
+          {
+            "id": "2071841368524087369",
+            "text": "RT @GenuisHealth: Parasite cleanse https://t.co/pJ8iAVKnJU"
           }
         ]
       },
@@ -45,10 +45,6 @@
           {
             "id": "2069629895010103378",
             "text": "@craigkellyAFEE this is not strong evidence that ivermectin treats cancer. It is a small uncontrolled, self-reported observational signal and the authors are affiliated with The We"
-          },
-          {
-            "id": "2069280589744578937",
-            "text": "BREAKING: Dr. Paul Marik's Cancer Protocol is getting attention - Ivermectin + Fenbendazole combo\n\nFull dosages in the image above for reference\n\nAfter helping thousands access the"
           }
         ]
       },
@@ -88,6 +84,24 @@
       }
     ],
     "mentions": [
+      {
+        "id": "2071813042967343369",
+        "text": "@JosephTuam @I_Research_Pept @ClyrHealth It\u2019s worth a shot, I felt amazing and numbers were zooming, but they say you don\u2019t want to be on it for a long time",
+        "flagged": [],
+        "needs_reply": false
+      },
+      {
+        "id": "2071810690784919623",
+        "text": "@ClyrHealth Tell Trump to lower the cost from $50 a month to $25 for seniors and make it permanent. That was all in the news yesterday.",
+        "flagged": [],
+        "needs_reply": false
+      },
+      {
+        "id": "2071800360910410023",
+        "text": "@I_Research_Pept @ClyrHealth Aw man, I'm set to start Enclomiphine tomorrow. Can I also what sort of symptoms did you feel on it?",
+        "flagged": [],
+        "needs_reply": false
+      },
       {
         "id": "2071780055521587597",
         "text": "@kwood3131 @ClyrHealth That's what I'm seeing.",
@@ -163,26 +177,6 @@
         "text": "@ClyrHealth Paste asshole..",
         "flagged": [],
         "needs_reply": false
-      },
-      {
-        "id": "2071529232279150907",
-        "text": "@StephanieStarrC @ClyrHealth Truly Ivermectin, Fenben, Dmso works! besides  Dr. Makis, I recommend you message the MD\u2019s page that you will find on my profile description if you\u2019re looking for treatmen",
-        "flagged": [
-          "ivermectin"
-        ],
-        "needs_reply": true
-      },
-      {
-        "id": "2071519666548457868",
-        "text": "@ClyrHealth Heard about this on the Bill Cunningham Radio show - there might me something to it.  I\u2019m ready to listen for more sources - I hope it\u2019s true.  So many friends and  relatives  had their li",
-        "flagged": [],
-        "needs_reply": false
-      },
-      {
-        "id": "2071438678417940566",
-        "text": "@ClyrHealth You guys really should have thought about that name more",
-        "flagged": [],
-        "needs_reply": false
       }
     ],
     "angles": []
@@ -202,9 +196,13 @@
       {
         "at": "2026-06-30T03:29:03.072991+00:00",
         "error": "rate_limited"
+      },
+      {
+        "at": "2026-06-30T07:43:23.899962+00:00",
+        "error": "rate_limited"
       }
     ],
-    "last_draft_attempt": "2026-06-30T03:29:03.072987+00:00"
+    "last_draft_attempt": "2026-06-30T07:43:23.899958+00:00"
   },
   "config": {
     "priority_tier": "ashersoil",
