@@ -1,0 +1,214 @@
+{
+  "version": 1,
+  "started_at": "2026-06-30T03:28:43.160261+00:00",
+  "last_tick": "2026-06-30T03:29:03.072996+00:00",
+  "ticks": 3,
+  "intel": {
+    "at": "2026-06-30T03:29:01.244830+00:00",
+    "searches": [
+      {
+        "query": "parasite cleanse OR antiparasitic -is:retweet",
+        "hits": [
+          {
+            "id": "2071789214233203012",
+            "text": "@abierkhatib A good parasite cleanse is needed."
+          },
+          {
+            "id": "2071786133131010289",
+            "text": "RT @GenuisHealth: Parasite cleanse https://t.co/pJ8iAVKnJU"
+          },
+          {
+            "id": "2071782340687200464",
+            "text": "\ud83d\udea8 ATTENTION: Don't get ripped off by overpriced \"parasite cleanse kits\"!\n\nReal Fenben 444mg | 90 Count | 99% Purity Lab Tested\n\nCancer patients deserve AFFORDABLE access to real su"
+          },
+          {
+            "id": "2071779927435653399",
+            "text": "RT @VanceE: Deep Research Parasite Cleanse:\n\nPhase 1: Preparation(~2 weeks) \n\nOpen detox pathways (\u201cdrainage\u201d) and prime the body for clean\u2026"
+          },
+          {
+            "id": "2071778868315230499",
+            "text": "New on CLYR Journal: Parasite Cleanses vs. Real Antiparasitic Medicine\n\nProvider-guided 30-day cleanse tiers from $99 \u2192 https://t.co/ajdQs7sjMQ\n\nFull read: https://t.co/yRwFTF53lR\n"
+          }
+        ]
+      },
+      {
+        "query": "ivermectin wellness protocol -is:retweet",
+        "hits": [
+          {
+            "id": "2070229757380153428",
+            "text": "\ud83d\udce6 Orders still open!\n\nIvermectin, Fenbendazole, Mebendazole, DMSO, Methylene Blue, mushrooms &amp; more available.\n\nDM for wellness, detox, parasite cleanse, and protocol guidance."
+          },
+          {
+            "id": "2070162005818843440",
+            "text": "Ivermectin, fenbedazole and menbendazole available for delivery \ud83d\ude9a \nA practical guide for safe use, Dosing strategies, parasites cleansing, detox and wellness support. Dm or Comment"
+          },
+          {
+            "id": "2069629895010103378",
+            "text": "@craigkellyAFEE this is not strong evidence that ivermectin treats cancer. It is a small uncontrolled, self-reported observational signal and the authors are affiliated with The We"
+          },
+          {
+            "id": "2069280589744578937",
+            "text": "BREAKING: Dr. Paul Marik's Cancer Protocol is getting attention - Ivermectin + Fenbendazole combo\n\nFull dosages in the image above for reference\n\nAfter helping thousands access the"
+          }
+        ]
+      },
+      {
+        "query": "gut health telehealth -is:retweet lang:en",
+        "hits": [
+          {
+            "id": "2071727551483908286",
+            "text": "@Yourhoonigan @himshouse They're talking about specific research/wellness peptides (BPC-157, TB-500, KPV, MOTS-c, Semax, Epitalon, DSIP) that FDA's Pharmacy Compounding Advisory Co"
+          }
+        ]
+      },
+      {
+        "query": "semaglutide telehealth -is:retweet lang:en",
+        "hits": [
+          {
+            "id": "2071655973089849382",
+            "text": "9. $HIMS\n\nThe real catalyst here isn\u2019t \u201ctelehealth growth,\u201d it\u2019s GLP-1 economics shifting inside their model.\n\nThey\u2019ve been one of the fastest adopters of compounded semaglutide an"
+          },
+          {
+            "id": "2071413422776778951",
+            "text": "Why does everyone treat the current list of telehealth medications as the final list? The pipeline behind it is bigger than most people realize.\n\nWHAT'S ACTUALLY COMING\n\nNew formul"
+          },
+          {
+            "id": "2071353666804523331",
+            "text": "800.461.9533\n\u2705Med Evals\n\u2705Genetic Testing\n\u2705Psychotherapy \n\u2705EsKetamine Nasal Spray: Treatment Resistant #Depression\n\u2705Semaglutide+B12 &amp; Tirzepatide+B3 &amp; other Peptides \n\u2705Menta"
+          },
+          {
+            "id": "2071352983934177454",
+            "text": "800.461.9533\n\u2705Med Evals\n\u2705Genetic Testing\n\u2705Psychotherapy \n\u2705EsKetamine Nasal Spray: Treatment Resistant #Depression\n\u2705Semaglutide+B12 &amp; Tirzepatide+B3 &amp; other Peptides \n\u2705Menta"
+          },
+          {
+            "id": "2071279250351575221",
+            "text": "Your GLP-1 plan should travel with real life. Simple defaults help: protein, fiber, water, and a short walk cue. Washington telehealth care with free home delivery: https://t.co/mw"
+          }
+        ]
+      }
+    ],
+    "mentions": [
+      {
+        "id": "2071780055521587597",
+        "text": "@kwood3131 @ClyrHealth That's what I'm seeing.",
+        "flagged": [],
+        "needs_reply": false
+      },
+      {
+        "id": "2071780029902811399",
+        "text": "@I_Research_Pept @ClyrHealth How did you feel terrible? I am thinking of trying enclomiphene",
+        "flagged": [
+          "enclomiphene"
+        ],
+        "needs_reply": true
+      },
+      {
+        "id": "2071778379393585465",
+        "text": "@ClyrHealth Looks good for our health!",
+        "flagged": [],
+        "needs_reply": false
+      },
+      {
+        "id": "2071777443497566475",
+        "text": "@ClyrHealth @I_Research_Pept no comparisons",
+        "flagged": [],
+        "needs_reply": false
+      },
+      {
+        "id": "2071773501606994177",
+        "text": "@ClyrHealth I tried Clomiphene. My testosterone went way up but I felt terrible.",
+        "flagged": [],
+        "needs_reply": false
+      },
+      {
+        "id": "2071730497538216058",
+        "text": "@DanimalPlanimal @ClyrHealth @ShellyPjsweetee @StephanieStarrC If you're waiting for the right time to order, Medicine Counter Pharmacy's biggest sale starts July 4th. Buy 1, Get 1 FREE on Ivermectin ",
+        "flagged": [
+          "ivermectin"
+        ],
+        "needs_reply": true
+      },
+      {
+        "id": "2071724351800652200",
+        "text": "@ClyrHealth Thieves",
+        "flagged": [],
+        "needs_reply": false
+      },
+      {
+        "id": "2071692278457131324",
+        "text": "@poonambhojane @ClyrHealth Gave up on setting up an account at Discord, it is a constant loop of proving you are human.",
+        "flagged": [],
+        "needs_reply": false
+      },
+      {
+        "id": "2071692062605676727",
+        "text": "@ericksousa1 @ClyrHealth gave up on setting up an account there, it is a constant loop of verifying your human.",
+        "flagged": [],
+        "needs_reply": false
+      },
+      {
+        "id": "2071663971845730659",
+        "text": "@ClyrHealth Purity......like the poison vaccines the medical system pushed on humanity?",
+        "flagged": [],
+        "needs_reply": false
+      },
+      {
+        "id": "2071570903310229506",
+        "text": "@ClyrHealth Why do this when you can use vet meds which are more concentrated and way less costly?  Also, why should anyone ever trust the medical profession again after what you all have done to huma",
+        "flagged": [],
+        "needs_reply": false
+      },
+      {
+        "id": "2071565837790597212",
+        "text": "@ClyrHealth Paste asshole..",
+        "flagged": [],
+        "needs_reply": false
+      },
+      {
+        "id": "2071529232279150907",
+        "text": "@StephanieStarrC @ClyrHealth Truly Ivermectin, Fenben, Dmso works! besides  Dr. Makis, I recommend you message the MD\u2019s page that you will find on my profile description if you\u2019re looking for treatmen",
+        "flagged": [
+          "ivermectin"
+        ],
+        "needs_reply": true
+      },
+      {
+        "id": "2071519666548457868",
+        "text": "@ClyrHealth Heard about this on the Bill Cunningham Radio show - there might me something to it.  I\u2019m ready to listen for more sources - I hope it\u2019s true.  So many friends and  relatives  had their li",
+        "flagged": [],
+        "needs_reply": false
+      },
+      {
+        "id": "2071438678417940566",
+        "text": "@ClyrHealth You guys really should have thought about that name more",
+        "flagged": [],
+        "needs_reply": false
+      }
+    ],
+    "angles": []
+  },
+  "syndication": {
+    "last_draft": null,
+    "last_publish": null,
+    "errors": [
+      {
+        "at": "2026-06-30T03:28:45.060601+00:00",
+        "error": "rate_limited"
+      },
+      {
+        "at": "2026-06-30T03:28:59.226494+00:00",
+        "error": "rate_limited"
+      },
+      {
+        "at": "2026-06-30T03:29:03.072991+00:00",
+        "error": "rate_limited"
+      }
+    ],
+    "last_draft_attempt": "2026-06-30T03:29:03.072987+00:00"
+  },
+  "config": {
+    "priority_tier": "ashersoil",
+    "auto_draft": true,
+    "auto_publish": false
+  }
+}

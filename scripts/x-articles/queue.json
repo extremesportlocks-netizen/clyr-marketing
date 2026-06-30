@@ -1,0 +1,1154 @@
+{
+  "version": 1,
+  "updated_at": "2026-06-30T02:12:25.854831+00:00",
+  "articles": {
+    "ivermectin-cancer-what-science-shows": {
+      "slug": "ivermectin-cancer-what-science-shows",
+      "title": "Ivermectin and Cancer: What the Science Actually Shows in 2026",
+      "deck": "Ivermectin has become one of the most-searched topics in cancer right now, driven by viral claims, podcast interviews, and a new National Cancer Institute study. Here is an honest, evidence-based look at what the research genuinely shows, what it does not, and what every patient should understand before acting on what they have heard.",
+      "category": "longevity",
+      "tiers": [
+        "ashersoil",
+        "longevity"
+      ],
+      "source": "html",
+      "journal_url": "https://www.clyr.health/journal/ivermectin-cancer-what-science-shows/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "ivermectin-vs-mebendazole-antiparasitic-coverage": {
+      "slug": "ivermectin-vs-mebendazole-antiparasitic-coverage",
+      "title": "Ivermectin vs. Mebendazole: Why Two Antiparasitic Drugs Cover More Than One",
+      "deck": "Ivermectin and mebendazole are both antiparasitic drugs, but they work through completely different mechanisms and target different parasites. Here is how each one works, which organisms each covers, and why some protocols combine the two for broader coverage.",
+      "category": "longevity",
+      "tiers": [
+        "ashersoil",
+        "longevity"
+      ],
+      "source": "html",
+      "journal_url": "https://www.clyr.health/journal/ivermectin-vs-mebendazole-antiparasitic-coverage/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "ivermectin-wellness-protocol-overview": {
+      "slug": "ivermectin-wellness-protocol-overview",
+      "title": "Ivermectin Wellness Protocol Overview: Antiparasitic Pharmacology and Physician-Guided Use",
+      "deck": "Ivermectin is an FDA-approved antiparasitic with decades of safety data in labeled indications, and a separate, contested conversation in off-label wellness protocols. This overview explains the drug, typical prescribing patterns, evidence limits, and what patients should expect without cure claims.",
+      "category": "Recovery",
+      "tiers": [
+        "ashersoil",
+        "sexual"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/ivermectin-wellness-protocol-overview/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "parasite-cleanse-vs-antiparasitic-medicine": {
+      "slug": "parasite-cleanse-vs-antiparasitic-medicine",
+      "title": "Parasite Cleanses vs. Real Antiparasitic Medicine: What Actually Works",
+      "deck": "Parasitic exposure is far more common than most Americans realize, and the medicine that treats it is some of the most established in the world. Here is why people are right to take parasites seriously, and why prescription antiparasitic medicine, not an herbal cleanse kit, is the treatment with decades of evidence behind it.",
+      "category": "longevity",
+      "tiers": [
+        "ashersoil",
+        "longevity",
+        "sexual"
+      ],
+      "source": "html",
+      "journal_url": "https://www.clyr.health/journal/parasite-cleanse-vs-antiparasitic-medicine/",
+      "status": "published",
+      "x_draft_id": "2071778589993779200",
+      "x_post_id": "2071778855652626453",
+      "x_tweet_id": "2071778868315230499",
+      "x_published_at": "2026-06-30T02:12:25.854132+00:00",
+      "companion_tweet": "New on CLYR Journal: Parasite Cleanses vs. Real Antiparasitic Medicine\n\nProvider-guided 30-day cleanse tiers from $99 \u2192 https://verde-cleanse-site.vercel.app/protocol?utm_source=twitter&utm_medium=organic&utm_campaign=journal-article&utm_content=parasite-cleanse-vs-antiparasitic-medicine\n\nFull read: https://www.clyr.health/journal/parasite-cleanse-vs-antiparasitic-medicine/\n\n*Compounded not FDA-approved. Licensed providers only."
+    },
+    "anastrozole-trt-estrogen-management": {
+      "slug": "anastrozole-trt-estrogen-management",
+      "title": "Anastrozole on TRT: Managing Estradiol Without Over-Suppression",
+      "deck": "Aromatase converts testosterone to estradiol, necessary for bone and brain health, problematic when excessive. Why TRT patients sometimes use low-dose anastrozole and why less is often more.",
+      "category": "Men's Hormone",
+      "tiers": [
+        "hormone"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/anastrozole-trt-estrogen-management/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "biest-progesterone-compounded-hrt": {
+      "slug": "biest-progesterone-compounded-hrt",
+      "title": "Biest + Progesterone Cream: Compounded Bioidentical HRT",
+      "deck": "Estradiol and estriol in an 80/20 or 50/50 biest ratio plus micronized progesterone in one transdermal cream, compounding logic, evidence limits, and endometrial safety.",
+      "category": "Women's Hormone",
+      "tiers": [
+        "sexual",
+        "hormone"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/biest-progesterone-compounded-hrt/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "bpc-157-peptide-recovery-explained": {
+      "slug": "bpc-157-peptide-recovery-explained",
+      "title": "BPC-157: What the Research Says About This Tissue-Repair Peptide",
+      "deck": "A 15-amino-acid gastric peptide with striking preclinical wound-healing data and a thin but growing human case literature, mechanisms, routes of administration, and where enthusiasm outpaces evidence.",
+      "category": "Peptides",
+      "tiers": [
+        "longevity",
+        "sexual"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/bpc-157-peptide-recovery-explained/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "clyr-tri-gel-triple-therapy-acne": {
+      "slug": "clyr-tri-gel-triple-therapy-acne",
+      "title": "Triple-Combination Acne Therapy: Clindamycin, Benzoyl Peroxide, and Adapalene Explained",
+      "deck": "Why dermatology has moved toward fixed triple therapy for moderate acne, what each ingredient does, how fixed combinations compare to stacking separate products, and where niacinamide fits in a compounded formulation.",
+      "category": "Skin & Hair",
+      "tiers": [
+        "sexual",
+        "skin"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/clyr-tri-gel-triple-therapy-acne/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "compounded-hair-regrowth-quad-stack-men": {
+      "slug": "compounded-hair-regrowth-quad-stack-men",
+      "title": "Compounded Hair Regrowth Sprays: The Science Behind Multi-Ingredient Topical Stacks",
+      "deck": "Why telehealth and compounding pharmacies pair minoxidil with finasteride, tretinoin, and low-dose corticosteroids in a single scalp spray, and what the evidence actually supports for each mechanism.",
+      "category": "Skin & Hair",
+      "tiers": [
+        "sexual",
+        "skin"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/compounded-hair-regrowth-quad-stack-men/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "compounded-semaglutide-cost": {
+      "slug": "compounded-semaglutide-cost",
+      "title": "How Much Does Compounded Semaglutide Actually Cost in 2026?",
+      "deck": "A pricing breakdown of every legitimate path: compounded, branded, manufacturer direct, and insurance. What drives the wide price range, the hidden fees to watch for, and the seven questions to ask before you enroll.",
+      "category": "journal",
+      "tiers": [
+        "glp1",
+        "sexual"
+      ],
+      "source": "html",
+      "journal_url": "https://www.clyr.health/journal/compounded-semaglutide-cost/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "compounded-tirzepatide-ohio": {
+      "slug": "compounded-tirzepatide-ohio",
+      "title": "Compounded Tirzepatide in Ohio: Telehealth Access, Pharmacy Rules, and What to Verify",
+      "deck": "Ohio allows tirzepatide prescribing via synchronous telehealth and has an active State Board of Pharmacy. Here's how compounded access, Medicaid policy, and Midwest fulfillment logistics work for Ohio patients in 2026.",
+      "category": "Cost & Access",
+      "tiers": [
+        "glp1",
+        "sexual"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/compounded-tirzepatide-ohio/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "dhea-pregnenolone-adrenal-precursors": {
+      "slug": "dhea-pregnenolone-adrenal-precursors",
+      "title": "DHEA and Pregnenolone: Adrenal Hormone Precursors in HRT",
+      "deck": "The adrenal glands produce DHEA and pregnenolone as upstream steroid precursors, supplementation in perimenopause and aging remains controversial but widely compounded.",
+      "category": "Women's Hormone",
+      "tiers": [
+        "hormone"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/dhea-pregnenolone-adrenal-precursors/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "doxycycline-oral-acne-antibiotic": {
+      "slug": "doxycycline-oral-acne-antibiotic",
+      "title": "Doxycycline for Acne: When Topicals Need an Oral Anti-Inflammatory Boost",
+      "deck": "Sub-antimicrobial-dose doxycycline modulates inflammation in moderate papulopustular acne, how 100 mg protocols work, duration limits, and why dermatologists pair with topicals not monotherapy.",
+      "category": "Skin & Hair",
+      "tiers": [
+        "sexual",
+        "skin"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/doxycycline-oral-acne-antibiotic/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "enclomiphene-fertility-preserving-testosterone": {
+      "slug": "enclomiphene-fertility-preserving-testosterone",
+      "title": "Enclomiphene: Fertility-Preserving Testosterone Stimulation Explained",
+      "deck": "The isolated trans-isomer of clomiphene raises LH and FSH to stimulate endogenous testosterone without shutting down sperm production, how it works, who it fits, and how it compares to injectable TRT.",
+      "category": "Men's Hormone",
+      "tiers": [
+        "sexual",
+        "hormone"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/enclomiphene-fertility-preserving-testosterone/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "estradiol-patches-hrt-explained": {
+      "slug": "estradiol-patches-hrt-explained",
+      "title": "Estradiol Patches for Menopause: Transdermal HRT Done Right",
+      "deck": "Transdermal estradiol bypasses first-pass liver metabolism, delivering steady hormone levels with favorable thrombotic risk profile compared to oral estrogen, the foundation of modern menopausal hormone therapy.",
+      "category": "Women's Hormone",
+      "tiers": [
+        "sexual",
+        "hormone"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/estradiol-patches-hrt-explained/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "estradiol-vaginal-cream-gsm": {
+      "slug": "estradiol-vaginal-cream-gsm",
+      "title": "Estradiol Vaginal Cream: Local Estrogen for Genitourinary Syndrome of Menopause",
+      "deck": "Low-dose vaginal estradiol 0.01% treats dryness, dyspareunia, and urinary symptoms with minimal systemic absorption, the most under-prescribed effective menopause therapy.",
+      "category": "Women's Hormone",
+      "tiers": [
+        "hormone"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/estradiol-vaginal-cream-gsm/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "estriol-ghk-cu-anti-aging-cream": {
+      "slug": "estriol-ghk-cu-anti-aging-cream",
+      "title": "Estriol + GHK-Cu Cream: Women's Compounded Anti-Aging Topical",
+      "deck": "Weak estrogen estriol plus copper peptide GHK-Cu, niacinamide, and hyaluronic acid in one compounded face cream, localized skin aging support without full systemic HRT.",
+      "category": "Skin & Hair",
+      "tiers": [
+        "sexual",
+        "skin"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/estriol-ghk-cu-anti-aging-cream/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "finasteride-oral-hair-loss-dht": {
+      "slug": "finasteride-oral-hair-loss-dht",
+      "title": "Finasteride 1mg for Hair Loss: DHT Blockade Explained",
+      "deck": "The only FDA-approved oral dose for androgenetic alopecia in men lowers scalp DHT by roughly 60%, efficacy data, side-effect context, and how it pairs with topical minoxidil.",
+      "category": "Skin & Hair",
+      "tiers": [
+        "sexual",
+        "skin"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/finasteride-oral-hair-loss-dht/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "foundayo-hair-regrowth-science": {
+      "slug": "foundayo-hair-regrowth-science",
+      "title": "GLP-1 Weight Loss and Hair Regrowth: The Science Behind Shedding, Recovery, and Oral Options Like Foundayo",
+      "deck": "Rapid weight loss on semaglutide, tirzepatide, or oral GLP-1s like Foundayo can trigger telogen effluvium months into treatment. Here's the follicle biology, timeline expectations, and evidence-based regrowth strategies that actually work.",
+      "category": "Skin & Hair",
+      "tiers": [
+        "glp1",
+        "sexual",
+        "skin"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/foundayo-hair-regrowth-science/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "ghk-cu-injectable-copper-peptide": {
+      "slug": "ghk-cu-injectable-copper-peptide",
+      "title": "GHK-Cu Injectable: Copper Peptide Collagen Signaling",
+      "deck": "The tripeptide glycyl-L-histidyl-L-lysine bound to copper modulates wound healing, collagen synthesis, and gene expression, injectable and topical uses in longevity medicine.",
+      "category": "Peptides",
+      "tiers": [
+        "longevity",
+        "skin"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/ghk-cu-injectable-copper-peptide/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "glp1-protein-resistance-training": {
+      "slug": "glp1-protein-resistance-training",
+      "title": "Protein, Resistance Training, and the Lean-Mass Question on GLP-1s",
+      "deck": "Roughly a quarter of GLP-1 weight loss is lean mass. The right protein intake and a structured lifting habit move that number meaningfully. Here's what the 2025 evidence actually says.",
+      "category": "journal",
+      "tiers": [
+        "glp1"
+      ],
+      "source": "html",
+      "journal_url": "https://www.clyr.health/journal/glp1-protein-resistance-training/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "glp1-side-effects-management": {
+      "slug": "glp1-side-effects-management",
+      "title": "Living With GLP-1 Side Effects: The Practical Playbook",
+      "deck": "Nausea, fatigue, constipation, sulfur burps. What actually causes each one, what's been proven to help, and when to call your provider.",
+      "category": "journal",
+      "tiers": [
+        "glp1"
+      ],
+      "source": "html",
+      "journal_url": "https://www.clyr.health/journal/glp1-side-effects-management/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "glp1-weight-loss-north-carolina": {
+      "slug": "glp1-weight-loss-north-carolina",
+      "title": "GLP-1 Weight Loss in North Carolina: Telehealth Rules, Coverage, and Patient Access",
+      "deck": "North Carolina allows GLP-1 weight-loss prescribing via synchronous telehealth. Here's how state licensure, collaborative practice rules, Medicaid policy, and Research Triangle pharmacy infrastructure affect NC patient access in 2026.",
+      "category": "Cost & Access",
+      "tiers": [
+        "glp1"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/glp1-weight-loss-north-carolina/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "glutathione-master-antioxidant": {
+      "slug": "glutathione-master-antioxidant",
+      "title": "Glutathione: The Master Antioxidant, Explained",
+      "deck": "What the research actually shows about the body's most important detoxification molecule, why oral supplements don't work, and how injectable protocols compare.",
+      "category": "journal",
+      "tiers": [
+        "longevity",
+        "sexual"
+      ],
+      "source": "html",
+      "journal_url": "https://www.clyr.health/journal/glutathione-master-antioxidant/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "glutathione-push-injection-benefits": {
+      "slug": "glutathione-push-injection-benefits",
+      "title": "Glutathione Push and Injection Benefits: Antioxidant Therapy Beyond Oral Supplements",
+      "deck": "Glutathione IV pushes and injectable protocols bypass the digestive destruction that cripples oral supplements, delivering the body's master antioxidant directly to tissues for detox, immune, and skin support. Here is what parenteral glutathione does and how home injection compares to clinic pushes.",
+      "category": "NAD+",
+      "tiers": [
+        "longevity"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/glutathione-push-injection-benefits/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "hcg-trt-adjunct-explained": {
+      "slug": "hcg-trt-adjunct-explained",
+      "title": "HCG on TRT: Why Some Men Add Chorionic Gonadotropin to Testosterone Therapy",
+      "deck": "Human chorionic gonadotropin mimics LH at the testis, maintaining intratesticular testosterone and testicular volume when exogenous testosterone shuts down the axis, dosing, evidence, and limitations.",
+      "category": "Men's Hormone",
+      "tiers": [
+        "longevity",
+        "sexual",
+        "hormone"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/hcg-trt-adjunct-explained/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "hydroquinone-triple-cream-hyperpigmentation": {
+      "slug": "hydroquinone-triple-cream-hyperpigmentation",
+      "title": "Hydroquinone Triple Cream: Prescription-Strength Hyperpigmentation Treatment",
+      "deck": "The Kligman formula class, hydroquinone, tretinoin, and fluocinolone, remains dermatology's workhorse for melasma and post-inflammatory hyperpigmentation when OTC fading serums fail.",
+      "category": "Skin & Hair",
+      "tiers": [
+        "skin"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/hydroquinone-triple-cream-hyperpigmentation/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "legitscript-telehealth-certification-explained": {
+      "slug": "legitscript-telehealth-certification-explained",
+      "title": "LegitScript Telehealth Certification: What It Means and Why Patients Should Verify It",
+      "deck": "LegitScript certification is the closest thing telehealth has to a universal trust standard, but most patients click the badge without understanding what it verifies. Here's the audit process, what it covers, and how to check any platform.",
+      "category": "Cost & Access",
+      "tiers": [
+        "sexual"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/legitscript-telehealth-certification-explained/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "lipo-mino-injection-weight-loss": {
+      "slug": "lipo-mino-injection-weight-loss",
+      "title": "Lipo-Mino Injection for Weight Loss: L-Carnitine, Lipotropics, and GLP-1 Companion Therapy",
+      "deck": "Lipo-Mino + L-Carnitine expands the classic MIC lipotropic stack with mitochondrial fatty-acid transport and a fuller B-vitamin complex, a metabolic adjunct telehealth clinicians pair with GLP-1 when patients need energy and fat-processing support beyond appetite suppression.",
+      "category": "GLP-1",
+      "tiers": [
+        "glp1"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/lipo-mino-injection-weight-loss/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "liraglutide-weight-loss-glp1": {
+      "slug": "liraglutide-weight-loss-glp1",
+      "title": "Liraglutide for Weight Loss: The Daily GLP-1 Option",
+      "deck": "Before weekly semaglutide dominated obesity care, liraglutide 3.0 mg daily (Saxenda) established that GLP-1 agonism alone could produce meaningful weight loss, still relevant for semaglutide-intolerant patients.",
+      "category": "GLP-1",
+      "tiers": [
+        "glp1"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/liraglutide-weight-loss-glp1/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "longevity-medicine-foundations": {
+      "slug": "longevity-medicine-foundations",
+      "title": "The Five Pillars of Modern Longevity Medicine",
+      "deck": "A working framework for thinking about healthspan, biological age, and the interventions that move them. The behaviors and biomarkers that matter, the ones that don't, and how to think about building a real protocol.",
+      "category": "journal",
+      "tiers": [
+        "longevity",
+        "sexual"
+      ],
+      "source": "html",
+      "journal_url": "https://www.clyr.health/journal/longevity-medicine-foundations/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "metformin-er-glp1-companion": {
+      "slug": "metformin-er-glp1-companion",
+      "title": "Metformin ER as a GLP-1 Companion: Insulin Sensitivity Beyond Weight Loss",
+      "deck": "The oldest diabetes drug in modern use still earns its place alongside GLP-1 therapy, AMPK activation, insulin sensitization, and emerging longevity interest at 500mg extended-release.",
+      "category": "GLP-1",
+      "tiers": [
+        "glp1"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/metformin-er-glp1-companion/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "micc-lipotropic-injection-explained": {
+      "slug": "micc-lipotropic-injection-explained",
+      "title": "MICC Lipotropic Injection Explained: Methionine, Inositol, Choline, and B12 for Metabolic Support",
+      "deck": "MICC injections combine four lipotropic nutrients, methionine, inositol, choline, and cyanocobalamin, into a weekly metabolic adjunct that weight-loss clinicians pair with GLP-1 therapy when patients need energy and liver-fat support beyond appetite suppression alone.",
+      "category": "GLP-1",
+      "tiers": [
+        "glp1",
+        "sexual"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/micc-lipotropic-injection-explained/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "nad-face-cream-topical-longevity": {
+      "slug": "nad-face-cream-topical-longevity",
+      "title": "Topical NAD+ for Skin: Can a Face Cream Deliver Cellular Energy Benefits?",
+      "deck": "NAD+ injections dominate longevity conversation, but compounded face creams at 10% NAD+ target a different question, local skin biology, barrier function, and what topical delivery can realistically achieve.",
+      "category": "NAD+",
+      "tiers": [
+        "longevity"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/nad-face-cream-topical-longevity/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "nad-iv-vs-injection": {
+      "slug": "nad-iv-vs-injection",
+      "title": "NAD+ IV vs. Injection vs. Oral: Which Delivery Method Actually Works?",
+      "deck": "Bioavailability data, cost comparisons, and the honest pros and cons of each route. What the pharmacokinetic studies show, where the experts disagree, and how to think about choosing a protocol.",
+      "category": "journal",
+      "tiers": [
+        "longevity"
+      ],
+      "source": "html",
+      "journal_url": "https://www.clyr.health/journal/nad-iv-vs-injection/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "nad-vs-nmn-vs-nr": {
+      "slug": "nad-vs-nmn-vs-nr",
+      "title": "NAD+ vs. NMN vs. NR: Decoding the Letters Behind the Longevity Supplements",
+      "deck": "Three molecules, three different paths to the same end state. What each one actually does, what the latest head-to-head human trials show, and which actually raises NAD+ levels more effectively.",
+      "category": "journal",
+      "tiers": [
+        "longevity"
+      ],
+      "source": "html",
+      "journal_url": "https://www.clyr.health/journal/nad-vs-nmn-vs-nr/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "naltrexone-ldn-wellness-protocol": {
+      "slug": "naltrexone-ldn-wellness-protocol",
+      "title": "Low-Dose Naltrexone: Microdosing an Opioid Antagonist for Inflammation",
+      "deck": "At 1.5 to 4.5 mg nightly, far below the 50 mg addiction-treatment dose, naltrexone may briefly block opioid receptors and trigger a rebound endorphin response with immunomodulatory effects. What evidence supports and what remains anecdotal.",
+      "category": "Recovery",
+      "tiers": [
+        "general"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/naltrexone-ldn-wellness-protocol/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "niagen-nicotinamide-riboside-explained": {
+      "slug": "niagen-nicotinamide-riboside-explained",
+      "title": "Niagen (Nicotinamide Riboside): The NAD+ Precursor, Explained",
+      "deck": "Niagen is one of the most-studied NAD+ precursors in human research. The science of how nicotinamide riboside raises NAD+, what the clinical trials show, what regulators have said, and how a precursor differs from a direct NAD+ injection.",
+      "category": "journal",
+      "tiers": [
+        "longevity",
+        "sexual"
+      ],
+      "source": "html",
+      "journal_url": "https://www.clyr.health/journal/niagen-nicotinamide-riboside-explained/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "oxytocin-nasal-spray-bonding": {
+      "slug": "oxytocin-nasal-spray-bonding",
+      "title": "Oxytocin Nasal Spray: Bonding, Arousal, and the Science of the Love Hormone",
+      "deck": "Intranasal oxytocin crosses the blood-brain barrier more reliably than peripheral injection, studied for social bonding, orgasm intensity, and pair connection in sexual health compounding.",
+      "category": "Sexual Health",
+      "tiers": [
+        "sexual"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/oxytocin-nasal-spray-bonding/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "progesterone-capsules-hrt-sleep": {
+      "slug": "progesterone-capsules-hrt-sleep",
+      "title": "Micronized Progesterone 100mg: The Progestogen Women Actually Tolerate",
+      "deck": "Oral micronized progesterone is structurally identical to ovarian progesterone, converts to allopregnanolone for sleep and anxiety support, and protects the endometrium when paired with estrogen.",
+      "category": "Women's Hormone",
+      "tiers": [
+        "sexual",
+        "hormone"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/progesterone-capsules-hrt-sleep/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "pt141-bremelanotide-libido": {
+      "slug": "pt141-bremelanotide-libido",
+      "title": "PT-141 (Bremelanotide): Central Libido Peptide Therapy",
+      "deck": "Unlike PDE5 drugs that act peripherally, PT-141 is a melanocortin receptor agonist that works through brain pathways for desire, FDA-approved as Vyleesi for women, compounded for men in strip and ODT formats.",
+      "category": "Sexual Health",
+      "tiers": [
+        "longevity",
+        "sexual"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/pt141-bremelanotide-libido/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "select-trial-cardiovascular": {
+      "slug": "select-trial-cardiovascular",
+      "title": "SELECT and the Cardiovascular Case for Semaglutide",
+      "deck": "The SELECT trial enrolled 17,604 patients with cardiovascular disease but no diabetes and showed a 20 percent reduction in major adverse cardiac events on semaglutide. Here's what the trial showed, why the effect appeared to be partly weight-independent, and what it means clinically.",
+      "category": "journal",
+      "tiers": [
+        "glp1"
+      ],
+      "source": "html",
+      "journal_url": "https://www.clyr.health/journal/select-trial-cardiovascular/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "semaglutide-california": {
+      "slug": "semaglutide-california",
+      "title": "Semaglutide in California: Telehealth Rules, Medi-Cal Coverage, and Cash-Pay Pricing",
+      "deck": "California allows GLP-1 prescribing via synchronous telehealth without an in-person visit. Here's how state licensure, Medi-Cal policy, pharmacy oversight, and West Coast logistics shape what California patients pay and how they access semaglutide in 2026.",
+      "category": "Cost & Access",
+      "tiers": [
+        "glp1",
+        "sexual"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/semaglutide-california/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "semaglutide-florida": {
+      "slug": "semaglutide-florida",
+      "title": "Semaglutide in Florida: Telehealth Rules, Pharmacy Options, and Cash-Pay Pricing",
+      "deck": "Florida allows GLP-1 prescribing via synchronous telehealth without an in-person visit. Here's how the legal framework, pharmacy options, and climate considerations shape what Florida patients actually pay and how they get treatment.",
+      "category": "journal",
+      "tiers": [
+        "glp1"
+      ],
+      "source": "html",
+      "journal_url": "https://www.clyr.health/journal/semaglutide-florida/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "semaglutide-illinois": {
+      "slug": "semaglutide-illinois",
+      "title": "Semaglutide in Illinois: Telehealth Prescribing, Medicaid Policy, and Midwest Access",
+      "deck": "Illinois permits GLP-1 prescribing through synchronous telehealth without an in-person visit. Here's how IDFPR licensure, Medicaid formulary rules, pharmacy oversight, and Chicago-to-downstate logistics shape what Illinois patients pay for semaglutide in 2026.",
+      "category": "Cost & Access",
+      "tiers": [
+        "glp1",
+        "sexual"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/semaglutide-illinois/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "semaglutide-michigan": {
+      "slug": "semaglutide-michigan",
+      "title": "Semaglutide in Michigan: Telehealth Access, Medicaid Rules, and Great Lakes Logistics",
+      "deck": "Michigan allows GLP-1 prescribing via synchronous telehealth without an in-person visit. Here's how LARA licensure, Medicaid policy, pharmacy regulation, and Detroit-to-Upper-Peninsula fulfillment shape semaglutide access for Michigan residents.",
+      "category": "Cost & Access",
+      "tiers": [
+        "glp1",
+        "sexual"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/semaglutide-michigan/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "semaglutide-near-me": {
+      "slug": "semaglutide-near-me",
+      "title": "Semaglutide Near Me: A Practical Guide to Finding a Legitimate Provider",
+      "deck": "How telehealth, local clinics, and manufacturer programs compare in 2026, and the seven questions to ask any provider before you hand over money.",
+      "category": "journal",
+      "tiers": [
+        "glp1"
+      ],
+      "source": "html",
+      "journal_url": "https://www.clyr.health/journal/semaglutide-near-me/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "semaglutide-new-york": {
+      "slug": "semaglutide-new-york",
+      "title": "Semaglutide in New York: Telehealth Prescribing, Medicaid Policy, and Access in 2026",
+      "deck": "New York permits GLP-1 prescribing through synchronous telehealth without an in-person visit. Here's how state licensure, Medicaid policy, pharmacy regulation, and NYC logistics affect what New York patients pay for semaglutide.",
+      "category": "Cost & Access",
+      "tiers": [
+        "glp1",
+        "sexual"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/semaglutide-new-york/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "semaglutide-odt-nausea-managed-oral-glp1": {
+      "slug": "semaglutide-odt-nausea-managed-oral-glp1",
+      "title": "Oral Semaglutide ODT: Needle-Free GLP-1 With Built-In Nausea Support",
+      "deck": "Compounded semaglutide orally disintegrating tablets paired with ondansetron address the two biggest GLP-1 adoption barriers, injections and GI side effects, in a single prescription format.",
+      "category": "GLP-1",
+      "tiers": [
+        "glp1",
+        "sexual"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/semaglutide-odt-nausea-managed-oral-glp1/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "semaglutide-pennsylvania": {
+      "slug": "semaglutide-pennsylvania",
+      "title": "Semaglutide in Pennsylvania: Coverage, Cash-Pay, and What Changed in 2026",
+      "deck": "Pennsylvania Medicaid stopped covering GLP-1s for adult weight loss on January 1, 2026. Here's what coverage still exists, what cash-pay actually costs, and how patients are navigating the transition.",
+      "category": "journal",
+      "tiers": [
+        "glp1",
+        "sexual"
+      ],
+      "source": "html",
+      "journal_url": "https://www.clyr.health/journal/semaglutide-pennsylvania/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "semaglutide-texas": {
+      "slug": "semaglutide-texas",
+      "title": "Semaglutide in Texas: Pharmacy Permits, Telehealth Rules, and What to Watch For",
+      "deck": "Texas has a distinctive pharmacy regulatory structure, an active Board of Pharmacy, and a complex post-shortage landscape for compounded GLP-1s. Here's the state of access in 2026.",
+      "category": "journal",
+      "tiers": [
+        "glp1"
+      ],
+      "source": "html",
+      "journal_url": "https://www.clyr.health/journal/semaglutide-texas/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "semaglutide-vs-tirzepatide": {
+      "slug": "semaglutide-vs-tirzepatide",
+      "title": "Semaglutide vs. Tirzepatide: What the SURMOUNT-5 Trial Actually Settled",
+      "deck": "The first head-to-head trial of the two leading GLP-1 medications, decoded in plain English. What the numbers mean, why side effects surprised researchers, and how to think about the choice.",
+      "category": "journal",
+      "tiers": [
+        "glp1",
+        "sexual"
+      ],
+      "source": "html",
+      "journal_url": "https://www.clyr.health/journal/semaglutide-vs-tirzepatide/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "sermorelin-explained": {
+      "slug": "sermorelin-explained",
+      "title": "What Sermorelin Actually Does (And Doesn't Do)",
+      "deck": "A primer on the GHRH(1-29) analog, why it works upstream of growth hormone instead of replacing it, and what the evidence actually supports.",
+      "category": "journal",
+      "tiers": [
+        "longevity",
+        "sexual"
+      ],
+      "source": "html",
+      "journal_url": "https://www.clyr.health/journal/sermorelin-explained/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "sexual-health-telehealth-guide": {
+      "slug": "sexual-health-telehealth-guide",
+      "title": "Sexual Health Telehealth: How Online ED and Libido Treatment Works in 2026",
+      "deck": "Telehealth has become the default channel for erectile dysfunction and libido treatment, but legitimate care still requires licensed prescribers, pharmacy fulfillment, contraindication screening, and ongoing safety monitoring. Here's the full patient journey.",
+      "category": "Sexual Health",
+      "tiers": [
+        "sexual"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/sexual-health-telehealth-guide/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "sildenafil-tadalafil-dual-gummy-ed": {
+      "slug": "sildenafil-tadalafil-dual-gummy-ed",
+      "title": "Sildenafil + Tadalafil Gummies: Dual PDE5 On-Demand ED",
+      "deck": "Fast-onset sildenafil plus long-duration tadalafil in one compounded gummy, Rugiet-class dual inhibition for men who want rapid and sustained erectile support.",
+      "category": "Sexual Health",
+      "tiers": [
+        "sexual"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/sildenafil-tadalafil-dual-gummy-ed/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "surmount-5-deep-dive": {
+      "slug": "surmount-5-deep-dive",
+      "title": "SURMOUNT-5: The Trial That Compared Tirzepatide and Semaglutide Head-to-Head",
+      "deck": "The first large randomized trial directly comparing tirzepatide and semaglutide for obesity. What the numbers actually showed, where the gap came from, and what it means for the next generation of GLP-1 prescribing.",
+      "category": "journal",
+      "tiers": [
+        "glp1",
+        "sexual"
+      ],
+      "source": "html",
+      "journal_url": "https://www.clyr.health/journal/surmount-5-deep-dive/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "tadalafil-apomorphine-dual-ed": {
+      "slug": "tadalafil-apomorphine-dual-ed",
+      "title": "Tadalafil + Apomorphine Troches: Dual-Mechanism On-Demand ED",
+      "deck": "PDE5 inhibition plus dopamine agonism in one sublingual troche, central arousal signaling combined with peripheral vasodilation for compounded on-demand erectile support.",
+      "category": "Sexual Health",
+      "tiers": [
+        "sexual"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/tadalafil-apomorphine-dual-ed/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "tadalafil-troches-sublingual-ed": {
+      "slug": "tadalafil-troches-sublingual-ed",
+      "title": "Tadalafil Troches: Sublingual On-Demand ED Therapy",
+      "deck": "Compounded 22 mg tadalafil troches dissolve under the tongue for faster absorption than swallowed tablets, on-demand erectile support with hours-long duration.",
+      "category": "Sexual Health",
+      "tiers": [
+        "sexual"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/tadalafil-troches-sublingual-ed/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "tb-500-recovery-peptide": {
+      "slug": "tb-500-recovery-peptide",
+      "title": "TB-500 (Thymosin Beta-4): The Recovery Peptide Explained",
+      "deck": "A fragment of thymosin beta-4 that promotes cell migration and actin polymerization, popular in sports recovery circles with preclinical wound-healing data and limited human trials.",
+      "category": "Peptides",
+      "tiers": [
+        "longevity",
+        "sexual"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/tb-500-recovery-peptide/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "telehealth-weight-loss-how-it-works": {
+      "slug": "telehealth-weight-loss-how-it-works",
+      "title": "Telehealth Weight Loss: How Online GLP-1 Programs Work From Intake to Delivery",
+      "deck": "Modern obesity telehealth is more than a prescription PDF, it is asynchronous clinical intake, licensed provider review, pharmacy fulfillment, cold-chain shipping, and structured follow-up. Here is what happens at each step when you start GLP-1 therapy online.",
+      "category": "Metabolic Health",
+      "tiers": [
+        "glp1"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/telehealth-weight-loss-how-it-works/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "testosterone-cream-topical-trt": {
+      "slug": "testosterone-cream-topical-trt",
+      "title": "Testosterone Cream 1%: Needle-Free TRT Through the Skin",
+      "deck": "Transdermal testosterone at 1% (10 mg/g) delivers daily androgen replacement without injections, absorption variables, transfer risk, and how it compares to cypionate.",
+      "category": "Men's Hormone",
+      "tiers": [
+        "sexual",
+        "hormone"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/testosterone-cream-topical-trt/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "testosterone-cypionate-trt-explained": {
+      "slug": "testosterone-cypionate-trt-explained",
+      "title": "Testosterone Cypionate for TRT: Dosing, Monitoring, and What the Guidelines Say",
+      "deck": "The most widely prescribed injectable testosterone ester in American telehealth TRT, how cypionate works pharmacokinetically, how clinicians dose and monitor it, and what patients should understand before starting.",
+      "category": "Men's Hormone",
+      "tiers": [
+        "sexual",
+        "hormone"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/testosterone-cypionate-trt-explained/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "testosterone-hypo-spray-transdermal": {
+      "slug": "testosterone-hypo-spray-transdermal",
+      "title": "Testosterone Hypo Spray: Metered Transdermal TRT",
+      "deck": "Axillary testosterone sprays deliver precise daily doses through the skin, 20 mg per actuation protocols without vials, needles, or cream transfer risk.",
+      "category": "Men's Hormone",
+      "tiers": [
+        "sexual",
+        "hormone"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/testosterone-hypo-spray-transdermal/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "tirzepatide-sublingual-drops-explained": {
+      "slug": "tirzepatide-sublingual-drops-explained",
+      "title": "Sublingual Tirzepatide: Needle-Free GLP-1/GIP Therapy and the Science of Absorption",
+      "deck": "Compounded sublingual tirzepatide drops aim to deliver dual incretin action without injection, pharmacokinetic challenges, titration logic, and how they compare to FDA-approved pens.",
+      "category": "GLP-1",
+      "tiers": [
+        "glp1",
+        "sexual"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/tirzepatide-sublingual-drops-explained/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "tretinoin-retinoid-starter-guide": {
+      "slug": "tretinoin-retinoid-starter-guide",
+      "title": "Tretinoin 0.025%: The Gold-Standard Retinoid for Skin Renewal",
+      "deck": "Prescription all-trans retinoic acid remains the reference against which every anti-aging and acne topical is measured, initiation protocol, retinization timeline, and pairing with niacinamide or hydroquinone.",
+      "category": "Skin & Hair",
+      "tiers": [
+        "skin"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/tretinoin-retinoid-starter-guide/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "trimix-injection-ed-rescue": {
+      "slug": "trimix-injection-ed-rescue",
+      "title": "Trimix for Erectile Dysfunction: When PDE5 Inhibitors Are Not Enough",
+      "deck": "Intracavernosal alprostadil, papaverine, and phentolamine produce reliable erections on demand, mechanism, T105 starting strengths, priapism rules, and who qualifies.",
+      "category": "Sexual Health",
+      "tiers": [
+        "sexual"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/trimix-injection-ed-rescue/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "wegovy-tablets-oral-semaglutide-guide": {
+      "slug": "wegovy-tablets-oral-semaglutide-guide",
+      "title": "Wegovy Tablets: A Complete Guide to Oral Semaglutide for Weight Management",
+      "deck": "FDA-approved Wegovy tablets bring semaglutide weight-loss pharmacotherapy into a daily pill, no needles, no refrigeration. Here is how oral semaglutide works, how it compares to injectable GLP-1s and compounded oral options, and what titration looks like in practice.",
+      "category": "GLP-1",
+      "tiers": [
+        "glp1"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/wegovy-tablets-oral-semaglutide-guide/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "weight-loss-plateau-glp1": {
+      "slug": "weight-loss-plateau-glp1",
+      "title": "Weight Loss Plateau on GLP-1: Why Progress Stalls and What Clinicians Adjust",
+      "deck": "Three to six months into GLP-1 therapy, many patients hit a weight-loss plateau, not because the drug stopped working, but because metabolic adaptation, dose ceilings, dietary drift, and muscle-preservation needs converge. Here is how competent telehealth programs respond.",
+      "category": "GLP-1",
+      "tiers": [
+        "glp1"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/weight-loss-plateau-glp1/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "weight-loss-telehealth-georgia": {
+      "slug": "weight-loss-telehealth-georgia",
+      "title": "Weight Loss Telehealth in Georgia: GLP-1 Access, Prescribing Rules, and Pricing",
+      "deck": "Georgia permits GLP-1 weight-loss prescribing through synchronous telehealth without an in-person visit. Here's how state licensure, APRN rules, Medicaid policy, and Southeast fulfillment logistics shape access for Georgia residents.",
+      "category": "Cost & Access",
+      "tiers": [
+        "glp1"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/weight-loss-telehealth-georgia/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "what-is-nad-plus": {
+      "slug": "what-is-nad-plus",
+      "title": "What Is NAD+? A Field Guide to the Molecule Behind the Longevity Conversation",
+      "deck": "Why a coenzyme most people have never heard of has become the centerpiece of modern longevity protocols, what the research actually shows, and how it connects to energy, mitochondrial function, and aging.",
+      "category": "journal",
+      "tiers": [
+        "longevity"
+      ],
+      "source": "html",
+      "journal_url": "https://www.clyr.health/journal/what-is-nad-plus/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "womens-hair-regrowth-topical-stack": {
+      "slug": "womens-hair-regrowth-topical-stack",
+      "title": "Women's Pattern Hair Loss: Why Compounded Topical Stacks Skip Finasteride",
+      "deck": "Female androgenetic alopecia follows different hormonal rules than male pattern baldness. How compounded minoxidil-based sprays add tretinoin, fluocinolone, biotin, and melatonin, and why finasteride is often left out.",
+      "category": "Skin & Hair",
+      "tiers": [
+        "sexual",
+        "skin"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/womens-hair-regrowth-topical-stack/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "womens-testosterone-cream-libido": {
+      "slug": "womens-testosterone-cream-libido",
+      "title": "Low-Dose Testosterone Cream for Women: Energy, Libido, and the Evidence",
+      "deck": "Women produce testosterone from ovaries and adrenals; levels fall with age and oophorectomy. Compounded low-dose creams aim to restore physiologic range for hypoactive desire, not male TRT doses.",
+      "category": "Women's Hormone",
+      "tiers": [
+        "sexual",
+        "hormone"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/womens-testosterone-cream-libido/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    },
+    "zepbound-vs-compounded-tirzepatide": {
+      "slug": "zepbound-vs-compounded-tirzepatide",
+      "title": "Zepbound vs. Compounded Tirzepatide: Brand Pens, Pharmacy Copies, and What Patients Should Know",
+      "deck": "FDA-approved Zepbound KwikPens deliver validated tirzepatide pharmacokinetics; compounded injectable and sublingual copies fill access gaps but carry different regulatory, cost, and bioavailability profiles patients must understand before choosing.",
+      "category": "GLP-1",
+      "tiers": [
+        "glp1",
+        "sexual"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/zepbound-vs-compounded-tirzepatide/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null
+    }
+  },
+  "stats": {
+    "total": 73,
+    "queued": 72,
+    "drafted": 0,
+    "published": 1,
+    "ashersoil": 4
+  }
+}

@@ -1,0 +1,5 @@
+#!/bin/bash
+# CLYR X Organic Content Agent — wrapper
+set -euo pipefail
+ROOT="$(cd "$(dirname "$0")" && pwd)"
+exec python3 "$ROOT/scripts/x-content-agent.py" "$@"
