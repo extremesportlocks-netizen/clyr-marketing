@@ -2262,11 +2262,17 @@ async function openProductDetail(productKey){
   track('portal_addproduct_opened', { product: productKey, vertical: product.vertical });
 
   // Build the plan options actually offered for this SKU.
-  const plans = [];
-  plans.push({ key: 'monthly', label: 'Monthly', price: product.monthlyPrice, perMonth: product.monthlyPrice, recurring: true });
-  if (product.threeMonth) plans.push({ key: '3month', label: '3 months', price: product.threeMonth, perMonth: Math.round(product.threeMonth/3), recurring: false });
-  if (product.sixMonth) plans.push({ key: '6month', label: '6 months', price: product.sixMonth, perMonth: Math.round(product.sixMonth/6), recurring: false });
-  if (product.twelveMonth) plans.push({ key: '12month', label: '12 months', price: product.twelveMonth, perMonth: Math.round(product.twelveMonth/12*100)/100, recurring: false });
+  // GLP-1 (and any product with an explicit plans[] in the catalog) uses those
+  // tiered plans directly; everything else derives from monthly/3mo/6mo.
+  let plans = [];
+  if (Array.isArray(product.plans) && product.plans.length) {
+    plans = product.plans;
+  } else {
+    plans.push({ key: 'monthly', label: 'Monthly', price: product.monthlyPrice, perMonth: product.monthlyPrice, recurring: true });
+    if (product.threeMonth) plans.push({ key: '3month', label: '3 months', price: product.threeMonth, perMonth: Math.round(product.threeMonth/3), recurring: false });
+    if (product.sixMonth) plans.push({ key: '6month', label: '6 months', price: product.sixMonth, perMonth: Math.round(product.sixMonth/6), recurring: false });
+    if (product.twelveMonth) plans.push({ key: '12month', label: '12 months', price: product.twelveMonth, perMonth: Math.round(product.twelveMonth/12*100)/100, recurring: false });
+  }
 
   document.body.insertAdjacentHTML('beforeend', `
     <div id="productModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;z-index:1000;padding:20px;animation:fadeIn 0.15s">
@@ -2317,7 +2323,7 @@ async function openProductDetail(productKey){
             ${plans.map((p, i) => `
               <button data-plan="${p.key}" class="plan-row" style="text-align:left;padding:14px 16px;border:2px solid var(--gray-100);border-radius:12px;background:white;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit">
                 <div>
-                  <div style="font-weight:700;font-size:15px">${p.label}</div>
+                  <div style="font-weight:700;font-size:15px">${p.label}${p.badge ? ` <span style="font-size:10px;color:var(--teal,#2bbcb3);font-weight:800;text-transform:uppercase;letter-spacing:.04em">${p.badge}</span>` : ''}</div>
                   <div style="font-size:12px;color:var(--gray-500);margin-top:2px">${p.recurring ? 'Billed monthly · cancel anytime' : `One-time payment · $${p.perMonth}/mo equivalent`}</div>
                 </div>
                 <div style="text-align:right">
@@ -2903,7 +2909,7 @@ async function openSwitchPlanModal(productKey){
             ${plans.map(p => `
               <button data-plan="${p.key}" class="switch-plan-row" style="text-align:left;padding:14px 16px;border:2px solid var(--gray-100);border-radius:12px;background:white;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit">
                 <div>
-                  <div style="font-weight:700;font-size:15px">${p.label}</div>
+                  <div style="font-weight:700;font-size:15px">${p.label}${p.badge ? ` <span style="font-size:10px;color:var(--teal,#2bbcb3);font-weight:800;text-transform:uppercase;letter-spacing:.04em">${p.badge}</span>` : ''}</div>
                   <div style="font-size:12px;color:var(--gray-500);margin-top:2px">${p.recurring ? 'Billed monthly · cancel anytime' : `One-time payment · $${p.perMonth}/mo equivalent`}</div>
                 </div>
                 <div style="text-align:right">
