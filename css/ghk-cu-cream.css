@@ -27,11 +27,13 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+html { overflow-x: clip; }
 body.ghk-page {
   font-family: var(--sans);
   color: var(--dark);
   background: var(--white);
-  overflow-x: hidden;
+  overflow-x: clip;
+  max-width: 100%;
   line-height: 1.6;
 }
 
@@ -1113,6 +1115,7 @@ body.ghk-page {
 }
 @media (max-width: 480px) {
   .ghk-hero { padding: 80px 18px 48px; }
+  .ghk-hero-bg, .ghk-mesh, .ghk-hero-glow, #ghk-particles, .ghk-hero canvas { max-width: 100vw; left: 0; right: 0; }
   .ghk-hero-panel { min-height: 260px; max-height: 38vh; }
   .ghk-title { font-size: clamp(32px, 9vw, 40px); }
   .ghk-lede { font-size: 15px; }
