@@ -1121,8 +1121,11 @@ body.ghk-page {
   /* Brand-first: compact image on top, then the offer */
   .ghk-hero-visual { order: 0; }
   .ghk-hero-copy { order: 1; }
-  .ghk-hero-panel { min-height: 0; max-height: 26vh; }
-  .ghk-product-stage, .ghk-hero-photo-wrap { max-height: 26vh; }
+  .ghk-hero-panel { min-height: 0; max-height: none; border-radius: 20px; padding: 10px 0; }
+  .ghk-product-stage { min-height: 0; width: min(70%, 260px); }
+  .ghk-hero-photo-wrap { width: 100%; }
+  .ghk-hero-photo { max-height: 30vh; width: auto; margin: 0 auto; display: block; object-fit: contain; }
+  .ghk-float-badge { display: none; }
   .ghk-page .breadcrumb { font-size: 12px; padding-top: 12px; }
   .ghk-eyebrow { margin-bottom: 12px; }
   .ghk-title { font-size: clamp(30px, 8.5vw, 38px); margin-bottom: 10px; line-height: 1.05; }
