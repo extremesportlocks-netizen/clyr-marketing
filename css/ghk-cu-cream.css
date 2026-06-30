@@ -1055,25 +1055,7 @@ body.ghk-page {
 }
 
 /* Nav on dark hero */
-.ghk-page .nav {
-  background: rgba(10, 14, 20, 0.72);
-  border-bottom-color: rgba(255, 255, 255, 0.06);
-}
-.ghk-page .nav-links a { color: rgba(255, 255, 255, 0.7); }
-.ghk-page .nav-links a:hover { color: #fff; }
-.ghk-page .nav-item > a { color: rgba(255, 255, 255, 0.7); }
-.ghk-page .nav-logo text:first-child tspan:first-child { fill: #fff !important; }
-.ghk-page .breadcrumb {
-  position: relative;
-  z-index: 5;
-  color: rgba(255, 255, 255, 0.35);
-  padding-top: 20px;
-  font-size: 13px;
-  line-height: 1.5;
-  flex-wrap: wrap;
-}
-.ghk-page .breadcrumb a { color: rgba(255, 255, 255, 0.5); }
-.ghk-page .breadcrumb a:hover { color: var(--copper-light); }
+/* nav + breadcrumb now use standard white-glass styling from inline <style> */
 
 /* Shared sections inherit product-page.css via HTML */
 .ghk-page .section-label { color: var(--copper-deep); }
@@ -1126,7 +1108,7 @@ body.ghk-page {
   .ghk-hero-photo-wrap { width: 100%; }
   .ghk-hero-photo { max-height: 30vh; width: auto; margin: 0 auto; display: block; object-fit: contain; }
   .ghk-float-badge { display: none; }
-  .ghk-page .breadcrumb { font-size: 12px; padding-top: 12px; }
+  .breadcrumb { font-size: 12px; padding: 12px 18px; }
   .ghk-eyebrow { margin-bottom: 12px; }
   .ghk-title { font-size: clamp(30px, 8.5vw, 38px); margin-bottom: 10px; line-height: 1.05; }
   .ghk-lede { font-size: 14.5px; margin-bottom: 16px; line-height: 1.55; }
