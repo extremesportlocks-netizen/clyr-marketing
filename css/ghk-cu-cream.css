@@ -1114,22 +1114,26 @@ body.ghk-page {
   .ghk-sticky-cta { display: none; }
 }
 @media (max-width: 480px) {
-  .ghk-hero { padding: 72px 18px 40px; gap: 20px; }
-  .ghk-hero-bg, .ghk-mesh, .ghk-hero-glow, #ghk-particles, .ghk-hero canvas { max-width: 100vw; left: 0; right: 0; }
-  /* Text-first: copy leads, product image sits second and compact */
-  .ghk-hero-copy { order: 0; }
-  .ghk-hero-visual { order: 1; }
-  .ghk-hero-panel { min-height: 220px; max-height: 32vh; }
-  .ghk-page .breadcrumb { font-size: 12px; padding-top: 14px; }
-  .ghk-title { font-size: clamp(32px, 9vw, 40px); margin-bottom: 12px; }
-  .ghk-lede { font-size: 15px; margin-bottom: 18px; }
-  .ghk-eyebrow { margin-bottom: 14px; }
-  .ghk-strength-pill { margin-bottom: 18px; padding: 12px 16px; }
-  .ghk-hero .product-price { margin-bottom: 4px; gap: 8px; }
-  .ghk-hero .product-price .amount { font-size: 40px; }
-  .ghk-hero .product-price-note { font-size: 12.5px; margin-bottom: 16px; line-height: 1.5; }
+  .ghk-hero { padding: 64px 18px 36px; gap: 14px; min-height: 0; }
+  /* Kill decorative bleed on mobile — glow/mesh/particles washed out the copy */
+  .ghk-hero-bg, .ghk-mesh, .ghk-mesh-blob, .ghk-hero-glow, #ghk-particles, .ghk-hero canvas { display: none !important; }
+  .ghk-hero { background: radial-gradient(120% 80% at 50% 0%, #16202e 0%, #0c0f16 60%); }
+  /* Brand-first: compact image on top, then the offer */
+  .ghk-hero-visual { order: 0; }
+  .ghk-hero-copy { order: 1; }
+  .ghk-hero-panel { min-height: 0; max-height: 26vh; }
+  .ghk-product-stage, .ghk-hero-photo-wrap { max-height: 26vh; }
+  .ghk-page .breadcrumb { font-size: 12px; padding-top: 12px; }
+  .ghk-eyebrow { margin-bottom: 12px; }
+  .ghk-title { font-size: clamp(30px, 8.5vw, 38px); margin-bottom: 10px; line-height: 1.05; }
+  .ghk-lede { font-size: 14.5px; margin-bottom: 16px; line-height: 1.55; }
+  .ghk-strength-pill { margin-bottom: 16px; padding: 11px 15px; }
+  .ghk-hero .product-price { margin-bottom: 2px; gap: 8px; }
+  .ghk-hero .product-price .amount { font-size: 38px; }
+  .ghk-hero .product-price-note { font-size: 12px; margin-bottom: 14px; line-height: 1.5; }
   .ghk-hero .plan-label { margin: 0 0 8px; }
-  .ghk-hero .tier-list { max-width: 100%; margin-bottom: 18px; }
+  .ghk-hero .tier-list { max-width: 100%; margin-bottom: 14px; }
+  .product-cta { width: 100%; justify-content: center; }
   .ghk-stats-inner { grid-template-columns: 1fr 1fr; }
   .ghk-stats { padding: 40px 18px; }
   .benefits, .faq, .included, .how-it-works { padding-left: 18px; padding-right: 18px; }
