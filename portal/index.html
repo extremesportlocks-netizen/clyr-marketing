@@ -2275,6 +2275,9 @@ async function openProductDetail(productKey){
     if (product.sixMonth) plans.push({ key: '6month', label: '6 months', price: product.sixMonth, perMonth: Math.round(product.sixMonth/6), recurring: false });
     if (product.twelveMonth) plans.push({ key: '12month', label: '12 months', price: product.twelveMonth, perMonth: Math.round(product.twelveMonth/12*100)/100, recurring: false });
   }
+  // Monthly→one-time pivot: only GLP-1 (product.recurring===true) is a subscription;
+  // force every plan to one-time for non-GLP so the modal never says "billed monthly".
+  if (product.recurring === false) plans = plans.map(p => ({ ...p, recurring: false }));
 
   document.body.insertAdjacentHTML('beforeend', `
     <div id="productModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;z-index:1000;padding:20px;animation:fadeIn 0.15s">
@@ -2885,6 +2888,8 @@ async function openSwitchPlanModal(productKey){
   if (product.threeMonth && tx.plan !== '3month') plans.push({ key:'3month', label:'3 months', price:product.threeMonth, perMonth:Math.round(product.threeMonth/3), recurring:false });
   if (product.sixMonth && tx.plan !== '6month') plans.push({ key:'6month', label:'6 months', price:product.sixMonth, perMonth:Math.round(product.sixMonth/6), recurring:false });
   if (product.twelveMonth && tx.plan !== '12month') plans.push({ key:'12month', label:'12 months', price:product.twelveMonth, perMonth:Math.round(product.twelveMonth/12*100)/100, recurring:false });
+  // Monthly→one-time pivot: non-GLP products are one-time, never "billed monthly".
+  if (product.recurring === false) plans.forEach(p => { p.recurring = false; });
   if (!plans.length) return alert('No other plans available for this treatment.');
 
   const currentPlanLabel = ({monthly:'Monthly','3month':'3 months','6month':'6 months','12month':'12 months'})[tx.plan] || tx.plan;
