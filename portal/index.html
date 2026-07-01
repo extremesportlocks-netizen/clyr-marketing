@@ -1395,7 +1395,7 @@ function renderSuggested(){
       <div class="suggest-card-body">
         <div class="suggest-card-cat">${verticalLabel(p.vertical)}</div>
         <div class="suggest-card-name">${escapeHtml(p.shortName)}</div>
-        <div class="suggest-card-price">From $${p.monthlyPrice}/mo</div>
+        <div class="suggest-card-price">From $${p.monthlyPrice}${p.recurring?'/mo':' one-time'}</div>
       </div>
     </div>`).join('');
 }
@@ -2173,9 +2173,11 @@ function renderShop(){
   }
   $('shopGrid').innerHTML=all.map(p=>{
     const cs=p.comingSoon;
+    const suffix=p.recurring?'/mo':'';                 // one-time products (pivot) drop the /mo
+    const lead=p.recurring?'As low as':'From';
     const click=cs?`startProtocolWaitlist('${escapeAttr(p.waitlistKey||p.key)}')`:`openProductDetail('${escapeAttr(p.key)}')`;
     const badge=cs?`<span class="shop-card-badge">Coming soon</span>`:'';
-    const price=cs?`<span>$${p.monthlyPrice}/mo · <strong style="color:var(--teal-dark)">Check eligibility</strong></span>`:`As low as <strong>$${p.monthlyPrice}/mo</strong>`;
+    const price=cs?`<span>$${p.monthlyPrice}${suffix} · <strong style="color:var(--teal-dark)">Check eligibility</strong></span>`:`${lead} <strong>$${p.monthlyPrice}${suffix}</strong>${p.recurring?'':' one-time'}`;
     return `
     <div class="shop-card${cs?' coming-soon':''}" onclick="${click}">
       <div class="shop-card-img">${badge}<img src="${resolveCatalogThumb(p)}" alt="" onerror="this.style.display='none'"></div>
