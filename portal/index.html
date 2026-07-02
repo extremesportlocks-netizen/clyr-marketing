@@ -1768,34 +1768,41 @@ function submitGlp1Refill(){
   if(!answers.q30 || !answers.q40 || !answers.q60 || !answers.q300){
     alert('Please answer the required questions.');return;
   }
-  // Determine pricing from the patient's product (Tirz vs Sema) AND the dispensed
-  // tier implied by their dose-direction answer (Stay/Increase → Tier 2, Decrease → Tier 1).
+  // Renewal menu mirrors the static tirzepatide.html doors (Orlando 2026-07-02):
+  // every option is offered regardless of previous dosing; the patient picks.
   const tx=((portalData.patient&&portalData.patient.treatment)||'').toLowerCase();
   const isTirz=tx.includes('tirz');
-  const q3=String((answers&&(answers.q300||answers.doseDirection))||'Stay at the same dose');
-  const tier2=isTirz&&!/^Decrease/i.test(q3);
-  const oneMo=isTirz?(tier2?399:249):229;
-  const threeMo=isTirz?(tier2?1047:597):567;
-  const threePer=Math.round(threeMo/3);
-  // Stash answers on window so the term buttons can read them.
+  // Stash answers on window so the plan buttons can read them.
   window._glp1RefillAnswers=answers;
+  const card=(plan,name,badge,caps,price,suffix,hl)=>`
+      <button class="refill-term-btn" onclick="startGlp1RefillCheckout('${plan}')" style="text-align:left;background:${hl?'var(--teal-light,#e6f7f5)':'var(--white)'};border:${hl?'1.5px solid var(--teal,#2bbcb3)':'1px solid var(--gray-200)'};border-radius:14px;padding:15px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px">
+        <span><span style="font-weight:700;font-size:15.5px;display:block">${name}${badge?` <span style=\"font-size:11px;color:var(--teal,#2bbcb3);font-weight:700;text-transform:uppercase;letter-spacing:.04em\">${badge}</span>`:''}</span><span style="font-size:12.5px;color:var(--gray-500)">${caps}</span></span>
+        <span style="font-weight:800;font-size:19px;white-space:nowrap">$${price}<span style="font-size:12px;font-weight:600;color:var(--gray-500)">${suffix}</span></span>
+      </button>`;
+  const tirzMenu=`
+    <div style="font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--teal,#2bbcb3);margin:2px 0 8px">Standard dose · up to 3mL / 7mg</div>
+    <div style="display:flex;flex-direction:column;gap:10px;max-width:430px;margin-bottom:16px">
+      ${card('t1_3month','3-Month prepay','Best value','$597 billed once · ships monthly','199','/mo',true)}
+      ${card('t1_monthly','Monthly','','Billed monthly · cancel anytime','249','/mo',false)}
+    </div>
+    <div style="font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--teal,#2bbcb3);margin:0 0 8px">Higher dose · 4mL / 9mg and up</div>
+    <div style="display:flex;flex-direction:column;gap:10px;max-width:430px">
+      ${card('t2_3month','3-Month prepay','Best value','$1,047 billed once · ships monthly','349','/mo',false)}
+      ${card('t2_monthly','Monthly','','Billed monthly · cancel anytime','399','/mo',false)}
+    </div>`;
+  const semaMenu=`
+    <div style="display:flex;flex-direction:column;gap:10px;max-width:430px">
+      ${card('t1_3month','3-Month prepay','Best value','$567 billed once · ships monthly · any dose','189','/mo',true)}
+      ${card('t1_monthly','Monthly','','Any dose, one price · cancel anytime','229','/mo',false)}
+    </div>`;
   $('refillFormArea').innerHTML=`
     <h3 style="font-size:16px;font-weight:700;margin-bottom:6px">Choose your plan</h3>
-    <p style="font-size:14px;color:var(--gray-500);margin-bottom:18px">Your provider reviews every refill. We ship 30 days at a time for freshness; the 3-month plan is billed once and refills automatically each month.</p>
-    <div style="display:flex;flex-direction:column;gap:10px;max-width:430px">
-      <button class="refill-term-btn" onclick="startGlp1RefillCheckout('1month')" style="text-align:left;background:var(--white);border:1px solid var(--gray-200);border-radius:14px;padding:16px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center">
-        <span><span style="font-weight:700;font-size:15.5px;display:block">1 Month</span><span style="font-size:12.5px;color:var(--gray-500)">30-day supply · cancel anytime</span></span>
-        <span style="font-weight:800;font-size:19px">$${oneMo}<span style="font-size:12px;font-weight:600;color:var(--gray-500)">/mo</span></span>
-      </button>
-      <button class="refill-term-btn" onclick="startGlp1RefillCheckout('3month')" style="text-align:left;background:var(--teal-light,#e6f7f5);border:1.5px solid var(--teal,#2bbcb3);border-radius:14px;padding:16px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center">
-        <span><span style="font-weight:700;font-size:15.5px;display:block">3 Months <span style="font-size:11px;color:var(--teal,#2bbcb3);font-weight:700;text-transform:uppercase;letter-spacing:.04em">Best value</span></span><span style="font-size:12.5px;color:var(--gray-500)">Billed once · ships monthly · ~$${threePer}/mo</span></span>
-        <span style="font-weight:800;font-size:19px">$${threeMo}</span>
-      </button>
-    </div>
+    <p style="font-size:14px;color:var(--gray-500);margin-bottom:16px">Your provider reviews every refill. We ship 30 days at a time for freshness; 3-month plans are billed once and refill automatically each month.</p>
+    ${isTirz?tirzMenu:semaMenu}
     <div id="glp1CheckoutMount" style="display:none;margin-top:20px"></div>`;
 }
 
-async function startGlp1RefillCheckout(term){
+async function startGlp1RefillCheckout(plan){
   const answers = window._glp1RefillAnswers;
   if(!answers){alert('Please complete the questionnaire again.');return;}
   document.querySelectorAll('.refill-term-btn').forEach(b=>{b.disabled=true;b.style.opacity='0.5';});
@@ -1805,7 +1812,7 @@ async function startGlp1RefillCheckout(term){
   try{
     const [stripe, session] = await Promise.all([
       loadStripeJs(),
-      api('/api/portal/refill/checkout',{method:'POST',body:JSON.stringify({answers, term})})
+      api('/api/portal/refill/checkout',{method:'POST',body:JSON.stringify({answers, plan})})
     ]);
     if(!session.clientSecret) throw new Error(session.error||'No checkout session returned');
     mount.innerHTML='<div id="glp1CheckoutContainer"></div>';
