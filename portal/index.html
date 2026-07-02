@@ -1387,9 +1387,21 @@ function renderSuggested(){
   // don't suggest something they bought yesterday.
   const owned=new Set((portalData?.treatments||[]).map(t=>t.product));
   const filtered=(suggestions||[]).filter(p=>!owned.has(p.key));
-  if(!filtered.length){$('suggestedSection').style.display='none';return;}
+  // Owned GLP-1 → show a Renew card in Shop (routes into the same window-gated
+  // refill flow; server still enforces the 10-day window and provider review).
+  const glp1Owned=(portalData?.treatments||[]).filter(t=>/tirz|sema/i.test(t.product||''));
+  const renewCards=glp1Owned.map(t=>`
+    <div class="suggest-card" onclick="showPage('treatments');startRefill('${escapeAttr(t.product)}')" style="border:1.5px solid var(--teal,#2bbcb3)">
+      <div class="suggest-card-img"><img src="${resolveCatalogThumb({key:t.product})}" alt="" onerror="this.parentElement.innerHTML='💊'"></div>
+      <div class="suggest-card-body">
+        <div class="suggest-card-cat" style="color:var(--teal,#2bbcb3)">Your treatment</div>
+        <div style="font-size:14.5px;font-weight:700">Renew ${escapeHtml(t.displayName||t.product)}</div>
+        <div style="font-size:12px;color:var(--gray-500);margin-top:2px">All plans · provider reviewed each refill</div>
+      </div>
+    </div>`).join('');
+  if(!filtered.length && !renewCards){$('suggestedSection').style.display='none';return;}
   $('suggestedSection').style.display='block';
-  $('suggestedRow').innerHTML=filtered.slice(0,3).map(p=>`
+  $('suggestedRow').innerHTML=renewCards+filtered.slice(0,3).map(p=>`
     <div class="suggest-card" onclick="openProductDetail('${escapeAttr(p.key)}')">
       <div class="suggest-card-img"><img src="${resolveCatalogThumb(p)}" alt="" onerror="this.parentElement.innerHTML='💊'"></div>
       <div class="suggest-card-body">
