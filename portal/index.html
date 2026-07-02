@@ -1771,8 +1771,8 @@ function submitGlp1Refill(){
   // Determine pricing from the patient's product (Tirz vs Sema).
   const tx=((portalData.patient&&portalData.patient.treatment)||'').toLowerCase();
   const isTirz=tx.includes('tirz');
-  const oneMo=isTirz?320:225;
-  const threeMo=isTirz?777:537;
+  const oneMo=isTirz?249:229;
+  const threeMo=isTirz?597:567;
   const threePer=Math.round(threeMo/3);
   // Stash answers on window so the term buttons can read them.
   window._glp1RefillAnswers=answers;

@@ -1,7 +1,7 @@
 /**
  * Verde Cleanse partner funnel on antiparasitic hub.
  * When utm_source=verdecleanse (or plan=onetime from cleanse campaign),
- * show partner banner, $99/$125 pricing, and route CTAs to intake with onetime plan.
+ * show partner banner, $99/$139 pricing, and route CTAs to intake with onetime plan.
  */
 (function () {
   'use strict';
@@ -42,7 +42,7 @@
       '</div>' +
       '<div class="verde-partner-prices">' +
         '<div class="verde-price-chip"><strong>$99</strong><span>Ivermectin · 30-day</span></div>' +
-        '<div class="verde-price-chip lead"><strong>$125</strong><span>IVM + Mebendazole</span></div>' +
+        '<div class="verde-price-chip lead"><strong>$139</strong><span>IVM + Mebendazole</span></div>' +
       '</div>' +
     '</div>';
 
@@ -70,7 +70,7 @@
   }
   if (cards[1]) {
     var p1 = cards[1].querySelector('.cmp-price');
-    if (p1) p1.innerHTML = '<span class="amt">$125</span><span class="per">one-time</span>';
+    if (p1) p1.innerHTML = '<span class="amt">$139</span><span class="per">one-time</span>';
     var prep1 = cards[1].querySelector('.cmp-prepay');
     if (prep1) prep1.innerHTML = 'Broader coverage · <strong>30-day supply</strong>';
     var cta1 = cards[1].querySelector('.cmp-cta');

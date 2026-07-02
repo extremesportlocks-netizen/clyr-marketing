@@ -6,7 +6,7 @@
   "total_budget_dollars": 500,
   "bid_dollars": 2.5,
   "destination_url": "https://www.clyr.health/ads/x/antiparasitic.html?utm_campaign=ivermectin-jun26",
-  "tweet_text": "Doctor-prescribed antiparasitic protocols from licensed U.S. providers. 5-minute intake. From $139/mo. Start free →",
+  "tweet_text": "Doctor-prescribed antiparasitic protocols from licensed U.S. providers. 5-minute intake. From $139. Start free →",
   "targeting": [],
   "notes": {
     "location": "After OAuth, run: node scripts/x-ads-targeting.js us — then paste id into targeting[]",
