@@ -28,6 +28,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 html { overflow-x: clip; }
+.ghk-table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 body.ghk-page {
   font-family: var(--sans);
   color: var(--dark);
@@ -1133,6 +1134,14 @@ body.ghk-page {
   .ghk-stats-inner { grid-template-columns: 1fr 1fr; }
   .ghk-stats { padding: 40px 18px; }
   .benefits, .faq, .included, .how-it-works { padding-left: 18px; padding-right: 18px; }
+  .ghk-compare, .ghk-matrix, .ghk-molecule, .ghk-routine, .ghk-skin-cinema { padding-left: 18px; padding-right: 18px; }
+  .ghk-panel-spotlight { display: none !important; }
+  .ghk-price-table { font-size: 12px; min-width: 352px; }
+  .ghk-price-table td, .ghk-price-table th { padding: 9px 6px; }
+  .ghk-matrix-pricing { grid-template-columns: 1fr; gap: 12px; }
+  .ghk-price-amount { font-size: clamp(20px, 6vw, 26px); }
+  .ghk-page .breadcrumb a, .footer a { display: inline-block; padding: 12px 2px; }
+  section a[href^="/journal/"] { display: inline-block; padding: 12px 0; }
 }
 @media (prefers-reduced-motion: reduce) {
   .ghk-marquee, .ghk-ring, .ghk-product-stage img, .ghk-hero-photo,
