@@ -107,9 +107,18 @@ def git_push_if_dirty(cycle: int) -> bool:
 
     msg = f"chore(overnight): cycle {cycle} maintenance auto-push"
     subprocess.run(["git", "commit", "-m", msg], cwd=ROOT, check=False)
+    # Sync with origin BEFORE pushing. Marketing has concurrent pushers (parallel
+    # sessions + manual pushes); without this, a concurrent push rejects ours and
+    # leaves local permanently diverged with no recovery (2026-07-01 incident).
+    subprocess.run(["git", "fetch", "origin", "main"], cwd=ROOT, check=False)
+    rebase = subprocess.run(["git", "rebase", "origin/main"], cwd=ROOT, capture_output=True, text=True)
+    if rebase.returncode != 0:
+        subprocess.run(["git", "rebase", "--abort"], cwd=ROOT, check=False)
+        log(f"REBASE conflict cycle {cycle} — skipped push, left local intact for manual reconcile: {(rebase.stderr or rebase.stdout)[-300:]}")
+        return False
     push = subprocess.run(["git", "push", "origin", "main"], cwd=ROOT, capture_output=True, text=True)
     if push.returncode != 0:
-        log(f"PUSH FAILED: {push.stderr or push.stdout}")
+        log(f"PUSH FAILED (after rebase): {push.stderr or push.stdout}")
         return False
     log(f"PUSHED cycle {cycle}")
     return True
