@@ -103,10 +103,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 (function() {
   var API = 'https://clyr-backend.onrender.com';
   var params = new URLSearchParams(window.location.search);
-  var email = params.get('email');
+  var token = params.get('t');           // opaque resume token (no PII in the URL)
+  var email = params.get('email');       // legacy grace-window fallback
   var customerId = params.get('cid');
 
-  if (!email && !customerId) {
+  if (!token && !email && !customerId) {
     showError('No account information provided.', 'Please start from the intake form.');
     return;
   }
@@ -125,13 +126,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   fetch(API + '/api/checkout/resume', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: email, customerId: customerId ? parseInt(customerId) : undefined })
+    body: JSON.stringify(token ? { token: token } : { email: email, customerId: customerId ? parseInt(customerId) : undefined })
   })
   .then(function(r) { return r.json().then(function(d) { return { ok: r.ok, data: d }; }); })
   .then(function(result) {
     if (!result.ok) {
       if (result.data.status === 'already_paid') {
         showAlreadyPaid();
+      } else if (result.data.status === 'token_expired') {
+        showError('This link has expired', result.data.error || 'For your security, checkout links expire after 7 days. Please start the intake form to continue.');
       } else {
         showError('Unable to resume checkout', result.data.error || 'Please try the intake form.');
       }
@@ -142,9 +145,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     // Show plan info
     if (data.customer) {
-      var treatName = data.customer.treatment === 'tirzepatide' ? 'Tirzepatide' : 'Semaglutide';
-      var planName = data.customer.plan === 'monthly' ? 'Monthly' : data.customer.plan === '3month' ? '3-Month Starter' : '6-Month Plan';
-      document.getElementById('planText').textContent = treatName + ', ' + planName;
+      // Use the real display names the API resolves from the catalog — never a
+      // tirz/sema ternary (that showed "Semaglutide" for ivermectin orders).
+      var treatName = data.customer.productName || data.customer.treatment || 'Your treatment';
+      var planName = data.customer.planName || data.customer.plan || '';
+      document.getElementById('planText').textContent = planName ? (treatName + ', ' + planName) : treatName;
       document.getElementById('planBadge').style.display = 'flex';
       if (data.customer.firstName) {
         document.getElementById('pageTitle').innerHTML = 'Welcome back, <em>' + data.customer.firstName + '</em>';
