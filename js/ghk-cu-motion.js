@@ -500,6 +500,12 @@
 
     setConcentration(0.05);
 
+    // Default to the activated comparison state — no click required
+    analyzing = true;
+    comparing = true;
+    updateAnalyzeUI();
+    updateCompareUI();
+
     if (!canvas || reduced) return;
     var ctx = canvas.getContext('2d');
     var particles = [];
