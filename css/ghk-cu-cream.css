@@ -1177,3 +1177,8 @@ body.ghk-page {
 .ghk-page .isi-banner { background: #0A0E14; border-top: 1px solid rgba(255,255,255,0.08); }
 .ghk-page .isi-banner h3 { color: rgba(255,255,255,0.85); }
 .ghk-page .isi-banner p { color: rgba(255,255,255,0.5); }
+
+.ghk-page .ghk-compare .section-heading, .ghk-page .ghk-routine .section-heading { color: #fff; }
+.ghk-page .ghk-compare .section-label, .ghk-page .ghk-routine .section-label { color: var(--copper-light); }
+.ghk-page .ghk-routine .section-sub, .ghk-page .ghk-routine p { color: rgba(255,255,255,0.62); }
+.ghk-page .ghk-skin-cinema p { color: rgba(255,255,255,0.62); }
