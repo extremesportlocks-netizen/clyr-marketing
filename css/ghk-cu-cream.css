@@ -1140,7 +1140,7 @@ body.ghk-page {
   .ghk-price-table td, .ghk-price-table th { padding: 9px 6px; }
   .ghk-matrix-pricing { grid-template-columns: 1fr; gap: 12px; }
   .ghk-price-amount { font-size: clamp(20px, 6vw, 26px); }
-  .ghk-page .breadcrumb a, .footer a { display: inline-block; padding: 12px 2px; }
+  .ghk-page .breadcrumb a, .footer a, .footer .footer-col a { display: inline-block; padding: 12px 2px; }
   section a[href^="/journal/"] { display: inline-block; padding: 12px 0; }
 }
 @media (prefers-reduced-motion: reduce) {
