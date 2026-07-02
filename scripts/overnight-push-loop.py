@@ -111,7 +111,9 @@ def git_push_if_dirty(cycle: int) -> bool:
     # sessions + manual pushes); without this, a concurrent push rejects ours and
     # leaves local permanently diverged with no recovery (2026-07-01 incident).
     subprocess.run(["git", "fetch", "origin", "main"], cwd=ROOT, check=False)
-    rebase = subprocess.run(["git", "rebase", "origin/main"], cwd=ROOT, capture_output=True, text=True)
+    # --autostash: the loop keeps writing to its tracked log/state files mid-cycle,
+    # so the tree is dirty by the time we rebase; autostash shelves + restores them.
+    rebase = subprocess.run(["git", "rebase", "--autostash", "origin/main"], cwd=ROOT, capture_output=True, text=True)
     if rebase.returncode != 0:
         subprocess.run(["git", "rebase", "--abort"], cwd=ROOT, check=False)
         log(f"REBASE conflict cycle {cycle} — skipped push, left local intact for manual reconcile: {(rebase.stderr or rebase.stdout)[-300:]}")
