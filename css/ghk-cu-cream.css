@@ -32,7 +32,7 @@ html { overflow-x: clip; }
 body.ghk-page {
   font-family: var(--sans);
   color: var(--dark);
-  background: var(--white);
+  background: #0B0F16;
   overflow-x: clip;
   max-width: 100%;
   line-height: 1.6;
@@ -1152,3 +1152,28 @@ body.ghk-page {
   .ghk-skin-pin { position: relative; height: auto; padding: 80px 0; }
   .ghk-skin-frame { opacity: 1; transform: none; }
 }
+
+/* ── Dark-theme unification: kill light strips, fix dark-on-dark text ── */
+.ghk-page .breadcrumb { color: rgba(255,255,255,0.4); }
+.ghk-page .breadcrumb a { color: rgba(255,255,255,0.62); }
+.ghk-page .breadcrumb a:hover { color: #fff; }
+.ghk-page .benefits .section-heading, .ghk-page .faq .section-heading,
+.ghk-page .how-it-works .section-heading, .ghk-page .included .section-heading { color: #fff; }
+.ghk-page .benefits .section-sub, .ghk-page .faq .section-sub,
+.ghk-page .how-it-works .section-sub, .ghk-page .included .section-sub,
+.ghk-page .ghk-compare .section-sub { color: rgba(255,255,255,0.6); }
+.ghk-page .benefits .section-label, .ghk-page .faq .section-label,
+.ghk-page .how-it-works .section-label, .ghk-page .included .section-label,
+.ghk-page .ghk-matrix .section-label, .ghk-page .ghk-skin-cinema .section-label { color: var(--copper-light); }
+.ghk-page .faq-q { color: #fff; }
+.ghk-page .faq-a p { color: rgba(255,255,255,0.66); }
+.ghk-page .faq-item { border-bottom: 1px solid rgba(255,255,255,0.10); }
+.ghk-page .included { background: #0D131D; }
+.ghk-page .included-item { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.12); }
+.ghk-page .included-item h4 { color: #fff; }
+.ghk-page .included-item p { color: rgba(255,255,255,0.58); }
+.ghk-page .included-item .icon { color: var(--copper-light); }
+.ghk-page .how-it-works { background: #0B0F16; }
+.ghk-page .isi-banner { background: #0A0E14; border-top: 1px solid rgba(255,255,255,0.08); }
+.ghk-page .isi-banner h3 { color: rgba(255,255,255,0.85); }
+.ghk-page .isi-banner p { color: rgba(255,255,255,0.5); }
