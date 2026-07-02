@@ -31,27 +31,30 @@
 /* tier rows + footer from product-page (minimal) */
 :root{--teal:#00B4C5;--teal-dark:#009BAA;--dark:#1A1A1A;--sans:'DM Sans',sans-serif;--serif:'Instrument Serif',Georgia,serif}
 *,*::before,*::after{box-sizing:border-box}
-.nav{position:sticky;top:0;z-index:100;padding:0 40px;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid rgba(0,0,0,0.05)}
-.nav-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:72px}
-.nav-links{display:flex;align-items:center;gap:28px}
-.nav-links a{font-size:15px;font-weight:500;color:var(--gray-600);text-decoration:none;transition:color .2s}.nav-links a:hover{color:var(--dark)}
-.nav-cta{background:var(--teal)!important;color:#fff!important;padding:10px 28px!important;border-radius:100px!important;font-weight:600!important}
-.nav-cta:hover{background:var(--teal-dark)!important}
-.nav-portal{color:var(--teal)!important;font-weight:600!important}
-.mobile-menu-btn{display:none;background:none;border:none;cursor:pointer;padding:8px}
-.mobile-menu-btn span{display:block;width:22px;height:2px;background:var(--dark);margin:5px 0;border-radius:2px}
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid rgba(0,0,0,0.05);padding:0 40px}.nav-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:72px}.nav-logo{height:32px}.nav-links{display:flex;align-items:center;gap:32px}.nav-links a{font-size:15px;font-weight:500;color:var(--gray-600);text-decoration:none;transition:color 0.2s}.nav-links a:hover{color:var(--dark)}.nav-cta{background:var(--teal)!important;color:var(--white)!important;padding:10px 28px!important;border-radius:100px!important;font-weight:600!important;font-size:14px!important;transition:all 0.2s!important}.nav-cta:hover{background:var(--teal-dark)!important;transform:translateY(-1px);box-shadow:var(--shadow-teal)}.nav-portal{color:var(--teal)!important;font-weight:600!important}.mobile-menu-btn{display:none;background:none;border:none;cursor:pointer;padding:8px}.mobile-menu-btn span{display:block;width:22px;height:2px;background:var(--dark);margin:5px 0;transition:0.3s;border-radius:2px}
 .nav-item{position:relative}
-.nav-item > a{padding:26px 0;display:inline-flex;align-items:center}
-.megamenu{position:absolute;top:100%;left:50%;transform:translateX(-50%);background:#fff;border:1px solid #E2E7EB;border-radius:20px;box-shadow:0 20px 50px rgba(15,30,60,.14);padding:22px;min-width:520px;opacity:0;visibility:hidden;transition:all .2s;pointer-events:none;z-index:200}
-.nav-item:hover .megamenu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(8px)}
+.nav-item > a{font-size:15px;font-weight:500;color:#4A5568;text-decoration:none;transition:color 0.2s;padding:26px 0;display:inline-flex;align-items:center}
+.nav-item > a:hover{color:#1A1A1A}
+.nav-item > a .chev{display:inline-block;margin-left:4px;transition:transform 0.2s;vertical-align:middle}
+.nav-item:hover > a .chev{transform:rotate(180deg)}
+.megamenu{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(0);background:#fff;border:1px solid #E2E7EB;border-radius:20px;box-shadow:0 20px 50px rgba(15,30,60,0.14);padding:22px;min-width:520px;opacity:0;visibility:hidden;transition:all 0.2s;pointer-events:none;z-index:200}
+.nav-item:hover .megamenu{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(8px)}
 .mm-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
-.mm-link{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;text-decoration:none;color:#1A1A1A}
+.mm-link{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;text-decoration:none;color:#1A1A1A;transition:background 0.15s}
 .mm-link:hover{background:#F8FAFB}
-.mm-link img{width:34px;height:48px;object-fit:contain}
-.mm-link-text strong{font-size:14px;display:block}
-.mm-link-text span{font-size:12px;color:#6B7C8A}
-.mm-footer{margin-top:12px;padding-top:12px;border-top:1px solid #F1F4F6;display:flex;justify-content:space-between;font-size:12px}
-.mm-footer a{color:#00B4C5;font-weight:600;text-decoration:none}
+.mm-link img{width:34px;height:48px;flex-shrink:0;object-fit:contain}
+.mm-link-text{display:flex;flex-direction:column;line-height:1.2}
+.mm-link-text strong{font-size:14px;font-weight:600;color:#1A1A1A}
+.mm-link-text span{font-size:12px;color:#6B7C8A;margin-top:2px}
+.mm-footer{margin-top:12px;padding-top:12px;border-top:1px solid #F1F4F6;display:flex;justify-content:space-between;align-items:center}
+.mm-footer .mm-count{font-size:12px;color:#6B7C8A}
+.mm-footer a{font-size:13px;font-weight:600;color:#00B4C5;text-decoration:none}
+.nav-links a.nav-active,.nav-item.nav-active > a{color:#00B4C5;font-weight:600}
+@media (max-width:900px){ .nav-item .megamenu{display:none} .mobile-menu-btn{display:block} .nav-links{display:none} .nav.mobile-open .nav-links{display:flex;flex-direction:column;align-items:flex-start;position:absolute;top:72px;left:0;right:0;background:#FFFFFF;box-shadow:0 12px 40px rgba(0,0,0,0.12);padding:24px 20px;gap:18px;border-bottom:1px solid #E2E7EB;z-index:99} .nav.mobile-open .nav-item > a{padding:0} .nav.mobile-open .nav-links a{font-size:16px} .nav.mobile-open .mobile-menu-btn span:nth-child(1){transform:rotate(45deg) translate(5px,5px)} .nav.mobile-open .mobile-menu-btn span:nth-child(2){opacity:0} .nav.mobile-open .mobile-menu-btn span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)} }
+.breadcrumb{max-width:1200px;margin:0 auto;padding:16px 40px;font-size:13px;color:var(--gray-400)}.breadcrumb a{color:var(--gray-500);text-decoration:none}.breadcrumb a:hover{color:var(--teal)}
+.nav-links > *:not(.nav-portal):not(.nav-cta){position:relative}
+.nav-links > *:not(:first-child):not(.nav-portal):not(.nav-cta)::before{content:'';position:absolute;left:-18px;top:50%;transform:translateY(-50%);width:1px;height:18px;background:#E2E7EB;pointer-events:none}
+@media (max-width:900px){.nav-links > *::before{display:none}}
 .plan-label{font-size:11px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:var(--teal);margin:4px 0 10px}
 .tier-list{display:flex;flex-direction:column;gap:10px;margin:0 0 26px;max-width:460px}
 a.tier-row{display:flex;align-items:center;justify-content:space-between;gap:14px;border:1.5px solid #E3E9ED;border-radius:16px;padding:15px 20px;text-decoration:none;transition:all .18s}
@@ -138,28 +141,65 @@ a.tier-row.hl .tier-badge{box-shadow:0 2px 10px rgba(43,188,179,.45)}
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a href="/" aria-label="CLYR Health home">
-      <svg class="nav-logo" viewBox="0 0 120 32" height="32"><text x="0" y="26" font-family="DM Sans,sans-serif" font-weight="700" font-size="28"><tspan fill="#1A1A1A">CLY</tspan><tspan fill="#00B4C5">R</tspan></text></svg>
+      <svg class="nav-logo" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg" height="32">
+        <text x="0" y="26" font-family="DM Sans, sans-serif" font-weight="700" font-size="28" letter-spacing="-1"><tspan fill="#1A1A1A">CLY</tspan><tspan fill="#00B4C5">R</tspan></text>
+      </svg>
     </a>
     <div class="nav-links">
-      <div class="nav-item"><a href="/daily-wellness.html">Daily Wellness</a></div>
-      <div class="nav-item">
-        <a href="/wellness.html">Skin &amp; Hair</a>
+      <div class="nav-item" data-nav="weight-loss">
+        <a href="/weight-loss.html">Weight Loss <svg class="chev" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></a>
         <div class="megamenu">
           <div class="mm-grid">
-            <a href="/ghk-cu-cream.html" class="mm-link"><img src="/img/ghk-cu-cream-hero.jpg" alt="" style="border-radius:8px;object-fit:cover;height:48px;width:34px"><span class="mm-link-text"><strong>GHK-Cu 3% Cream</strong><span>Copper peptide Rx</span></span></a>
-            <a href="/niagen.html" class="mm-link"><img src="/img/cardv2/niagen.png" alt=""><span class="mm-link-text"><strong>Niagen</strong><span>NAD+ precursor</span></span></a><a href="/ghk-cu-cream.html" class="mm-link"><img src="/img/cardv2/ghk-cu-cream.png" alt=""><span class="mm-link-text"><strong>GHK-Cu Cream</strong><span>Copper peptide</span></span></a>
-            <a href="/nad.html" class="mm-link"><img src="/img/cardv2/nad.webp" alt=""><span class="mm-link-text"><strong>NAD+</strong><span>Cellular energy</span></span></a>
-            <a href="/journal/estriol-ghk-cu-anti-aging-cream/" class="mm-link"><span class="mm-link-text"><strong>Estriol + GHK-Cu</strong><span>Journal guide</span></span></a>
+            <a href="/tirzepatide.html" class="mm-link"><img src="/img/cardv2/tirzepatide.webp" alt=""><span class="mm-link-text"><strong>Tirzepatide</strong><span>GLP-1 + GIP</span></span></a>
+            <a href="/semaglutide.html" class="mm-link"><img src="/img/cardv2/semaglutide.webp" alt=""><span class="mm-link-text"><strong>Semaglutide</strong><span>GLP-1</span></span></a>
+            <a href="/lipo-mino.html" class="mm-link"><img src="/img/cardv2/vial-lipo-mino-new.webp" alt=""><span class="mm-link-text"><strong>Lipo-Mino + L-Carnitine</strong><span>Fat metabolism</span></span></a>
+            <a href="/foundayo.html" class="mm-link"><img src="/img/cardv2/foundayo-bottle.webp" alt=""><span class="mm-link-text"><strong>Foundayo&reg;</strong><span>Oral GLP-1</span></span></a>
           </div>
-          <div class="mm-footer"><span>Prescription wellness</span><a href="/daily-wellness.html">Explore →</a></div>
+          <div class="mm-footer"><span class="mm-count">Compounded &amp; brand-name options</span><a href="/weight-loss.html">Explore Weight Loss →</a></div>
         </div>
       </div>
-      <a href="/wellness.html">All Treatments</a>
-      <a href="/journal/">Journal</a>
+      <div class="nav-item nav-active" data-nav="daily-wellness">
+        <a href="/daily-wellness.html">Daily Wellness <svg class="chev" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <div class="megamenu">
+          <div class="mm-grid">
+            <a href="/nad.html" class="mm-link"><img src="/img/cardv2/nad.webp" alt=""><span class="mm-link-text"><strong>NAD+ Injections</strong><span>Cellular energy</span></span></a>
+            <a href="/sermorelin.html" class="mm-link"><img src="/img/cardv2/sermorelin.webp" alt=""><span class="mm-link-text"><strong>Sermorelin</strong><span>Growth hormone peptide</span></span></a>
+            <a href="/glutathione.html" class="mm-link"><img src="/img/cardv2/glutathione.webp" alt=""><span class="mm-link-text"><strong>Glutathione</strong><span>Antioxidant</span></span></a>
+            <a href="/micc.html" class="mm-link"><img src="/img/cardv2/micc.webp" alt=""><span class="mm-link-text"><strong>MICC + B12</strong><span>Metabolic support</span></span></a><a href="/niagen.html" class="mm-link"><img src="/img/cardv2/niagen.png" alt=""><span class="mm-link-text"><strong>Niagen</strong><span>NAD+ precursor</span></span></a><a href="/ghk-cu-cream.html" class="mm-link"><img src="/img/cardv2/ghk-cu-cream.png" alt=""><span class="mm-link-text"><strong>GHK-Cu Cream</strong><span>Copper peptide</span></span></a>
+          </div>
+          <div class="mm-footer"><span class="mm-count">6 wellness treatments</span><a href="/daily-wellness.html">Explore Wellness →</a></div>
+        </div>
+      </div>
+      <div class="nav-item" data-nav="sexual-health">
+        <a href="/sexual-health.html">Sexual Health <svg class="chev" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <div class="megamenu">
+          <div class="mm-grid">
+            <a href="/tadalafil.html" class="mm-link"><img src="/img/cardv2/pill-tadalafil-tad25-new.webp" alt=""><span class="mm-link-text"><strong>Tadalafil</strong><span>Daily ED tablet</span></span></a>
+            <a href="/sildenafil-gummy.html" class="mm-link"><img src="/img/cardv2/gummy-sildenafil-square.webp" alt=""><span class="mm-link-text"><strong>Sildenafil Gummy</strong><span>On-demand</span></span></a>
+            <a href="/sild-tadal-oxy.html" class="mm-link"><img src="/img/cardv2/sild-tadal-oxy-square.webp" alt=""><span class="mm-link-text"><strong>Combo ODT</strong><span>Triple-action</span></span></a>
+            <a href="/pt141.html" class="mm-link"><img src="/img/cardv2/pt141-odt-rose.webp" alt=""><span class="mm-link-text"><strong>PT-141</strong><span>Libido ODT</span></span></a>
+          </div>
+          <div class="mm-footer"><span class="mm-count">4 sexual health treatments</span><a href="/sexual-health.html">Explore Sexual Health →</a></div>
+        </div>
+      </div>
+      <a href="/wellness.html" data-nav="all-treatments">All Treatments</a>
+      <div class="nav-item" data-nav="ivermectin">
+        <a href="/antiparasitic.html">Ivermectin <svg class="chev" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <div class="megamenu">
+          <div class="mm-grid">
+            <a href="/ivermectin.html" class="mm-link"><img src="/img/cardv2/card-ivermectin.webp" alt=""><span class="mm-link-text"><strong>Ivermectin Protocol</strong><span>30-capsule &middot; <span data-clyr-price="ivermectin:monthly">$139</span></span></span></a>
+            <a href="/ivermectin-mebendazole.html" class="mm-link"><img src="/img/cardv2/card-mebendazole.webp" alt=""><span class="mm-link-text"><strong>Ivermectin + Mebendazole</strong><span>Broader coverage &middot; <span data-clyr-price="ivermectin_mebendazole:monthly">$169</span></span></span></a>
+          </div>
+          <div class="mm-footer"><span class="mm-count">2 antiparasitic protocols</span><a href="/antiparasitic.html">Explore Antiparasitic &rarr;</a></div>
+        </div>
+      </div>
+      <a href="/journal/" data-nav="journal">Journal</a>
       <a href="/portal/" class="nav-portal">Patient Portal</a>
-      <a href="/intake-wellness.html?product=ghk_cu_cream" class="nav-cta">Get Started</a>
+      <a href="/wellness.html" class="nav-cta">Get Started</a>
     </div>
-    <button class="mobile-menu-btn" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('mobile-open')"><span></span><span></span><span></span></button>
+    <button class="mobile-menu-btn" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('mobile-open')">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
