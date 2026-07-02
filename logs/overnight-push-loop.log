@@ -6020,3 +6020,12 @@ error: Please commit or stash them.
 [2026-07-02 12:21:18 UTC] SCRIPT link-products-to-journals.py: Linked 0 product pages to journal articles
 [2026-07-02 12:21:18 UTC] SCRIPT update-sitemap-journals.py: ✓ sitemap.xml — 73 journal articles
 ✓ sitemap-images.xml — 70 journal OG images
+[2026-07-02 12:21:20 UTC] PUSHED cycle 29
+[2026-07-02 12:41:20 UTC] === CYCLE 30 — 2:18:25.620758 remaining ===
+[2026-07-02 12:41:21 UTC] LIVE: home=200 gbp_schema=True gbp_footer=True verify_tag=True sitemap_urls=105
+[2026-07-02 12:41:22 UTC] SCRIPT wire-gbp.py: Updated 0 files
+[2026-07-02 12:41:22 UTC] SCRIPT polish-indexable-pages.py: Polished 0 pages; removed 1 noindex URL(s) from sitemap
+[2026-07-02 12:41:22 UTC] SCRIPT fix-journal-urls.py: Done: 0 URL fixes across 0 files
+[2026-07-02 12:41:22 UTC] SCRIPT link-products-to-journals.py: Linked 0 product pages to journal articles
+[2026-07-02 12:41:22 UTC] SCRIPT update-sitemap-journals.py: ✓ sitemap.xml — 73 journal articles
+✓ sitemap-images.xml — 70 journal OG images
