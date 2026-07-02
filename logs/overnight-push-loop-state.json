@@ -1,8 +1,8 @@
 {
-  "started": "2026-06-28T15:46:06.892639+00:00",
-  "ends": "2026-06-29T03:46:06.892639+00:00",
-  "last_cycle": 4,
-  "last_run": "2026-06-28T16:46:14.917272+00:00",
+  "started": "2026-07-02T02:56:36.090779+00:00",
+  "ends": "2026-07-02T14:56:36.090779+00:00",
+  "last_cycle": 1,
+  "last_run": "2026-07-02T02:56:37.763992+00:00",
   "last_report": {
     "ok": true,
     "checks": {
@@ -11,7 +11,7 @@
       "gbp_footer": true,
       "google_verification": true,
       "sitemap_status": 200,
-      "sitemap_urls": 104,
+      "sitemap_urls": 105,
       "broken_pages": []
     }
   },
