@@ -1768,11 +1768,14 @@ function submitGlp1Refill(){
   if(!answers.q30 || !answers.q40 || !answers.q60 || !answers.q300){
     alert('Please answer the required questions.');return;
   }
-  // Determine pricing from the patient's product (Tirz vs Sema).
+  // Determine pricing from the patient's product (Tirz vs Sema) AND the dispensed
+  // tier implied by their dose-direction answer (Stay/Increase → Tier 2, Decrease → Tier 1).
   const tx=((portalData.patient&&portalData.patient.treatment)||'').toLowerCase();
   const isTirz=tx.includes('tirz');
-  const oneMo=isTirz?249:229;
-  const threeMo=isTirz?597:567;
+  const q3=String((answers&&(answers.q300||answers.doseDirection))||'Stay at the same dose');
+  const tier2=isTirz&&!/^Decrease/i.test(q3);
+  const oneMo=isTirz?(tier2?399:249):229;
+  const threeMo=isTirz?(tier2?1047:597):567;
   const threePer=Math.round(threeMo/3);
   // Stash answers on window so the term buttons can read them.
   window._glp1RefillAnswers=answers;
