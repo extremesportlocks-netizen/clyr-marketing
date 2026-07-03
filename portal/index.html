@@ -1125,9 +1125,22 @@ function renderRefillSummaryForTreatment(tx){
     </div>`;
   }
   return `<div style="display:flex;justify-content:space-between;align-items:center;gap:14px">
-    <div><div style="font-size:14px;font-weight:700;margin-bottom:2px">${tx.isRecurring?'Refill opens':'Plan ends'} ${fmtDate(tx.isRecurring?rw.opensAt:rw.cycleEndsAt)}</div><div style="font-size:13px;color:var(--gray-500)">${rw.daysRemaining??0} days remaining in your current supply.</div></div>
+    <div><div style="font-size:14px;font-weight:700;margin-bottom:2px">${tx.isRecurring?'Refill opens':'Plan ends'} ${fmtDate(tx.isRecurring?rw.opensAt:rw.cycleEndsAt)}</div><div style="font-size:13px;color:var(--gray-500)">${rw.daysRemaining??0} days remaining in your current supply.</div>${fillScheduleLine(tx)}</div>
     <button class="btn btn-secondary" onclick="showPage('shots')">Track doses</button>
   </div>`;
+}
+
+// Multi-month billed-once plans: show every fill so "where are my other
+// pills" never needs a support email (Luo, 2026-07-03).
+function fillScheduleLine(tx){
+  if(!tx||!Array.isArray(tx.fills)||tx.fills.length<2)return '';
+  const parts=tx.fills.map(function(f){
+    const d=f.date?fmtDate(f.date):'';
+    return f.status==='shipped'
+      ? '<span style="color:var(--teal);font-weight:600">Fill '+f.n+' &#10003; '+d+'</span>'
+      : '<span style="color:var(--gray-500)">Fill '+f.n+' ~'+d+'</span>';
+  });
+  return '<div style="font-size:12.5px;margin-top:6px;line-height:1.7">'+parts.join('&nbsp;&nbsp;&middot;&nbsp;&nbsp;')+'</div>';
 }
 
 // Map product names to the new product thumbnails (frontend override so the
@@ -1645,9 +1658,13 @@ document.addEventListener('click',e=>{
 // Treatments awaiting Karin's approved refill questionnaire — show the manual-care message
 // instead of the in-portal refill form until MDI templates are live.
 const AUTO_REFILL_PENDING = ['glutathione','micc','pt141'];
-function startRefill(){
+function startRefill(product){
   if(!portalData)return;
-  const tx=(portalData.patient&&portalData.patient.treatment)||'';
+  // Per-product refill (2026-07-03): resolve the CLICKED treatment. Falls back
+  // to the legacy single-slot patient.treatment for old call sites.
+  const txs=(portalData.treatments||[]);
+  window._refillTx = (product && txs.find(function(t){return t.product===product})) || null;
+  const tx=(window._refillTx&&window._refillTx.product)||(portalData.patient&&portalData.patient.treatment)||'';
   if(AUTO_REFILL_PENDING.includes(tx)){
     $('refillSection').style.display='block';
     $('refillFormArea').innerHTML=`
@@ -1687,14 +1704,14 @@ function startRefill(){
     $('refillFormArea').scrollIntoView({behavior:'smooth',block:'start'});
     return;
   }
-  const flow=portalData.patient.refillFlow||'generic';
+  const flow=(window._refillTx&&window._refillTx.refillFlow)||portalData.patient.refillFlow||'generic';
   if(flow==='glp1')renderGlp1Refill();
   else renderGenericRefill();
   $('refillFormArea').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 function renderGenericRefill(){
-  const productLabel=portalData.patient.treatmentDisplay||'your treatment';
+  const productLabel=(window._refillTx&&window._refillTx.productDisplay)||portalData.patient.treatmentDisplay||'your treatment';
   $('refillFormArea').innerHTML=`
     <h3 style="font-size:16px;font-weight:700;margin-bottom:6px">Refill request · ${escapeHtml(productLabel)}</h3>
     <p style="font-size:14px;color:var(--gray-500);margin-bottom:18px">Quick check-in so your provider can issue your next prescription.</p>
@@ -1718,6 +1735,7 @@ async function submitGenericRefill(){
   if(window._refillInFlight) return;
   const payload={
     refillFlow:'generic',
+    product:(window._refillTx&&window._refillTx.product)||undefined,
     answers:{
       progress:$('r_progress').value,
       sideEffects:$('r_sideeffects').value.trim(),
