@@ -1682,7 +1682,10 @@ function startRefill(product){
     $('refillFormArea').scrollIntoView({behavior:'smooth',block:'start'});
     return;
   }
-  const rw=portalData.refillWindow;
+  // Per-product gate (2026-07-03): the CLICKED treatment's window, not the
+  // patient-level single slot — Mark's open tirzepatide was blocked by his
+  // tadalafil order's Aug 20 window.
+  const rw=(window._refillTx&&window._refillTx.refillWindow)||portalData.refillWindow;
   $('refillSection').style.display='block';
   // Gate by window state. Allow if open OR expired (overdue patients still need to request).
   if(rw && !rw.isOpen && !rw.isExpired){
