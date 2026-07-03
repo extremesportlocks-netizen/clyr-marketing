@@ -1657,6 +1657,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (currentStep < totalSteps) goToStep(currentStep + 1);
   }
 
+  // Tokenized resume: mint an opaque token so no email rides in the URL (?t= not ?email=).
+  function clyrResumeToCheckout(el) {
+    var email = '';
+    try { email = decodeURIComponent(el.getAttribute('data-clyr-email') || ''); } catch (e) {}
+    if (!email) { window.location.href = '/intake.html'; return false; }
+    fetch('https://clyr-backend.onrender.com/api/checkout/resume-token', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email })
+    }).then(function (r) { return r.json(); })
+      .then(function (d) {
+        window.location.href = (d && d.token)
+          ? '/resume.html?t=' + encodeURIComponent(d.token)
+          : '/resume.html?email=' + encodeURIComponent(email);
+      })
+      .catch(function () { window.location.href = '/resume.html?email=' + encodeURIComponent(email); });
+    return false;
+  }
+
   function showReturningCustomerModal(firstName, mode, email) {
     var overlay = document.createElement('div');
     overlay.id = 'returningModal';
@@ -1674,9 +1691,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       buttons = '<button onclick="document.getElementById(\'returningModal\').remove()" style="display:inline-block;background:#2bbcb3;color:#fff;border:none;padding:14px 32px;border-radius:10px;font-weight:600;font-size:15px;margin-bottom:12px;width:100%;box-sizing:border-box;cursor:pointer;font-family:inherit;">Continue my consultation</button>';
     } else {
       // 'incomplete', completed intake, just didn't pay. resume.html works.
-      var resumeUrl = email ? '/resume.html?email=' + encodeURIComponent(email) : '/intake.html';
+      // Tokenized on click so no email sits in the URL (→ /resume.html?t=<token>).
+      var resumeAttrs = email
+        ? 'href="/intake.html" data-clyr-email="' + encodeURIComponent(email) + '" onclick="return clyrResumeToCheckout(this)"'
+        : 'href="/intake.html"';
       msg = '<p style="color:#4b5563;font-size:15px;line-height:1.6;margin-bottom:24px;">It looks like you already started your consultation. Your information is saved, you can go straight to checkout or continue updating your details.</p>';
-      buttons = '<a href="' + resumeUrl + '" style="display:inline-block;background:#2bbcb3;color:#fff;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:600;font-size:15px;margin-bottom:12px;width:100%;box-sizing:border-box;">Go to Checkout</a><br>' +
+      buttons = '<a ' + resumeAttrs + ' style="display:inline-block;background:#2bbcb3;color:#fff;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:600;font-size:15px;margin-bottom:12px;width:100%;box-sizing:border-box;">Go to Checkout</a><br>' +
         '<button onclick="document.getElementById(\'returningModal\').remove()" style="background:none;border:none;color:#9ca3af;font-size:14px;cursor:pointer;padding:8px 16px;margin-top:4px;">Update my details first</button>';
     }
     overlay.innerHTML = '<div style="background:#fff;border-radius:20px;padding:36px 32px;max-width:440px;width:100%;text-align:center;box-shadow:0 24px 80px rgba(0,0,0,0.15)">' +
