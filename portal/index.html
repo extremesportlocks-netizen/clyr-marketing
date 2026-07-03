@@ -1807,7 +1807,10 @@ function submitGlp1Refill(){
   // Renewal menu mirrors the static tirzepatide.html doors (Orlando 2026-07-02):
   // every option is offered regardless of previous dosing; the patient picks.
   const tx=((portalData.patient&&portalData.patient.treatment)||'').toLowerCase();
-  const isTirz=tx.includes('tirz');
+  // Product from the CLICKED treatment (2026-07-03): Mark (tirzepatide) was
+  // served the semaglutide menu because this read the single-slot treatment.
+  const _menuProduct=(window._refillTx&&window._refillTx.product)||(portalData.patient&&portalData.patient.treatment)||'';
+  const isTirz=/tirz/i.test(_menuProduct);
   // Stash answers on window so the plan buttons can read them.
   window._glp1RefillAnswers=answers;
   const card=(plan,name,badge,caps,price,suffix,hl)=>`
