@@ -1715,6 +1715,7 @@ function renderGenericRefill(){
 }
 
 async function submitGenericRefill(){
+  if(window._refillInFlight) return;
   const payload={
     refillFlow:'generic',
     answers:{
@@ -1727,10 +1728,11 @@ async function submitGenericRefill(){
   if(!payload.answers.progress||!payload.answers.continueOrChange){
     alert('Please answer the required questions.');return;
   }
+  window._refillInFlight=true;
   try{
     await api('/api/portal/refill',{method:'POST',body:JSON.stringify(payload)});
     $('refillFormArea').innerHTML=`<div class="empty"><div class="empty-icon">✅</div><div class="empty-title">Refill request submitted</div><div class="empty-msg">Your provider will review and reach out within 24 to 48 hours.</div></div>`;
-  }catch(e){alert('Could not submit: '+e.message);}
+  }catch(e){window._refillInFlight=false;alert('Could not submit: '+e.message);}
 }
 
 function renderGlp1Refill(){
@@ -1776,6 +1778,7 @@ function glp1RefillAnswers(){
 }
 
 function submitGlp1Refill(){
+  if(window._refillInFlight) return;
   const answers = glp1RefillAnswers();
   if(!answers.q30 || !answers.q40 || !answers.q60 || !answers.q300){
     alert('Please answer the required questions.');return;
@@ -1821,6 +1824,7 @@ function submitGlp1Refill(){
 }
 
 async function startGlp1RefillCheckout(plan){
+  if(window._refillInFlight) return;
   const answers = window._glp1RefillAnswers;
   if(!answers){alert('Please complete the questionnaire again.');return;}
   if(window._glp1WantsHigher && /^t1_/.test(plan)){
@@ -1834,14 +1838,15 @@ async function startGlp1RefillCheckout(plan){
   try{
     const [stripe, session] = await Promise.all([
       loadStripeJs(),
-      api('/api/portal/refill/checkout',{method:'POST',body:JSON.stringify({answers, plan})})
+      (window._refillInFlight=true, document.querySelectorAll('.refill-term-btn').forEach(b=>b.disabled=true),
+      api('/api/portal/refill/checkout',{method:'POST',body:JSON.stringify({answers, plan})}))
     ]);
     if(!session.clientSecret) throw new Error(session.error||'No checkout session returned');
     mount.innerHTML='<div id="glp1CheckoutContainer"></div>';
     const ec = await stripe.initEmbeddedCheckout({
       clientSecret: session.clientSecret,
       onComplete: async () => {
-        try{ track('portal_glp1_refill_paid',{term}); }catch(e){}
+        try{ track('portal_glp1_refill_paid',{term}); }catch(e){window._refillInFlight=false;document.querySelectorAll('.refill-term-btn').forEach(b=>b.disabled=false);}
         mount.innerHTML=`
           <div style="text-align:center;padding:32px 20px">
             <div style="font-size:48px;margin-bottom:12px">✓</div>
