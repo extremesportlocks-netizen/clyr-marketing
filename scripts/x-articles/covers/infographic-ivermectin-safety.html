@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1600px; height: 900px; overflow: hidden;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background: linear-gradient(165deg, #e8f6f9 0%, #f4fbfc 38%, #ffffff 100%);
+    color: #1a1a1a;
+    position: relative;
+  }
+  .dots-left {
+    position: absolute; left: 48px; top: 120px; width: 120px; height: 280px;
+    background-image: radial-gradient(circle, rgba(0,180,197,0.35) 2px, transparent 2px);
+    background-size: 22px 22px; opacity: 0.45;
+  }
+  .glow {
+    position: absolute; right: -80px; top: 40px; width: 520px; height: 520px;
+    border-radius: 50%; background: radial-gradient(circle, rgba(0,180,197,0.12) 0%, transparent 68%);
+  }
+  .wrap { position: relative; z-index: 2; height: 100%; padding: 52px 64px 48px; display: flex; flex-direction: column; }
+  .eyebrow {
+    text-align: center; font-size: 15px; font-weight: 600; letter-spacing: 0.28em;
+    color: #6b8a94; text-transform: uppercase; margin-bottom: 18px;
+  }
+  h1 {
+    text-align: center; font-size: 54px; font-weight: 700; line-height: 1.12;
+    letter-spacing: -0.02em; max-width: 1180px; margin: 0 auto 36px;
+  }
+  .stage {
+    flex: 1; display: grid; grid-template-columns: 1fr 300px 1fr; align-items: center; gap: 28px;
+    max-width: 1480px; margin: 0 auto; width: 100%;
+  }
+  .panel { max-width: 420px; }
+  .panel.right { justify-self: end; }
+  .panel-head {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 14px;
+    font-size: 14px; font-weight: 700; letter-spacing: 0.14em; color: #007a8b;
+  }
+  .mol {
+    width: 34px; height: 34px; flex-shrink: 0;
+  }
+  .panel p, .panel li {
+    font-size: 17px; line-height: 1.55; color: #4a5f68;
+  }
+  .panel ul { list-style: none; padding: 0; }
+  .panel li { margin-bottom: 10px; padding-left: 18px; position: relative; }
+  .panel li::before {
+    content: ''; position: absolute; left: 0; top: 11px; width: 7px; height: 7px;
+    border-radius: 50%; background: #00b4c5;
+  }
+  .connector {
+    position: absolute; top: 50%; width: 120px; height: 2px;
+    border-top: 2px dotted rgba(0,180,197,0.55);
+  }
+  .connector.left { left: calc(50% - 230px); }
+  .connector.right { right: calc(50% - 230px); }
+  .product {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .product img {
+    width: 220px; height: auto; filter: drop-shadow(0 28px 48px rgba(0,60,70,0.18));
+  }
+  .cap-label {
+    margin-top: 18px; text-align: center; font-size: 13px; font-weight: 600;
+    letter-spacing: 0.12em; color: #007a8b;
+  }
+  .brand-bar {
+    margin-top: auto; display: flex; justify-content: space-between; align-items: center;
+    padding-top: 28px; border-top: 3px solid #00b4c5;
+    font-size: 14px; color: #6b8a94;
+  }
+  .brand-bar strong { color: #00b4c5; font-weight: 700; }
+</style>
+</head>
+<body>
+  <div class="dots-left"></div>
+  <div class="glow"></div>
+  <div class="wrap">
+    <div class="eyebrow">Recovery × Ivermectin</div>
+    <h1>How to buy ivermectin safely online.</h1>
+    <div class="stage">
+      <div class="panel">
+        <div class="panel-head">
+          <svg class="mol" viewBox="0 0 34 34" fill="none"><circle cx="8" cy="17" r="5" fill="#00B4C5"/><circle cx="26" cy="17" r="5" fill="#00B4C5"/><line x1="13" y1="17" x2="21" y2="17" stroke="#00B4C5" stroke-width="2.5"/></svg>
+          THE REAL RISK
+        </div>
+        <p>Search results for &ldquo;buy ivermectin online&rdquo; are dominated by rogue pharmacies — ~78% operate illegally, often with no prescription and no verified product.</p>
+      </div>
+      <div class="product">
+        <img src="../../../img/capsule-ivermectin-icon-card.png" alt="">
+        <div class="cap-label">IVERMECTIN · CLYR</div>
+      </div>
+      <div class="panel right">
+        <div class="panel-head">
+          <svg class="mol" viewBox="0 0 34 34" fill="none"><circle cx="8" cy="17" r="5" fill="#00B4C5"/><circle cx="26" cy="17" r="5" fill="#00B4C5"/><line x1="13" y1="17" x2="21" y2="17" stroke="#00B4C5" stroke-width="2.5"/></svg>
+          GREEN FLAGS
+        </div>
+        <ul>
+          <li>Valid prescription from a licensed clinician</li>
+          <li>LegitScript-certified telehealth platform</li>
+          <li>Real U.S. pharmacy + pharmacist on staff</li>
+          <li>Transparent pricing — no crypto checkout</li>
+        </ul>
+      </div>
+    </div>
+    <div class="brand-bar">
+      <span><strong>CLYR</strong> Journal</span>
+      <span>Licensed providers · LegitScript certified</span>
+    </div>
+  </div>
+</body>
+</html>
