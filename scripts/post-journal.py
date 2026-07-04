@@ -96,15 +96,26 @@ def img_data_key(c):
 def build_article_img(c):
     key = img_data_key(c)
     cat = esc(c["category"])
-    return (f'<div class="article-img" data-img="{key}">\n'
-            f'  <div class="article-img-inner">\n'
+    hero = (c.get("heroImage") or "").strip()
+    if hero:
+        src = hero if hero.startswith("/") else f"/{hero.lstrip('/')}"
+        inner = (
+            f'    <img src="{esc(src)}" alt="{esc(c["title"])}" '
+            f'style="width:100%;height:100%;object-fit:cover;display:block">'
+        )
+    else:
+        inner = (
             f'    <div class="article-img-decoration" style="opacity:0.22">\n'
             f'      <svg viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg" width="100%" style="max-width:720px;height:auto">\n'
             f'        <text x="320" y="72" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="700" fill="#00B4C5" letter-spacing="4">CLYR JOURNAL</text>\n'
             f'        <text x="320" y="108" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#6B7C8A" letter-spacing="2">{cat.upper()}</text>\n'
             f'        <line x1="120" y1="128" x2="520" y2="128" stroke="#00B4C5" stroke-width="1" opacity="0.35"/>\n'
             f'      </svg>\n'
-            f'    </div>\n'
+            f'    </div>'
+        )
+    return (f'<div class="article-img" data-img="{key}">\n'
+            f'  <div class="article-img-inner">\n'
+            f'{inner}\n'
             f'  </div>\n'
             f'</div>')
 
