@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-07-03T16:56:28.313225+00:00",
+  "updated_at": "2026-07-04T05:49:49.715523+00:00",
   "articles": {
     "ivermectin-cancer-what-science-shows": {
       "slug": "ivermectin-cancer-what-science-shows",
@@ -1297,12 +1297,12 @@
       ],
       "source": "json",
       "journal_url": "https://www.clyr.health/journal/how-to-buy-ivermectin-safely-online/",
-      "status": "drafted",
+      "status": "published",
       "x_draft_id": "2073088104131371008",
-      "x_published_at": null,
+      "x_published_at": "2026-07-04T05:49:49.715041+00:00",
       "companion_tweet": "New on CLYR Journal: How to Buy Ivermectin Safely Online: A Guide to Avoiding Rogue Pharmacies\n\nProvider-guided ivermectin from licensed clinicians \u2192 https://www.clyr.health/ivermectin.html\n\nFull read: https://www.clyr.health/journal/how-to-buy-ivermectin-safely-online/\n\n*Compounded not FDA-approved. Licensed providers only.",
-      "x_post_id": null,
-      "x_tweet_id": null,
+      "x_post_id": "2073283117096284354",
+      "x_tweet_id": "2073283118635598019",
       "cover_image": "scripts/x-articles/covers/how-to-buy-ivermectin-safely-online.png"
     }
   },
@@ -1312,8 +1312,8 @@
       "ashersoil"
     ],
     "queued": 3,
-    "drafted": 1,
-    "published": 1,
+    "drafted": 0,
+    "published": 2,
     "catalog": 69,
     "skipped": 0
   }
