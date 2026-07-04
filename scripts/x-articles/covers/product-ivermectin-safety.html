@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1600px; height: 900px; overflow: hidden;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background: linear-gradient(180deg, #0a5f68 0%, #1a8f98 22%, #b8d9de 58%, #eceff1 82%, #f5f7f8 100%);
+    position: relative;
+  }
+  .floor {
+    position: absolute; left: 0; right: 0; bottom: 0; height: 42%;
+    background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.35) 35%, #eef1f3 100%);
+  }
+  .float {
+    position: absolute; opacity: 0.92; filter: drop-shadow(0 0 18px rgba(255,255,255,0.55));
+  }
+  .float.p1 { left: 120px; top: 180px; width: 56px; height: 56px; }
+  .float.p2 { left: 200px; top: 320px; width: 44px; height: 44px; opacity: 0.75; }
+  .float.m1 { right: 180px; top: 200px; width: 72px; height: 72px; }
+  .float.m2 { right: 280px; top: 340px; width: 58px; height: 58px; opacity: 0.8; }
+  .float.p3 { right: 420px; top: 420px; width: 36px; height: 36px; opacity: 0.7; }
+
+  .stage {
+    position: absolute; left: 50%; top: 36%; transform: translate(-50%, -50%);
+    width: 560px; height: 400px;
+  }
+  .bottle-shadow {
+    position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%);
+    width: 280px; height: 36px; border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(0,40,50,0.22) 0%, transparent 72%);
+  }
+  .bottle {
+    position: absolute; left: 50%; bottom: 40px; transform: translateX(-58%);
+    width: 168px; height: 300px;
+  }
+  .cap {
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 92px; height: 42px; border-radius: 14px 14px 6px 6px;
+    background: linear-gradient(180deg, #fafafa 0%, #e8ecef 55%, #d5dbe0 100%);
+    box-shadow: inset 0 4px 8px rgba(255,255,255,0.9), 0 2px 4px rgba(0,0,0,0.08);
+  }
+  .cap-rim {
+    position: absolute; top: 38px; left: 50%; transform: translateX(-50%);
+    width: 104px; height: 10px; border-radius: 4px;
+    background: #eef1f3; box-shadow: 0 2px 0 rgba(0,0,0,0.06);
+  }
+  .body {
+    position: absolute; top: 46px; left: 50%; transform: translateX(-50%);
+    width: 148px; height: 248px; border-radius: 10px 10px 16px 16px;
+    background: linear-gradient(90deg, #f0f3f5 0%, #ffffff 18%, #ffffff 82%, #e8edf0 100%);
+    box-shadow: inset -8px 0 16px rgba(0,0,0,0.04), inset 8px 0 16px rgba(255,255,255,0.8), 0 24px 48px rgba(0,50,60,0.18);
+  }
+  .label {
+    position: absolute; top: 88px; left: 50%; transform: translateX(-50%);
+    width: 122px; height: 128px; border-radius: 8px;
+    background: linear-gradient(180deg, #0d8f9a 0%, #0a6f78 100%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.25);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; color: #fff; padding: 12px 8px;
+  }
+  .label .brand { font-size: 13px; font-weight: 600; letter-spacing: 0.02em; margin-bottom: 10px; opacity: 0.95; }
+  .label .dose { font-size: 17px; font-weight: 700; line-height: 1.2; margin-bottom: 8px; }
+  .label .count { font-size: 13px; font-weight: 600; opacity: 0.92; }
+
+  .capsule {
+    position: absolute; right: 24px; bottom: 88px; width: 210px; height: 72px;
+    border-radius: 36px; overflow: hidden; transform: rotate(-6deg);
+    box-shadow: 0 18px 36px rgba(0,50,60,0.22);
+    background: linear-gradient(180deg, #fafafa 0%, #eef2f4 100%);
+  }
+  .capsule::before {
+    content: ''; position: absolute; left: 0; top: 0; width: 48%; height: 100%;
+    background: linear-gradient(180deg, #12a8b0 0%, #0a7f88 100%);
+    border-radius: 36px 0 0 36px;
+  }
+  .capsule::after {
+    content: 'CLYR'; position: absolute; left: 14%; top: 50%; transform: translateY(-50%);
+    font-size: 15px; font-weight: 700; letter-spacing: 0.18em; color: rgba(255,255,255,0.95);
+  }
+  .cap-shine {
+    position: absolute; right: 18px; top: 14px; width: 42%; height: 18px; border-radius: 20px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.85), transparent);
+  }
+
+  .copy {
+    position: absolute; left: 0; right: 0; bottom: 56px; text-align: center; z-index: 5;
+    padding: 0 80px;
+  }
+  .copy h1 {
+    font-size: 56px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em;
+    color: #111; margin-bottom: 12px;
+  }
+  .copy p { font-size: 28px; font-weight: 600; color: #1a1a1a; }
+</style>
+</head>
+<body>
+  <div class="floor"></div>
+
+  <svg class="float p1" viewBox="0 0 56 56"><text x="28" y="38" text-anchor="middle" font-size="42" font-weight="300" fill="white">+</text></svg>
+  <svg class="float p2" viewBox="0 0 44 44"><text x="22" y="30" text-anchor="middle" font-size="34" font-weight="300" fill="white">+</text></svg>
+  <svg class="float m1" viewBox="0 0 72 72" fill="none" stroke="white" stroke-width="2.2">
+    <circle cx="36" cy="36" r="14"/><circle cx="14" cy="20" r="7"/><circle cx="58" cy="20" r="7"/><circle cx="14" cy="52" r="7"/><circle cx="58" cy="52" r="7"/>
+    <line x1="28" y1="30" x2="20" y2="24"/><line x1="44" y1="30" x2="52" y2="24"/><line x1="28" y1="42" x2="20" y2="48"/><line x1="44" y1="42" x2="52" y2="48"/>
+  </svg>
+  <svg class="float m2" viewBox="0 0 58 58" fill="none" stroke="white" stroke-width="2">
+    <circle cx="29" cy="29" r="11"/><circle cx="12" cy="16" r="5"/><circle cx="46" cy="16" r="5"/><circle cx="12" cy="42" r="5"/><circle cx="46" cy="42" r="5"/>
+    <line x1="22" y1="24" x2="16" y2="19"/><line x1="36" y1="24" x2="42" y2="19"/><line x1="22" y1="34" x2="16" y2="39"/><line x1="36" y1="34" x2="42" y2="39"/>
+  </svg>
+  <svg class="float p3" viewBox="0 0 36 36"><text x="18" y="26" text-anchor="middle" font-size="28" font-weight="300" fill="#00b4c5">+</text></svg>
+
+  <div class="stage">
+    <div class="bottle-shadow"></div>
+    <div class="bottle">
+      <div class="cap"></div>
+      <div class="cap-rim"></div>
+      <div class="body">
+        <div class="label">
+          <div class="brand">CLYR Health</div>
+          <div class="dose">Ivermectin<br>18 mg</div>
+          <div class="count">30 Capsules</div>
+        </div>
+      </div>
+    </div>
+    <div class="capsule"><div class="cap-shine"></div></div>
+  </div>
+
+  <div class="copy">
+    <h1>How to Buy Ivermectin<br>Safely Online</h1>
+    <p>Read the guide at clyr.health/journal</p>
+  </div>
+</body>
+</html>

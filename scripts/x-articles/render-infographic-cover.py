@@ -9,7 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 COVERS = Path(__file__).resolve().parent / "covers"
-DEFAULT_HTML = COVERS / "infographic-ivermectin-safety.html"
+DEFAULT_HTML = COVERS / "product-ivermectin-safety.html"
 
 
 def chrome_bin() -> str | None:
@@ -49,7 +49,7 @@ def main():
     html = Path(sys.argv[2]) if len(sys.argv) > 2 else DEFAULT_HTML
     out = COVERS / f"{slug}.png"
     render(html, out)
-    dl = Path.home() / "Downloads" / f"ivermectin-infographic-cover-1600x900.png"
+    dl = Path.home() / "Downloads" / f"ivermectin-product-cover-1600x900.png"
     shutil.copy2(out, dl)
     print(f"✓ Downloads → {dl}")
 
