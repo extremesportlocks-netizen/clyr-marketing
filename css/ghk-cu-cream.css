@@ -1086,6 +1086,9 @@ body.ghk-page {
   .ghk-hero { grid-template-columns: 1fr; padding: 88px 24px 60px; min-height: auto; }
   .ghk-hero-visual { order: -1; min-height: 0; }
   .ghk-hero-panel { min-height: 340px; max-height: 44vh; }
+  .ghk-hero-panel .ghk-hero-photo { max-height: clamp(280px, 38vh, 520px); width: auto; height: auto; margin: 0 auto; display: block; object-fit: contain; }
+  .ghk-product-stage { min-height: 0; }
+  .ghk-page .breadcrumb a { display: inline-block; padding: 10px 2px; }
   .ghk-molecule-grid { grid-template-columns: 1fr; }
   .ghk-routine-steps { grid-template-columns: 1fr 1fr; }
   .ghk-bar-row { grid-template-columns: 1fr; gap: 8px; }
@@ -1098,6 +1101,8 @@ body.ghk-page {
   .ghk-float-badge { right: 2%; }
 }
 @media (max-width: 640px) {
+  .footer .footer-top { grid-template-columns: 1fr 1fr; gap: 36px 28px; }
+  .footer .footer-top > div:first-child { grid-column: 1 / -1; }
   .ghk-routine-steps { grid-template-columns: 1fr; }
   .ghk-routine-steps::before { display: none; }
   .ghk-stats-inner { grid-template-columns: 1fr 1fr; gap: 20px; }
