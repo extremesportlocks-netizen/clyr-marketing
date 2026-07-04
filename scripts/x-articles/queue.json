@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-06-30T03:45:45.736460+00:00",
+  "updated_at": "2026-07-03T16:56:28.313225+00:00",
   "articles": {
     "ivermectin-cancer-what-science-shows": {
       "slug": "ivermectin-cancer-what-science-shows",
@@ -16,7 +16,9 @@
       "status": "queued",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "ivermectin-vs-mebendazole-antiparasitic-coverage": {
       "slug": "ivermectin-vs-mebendazole-antiparasitic-coverage",
@@ -32,7 +34,9 @@
       "status": "queued",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "ivermectin-wellness-protocol-overview": {
       "slug": "ivermectin-wellness-protocol-overview",
@@ -48,7 +52,9 @@
       "status": "queued",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "parasite-cleanse-vs-antiparasitic-medicine": {
       "slug": "parasite-cleanse-vs-antiparasitic-medicine",
@@ -64,10 +70,10 @@
       "journal_url": "https://www.clyr.health/journal/parasite-cleanse-vs-antiparasitic-medicine/",
       "status": "published",
       "x_draft_id": "2071778589993779200",
-      "x_post_id": "2071778855652626453",
-      "x_tweet_id": "2071778868315230499",
       "x_published_at": "2026-06-30T02:12:25.854132+00:00",
-      "companion_tweet": "New on CLYR Journal: Parasite Cleanses vs. Real Antiparasitic Medicine\n\nProvider-guided 30-day cleanse tiers from $99 \u2192 https://verde-cleanse-site.vercel.app/protocol?utm_source=twitter&utm_medium=organic&utm_campaign=journal-article&utm_content=parasite-cleanse-vs-antiparasitic-medicine\n\nFull read: https://www.clyr.health/journal/parasite-cleanse-vs-antiparasitic-medicine/\n\n*Compounded not FDA-approved. Licensed providers only."
+      "companion_tweet": "New on CLYR Journal: Parasite Cleanses vs. Real Antiparasitic Medicine\n\nProvider-guided 30-day cleanse tiers from $99 \u2192 https://verde-cleanse-site.vercel.app/protocol?utm_source=twitter&utm_medium=organic&utm_campaign=journal-article&utm_content=parasite-cleanse-vs-antiparasitic-medicine\n\nFull read: https://www.clyr.health/journal/parasite-cleanse-vs-antiparasitic-medicine/\n\n*Compounded not FDA-approved. Licensed providers only.",
+      "x_post_id": "2071778855652626453",
+      "x_tweet_id": "2071778868315230499"
     },
     "anastrozole-trt-estrogen-management": {
       "slug": "anastrozole-trt-estrogen-management",
@@ -82,7 +88,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "biest-progesterone-compounded-hrt": {
       "slug": "biest-progesterone-compounded-hrt",
@@ -98,7 +106,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "bpc-157-peptide-recovery-explained": {
       "slug": "bpc-157-peptide-recovery-explained",
@@ -114,7 +124,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "clyr-tri-gel-triple-therapy-acne": {
       "slug": "clyr-tri-gel-triple-therapy-acne",
@@ -130,7 +142,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "compounded-hair-regrowth-quad-stack-men": {
       "slug": "compounded-hair-regrowth-quad-stack-men",
@@ -146,7 +160,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "compounded-semaglutide-cost": {
       "slug": "compounded-semaglutide-cost",
@@ -162,7 +178,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "compounded-tirzepatide-ohio": {
       "slug": "compounded-tirzepatide-ohio",
@@ -178,7 +196,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "dhea-pregnenolone-adrenal-precursors": {
       "slug": "dhea-pregnenolone-adrenal-precursors",
@@ -193,7 +213,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "doxycycline-oral-acne-antibiotic": {
       "slug": "doxycycline-oral-acne-antibiotic",
@@ -209,7 +231,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "enclomiphene-fertility-preserving-testosterone": {
       "slug": "enclomiphene-fertility-preserving-testosterone",
@@ -225,7 +249,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "estradiol-patches-hrt-explained": {
       "slug": "estradiol-patches-hrt-explained",
@@ -241,7 +267,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "estradiol-vaginal-cream-gsm": {
       "slug": "estradiol-vaginal-cream-gsm",
@@ -256,7 +284,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "estriol-ghk-cu-anti-aging-cream": {
       "slug": "estriol-ghk-cu-anti-aging-cream",
@@ -272,7 +302,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "finasteride-oral-hair-loss-dht": {
       "slug": "finasteride-oral-hair-loss-dht",
@@ -288,7 +320,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "foundayo-hair-regrowth-science": {
       "slug": "foundayo-hair-regrowth-science",
@@ -305,7 +339,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "ghk-cu-injectable-copper-peptide": {
       "slug": "ghk-cu-injectable-copper-peptide",
@@ -321,7 +357,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "glp1-protein-resistance-training": {
       "slug": "glp1-protein-resistance-training",
@@ -336,7 +374,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "glp1-side-effects-management": {
       "slug": "glp1-side-effects-management",
@@ -351,7 +391,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "glp1-weight-loss-north-carolina": {
       "slug": "glp1-weight-loss-north-carolina",
@@ -366,7 +408,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "glutathione-master-antioxidant": {
       "slug": "glutathione-master-antioxidant",
@@ -382,7 +426,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "glutathione-push-injection-benefits": {
       "slug": "glutathione-push-injection-benefits",
@@ -397,7 +443,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "hcg-trt-adjunct-explained": {
       "slug": "hcg-trt-adjunct-explained",
@@ -414,7 +462,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "hydroquinone-triple-cream-hyperpigmentation": {
       "slug": "hydroquinone-triple-cream-hyperpigmentation",
@@ -429,7 +479,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "legitscript-telehealth-certification-explained": {
       "slug": "legitscript-telehealth-certification-explained",
@@ -444,7 +496,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "lipo-mino-injection-weight-loss": {
       "slug": "lipo-mino-injection-weight-loss",
@@ -459,7 +513,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "liraglutide-weight-loss-glp1": {
       "slug": "liraglutide-weight-loss-glp1",
@@ -474,7 +530,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "longevity-medicine-foundations": {
       "slug": "longevity-medicine-foundations",
@@ -490,7 +548,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "metformin-er-glp1-companion": {
       "slug": "metformin-er-glp1-companion",
@@ -505,7 +565,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "micc-lipotropic-injection-explained": {
       "slug": "micc-lipotropic-injection-explained",
@@ -521,7 +583,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "nad-face-cream-topical-longevity": {
       "slug": "nad-face-cream-topical-longevity",
@@ -536,7 +600,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "nad-iv-vs-injection": {
       "slug": "nad-iv-vs-injection",
@@ -551,7 +617,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "nad-vs-nmn-vs-nr": {
       "slug": "nad-vs-nmn-vs-nr",
@@ -566,7 +634,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "naltrexone-ldn-wellness-protocol": {
       "slug": "naltrexone-ldn-wellness-protocol",
@@ -581,7 +651,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "niagen-nicotinamide-riboside-explained": {
       "slug": "niagen-nicotinamide-riboside-explained",
@@ -597,7 +669,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "oxytocin-nasal-spray-bonding": {
       "slug": "oxytocin-nasal-spray-bonding",
@@ -612,7 +686,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "progesterone-capsules-hrt-sleep": {
       "slug": "progesterone-capsules-hrt-sleep",
@@ -628,7 +704,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "pt141-bremelanotide-libido": {
       "slug": "pt141-bremelanotide-libido",
@@ -644,7 +722,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "select-trial-cardiovascular": {
       "slug": "select-trial-cardiovascular",
@@ -659,7 +739,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "semaglutide-california": {
       "slug": "semaglutide-california",
@@ -675,7 +757,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "semaglutide-florida": {
       "slug": "semaglutide-florida",
@@ -690,7 +774,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "semaglutide-illinois": {
       "slug": "semaglutide-illinois",
@@ -706,7 +792,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "semaglutide-michigan": {
       "slug": "semaglutide-michigan",
@@ -722,7 +810,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "semaglutide-near-me": {
       "slug": "semaglutide-near-me",
@@ -737,7 +827,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "semaglutide-new-york": {
       "slug": "semaglutide-new-york",
@@ -753,7 +845,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "semaglutide-odt-nausea-managed-oral-glp1": {
       "slug": "semaglutide-odt-nausea-managed-oral-glp1",
@@ -769,7 +863,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "semaglutide-pennsylvania": {
       "slug": "semaglutide-pennsylvania",
@@ -785,7 +881,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "semaglutide-texas": {
       "slug": "semaglutide-texas",
@@ -800,7 +898,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "semaglutide-vs-tirzepatide": {
       "slug": "semaglutide-vs-tirzepatide",
@@ -816,7 +916,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "sermorelin-explained": {
       "slug": "sermorelin-explained",
@@ -832,7 +934,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "sexual-health-telehealth-guide": {
       "slug": "sexual-health-telehealth-guide",
@@ -847,7 +951,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "sildenafil-tadalafil-dual-gummy-ed": {
       "slug": "sildenafil-tadalafil-dual-gummy-ed",
@@ -862,7 +968,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "surmount-5-deep-dive": {
       "slug": "surmount-5-deep-dive",
@@ -878,7 +986,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "tadalafil-apomorphine-dual-ed": {
       "slug": "tadalafil-apomorphine-dual-ed",
@@ -893,7 +1003,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "tadalafil-troches-sublingual-ed": {
       "slug": "tadalafil-troches-sublingual-ed",
@@ -908,7 +1020,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "tb-500-recovery-peptide": {
       "slug": "tb-500-recovery-peptide",
@@ -924,7 +1038,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "telehealth-weight-loss-how-it-works": {
       "slug": "telehealth-weight-loss-how-it-works",
@@ -939,7 +1055,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "testosterone-cream-topical-trt": {
       "slug": "testosterone-cream-topical-trt",
@@ -955,7 +1073,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "testosterone-cypionate-trt-explained": {
       "slug": "testosterone-cypionate-trt-explained",
@@ -971,7 +1091,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "testosterone-hypo-spray-transdermal": {
       "slug": "testosterone-hypo-spray-transdermal",
@@ -987,7 +1109,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "tirzepatide-sublingual-drops-explained": {
       "slug": "tirzepatide-sublingual-drops-explained",
@@ -1003,7 +1127,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "tretinoin-retinoid-starter-guide": {
       "slug": "tretinoin-retinoid-starter-guide",
@@ -1018,7 +1144,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "trimix-injection-ed-rescue": {
       "slug": "trimix-injection-ed-rescue",
@@ -1033,7 +1161,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "wegovy-tablets-oral-semaglutide-guide": {
       "slug": "wegovy-tablets-oral-semaglutide-guide",
@@ -1048,7 +1178,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "weight-loss-plateau-glp1": {
       "slug": "weight-loss-plateau-glp1",
@@ -1063,7 +1195,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "weight-loss-telehealth-georgia": {
       "slug": "weight-loss-telehealth-georgia",
@@ -1078,7 +1212,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "what-is-nad-plus": {
       "slug": "what-is-nad-plus",
@@ -1093,7 +1229,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "womens-hair-regrowth-topical-stack": {
       "slug": "womens-hair-regrowth-topical-stack",
@@ -1109,7 +1247,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "womens-testosterone-cream-libido": {
       "slug": "womens-testosterone-cream-libido",
@@ -1125,7 +1265,9 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     },
     "zepbound-vs-compounded-tirzepatide": {
       "slug": "zepbound-vs-compounded-tirzepatide",
@@ -1141,16 +1283,36 @@
       "status": "catalog",
       "x_draft_id": null,
       "x_published_at": null,
-      "companion_tweet": null
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
+    },
+    "how-to-buy-ivermectin-safely-online": {
+      "slug": "how-to-buy-ivermectin-safely-online",
+      "title": "How to Buy Ivermectin Safely Online: A Guide to Avoiding Rogue Pharmacies",
+      "deck": "Searching \"buy ivermectin online\" is one of the most dangerous ways to obtain the drug, because the results are dominated by illegal pharmacies selling unverified product. Here is how to tell a legitimate provider from a rogue one, and how to get ivermectin the safe, legal way.",
+      "category": "Recovery",
+      "tiers": [
+        "ashersoil"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/how-to-buy-ivermectin-safely-online/",
+      "status": "drafted",
+      "x_draft_id": "2073088104131371008",
+      "x_published_at": null,
+      "companion_tweet": "New on CLYR Journal: How to Buy Ivermectin Safely Online: A Guide to Avoiding Rogue Pharmacies\n\nProvider-guided ivermectin from licensed clinicians \u2192 https://www.clyr.health/ivermectin.html\n\nFull read: https://www.clyr.health/journal/how-to-buy-ivermectin-safely-online/\n\n*Compounded not FDA-approved. Licensed providers only.",
+      "x_post_id": null,
+      "x_tweet_id": null,
+      "cover_image": "scripts/x-articles/covers/how-to-buy-ivermectin-safely-online.png"
     }
   },
   "stats": {
-    "catalog_total": 73,
+    "catalog_total": 74,
     "x_syndicate_tiers": [
       "ashersoil"
     ],
     "queued": 3,
-    "drafted": 0,
+    "drafted": 1,
     "published": 1,
     "catalog": 69,
     "skipped": 0

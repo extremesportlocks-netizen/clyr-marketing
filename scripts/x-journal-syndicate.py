@@ -322,8 +322,8 @@ def get_body_html(slug: str) -> tuple[dict[str, Any], str]:
     raise SystemExit(f"Article not found: {slug}")
 
 
-MAX_ARTICLE_CHARS = 5500
-MAX_BODY_BLOCKS = 14
+MAX_ARTICLE_CHARS = 2800
+MAX_BODY_BLOCKS = 8
 DRAFT_PAUSE_SEC = 30
 XURL_RETRY_ATTEMPTS = 6
 XURL_RETRY_BASE_SEC = 60
@@ -352,7 +352,7 @@ def trim_blocks(blocks: list[dict[str, Any]], max_chars: int = MAX_ARTICLE_CHARS
     return out
 
 
-def build_draft_payload(slug: str) -> dict[str, Any]:
+def build_draft_payload(slug: str, *, cover_path: str | None = None) -> dict[str, Any]:
     data, body_html = get_body_html(slug)
     title = strip_html(data.get("title", slug))
     deck = data.get("deck", data.get("metaDescription", ""))
@@ -393,11 +393,19 @@ def build_draft_payload(slug: str) -> dict[str, Any]:
         "entity_ranges": [], "inline_style_ranges": [],
     })
 
-    return {
+    payload: dict[str, Any] = {
         "title": title[:280],
         "content_state": {"blocks": blocks, "entities": []},
         "_meta": {"slug": slug, "journal_url": url, "block_count": len(blocks)},
     }
+    image = cover_image_path(slug, cover_path)
+    if image:
+        payload["_meta"]["cover_image"] = str(image)
+        try:
+            payload["cover_media"] = upload_cover_media(image)
+        except RuntimeError as exc:
+            print(f"  cover upload skipped: {exc}", file=sys.stderr)
+    return payload
 
 
 def companion_tweet(slug: str, title: str) -> str:
@@ -447,8 +455,38 @@ def xurl_post(path: str, payload: dict[str, Any], *, max_attempts: int = XURL_RE
     return _xurl_request("POST", path, payload, max_attempts=max_attempts)
 
 
+def cover_image_path(slug: str, override: str | None = None) -> Path | None:
+    if override:
+        path = Path(override).expanduser()
+        return path if path.exists() else None
+    for candidate in (
+        STATE_DIR / "covers" / f"{slug}.png",
+        STATE_DIR / "covers" / f"{slug}.jpg",
+        STATE_DIR / "covers" / f"{slug}.webp",
+    ):
+        if candidate.exists():
+            return candidate
+    return None
+
+
+def upload_cover_media(image_path: Path) -> dict[str, str]:
+    proc = subprocess.run(
+        ["xurl", "media", "upload", str(image_path)],
+        capture_output=True,
+        text=True,
+    )
+    detail = proc.stdout.strip() or proc.stderr.strip() or "media upload failed"
+    if proc.returncode != 0:
+        raise RuntimeError(detail)
+    data = json.loads(proc.stdout)
+    media_id = data.get("data", {}).get("id") or data.get("media_id")
+    if not media_id:
+        raise RuntimeError(f"No media_id in upload response: {detail}")
+    return {"media_category": "TWEET_IMAGE", "media_id": str(media_id)}
+
+
 def cmd_prepare(args: argparse.Namespace) -> int:
-    payload = build_draft_payload(args.slug)
+    payload = build_draft_payload(args.slug, cover_path=getattr(args, "cover", None))
     meta = payload.pop("_meta")
     print(json.dumps({"meta": meta, "title": payload["title"], "blocks": len(payload["content_state"]["blocks"])}, indent=2))
     preview = STATE_DIR / f"preview-{args.slug}.json"
@@ -459,7 +497,7 @@ def cmd_prepare(args: argparse.Namespace) -> int:
 
 
 def cmd_draft(args: argparse.Namespace) -> int:
-    payload = build_draft_payload(args.slug)
+    payload = build_draft_payload(args.slug, cover_path=getattr(args, "cover", None))
     meta = payload.pop("_meta")
     if args.dry_run:
         print(json.dumps(meta, indent=2))
@@ -478,6 +516,7 @@ def cmd_draft(args: argparse.Namespace) -> int:
         "x_draft_id": draft_id,
         "companion_tweet": tweet,
         "journal_url": meta["journal_url"],
+        "cover_image": meta.get("cover_image"),
     })
     save_queue(queue)
     print(f"✓ X Article draft created: {draft_id}")
@@ -681,10 +720,12 @@ def main() -> int:
 
     p_prep = sub.add_parser("prepare", help="Build draft JSON without posting")
     p_prep.add_argument("slug")
+    p_prep.add_argument("--cover", help="Cover image path (default: scripts/x-articles/covers/<slug>.png)")
     p_prep.set_defaults(func=cmd_prepare)
 
     p_draft = sub.add_parser("draft", help="Create X Article draft")
     p_draft.add_argument("slug")
+    p_draft.add_argument("--cover", help="Cover image path (default: scripts/x-articles/covers/<slug>.png)")
     p_draft.add_argument("--dry-run", action="store_true")
     p_draft.set_defaults(func=cmd_draft)
 
