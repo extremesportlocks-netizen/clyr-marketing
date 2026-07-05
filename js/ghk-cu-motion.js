@@ -373,6 +373,9 @@
   function initSkinCinema() {
     var section = document.getElementById('ghk-skin-cinema');
     if (!section || reduced) return;
+    // Mobile renders the cinema static/stacked (see ghk-cu-cream.css); skip the
+    // scroll-scrub so it can't fight the static layout or leave frames dimmed.
+    if (window.matchMedia('(max-width: 640px)').matches) return;
 
     var scrollEl = section.querySelector('.ghk-skin-scroll');
     var frames = section.querySelectorAll('.ghk-skin-frame');

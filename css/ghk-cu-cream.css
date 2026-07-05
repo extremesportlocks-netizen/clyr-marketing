@@ -1108,6 +1108,12 @@ body.ghk-page {
   .ghk-stats-inner { grid-template-columns: 1fr 1fr; gap: 20px; }
   .ghk-sticky-cta { display: block; }
   body.ghk-page { padding-bottom: 88px; }
+  /* Skin cinema: the sticky pin + tall (280vh) scroll breaks frame scrubbing on
+     iOS (100vh/address-bar resize) — frames stuck dim, fixed CTA overlapping.
+     Render static + stacked on mobile so all 4 steps read cleanly. */
+  #ghk-skin-cinema .ghk-skin-scroll { height: auto; }
+  #ghk-skin-cinema .ghk-skin-pin { position: static; height: auto; overflow: visible; padding: 40px 0; }
+  #ghk-skin-cinema .ghk-skin-frame { opacity: 1; transform: none; }
 }
 @media (min-width: 641px) {
   .ghk-sticky-cta { display: none; }
