@@ -176,10 +176,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         // Real successful payment, show success page
         if (cardContent) cardContent.style.opacity = '1';
         if (successBadge) successBadge.style.opacity = '1';
-        // Track confirmed checkout (PostHog + internal DB)
-        if(window.clyrTrack)clyrTrack('CheckoutCompleted',{session_id:sid,value:data.amount_total?data.amount_total/100:0,currency:'USD'});
+        // Track confirmed checkout — ONE canonical emit. clyrTrack fans out to PostHog + internal DB
+        // (with UTM attribution); snake_case matches the funnel taxonomy. This block previously fired
+        // twice into each sink under two spellings and double-counted every conversion.
+        // localStorage guard: page refresh / reopened tab must not re-count the conversion.
+        var _ckKey='clyr_ckc_'+sid;
+        if(window.clyrTrack && !localStorage.getItem(_ckKey)){
+          try{localStorage.setItem(_ckKey,'1');}catch(e){}
+          clyrTrack('checkout_completed',{page:'/success',referrer:document.referrer,session_id:sid,value:data.amount_total?data.amount_total/100:0,currency:'USD',treatment:data.treatment||''});
+        }
         if(window.posthog&&data.customer_email)posthog.identify(data.customer_email);
-        if(window.posthog)posthog.capture('checkout_completed',{session_id:sid,value:data.amount_total?data.amount_total/100:0,currency:'USD',treatment:data.treatment||''});
         // GTM dataLayer Purchase event, value + currency ONLY, no product/medication
         // (PHI-safe). Dedup id = session_id so browser pixel + server CAPI count once.
         window.dataLayer = window.dataLayer || [];
@@ -189,10 +195,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           currency: 'USD',
           transaction_id: sid
         });
-        fetch('https://clyr-backend.onrender.com/api/track', {
-          method: 'POST', headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({ page: '/success', event: 'checkout_completed', referrer: document.referrer, visitor_id: vid, metadata: { session_id: sid } })
-        }).catch(function(){});
       } else {
         // Payment not completed (backed out of Affirm, Klarna, etc.)
         var reason = data.payment_status === 'unpaid' ? 'Your payment was not completed.' : 'Your checkout session has expired.';
