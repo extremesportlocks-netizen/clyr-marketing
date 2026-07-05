@@ -1146,6 +1146,8 @@ body.ghk-page {
   .ghk-stats { padding: 40px 18px; }
   .benefits, .faq, .included, .how-it-works { padding-left: 18px; padding-right: 18px; }
   .ghk-compare, .ghk-matrix, .ghk-molecule, .ghk-routine, .ghk-skin-cinema { padding-left: 18px; padding-right: 18px; }
+  .ghk-compare { padding-top: 56px; padding-bottom: 56px; }
+  .ghk-compare .ghk-bars { margin-top: 28px; }
   .ghk-panel-spotlight { display: none !important; }
   .ghk-price-table { font-size: 12px; min-width: 352px; }
   .ghk-price-table td, .ghk-price-table th { padding: 9px 6px; }
@@ -1172,7 +1174,7 @@ body.ghk-page {
 .ghk-page .how-it-works .section-heading, .ghk-page .included .section-heading { color: #fff; }
 .ghk-page .benefits .section-sub, .ghk-page .faq .section-sub,
 .ghk-page .how-it-works .section-sub, .ghk-page .included .section-sub,
-.ghk-page .ghk-compare .section-sub { color: rgba(255,255,255,0.6); }
+.ghk-page .ghk-compare .section-sub { color: var(--gray-600); }
 .ghk-page .benefits .section-label, .ghk-page .faq .section-label,
 .ghk-page .how-it-works .section-label, .ghk-page .included .section-label,
 .ghk-page .ghk-matrix .section-label, .ghk-page .ghk-skin-cinema .section-label { color: var(--copper-light); }
@@ -1189,7 +1191,9 @@ body.ghk-page {
 .ghk-page .isi-banner h3 { color: rgba(255,255,255,0.85); }
 .ghk-page .isi-banner p { color: rgba(255,255,255,0.5); }
 
-.ghk-page .ghk-compare .section-heading, .ghk-page .ghk-routine .section-heading { color: #fff; }
-.ghk-page .ghk-compare .section-label, .ghk-page .ghk-routine .section-label { color: var(--copper-light); }
+.ghk-page .ghk-routine .section-heading { color: #fff; }
+.ghk-page .ghk-compare .section-heading { color: var(--dark); }
+.ghk-page .ghk-routine .section-label { color: var(--copper-light); }
+.ghk-page .ghk-compare .section-label { color: var(--copper-deep); }
 .ghk-page .ghk-routine .section-sub, .ghk-page .ghk-routine p { color: rgba(255,255,255,0.62); }
 .ghk-page .ghk-skin-cinema p { color: rgba(255,255,255,0.62); }
