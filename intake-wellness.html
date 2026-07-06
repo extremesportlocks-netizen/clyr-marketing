@@ -1107,7 +1107,10 @@ function validateStep3() {
 }
 
 function validateStep4() {
-  var addr = document.getElementById('address').value.trim().length >= 5;
+  var addrVal = document.getElementById('address').value.trim();
+  // Street must contain a number AND a real word: blocks "4314" (name in Apt box)
+  // and "1523C"-style entries that fail USPS DPV at the pharmacy.
+  var addr = addrVal.length >= 5 && /[0-9]/.test(addrVal) && /[A-Za-z]{2,}/.test(addrVal);
   var city = document.getElementById('city').value.trim().length >= 2;
   var state2 = document.getElementById('state').value;
   var zip = document.getElementById('zip').value.length === 5;
@@ -1360,6 +1363,8 @@ function initCheckout() {
 // Boot
 init();
 </script>
+<script>window.CLYR_MAPS_KEY = ''; /* paste the referrer-restricted Google Maps browser key here to turn on address autocomplete */</script>
+<script src="/js/address-autocomplete.js"></script>
 <script src="/js/clyr-tracking.js"></script>
 </body>
 </html>

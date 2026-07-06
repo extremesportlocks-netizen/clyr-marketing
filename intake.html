@@ -1809,7 +1809,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         } else if (stateMsg) {
           stateMsg.style.display = 'none';
         }
-        valid = document.getElementById('address').value.trim() &&
+        // Street must contain a number AND a real word: blocks digits-only
+        // streets (name typed into Apt) that fail pharmacy address checks.
+        var addrV = document.getElementById('address').value.trim();
+        valid = addrV && /[0-9]/.test(addrV) && /[A-Za-z]{2,}/.test(addrV) &&
                 document.getElementById('city').value.trim() &&
                 selectedState &&
                 !stateExcluded &&
@@ -2372,6 +2375,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </p>
 </div>
 <!-- Google Places API removed - re-enable once API key is fixed -->
+<script>window.CLYR_MAPS_KEY = ''; /* paste the referrer-restricted Google Maps browser key here to turn on address autocomplete */</script>
+<script src="/js/address-autocomplete.js"></script>
 <script src="/js/clyr-tracking.js"></script>
 <script>
 (async function(){

@@ -406,6 +406,10 @@ function submitShipping() {
   var need = ['address', 'city', 'state', 'zip'];
   for (var i = 0; i < need.length; i++) { if (!$(need[i]).value) { $('s4err').textContent = 'Please complete address, city, state, and ZIP.'; return; } }
   if (EXCLUDED_STATES.indexOf($('state').value) !== -1) { checkState(); $('s4err').textContent = 'We are not able to ship to the selected state.'; return; }
+  // Street must contain a number AND a real word: blocks digits-only streets
+  // (name typed into Apt) that fail pharmacy address verification.
+  var addrV = $('address').value.trim();
+  if (!/[0-9]/.test(addrV) || !/[A-Za-z]{2,}/.test(addrV)) { $('s4err').textContent = 'Please enter your full street address, number and street name (for example "123 Main St").'; return; }
   $('s4err').textContent = '';
   renderReview();
   go(5);
@@ -509,6 +513,8 @@ function submitAll() {
   fetch(API + '/api/config').then(function (r) { return r.json(); }).then(function (cfg) { if (cfg.publishableKey) stripe = Stripe(cfg.publishableKey); }).catch(function () {});
 })();
 </script>
+<script>window.CLYR_MAPS_KEY = ''; /* paste the referrer-restricted Google Maps browser key here to turn on address autocomplete */</script>
+<script src="/js/address-autocomplete.js"></script>
 <script src="/js/clyr-tracking.js"></script>
 </body>
 </html>
