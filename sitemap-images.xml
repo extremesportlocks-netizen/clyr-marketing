@@ -102,7 +102,7 @@
       <image:caption>Antiparasitic protocols with licensed US providers. Ivermectin $139/mo, combo $169/mo.</image:caption>
     </image:image>
   </url>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              <url>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <url>
     <loc>https://www.clyr.health/journal/anastrozole-trt-estrogen-management/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -586,6 +586,15 @@
     <image:image>
       <image:loc>https://www.clyr.health/img/journal-og/surmount-5-deep-dive.png</image:loc>
       <image:title>Surmount 5 Deep Dive | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/tadalafil-5mg-daily-benefits/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/tadalafil-5mg-daily-benefits.png</image:loc>
+      <image:title>Tadalafil 5Mg Daily Benefits | CLYR Journal</image:title>
     </image:image>
   </url>
   <url>
