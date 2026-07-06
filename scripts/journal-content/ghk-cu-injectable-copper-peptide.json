@@ -1,21 +1,40 @@
 {
   "slug": "ghk-cu-injectable-copper-peptide",
-  "title": "GHK-Cu Injectable: Copper Peptide Collagen Signaling",
-  "titleHtml": "GHK-Cu Injectable: <span class=\"serif\">Copper Peptide Collagen Signaling.</span>",
+  "title": "GHK-Cu Injectable vs Topical: What the Research Supports",
+  "titleHtml": "GHK-Cu Injectable vs Topical: <span class=\"serif\">what the research actually supports.</span>",
   "category": "Peptides",
   "categoryKey": "peptides",
-  "deck": "The tripeptide glycyl-L-histidyl-L-lysine bound to copper modulates wound healing, collagen synthesis, and gene expression, injectable and topical uses in longevity medicine.",
+  "deck": "GHK-Cu is studied in both injectable and topical forms, but the human evidence is not equal between them. What the research supports for each route, where the data is thin, and why CLYR offers GHK-Cu as a topical cream.",
   "date": "June 20, 2026",
-  "readTime": "8 min read",
-  "metaDescription": "GHK-Cu injectable peptide: copper peptide mechanism, collagen remodeling, 1-2mg daily protocols, topical vs injectable, and research status.",
+  "readTime": "10 min read",
+  "metaDescription": "GHK-Cu is studied in both injectable and topical forms, but the human evidence is not equal between them. What the research supports for each route, where the data is thin, and why CLYR offers GHK-Cu as a topical cream.",
   "bodyHtml": "<p>GHK-Cu (copper peptide) is a naturally occurring tripeptide that declines with age. It stimulates collagen and glycosaminoglycan synthesis, supports superoxide dismutase activity, and modulates hundreds of genes toward a regenerative expression profile in cell culture studies.</p>\n\n<p>Injectable subcutaneous protocols (1 to 2 mg daily) appear in compounding formularies alongside topical skin products. Human anti-aging RCT data are limited; mechanism is strong in vitro. Copper balance matters, excess can be pro-oxidant.</p>\n\n<p>CLYR Health offers GHK-Cu injectable as a peptides preview SKU, often paired with topical estriol-GHK-Cu creams for women.</p>",
   "sources": [
-    {"label": "Pickart L, et al. GHK-Cu and tissue remodeling. <em>Biochim Biophys Acta</em>. 2015.", "url": "https://pubmed.ncbi.nlm.nih.gov/25534460/"},
-    {"label": "Pickart L, Margolina A. Regenerative and protective actions of GHK-Cu. <em>Biomed Res Int</em>. 2018.", "url": "https://pubmed.ncbi.nlm.nih.gov/29686826/"}
+    {
+      "label": "Pickart L, et al. GHK-Cu and tissue remodeling. <em>Biochim Biophys Acta</em>. 2015.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25534460/"
+    },
+    {
+      "label": "Pickart L, Margolina A. Regenerative and protective actions of GHK-Cu. <em>Biomed Res Int</em>. 2018.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29686826/"
+    }
   ],
   "related": [
-    {"slug": "bpc-157-peptide-recovery-explained", "title": "BPC-157 Explained", "category": "Peptides"},
-    {"slug": "nad-face-cream-topical-longevity", "title": "NAD+ Face Cream", "category": "NAD+"},
-    {"slug": "longevity-medicine-foundations", "title": "Longevity Foundations", "category": "Longevity"}
-  ]
+    {
+      "slug": "bpc-157-peptide-recovery-explained",
+      "title": "BPC-157 Explained",
+      "category": "Peptides"
+    },
+    {
+      "slug": "nad-face-cream-topical-longevity",
+      "title": "NAD+ Face Cream",
+      "category": "NAD+"
+    },
+    {
+      "slug": "longevity-medicine-foundations",
+      "title": "Longevity Foundations",
+      "category": "Longevity"
+    }
+  ],
+  "productLink": "/ghk-cu-cream.html"
 }
