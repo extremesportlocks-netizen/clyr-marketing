@@ -24,6 +24,7 @@ PREVIEW_MAP = {
     "estradiol-vaginal-cream": "estradiol-vaginal-cream-gsm",
     "womens-testosterone-cream": "womens-testosterone-cream-libido",
     "trimix": "trimix-injection-ed-rescue",
+    "tadalafil-5mg": "tadalafil-5mg-daily-benefits",
     "tadalafil-apomorphine": "tadalafil-apomorphine-dual-ed",
     "oxytocin-nasal": "oxytocin-nasal-spray-bonding",
     "tadalafil-troches": "tadalafil-troches-sublingual-ed",
