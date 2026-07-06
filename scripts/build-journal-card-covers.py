@@ -27,7 +27,7 @@ def pick_pal(key): return PAL.get(key, TEAL)
 def scene_for(slug, cat):
     t = (slug + " " + cat).lower()
     has = lambda *w: any(x in t for x in w)
-    if has("legitscript", "certification"): return "shield"
+    if has("legitscript", "certification", "rogue", "safely-online", "buy-ivermectin", "counterfeit", "verify"): return "shield"
     if has(*STATES) or "telehealth-weight-loss" in slug or "weight-loss-telehealth" in slug: return "pin"
     if has("cost", "price", "insurance", "afford"): return "bars"
     if has("sexual", "libido", "-ed", "ed-", "erectile", "pt141", "trimix", "tadalafil", "sildenafil", "oxytocin", "apomorphine", "bremelanotide"): return "pulse"
@@ -127,8 +127,11 @@ def sc_shield(p):
 SCENES["shield"] = sc_shield
 
 def build_cover(slug, key, cat, idx):
-    p = pick_pal(key)
-    scene = SCENES[scene_for(slug, cat)](p)
+    sc = scene_for(slug, cat)
+    # Safety/legitimacy pieces (shield) read best on the serious navy palette,
+    # regardless of their data-img key. Everything else keeps its category palette.
+    p = NAVY if sc == "shield" else pick_pal(key)
+    scene = SCENES[sc](p)
     gid = f"cg{idx}"
     return (
         f'<svg class="cover-svg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">'
