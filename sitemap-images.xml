@@ -102,7 +102,7 @@
       <image:caption>Antiparasitic protocols with licensed US providers. Ivermectin $139/mo, combo $169/mo.</image:caption>
     </image:image>
   </url>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <url>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              <url>
     <loc>https://www.clyr.health/journal/anastrozole-trt-estrogen-management/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -235,6 +235,15 @@
     <image:image>
       <image:loc>https://www.clyr.health/img/journal-og/foundayo-hair-regrowth-science.png</image:loc>
       <image:title>Foundayo Hair Regrowth Science | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/ghk-cu-copper-peptide-cream-explained/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/ghk-cu-copper-peptide-cream-explained.png</image:loc>
+      <image:title>Ghk Cu Copper Peptide Cream Explained | CLYR Journal</image:title>
     </image:image>
   </url>
   <url>

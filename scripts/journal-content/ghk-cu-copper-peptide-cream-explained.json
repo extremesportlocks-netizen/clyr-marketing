@@ -1,0 +1,43 @@
+{
+  "slug": "ghk-cu-copper-peptide-cream-explained",
+  "title": "GHK-Cu Copper Peptide Cream: What the Science Says",
+  "titleHtml": "GHK-Cu Copper Peptide Cream: <span class=\"serif\">What the science says about the skin's own repair signal.</span>",
+  "category": "Skin & Hair",
+  "categoryKey": "longevity",
+  "deck": "GHK-Cu is one of the most-researched peptides in skin science, with 50 years of studies behind its role in collagen production and repair. What the research shows, the honest truth about skin penetration, and why formulation matters as much as the peptide.",
+  "date": "July 6, 2026",
+  "readTime": "12 min read",
+  "metaDescription": "GHK-Cu is one of the most-researched peptides in skin science, with 50 years of studies behind its role in collagen production and repair. What the research shows, the honest truth about skin penetration, and why formulation matters as much as the peptide.",
+  "productLink": "/ghk-cu-cream.html",
+  "sources": [
+    {
+      "label": "Pickart L, Margolina A. GHK Peptide as a Natural Modulator of Multiple Cellular Pathways in Skin Regeneration. <em>Int J Mol Sci</em>. 2018.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4508379/"
+    },
+    {
+      "label": "Penetration research on GHK-Cu topical delivery and the stratum corneum barrier.",
+      "url": "https://www.realpeptides.co/ghk-cu-cosmetic-signaling-pathway-mechanism-explained/"
+    },
+    {
+      "label": "Medisca. VersaPro Anhydrous Base product and formulation data.",
+      "url": "https://www.medisca.com/products/versapro-anhydrous-base"
+    }
+  ],
+  "related": [
+    {
+      "slug": "ghk-cu-injectable-copper-peptide",
+      "title": "GHK-Cu Injectable",
+      "category": "Peptides"
+    },
+    {
+      "slug": "nad-face-cream-topical-longevity",
+      "title": "NAD+ Face Cream",
+      "category": "NAD+"
+    },
+    {
+      "slug": "tretinoin-retinoid-starter-guide",
+      "title": "Tretinoin Guide",
+      "category": "Skin & Hair"
+    }
+  ]
+}
