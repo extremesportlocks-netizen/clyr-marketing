@@ -513,7 +513,7 @@ function submitAll() {
   fetch(API + '/api/config').then(function (r) { return r.json(); }).then(function (cfg) { if (cfg.publishableKey) stripe = Stripe(cfg.publishableKey); }).catch(function () {});
 })();
 </script>
-<script>window.CLYR_MAPS_KEY = ''; /* paste the referrer-restricted Google Maps browser key here to turn on address autocomplete */</script>
+<script>window.CLYR_MAPS_KEY = 'AIzaSyBv_LTjoWZbEJ6FbjUCnNuFzBGSiwNC-qE'; /* browser key: referrer-restricted to clyr.health, Places API (New) only */</script>
 <script src="/js/address-autocomplete.js"></script>
 <script src="/js/clyr-tracking.js"></script>
 </body>
