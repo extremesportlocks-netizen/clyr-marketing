@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 1080px;
+    height: 1080px;
+    overflow: hidden;
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    background: #060d18;
+    color: #fff;
+    -webkit-font-smoothing: antialiased;
+  }
+  .ad {
+    width: 1080px;
+    height: 1080px;
+    position: relative;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 42%, rgba(0, 180, 197, 0.14) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 40% at 20% 80%, rgba(0, 120, 140, 0.12) 0%, transparent 55%),
+      linear-gradient(165deg, #0a1628 0%, #060d18 45%, #0b1a2e 100%);
+    padding: 44px 52px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .brand {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.92);
+    margin-bottom: 28px;
+  }
+  .headline {
+    font-size: 58px;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    max-width: 920px;
+  }
+  .headline .teal { color: #00B4C5; }
+  .sub {
+    margin-top: 18px;
+    font-size: 24px;
+    line-height: 1.45;
+    color: #00B4C5;
+    font-weight: 500;
+    max-width: 860px;
+  }
+  .pill-wrap {
+    position: relative;
+    width: 340px;
+    height: 240px;
+    margin: 28px 0 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .pill-glow {
+    position: absolute;
+    width: 280px;
+    height: 120px;
+    background: radial-gradient(ellipse, rgba(255, 210, 60, 0.35) 0%, transparent 70%);
+    filter: blur(18px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .pill {
+    width: 300px;
+    height: auto;
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 24px 48px rgba(0,0,0,0.45));
+  }
+  .price-lead {
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 14px;
+  }
+  .tiers {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 720px;
+    margin-bottom: 16px;
+  }
+  .tier {
+    border: 1.5px solid rgba(255,255,255,0.14);
+    border-radius: 16px;
+    padding: 14px 22px;
+    font-size: 22px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.88);
+    background: rgba(255,255,255,0.04);
+  }
+  .tier.best {
+    border-color: rgba(0, 180, 197, 0.55);
+    background: linear-gradient(135deg, rgba(0,180,197,0.12) 0%, rgba(0,180,197,0.04) 100%);
+    box-shadow: 0 8px 28px rgba(0,180,197,0.15);
+  }
+  .badge {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: #00B4C5;
+    color: #041018;
+    padding: 4px 12px;
+    border-radius: 100px;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  .trust-line {
+    font-size: 17px;
+    color: rgba(255,255,255,0.72);
+    margin-bottom: 18px;
+    max-width: 820px;
+    line-height: 1.4;
+  }
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #00B4C5;
+    color: #041018;
+    font-size: 26px;
+    font-weight: 800;
+    padding: 18px 42px;
+    border-radius: 100px;
+    margin-bottom: 22px;
+    box-shadow: 0 12px 36px rgba(0,180,197,0.35);
+  }
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 18px;
+    padding: 16px 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    background: rgba(255,255,255,0.03);
+    max-width: 960px;
+  }
+  .chip {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.78);
+    white-space: nowrap;
+  }
+  .footer {
+    margin-top: 14px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    max-width: 900px;
+    line-height: 1.45;
+  }
+</style>
+</head>
+<body>
+  <div class="ad">
+    <div class="brand">CLYR Health</div>
+    <h1 class="headline">Tadalafil <span class="teal">5mg Daily</span></h1>
+    <p class="sub">Once-daily low-dose for steady intimacy support.<br>Physician-prescribed · FDA-approved generic · No timing required.</p>
+    <div class="pill-wrap">
+      <div class="pill-glow"></div>
+      <img class="pill" src="../../../img/pill-tadalafil-5mg-cutout.png" alt="">
+    </div>
+    <div class="price-lead">From $49.66/mo equivalent</div>
+    <div class="tiers">
+      <div class="tier">2-Month: $99 one-time · No subscription</div>
+      <div class="tier best"><span class="badge">Best Value</span>3-Month: $149 one-time · No subscription</div>
+    </div>
+    <p class="trust-line">Licensed U.S. providers · Discreet pharmacy shipping · No auto-renew</p>
+    <div class="cta">Start your consultation →</div>
+    <div class="badges">
+      <span class="chip">HIPAA Compliant</span>
+      <span class="chip">LegitScript Certified</span>
+      <span class="chip">Licensed U.S. Providers</span>
+      <span class="chip">Licensed U.S. Pharmacy</span>
+      <span class="chip">Discreet Shipping</span>
+    </div>
+    <p class="footer">Prescription required. FDA-approved generic tadalafil. Individual results vary. Not for use with nitrates.</p>
+  </div>
+</body>
+</html>

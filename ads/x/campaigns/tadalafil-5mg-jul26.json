@@ -1,0 +1,70 @@
+{
+  "draft": false,
+  "campaign_name": "CLYR · Tadalafil 5mg Daily · Jul26 · $75/d",
+  "line_item_name": "Tadalafil 5mg · Intimacy · Website Conversions · US",
+  "objective": "WEBSITE_CLICKS",
+  "daily_budget_dollars": 75,
+  "total_budget_dollars": 1000,
+  "bid_dollars": 3.5,
+  "destination_url": "https://www.clyr.health/tadalafil-5mg.html?utm_source=twitter&utm_medium=paid&utm_campaign=tadalafil-5mg-jul26&plan=3month",
+  "tweet_text": "Once-daily low-dose intimacy support from $49.66/mo equiv. Physician-prescribed FDA-approved generic · one-time purchase, no auto-renew. Licensed U.S. telehealth · LegitScript certified. Rx required. Results vary. →",
+  "creative_url": "https://www.clyr.health/ads/x/creatives/tadalafil-5mg-jul26.jpg",
+  "card_headline": "Tadalafil 5mg Daily · from $49.66/mo",
+  "card_description": "No subscription · $149 one-time · discreet shipping",
+  "copy_on_flag": {
+    "tweet_text": "Daily low-dose intimacy support from $49.66/mo equiv. Licensed U.S. providers · one-time purchase · no subscription · discreet shipping. Prescription required. Results vary. →",
+    "card_headline": "Once-daily generic tablet · no auto-renew",
+    "card_description": "Licensed telehealth · discreet U.S. shipping",
+    "note": "Use if X rejects FDA-approved or intimacy language in tweet"
+  },
+  "targeting": {
+    "locations": ["United States"],
+    "location_id": "96683cc9126741d1",
+    "age_min": 35,
+    "age_max": 65,
+    "gender": "men",
+    "keywords": [
+      "sexual health",
+      "mens health",
+      "intimacy",
+      "intimacy support",
+      "telehealth",
+      "online doctor",
+      "discreet shipping",
+      "tadalafil daily",
+      "cialis daily",
+      "generic cialis",
+      "daily low dose",
+      "mens wellness",
+      "relationship health",
+      "performance anxiety",
+      "concierge medicine",
+      "LegitScript"
+    ],
+    "keywords_exclude": [
+      "free",
+      "cheap",
+      "coupon",
+      "discount",
+      "student",
+      "porn",
+      "hookup"
+    ]
+  },
+  "placements": ["X timeline", "X search"],
+  "entity_status": "PAUSED",
+  "notes": {
+    "page": "https://www.clyr.health/tadalafil-5mg.html",
+    "product": "FDA-approved generic tadalafil 5mg — NOT compounded",
+    "budget_note": "$75/day cap, $1000 total (~13 days at full spend)",
+    "creative_fix": "Replaced Thoralafil/Generic Viagra with Tadalafil 5mg Daily + correct generic Cialis positioning on image"
+  },
+  "launch_profile": "sales",
+  "conversion_mode": true,
+  "budget_optimization": "LINE_ITEM",
+  "goal": "WEBSITE_CONVERSIONS",
+  "pay_by": "IMPRESSION",
+  "bid_strategy": "AUTO",
+  "primary_web_event_tag": "13imxg",
+  "audience_expansion": "EXPANDED"
+}
