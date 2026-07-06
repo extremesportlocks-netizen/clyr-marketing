@@ -1159,6 +1159,7 @@ const PRODUCT_THUMBS=[
   [/lipo|mic\b|carnitine/i,'/img/portal/lipo-mino.png'],
   [/sild.*tadal.*oxy|tadal.*oxy|triple|combo\s*odt/i,'/img/portal/sild-tadal-oxy.png'],
   [/sildenafil.*gummy|gummy/i,'/img/portal/sildenafil-gummy.png'],
+  [/tadalafil[\s_-]*5\s*mg/i,'/img/portal/tadalafil-5mg.jpg'],
   [/tadalafil|vardenafil|\btad\b/i,'/img/portal/tadalafil.png'],
   [/pt-?141|oxytocin|bremelanotide/i,'/img/portal/pt141.png'],
   [/ivermectin|mebendazole|antiparasit/i,'/img/portal/antiparasitic.png'],
@@ -1167,6 +1168,13 @@ const PRODUCT_THUMBS=[
 // Resolve a thumbnail from any object that carries product name fields.
 // Accepts treatment objects (productDisplay/product), catalog objects
 // (displayName/key/shortName), or a raw string.
+// Display price for catalog objects: monthlyPrice, else cheapest plan (one-time
+// products like tadalafil_5mg have no monthly price — was rendering "$null").
+function catalogFromPrice(p){
+  if(p&&p.monthlyPrice!=null)return p.monthlyPrice;
+  if(p&&Array.isArray(p.plans)&&p.plans.length){const v=p.plans.map(x=>x&&x.price).filter(x=>x!=null);if(v.length)return Math.min(...v);}
+  return null;
+}
 function thumbFromName(name, fallbackImg){
   name=(name||'').toString();
   for(const [re,src] of PRODUCT_THUMBS){ if(re.test(name)) return src; }
@@ -1420,7 +1428,7 @@ function renderSuggested(){
       <div class="suggest-card-body">
         <div class="suggest-card-cat">${verticalLabel(p.vertical)}</div>
         <div class="suggest-card-name">${escapeHtml(p.shortName)}</div>
-        <div class="suggest-card-price">From $${p.monthlyPrice}${p.recurring?'/mo':' one-time'}</div>
+        <div class="suggest-card-price">From $${catalogFromPrice(p)}${p.recurring?'/mo':' one-time'}</div>
       </div>
     </div>`).join('');
 }
@@ -2238,7 +2246,9 @@ function renderShop(){
     const lead=p.recurring?'As low as':'From';
     const click=cs?`startProtocolWaitlist('${escapeAttr(p.waitlistKey||p.key)}')`:`openProductDetail('${escapeAttr(p.key)}')`;
     const badge=cs?`<span class="shop-card-badge">Coming soon</span>`:'';
-    const price=cs?`<span>$${p.monthlyPrice}${suffix} · <strong style="color:var(--teal-dark)">Check eligibility</strong></span>`:`${lead} <strong>$${p.monthlyPrice}${suffix}</strong>${p.recurring?'':' one-time'}`;
+    const priceNum=catalogFromPrice(p);
+    const priceTxt=priceNum==null?'See options':`$${priceNum}${suffix}`;
+    const price=cs?`<span>${priceTxt} · <strong style="color:var(--teal-dark)">Check eligibility</strong></span>`:`${lead} <strong>${priceTxt}</strong>${p.recurring?'':' one-time'}`;
     return `
     <div class="shop-card${cs?' coming-soon':''}" onclick="${click}">
       <div class="shop-card-img">${badge}<img src="${resolveCatalogThumb(p)}" alt="" onerror="this.style.display='none'"></div>
