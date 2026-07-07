@@ -106,6 +106,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var token = params.get('t');           // opaque resume token (no PII in the URL)
   var email = params.get('email');       // legacy grace-window fallback
   var customerId = params.get('cid');
+  var recoveryProduct = (params.get('p') || '').toLowerCase().trim();  // carried in email links; survives token expiry so the fallback routes to the right intake
+  var recoveryPlan = (params.get('plan') || '').toLowerCase().trim();
+
+  // Route abandoners to the RIGHT intake. GLP-1 uses the medication-first funnel (intake.html);
+  // everything else (Direct-Rx, wellness, sexual health) uses intake-wellness, which reads
+  // ?product= and preselects — so an ivermectin / GHK / tadalafil abandoner never lands on the
+  // GLP-only "Choose Tirzepatide / Semaglutide" screen.
+  var GLP_SET = { tirzepatide: 1, semaglutide: 1, wegovy_tablets: 1, zepbound: 1, foundayo: 1 };
+  function intakeUrlFor(product, plan) {
+    if (!product) return '/intake.html';
+    var pr = product.toLowerCase().replace(/_(t\d+_)?(monthly|onetime|\d+month|\d+day).*$/, '');
+    if (GLP_SET[pr] || GLP_SET[product]) return '/intake.html';
+    return '/intake-wellness.html?product=' + encodeURIComponent(product) + (plan ? ('&plan=' + encodeURIComponent(plan)) : '');
+  }
 
   if (!token && !email && !customerId) {
     showError('No account information provided.', 'Please start from the intake form.');
@@ -177,7 +191,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       '<div class="error-box">' +
       '<h3>' + title + '</h3>' +
       '<p>' + message + '</p>' +
-      '<a href="/intake.html" class="btn btn-teal" style="margin-right:8px">Start Intake</a>' +
+      '<a href="' + intakeUrlFor(recoveryProduct, recoveryPlan) + '" class="btn btn-teal" style="margin-right:8px">' + (recoveryProduct ? 'Continue Your Order' : 'Start Intake') + '</a>' +
       '<a href="/" class="btn btn-outline">Back to Home</a>' +
       '</div>';
   }
