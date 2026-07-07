@@ -429,7 +429,7 @@ var API = 'https://clyr-backend.onrender.com';
 // ── PRODUCT CATALOG (mirrors backend services/product-catalog.js) ─────
 var CATALOG = {
   sermorelin: {
-    type:'wellness', name:'Sermorelin', emoji:'💉', priceCents:17900, plans:[
+    type:'wellness', name:'Sermorelin', emoji:'💉', img:'/img/cardv2/vial-sermorelin-new.webp', priceCents:17900, plans:[
       {key:'monthly',label:'Monthly',sub:'1 vial · one-time, no auto-renew',priceCents:14900},
       {key:'3month',label:'3-Month',sub:'3 monthly shipments · $139/mo · one-time',priceCents:41700,save:'Save $30'},
       {key:'6month',label:'6-Month',sub:'6 monthly shipments · $129/mo · one-time',priceCents:77400,save:'Save $120'}
@@ -437,7 +437,7 @@ var CATALOG = {
     desc:'Growth hormone peptide. Sleep, recovery, lean muscle, healthy aging.'
   },
   nad: {
-    type:'wellness', name:'NAD+ Injections', emoji:'🧬', priceCents:19900, plans:[
+    type:'wellness', name:'NAD+ Injections', emoji:'🧬', img:'/img/cardv2/vial-nad-new.webp', priceCents:19900, plans:[
       {key:'monthly',label:'Monthly',sub:'1 vial · one-time, no auto-renew',priceCents:14900},
       {key:'3month',label:'3-Month',sub:'3 monthly shipments · $139/mo · one-time',priceCents:41700,save:'Save $30'},
       {key:'6month',label:'6-Month',sub:'6 monthly shipments · $129/mo · one-time',priceCents:77400,save:'Save $120'}
@@ -445,7 +445,7 @@ var CATALOG = {
     desc:'Cellular energy, DNA repair, cognitive function.'
   },
   niagen: {
-    type:'wellness', name:'Injectable Niagen', emoji:'🧬', priceCents:19900, plans:[
+    type:'wellness', name:'Injectable Niagen', emoji:'🧬', img:'/img/cardv2/niagen.png', priceCents:19900, plans:[
       {key:'monthly',label:'Monthly',sub:'1 vial · one-time, no auto-renew',priceCents:19900},
       {key:'3month',label:'3-Month',sub:'3 monthly shipments · $179/mo · one-time',priceCents:53700,save:'Save $60'},
       {key:'6month',label:'6-Month',sub:'6 monthly shipments · $169/mo · one-time',priceCents:101400,save:'Save $180'}
@@ -471,7 +471,7 @@ var CATALOG = {
     desc:'Provider-prescribed combined antiparasitic protocol. 25mg/250mg combined capsule.'
   },
   glutathione: {
-    type:'wellness', name:'Glutathione', emoji:'🛡️', priceCents:12900,
+    type:'wellness', name:'Glutathione', emoji:'🛡️', img:'/img/cardv2/vial-glutathione-new.webp', priceCents:12900,
     plans:[
       {key:'monthly',label:'Monthly',sub:'2 vials · one-time, no auto-renew',priceCents:12900},
       {key:'3month',label:'3-Month',sub:'3 monthly shipments · $119/mo · one-time',priceCents:35700,save:'Save $30'},
@@ -480,7 +480,7 @@ var CATALOG = {
     desc:'Master antioxidant. Detox, immune, skin health.'
   },
   micc: {
-    type:'wellness', name:'MICC + B12', emoji:'💧', priceCents:14900, plans:[
+    type:'wellness', name:'MICC + B12', emoji:'💧', img:'/img/cardv2/vial-micc-new.webp', priceCents:14900, plans:[
       {key:'monthly',label:'Monthly',sub:'1 vial · one-time, no auto-renew',priceCents:11000},
       {key:'3month',label:'3-Month',sub:'3 monthly shipments · $105/mo · one-time',priceCents:31500,save:'Save $15'},
       {key:'6month',label:'6-Month',sub:'6 monthly shipments · $100/mo · one-time',priceCents:60000,save:'Save $60'}
@@ -488,7 +488,7 @@ var CATALOG = {
     desc:'B12 energy and metabolism blend. Pairs with GLP-1.'
   },
   lipo_mino: {
-    type:'wellness', name:'Lipo-Mino + L-Carnitine', emoji:'💧', priceCents:14900, plans:[
+    type:'wellness', name:'Lipo-Mino + L-Carnitine', emoji:'💧', img:'/img/cardv2/vial-lipo-mino-new.webp', priceCents:14900, plans:[
       {key:'monthly',label:'Monthly',sub:'1 vial · one-time, no auto-renew',priceCents:14900},
       {key:'3month',label:'3-Month',sub:'3 monthly shipments · $139/mo · one-time',priceCents:41700,save:'Save $30'},
       {key:'6month',label:'6-Month',sub:'6 monthly shipments · $129/mo · one-time',priceCents:77400,save:'Save $120'}
@@ -496,7 +496,7 @@ var CATALOG = {
     desc:'Lipotropic + L-Carnitine injection. Weight management and fat metabolism.'
   },
   tadalafil: {
-    type:'sexual_health', name:'Tadalafil + Vardenafil', emoji:'🔵', priceCents:9900, plans:[
+    type:'sexual_health', name:'Tadalafil + Vardenafil', emoji:'🔵', img:'/img/cardv2/tadalafil-vardenafil-square.png', priceCents:9900, plans:[
       {key:'monthly',label:'Monthly',sub:'30 tablets · one-time, no auto-renew',priceCents:9900},
       {key:'3month',label:'3-Month',sub:'90 tablets · $89.67/mo · one-time',priceCents:26900,save:'Save $28'},
       {key:'6month',label:'6-Month',sub:'180 tablets · $83.17/mo · one-time',priceCents:49900,save:'Save $95'},
@@ -505,7 +505,7 @@ var CATALOG = {
     desc:'Dual PDE5 inhibitor. 30-count daily tablet.'
   },
   sildenafil_gummy: {
-    type:'sexual_health', name:'Sildenafil 50mg Gummy', emoji:'🍬', priceCents:8900, plans:[
+    type:'sexual_health', name:'Sildenafil 50mg Gummy', emoji:'🍬', img:'/img/cardv2/gummy-sildenafil-square.webp', priceCents:8900, plans:[
       {key:'monthly',label:'Monthly',sub:'10 gummies · one-time, no auto-renew',priceCents:8900},
       {key:'3month',label:'3-Month',sub:'30 gummies · $79/mo · one-time',priceCents:23700,save:'Save $30'},
       {key:'6month',label:'6-Month',sub:'60 gummies · $74/mo · one-time',priceCents:44400,save:'Save $90'}
@@ -513,14 +513,14 @@ var CATALOG = {
     desc:'On-demand ED treatment. 10-count gummies.'
   },
   pt141: {
-    type:'sexual_health', name:'PT-141 + Oxytocin', emoji:'🌹', priceCents:14900, plans:[
+    type:'sexual_health', name:'PT-141 + Oxytocin', emoji:'🌹', img:'/img/cardv2/pt141-odt-rose.webp', priceCents:14900, plans:[
       {key:'3month',label:'3-Month',sub:'24 ODTs · $83/mo · one-time',priceCents:24900,save:'Save $198'},
       {key:'monthly',label:'Monthly',sub:'8 ODTs · one-time, no auto-renew',priceCents:14900}
     ],
     desc:'Libido and arousal support. 8-count ODT.'
   },
   sild_tadal_oxy: {
-    type:'sexual_health', name:'Sildenafil + Tadalafil + Oxytocin ODT', emoji:'⚡', priceCents:12900, plans:[
+    type:'sexual_health', name:'Sildenafil + Tadalafil + Oxytocin ODT', emoji:'⚡', img:'/img/cardv2/sild-tadal-oxy-square.webp', priceCents:12900, plans:[
       {key:'monthly',label:'Monthly',sub:'10 ODTs · one-time, no auto-renew',priceCents:12900},
       {key:'3month',label:'3-Month',sub:'30 ODTs · $119/mo · one-time',priceCents:35700,save:'Save $30'},
       {key:'6month',label:'6-Month',sub:'60 ODTs · $109/mo · one-time',priceCents:65400,save:'Save $120'}
@@ -528,7 +528,7 @@ var CATALOG = {
     desc:'Triple-action ODT for sexual performance.'
   },
   ghk_cu_cream: {
-    type:'ghk_cu', name:'GHK-Cu 3% Cream', emoji:'✨', img:'/img/svg/ghk-cu-cream-hero.svg', priceCents:12900,
+    type:'ghk_cu', name:'GHK-Cu 3% Cream', emoji:'✨', img:'/img/ghk-cu-pump.svg', priceCents:12900,
     plans:[
       {key:'monthly',label:'Monthly',sub:'30g tube · one-time, no auto-renew',priceCents:12900},
       {key:'onetime',label:'One-Time',sub:'Single 30g tube',priceCents:14900},
