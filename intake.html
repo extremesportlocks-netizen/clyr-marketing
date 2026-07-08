@@ -1427,6 +1427,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       q176: '', q195: ''
     }
   };
+  // Snapshot the MDI presets so per-step progress can send ONLY answers the patient
+  // actually CHANGED. The preset values (q150:'5', q151-q160 yes/no) are real-looking,
+  // so "non-empty" isn't enough to tell touched from default — we diff against this.
+  var _mdiPresets = JSON.parse(JSON.stringify(formData.mdiAnswers));
 
   // POPULATE SELECTS
   const daySelect = document.getElementById('dobDay');
@@ -1603,15 +1607,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   // final submit — an abandon after the questionnaire lost all of it. This
   // snapshots everything collected so far and PATCHes it to the customer row
   // (idempotent, non-destructive) on every step transition once email exists.
-  // Only send mdiAnswers keys the patient actually TOUCHED — formData.mdiAnswers is
-  // pre-seeded with nulls and preset defaults (q150:'5', q151-q160 …). Sending the whole
-  // object would let those defaults/nulls overwrite a real stored record on the merge.
+  // Only send mdiAnswers keys the patient actually CHANGED from their preset — formData
+  // is pre-seeded with nulls AND non-empty preset defaults (q150:'5', q151-q160 yes/no).
+  // Diffing against _mdiPresets is the only reliable "touched" test (value alone can't
+  // tell a real 'no' from the preset 'no'). This guarantees an untouched preset can NEVER
+  // overwrite a returning patient's real stored answer on the server-side jsonb merge.
   function touchedMdiAnswers() {
     var src = formData.mdiAnswers || {};
     var out = {};
     Object.keys(src).forEach(function(k){
       var v = src[k];
-      if (v === null || v === undefined || v === '') return; // never ship empties
+      if (v === null || v === undefined || v === '') return;       // never ship empties
+      if (_mdiPresets[k] !== undefined && v === _mdiPresets[k]) return; // untouched preset
       out[k] = v;
     });
     return Object.keys(out).length ? out : undefined;

@@ -140,7 +140,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   fetch(API + '/api/checkout/resume', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(token ? { token: token } : { email: email, customerId: customerId ? parseInt(customerId) : undefined })
+    // Send customerId alongside the token too: if the token has EXPIRED, the backend
+    // rescues the resume by matching id AND the (expired) token — so a link clicked after
+    // 7 days still resumes from the saved record instead of forcing a full re-intake.
+    // Safe: the token is still the secret (id alone matches nothing).
+    body: JSON.stringify(token
+      ? { token: token, customerId: customerId ? parseInt(customerId) : undefined }
+      : { email: email, customerId: customerId ? parseInt(customerId) : undefined })
   })
   .then(function(r) { return r.json().then(function(d) { return { ok: r.ok, data: d }; }); })
   .then(function(result) {
