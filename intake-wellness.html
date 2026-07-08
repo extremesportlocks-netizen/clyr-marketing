@@ -742,7 +742,14 @@ function init() {
     // for ?product=tirzepatide (or any typo'd link) used to be screened, charged, and
     // prescribed SERMORELIN without notice. GLP slugs route to the real GLP intake;
     // anything else gets an explicit not-found screen.
-    if (/tirzep|semaglu|glp/i.test(prod)) { window.location.replace('/intake.html'); return; }
+    if (/tirzep|semaglu|glp/i.test(prod)) {
+      // Carry the query string (product/plan preselect + utm/click attribution) into
+      // the GLP funnel; normalize the slug so intake.html preselects the right card.
+      var qs = new URLSearchParams(window.location.search);
+      qs.set('product', /semaglu/i.test(prod) ? 'semaglutide' : 'tirzepatide');
+      window.location.replace('/intake.html?' + qs.toString());
+      return;
+    }
     if (window.clyrTrack) clyrTrack('intake_unknown_product', { requested: prod || '(none)' });
     document.getElementById('csLabel').textContent = 'Treatment not found';
     document.getElementById('csTitle').innerHTML = 'We couldn\'t find <span class="serif">that treatment.</span>';
@@ -1140,7 +1147,9 @@ function validateStep4() {
       exMsg.id = 'stateExcludedMsgW';
       exMsg.style.cssText = 'background:#fff0f0;border:1px solid #ff4444;border-radius:12px;padding:16px 20px;margin:12px 0;color:#cc0000;font-size:14px;line-height:1.5;';
       var stEl = document.getElementById('state');
-      (stEl.closest('.input-wrap') || stEl.parentNode).insertAdjacentElement('afterend', exMsg);
+      // Insert AFTER the whole input-grid row, not the State cell — inserting into the
+      // 3-column grid would crush the banner into a ~90px column and shove ZIP down.
+      (stEl.closest('.input-grid') || stEl.closest('.input-wrap') || stEl.parentNode).insertAdjacentElement('afterend', exMsg);
     }
     exMsg.innerHTML = '<strong>We can\'t ship to ' + state2 + ' yet.</strong><br>Your information is saved — we\'ll reach out the moment we\'re available in your state, or <a href="/contact.html" style="color:#2bbcb3;">contact us</a> for updates.';
     exMsg.style.display = 'block';
@@ -1197,7 +1206,11 @@ function sendWellnessProgress(step, isUnload) {
       email: email, step: step,
       treatment: state.productKey || null,
       planType: state.planKey || null,
-      screeningClear: (state.flaggedConditions ? state.flaggedConditions.length === 0 : undefined),
+      // Only report screening state once the patient AFFIRMATIVELY completed step 2.
+      // state.flaggedConditions inits to [] (truthy) — without this guard, "not yet
+      // screened" and "screened clean" are indistinguishable, so a last-gasp pagehide
+      // could send screeningClear:true and (server-side) look like a clean screen.
+      screeningClear: state._screeningDone ? (state.flaggedConditions.length === 0) : undefined,
       flaggedConditions: (state.flaggedConditions && state.flaggedConditions.length) ? state.flaggedConditions : undefined,
       currentMedications: (state.shipping && state.shipping.currentMeds) || undefined,
       drugAllergies: (state.shipping && state.shipping.drugAllergies) || undefined,
@@ -1219,6 +1232,7 @@ function sendWellnessProgress(step, isUnload) {
 window.addEventListener('pagehide', function(){ sendWellnessProgress('unload', true); });
 
 function onStep2Continue() {
+  state._screeningDone = true; // patient affirmatively finished the health screen
   if(window.clyrTrack)clyrTrack('screening_passed',{product:(typeof state!=='undefined'&&state.productKey)||null});
   goToStep(3);
 }

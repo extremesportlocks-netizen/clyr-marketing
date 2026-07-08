@@ -751,6 +751,15 @@ async function api(path,opts={}){
   return data;
 }
 
+// Fire-and-forget persist that must NEVER sign the patient out or throw — a background
+// 401 here (expired token) must not wipe the session mid-questionnaire and lose their
+// answers. Used for the "save the disclosure regardless of checkout" writes.
+function apiQuiet(path,opts={}){
+  const headers={'Content-Type':'application/json'};
+  if(token)headers['Authorization']='Bearer '+token;
+  return fetch(API+path,{...opts,headers:{...headers,...(opts.headers||{})}}).catch(function(){});
+}
+
 // ═══ AUTH ═══
 async function sendCode(){
   const email=$('emailInput').value.trim();
@@ -1829,11 +1838,11 @@ function submitGlp1Refill(){
   // Brain of the patient: persist the clinical check-in (current weight, side
   // effects, dose direction, doctor message) NOW — abandoning at the plan/price
   // menu (sticker shock is a real drop-off) used to erase all of it.
-  api('/api/portal/screening/save',{method:'POST',body:JSON.stringify({
+  apiQuiet('/api/portal/screening/save',{method:'POST',body:JSON.stringify({
     productKey:_menuProduct||tx||'glp1', planType:'refill',
     screeningAnswers:{ vertical:'weight-loss', blockers:{}, soft:answers,
       medications:answers.q160||undefined, doctorMessage:answers.q400||answers.q200_detail||undefined }
-  })}).catch(()=>{});
+  })});
   const card=(plan,name,badge,caps,price,suffix,hl)=>`
       <button class="refill-term-btn" onclick="startGlp1RefillCheckout('${plan}')" style="text-align:left;background:${hl?'var(--teal-light,#e6f7f5)':'var(--white)'};border:${hl?'1.5px solid var(--teal,#2bbcb3)':'1px solid var(--gray-200)'};border-radius:14px;padding:15px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px">
         <span><span style="font-weight:700;font-size:15.5px;display:block">${name}${badge?` <span style=\"font-size:11px;color:var(--teal,#2bbcb3);font-weight:700;text-transform:uppercase;letter-spacing:.04em\">${badge}</span>`:''}</span><span style="font-size:12.5px;color:var(--gray-500)">${caps}</span></span>
@@ -2760,22 +2769,21 @@ async function showClinicalScreening(productKey, planType){
       .filter(([_, v]) => v === 'yes')
       .map(([k]) => k);
     if (tripped.length > 0) {
-      try {
-        api('/api/portal/screening/save', {
-          method: 'POST',
-          body: JSON.stringify({
-            productKey, planType,
-            screeningAnswers: {
-              vertical,
-              blockers: blockerAnswers,
-              soft: softAnswers,
-              allergies: answers.hasAllergies === 'yes' ? ($('scrAllergies')?.value || '').trim() : 'None',
-              medications: answers.hasMeds === 'yes' ? ($('scrMeds')?.value || '').trim() : 'None',
-              doctorMessage: ($('scrDoctorMessage')?.value || '').trim()
-            }
-          })
-        }).catch(() => {});
-      } catch (e) { /* never delay the hold screen */ }
+      // Persist the disclosure (quiet — a background 401 must not sign them out mid-hold).
+      apiQuiet('/api/portal/screening/save', {
+        method: 'POST',
+        body: JSON.stringify({
+          productKey, planType,
+          screeningAnswers: {
+            vertical,
+            blockers: blockerAnswers,
+            soft: softAnswers,
+            allergies: answers.hasAllergies === 'yes' ? ($('scrAllergies')?.value || '').trim() : 'None',
+            medications: answers.hasMeds === 'yes' ? ($('scrMeds')?.value || '').trim() : 'None',
+            doctorMessage: ($('scrDoctorMessage')?.value || '').trim()
+          }
+        })
+      });
       showCareTeamHold(productKey, tripped);
       return;
     }
@@ -2798,6 +2806,12 @@ async function showClinicalScreening(productKey, planType){
 // patients; instead they're routed to email the care team for review.
 function showCareTeamHold(productKey, blockerIds, mode){
   track('portal_screening_blocked', { product: productKey, blockers: (blockerIds || []).join(',') || (mode === 'error' ? 'checkout_error' : 'server') });
+  // Make the modal body visible no matter which phase failed. beginEmbeddedCheckout
+  // hides #productDetailBody and shows #embeddedCheckoutMount BEFORE mounting Stripe;
+  // if the mount throws, rendering the hold into the still-hidden body = a blank modal.
+  try { if (activeEmbeddedCheckout) { activeEmbeddedCheckout.destroy(); activeEmbeddedCheckout = null; } } catch(e){}
+  var _m = $('embeddedCheckoutMount'); if (_m) { _m.style.display = 'none'; _m.innerHTML = ''; }
+  var _b = $('productDetailBody'); if (_b) _b.style.display = 'block';
   const product = findCatalogProductGlobal(productKey);
   const productName = product ? product.displayName : 'this treatment';
   // Two flavors: a clinical hold (a blocker tripped) vs a technical failure

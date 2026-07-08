@@ -1603,21 +1603,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   // final submit — an abandon after the questionnaire lost all of it. This
   // snapshots everything collected so far and PATCHes it to the customer row
   // (idempotent, non-destructive) on every step transition once email exists.
+  // Only send mdiAnswers keys the patient actually TOUCHED — formData.mdiAnswers is
+  // pre-seeded with nulls and preset defaults (q150:'5', q151-q160 …). Sending the whole
+  // object would let those defaults/nulls overwrite a real stored record on the merge.
+  function touchedMdiAnswers() {
+    var src = formData.mdiAnswers || {};
+    var out = {};
+    Object.keys(src).forEach(function(k){
+      var v = src[k];
+      if (v === null || v === undefined || v === '') return; // never ship empties
+      out[k] = v;
+    });
+    return Object.keys(out).length ? out : undefined;
+  }
   function collectProgressSnapshot(step) {
     function val(id){ var el=document.getElementById(id); return el ? (el.value||'').trim() : null; }
+    var consentEls = document.querySelectorAll('#step7 .consent-item');
+    var consents = consentEls.length ? Array.prototype.map.call(consentEls, function(c){
+      return { text: c.querySelector('.checkbox-label') ? c.querySelector('.checkbox-label').textContent.trim() : '',
+               accepted: c.classList.contains('checked'), timestamp: new Date().toISOString() };
+    }) : undefined;
+    var anyConsentChecked = consents && consents.some(function(c){ return c.accepted; });
     return {
       email: val('email'),
       step: step,
       treatment: formData.treatment || null,
       planType: formData.plan || null,
       screeningClear: (typeof formData.screeningClear === 'boolean') ? formData.screeningClear : undefined,
-      flaggedConditions: formData.flaggedConditions || undefined,
-      mdiAnswers: formData.mdiAnswers || undefined,
+      flaggedConditions: (formData.flaggedConditions && formData.flaggedConditions.length) ? formData.flaggedConditions : undefined,
+      mdiAnswers: touchedMdiAnswers(),
       goalWeight: val('goalWeight') || undefined,
       currentMedications: val('currentMedications') || undefined,
       drugAllergies: val('drugAllergies') || undefined,
       doctorMessage: val('doctorMessage') || undefined,
       legalName: val('legalName') || undefined,
+      consents: anyConsentChecked ? consents : undefined,
       address: val('address') || undefined,
       apt: val('apt') || undefined,
       city: val('city') || undefined,
@@ -1627,6 +1647,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
   function sendIntakeProgress(step, isUnload) {
     try {
+      // An existing ACTIVE/paid patient re-browsing intake must NOT have their canonical
+      // clinical record patched by a mid-funnel progress ping (the backend also refuses
+      // to touch active rows, but stop it at the source too).
+      if (window._intakeReturningActive) return;
       var snap = collectProgressSnapshot(step);
       if (!snap.email) return; // no identity yet — save-lead creates the row at step 3
       var doSend = function(){
@@ -1687,6 +1711,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           body: JSON.stringify(leadData)
         }).then(function(r) { return r.json(); }).then(function(data) {
           if (data.status === 'existing_active') {
+            // Active/paid patient: never patch their canonical record from this funnel.
+            window._intakeReturningActive = true;
             showReturningCustomerModal(data.firstName || leadData.firstName, 'active', leadData.email);
           } else if (data.status === 'existing_incomplete') {
             showReturningCustomerModal(data.firstName || leadData.firstName, 'incomplete', leadData.email);
@@ -1697,7 +1723,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           }
           // existing_lead: No modal, lead must complete full intake (patient safety)
           // New leads also continue silently
-          // Row exists now — patch the step-2 screening (and anything else) onto it.
+          // Row exists now — patch the step-2 screening onto it (skipped for active patients).
           sendIntakeProgress(3);
         }).catch(function() {
           // save-lead failed — retry once so the identity lead isn't silently lost,
@@ -2119,6 +2145,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           stripeReady = true;
           return stripe;
         });
+      // Mark the deferred rejection handled on a FORKED handle so that if the intake
+      // save fails first (chain jumps to catch, never awaiting stripePromise), a
+      // simultaneous /api/config failure doesn't log an unhandled rejection. The
+      // original promise still rejects into the main chain when it IS awaited.
+      stripePromise.then(null, function(){});
     }
 
     // ── Step 2: Save intake data FIRST — the medical record must persist even if
