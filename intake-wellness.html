@@ -738,8 +738,23 @@ function init() {
   }
 
   if (!CATALOG[prod]) {
-    // Default to Sermorelin if unknown (cleanest fallback that still works)
-    prod = 'sermorelin';
+    // NEVER silently substitute a live Rx for an unknown slug — a patient who asked
+    // for ?product=tirzepatide (or any typo'd link) used to be screened, charged, and
+    // prescribed SERMORELIN without notice. GLP slugs route to the real GLP intake;
+    // anything else gets an explicit not-found screen.
+    if (/tirzep|semaglu|glp/i.test(prod)) { window.location.replace('/intake.html'); return; }
+    if (window.clyrTrack) clyrTrack('intake_unknown_product', { requested: prod || '(none)' });
+    document.getElementById('csLabel').textContent = 'Treatment not found';
+    document.getElementById('csTitle').innerHTML = 'We couldn\'t find <span class="serif">that treatment.</span>';
+    document.getElementById('csSub').innerHTML = 'The link you followed points to a treatment we don\'t recognize' + (prod ? ' (&ldquo;' + String(prod).replace(/[<>&"]/g, '') + '&rdquo;)' : '') + '. Browse our current treatments and we\'ll get you to the right place.';
+    document.querySelectorAll('main.intake .step').forEach(function(s){ s.style.display = 'none'; s.classList.remove('active'); });
+    var csNF = document.getElementById('comingSoonScreen');
+    csNF.style.display = 'block';
+    csNF.insertAdjacentHTML('beforeend', '<div style="text-align:center;margin-top:18px"><a href="/wellness.html" style="display:inline-block;padding:14px 32px;border-radius:10px;background:#2bbcb3;color:#fff;text-decoration:none;font-weight:600">Browse Treatments</a></div>');
+    var csScr = document.getElementById('csScreen'); if (csScr) csScr.style.display = 'none';
+    var pbar3 = document.querySelector('.progress-bar, .progress');
+    if (pbar3) pbar3.style.display = 'none';
+    return;
   }
   state.productKey = prod;
 
@@ -1114,8 +1129,39 @@ function validateStep4() {
   var city = document.getElementById('city').value.trim().length >= 2;
   var state2 = document.getElementById('state').value;
   var zip = document.getElementById('zip').value.length === 5;
-  // Block excluded states (AK/MS/LA/PR already not in dropdown but defensive)
+  // Excluded states: AK/MS/LA ARE selectable in the dropdown — silently disabling
+  // Continue with no message read as a broken form (and lost the patient). Show
+  // WHY, save what they've entered, and give a real off-ramp.
   var excluded = ['AK','MS','LA','PR'].indexOf(state2) >= 0;
+  var exMsg = document.getElementById('stateExcludedMsgW');
+  if (excluded) {
+    if (!exMsg) {
+      exMsg = document.createElement('div');
+      exMsg.id = 'stateExcludedMsgW';
+      exMsg.style.cssText = 'background:#fff0f0;border:1px solid #ff4444;border-radius:12px;padding:16px 20px;margin:12px 0;color:#cc0000;font-size:14px;line-height:1.5;';
+      var stEl = document.getElementById('state');
+      (stEl.closest('.input-wrap') || stEl.parentNode).insertAdjacentElement('afterend', exMsg);
+    }
+    exMsg.innerHTML = '<strong>We can\'t ship to ' + state2 + ' yet.</strong><br>Your information is saved — we\'ll reach out the moment we\'re available in your state, or <a href="/contact.html" style="color:#2bbcb3;">contact us</a> for updates.';
+    exMsg.style.display = 'block';
+    if (window._wBlockedState !== state2) {
+      window._wBlockedState = state2;
+      // Persist everything they've entered (incl. the blocking state) right now.
+      try {
+        state.shipping = state.shipping || {};
+        state.shipping.state = state2;
+        state.shipping.address = document.getElementById('address').value.trim();
+        state.shipping.city = document.getElementById('city').value.trim();
+        state.shipping.zip = document.getElementById('zip').value.trim();
+        state.shipping.currentMeds = document.getElementById('currentMeds').value.trim();
+        state.shipping.drugAllergies = document.getElementById('drugAllergies').value.trim();
+      } catch (e) {}
+      sendWellnessProgress('state_blocked');
+      if (window.clyrTrack) clyrTrack('state_blocked', { state: state2, product: state.productKey || null });
+    }
+  } else if (exMsg) {
+    exMsg.style.display = 'none';
+  }
   document.getElementById('btnStep4Next').disabled = !(addr && city && state2 && zip && !excluded);
 }
 
@@ -1137,6 +1183,40 @@ function goToStep(n) {
   window.scrollTo({top:0, behavior:'smooth'});
   if (n === 5) populateReview();
 }
+
+// ── Brain of the patient: per-step server persist ──────────────────
+// Screening/meds/allergies/shipping used to be transmitted for the FIRST time
+// at the payment click (initCheckout) — abandon on the review step lost the
+// safety-critical answers. This patches everything collected so far onto the
+// customer row (idempotent, non-destructive) once email exists.
+function sendWellnessProgress(step, isUnload) {
+  try {
+    var email = (state.details && state.details.email) || (document.getElementById('email') ? document.getElementById('email').value.trim() : '');
+    if (!email) return; // row created by save-lead at step 3
+    var snap = {
+      email: email, step: step,
+      treatment: state.productKey || null,
+      planType: state.planKey || null,
+      screeningClear: (state.flaggedConditions ? state.flaggedConditions.length === 0 : undefined),
+      flaggedConditions: (state.flaggedConditions && state.flaggedConditions.length) ? state.flaggedConditions : undefined,
+      currentMedications: (state.shipping && state.shipping.currentMeds) || undefined,
+      drugAllergies: (state.shipping && state.shipping.drugAllergies) || undefined,
+      address: (state.shipping && state.shipping.address) || undefined,
+      apt: (state.shipping && state.shipping.apt) || undefined,
+      city: (state.shipping && state.shipping.city) || undefined,
+      state: (state.shipping && state.shipping.state) || undefined,
+      zip: (state.shipping && state.shipping.zip) || undefined
+    };
+    var doSend = function(){
+      return fetch('https://clyr-backend.onrender.com/api/intake/progress', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(snap), keepalive: true
+      });
+    };
+    doSend().catch(function(){ if (!isUnload) setTimeout(function(){ doSend().catch(function(){}); }, 2000); });
+  } catch (e) { /* never block the funnel on a progress save */ }
+}
+window.addEventListener('pagehide', function(){ sendWellnessProgress('unload', true); });
 
 function onStep2Continue() {
   if(window.clyrTrack)clyrTrack('screening_passed',{product:(typeof state!=='undefined'&&state.productKey)||null});
@@ -1203,7 +1283,18 @@ function onStep3Continue() {
         // your intake". They're literally doing that right now.
       }
       // existing_lead / new: silent continue
-    }).catch(function() {}); // Non-blocking
+      // Row exists now — patch the step-2 screening onto it immediately.
+      sendWellnessProgress(3);
+    }).catch(function() {
+      // Retry once so the identity lead isn't silently lost.
+      setTimeout(function(){
+        fetch('https://clyr-backend.onrender.com/api/intake/save-lead', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: state.details.email, firstName: state.details.firstName, lastName: state.details.lastName, phone: state.details.phone, treatment: state.productKey || null, planType: state.planKey || null }),
+          keepalive: true
+        }).then(function(){ sendWellnessProgress(3); }).catch(function(){});
+      }, 2000);
+    });
   }
   goToStep(4);
 }
@@ -1237,6 +1328,9 @@ function onStep4Continue() {
     currentMeds: document.getElementById('currentMeds').value.trim(),
     drugAllergies: document.getElementById('drugAllergies').value.trim()
   };
+  // Brain of the patient: meds/allergies/shipping land in the DB NOW — not at
+  // the payment click (step 5 is the highest-dropoff point).
+  sendWellnessProgress(4);
   goToStep(5);
 }
 

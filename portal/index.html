@@ -1826,6 +1826,14 @@ function submitGlp1Refill(){
   const isTirz=/tirz/i.test(_menuProduct);
   // Stash answers on window so the plan buttons can read them.
   window._glp1RefillAnswers=answers;
+  // Brain of the patient: persist the clinical check-in (current weight, side
+  // effects, dose direction, doctor message) NOW — abandoning at the plan/price
+  // menu (sticker shock is a real drop-off) used to erase all of it.
+  api('/api/portal/screening/save',{method:'POST',body:JSON.stringify({
+    productKey:_menuProduct||tx||'glp1', planType:'refill',
+    screeningAnswers:{ vertical:'weight-loss', blockers:{}, soft:answers,
+      medications:answers.q160||undefined, doctorMessage:answers.q400||answers.q200_detail||undefined }
+  })}).catch(()=>{});
   const card=(plan,name,badge,caps,price,suffix,hl)=>`
       <button class="refill-term-btn" onclick="startGlp1RefillCheckout('${plan}')" style="text-align:left;background:${hl?'var(--teal-light,#e6f7f5)':'var(--white)'};border:${hl?'1.5px solid var(--teal,#2bbcb3)':'1px solid var(--gray-200)'};border-radius:14px;padding:15px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px">
         <span><span style="font-weight:700;font-size:15.5px;display:block">${name}${badge?` <span style=\"font-size:11px;color:var(--teal,#2bbcb3);font-weight:700;text-transform:uppercase;letter-spacing:.04em\">${badge}</span>`:''}</span><span style="font-size:12.5px;color:var(--gray-500)">${caps}</span></span>
@@ -2522,7 +2530,12 @@ async function beginEmbeddedCheckout(productKey, planType, screeningAnswers){
       return;
     }
     if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Continue to payment'; }
-    alert('Could not start checkout: ' + (err.message || err));
+    // No terminal dead-alerts: any other create-session failure (no billing account,
+    // 500/503) routes to the care-team screen so the patient always has a way forward.
+    // Their screening is already persisted server-side (create-session saves it before
+    // every gate), so the care team has the full disclosure when they reach out.
+    track('portal_addproduct_checkout_error', { product: productKey, error: (err && err.message) || String(err) });
+    showCareTeamHold(productKey, null, 'error');
   }
 }
 
@@ -2739,12 +2752,30 @@ async function showClinicalScreening(productKey, planType){
     config.blockers.forEach(b => { blockerAnswers[b.id] = answers[b.id] || 'no'; });
     config.soft.forEach(s => { softAnswers[s.id] = answers[s.id] || 'no'; });
 
-    // Local hard-block check — show the care-team hold screen without
-    // making a network call so the patient gets fast feedback.
+    // Local hard-block check — show the care-team hold screen fast, BUT persist
+    // the disclosure first (fire-and-forget). A tripped contraindication is the
+    // single most clinically important answer the patient gives; it used to be
+    // thrown away here, so when they emailed care@ we had zero record of it.
     const tripped = Object.entries(blockerAnswers)
       .filter(([_, v]) => v === 'yes')
       .map(([k]) => k);
     if (tripped.length > 0) {
+      try {
+        api('/api/portal/screening/save', {
+          method: 'POST',
+          body: JSON.stringify({
+            productKey, planType,
+            screeningAnswers: {
+              vertical,
+              blockers: blockerAnswers,
+              soft: softAnswers,
+              allergies: answers.hasAllergies === 'yes' ? ($('scrAllergies')?.value || '').trim() : 'None',
+              medications: answers.hasMeds === 'yes' ? ($('scrMeds')?.value || '').trim() : 'None',
+              doctorMessage: ($('scrDoctorMessage')?.value || '').trim()
+            }
+          })
+        }).catch(() => {});
+      } catch (e) { /* never delay the hold screen */ }
       showCareTeamHold(productKey, tripped);
       return;
     }
@@ -2765,18 +2796,24 @@ async function showClinicalScreening(productKey, planType){
 // Care-team hold screen — replaces the modal body when a hard-blocker
 // question came back yes. We avoid creating any Stripe session for these
 // patients; instead they're routed to email the care team for review.
-function showCareTeamHold(productKey, blockerIds){
-  track('portal_screening_blocked', { product: productKey, blockers: (blockerIds || []).join(',') || 'server' });
+function showCareTeamHold(productKey, blockerIds, mode){
+  track('portal_screening_blocked', { product: productKey, blockers: (blockerIds || []).join(',') || (mode === 'error' ? 'checkout_error' : 'server') });
   const product = findCatalogProductGlobal(productKey);
   const productName = product ? product.displayName : 'this treatment';
+  // Two flavors: a clinical hold (a blocker tripped) vs a technical failure
+  // (create-session errored) — very different messages, same off-ramp.
+  const heading = mode === 'error' ? 'We hit a snag starting your checkout' : 'A clinician needs to review your order';
+  const body = mode === 'error'
+    ? `Something went wrong on our end — no payment was taken, and the answers you entered are saved. Reach out and our care team will finish this with you directly.`
+    : `Based on your answers, ${escapeHtml(productName)} isn't a safe self-checkout for you. We didn't take any payment. Reach out and our care team will recommend the right next step.`;
   $('productDetailBody').innerHTML = `
     <div style="text-align:center;padding:24px 12px">
       <div style="width:64px;height:64px;border-radius:50%;background:#fef3c7;display:flex;align-items:center;justify-content:center;margin:0 auto 16px">
         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2"><path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
       </div>
-      <div style="font-size:20px;font-weight:700;margin-bottom:8px">A clinician needs to review your order</div>
-      <div style="font-size:14px;color:var(--gray-500);line-height:1.5;margin-bottom:20px">Based on your answers, ${escapeHtml(productName)} isn't a safe self-checkout for you. We didn't take any payment. Reach out and our care team will recommend the right next step.</div>
-      <a href="mailto:care@clyr.health?subject=Care%20review%20request%20for%20${encodeURIComponent(productName)}" class="btn btn-primary" style="display:inline-block;text-decoration:none;padding:12px 24px;margin-bottom:8px">Email the care team</a>
+      <div style="font-size:20px;font-weight:700;margin-bottom:8px">${heading}</div>
+      <div style="font-size:14px;color:var(--gray-500);line-height:1.5;margin-bottom:20px">${body}</div>
+      <a href="mailto:care@clyr.health?subject=${mode === 'error' ? 'Checkout%20help' : 'Care%20review%20request'}%20for%20${encodeURIComponent(productName)}" class="btn btn-primary" style="display:inline-block;text-decoration:none;padding:12px 24px;margin-bottom:8px">Email the care team</a>
       <br>
       <button class="btn btn-secondary" style="margin-top:8px" onclick="closeProductDetail()">Back to portal</button>
     </div>`;
