@@ -115,7 +115,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   // GLP-only "Choose Tirzepatide / Semaglutide" screen.
   var GLP_SET = { tirzepatide: 1, semaglutide: 1, wegovy_tablets: 1, zepbound: 1, foundayo: 1 };
   function intakeUrlFor(product, plan) {
-    if (!product) return '/intake.html';
+    // No product on file (e.g. an admin/lead account with no cart) — do NOT assume GLP.
+    // Send them to the treatments homepage to choose, rather than the GLP-only funnel.
+    if (!product) return '/';
     var pr = product.toLowerCase().replace(/_(t\d+_)?(monthly|onetime|\d+month|\d+day).*$/, '');
     if (GLP_SET[pr] || GLP_SET[product]) return '/intake.html';
     return '/intake-wellness.html?product=' + encodeURIComponent(product) + (plan ? ('&plan=' + encodeURIComponent(plan)) : '');
