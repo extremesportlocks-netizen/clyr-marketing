@@ -1663,9 +1663,14 @@ document.addEventListener('click',e=>{
 });
 
 // ═══ REFILL FLOW (branches on patient.refillFlow) ═══
-// Treatments awaiting Karin's approved refill questionnaire — show the manual-care message
-// instead of the in-portal refill form until MDI templates are live.
-const AUTO_REFILL_PENDING = ['glutathione','micc','pt141'];
+// AUTO_REFILL_PENDING: products forced to show "care team is handling it"
+// instead of the refill button. Was ['glutathione','micc','pt141'] while their
+// MDI questionnaire templates were pending — STALE as of 2026-07-07: TPH
+// protocols refill pharmacy-direct against the existing Rx (no MDI encounter,
+// per Kyle/MDI May 2026), the same path NAD uses. Patients were being told
+// "we're handling it" while refill emails asked them to act — silent lapse
+// risk. Keep the mechanism for future onboarding, but empty.
+const AUTO_REFILL_PENDING = [];
 function startRefill(product){
   if(!portalData)return;
   // Per-product refill (2026-07-03): resolve the CLICKED treatment. Falls back
