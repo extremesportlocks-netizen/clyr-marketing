@@ -2337,6 +2337,19 @@ async function openProductDetail(productKey){
   if (!product) return alert('Unknown product: ' + productKey);
   if (product.comingSoon) { startProtocolWaitlist(product.waitlistKey || product.key); return; }
 
+  // GLP-1 can NOT be sold through the generic add-product rail — the backend rejects it at
+  // create-session (it requires the full weight-loss questionnaire, not the wellness screening).
+  // Route to the correct destination UP FRONT so the patient never fills a screening that
+  // dead-ends at "Preparing checkout…": owners → Request a Refill (window-gated, provider-reviewed);
+  // new patients → the full weight-loss questionnaire on the marketing site.
+  if (/tirzep|semaglu/i.test(productKey)) {
+    track('portal_glp_add_redirect', { product: productKey });
+    const ownedGlp = (portalData && portalData.treatments || []).find(t => /tirz|sema/i.test(t.product || ''));
+    if (ownedGlp) { showPage('treatments'); startRefill(ownedGlp.product); }
+    else { window.location.href = 'https://www.clyr.health/intake.html'; }
+    return;
+  }
+
   track('portal_addproduct_opened', { product: productKey, vertical: product.vertical });
 
   // Build the plan options actually offered for this SKU.
