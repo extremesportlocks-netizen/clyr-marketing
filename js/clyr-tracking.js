@@ -10,6 +10,16 @@
   var vid = localStorage.getItem('clyr_vid');
   if (!vid) { vid = crypto.randomUUID(); localStorage.setItem('clyr_vid', vid); }
 
+  // ── X (Twitter) pixel base ─────────────────────────────────
+  // Loads the X universal tag site-wide and fires PageView. This is what builds
+  // retargeting audiences and gives X the top-of-funnel signal it needs to match
+  // clicks -> conversions. Conversions themselves fire server-side (CAPI) + on
+  // success.html; this base only needs to exist once, everywhere. Pixel: rctp2.
+  !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);},
+    s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='https://static.ads-twitter.com/uwt.js',
+    a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
+  try { twq('config','rctp2'); } catch (e) {}
+
   // ── First-touch attribution capture ────────────────────────
   // Captures UTMs + referrer + gclid the FIRST time a visitor lands and
   // persists them so the intake form (often several pages/days later) can

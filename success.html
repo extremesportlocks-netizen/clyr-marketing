@@ -195,6 +195,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           currency: 'USD',
           transaction_id: sid
         });
+        // X (Twitter) browser Purchase. Dedups with the server-side CAPI via the SAME
+        // event_id (tw-rctp2-rcv9r) + conversion_id (=sid) so X counts one purchase, not two.
+        // Browser + server together = full coverage (server survives ad-blockers, browser
+        // carries the click cookie for match). value/currency PHI-safe (no product).
+        if (window.twq) {
+          twq('event', 'tw-rctp2-rcv9r', {
+            value: data.amount_total ? data.amount_total / 100 : 0,
+            currency: 'USD',
+            conversion_id: sid,
+            email_address: data.customer_email || undefined
+          });
+        }
       } else {
         // Payment not completed (backed out of Affirm, Klarna, etc.)
         var reason = data.payment_status === 'unpaid' ? 'Your payment was not completed.' : 'Your checkout session has expired.';
