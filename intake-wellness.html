@@ -1285,6 +1285,7 @@ function onStep3Continue() {
         utm_source: _attr.utm_source || _p.get('utm_source') || null,
         utm_medium: _attr.utm_medium || _p.get('utm_medium') || null,
         utm_campaign: _attr.utm_campaign || _p.get('utm_campaign') || null,
+        utm_content: _attr.utm_content || _p.get('utm_content') || null,
         referrer: _attr.referrer || document.referrer || null,
         dob: _dob,
         sex: state.details.sex || null
@@ -1408,6 +1409,7 @@ function initCheckout() {
       utm_source: (window.clyrAttribution ? window.clyrAttribution().utm_source : null) || params.get('utm_source'),
       utm_medium: (window.clyrAttribution ? window.clyrAttribution().utm_medium : null) || params.get('utm_medium'),
       utm_campaign: (window.clyrAttribution ? window.clyrAttribution().utm_campaign : null) || params.get('utm_campaign'),
+      utm_content: (window.clyrAttribution ? window.clyrAttribution().utm_content : null) || params.get('utm_content'),
       referrer: (window.clyrAttribution ? window.clyrAttribution().referrer : null) || document.referrer || null,
       twclid: (window.clyrAttribution ? window.clyrAttribution().twclid : null) || params.get('twclid'),
       gclid: (window.clyrAttribution ? window.clyrAttribution().gclid : null) || params.get('gclid'),

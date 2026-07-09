@@ -18,7 +18,7 @@
   function captureAttribution() {
     var params = new URLSearchParams(window.location.search);
     var ref = document.referrer || '';
-    var hasUtm = params.get('utm_source') || params.get('gclid') || params.get('fbclid') || params.get('twclid');
+    var hasUtm = params.get('utm_source') || params.get('utm_content') || params.get('gclid') || params.get('fbclid') || params.get('twclid');
     var existing = null;
     try { existing = JSON.parse(localStorage.getItem('clyr_attribution')); } catch (e) {}
 
@@ -57,6 +57,8 @@
         utm_source: cap(params.get('utm_source') || derived, 255),
         utm_medium: cap(params.get('utm_medium') || ((params.get('gclid') || params.get('twclid')) ? 'cpc' : (ref ? 'referral' : 'none')), 255),
         utm_campaign: cap(params.get('utm_campaign'), 255),
+        utm_content: cap(params.get('utm_content'), 255),
+        utm_term: cap(params.get('utm_term'), 255),
         referrer: cap(ref, 500),
         gclid: cap(params.get('gclid'), 255),
         fbclid: cap(params.get('fbclid'), 255),
@@ -71,6 +73,7 @@
       try {
         existing.last_utm_source = params.get('utm_source') || existing.last_utm_source;
         existing.last_utm_campaign = params.get('utm_campaign') || existing.last_utm_campaign;
+        existing.last_utm_content = params.get('utm_content') || existing.last_utm_content;
         existing.last_touch_at = new Date().toISOString();
         localStorage.setItem('clyr_attribution', JSON.stringify(existing));
       } catch (e) {}
@@ -148,6 +151,8 @@
           utm_source: _a.utm_source || null,
           utm_medium: _a.utm_medium || null,
           utm_campaign: _a.utm_campaign || null,
+          utm_content: _a.utm_content || null,
+          utm_term: _a.utm_term || null,
           gclid: _a.gclid || null,
           fbclid: _a.fbclid || null,
           twclid: _a.twclid || null,
@@ -181,6 +186,8 @@
         utm_source: _ap.utm_source || null,
         utm_medium: _ap.utm_medium || null,
         utm_campaign: _ap.utm_campaign || null,
+        utm_content: _ap.utm_content || null,
+        utm_term: _ap.utm_term || null,
         gclid: _ap.gclid || null,
         fbclid: _ap.fbclid || null,
         twclid: _ap.twclid || null
