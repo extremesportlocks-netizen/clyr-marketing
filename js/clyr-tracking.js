@@ -15,10 +15,12 @@
   // retargeting audiences and gives X the top-of-funnel signal it needs to match
   // clicks -> conversions. Conversions themselves fire server-side (CAPI) + on
   // success.html; this base only needs to exist once, everywhere. Pixel: rctp2.
+  function loadXTag() {
   !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);},
     s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='https://static.ads-twitter.com/uwt.js',
     a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
   try { twq('config','rctp2'); } catch (e) {}
+  }
 
   // ── First-touch attribution capture ────────────────────────
   // Captures UTMs + referrer + gclid the FIRST time a visitor lands and
@@ -133,6 +135,7 @@
   // ── Core tracking function ─────────────────────────────────
   // Fires to: PostHog + internal DB
   window.clyrTrack = function(eventName, properties) {
+    try { startTracking(); } catch(e) {}
     var props = properties || {};
     props.visitor_id = vid;
     props.page = window.location.pathname;
@@ -184,6 +187,7 @@
   };
 
   // ── Auto page view to internal DB ──────────────────────────
+  function sendInternalPageView() {
   try {
     var _ap = (window.clyrAttribution && window.clyrAttribution()) || {};
     fetch(API + '/api/track', {
@@ -204,9 +208,28 @@
       })
     }).catch(function() {});
   } catch(e) {}
+  }
 
-  // ── Init ───────────────────────────────────────────────────
-  initPostHog();
+  // ── Init: human-gated ──────────────────────────
+  // Email-security scanners (SafeLinks, Proofpoint, Barracuda) load pages
+  // for under a second with zero interaction, inflating visitor counts and
+  // polluting retargeting audiences. Analytics start on the FIRST human
+  // signal (pointer, touch, key, scroll/wheel) or after 3s of real dwell,
+  // whichever comes first. Attribution capture above already ran (local
+  // only, no network) so first-touch data is never lost. Explicit
+  // clyrTrack events also open the gate — a conversion event is human.
+  var _trackingStarted = false;
+  var _humanEvents = ['pointerdown', 'pointermove', 'touchstart', 'keydown', 'scroll', 'wheel'];
+  function startTracking() {
+    if (_trackingStarted) return;
+    _trackingStarted = true;
+    loadXTag();
+    initPostHog();
+    sendInternalPageView();
+    _humanEvents.forEach(function(ev) { window.removeEventListener(ev, startTracking); });
+  }
+  _humanEvents.forEach(function(ev) { window.addEventListener(ev, startTracking, { passive: true }); });
+  setTimeout(startTracking, 3000);
 
 })();
 
