@@ -747,7 +747,7 @@ async function api(path,opts={}){
   const r=await fetch(API+path,{...opts,headers:{...headers,...(opts.headers||{})}});
   if(r.status===401){signOut();throw new Error('Session expired');}
   const data=await r.json().catch(()=>({error:'Invalid response'}));
-  if(!r.ok)throw new Error(data.error||'Request failed');
+  if(!r.ok){const err=new Error(data.error||data.message||'Request failed');err.data=data;throw err;}
   return data;
 }
 
@@ -1775,7 +1775,15 @@ async function submitGenericRefill(){
   try{
     await api('/api/portal/refill',{method:'POST',body:JSON.stringify(payload)});
     $('refillFormArea').innerHTML=`<div class="empty"><div class="empty-icon">✅</div><div class="empty-title">Refill request submitted</div><div class="empty-msg">Your provider will review and reach out within 24 to 48 hours.</div></div>`;
-  }catch(e){window._refillInFlight=false;alert('Could not submit: '+e.message);}
+  }catch(e){
+    window._refillInFlight=false;
+    if(e.data&&e.data.renewPlan){
+      var _rp=(e.data.product||payload.product||'').toString();
+      $('refillFormArea').innerHTML='<div class="empty"><div class="empty-icon">\ud83d\udd12</div><div class="empty-title">Your prepaid fills are used up</div><div class="empty-msg">Renew your plan to continue treatment. Your provider reviews every renewal before it ships.</div><button class="btn btn-primary" style="margin-top:14px" onclick="openSwitchPlanModal(\''+_rp+'\')">Renew my plan \u2192</button></div>';
+      return;
+    }
+    alert('Could not submit: '+e.message);
+  }
 }
 
 function renderGlp1Refill(){
