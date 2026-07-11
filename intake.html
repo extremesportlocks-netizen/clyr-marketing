@@ -1871,9 +1871,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         // CLYR cannot service these states for any treatment.
         var baseExcluded = ['AK', 'MS', 'LA'];
         // Per-product shipping restrictions for compounded GLP-1 injectables.
+        // Updated 2026-07-10 per Erin Halligan (pharmacy): CA now OPEN for
+        // tirzepatide. Current exclusions for both GLPs: AR, IN, MN, SC.
         var glpRestricted = {
           semaglutide: ['AR', 'IN', 'MN', 'SC'],
-          tirzepatide: ['AR', 'CA', 'IN', 'MN', 'SC']
+          tirzepatide: ['AR', 'IN', 'MN', 'SC']
         };
         var productExtra = glpRestricted[formData.treatment] || [];
         var baseHit = baseExcluded.indexOf(selectedState) !== -1;
