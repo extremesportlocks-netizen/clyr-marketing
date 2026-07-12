@@ -139,6 +139,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   // Resume checkout session
   document.getElementById('loadingText').textContent = 'Preparing your checkout...';
 
+  
+function armEmbedWatchdog(retryBody, endpoint){
+  // Private browsing / older Safari can leave Stripe's embedded iframe blank
+  // (storage-blocked). If the form isn't visibly rendered 7s after mount,
+  // offer the hosted checkout — same order, checkout.stripe.com, works everywhere.
+  setTimeout(function(){
+    try{
+      var host=document.getElementById('checkout-mount');
+      var ifr=host&&host.querySelector('iframe');
+      if(ifr&&ifr.getBoundingClientRect().height>80)return;
+      if(document.getElementById('hostedFallbackWrap'))return;
+      var w=document.createElement('div');
+      w.id='hostedFallbackWrap';
+      w.style.cssText='text-align:center;margin:16px 0';
+      w.innerHTML='<div style="font-size:13px;color:#6B7C8A;margin-bottom:10px">Payment form not loading on this browser?</div><button type="button" style="background:#00B4C5;color:#fff;border:none;border-radius:100px;padding:13px 30px;font-weight:700;font-size:15px;cursor:pointer" id="hostedFallbackBtn">Continue to secure checkout \u2192</button>';
+      host.parentNode.insertBefore(w,host.nextSibling);
+      document.getElementById('hostedFallbackBtn').onclick=function(){
+        var b=this;b.disabled=true;b.textContent='Opening secure checkout\u2026';
+        fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(retryBody)})
+          .then(function(r){return r.json()})
+          .then(function(d){if(d.hostedUrl){location.href=d.hostedUrl;}else{b.textContent='Please refresh and try again';b.disabled=false;}})
+          .catch(function(){b.textContent='Please refresh and try again';b.disabled=false;});
+      };
+    }catch(e){}
+  },7000);
+}
+
   fetch(API + '/api/checkout/resume', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -185,6 +212,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       checkout.then(function(co) {
         document.getElementById('checkout-mount').innerHTML = '';
         co.mount('#checkout-mount');
+        armEmbedWatchdog(token
+          ? { token: token, customerId: customerId ? parseInt(customerId) : undefined, checkoutMode: 'hosted' }
+          : { email: email, customerId: customerId ? parseInt(customerId) : undefined, checkoutMode: 'hosted' },
+          API + '/api/checkout/resume');
       });
     }).catch(function(err) {
       showError('Payment form unavailable', err.message);
