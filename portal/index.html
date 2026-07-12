@@ -1894,6 +1894,34 @@ function submitGlp1Refill(){
     <div id="glp1CheckoutMount" style="display:none;margin-top:20px"></div>`;
 }
 
+// Portal blank-iframe watchdog: private browsing / older Safari can leave Stripe's
+// embedded iframe blank (storage-blocked). If the form isn't visibly rendered 5s after
+// mount, offer the hosted checkout (checkout.stripe.com) via the SAME authenticated
+// endpoint with checkoutMode:'hosted'. Mirrors the public-intake watchdog; uses api()
+// so the portal session token rides along. Additive — never touches the working path.
+function armPortalWatchdog(containerId, endpoint, retryBody){
+  setTimeout(function(){
+    try{
+      var host=document.getElementById(containerId);
+      if(!host) return;
+      var ifr=host.querySelector('iframe');
+      if(ifr && ifr.getBoundingClientRect().height>80) return; // rendered fine
+      if(document.getElementById('portalHostedFallback')) return;
+      var w=document.createElement('div');
+      w.id='portalHostedFallback';
+      w.style.cssText='text-align:center;margin:16px 0';
+      w.innerHTML='<div style="font-size:13px;color:var(--gray-500);margin-bottom:10px">Payment form not loading on this browser?</div><button type="button" class="btn btn-primary" id="portalHostedBtn">Continue to secure checkout →</button>';
+      host.parentNode.insertBefore(w, host.nextSibling);
+      document.getElementById('portalHostedBtn').onclick=function(){
+        var b=this; b.disabled=true; b.textContent='Opening secure checkout…';
+        api(endpoint,{method:'POST',body:JSON.stringify(Object.assign({},retryBody,{checkoutMode:'hosted'}))})
+          .then(function(d){ if(d && d.hostedUrl){ location.href=d.hostedUrl; } else { b.textContent='Please refresh and try again'; b.disabled=false; } })
+          .catch(function(){ b.textContent='Please refresh and try again'; b.disabled=false; });
+      };
+    }catch(e){}
+  }, 5000);
+}
+
 async function startGlp1RefillCheckout(plan){
   if(window._refillInFlight) return;
   const answers = window._glp1RefillAnswers;
@@ -1927,6 +1955,7 @@ async function startGlp1RefillCheckout(plan){
           </div>`;
     }});
     ec.mount('#glp1CheckoutContainer');
+    armPortalWatchdog('glp1CheckoutContainer', '/api/portal/refill/checkout', { answers, plan });
   }catch(e){
     if(e && (e.paymentRequired || /payment/i.test(e.message||''))){
       mount.innerHTML='<div style="color:#c0392b;font-size:14px">'+(e.message||'Payment is required to submit your refill.')+'</div>';
@@ -2547,6 +2576,7 @@ async function beginEmbeddedCheckout(productKey, planType, screeningAnswers){
       }
     });
     activeEmbeddedCheckout.mount('#checkoutContainer');
+    armPortalWatchdog('checkoutContainer', '/api/portal/add-product/create-session', { productKey, planType, screeningAnswers: screeningAnswers || undefined });
   } catch (err) {
     // Server-side clinical hold — happens if the local screening was skipped
     // somehow or a blocker slipped through. Show the care-team stop screen
@@ -3130,11 +3160,13 @@ async function beginSwitchCheckout(productKey, newPlan){
     // the catalog's keys aligning with the env-var SKU pattern in the backend.
     // For now, we pass productKey + newPlanType and let the backend resolve
     // the price via the same product-catalog logic.
+    // Backend needs newPriceId, so resolve via the SKU. Captured in a var so the
+    // blank-iframe watchdog can replay the exact same payload in hosted mode.
+    const newPriceId = await resolvePriceIdForSku(productKey, newPlan);
     const session = await api('/api/portal/subscription/change', {
       method: 'POST',
       body: JSON.stringify({
-        // Backend needs newPriceId, so resolve via the SKU
-        newPriceId: await resolvePriceIdForSku(productKey, newPlan),
+        newPriceId,
         newProductType: productKey,
         newPlanType: newPlan,
         currentProductType: productKey,  // scope sub lookup to this product
@@ -3182,6 +3214,7 @@ async function beginSwitchCheckout(productKey, newPlan){
       }
     });
     activeEmbeddedCheckout.mount('#switchCheckoutContainer');
+    armPortalWatchdog('switchCheckoutContainer', '/api/portal/subscription/change', { newPriceId, newProductType: productKey, newPlanType: newPlan, currentProductType: productKey, embedded: false });
   } catch (err) {
     btn.disabled = false; btn.textContent = 'Switch to this plan';
     alert('Could not switch plan: ' + (err.message || err));
