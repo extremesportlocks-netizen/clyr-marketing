@@ -171,6 +171,12 @@ textarea{resize:vertical;min-height:80px;font-family:var(--sans)}
   .step-title{font-size:28px}
   .input-grid{grid-template-columns:1fr;gap:12px}
   .input-grid.three{grid-template-columns:1fr 1fr 1fr;gap:8px}
+  /* Mobile shipping: desktop 2fr rules are more specific than the generic
+     1fr override, so they survived onto phones. Stack street/apt, city gets
+     a full row, state+zip pair up. */
+  .input-grid.shipping{grid-template-columns:1fr}
+  .input-grid.city-state{grid-template-columns:1fr 1fr}
+  .input-grid.city-state .input-wrap:first-child{grid-column:1 / -1}
   .input-grid.city-state{grid-template-columns:1fr 1fr 1fr}
   .plan-options{grid-template-columns:1fr}
   .product-card{flex-direction:column;align-items:flex-start}
@@ -1032,9 +1038,12 @@ function attachListeners() {
     if (d.length === 11 && d.charAt(0) === '1') d = d.substring(1);
     var x = d.substring(0, 10);
     var f = '';
+    // Lazy separators while deleting: eager rules re-appended ") " and "-"
+    // the instant you backspaced them (backspace at the dash was trapped).
+    var del = e.inputType && e.inputType.indexOf('delete') === 0;
     if (x.length > 0) f = '(' + x.substring(0, 3);
-    if (x.length >= 3) f += ') ' + x.substring(3, 6);
-    if (x.length >= 6) f += '-' + x.substring(6, 10);
+    if (x.length > 3 || (x.length === 3 && !del)) f += ') ' + x.substring(3, 6);
+    if (x.length > 6 || (x.length === 6 && !del)) f += '-' + x.substring(6, 10);
     e.target.value = f;
     validateStep3();
   });

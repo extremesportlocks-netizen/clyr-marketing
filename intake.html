@@ -1447,9 +1447,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (d.length === 11 && d.charAt(0) === '1') d = d.substring(1);
     var x = d.substring(0, 10);
     var f = '';
+    // Lazy separators while deleting: eager rules re-appended ") " and "-"
+    // the instant you backspaced them (backspace at the dash was trapped).
+    var del = e.inputType && e.inputType.indexOf('delete') === 0;
     if (x.length > 0) f = '(' + x.substring(0, 3);
-    if (x.length >= 3) f += ') ' + x.substring(3, 6);
-    if (x.length >= 6) f += '-' + x.substring(6, 10);
+    if (x.length > 3 || (x.length === 3 && !del)) f += ') ' + x.substring(3, 6);
+    if (x.length > 6 || (x.length === 6 && !del)) f += '-' + x.substring(6, 10);
     e.target.value = f;
     var ok = x.length === 10;
     e.target.classList.toggle('ok', ok);
