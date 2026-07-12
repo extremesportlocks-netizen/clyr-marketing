@@ -1917,7 +1917,7 @@ async function startGlp1RefillCheckout(plan){
     const ec = await stripe.initEmbeddedCheckout({
       clientSecret: session.clientSecret,
       onComplete: async () => {
-        try{ track('portal_glp1_refill_paid',{term}); }catch(e){window._refillInFlight=false;document.querySelectorAll('.refill-term-btn').forEach(b=>b.disabled=false);}
+        try{ track('portal_glp1_refill_paid',{plan}); }catch(e){window._refillInFlight=false;document.querySelectorAll('.refill-term-btn').forEach(b=>b.disabled=false);}
         mount.innerHTML=`
           <div style="text-align:center;padding:32px 20px">
             <div style="font-size:48px;margin-bottom:12px">✓</div>

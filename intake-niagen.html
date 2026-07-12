@@ -468,13 +468,42 @@ function submitAll() {
       if (embeddedCheckout) { try { embeddedCheckout.destroy(); } catch (e) {} embeddedCheckout = null; }
       return stripe.initEmbeddedCheckout({ clientSecret: co.clientSecret });
     })
-    .then(function (checkout) { embeddedCheckout = checkout; checkout.mount('#checkout-mount'); })
+    .then(function (checkout) {
+      embeddedCheckout = checkout; checkout.mount('#checkout-mount');
+      armEmbedWatchdog({ email: payload.email, productType: 'niagen', planType: formData.plan, firstName: payload.firstName, lastName: payload.lastName, checkoutMode: 'hosted' }, API + '/api/checkout');
+    })
     .catch(function (err) {
       btn.disabled = false; btn.textContent = 'Continue to checkout';
       $('s5err').textContent = err.message || 'Something went wrong. Please try again.';
       $('coStatus').textContent = err.message || 'Payment could not load.';
       if (stepIdx === 6) go(5);
     });
+}
+
+// Private browsing / older Safari can leave Stripe's embedded iframe blank (storage-blocked).
+// If the form isn't visibly rendered 7s after mount, offer the hosted checkout — same order,
+// checkout.stripe.com, works everywhere. Ported from intake-wellness.html for parity.
+function armEmbedWatchdog(retryBody, endpoint){
+  setTimeout(function(){
+    try{
+      var host=document.getElementById('checkout-mount');
+      var ifr=host&&host.querySelector('iframe');
+      if(ifr&&ifr.getBoundingClientRect().height>80)return;
+      if(document.getElementById('hostedFallbackWrap'))return;
+      var w=document.createElement('div');
+      w.id='hostedFallbackWrap';
+      w.style.cssText='text-align:center;margin:16px 0';
+      w.innerHTML='<div style="font-size:13px;color:#6B7C8A;margin-bottom:10px">Payment form not loading on this browser?</div><button type="button" style="background:#00B4C5;color:#fff;border:none;border-radius:100px;padding:13px 30px;font-weight:700;font-size:15px;cursor:pointer" id="hostedFallbackBtn">Continue to secure checkout →</button>';
+      host.parentNode.insertBefore(w,host.nextSibling);
+      document.getElementById('hostedFallbackBtn').onclick=function(){
+        var b=this;b.disabled=true;b.textContent='Opening secure checkout…';
+        fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(retryBody)})
+          .then(function(r){return r.json()})
+          .then(function(d){if(d.hostedUrl){location.href=d.hostedUrl;}else{b.textContent='Please refresh and try again';b.disabled=false;}})
+          .catch(function(){b.textContent='Please refresh and try again';b.disabled=false;});
+      };
+    }catch(e){}
+  },7000);
 }
 
 // ── init ──
