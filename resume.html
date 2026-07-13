@@ -174,8 +174,8 @@ function armEmbedWatchdog(retryBody, endpoint){
     // 7 days still resumes from the saved record instead of forcing a full re-intake.
     // Safe: the token is still the secret (id alone matches nothing).
     body: JSON.stringify(token
-      ? { token: token, customerId: customerId ? parseInt(customerId) : undefined }
-      : { email: email, customerId: customerId ? parseInt(customerId) : undefined })
+      ? { token: token, customerId: customerId ? parseInt(customerId) : undefined, reorder: new URLSearchParams(location.search).get('reorder') === '1' }
+      : { email: email, customerId: customerId ? parseInt(customerId) : undefined, reorder: new URLSearchParams(location.search).get('reorder') === '1' })
   })
   .then(function(r) { return r.json().then(function(d) { return { ok: r.ok, data: d }; }); })
   .then(function(result) {
