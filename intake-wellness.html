@@ -299,8 +299,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="condition-list" id="conditionList"></div>
 
     <div class="warning-box" id="warningBox">
-      <h4>We need to review your case carefully</h4>
-      <p id="warningText">Based on your response, a licensed provider will review your eligibility before any medication is prescribed. You can continue and our team will follow up if any concerns arise.</p>
+      <h4 id="warningTitle">Checking this doesn't disqualify you</h4>
+      <p id="warningText">This answer does not determine your eligibility. A licensed provider reviews your full health picture individually before any medication is prescribed. And if your provider determines treatment isn't right for you, you'll receive a full refund, you never pay for treatment you don't receive.</p>
     </div>
 
     <div class="btn-row">
@@ -1019,10 +1019,12 @@ function renderScreening() {
       var hasCritical = Array.from(list.querySelectorAll('.condition.checked')).some(function(c){return c.dataset.critical === '1'});
       if (hasCritical) {
         warningBox.classList.add('show');
+        document.getElementById('warningTitle').textContent = "We need to review your case carefully";
         document.getElementById('warningText').textContent = "One of your responses indicates a contraindication. Your provider will review carefully and may not approve this medication. You can continue, we'll let you know if there's an issue before charging you.";
       } else if (hasFlag) {
         warningBox.classList.add('show');
-        document.getElementById('warningText').textContent = "Based on your response, a licensed provider will review your case carefully. You can continue, your provider will follow up if any concerns arise.";
+        document.getElementById('warningTitle').textContent = "Checking this doesn't disqualify you";
+        document.getElementById('warningText').textContent = "This answer does not determine your eligibility. A licensed provider reviews your full health picture individually before any medication is prescribed. And if your provider determines treatment isn't right for you, you'll receive a full refund, you never pay for treatment you don't receive.";
       } else {
         warningBox.classList.remove('show');
       }
