@@ -36,17 +36,32 @@
   }
   window.clyrStreetLooksIncomplete = streetLooksIncomplete;
 
+  // PO Boxes are fully accepted (we ship anything to a PO Box). Google Places will
+  // never *suggest* one, so a PO-box customer gets no autofill for city/state/zip —
+  // detect it and reassure + prompt them to fill those in, so they don't stall.
+  function streetLooksLikePoBox(s) {
+    return /\bp\.?\s*o\.?\s*box\b|\bpost\s+office\s+box\b/i.test(String(s || ''));
+  }
+  window.clyrStreetLooksLikePoBox = streetLooksLikePoBox;
+
   var hint = document.createElement('div');
   hint.setAttribute('data-clyr-addr-hint', '1');
-  hint.style.cssText = 'display:none;color:#c2410c;font-size:12.5px;margin-top:6px;line-height:1.4;';
+  hint.style.cssText = 'display:none;font-size:12.5px;margin-top:6px;line-height:1.4;';
   if (addr.parentNode) addr.parentNode.appendChild(hint);
   function refreshHint() {
+    if (streetLooksLikePoBox(addr.value)) {
+      hint.textContent = 'PO Boxes are accepted — just add your City, State and ZIP below.';
+      hint.style.color = '#15803d';
+      hint.style.display = 'block';
+      return;
+    }
     var msg = streetLooksIncomplete(addr.value);
     hint.textContent = msg || '';
+    hint.style.color = '#c2410c';
     hint.style.display = msg ? 'block' : 'none';
   }
   addr.addEventListener('blur', refreshHint);
-  addr.addEventListener('input', function () { if (hint.style.display === 'block') refreshHint(); });
+  addr.addEventListener('input', function () { if (hint.style.display === 'block' || streetLooksLikePoBox(addr.value)) refreshHint(); });
 
   /* ── 2. Google Places (New) autocomplete ──────────────────────── */
   var KEY = window.CLYR_MAPS_KEY || '';
@@ -166,6 +181,9 @@
   addr.addEventListener('input', function () {
     var q = addr.value.trim();
     if (timer) clearTimeout(timer);
+    // PO Box: Google can't suggest one, so skip the (empty/confusing) dropdown and
+    // just show the reassurance hint instead. Manual entry proceeds normally.
+    if (streetLooksLikePoBox(q)) { hideBox(); refreshHint(); return; }
     if (q.length < 4) { hideBox(); return; }
     timer = setTimeout(function () { fetchSuggestions(q); }, 250);
   });
