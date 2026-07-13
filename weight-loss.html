@@ -267,6 +267,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .compare-cols { display: none; }
     .compare-stacked { display: block; margin-top: 0; }
   }
+
+.cmp-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--gray-200);border-radius:var(--radius);background:white;box-shadow:var(--shadow-md)}.cmp{width:100%;min-width:920px;border-collapse:collapse;font-size:14px}.cmp thead th{background:linear-gradient(135deg,#0d1b2e,#1a3045);color:white;font-weight:600;text-align:left;padding:16px 18px;font-size:12px;text-transform:uppercase;letter-spacing:0.08em;border-bottom:1px solid rgba(255,255,255,0.08);white-space:nowrap}.cmp tbody td{padding:18px;border-bottom:1px solid var(--gray-100);vertical-align:middle;color:var(--gray-600)}.cmp tbody tr:hover{background:var(--gray-50)}.cmp tbody tr:last-child td{border-bottom:none}.cmp .name{font-weight:700;color:var(--dark);font-size:15px;display:flex;align-items:center;gap:10px}.cmp .name .ic{width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,#f0fafb,#e8f4f8);display:flex;align-items:center;justify-content:center;flex-shrink:0}.cmp .name .ic img{width:80%;height:80%;object-fit:contain}.cmp .tag{display:inline-block;padding:4px 10px;border-radius:100px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em}.cmp .tag.cmpd{background:var(--teal-light);color:var(--teal-dark)}.cmp .tag.brnd{background:#f1f5f9;color:#475569}.cmp .pp{font-weight:800;color:var(--dark);font-size:16px;white-space:nowrap}.cmp .pp span{font-weight:500;color:var(--gray-400);font-size:12px}.cmp .vw{display:inline-flex;align-items:center;gap:4px;color:var(--teal);font-weight:700;font-size:13px;text-decoration:none;white-space:nowrap}.cmp .vw:hover{color:var(--teal-dark)}.cmp-note{margin-top:20px;font-size:12px;color:var(--gray-400);line-height:1.6;max-width:920px}
 </style>
 <style>/* nav polish: section dividers + dropdown hover bridge */
 .nav-links > *:not(.nav-portal):not(.nav-cta){position:relative}
@@ -494,12 +496,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
+<section class="products" style="padding-top:0" id="compare-glp1"><div class="products-sub">All GLP-1 Treatments</div><h2>Compare every GLP-1 <span class="serif">we offer.</span></h2><p class="products-desc">Compounded and brand-name treatments side by side. Pick the one that fits your goals, schedule, and budget.</p>
+<div class="cmp-wrap">
+<table class="cmp">
+<thead><tr><th>Treatment</th><th>Category</th><th>Form</th><th>Active Ingredient</th><th>Mechanism</th><th>Schedule</th><th>Starts at</th><th></th></tr></thead>
+<tbody>
+<tr><td><div class="name"><div class="ic"><img src="/img/cardv2/vial-tirzepatide-new.webp" alt=""></div>Tirzepatide + B12</div></td><td><span class="tag cmpd">Compounded</span></td><td>Injection</td><td>Tirzepatide</td><td>GLP-1 + GIP</td><td>Weekly</td><td class="pp">$249<span>/mo</span></td><td><a href="/tirzepatide.html" class="vw">View →</a></td></tr>
+<tr><td><div class="name"><div class="ic"><img src="/img/cardv2/vial-semaglutide-new.webp" alt=""></div>Semaglutide + B12</div></td><td><span class="tag cmpd">Compounded</span></td><td>Injection</td><td>Semaglutide</td><td>GLP-1</td><td>Weekly</td><td class="pp">$229<span>/mo</span></td><td><a href="/semaglutide.html" class="vw">View →</a></td></tr>
+<tr><td><div class="name"><div class="ic"><img src="/img/cardv2/foundayo-bottle.webp" alt=""></div>Foundayo&reg;</div></td><td><span class="tag brnd">Brand · Lilly</span></td><td>Oral tablet</td><td>Orforglipron</td><td>GLP-1</td><td>Daily</td><td class="pp">$299<span>/mo</span></td><td><a href="/foundayo.html" class="vw">View →</a></td></tr>
+<tr><td><div class="name"><div class="ic"><img src="/img/zepbound-pen.png" alt=""></div>Zepbound&reg;</div></td><td><span class="tag brnd">Brand · Lilly</span></td><td>KwikPen</td><td>Tirzepatide</td><td>GLP-1 + GIP</td><td>Weekly</td><td class="pp">$499<span>/mo</span></td><td><a href="/zepbound.html" class="vw">View →</a></td></tr>
+<tr><td><div class="name"><div class="ic"><img src="/img/cardv2/wegovy-bottle.webp" alt=""></div>Wegovy&reg; Tablets</div></td><td><span class="tag brnd">Brand · Novo</span></td><td>Oral tablet</td><td>Semaglutide</td><td>GLP-1</td><td>Daily</td><td class="pp">$299<span>/mo</span></td><td><a href="/wegovy-tablets.html" class="vw">View →</a></td></tr>
+</tbody>
+</table>
+</div>
+<p class="cmp-note">Compounded treatments are prepared by state-licensed 503A pharmacies in the United States. Brand-name medications are factory-sealed and dispensed by partner pharmacies. Your prescribing provider determines eligibility for each treatment. Prices reflect monthly starting plans, multi-month plans available at lower per-month pricing.</p>
+</section>
+
 
 <section class="cta-section">
   <h2>Not sure which treatment<br>is right for <span class="serif">you?</span></h2>
   <p>Complete a free 5-minute health questionnaire. Your licensed provider will recommend the best option based on your goals, history, and budget.</p>
   <a href="/intake.html" class="cta-btn">Start your free consultation<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-  <div style="margin-top:20px"><a href="/wellness.html#compare-glp1" style="color:rgba(255,255,255,0.5);font-size:14px;text-decoration:underline;text-underline-offset:4px">Compare all GLP-1 options side-by-side →</a></div>
+  <div style="margin-top:20px"><a href="#compare-glp1" style="color:rgba(255,255,255,0.5);font-size:14px;text-decoration:underline;text-underline-offset:4px">Compare all GLP-1 options side-by-side →</a></div>
 
 <footer class="footer">
   <div class="footer-inner">
@@ -575,5 +593,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 <script src="/js/clyr-tracking.js"></script>
 <script>document.addEventListener('DOMContentLoaded',function(){if(window._pvFired)return;window._pvFired=true;var p=location.pathname.replace(/^\//,'').replace(/\.html$/,'')||'home';if(window.clyrTrack)clyrTrack('product_viewed',{product:p,source:'product_page'});});</script>
+<script src="/js/clyr-pricing.js" defer></script>
 </body>
 </html>
