@@ -96,6 +96,177 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 @media (max-width:1024px){.footer-top{grid-template-columns:1fr 1fr}}
 @media (max-width:768px){.footer{padding:40px 20px 28px}.footer-top{grid-template-columns:1fr;gap:28px}.footer-bottom{flex-direction:column;text-align:center}.footer-legal{justify-content:center}.trust-chip{padding:6px 12px;font-size:11px}}
 /* ===== end canonical footer ===== */
+
+/* ============================================
+     COMPARISON TABLE
+     ============================================ */
+  .compare-wrap {
+    margin-top: 72px;
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .compare-heading {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .compare-heading h3 {
+    font-size: clamp(26px, 3vw, 36px);
+    font-weight: 700;
+    color: var(--dark, #1a1a2e);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  .compare-heading h3 .serif-word {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--teal);
+  }
+  .compare-cols {
+    display: grid;
+    grid-template-columns: 180px 1fr 1fr;
+    gap: 0;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--gray-200, #E2E7EB);
+    background: var(--white);
+    box-shadow: 0 4px 32px rgba(0,0,0,0.04);
+  }
+  .compare-cols .col-header {
+    padding: 20px 24px;
+    font-size: 14px;
+    font-weight: 700;
+    background: var(--dark, #1a1a2e);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+  }
+  .compare-cols .col-header:first-child {
+    color: var(--teal);
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .compare-row {
+    display: contents;
+  }
+  .compare-row > div {
+    padding: 18px 24px;
+    font-size: 14px;
+    color: var(--gray-600, #4A5568);
+    border-bottom: 1px solid var(--gray-100, #F1F4F6);
+    line-height: 1.55;
+    transition: background 0.2s, color 0.2s;
+  }
+  .compare-row:last-child > div { border-bottom: none; }
+  .compare-row > div:first-child {
+    font-weight: 600;
+    color: var(--dark, #1a1a2e);
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    background: var(--gray-50, #F8FAFB);
+    border-right: 1px solid var(--gray-100, #F1F4F6);
+  }
+  .compare-row:hover > div {
+    background: rgba(43, 188, 179, 0.04);
+  }
+  .compare-row:hover > div:first-child {
+    background: rgba(43, 188, 179, 0.08);
+    color: var(--teal-dark, #009BAA);
+  }
+  .compare-row > div:nth-child(2) {
+    border-right: 1px solid var(--gray-100, #F1F4F6);
+  }
+  .compare-val-highlight {
+    font-weight: 600;
+    color: var(--teal);
+  }
+
+  /* Stacked mobile cards, hidden on desktop */
+  .compare-stacked { display: none; }
+  .compare-stack-card {
+    border: 1px solid var(--gray-200, #E2E7EB);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background: var(--white);
+    box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+  }
+  .compare-stack-header {
+    background: var(--dark, #1a1a2e);
+    padding: 24px 20px;
+  }
+  .compare-stack-badge {
+    display: inline-block;
+    padding: 5px 14px;
+    border-radius: 100px;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #fff;
+    background: linear-gradient(135deg, var(--teal), #0088cc);
+    margin-bottom: 10px;
+  }
+  .compare-stack-header h4 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.02em;
+  }
+  .compare-stack-body { padding: 4px 0; }
+  .compare-stack-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    font-size: 15px;
+    border-bottom: 1px solid var(--gray-100, #F1F4F6);
+  }
+  .compare-stack-row:last-child { border-bottom: none; }
+  .compare-stack-row > span:first-child {
+    font-weight: 600;
+    color: var(--dark, #1a1a2e);
+    font-size: 14px;
+  }
+  .compare-stack-row > span:last-child,
+  .compare-stack-row > strong {
+    text-align: right;
+    color: var(--gray-600, #4A5568);
+    font-size: 15px;
+  }
+  .compare-stack-cta {
+    display: block;
+    margin: 4px 20px 20px;
+    padding: 14px 24px;
+    border-radius: 100px;
+    background: var(--teal);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.25s, box-shadow 0.25s;
+  }
+  .compare-stack-cta:hover {
+    background: var(--teal-dark);
+    box-shadow: 0 6px 24px rgba(0,180,197,0.25);
+  }
+
+  @media (max-width: 768px) {
+    .compare-cols { grid-template-columns: 120px 1fr 1fr; border-radius: 14px; }
+    .compare-cols .col-header { padding: 16px 14px; font-size: 13px; }
+    .compare-row > div { padding: 14px 14px; font-size: 13px; }
+    .compare-wrap { margin-top: 48px; }
+  }
+  @media (max-width: 480px) {
+    .compare-cols { display: none; }
+    .compare-stacked { display: block; margin-top: 0; }
+  }
 </style>
 <style>/* nav polish: section dividers + dropdown hover bridge */
 .nav-links > *:not(.nav-portal):not(.nav-cta){position:relative}
@@ -224,6 +395,63 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </a>
   </div>
+
+    <!-- Comparison Table -->
+    <div class="compare-wrap reveal">
+      <div class="compare-heading">
+        <h3>Compare your <span class="serif-word">options.</span></h3>
+      </div>
+      <div class="compare-cols">
+        <div class="col-header">Feature</div>
+        <div class="col-header">Compounded Tirzepatide <span class="product-tag" style="margin:0 0 0 auto">Most Popular</span></div>
+        <div class="col-header">Compounded Semaglutide <span class="product-tag" style="margin:0 0 0 auto">Best Value</span></div>
+
+        <div class="compare-row">
+          <div>Delivery</div>
+          <div>Weekly injection</div>
+          <div>Weekly injection</div>
+        </div>
+        <div class="compare-row">
+          <div>Receptors</div>
+          <div><span class="compare-val-highlight">GLP-1 &amp; GIP (dual agonist)</span></div>
+          <div>GLP-1 (single agonist)</div>
+        </div>
+        <div class="compare-row">
+          <div>Dosages</div>
+          <div>2 mg – 12 mg</div>
+          <div>0.4 mg – 1.5 mg</div>
+        </div>
+      </div>
+
+      <!-- Mobile stacked version -->
+      <div class="compare-stacked">
+        <div class="compare-stack-card">
+          <div class="compare-stack-header">
+            <div class="compare-stack-badge">Most Popular</div>
+            <h4>Compounded Tirzepatide</h4>
+          </div>
+          <div class="compare-stack-body">
+            <div class="compare-stack-row"><span>Delivery</span><span>Weekly injection</span></div>
+            <div class="compare-stack-row"><span>Receptors</span><strong style="color:var(--teal)">GLP-1 &amp; GIP (dual)</strong></div>
+            <div class="compare-stack-row"><span>Dosages</span><span>2 mg – 12 mg</span></div>
+          </div>
+          <a href="/intake.html" class="compare-stack-cta">Start Consultation</a>
+        </div>
+        <div class="compare-stack-card">
+          <div class="compare-stack-header">
+            <div class="compare-stack-badge">Best Value</div>
+            <h4>Compounded Semaglutide</h4>
+          </div>
+          <div class="compare-stack-body">
+            <div class="compare-stack-row"><span>Delivery</span><span>Weekly injection</span></div>
+            <div class="compare-stack-row"><span>Receptors</span><span>GLP-1 (single)</span></div>
+            <div class="compare-stack-row"><span>Dosages</span><span>0.4 mg – 1.5 mg</span></div>
+          </div>
+          <a href="/intake.html" class="compare-stack-cta">Start Consultation</a>
+        </div>
+      </div>
+    </div>
+
 </section>
 
 <section class="products" style="padding-top:0" id="brand">
