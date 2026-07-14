@@ -377,22 +377,4 @@
 })();
 
 
-/* ── CLYR data-driven prices ──────────────────────────────
-   Fills any [data-clyr-price="product:plan"] element from /api/prices (the
-   canonical registry). The element's existing text is the fallback; the
-   canonical price overwrites it. No page hand-owns a price once markered.
-   Add data-clyr-fmt="mo" to also append the /mo suffix. */
-(function(){
-  function fill(reg){
-    document.querySelectorAll('[data-clyr-price]').forEach(function(el){
-      var parts=(el.getAttribute('data-clyr-price')||'').split(':');
-      var pr=reg.products&&reg.products[parts[0]]&&reg.products[parts[0]][parts[1]];
-      if(!pr||!pr.display)return;
-      el.textContent=pr.display+((el.getAttribute('data-clyr-fmt')==='mo'&&pr.suffix)?pr.suffix:'');
-    });
-  }
-  function go(){fetch('https://clyr-backend.onrender.com/api/prices').then(function(r){return r.json();}).then(fill).catch(function(){});}
-  if(document.querySelector('[data-clyr-price]')){
-    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go); else go();
-  }
-})();
+/* price hydration moved to /js/clyr-pricing.v2.js (single owner; supports permo/save/permo2 formats) */
