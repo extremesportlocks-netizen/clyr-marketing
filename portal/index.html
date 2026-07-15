@@ -2577,6 +2577,53 @@ async function beginEmbeddedCheckout(productKey, planType, screeningAnswers){
     });
     activeEmbeddedCheckout.mount('#checkoutContainer');
     armPortalWatchdog('checkoutContainer', '/api/portal/add-product/create-session', { productKey, planType, screeningAnswers: screeningAnswers || undefined });
+
+    // ── GHK-only: switch monthly -> one-time $139 at checkout (founder 7/14).
+    // create-first: the live checkout is never destroyed until the replacement
+    // clientSecret exists — a failed switch leaves everything untouched.
+    if (productKey === 'ghk_cu_cream' && planType === 'monthly') {
+      const mountBox = $('embeddedCheckoutMount');
+      if (mountBox && !document.getElementById('ghkSwitchCardP')) {
+        const card = document.createElement('div');
+        card.id = 'ghkSwitchCardP';
+        card.style.cssText = 'margin:14px 4px 4px;padding:13px 15px;border:1px solid var(--gray-200);border-radius:12px;background:var(--gray-50);font-size:13.5px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap';
+        card.innerHTML = '<span>Prefer not to auto-renew? One month, one time, for <strong>$139</strong>.</span>' +
+          '<button type="button" id="ghkSwitchBtnP" style="border:1px solid var(--teal);color:var(--teal);background:#fff;border-radius:100px;padding:8px 16px;font-weight:700;font-size:12.5px;cursor:pointer">Switch to one-time $139</button>';
+        mountBox.appendChild(card);
+        document.getElementById('ghkSwitchBtnP').onclick = async function () {
+          const b = this; if (b.disabled) return;
+          b.disabled = true; const prev = b.textContent; b.textContent = 'Switching\u2026';
+          try {
+            const s2 = await api('/api/portal/add-product/create-session', { method: 'POST',
+              body: JSON.stringify({ productKey, planType: 'onetime', screeningAnswers: screeningAnswers || undefined }) });
+            if (!s2.clientSecret) throw new Error(s2.error || 'No session');
+            try { if (activeEmbeddedCheckout) activeEmbeddedCheckout.destroy(); } catch (e) {}
+            $('checkoutContainer').innerHTML = '';
+            activeEmbeddedCheckout = await stripe.initEmbeddedCheckout({
+              clientSecret: s2.clientSecret,
+              onComplete: async () => {
+                track('portal_addproduct_paid', { product: productKey, plan: 'onetime', had_screening: !!screeningAnswers, switched_at_checkout: true });
+                $('embeddedCheckoutMount').innerHTML = `
+                  <div style="text-align:center;padding:32px 20px">
+                    <div style="font-size:48px;margin-bottom:12px">\u2713</div>
+                    <div style="font-size:20px;font-weight:700;margin-bottom:6px">You're all set</div>
+                    <div style="font-size:14px;color:var(--gray-500);margin-bottom:18px">Your new treatment is being prepared. Our care team will reach out shortly to confirm clinical details.</div>
+                    <button class="btn btn-primary" onclick="closeProductDetail();loadHome()">Back to portal</button>
+                  </div>`;
+              }
+            });
+            activeEmbeddedCheckout.mount('#checkoutContainer');
+            armPortalWatchdog('checkoutContainer', '/api/portal/add-product/create-session', { productKey, planType: 'onetime', screeningAnswers: screeningAnswers || undefined });
+            card.innerHTML = '<span style="color:var(--teal);font-weight:700">\u2713 Switched to one-time \u2014 $139, no auto-renew.</span>';
+          } catch (e) {
+            b.disabled = false; b.textContent = prev;
+            if (!document.getElementById('ghkSwitchErrP')) {
+              card.insertAdjacentHTML('beforeend', '<div id="ghkSwitchErrP" style="width:100%;color:var(--red,#dc2626);font-size:12px;margin-top:6px">Could not switch \u2014 your current checkout is untouched.</div>');
+            }
+          }
+        };
+      }
+    }
   } catch (err) {
     // Server-side clinical hold — happens if the local screening was skipped
     // somehow or a blocker slipped through. Show the care-team stop screen

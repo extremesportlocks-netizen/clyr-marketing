@@ -610,6 +610,56 @@ var state = {
 var stripe = null;
 var embeddedCheckout = null;
 
+// ── GHK-only: in-checkout switch monthly -> one-time $139 (founder-directed 7/14).
+// CREATE-FIRST: the live session stays mounted until the replacement clientSecret
+// exists; any failure leaves the original checkout untouched.
+function maybeOfferGhkOnetimeSwitch() {
+  if (state.productKey !== 'ghk_cu_cream' || state.planKey !== 'monthly') return;
+  if (document.getElementById('ghkSwitchCard')) return;
+  var mount = document.getElementById('checkout-mount');
+  if (!mount || !mount.parentNode) return;
+  var card = document.createElement('div');
+  card.id = 'ghkSwitchCard';
+  card.style.cssText = 'margin-top:14px;padding:14px 16px;border:1px solid #e2e8f0;border-radius:12px;background:#f8fafc;font-size:14px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap';
+  card.innerHTML = '<span>Prefer not to auto-renew? Get one month, one time, for <strong>$139</strong>.</span>' +
+    '<button type="button" id="ghkSwitchBtn" style="padding:9px 18px;border-radius:100px;border:1px solid #00B4C5;background:#fff;color:#00B4C5;font-weight:700;cursor:pointer;font-size:13px">Switch to one-time $139</button>';
+  mount.parentNode.insertBefore(card, mount.nextSibling);
+  document.getElementById('ghkSwitchBtn').addEventListener('click', switchGhkToOnetime);
+}
+
+function switchGhkToOnetime() {
+  var btn = document.getElementById('ghkSwitchBtn');
+  if (!btn || btn.disabled) return;
+  btn.disabled = true; var prev = btn.textContent; btn.textContent = 'Switching\u2026';
+  fetch(API + '/api/checkout', {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: state.details.email, productType: 'ghk_cu_cream', planType: 'onetime',
+      firstName: state.details.firstName, lastName: state.details.lastName })
+  }).then(function (r) { return r.json().then(function (d) { if (!r.ok || !d.clientSecret) throw new Error(d.error || 'Could not switch'); return d; }); })
+    .then(function (d) {
+      if (embeddedCheckout) { try { embeddedCheckout.destroy(); } catch (e) {} embeddedCheckout = null; }
+      return stripe.initEmbeddedCheckout({ clientSecret: d.clientSecret });
+    }).then(function (checkout) {
+      embeddedCheckout = checkout;
+      checkout.mount('#checkout-mount');
+      state.planKey = 'onetime';
+      var rt = document.getElementById('reviewTotal'); if (rt) rt.textContent = '$139';
+      armEmbedWatchdog({ email: state.details.email, productType: state.productKey, planType: 'onetime',
+        firstName: state.details.firstName, lastName: state.details.lastName, checkoutMode: 'hosted' }, API + '/api/checkout');
+      var card = document.getElementById('ghkSwitchCard');
+      if (card) card.innerHTML = '<span style="color:#00B4C5;font-weight:700">\u2713 Switched to one-time \u2014 $139, no auto-renew.</span>';
+    }).catch(function (e) {
+      btn.disabled = false; btn.textContent = prev;
+      var card = document.getElementById('ghkSwitchCard');
+      if (card && !document.getElementById('ghkSwitchErr')) {
+        var er = document.createElement('div'); er.id = 'ghkSwitchErr';
+        er.style.cssText = 'width:100%;color:#dc2626;font-size:12px;margin-top:6px';
+        er.textContent = 'Could not switch \u2014 your current checkout is untouched.';
+        card.appendChild(er);
+      }
+    });
+}
+
 // ── RETURNING PATIENT PREFILL ─────────────────────────────────────────
 // If the visitor is signed into the portal (clyr_portal_token in localStorage),
 // fetch /api/me and prefill the contact + shipping + health fields so they don't
@@ -1498,6 +1548,7 @@ function initCheckout() {
         email: state.details.email, productType: state.productKey, planType: state.planKey,
         firstName: state.details.firstName, lastName: state.details.lastName, checkoutMode: 'hosted'
       }, API + '/api/checkout');
+      maybeOfferGhkOnetimeSwitch();
     });
   }).catch(function(err) {
     console.error('[CLYR Checkout]', err);
