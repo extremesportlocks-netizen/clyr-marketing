@@ -28,6 +28,7 @@
     "hydroquinone-triple-cream",
     "doxycycline-acne",
     "bpc-157",
+    "wolverine-stack-bpc-tb500",
     "tb-500",
     "ghk-cu-injectable",
     "pt141-strips",
@@ -333,6 +334,14 @@
       "category": "Daily Wellness \u00b7 Peptides",
       "pharmacy": "BPC-157 injection",
       "status": "preview"
+    },
+    {
+      "slug": "wolverine-stack-bpc-tb500",
+      "title": "Wolverine Stack (BPC-157 + TB-500)",
+      "hub": "peptides",
+      "category": "Daily Wellness \u00b7 Peptides",
+      "pharmacy": "BPC-157 + TB-500 combo injection",
+      "status": "rd"
     },
     {
       "slug": "tb-500",
