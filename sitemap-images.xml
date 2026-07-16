@@ -102,7 +102,7 @@
       <image:caption>Antiparasitic protocols with licensed US providers. Ivermectin $139/mo, combo $169/mo.</image:caption>
     </image:image>
   </url>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <url>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  <url>
     <loc>https://www.clyr.health/journal/anastrozole-trt-estrogen-management/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -361,6 +361,15 @@
     <image:image>
       <image:loc>https://www.clyr.health/img/journal-og/longevity-medicine-foundations.png</image:loc>
       <image:title>Longevity Medicine Foundations | CLYR Journal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.clyr.health/journal/mebendazole-cancer-trials-current-state/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.clyr.health/img/journal-og/mebendazole-cancer-trials-current-state.png</image:loc>
+      <image:title>Mebendazole Cancer Trials Current State | CLYR Journal</image:title>
     </image:image>
   </url>
   <url>
