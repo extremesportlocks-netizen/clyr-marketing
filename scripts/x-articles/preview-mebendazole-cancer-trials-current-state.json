@@ -1,0 +1,120 @@
+{
+  "title": "Mebendazole Cancer Trials: Current State and Challenges in 2026",
+  "content_state": {
+    "blocks": [
+      {
+        "key": "h0",
+        "type": "header-one",
+        "text": "Mebendazole Cancer Trials: Current State and Challenges in 2026",
+        "entity_ranges": [],
+        "inline_style_ranges": []
+      },
+      {
+        "key": "deck",
+        "type": "blockquote",
+        "text": "Mebendazole has drawn scientific interest as a potential anticancer agent, but human trials remain small, mostly safety-focused, and have not demonstrated clear clinical benefit. Here is a balanced look at the preclinical rationale, the key clinical studies, and why poor oral bioavailability continues to stall progress.",
+        "entity_ranges": [],
+        "inline_style_ranges": []
+      },
+      {
+        "key": "b1",
+        "type": "unstyled",
+        "text": "Mebendazole has attracted sustained research interest as a possible anticancer agent. Laboratory studies suggest it can disrupt microtubules in a manner reminiscent of certain chemotherapy drugs and interfere with pathways such as Hedgehog signaling that tumors exploit for growth. Preclinical work has been especially active in glioblastoma, medulloblastoma, and some gastrointestinal models.",
+        "entity_ranges": [],
+        "inline_style_ranges": []
+      },
+      {
+        "key": "b2",
+        "type": "unstyled",
+        "text": "Despite that scientific momentum, mebendazole's clinical development in oncology has remained limited. As of mid-2026, only a handful of human trials have been conducted. Most were small Phase 1 studies focused primarily on safety and dose-finding rather than definitive efficacy. None have produced convincing evidence that mebendazole meaningfully shrinks tumors or improves survival in cancer patients at scale.",
+        "entity_ranges": [],
+        "inline_style_ranges": []
+      },
+      {
+        "key": "b3",
+        "type": "unstyled",
+        "text": "This article is educational. CLYR offers mebendazole only within physician-guided antiparasitic protocols, not as a cancer treatment. Nothing here should be read as suggesting mebendazole treats, prevents, or cures cancer. What follows is an evidence-based overview of where the research stands, what the trials have found, and why progress has been slow.",
+        "entity_ranges": [],
+        "inline_style_ranges": []
+      },
+      {
+        "key": "b4",
+        "type": "header-two",
+        "text": "The honest summary, stated up front",
+        "entity_ranges": [],
+        "inline_style_ranges": []
+      },
+      {
+        "key": "b5",
+        "type": "unstyled",
+        "text": "Mebendazole is not FDA-approved to treat cancer. Preclinical data are genuinely interesting, particularly for brain tumors where the drug can cross the blood-brain barrier. Human trials to date have generally shown that higher-than-antiparasitic doses can be administered with acceptable short-term safety in small groups, but meaningful clinical benefit has been elusive. The central and recurring obstacle is poor and highly variable oral bioavailability: many patients never reach the blood concentrations researchers believe are needed for anticancer effects, even at doses far above those used for worm infections.",
+        "entity_ranges": [],
+        "inline_style_ranges": []
+      },
+      {
+        "key": "b6",
+        "type": "unstyled",
+        "text": "No large, completed Phase 3 efficacy trial has established mebendazole as an oncology therapy. The clinical pipeline remains thin. Improved formulations may be necessary before the drug can be fairly tested at therapeutic exposures in larger studies.",
+        "entity_ranges": [],
+        "inline_style_ranges": []
+      },
+      {
+        "key": "b7",
+        "type": "header-two",
+        "text": "What mebendazole actually is",
+        "entity_ranges": [],
+        "inline_style_ranges": []
+      },
+      {
+        "key": "b8",
+        "type": "unstyled",
+        "text": "Mebendazole is a benzimidazole anthelmintic approved for human use since the 1970s. It works against intestinal parasites, primarily pinworm, whipworm, hookworm, and roundworm, by inhibiting microtubule polymerization in parasite cells and blocking glucose uptake, starving the organism of energy. Standard labeled dosing for parasitic infections is typically 100 mg twice daily for three days, far lower than doses explored in oncology research.",
+        "entity_ranges": [],
+        "inline_style_ranges": []
+      },
+      {
+        "key": "trim",
+        "type": "unstyled",
+        "text": "Read the full article on CLYR Journal (link below).",
+        "entity_ranges": [],
+        "inline_style_ranges": []
+      },
+      {
+        "key": "sp1",
+        "type": "unstyled",
+        "text": "\u2014",
+        "entity_ranges": [],
+        "inline_style_ranges": []
+      },
+      {
+        "key": "cta",
+        "type": "header-three",
+        "text": "Continue on CLYR Health",
+        "entity_ranges": [],
+        "inline_style_ranges": []
+      },
+      {
+        "key": "link1",
+        "type": "unstyled",
+        "text": "Full article: https://www.clyr.health/journal/mebendazole-cancer-trials-current-state/",
+        "entity_ranges": [],
+        "inline_style_ranges": []
+      },
+      {
+        "key": "link2",
+        "type": "unstyled",
+        "text": "Asher's Soil 30-day guide: https://verde-cleanse-site.vercel.app/protocol?utm_source=twitter&utm_medium=organic&utm_campaign=journal-article&utm_content=mebendazole-cancer-trials-current-state",
+        "entity_ranges": [],
+        "inline_style_ranges": []
+      },
+      {
+        "key": "disc",
+        "type": "unstyled",
+        "text": "Compounded medications are not FDA-approved. This article is educational only and not medical advice. Licensed providers evaluate each patient individually. CLYR Health \u00b7 LegitScript certified.",
+        "entity_ranges": [],
+        "inline_style_ranges": []
+      }
+    ],
+    "entities": []
+  }
+}

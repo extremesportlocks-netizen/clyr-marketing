@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1600px; height: 900px; overflow: hidden;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background: linear-gradient(135deg, #0a5f68 0%, #1a8f98 28%, #c5e3e8 62%, #f0f4f6 100%);
+    position: relative;
+  }
+  .glow {
+    position: absolute; right: -60px; top: 80px; width: 640px; height: 640px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.35) 0%, transparent 68%);
+  }
+  .icons { position: absolute; inset: 0; pointer-events: none; }
+  .icon {
+    position: absolute; opacity: 0.55; stroke: rgba(255,255,255,0.9); fill: none; stroke-width: 2.2;
+    filter: drop-shadow(0 0 10px rgba(255,255,255,0.35));
+  }
+  .icon.brain { left: 90px; top: 120px; width: 72px; height: 72px; }
+  .icon.plus1 { left: 180px; top: 260px; width: 28px; height: 28px; opacity: 0.7; }
+  .icon.mol { left: 130px; top: 380px; width: 64px; height: 64px; }
+  .icon.tube { right: 520px; top: 140px; width: 80px; height: 80px; opacity: 0.45; }
+
+  .stage {
+    position: absolute; left: 42%; top: 42%; transform: translate(-50%, -50%);
+    width: 520px; height: 380px;
+  }
+  .bottle-shadow {
+    position: absolute; left: 50%; bottom: 10px; transform: translateX(-50%);
+    width: 260px; height: 34px; border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(0,40,50,0.2) 0%, transparent 72%);
+  }
+  .cap {
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 92px; height: 42px; border-radius: 14px 14px 6px 6px;
+    background: linear-gradient(180deg, #fafafa 0%, #e8ecef 55%, #d5dbe0 100%);
+    box-shadow: inset 0 4px 8px rgba(255,255,255,0.9), 0 2px 4px rgba(0,0,0,0.08);
+  }
+  .cap-rim {
+    position: absolute; top: 38px; left: 50%; transform: translateX(-50%);
+    width: 104px; height: 10px; border-radius: 4px; background: #eef1f3;
+  }
+  .body {
+    position: absolute; top: 46px; left: 50%; transform: translateX(-50%);
+    width: 148px; height: 248px; border-radius: 10px 10px 16px 16px;
+    background: linear-gradient(90deg, #f0f3f5 0%, #ffffff 18%, #ffffff 82%, #e8edf0 100%);
+    box-shadow: inset -8px 0 16px rgba(0,0,0,0.04), 0 24px 48px rgba(0,50,60,0.18);
+  }
+  .label {
+    position: absolute; top: 88px; left: 50%; transform: translateX(-50%);
+    width: 122px; height: 140px; border-radius: 8px;
+    background: linear-gradient(180deg, #0d8f9a 0%, #0a6f78 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; color: #fff; padding: 10px 8px;
+  }
+  .label .brand { font-size: 12px; font-weight: 600; margin-bottom: 8px; }
+  .label .name { font-size: 15px; font-weight: 700; line-height: 1.15; margin-bottom: 6px; }
+  .label .dose { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .label .count { font-size: 11px; font-weight: 600; opacity: 0.92; }
+  .capsule {
+    position: absolute; right: 0; bottom: 72px; width: 200px; height: 68px;
+    border-radius: 34px; overflow: hidden; transform: rotate(-7deg);
+    box-shadow: 0 18px 36px rgba(0,50,60,0.22);
+    background: linear-gradient(180deg, #fafafa 0%, #eef2f4 100%);
+  }
+  .capsule::before {
+    content: ''; position: absolute; left: 0; top: 0; width: 48%; height: 100%;
+    background: linear-gradient(180deg, #12a8b0 0%, #0a7f88 100%);
+    border-radius: 34px 0 0 34px;
+  }
+  .capsule::after {
+    content: 'CLYR'; position: absolute; left: 14%; top: 50%; transform: translateY(-50%);
+    font-size: 14px; font-weight: 700; letter-spacing: 0.16em; color: rgba(255,255,255,0.95);
+  }
+
+  .copy {
+    position: absolute; right: 72px; top: 50%; transform: translateY(-50%);
+    width: 620px; z-index: 5;
+  }
+  .eyebrow {
+    font-size: 16px; font-weight: 700; letter-spacing: 0.22em; color: #0a6f78;
+    text-transform: uppercase; margin-bottom: 18px;
+  }
+  .copy h1 {
+    font-size: 58px; font-weight: 700; line-height: 1.08; letter-spacing: -0.025em;
+    color: #111; margin-bottom: 16px;
+  }
+  .copy .sub {
+    font-size: 30px; font-weight: 600; color: #2d3748; line-height: 1.25; margin-bottom: 22px;
+  }
+  .copy .url { font-size: 22px; font-weight: 600; color: #007a8b; }
+  .badge {
+    display: inline-block; margin-top: 20px; padding: 10px 18px; border-radius: 100px;
+    background: rgba(0,180,197,0.14); color: #0a6f78; font-size: 14px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="icons">
+    <svg class="icon brain" viewBox="0 0 64 64"><path d="M32 8c-8 0-14 5-16 12-6 1-10 6-10 12 0 4 2 8 6 10-1 8 5 15 13 16 2 5 7 8 13 8 6 0 11-3 13-8 8-1 14-8 13-16 4-2 6-6 6-10 0-6-4-11-10-12C46 13 40 8 32 8z"/></svg>
+    <svg class="icon plus1" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+    <svg class="icon mol" viewBox="0 0 64 64"><circle cx="32" cy="32" r="6"/><circle cx="14" cy="20" r="5"/><circle cx="50" cy="20" r="5"/><circle cx="18" cy="48" r="5"/><circle cx="46" cy="48" r="5"/><path d="M28 28L18 23M36 28l10-5M26 36l-6 10M38 36l6 10"/></svg>
+    <svg class="icon tube" viewBox="0 0 64 64"><path d="M8 40c0-12 10-22 24-22s24 10 24 22"/><path d="M16 40h32"/><circle cx="20" cy="40" r="3"/><circle cx="32" cy="40" r="3"/><circle cx="44" cy="40" r="3"/></svg>
+  </div>
+
+  <div class="stage">
+    <div class="cap"></div>
+    <div class="cap-rim"></div>
+    <div class="body">
+      <div class="label">
+        <div class="brand">CLYR Health™</div>
+        <div class="name">Mebendazole</div>
+        <div class="dose">250 mg</div>
+        <div class="count">30 Capsules</div>
+      </div>
+    </div>
+    <div class="capsule"></div>
+    <div class="bottle-shadow"></div>
+  </div>
+
+  <div class="copy">
+    <div class="eyebrow">CLYR Journal · Evidence Review</div>
+    <h1>Mebendazole Cancer Trials</h1>
+    <div class="sub">Current State &amp; Challenges in 2026</div>
+    <div class="url">clyr.health/journal</div>
+    <div class="badge">Educational · Not medical advice</div>
+  </div>
+</body>
+</html>

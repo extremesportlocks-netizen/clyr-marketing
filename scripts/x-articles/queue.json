@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-07-04T05:49:49.715523+00:00",
+  "updated_at": "2026-07-16T07:59:02.133941+00:00",
   "articles": {
     "ivermectin-cancer-what-science-shows": {
       "slug": "ivermectin-cancer-what-science-shows",
@@ -345,8 +345,8 @@
     },
     "ghk-cu-injectable-copper-peptide": {
       "slug": "ghk-cu-injectable-copper-peptide",
-      "title": "GHK-Cu Injectable: Copper Peptide Collagen Signaling",
-      "deck": "The tripeptide glycyl-L-histidyl-L-lysine bound to copper modulates wound healing, collagen synthesis, and gene expression, injectable and topical uses in longevity medicine.",
+      "title": "GHK-Cu Injectable vs Topical: What the Research Supports",
+      "deck": "GHK-Cu is studied in both injectable and topical forms, but the human evidence is not equal between them. What the research supports for each route, where the data is thin, and why CLYR offers GHK-Cu as a topical cream.",
       "category": "Peptides",
       "tiers": [
         "longevity",
@@ -1302,19 +1302,72 @@
       "x_published_at": "2026-07-04T05:49:49.715041+00:00",
       "companion_tweet": "New on CLYR Journal: How to Buy Ivermectin Safely Online: A Guide to Avoiding Rogue Pharmacies\n\nProvider-guided ivermectin from licensed clinicians \u2192 https://www.clyr.health/ivermectin.html\n\nFull read: https://www.clyr.health/journal/how-to-buy-ivermectin-safely-online/\n\n*Compounded not FDA-approved. Licensed providers only.",
       "x_post_id": "2073283117096284354",
-      "x_tweet_id": "2073283118635598019",
-      "cover_image": "scripts/x-articles/covers/how-to-buy-ivermectin-safely-online.jpg"
+      "x_tweet_id": "2073283118635598019"
+    },
+    "mebendazole-cancer-trials-current-state": {
+      "slug": "mebendazole-cancer-trials-current-state",
+      "title": "Mebendazole Cancer Trials: Current State and Challenges in 2026",
+      "deck": "Mebendazole has drawn scientific interest as a potential anticancer agent, but human trials remain small, mostly safety-focused, and have not demonstrated clear clinical benefit. Here is a balanced look at the preclinical rationale, the key clinical studies, and why poor oral bioavailability continues to stall progress.",
+      "category": "Ivermectin",
+      "tiers": [
+        "ashersoil"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/mebendazole-cancer-trials-current-state/",
+      "status": "queued",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": "New on CLYR Journal: Mebendazole Cancer Trials — Current State and Challenges in 2026\n\nBalanced evidence review: preclinical interest, key NCT trials, and why poor bioavailability keeps stalling progress.\n\nRead: https://www.clyr.health/journal/mebendazole-cancer-trials-current-state/\n\n*Educational only. Not medical advice.",
+      "x_post_id": null,
+      "x_tweet_id": "2077664402325602512",
+      "cover_image": "scripts/x-articles/covers/mebendazole-cancer-trials-current-state.png"
+    },
+    "ghk-cu-copper-peptide-cream-explained": {
+      "slug": "ghk-cu-copper-peptide-cream-explained",
+      "title": "GHK-Cu Copper Peptide Cream: What the Science Says",
+      "deck": "GHK-Cu is one of the most-researched peptides in skin science, with 50 years of studies behind its role in collagen production and repair. What the research shows, the honest truth about skin penetration, and why formulation matters as much as the peptide.",
+      "category": "Skin & Hair",
+      "tiers": [
+        "longevity",
+        "sexual",
+        "skin"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/ghk-cu-copper-peptide-cream-explained/",
+      "status": "catalog",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
+    },
+    "tadalafil-5mg-daily-benefits": {
+      "slug": "tadalafil-5mg-daily-benefits",
+      "title": "Tadalafil 5mg Daily: The Once-a-Day Dose",
+      "deck": "Most people know tadalafil as an ED pill taken before sex. The low-dose, once-daily version, 5mg every day, is FDA-approved to treat two conditions at once, and a growing body of research is now examining what that steady daily dose may do for the heart and brain.",
+      "category": "Sexual Health",
+      "tiers": [
+        "sexual"
+      ],
+      "source": "json",
+      "journal_url": "https://www.clyr.health/journal/tadalafil-5mg-daily-benefits/",
+      "status": "catalog",
+      "x_draft_id": null,
+      "x_published_at": null,
+      "companion_tweet": null,
+      "x_post_id": null,
+      "x_tweet_id": null
     }
   },
   "stats": {
-    "catalog_total": 74,
+    "catalog_total": 77,
     "x_syndicate_tiers": [
       "ashersoil"
     ],
-    "queued": 3,
+    "queued": 4,
     "drafted": 0,
     "published": 2,
-    "catalog": 69,
+    "catalog": 71,
     "skipped": 0
   }
 }

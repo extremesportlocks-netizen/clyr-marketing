@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1600px; height: 900px; overflow: hidden;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background: linear-gradient(165deg, #0d1b2e 0%, #123047 42%, #1a3a52 100%);
+    color: #fff;
+    position: relative;
+  }
+  .glow {
+    position: absolute; right: -120px; top: -80px; width: 560px; height: 560px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,180,197,0.22) 0%, transparent 68%);
+  }
+  .wrap { position: relative; z-index: 2; height: 100%; padding: 48px 56px 40px; display: flex; flex-direction: column; }
+  .top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 28px; }
+  .brand { font-size: 14px; font-weight: 700; letter-spacing: 0.24em; color: #00b4c5; }
+  .brand span { color: rgba(255,255,255,0.55); }
+  .tag {
+    padding: 8px 16px; border-radius: 100px; background: rgba(0,180,197,0.15);
+    border: 1px solid rgba(0,180,197,0.35); font-size: 12px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; color: #9de8f0;
+  }
+  h1 {
+    font-size: 48px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em;
+    max-width: 1100px; margin-bottom: 10px;
+  }
+  .deck { font-size: 20px; line-height: 1.45; color: rgba(255,255,255,0.72); max-width: 980px; margin-bottom: 34px; }
+  .grid {
+    flex: 1; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 28px; min-height: 0;
+  }
+  .trials {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+  .card {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 18px; padding: 18px 18px 16px; backdrop-filter: blur(8px);
+  }
+  .card .nct { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: #00b4c5; margin-bottom: 8px; }
+  .card h3 { font-size: 17px; font-weight: 700; line-height: 1.25; margin-bottom: 10px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+  .pill {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 5px 10px; border-radius: 100px; background: rgba(255,255,255,0.08); color: #d7e2ea;
+  }
+  .pill.done { background: rgba(16,185,129,0.18); color: #86efac; }
+  .pill.stop { background: rgba(239,68,68,0.18); color: #fca5a5; }
+  .pill.live { background: rgba(0,180,197,0.2); color: #9de8f0; }
+  .card p { font-size: 14px; line-height: 1.45; color: rgba(255,255,255,0.68); }
+  .side { display: flex; flex-direction: column; gap: 16px; }
+  .barrier {
+    flex: 1; border-radius: 20px; padding: 24px;
+    background: linear-gradient(180deg, rgba(0,180,197,0.16) 0%, rgba(0,0,0,0.12) 100%);
+    border: 1px solid rgba(0,180,197,0.28);
+  }
+  .barrier h2 { font-size: 22px; font-weight: 700; margin-bottom: 12px; color: #9de8f0; }
+  .barrier p { font-size: 16px; line-height: 1.55; color: rgba(255,255,255,0.78); margin-bottom: 16px; }
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .stat {
+    background: rgba(0,0,0,0.22); border-radius: 14px; padding: 14px 16px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .stat .num { font-size: 28px; font-weight: 700; color: #fff; line-height: 1; margin-bottom: 6px; }
+  .stat .lbl { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.58); line-height: 1.35; }
+  .takeaway {
+    border-radius: 18px; padding: 20px 22px; background: rgba(200,166,103,0.12);
+    border: 1px solid rgba(200,166,103,0.28);
+  }
+  .takeaway h2 { font-size: 16px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #e8d4a8; margin-bottom: 8px; }
+  .takeaway p { font-size: 15px; line-height: 1.5; color: rgba(255,255,255,0.82); }
+  .footer {
+    margin-top: 22px; padding-top: 16px; border-top: 2px solid rgba(0,180,197,0.45);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 14px; color: rgba(255,255,255,0.55);
+  }
+  .footer strong { color: #00b4c5; }
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="wrap">
+    <div class="top">
+      <div class="brand">CLYR <span>JOURNAL</span></div>
+      <div class="tag">Evidence review · Mid-2026</div>
+    </div>
+    <h1>Mebendazole in Oncology: What Human Trials Show</h1>
+    <p class="deck">Interesting preclinical science, but human data remain small and inconclusive. Poor oral bioavailability is the recurring barrier.</p>
+
+    <div class="grid">
+      <div class="trials">
+        <div class="card">
+          <div class="nct">NCT01837862</div>
+          <h3>Pediatric high-grade gliomas</h3>
+          <div class="meta"><span class="pill done">Completed</span><span class="pill">Phase 1/2</span><span class="pill">n≈36</span></div>
+          <p>Mebendazole + bevacizumab + irinotecan. Safety and dosing focus; limited efficacy signal.</p>
+        </div>
+        <div class="card">
+          <div class="nct">NCT02644291</div>
+          <h3>Recurrent pediatric brain tumors</h3>
+          <div class="meta"><span class="pill done">Completed</span><span class="pill">Phase 1</span><span class="pill">n=16</span></div>
+          <p>Higher-dose monotherapy tolerated short-term; meaningful responses rare.</p>
+        </div>
+        <div class="card">
+          <div class="nct">NCT03628079</div>
+          <h3>Advanced GI cancers</h3>
+          <div class="meta"><span class="pill stop">Terminated</span><span class="pill">Phase 1/2</span><span class="pill">n=11</span></div>
+          <p>Stopped early for lack of clear efficacy after modest enrollment.</p>
+        </div>
+        <div class="card">
+          <div class="nct">NCT03925662</div>
+          <h3>Adjuvant colon cancer</h3>
+          <div class="meta"><span class="pill live">Recruiting</span><span class="pill">Phase 3</span><span class="pill">Egypt</span></div>
+          <p>One of the few active oncology trials; results not yet available.</p>
+        </div>
+      </div>
+
+      <div class="side">
+        <div class="barrier">
+          <h2>Central barrier: bioavailability</h2>
+          <p>Even at high oral doses, many patients fail to reach plasma levels associated with anticancer activity in preclinical models.</p>
+          <div class="stats">
+            <div class="stat"><div class="num">Low</div><div class="lbl">Oral absorption &amp; high inter-patient variability</div></div>
+            <div class="stat"><div class="num">0</div><div class="lbl">Completed large Phase 3 efficacy wins</div></div>
+            <div class="stat"><div class="num">BBB</div><div class="lbl">Brain penetration keeps CNS interest alive</div></div>
+            <div class="stat"><div class="num">Thin</div><div class="lbl">Clinical pipeline as of mid-2026</div></div>
+          </div>
+        </div>
+        <div class="takeaway">
+          <h2>Bottom line</h2>
+          <p>Not FDA-approved for cancer. Promising lab data, inconclusive human trials. Improved formulations may be needed before larger efficacy studies can fairly test the hypothesis.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span><strong>www.clyr.health/journal/mebendazole-cancer-trials-current-state/</strong></span>
+      <span>Educational only · Not medical advice</span>
+    </div>
+  </div>
+</body>
+</html>
