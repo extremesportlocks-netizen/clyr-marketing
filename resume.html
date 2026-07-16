@@ -108,6 +108,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var customerId = params.get('cid');
   var recoveryProduct = (params.get('p') || '').toLowerCase().trim();  // carried in email links; survives token expiry so the fallback routes to the right intake
   var recoveryPlan = (params.get('plan') || '').toLowerCase().trim();
+  var forceHosted = (params.get('pay') || '') === 'hosted';  // recovery links → hosted Stripe page
 
   // Route abandoners to the RIGHT intake. GLP-1 uses the medication-first funnel (intake.html);
   // everything else (Direct-Rx, wellness, sexual health) uses intake-wellness, which reads
@@ -139,7 +140,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   // Resume checkout session
   document.getElementById('loadingText').textContent = 'Preparing your checkout...';
 
-  
+  // Recovery/abandoned-cart links carry ?pay=hosted → go STRAIGHT to Stripe's hosted
+  // checkout page (checkout.stripe.com), skipping the embedded iframe. Embedded can render
+  // blank on storage-blocked/private browsers and silently strand the buyer; hosted works
+  // everywhere. On any hosted hiccup we reload into the normal embedded flow (no dead end).
+  if (forceHosted && (token || email || customerId)) {
+    document.getElementById('loadingText').textContent = 'Taking you to secure checkout…';
+    fetch(API + '/api/checkout/resume', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(token
+        ? { token: token, customerId: customerId ? parseInt(customerId) : undefined, checkoutMode: 'hosted', reorder: params.get('reorder') === '1' }
+        : { email: email, customerId: customerId ? parseInt(customerId) : undefined, checkoutMode: 'hosted', reorder: params.get('reorder') === '1' })
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
+      if (d && d.hostedUrl) { location.replace(d.hostedUrl); return; }
+      var q = token ? ('t=' + encodeURIComponent(token)) : (email ? ('email=' + encodeURIComponent(email)) : ('cid=' + encodeURIComponent(customerId)));
+      location.replace(location.pathname + '?' + q);  // fall back to embedded
+    })
+    .catch(function() {
+      var q = token ? ('t=' + encodeURIComponent(token)) : (email ? ('email=' + encodeURIComponent(email)) : ('cid=' + encodeURIComponent(customerId)));
+      location.replace(location.pathname + '?' + q);
+    });
+    return;
+  }
+
+
 function armEmbedWatchdog(retryBody, endpoint){
   // Private browsing / older Safari can leave Stripe's embedded iframe blank
   // (storage-blocked). If the form isn't visibly rendered 7s after mount,
