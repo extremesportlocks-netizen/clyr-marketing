@@ -1133,6 +1133,16 @@ function renderRefillSummaryForTreatment(tx){
       <button class="btn btn-primary" onclick="showPage('treatments');startRefill('${escapeAttr(tx.product)}')">Request refill</button>
     </div>`;
   }
+  // Non-recurring plan inside 14 days of ending: the patient's next box needs
+  // a renewal purchase + provider review + pharmacy time. Say that plainly and
+  // put the renew action first (2026-07-17, founder: "the wording sucks").
+  const endingSoon = !tx.isRecurring && (rw.daysRemaining ?? 99) <= 14;
+  if(endingSoon){
+    return `<div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap">
+      <div><div style="font-size:14px;font-weight:700;margin-bottom:2px">Your plan ends ${fmtDate(rw.cycleEndsAt)} — time to renew</div><div style="font-size:13px;color:var(--gray-500)">${rw.daysRemaining??0} days of supply left. Renew now so your provider can review and your next shipment arrives before you run out.</div>${fillScheduleLine(tx)}</div>
+      <div style="display:flex;gap:8px"><button class="btn btn-primary" onclick="showPage('treatments');startRefill('${escapeAttr(tx.product)}')">Renew my plan</button><button class="btn btn-secondary" onclick="showPage('shots')">Track doses</button></div>
+    </div>`;
+  }
   return `<div style="display:flex;justify-content:space-between;align-items:center;gap:14px">
     <div><div style="font-size:14px;font-weight:700;margin-bottom:2px">${tx.isRecurring?'Refill opens':'Plan ends'} ${fmtDate(tx.isRecurring?rw.opensAt:rw.cycleEndsAt)}</div><div style="font-size:13px;color:var(--gray-500)">${rw.daysRemaining??0} days remaining in your current supply.</div>${fillScheduleLine(tx)}</div>
     <button class="btn btn-secondary" onclick="showPage('shots')">Track doses</button>
@@ -1426,7 +1436,7 @@ function renderSuggested(){
       <div class="suggest-card-body">
         <div class="suggest-card-cat" style="color:var(--teal,#2bbcb3)">Your treatment</div>
         <div style="font-size:14.5px;font-weight:700">Renew ${escapeHtml(t.displayName||(t.product.charAt(0).toUpperCase()+t.product.slice(1)))}</div>
-        <div style="font-size:12px;color:var(--gray-500);margin-top:2px">All plans · provider reviewed each refill</div>
+        <div style="font-size:12px;color:var(--gray-500);margin-top:2px">Keep your momentum — provider reviews every renewal before it ships</div>
       </div>
     </div>`).join('');
   if(!filtered.length && !renewCards){$('suggestedSection').style.display='none';return;}
