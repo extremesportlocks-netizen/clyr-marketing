@@ -251,7 +251,7 @@ var DQ = [
 ];
 var IV_OPTS = [['b12', 'B12'], ['bcomplex', 'B-complex'], ['nad_iv', 'NAD+ IV'], ['niagen_iv', 'Niagen IV'], ['other', 'Other']];
 var STATES = 'AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY DC'.split(' ');
-var EXCLUDED_STATES = ['AK', 'MS', 'LA'];
+var EXCLUDED_STATES = [];  // MDI covers all 50 (confirmed 2026-07-17); Niagen ships all 50. Was ['AK','MS','LA'].
 
 var formData = { treatment: 'niagen', plan: 'monthly', screeningClear: false, flaggedConditions: [], dq: {}, mdiAnswers: {} };
 var stepIds = ['s0', 's3', 's1', 's2', 's4', 's5', 's6'];

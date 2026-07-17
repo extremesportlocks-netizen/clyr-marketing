@@ -1898,8 +1898,9 @@ function goToStep(step) {
         var requiredConsents = [consents[0], consents[1], consents[2]];
         var allRequired = requiredConsents.every(function(c) { return c.classList.contains('checked'); });
         var selectedState = document.getElementById('state').value;
-        // CLYR cannot service these states for any treatment.
-        var baseExcluded = ['AK', 'MS', 'LA'];
+        // MDI telehealth covers ALL 50 states (confirmed 2026-07-17) — the old AK/MS/LA
+        // blanket block is gone. Only the GLP-1 pharmacy (Strive) restriction remains, below.
+        var baseExcluded = [];
         // Per-product shipping restrictions for compounded GLP-1 injectables.
         // Updated 2026-07-10 per Erin Halligan (pharmacy): CA now OPEN for
         // tirzepatide. Current exclusions for both GLPs: AR, IN, MN, SC.

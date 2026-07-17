@@ -1206,10 +1206,10 @@ function validateStep4() {
   var city = document.getElementById('city').value.trim().length >= 2;
   var state2 = document.getElementById('state').value;
   var zip = document.getElementById('zip').value.length === 5;
-  // Excluded states: AK/MS/LA ARE selectable in the dropdown — silently disabling
-  // Continue with no message read as a broken form (and lost the patient). Show
-  // WHY, save what they've entered, and give a real off-ramp.
-  var excluded = ['AK','MS','LA','PR'].indexOf(state2) >= 0;
+  // MDI telehealth covers ALL 50 states (confirmed 2026-07-17); Direct-Rx (tPH) also
+  // ships all 50. The old AK/MS/LA block is gone. PR is a territory (not in the dropdown),
+  // kept only as a safety net. This intake serves no GLP-1, so no Strive AR/IN/MN/SC block.
+  var excluded = ['PR'].indexOf(state2) >= 0;
   var exMsg = document.getElementById('stateExcludedMsgW');
   if (excluded) {
     if (!exMsg) {
