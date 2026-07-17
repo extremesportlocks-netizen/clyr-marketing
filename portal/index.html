@@ -1736,7 +1736,9 @@ function startRefill(product){
   // Gate by window state. Allow if open OR expired (overdue patients still need to request).
   if(rw && !rw.isOpen && !rw.isExpired){
     const opensAt=rw.opensAt?new Date(rw.opensAt):null;
-    const daysLeft=rw.daysRemaining??(opensAt?Math.max(0,Math.ceil((opensAt-new Date())/86400000)):null);
+    // days-until-OPEN, never supply daysRemaining (that sentence said
+    // "opens Jul 17, about 11 days from now" ON Jul 17 — Alaina, 2026-07-17).
+    const daysLeft=opensAt?Math.max(0,Math.ceil((opensAt-new Date())/86400000)):null;
     const opensLabel=opensAt?opensAt.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):'soon';
     $('refillFormArea').innerHTML=`
       <div class="empty" style="padding:32px 20px">
