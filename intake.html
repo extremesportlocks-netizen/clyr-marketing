@@ -1928,7 +1928,7 @@ function goToStep(step) {
             var altName = altTreatment === 'tirzepatide' ? 'Tirzepatide' : 'Semaglutide';
             stateMsg.innerHTML = '<strong>Compounded ' + medName + ' isn\'t available in your state.</strong><br>Due to state regulations, we\'re unable to ship compounded ' + medName + ' injections to ' + selectedState + '.' + (altAllowed ? ' Compounded ' + altName + ' <em>is</em> available there — go back and select it instead.' : ' Please <a href="/contact.html" style="color:#2bbcb3;">contact us</a> about other options.');
           } else {
-            stateMsg.innerHTML = '<strong>We\'re sorry, we cannot service your state at this time.</strong><br>CLYR Health is not currently available in Alaska, Mississippi, or Louisiana. Your information is saved — we\'ll reach out the moment we expand to your state, or <a href="/contact.html" style="color:#2bbcb3;">contact us</a> for updates.';
+            stateMsg.innerHTML = '<strong>We\'re sorry, we cannot service your state at this time.</strong><br>CLYR Health is not currently available in your state. Your information is saved — we\'ll reach out the moment we expand to your state, or <a href="/contact.html" style="color:#2bbcb3;">contact us</a> for updates.';
           }
           stateMsg.style.display = 'block';
           // Brain of the patient: they can't continue past this gate, so persist

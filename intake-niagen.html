@@ -393,7 +393,7 @@ function submitDetails() {
 function checkState() {
   var ex = EXCLUDED_STATES.indexOf($('state').value) !== -1;
   var box = $('stateExcl');
-  if (ex) { box.innerHTML = '<strong>We cannot service your state yet.</strong> CLYR is not currently available in Alaska, Mississippi, or Louisiana. <a href="/contact.html">Contact us</a> for updates.'; box.style.display = 'block'; }
+  if (ex) { box.innerHTML = '<strong>We cannot service your state yet.</strong> CLYR is not currently available in your state. <a href="/contact.html">Contact us</a> for updates.'; box.style.display = 'block'; }
   else { box.style.display = 'none'; }
   return !ex;
 }
