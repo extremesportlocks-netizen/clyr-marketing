@@ -1153,7 +1153,21 @@ function renderRefillSummaryForTreatment(tx){
 // pills" never needs a support email (Luo, 2026-07-03).
 function fillScheduleLine(tx){
   if(!tx||!Array.isArray(tx.fills)||tx.fills.length<2)return '';
-  const parts=tx.fills.map(function(f){
+  // 2026-07-17 (founder, Alaina #74): spring-cohort plans predate the new GLP
+  // shipping process, so their later fills were never tracked here. An
+  // UNCONFIRMED (~) fill whose date is >21 days past will never confirm — it
+  // reads as a missing shipment and scares the patient. Drop stale estimates;
+  // if nothing meaningful remains, drop the whole line.
+  const STALE_MS=21*24*3600*1000;
+  const fills=tx.fills.filter(function(f){
+    if(f.status==='shipped')return true;
+    if(!f.date)return false;
+    return (Date.now()-new Date(f.date).getTime())<STALE_MS;
+  });
+  if(fills.length<2 && !fills.some(function(f){return f.status!=='shipped';}))
+    return fills.length?'<div style="font-size:12.5px;margin-top:6px;line-height:1.7"><span style="color:var(--teal);font-weight:600">Fill '+fills[0].n+' &#10003; '+fmtDate(fills[0].date)+'</span></div>':'';
+  if(!fills.length)return '';
+  const parts=fills.map(function(f){
     const d=f.date?fmtDate(f.date):'';
     return f.status==='shipped'
       ? '<span style="color:var(--teal);font-weight:600">Fill '+f.n+' &#10003; '+d+'</span>'
