@@ -417,6 +417,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="btn-row" id="step5Btns">
       <button class="btn btn-secondary" onclick="goToStep(4)">← Back</button>
       <button class="btn btn-primary" id="btnCheckout" onclick="initCheckout()" disabled>Continue to payment →</button>
+      <div id="consentHint" style="display:none;font-size:12.5px;color:#B45309;margin-top:8px;font-weight:600">Please accept the confirmations above to continue to payment.</div>
     </div>
 
     <div class="trust-strip">
@@ -1182,9 +1183,29 @@ function attachListeners() {
       el.classList.toggle('checked');
       state.consents[el.dataset.consent] = el.classList.contains('checked');
       validateConsents();
+      var hint = document.getElementById('consentHint');
+      if (hint && document.getElementById('btnCheckout') && !document.getElementById('btnCheckout').disabled) hint.style.display = 'none';
     });
   });
 }
+
+// A disabled button swallows clicks silently — the buyer sees nothing happen
+// and leaves (reproduced in the founder walk 2026-07-18). Surface WHY.
+document.addEventListener('click', function(e){
+  var btn = document.getElementById('btnCheckout');
+  if (!btn || !btn.disabled) return;
+  var r = btn.getBoundingClientRect();
+  if (e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom) {
+    var hint = document.getElementById('consentHint');
+    if (hint) hint.style.display = 'block';
+    document.querySelectorAll('.consent-item:not(.checked)').forEach(function(c){
+      c.style.borderColor = '#F59E0B';
+      setTimeout(function(){ c.style.borderColor = ''; }, 1600);
+    });
+    var firstUnchecked = document.querySelector('.consent-item:not(.checked)');
+    if (firstUnchecked) firstUnchecked.scrollIntoView({behavior:'smooth', block:'center'});
+  }
+}, true);
 
 function validateStep3() {
   var fn = document.getElementById('firstName').value.trim().length >= 2;
@@ -1423,7 +1444,16 @@ function populateReview() {
   var plan = p.plans.find(function(x){return x.key === state.planKey}) || p.plans[0];
   document.getElementById('reviewProduct').textContent = p.name;
   document.getElementById('reviewPlan').textContent = plan.label + (plan.key === 'monthly' ? ' subscription' : ' (one-time)');
-  document.getElementById('reviewTotal').textContent = '$' + (plan.priceCents / 100).toFixed(0) + (plan.key === 'monthly' ? '/mo' : '');
+  // Claimed weekend promo (combo 3-month): the review must show the price the
+  // buyer was promised — Stripe applies the coupon at the session, but a $379
+  // review after claiming $349 reads like a bait (founder walk, 2026-07-18).
+  var qs = new URLSearchParams(location.search);
+  var claimedWeekend = qs.get('code') === 'WEEKEND30' && state.productKey === 'ivermectin-mebendazole' && plan.key === '3month';
+  if (claimedWeekend) {
+    document.getElementById('reviewTotal').innerHTML = '<span style="text-decoration:line-through;color:var(--gray-400);font-weight:500;margin-right:8px">$' + (plan.priceCents / 100).toFixed(0) + '</span>$349 <span style="font-size:12px;color:#0F9D6B;font-weight:700">Weekend price applied</span>';
+  } else {
+    document.getElementById('reviewTotal').textContent = '$' + (plan.priceCents / 100).toFixed(0) + (plan.key === 'monthly' ? '/mo' : '');
+  }
   document.getElementById('reviewName').textContent = state.details.firstName + ' ' + state.details.lastName;
   document.getElementById('reviewEmail').textContent = state.details.email;
   document.getElementById('reviewPhone').textContent = state.details.phone;
