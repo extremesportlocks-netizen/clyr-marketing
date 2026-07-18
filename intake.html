@@ -1593,42 +1593,42 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var stepNames={1:'TreatmentSelect',2:'Screening',3:'PersonalDetails',4:'Consents',5:'MedicalHistory',6:'TreatmentPreferences',7:'AdditionalInfo',8:'Review',9:'Checkout'};
   
 function armEmbedWatchdog(retryBody, endpoint){
-  // Embedded Stripe can render BLANK on storage-restricted browsers (private mode,
-  // older/locked-down Safari, in-app webviews) - the customer stares at an empty box
-  // and cannot pay. A real payment form is tall (>300px); a blank/errored iframe never
-  // gets there. Poll for a few seconds; if the form never renders, AUTOMATICALLY switch
-  // to hosted checkout (checkout.stripe.com - works on every browser) rather than relying
-  // on the customer to notice a button. A rendered form (h>300) is left alone.
+  // Embedded Stripe can render BLANK on storage-restricted browsers. Two safety nets:
+  // (1) poll for a real form (h>300); if it never renders, AUTO-redirect to hosted
+  //     checkout (works on every browser). (2) ALWAYS surface a subtle escape link after
+  //     5s regardless of render state, so a customer can never be trapped by a form that
+  //     looks broken to them even if it reports height.
   var host = document.getElementById('checkout-mount');
   if(!host) return;
-  var settled = false, tries = 0;
-  function manualButton(){
-    if(document.getElementById('hostedFallbackWrap')) return;
-    var w=document.createElement('div');
-    w.id='hostedFallbackWrap';
-    w.style.cssText='text-align:center;margin:16px 0';
-    w.innerHTML='<div style="font-size:13px;color:#6B7C8A;margin-bottom:10px">Payment form not loading on this browser?</div><button type="button" style="background:#00B4C5;color:#fff;border:none;border-radius:100px;padding:13px 30px;font-weight:700;font-size:15px;cursor:pointer" id="hostedFallbackBtn">Continue to secure checkout →</button>';
-    host.parentNode.insertBefore(w,host.nextSibling);
-    document.getElementById('hostedFallbackBtn').onclick=function(){ this.disabled=true; this.textContent='Opening secure checkout…'; goHosted('manual'); };
-  }
+  var redirecting = false, tries = 0;
   function goHosted(reason){
-    if(settled) return; settled = true;
+    if(redirecting) return; redirecting = true;
     try{ if(window.clyrTrack) clyrTrack('checkout_hosted_fallback',{reason:reason}); }catch(e){}
     fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(retryBody)})
       .then(function(r){return r.json()})
-      .then(function(d){ if(d.hostedUrl){ location.href=d.hostedUrl; } else { settled=false; manualButton(); } })
-      .catch(function(){ settled=false; manualButton(); });
+      .then(function(d){ if(d.hostedUrl){ location.href=d.hostedUrl; } else { redirecting=false; } })
+      .catch(function(){ redirecting=false; });
+  }
+  function showEscape(){
+    if(redirecting || document.getElementById('hostedEscape')) return;
+    var w=document.createElement('div');
+    w.id='hostedEscape';
+    w.style.cssText='text-align:center;margin:14px 0 2px;font-size:13px;color:#6B7C8A';
+    w.innerHTML='Payment form not loading? <a href="#" id="hostedEscapeLink" style="color:#00B4C5;font-weight:700;text-decoration:underline;cursor:pointer">Continue to secure checkout →</a>';
+    host.parentNode.insertBefore(w, host.nextSibling);
+    document.getElementById('hostedEscapeLink').onclick=function(e){ e.preventDefault(); this.textContent='Opening secure checkout…'; goHosted('manual'); };
   }
   function check(){
-    if(settled) return;
+    if(redirecting) return;
     tries++;
     var ifr = host.querySelector('iframe');
     var h = ifr ? ifr.getBoundingClientRect().height : 0;
-    if(h > 300){ settled = true; return; }
+    if(h > 300){ return; }
     if(tries >= 4){ goHosted('embed_blank_h'+Math.round(h)); return; }
     setTimeout(check, 2000);
   }
   setTimeout(check, 3000);
+  setTimeout(showEscape, 5000);
 }
 
 function goToStep(step) {
