@@ -514,7 +514,7 @@ function armEmbedWatchdog(retryBody, endpoint){
     tries++;
     var ifr = host.querySelector('iframe');
     var h = ifr ? ifr.getBoundingClientRect().height : 0;
-    if(h > 300){ return; }
+    if(h > 300){ try{ if(window.clyrTrack) clyrTrack('checkout_form_rendered',{h:Math.round(h)}); }catch(e){} return; }
     if(tries >= 4){ goHosted('embed_blank_h'+Math.round(h)); return; }
     setTimeout(check, 2000);
   }
