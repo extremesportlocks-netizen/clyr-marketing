@@ -650,11 +650,33 @@ body.ghk-page {
 }
 .ghk-price-amount.muted { color: rgba(255, 255, 255, 0.4); }
 .ghk-price-amount.hero {
-  font-size: 36px;
+  /* iOS-safe: gradient on the LEAF span only — child elements with their own
+     opacity break background-clip:text inheritance on iOS Safari (the amount
+     rendered invisible in in-app browsers). */
+  font-size: 15px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.55);
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+.ghk-price-amount.hero span:first-of-type {
+  font-size: 34px;
+  font-weight: 800;
+  opacity: 1;
   background: linear-gradient(90deg, var(--teal), var(--copper-light));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.ghk-price-amount.hero span:last-of-type {
+  font-size: 14px;
+  opacity: 0.55;
+  color: #fff;
+  -webkit-text-fill-color: #fff;
 }
 
 .ghk-matrix-controls {
@@ -1101,6 +1123,7 @@ body.ghk-page {
   .ghk-float-badge { right: 2%; }
 }
 @media (max-width: 640px) {
+  .ghk-matrix-controls { display: none; }
   .footer .footer-top { grid-template-columns: 1fr 1fr; gap: 36px 28px; }
   .footer .footer-top > div:first-child { grid-column: 1 / -1; }
   .ghk-routine-steps { grid-template-columns: 1fr; }
