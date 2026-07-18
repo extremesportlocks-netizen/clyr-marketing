@@ -382,7 +382,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var rib=document.getElementById('claimRibbon'); if(rib) rib.classList.add('show');
     var hl=document.querySelector('.tier-row.hl'); if(hl){hl.style.borderColor='var(--teal)';hl.style.boxShadow='0 0 0 2px rgba(0,180,197,.25)';}
   }
-  if(claimed){ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',applyClaimed); else applyClaimed(); }
+  if(claimed && Date.now()<end){ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',applyClaimed); else applyClaimed(); } else if(claimed){ try{localStorage.removeItem('clyr_ivm_claimed');localStorage.removeItem('clyr_ivm_code');}catch(e){} }
 })();</script>
 
 <section class="product-hero">

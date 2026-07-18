@@ -188,8 +188,19 @@
   var END = Date.UTC(2026,6,20,3,59,59); // Sun Jul 19 11:59:59 PM ET
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Persist the claim so the combo/intake pages can show a "claimed" state.
-  try{ localStorage.setItem('clyr_ivm_claimed','1'); localStorage.setItem('clyr_ivm_code','WEEKEND30'); }catch(e){}
+  // Expired? Show the ended state honestly: no code, no claimed flags, plain links.
+  if(Date.now()>=END){
+    try{ localStorage.removeItem('clyr_ivm_claimed'); localStorage.removeItem('clyr_ivm_code'); }catch(e){}
+    var code0=document.getElementById('code'); if(code0) code0.style.display='none';
+    var gi=document.getElementById('goIntake'); if(gi) gi.setAttribute('href','/intake-wellness.html?product=ivermectin-mebendazole&plan=3month');
+    var gc=document.getElementById('goCombo'); if(gc) gc.setAttribute('href','/ivermectin-mebendazole.html');
+    var pr=document.querySelector('.price .was'); if(pr) pr.style.display='none';
+    var nw=document.querySelector('.price .now'); if(nw) nw.innerHTML='$3<span class="d">79</span>';
+    var sv=document.querySelector('.save'); if(sv) sv.textContent='The weekend offer has ended — standard pricing applies.';
+  } else {
+    // Persist the claim so the combo/intake pages can show a "claimed" state.
+    try{ localStorage.setItem('clyr_ivm_claimed','1'); localStorage.setItem('clyr_ivm_code','WEEKEND30'); }catch(e){}
+  }
 
   var ticket=document.getElementById('ticket'), code=document.getElementById('code'),
       status=document.getElementById('status'), choose=document.getElementById('choose');
