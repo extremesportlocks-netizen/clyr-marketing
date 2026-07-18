@@ -282,10 +282,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h1 class="product-title">Tirze<span class="serif">patide.</span></h1>
     <p class="product-subtitle">A dual-action GLP-1 and GIP receptor agonist compounded by a state-licensed 503A pharmacy. Combined with Vitamin B12 for steady energy. Once-weekly subcutaneous injection.</p>
     <div class="product-price">
-      <span class="amount" id="heroPrice">$249</span>
-      <span class="period">/month</span>
+      <span class="amount" id="heroPrice">$149</span>
+      <span class="period" id="heroPeriod">first month</span>
     </div>
-    <p class="product-price-note" id="heroNote" style="margin-bottom:10px">The 40-unit sweet spot. Most people maintain here. Cancel anytime.</p>
+    <p class="product-price-note" id="heroNote" style="margin-bottom:10px">Start at 20 units a week, one vial. Rolls to $199/mo on 8-week cycles.</p>
     <div class="ladder-promise">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-top:1px;flex-shrink:0"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
       <span>No hiding the ladder behind a 5-minute intake form. <strong>Every dose, every plan, the billed-once total, all visible up front.</strong></span>
@@ -293,13 +293,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="plan-label">What brings you here?</div>
     <div class="door-tabs">
-      <button class="door-tab active" data-door="maintain" type="button"><span class="dt-title">Maintaining</span><span class="dt-sub">Found my dose</span></button>
-      <button class="door-tab" data-door="new" type="button"><span class="dt-title">New to GLP-1</span><span class="dt-sub">Starting out</span></button>
+      <button class="door-tab active" data-door="new" type="button"><span class="dt-title">New to GLP-1</span><span class="dt-sub">Starting out</span></button>
+      <button class="door-tab" data-door="maintain" type="button"><span class="dt-title">Maintaining</span><span class="dt-sub">Found my dose</span></button>
       <button class="door-tab" data-door="switch" type="button"><span class="dt-title">Switching in</span><span class="dt-sub">Already on a dose</span></button>
     </div>
 
     <!-- DOOR 1: MAINTAINING -->
-    <div class="door-panel active" data-panel="maintain">
+    <div class="door-panel" data-panel="maintain">
       <p class="door-intro">Already found the dose that works? <strong>Stay there at a flat monthly price.</strong> No titration, no climbing, no surprises. Pick your tier below.</p>
       <div class="plan-label">Standard dose &middot; up to 70 units/week</div>
       <div class="tier-list">
@@ -330,7 +330,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <!-- DOOR 2: NEW / STARTING -->
-    <div class="door-panel" data-panel="new">
+    <div class="door-panel active" data-panel="new">
       <p class="door-intro">New to GLP-1? <strong>Start low and titrate up with provider guidance.</strong> One starter price covers your climb through the early doses, no mid-titration price jumps.</p>
       <div class="plan-label">Starter program &middot; 20 &rarr; 40 &rarr; 70 unit titration</div>
       <div class="tier-list">
@@ -568,9 +568,9 @@ document.querySelectorAll('.faq-q').forEach(function(b){b.addEventListener('clic
 <script>
 (function(){
   var heroData={
-    maintain:{price:'$249',note:'The 40-unit sweet spot. Most people maintain here. Cancel anytime.'},
-    new:{price:'$199',note:'Start low, titrate up with provider guidance. 3-month starter, billed once.'},
-    switch:{price:'$199',note:'Bring your current dose over, no restart. Switch-over credit applied in intake.'}
+    maintain:{price:'$249',period:'/month',note:'The 40-unit sweet spot. Most people maintain here. Cancel anytime.'},
+    new:{price:'$149',period:'first month',note:'Start at 20 units a week, one vial. Rolls to $199/mo on 8-week cycles.'},
+    switch:{price:'$199',period:'/month',note:'Bring your current dose over, no restart. Switch-over credit applied in intake.'}
   };
   var tabs=document.querySelectorAll('.door-tab');
   var panels=document.querySelectorAll('.door-panel');
@@ -582,7 +582,7 @@ document.querySelectorAll('.faq-q').forEach(function(b){b.addEventListener('clic
       tabs.forEach(function(x){x.classList.remove('active')});
       t.classList.add('active');
       panels.forEach(function(p){p.classList.toggle('active', p.getAttribute('data-panel')===d)});
-      if(heroData[d]){ hp.textContent=heroData[d].price; hn.textContent=heroData[d].note; }
+      if(heroData[d]){ hp.textContent=heroData[d].price; hn.textContent=heroData[d].note; var pd=document.getElementById('heroPeriod'); if(pd) pd.textContent=heroData[d].period; }
     });
   });
 })();
