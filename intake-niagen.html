@@ -470,6 +470,7 @@ function submitAll() {
     })
     .then(function (checkout) {
       embeddedCheckout = checkout; checkout.mount('#checkout-mount');
+      setTimeout(function(){ var p=document.getElementById('checkoutPanel')||document.getElementById('checkout-mount'); if(p&&p.scrollIntoView) p.scrollIntoView({block:'start'}); },350); // make the mounted form VISIBLE — it was rendering below the fold and buyers never saw it
       armEmbedWatchdog({ email: payload.email, productType: 'niagen', planType: formData.plan, firstName: payload.firstName, lastName: payload.lastName, checkoutMode: 'hosted' }, API + '/api/checkout');
     })
     .catch(function (err) {

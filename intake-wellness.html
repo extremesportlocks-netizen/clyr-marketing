@@ -651,6 +651,7 @@ function switchGhkToOnetime() {
     }).then(function (checkout) {
       embeddedCheckout = checkout;
       checkout.mount('#checkout-mount');
+      setTimeout(function(){ var p=document.getElementById('checkoutPanel')||document.getElementById('checkout-mount'); if(p&&p.scrollIntoView) p.scrollIntoView({block:'start'}); },350); // make the mounted form VISIBLE — it was rendering below the fold and buyers never saw it
       state.planKey = 'onetime';
       var rt = document.getElementById('reviewTotal'); if (rt) rt.textContent = '$139';
       armEmbedWatchdog({ email: state.details.email, productType: state.productKey, planType: 'onetime',
@@ -1595,6 +1596,7 @@ function initCheckout() {
       var loadingEl = document.getElementById('checkout-loading-state');
       if (loadingEl) loadingEl.style.display = 'none';
       checkout.mount('#checkout-mount');
+      setTimeout(function(){ var p=document.getElementById('checkoutPanel')||document.getElementById('checkout-mount'); if(p&&p.scrollIntoView) p.scrollIntoView({block:'start'}); },350); // make the mounted form VISIBLE — it was rendering below the fold and buyers never saw it
       armEmbedWatchdog({
         email: state.details.email, productType: state.productKey, planType: state.planKey,
         firstName: state.details.firstName, lastName: state.details.lastName, checkoutMode: 'hosted'
