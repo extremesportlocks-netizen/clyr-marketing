@@ -648,7 +648,7 @@ body.ghk-page {
   font-weight: 600;
   opacity: 0.55;
 }
-.ghk-price-amount.muted { color: rgba(255, 255, 255, 0.4); }
+.ghk-price-amount.muted { color: rgba(255, 255, 255, 0.6); }
 .ghk-price-amount.hero {
   /* iOS-safe: gradient on the LEAF span only — child elements with their own
      opacity break background-clip:text inheritance on iOS Safari (the amount
@@ -1123,6 +1123,18 @@ body.ghk-page {
   .ghk-float-badge { right: 2%; }
 }
 @media (max-width: 640px) {
+  /* founder mobile pass 7/18: the scroll-driven skin cinema renders as empty
+     color blocks at phone width — desktop-only piece. */
+  .ghk-skin-cinema { display: none; }
+  /* routine: compact 2x2 instead of four giant stacked placeholder boxes */
+  .ghk-routine { padding: 64px 22px; }
+  .ghk-routine-steps { grid-template-columns: 1fr 1fr !important; gap: 12px; }
+  .ghk-routine-steps::before { display: none; }
+  .ghk-routine-step, .ghk-routine-steps > div { min-height: 110px; padding: 18px 14px; }
+  /* matrix auto-play leaves is-comparing on: competitor card was stuck at 0.32
+     opacity + grayscale — read as broken. Keep it readable on mobile. */
+  .ghk-matrix.is-comparing .ghk-price-card.comp { opacity: 0.78; filter: none; transform: none; }
+
   .ghk-matrix-controls { display: none; }
   .footer .footer-top { grid-template-columns: 1fr 1fr; gap: 36px 28px; }
   .footer .footer-top > div:first-child { grid-column: 1 / -1; }
