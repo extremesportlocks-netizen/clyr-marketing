@@ -128,6 +128,8 @@
   }
   @media(prefers-reduced-motion:reduce){
     *{animation:none!important;transition:none!important}
+    /* entrance-animated elements must be reset to visible, not left at opacity:0 */
+    .logo,.ticket{opacity:1!important;transform:none!important}
     .choose{opacity:1;transform:none;pointer-events:auto}
     .code{border-style:solid}
     .tick{transform:scale(1);opacity:1;background:#10B981}
