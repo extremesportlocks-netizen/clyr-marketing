@@ -679,6 +679,19 @@ body.ghk-page {
   -webkit-text-fill-color: #fff;
 }
 
+
+.ghk-matrix-hint {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--teal, #2bbcb3);
+  margin: 26px 0 12px;
+  opacity: 0.85;
+}
+.ghk-matrix-hint .hint-mobile { display: none; }
+
 .ghk-matrix-controls {
   display: flex;
   flex-wrap: wrap;
@@ -1134,8 +1147,14 @@ body.ghk-page {
   /* matrix auto-play leaves is-comparing on: competitor card was stuck at 0.32
      opacity + grayscale — read as broken. Keep it readable on mobile. */
   .ghk-matrix.is-comparing .ghk-price-card.comp { opacity: 0.78; filter: none; transform: none; }
+  /* founder 7/18: controls BACK on mobile (labels no longer flip to Reset) — compact two-up */
+  .ghk-matrix-controls { display: flex !important; gap: 10px; padding: 0 4px; }
+  .ghk-matrix-btn { flex: 1; padding: 13px 10px; font-size: 11px; letter-spacing: 0.04em; }
+  .ghk-matrix-btn svg { width: 15px; height: 15px; }
+  .ghk-matrix-hint { margin: 20px 0 10px; font-size: 10.5px; }
+  .ghk-matrix-hint .hint-desktop { display: none; }
+  .ghk-matrix-hint .hint-mobile { display: inline; }
 
-  .ghk-matrix-controls { display: none; }
   .footer .footer-top { grid-template-columns: 1fr 1fr; gap: 36px 28px; }
   .footer .footer-top > div:first-child { grid-column: 1 / -1; }
   .ghk-routine-steps { grid-template-columns: 1fr; }

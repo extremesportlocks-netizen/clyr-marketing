@@ -464,7 +464,7 @@
       section.classList.toggle('is-analyzing', analyzing);
       if (btnAnalyze) {
         btnAnalyze.setAttribute('aria-pressed', analyzing ? 'true' : 'false');
-        btnAnalyze.querySelector('span').textContent = analyzing ? 'Reset bio-metrics' : 'Analyze concentration';
+        // label stays constant — 'Reset bio-metrics' read as developer UI to buyers (founder 7/18)
       }
       if (concCaption) {
         concCaption.textContent = analyzing
@@ -481,7 +481,7 @@
       section.classList.toggle('is-comparing', comparing);
       if (btnCompare) {
         btnCompare.setAttribute('aria-pressed', comparing ? 'true' : 'false');
-        btnCompare.querySelector('span').textContent = comparing ? 'Reset market data' : 'Compare pricing';
+        // label stays constant (founder 7/18)
       }
       if (window.clyrTrack) {
         clyrTrack('ghk_matrix_compare', { active: comparing, product: 'ghk-cu-cream' });
