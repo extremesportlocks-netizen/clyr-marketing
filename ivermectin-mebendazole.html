@@ -371,15 +371,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var end=Date.UTC(2026,6,20,3,59,59);
   function tick(){var diff=end-Date.now();if(diff<=0){document.querySelectorAll('.ivm-band').forEach(function(b){b.style.display='none';});return;}var s=Math.floor(diff/1e3),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60),ss=s%60,p=function(n){return String(n).padStart(2,'0');};document.querySelectorAll('.ivm-cd').forEach(function(e){e.textContent='Ends Sun · '+d+'d '+p(h)+':'+p(m)+':'+p(ss);});}
   tick();setInterval(tick,1000);
-  // claim-aware: arriving from /claim.html (?claimed=1) or a prior claim → show locked state
+  // claim-aware: arriving from /claim.html (?claimed=1) or a prior claim → show locked state.
+  // Deferred to DOMContentLoaded because the ribbon + 3-month tier appear later in the document
+  // than this inline script (they don't exist yet at parse time).
   var claimed=false;try{claimed=new URLSearchParams(location.search).get('claimed')==='1'||localStorage.getItem('clyr_ivm_claimed')==='1';}catch(e){}
-  if(claimed){
+  function applyClaimed(){
     var sale=document.getElementById('ivmSale'), claim=document.getElementById('ivmClaim');
     if(sale) sale.classList.add('locked');
     if(claim){claim.textContent='Start intake →';claim.setAttribute('href','/intake-wellness.html?product=ivermectin-mebendazole&plan=3month&claimed=1&code=WEEKEND30');}
     var rib=document.getElementById('claimRibbon'); if(rib) rib.classList.add('show');
     var hl=document.querySelector('.tier-row.hl'); if(hl){hl.style.borderColor='var(--teal)';hl.style.boxShadow='0 0 0 2px rgba(0,180,197,.25)';}
   }
+  if(claimed){ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',applyClaimed); else applyClaimed(); }
 })();</script>
 
 <section class="product-hero">
