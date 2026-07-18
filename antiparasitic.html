@@ -372,9 +372,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="breadcrumb">
   <a href="/">CLYR Health</a> &nbsp;/&nbsp; Antiparasitic
 </div>
-<!-- ===== IVM/MEB weekend countdown — top-right (ends Sun 11:59pm ET) ===== -->
-<div style="max-width:1200px;margin:2px auto 0;padding:0 40px;text-align:right"><div class="ivm-sale" style="display:inline-flex;align-items:center;gap:9px;flex-wrap:wrap;justify-content:flex-end;background:linear-gradient(100deg,#0e3a3f,#00838f);color:#fff;padding:8px 16px;border-radius:100px;font-size:13px;font-weight:700;box-shadow:0 6px 18px rgba(0,131,143,.22)"><span>&#127482;&#127480; 3-Mo Combo</span><span><s style="opacity:.55;font-weight:500">$379</s> <strong style="color:#8ff3e4">$349</strong></span><span class="ivm-cd" style="font-variant-numeric:tabular-nums;white-space:nowrap">Ends Sun</span><a href="/intake-wellness.html?product=ivermectin-mebendazole&amp;plan=3month" style="color:#0e3a3f;background:#fff;padding:4px 13px;border-radius:100px;text-decoration:none;font-weight:800">Claim &rarr;</a></div></div>
-<script>(function(){var end=Date.UTC(2026,6,20,3,59,59);function tick(){var diff=end-Date.now();if(diff<=0){document.querySelectorAll('.ivm-sale').forEach(function(b){b.style.display='none';});return;}var s=Math.floor(diff/1e3),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60),ss=s%60,p=function(n){return String(n).padStart(2,'0');};document.querySelectorAll('.ivm-cd').forEach(function(e){e.textContent='Ends Sun · '+d+'d '+p(h)+':'+p(m)+':'+p(ss);});}tick();setInterval(tick,1000);})();</script>
+<!-- ===== IVM/MEB weekend countdown — clean centered band (ends Sun 11:59pm ET) ===== -->
+<style id="ivm-sale-css">
+.ivm-band{max-width:1200px;margin:2px auto 0;padding:0 40px}
+.ivm-sale{display:flex;align-items:center;justify-content:center;gap:10px 18px;flex-wrap:wrap;
+  min-height:58px;padding:12px 22px;border-radius:18px;color:#fff;text-align:center;
+  background:linear-gradient(105deg,#07333a 0%,#0b5560 60%,#0a6a72 100%);
+  box-shadow:0 14px 36px rgba(0,131,143,.24);animation:ivmRise .55s ease-out both}
+.ivm-badge{font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:11.5px;
+  background:rgba(255,255,255,.16);padding:5px 12px;border-radius:100px;white-space:nowrap}
+.ivm-offer{font-size:15px;font-weight:600;white-space:nowrap}
+.ivm-offer s{opacity:.55;font-weight:500}
+.ivm-offer b{font-size:21px;color:#8ff3e4;font-weight:800;font-family:'Instrument Serif',Georgia,serif;font-style:italic;letter-spacing:.01em}
+.ivm-cd{font-variant-numeric:tabular-nums;font-weight:700;font-size:13.5px;
+  background:rgba(0,0,0,.24);padding:6px 12px;border-radius:8px;white-space:nowrap;
+  min-width:198px;text-align:center;display:inline-block}
+.ivm-claim{background:#fff;color:#07333a;font-weight:800;font-size:14px;
+  padding:9px 22px;border-radius:100px;white-space:nowrap;text-decoration:none;
+  transition:transform .18s ease,box-shadow .18s ease}
+.ivm-claim:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(0,0,0,.28)}
+@keyframes ivmRise{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.ivm-sale{animation:none}}
+@media(max-width:640px){
+  .ivm-band{padding:0 16px}
+  .ivm-sale{gap:9px 12px;padding:13px 16px}
+  .ivm-offer{white-space:normal;flex-basis:100%}
+  .ivm-cd{min-width:186px}
+}
+</style>
+<div class="ivm-band"><div class="ivm-sale" role="region" aria-label="Weekend sale on the 3-month Ivermectin plus Mebendazole combo">
+  <span class="ivm-badge">&#127482;&#127480; Weekend Sale</span>
+  <span class="ivm-offer">3-Month Ivermectin + Mebendazole &mdash; <s>$379</s> <b>$349</b></span>
+  <span class="ivm-cd">Ends Sun &middot; 1d 00:00:00</span>
+  <a class="ivm-claim" href="/claim.html">Claim $349 &rarr;</a>
+</div></div>
+<script>(function(){var end=Date.UTC(2026,6,20,3,59,59);function tick(){var diff=end-Date.now();if(diff<=0){document.querySelectorAll('.ivm-band').forEach(function(b){b.style.display='none';});return;}var s=Math.floor(diff/1e3),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60),ss=s%60,p=function(n){return String(n).padStart(2,'0');};document.querySelectorAll('.ivm-cd').forEach(function(e){e.textContent='Ends Sun · '+d+'d '+p(h)+':'+p(m)+':'+p(ss);});}tick();setInterval(tick,1000);})();</script>
 
 <section class="hub-hero"><div class="hero-products"><img src="/img/pill-antiparasitic-new.png" alt="" style="width:340px"></div><div class="hub-hero-inner">
   <div class="product-category">Antiparasitic Protocols &middot; Rx</div>

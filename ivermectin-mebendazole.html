@@ -323,14 +323,64 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <a href="/">CLYR Health</a> &nbsp;/&nbsp; <a href="/antiparasitic.html">Antiparasitic</a> &nbsp;/&nbsp; Ivermectin + Mebendazole
 </div>
 
-<!-- ===== IVM/MEB weekend countdown (ends Sun 11:59pm ET) ===== -->
-<div style="max-width:1200px;margin:0 auto 8px;padding:0 40px"><div class="ivm-sale" role="region" aria-label="Weekend sale on the 3-month Ivermectin plus Mebendazole combo" style="padding:14px 22px;background:linear-gradient(100deg,#0e3a3f,#00838f);color:#fff;border-radius:16px;display:flex;align-items:center;justify-content:center;gap:10px 20px;flex-wrap:wrap;text-align:center;box-shadow:0 10px 30px rgba(0,131,143,.22)">
-  <span style="font-weight:800;letter-spacing:.05em;text-transform:uppercase;font-size:11.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:100px">&#127482;&#127480; Weekend Sale</span>
-  <span style="font-size:15px;font-weight:600">3-Month Combo &mdash; <s style="opacity:.55;font-weight:500">$379</s> <strong style="font-size:20px;color:#8ff3e4">$349</strong></span>
-  <span class="ivm-cd" style="font-variant-numeric:tabular-nums;font-weight:700;font-size:14px;background:rgba(0,0,0,.22);padding:6px 12px;border-radius:8px;white-space:nowrap">Ends Sun 11:59 PM</span>
-  <a href="/intake-wellness.html?product=ivermectin-mebendazole&amp;plan=3month" style="background:#fff;color:#0e3a3f;text-decoration:none;font-weight:800;font-size:14px;padding:9px 22px;border-radius:100px;white-space:nowrap">Claim $349 &rarr;</a>
+<!-- ===== IVM/MEB weekend countdown (ends Sun 11:59pm ET) — clean + claim-aware ===== -->
+<style id="ivm-sale-css">
+.ivm-band{max-width:1200px;margin:0 auto 8px;padding:0 40px}
+.ivm-sale{display:flex;align-items:center;justify-content:center;gap:10px 18px;flex-wrap:wrap;
+  min-height:60px;padding:12px 22px;border-radius:18px;color:#fff;text-align:center;
+  background:linear-gradient(105deg,#07333a 0%,#0b5560 60%,#0a6a72 100%);
+  box-shadow:0 14px 36px rgba(0,131,143,.24);animation:ivmRise .55s ease-out both}
+.ivm-sale.locked{background:linear-gradient(105deg,#064a34 0%,#0a6a55 60%,#0b7d63 100%)}
+.ivm-badge{font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:11.5px;
+  background:rgba(255,255,255,.16);padding:5px 12px;border-radius:100px;white-space:nowrap}
+.ivm-offer{font-size:15px;font-weight:600;white-space:nowrap}
+.ivm-offer s{opacity:.55;font-weight:500}
+.ivm-offer b{font-size:21px;color:#8ff3e4;font-weight:800;font-family:var(--serif);font-style:italic;letter-spacing:.01em}
+.ivm-cd{font-variant-numeric:tabular-nums;font-weight:700;font-size:13.5px;
+  background:rgba(0,0,0,.24);padding:6px 12px;border-radius:8px;white-space:nowrap;
+  min-width:198px;text-align:center;display:inline-block}
+.ivm-claim{background:#fff;color:#07333a;font-weight:800;font-size:14px;
+  padding:9px 22px;border-radius:100px;white-space:nowrap;text-decoration:none;
+  transition:transform .18s ease,box-shadow .18s ease}
+.ivm-claim:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(0,0,0,.28)}
+@keyframes ivmRise{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.ivm-sale{animation:none}}
+@media(max-width:640px){
+  .ivm-band{padding:0 16px}
+  .ivm-sale{gap:9px 12px;padding:13px 16px}
+  .ivm-offer{white-space:normal;flex-basis:100%}
+  .ivm-cd{min-width:186px}
+}
+/* hero "price locked" ribbon */
+.claim-ribbon{display:none;align-items:center;gap:10px;margin:0 0 16px;padding:11px 16px;
+  border-radius:12px;background:rgba(16,185,129,.09);border:1px solid rgba(16,185,129,.28);
+  font-size:13.5px;font-weight:600;color:#0a6a55}
+.claim-ribbon.show{display:flex}
+.claim-ribbon .dot{width:22px;height:22px;border-radius:50%;background:#10B981;color:#fff;
+  display:grid;place-items:center;flex-shrink:0}
+.claim-ribbon .dot svg{width:13px;height:13px;stroke:#fff;stroke-width:3.4;fill:none}
+.claim-ribbon b{color:#064a34}
+</style>
+<div class="ivm-band"><div class="ivm-sale" id="ivmSale" role="region" aria-label="Weekend sale on the 3-month Ivermectin plus Mebendazole combo">
+  <span class="ivm-badge">&#127482;&#127480; Weekend Sale</span>
+  <span class="ivm-offer">3-Month Combo &mdash; <s>$379</s> <b>$349</b></span>
+  <span class="ivm-cd">Ends Sun &middot; 1d 00:00:00</span>
+  <a class="ivm-claim" id="ivmClaim" href="/claim.html">Claim $349 &rarr;</a>
 </div></div>
-<script>(function(){var end=Date.UTC(2026,6,20,3,59,59);function tick(){var diff=end-Date.now();if(diff<=0){document.querySelectorAll('.ivm-sale').forEach(function(b){b.style.display='none';});return;}var s=Math.floor(diff/1e3),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60),ss=s%60,p=function(n){return String(n).padStart(2,'0');};document.querySelectorAll('.ivm-cd').forEach(function(e){e.textContent='Ends Sun · '+d+'d '+p(h)+':'+p(m)+':'+p(ss);});}tick();setInterval(tick,1000);})();</script>
+<script>(function(){
+  var end=Date.UTC(2026,6,20,3,59,59);
+  function tick(){var diff=end-Date.now();if(diff<=0){document.querySelectorAll('.ivm-band').forEach(function(b){b.style.display='none';});return;}var s=Math.floor(diff/1e3),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60),ss=s%60,p=function(n){return String(n).padStart(2,'0');};document.querySelectorAll('.ivm-cd').forEach(function(e){e.textContent='Ends Sun · '+d+'d '+p(h)+':'+p(m)+':'+p(ss);});}
+  tick();setInterval(tick,1000);
+  // claim-aware: arriving from /claim.html (?claimed=1) or a prior claim → show locked state
+  var claimed=false;try{claimed=new URLSearchParams(location.search).get('claimed')==='1'||localStorage.getItem('clyr_ivm_claimed')==='1';}catch(e){}
+  if(claimed){
+    var sale=document.getElementById('ivmSale'), claim=document.getElementById('ivmClaim');
+    if(sale) sale.classList.add('locked');
+    if(claim){claim.textContent='Start intake →';claim.setAttribute('href','/intake-wellness.html?product=ivermectin-mebendazole&plan=3month&claimed=1&code=WEEKEND30');}
+    var rib=document.getElementById('claimRibbon'); if(rib) rib.classList.add('show');
+    var hl=document.querySelector('.tier-row.hl'); if(hl){hl.style.borderColor='var(--teal)';hl.style.boxShadow='0 0 0 2px rgba(0,180,197,.25)';}
+  }
+})();</script>
 
 <section class="product-hero">
   <div class="product-image"><div class="product-badge" style="text-transform:none">25mg IVM / 250mg MEB</div><img src="/img/pill-antiparasitic-new.png" alt="Ivermectin and mebendazole combination capsule" loading="lazy" style="width:88%;height:88%;object-fit:contain;display:block;filter:drop-shadow(0 18px 40px rgba(0,0,0,0.15))"><div class="img-chip"><span style="font-size:14px;line-height:1">&#127482;&#127480;</span>Compounded in the USA</div></div>
@@ -338,6 +388,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="product-category">Dual Antiparasitic Protocol</div>
     <h1 class="product-title">Ivermectin + <span class="serif">Mebendazole.</span></h1>
     <p class="product-subtitle">Two antiparasitics in a single provider-reviewed plan. Mebendazole widens the coverage ivermectin offers on its own, both dispensed by a licensed U.S. pharmacy and reviewed for your history first.</p>
+    <div class="claim-ribbon" id="claimRibbon"><span class="dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span>Weekend price locked &mdash; <b>$349 on the 3-Month combo</b>, applied automatically at checkout.</span></div>
     <div class="product-price"><span class="amount" data-clyr-price="ivermectin_mebendazole:onetime">$139</span><span class="period">one-time</span></div>
     <div class="product-includes"><div class="product-includes-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>Compounded by a licensed U.S. 503A pharmacy</div><div class="product-includes-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>A licensed provider reviews your history before approval</div><div class="product-includes-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>Labeled for you &middot; 2-3 day Express shipping</div><div class="product-includes-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>No commitment, no auto-renew</div></div>
     <a href="#plans" class="product-cta" onclick="if(window.clyrTrack)clyrTrack('ProductCTAClick',{product:'ivermectin_mebendazole',location:'hero'})">Choose your plan <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>  </div>
