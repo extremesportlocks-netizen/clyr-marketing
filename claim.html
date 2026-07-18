@@ -213,5 +213,11 @@
   else { setTimeout(claimed, 900); }
 })();
 </script>
+<script src="/js/clyr-tracking.js"></script>
+<script>
+// Track which door they take off the claim page (page_view itself comes from clyr-tracking.js)
+document.getElementById('goIntake').addEventListener('click',function(){ if(window.clyrTrack) clyrTrack('ClaimChoice',{choice:'intake'}); });
+document.getElementById('goCombo').addEventListener('click',function(){ if(window.clyrTrack) clyrTrack('ClaimChoice',{choice:'combo'}); });
+</script>
 </body>
 </html>
