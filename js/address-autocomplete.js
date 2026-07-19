@@ -140,8 +140,17 @@
     } catch (e) { /* older browsers: values are still set */ }
   }
 
+  // 2026-07-19 (founder caught on his phone): selecting a suggestion fills the
+  // street field programmatically, which fires an 'input' event, which the
+  // handler below treats as fresh typing and re-opens the dropdown we just
+  // closed. On mobile the re-opened panel covers apt/city/state/zip, the
+  // consent checkboxes and Continue, so the step becomes untappable and the
+  // buyer stalls. This flag suppresses the refetch for programmatic fills.
+  var filling = false;
+
   function choose(i) {
     var p = items[i];
+    filling = true;
     hideBox();
     if (!p || !p.placeId) return;
     var closingSession = session;
@@ -175,10 +184,13 @@
           if (has) setVal(stEl, st); /* excluded states stay unpickable: their options do not exist */
         }
         refreshHint();
-      }).catch(function () { /* silent: manual entry still works */ });
+        hideBox();
+        setTimeout(function () { filling = false; }, 500);
+      }).catch(function () { setTimeout(function () { filling = false; }, 500); /* silent: manual entry still works */ });
   }
 
   addr.addEventListener('input', function () {
+    if (filling) { hideBox(); return; }   /* our own fill, not the buyer typing */
     var q = addr.value.trim();
     if (timer) clearTimeout(timer);
     // PO Box: Google can't suggest one, so skip the (empty/confusing) dropdown and
@@ -195,6 +207,12 @@
     else if (e.key === 'Escape') { hideBox(); }
   });
   addr.addEventListener('blur', function () { setTimeout(hideBox, 150); });
+  /* mobile safety net: a thumb landing anywhere outside the panel closes it */
+  document.addEventListener('touchstart', function (e) {
+    if (box.style.display === 'none') return;
+    if (box.contains(e.target) || e.target === addr) return;
+    hideBox();
+  }, true);
   window.addEventListener('resize', function () { if (box.style.display === 'block') positionBox(); });
   window.addEventListener('scroll', function () { if (box.style.display === 'block') positionBox(); }, true);
 })();
