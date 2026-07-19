@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 520" width="400" height="520">
+  <defs>
+    <linearGradient id="body" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#F2F5F7"/><stop offset=".18" stop-color="#FFFFFF"/><stop offset=".55" stop-color="#F7FAFB"/><stop offset=".85" stop-color="#E9EEF1"/><stop offset="1" stop-color="#DFE6EA"/>
+    </linearGradient>
+    <linearGradient id="cap" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#C9D3D9"/><stop offset=".3" stop-color="#EDF2F4"/><stop offset=".7" stop-color="#D5DDE2"/><stop offset="1" stop-color="#B9C4CB"/>
+    </linearGradient>
+    <linearGradient id="band" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0E8F87"/><stop offset=".5" stop-color="#2BBCB3"/><stop offset="1" stop-color="#0E8F87"/>
+    </linearGradient>
+    <filter id="soft" x="-40%" y="-20%" width="180%" height="150%">
+      <feDropShadow dx="0" dy="22" stdDeviation="22" flood-color="#0B1B21" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <g filter="url(#soft)">
+    <!-- sprayer head -->
+    <rect x="168" y="26" width="64" height="34" rx="8" fill="url(#cap)"/>
+    <rect x="150" y="52" width="100" height="26" rx="9" fill="url(#cap)"/>
+    <rect x="128" y="34" width="44" height="16" rx="8" fill="#AEB9C0"/>
+    <!-- collar -->
+    <rect x="152" y="76" width="96" height="18" rx="6" fill="#C4CDD3"/>
+    <!-- bottle -->
+    <path d="M138 108 C138 96 148 92 160 92 L240 92 C252 92 262 96 262 108 L262 468 C262 482 252 490 238 490 L162 490 C148 490 138 482 138 468 Z" fill="url(#body)" stroke="#D8E0E4" stroke-width="1.5"/>
+    <!-- label -->
+    <rect x="150" y="170" width="100" height="230" rx="10" fill="#FFFFFF" stroke="#E5EBEE" stroke-width="1"/>
+    <text x="200" y="205" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="24" letter-spacing="1" fill="#12242B">CLY<tspan fill="#2BBCB3">R</tspan></text>
+    <rect x="166" y="220" width="68" height="2.5" rx="1.25" fill="url(#band)"/>
+    <text x="200" y="252" text-anchor="middle" font-family="Arial" font-weight="700" font-size="15" fill="#12242B">HAIR</text>
+    <text x="200" y="272" text-anchor="middle" font-family="Arial" font-weight="700" font-size="15" fill="#12242B">REGROWTH</text>
+    <text x="200" y="300" text-anchor="middle" font-family="Arial" font-size="10.5" fill="#5B6B74">Minoxidil 7% · Tretinoin</text>
+    <text x="200" y="315" text-anchor="middle" font-family="Arial" font-size="10.5" fill="#5B6B74">Fluocinolone · 4-Active</text>
+    <rect x="170" y="336" width="60" height="20" rx="10" fill="#EAF8F7"/>
+    <text x="200" y="350" text-anchor="middle" font-family="Arial" font-weight="700" font-size="10" fill="#0E8F87">Rx ONLY</text>
+    <text x="200" y="384" text-anchor="middle" font-family="Arial" font-size="9.5" fill="#8A97A0">Topical Spray · 60 ml</text>
+  </g>
+</svg>
