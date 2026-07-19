@@ -1890,7 +1890,7 @@ function submitGlp1Refill(){
   const _paidCents=(window._refillTx&&window._refillTx.amount)!=null?window._refillTx.amount:null;
   const _cur3mo=isTirz?59700:56700;
   const discountNote=(_paidCents!=null&&_paidCents<_cur3mo)?`
-    <div style="display:flex;gap:8px;align-items:flex-start;background:#EEF7FF;border:1px solid #CFE6FA;border-left:3px solid #3B8EE0;border-radius:10px;padding:10px 13px;margin:0 0 12px;max-width:430px;font-size:12.5px;line-height:1.45;color:#28517a"><span>Your first plan included a <strong>one-time new-patient discount</strong>, which is why the price you paid before was lower. The plans below are our standard rates.</span></div>`:'';
+    <div style="display:flex;gap:8px;align-items:flex-start;background:#EEF7FF;border:1px solid #CFE6FA;border-left:3px solid #3B8EE0;border-radius:10px;padding:10px 13px;margin:0 0 12px;max-width:430px;font-size:12.5px;line-height:1.45;color:#28517a"><span>The price you paid before reflected <strong>an earlier rate or a one-time discount</strong>. The plans below are our current standard rates.</span></div>`:'';
   const wantsHigher=/^Increase/i.test(q3n);
   window._glp1WantsHigher=wantsHigher;
   const higherNote=wantsHigher?`
@@ -1899,23 +1899,23 @@ function submitGlp1Refill(){
     ${discountNote}${higherNote}
     <div style="font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--teal,#2bbcb3);margin:2px 0 8px">Standard dose · up to 3mL</div>
     <div style="display:flex;flex-direction:column;gap:10px;max-width:430px;margin-bottom:16px">
-      ${card('t1_3month','3-Month prepay','Best value','$597 billed once · ships monthly','199','/mo',true)}
-      ${card('t1_monthly','Monthly','','Billed monthly · cancel anytime','249','/mo',false)}
+      ${card('t1_3month','3-Month prepay','Best value','$597 billed once · 3-month supply','199','/mo',true)}
+      ${card('t1_monthly','1-Month','','Billed once · 30-day supply · renew when ready','249','/mo',false)}
     </div>
     <div style="font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--teal,#2bbcb3);margin:0 0 8px">Higher dose · 4mL to 8mL</div>
     <div style="display:flex;flex-direction:column;gap:10px;max-width:430px">
-      ${card('t2_3month','3-Month prepay','Best value','$1,047 billed once · ships monthly','349','/mo',false)}
-      ${card('t2_monthly','Monthly','','Billed monthly · cancel anytime','399','/mo',false)}
+      ${card('t2_3month','3-Month prepay','Best value','$1,047 billed once · 3-month supply','349','/mo',false)}
+      ${card('t2_monthly','1-Month','','Billed once · 30-day supply · renew when ready','399','/mo',false)}
     </div>`;
   const semaMenu=`
     ${discountNote}
     <div style="display:flex;flex-direction:column;gap:10px;max-width:430px">
-      ${card('t1_3month','3-Month prepay','Best value','$567 billed once · ships monthly · any dose','189','/mo',true)}
-      ${card('t1_monthly','Monthly','','Any dose, one price · cancel anytime','229','/mo',false)}
+      ${card('t1_3month','3-Month prepay','Best value','$567 billed once · 3-month supply · any dose','189','/mo',true)}
+      ${card('t1_monthly','1-Month','','Any dose, one price · billed once · renew when ready','229','/mo',false)}
     </div>`;
   $('refillFormArea').innerHTML=`
     <h3 style="font-size:16px;font-weight:700;margin-bottom:6px">Choose your plan</h3>
-    <p style="font-size:14px;color:var(--gray-500);margin-bottom:16px">Your provider reviews every refill. We ship 30 days at a time for freshness; 3-month plans are billed once and refill automatically each month.</p>
+    <p style="font-size:14px;color:var(--gray-500);margin-bottom:16px">Your provider reviews every refill. 3-month plans are billed once up front; 1-month refills are a single charge, and you renew when you are ready.</p>
     ${isTirz?tirzMenu:semaMenu}
     <div id="glp1CheckoutMount" style="display:none;margin-top:20px"></div>`;
 }
