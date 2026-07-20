@@ -1123,7 +1123,7 @@ function renderRefillSummaryForTreatment(tx){
   if(!rw)return '';
   if(AUTO_REFILL_PENDING.includes(tx.product)){
     return `<div style="display:flex;justify-content:space-between;align-items:center;gap:14px">
-      <div><div style="font-size:14px;font-weight:700;margin-bottom:2px">Auto-refill in progress</div><div style="font-size:13px;color:var(--gray-500)">Our care team is handling your next refill. Questions? <a href="mailto:care@clyr.health" style="color:var(--teal);font-weight:600">care@clyr.health</a></div></div>
+      <div><div style="font-size:14px;font-weight:700;margin-bottom:2px">Auto-refill in progress</div><div style="font-size:13px;color:var(--gray-500)">Our care team is handling your next refill. Questions? <a href="mailto:contact@clyr.health" style="color:var(--teal);font-weight:600">contact@clyr.health</a></div></div>
       <button class="btn btn-secondary" onclick="showPage('treatments');startRefill('${escapeAttr(tx.product)}')">View status</button>
     </div>`;
   }
@@ -1338,7 +1338,7 @@ function renderRefillSummary(){
   const tx=(portalData.patient&&portalData.patient.treatment)||'';
   if(['glutathione','micc','pt141'].includes(tx)){
     return `<div style="display:flex;justify-content:space-between;align-items:center;gap:14px">
-      <div><div style="font-size:14px;font-weight:700;margin-bottom:2px">Auto-refill in progress</div><div style="font-size:13px;color:var(--gray-500)">Our care team is handling your next refill. Questions? <a href="mailto:care@clyr.health" style="color:var(--teal);font-weight:600">care@clyr.health</a></div></div>
+      <div><div style="font-size:14px;font-weight:700;margin-bottom:2px">Auto-refill in progress</div><div style="font-size:13px;color:var(--gray-500)">Our care team is handling your next refill. Questions? <a href="mailto:contact@clyr.health" style="color:var(--teal);font-weight:600">contact@clyr.health</a></div></div>
       <button class="btn btn-secondary" onclick="showPage('treatments');startRefill()">View status</button>
     </div>`;
   }
@@ -1719,7 +1719,7 @@ function startRefill(product){
         <div class="empty-title">Auto-refill in progress</div>
         <div class="empty-msg">
           Your next ${escapeHtml(portalData.patient.treatmentDisplay||'treatment')} refill is being handled by our care team. No questionnaire needed on your end.
-          If you have questions or want to adjust your plan, email <a href="mailto:care@clyr.health" style="color:var(--teal);font-weight:600">care@clyr.health</a> and we'll respond within one business day.
+          If you have questions or want to adjust your plan, email <a href="mailto:contact@clyr.health" style="color:var(--teal);font-weight:600">contact@clyr.health</a> and we'll respond within one business day.
         </div>
         <div style="margin-top:18px">
           <button class="btn btn-secondary" onclick="$('refillSection').style.display='none'">Got it</button>
@@ -1986,7 +1986,7 @@ async function startGlp1RefillCheckout(plan){
     if(e && (e.paymentRequired || /payment/i.test(e.message||''))){
       mount.innerHTML='<div style="color:#c0392b;font-size:14px">'+(e.message||'Payment is required to submit your refill.')+'</div>';
     } else {
-      mount.innerHTML='<div style="color:#c0392b;font-size:14px">Could not start checkout: '+(e.message||'unknown error')+'. Please contact care@clyr.health.</div>';
+      mount.innerHTML='<div style="color:#c0392b;font-size:14px">Could not start checkout: '+(e.message||'unknown error')+'. Please contact contact@clyr.health.</div>';
     }
     document.querySelectorAll('.refill-term-btn').forEach(b=>{b.disabled=false;b.style.opacity='1';});
   }
@@ -2947,7 +2947,7 @@ function showCareTeamHold(productKey, blockerIds, mode){
       </div>
       <div style="font-size:20px;font-weight:700;margin-bottom:8px">${heading}</div>
       <div style="font-size:14px;color:var(--gray-500);line-height:1.5;margin-bottom:20px">${body}</div>
-      <a href="mailto:care@clyr.health?subject=${mode === 'error' ? 'Checkout%20help' : 'Care%20review%20request'}%20for%20${encodeURIComponent(productName)}" class="btn btn-primary" style="display:inline-block;text-decoration:none;padding:12px 24px;margin-bottom:8px">Email the care team</a>
+      <a href="mailto:contact@clyr.health?subject=${mode === 'error' ? 'Checkout%20help' : 'Care%20review%20request'}%20for%20${encodeURIComponent(productName)}" class="btn btn-primary" style="display:inline-block;text-decoration:none;padding:12px 24px;margin-bottom:8px">Email us</a>
       <br>
       <button class="btn btn-secondary" style="margin-top:8px" onclick="closeProductDetail()">Back to portal</button>
     </div>`;
@@ -3416,7 +3416,7 @@ async function downloadPhi(){
     a.href = url; a.download = filename; document.body.appendChild(a); a.click();
     setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
   } catch (e) {
-    alert('Could not export your records: ' + e.message + '. Email care@clyr.health if this keeps happening.');
+    alert('Could not export your records: ' + e.message + '. Email contact@clyr.health if this keeps happening.');
   } finally {
     if (btn) { btn.disabled = false; btn.style.opacity = '1'; }
   }
