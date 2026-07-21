@@ -1999,6 +1999,7 @@ function goToStep(step) {
   var planData = {
     tirzepatide: [
       { type: 't1_starter', name: 'Starter Month', desc: '20 units/wk, one vial. Rolls to $199/mo cycles', price: '$149', period: ' first month', total: null },
+      { type: 't1_3start', name: 'Tier 1, 3-Month Starter', desc: 'Titrate 20 to 70 units/wk. Pay once, doses ship monthly', price: '$569', period: '', total: null },
       { type: 't1_2month', name: 'Tier 1, 8-Week cycle', desc: 'Up to 70 units/wk. 2 vials, one box. Billed every 8 weeks', price: '$398', period: '', total: null },
       { type: 't1_monthly', name: 'Tier 1 Monthly', desc: 'Up to 70 units/wk. Cancel anytime', price: '$249', period: '/mo', total: null },
       { type: 't1_3month', name: 'Tier 1, 3-Month', desc: 'Up to 70 units/wk. Billed once', price: '$597', period: '', total: null },
@@ -2158,6 +2159,7 @@ function goToStep(step) {
       // backend catalog SKU (e.g. tirzepatide_t1_monthly). Totals: monthly is the
       // per-month price; 3-month is the one-time prepay total.
       'tirzepatide_t1_starter': { label: 'Tirzepatide + B12, Starter Month', total: '$149 first month' },
+      'tirzepatide_t1_3start': { label: 'Tirzepatide + B12, 3-Month Starter (titration)', total: '$569 billed once' },
       'tirzepatide_t1_2month': { label: 'Tirzepatide + B12, 8-Week cycle', total: '$398 every 8 weeks' },
       'tirzepatide_t1_monthly': { label: 'Tirzepatide + B12, Tier 1 Monthly', total: '$249/mo' },
       'tirzepatide_t1_3month': { label: 'Tirzepatide + B12, Tier 1 3-Month', total: '$597' },
