@@ -627,6 +627,14 @@ var embeddedCheckout = null;
 function backToReviewFromCheckout() {
   try { if (embeddedCheckout) { embeddedCheckout.destroy(); embeddedCheckout = null; } } catch (e) {}
   var m = document.getElementById('checkout-mount'); if (m) m.innerHTML = '';
+  var g = document.getElementById('ghkSwitchCard'); if (g) g.remove();
+  // Restore the Continue button: initCheckout() set it disabled + 'Preparing checkout…'
+  // on the success path and NEVER re-enables it, so returning to review would leave a
+  // dead CTA (the only escape would be a reload — the very wipe C0 exists to avoid).
+  var btn = document.getElementById('btnCheckout');
+  if (btn) btn.innerHTML = 'Continue to payment →';
+  if (typeof validateConsents === 'function') validateConsents(); // disabled ← real consent state, not blindly enabled
+  var l = document.getElementById('checkout-loading-state'); if (l) l.style.display = 'block'; // re-prime spinner for the next mount
   var p = document.getElementById('checkoutPanel'); if (p) p.style.display = 'none';
   var b = document.getElementById('step5Btns'); if (b) b.style.display = '';
   if (b && b.scrollIntoView) b.scrollIntoView({ block: 'center', behavior: 'smooth' });
