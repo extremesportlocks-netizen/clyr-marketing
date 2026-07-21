@@ -1961,8 +1961,18 @@ async function startGlp1RefillCheckout(plan){
   const answers = window._glp1RefillAnswers;
   if(!answers){alert('Please complete the questionnaire again.');return;}
   if(window._glp1WantsHigher && /^t1_/.test(plan)){
-    const ok=confirm('You chose to increase your dose, but the Standard plan covers up to 70 units/week. Your provider will keep your prescription within that range on this plan. Continue with the Standard plan?');
-    if(!ok) return;
+    // Money-safety + patient intent: increasing above the Standard band (70 units/wk)
+    // requires the Higher-dose plan — a new checkout at the higher price. We can't
+    // dispense a higher-band dose on a Standard price. Offer to jump to the Higher-dose
+    // plans; only continue on Standard if they explicitly choose to stay in-range.
+    const goHigher=confirm('You chose to increase your dose. Doses above 70 units/week need a Higher-dose plan (a separate checkout). Tap OK to choose a Higher-dose plan, or Cancel to stay on the Standard plan (your provider keeps you within 70 units/week).');
+    if(goHigher){
+      // scroll them to the Higher-dose band cards so they pick a t2_* plan
+      const hd=[...document.querySelectorAll('*')].find(el=>/Higher dose/i.test(el.textContent||'')&&el.children.length<6);
+      if(hd&&hd.scrollIntoView) hd.scrollIntoView({behavior:'smooth',block:'center'});
+      return; // do NOT check out on the t1 plan; they must tap a Higher-dose card
+    }
+    // else: they chose to stay on Standard — continue, capped within the T1 band
   }
   document.querySelectorAll('.refill-term-btn').forEach(b=>{b.disabled=true;b.style.opacity='0.5';});
   const mount=$('glp1CheckoutMount');
