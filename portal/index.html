@@ -1985,7 +1985,9 @@ async function startGlp1RefillCheckout(plan){
       api('/api/portal/refill/checkout',{method:'POST',body:JSON.stringify({answers, plan})}))
     ]);
     if(!session.clientSecret) throw new Error(session.error||'No checkout session returned');
-    mount.innerHTML='<div id="glp1CheckoutContainer"></div>';
+    // Back control ABOVE the embedded checkout so the patient is never trapped —
+    // they can return to the plan menu and pick a different tier before paying.
+    mount.innerHTML='<button type="button" id="glp1ChangePlanBtn" style="display:inline-flex;align-items:center;gap:6px;background:none;border:none;color:var(--teal,#2bbcb3);font-size:14px;font-weight:600;cursor:pointer;padding:4px 0;margin:0 0 12px">&larr; Choose a different plan</button><div id="glp1CheckoutContainer"></div>';
     const ec = await stripe.initEmbeddedCheckout({
       clientSecret: session.clientSecret,
       onComplete: async () => {
@@ -1999,6 +2001,16 @@ async function startGlp1RefillCheckout(plan){
           </div>`;
     }});
     ec.mount('#glp1CheckoutContainer');
+    // wire the back button: destroy the checkout, release the lock, re-enable the menu
+    const changeBtn=document.getElementById('glp1ChangePlanBtn');
+    if(changeBtn) changeBtn.onclick=function(){
+      try{ ec.destroy(); }catch(e){}
+      window._refillInFlight=false;
+      mount.innerHTML=''; mount.style.display='none';
+      document.querySelectorAll('.refill-term-btn').forEach(b=>{b.disabled=false;b.style.opacity='1';});
+      const firstCard=document.querySelector('.refill-term-btn');
+      if(firstCard&&firstCard.scrollIntoView) firstCard.scrollIntoView({behavior:'smooth',block:'center'});
+    };
     armPortalWatchdog('glp1CheckoutContainer', '/api/portal/refill/checkout', { answers, plan });
   }catch(e){
     if(e && (e.paymentRequired || /payment/i.test(e.message||''))){

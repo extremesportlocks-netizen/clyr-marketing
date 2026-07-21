@@ -1393,6 +1393,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <img src="https://www.google.com/s2/favicons?domain=affirm.com&sz=64" alt="Affirm" style="width:22px;height:22px;border-radius:4px;background:#fff;padding:1px;border:1px solid #e5e7eb;">
       <img src="https://icons.duckduckgo.com/ip3/afterpay.com.ico" alt="Afterpay" style="width:22px;height:22px;border-radius:4px;background:#fff;padding:1px;border:1px solid #e5e7eb;">
     </div>
+    <button type="button" id="checkoutBackBtn" onclick="if(typeof embeddedCheckout!==\'undefined\'&&embeddedCheckout){try{embeddedCheckout.destroy();}catch(e){}embeddedCheckout=null;} goToStep(1);" style="display:inline-flex;align-items:center;gap:6px;background:none;border:none;color:var(--teal);font-size:14px;font-weight:600;cursor:pointer;padding:4px 0;margin:0 0 12px;">&larr; Change plan or dose</button>
     <div id="checkout-mount"></div>
     <div class="checkout-secure">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
