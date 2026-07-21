@@ -1869,6 +1869,12 @@ function submitGlp1Refill(){
   const isTirz=/tirz/i.test(_menuProduct);
   // Stash answers on window so the plan buttons can read them.
   window._glp1RefillAnswers=answers;
+  // Double-submit guard: this handler had a top-of-function _refillInFlight check
+  // but never SET the flag, so the Submit button stayed live and re-fired the
+  // screening save + menu re-render on every click. Set it now; the menu render
+  // below replaces the button, and startGlp1RefillCheckout owns the checkout lock.
+  window._refillInFlight=true;
+  setTimeout(function(){ window._refillInFlight=false; }, 8000);
   // Brain of the patient: persist the clinical check-in (current weight, side
   // effects, dose direction, doctor message) NOW — abandoning at the plan/price
   // menu (sticker shock is a real drop-off) used to erase all of it.
@@ -1894,18 +1900,19 @@ function submitGlp1Refill(){
   const wantsHigher=/^Increase/i.test(q3n);
   window._glp1WantsHigher=wantsHigher;
   const higherNote=wantsHigher?`
-    <div style="display:flex;gap:8px;align-items:flex-start;background:#FFF8EC;border:1px solid #F5E4C3;border-left:3px solid #E0A93B;border-radius:10px;padding:10px 13px;margin:0 0 12px;max-width:430px;font-size:12.5px;line-height:1.45;color:#6b5526"><span>You chose to <strong>increase your dose</strong>. Standard plans cover up to 3mL. If your increase goes above that, pick a <strong>Higher-dose plan</strong> so your provider can prescribe it.</span></div>`:'';
+    <div style="display:flex;gap:8px;align-items:flex-start;background:#FFF8EC;border:1px solid #F5E4C3;border-left:3px solid #E0A93B;border-radius:10px;padding:10px 13px;margin:0 0 12px;max-width:430px;font-size:12.5px;line-height:1.45;color:#6b5526"><span>You chose to <strong>increase your dose</strong>. Standard plans cover up to 70 units/week. If your increase goes above that, pick a <strong>Higher-dose plan</strong> so your provider can prescribe it.</span></div>`:'';
   const tirzMenu=`
     ${discountNote}${higherNote}
-    <div style="font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--teal,#2bbcb3);margin:2px 0 8px">Standard dose · up to 3mL</div>
+    <div style="font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--teal,#2bbcb3);margin:2px 0 8px">Standard dose · up to 70 units/week</div>
     <div style="display:flex;flex-direction:column;gap:10px;max-width:430px;margin-bottom:16px">
-      ${card('t1_3month','3-Month prepay','Best value','$597 billed once · 3-month supply','199','/mo',true)}
-      ${card('t1_monthly','1-Month','','Billed once · 30-day supply · renew when ready','249','/mo',false)}
+      ${card('t1_2month','8-Week cycle','Best value','$398 billed once · 2 vials, one box','199','/mo',true)}
+      ${card('t1_3month','3-Month prepay','','$597 billed once · 3-month supply','199','/mo',false)}
+      ${card('t1_monthly','Monthly','','Billed once · 30-day supply · renew when ready','249','/mo',false)}
     </div>
-    <div style="font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--teal,#2bbcb3);margin:0 0 8px">Higher dose · 4mL to 8mL</div>
+    <div style="font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--teal,#2bbcb3);margin:0 0 8px">Higher dose · 90+ units/week</div>
     <div style="display:flex;flex-direction:column;gap:10px;max-width:430px">
       ${card('t2_3month','3-Month prepay','Best value','$1,047 billed once · 3-month supply','349','/mo',false)}
-      ${card('t2_monthly','1-Month','','Billed once · 30-day supply · renew when ready','399','/mo',false)}
+      ${card('t2_monthly','Monthly','','Billed once · 30-day supply · renew when ready','399','/mo',false)}
     </div>`;
   const semaMenu=`
     ${discountNote}
@@ -1953,7 +1960,7 @@ async function startGlp1RefillCheckout(plan){
   const answers = window._glp1RefillAnswers;
   if(!answers){alert('Please complete the questionnaire again.');return;}
   if(window._glp1WantsHigher && /^t1_/.test(plan)){
-    const ok=confirm('You chose to increase your dose, but the Standard plan covers up to 3mL. Your provider will keep your prescription within that range on this plan. Continue with the Standard plan?');
+    const ok=confirm('You chose to increase your dose, but the Standard plan covers up to 70 units/week. Your provider will keep your prescription within that range on this plan. Continue with the Standard plan?');
     if(!ok) return;
   }
   document.querySelectorAll('.refill-term-btn').forEach(b=>{b.disabled=true;b.style.opacity='0.5';});
