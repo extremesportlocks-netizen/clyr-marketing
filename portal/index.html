@@ -1086,11 +1086,17 @@ function computeStateChipsForTreatment(tx){
   if(enc.status==='pending'||enc.status==='waiting'||enc.status==='approved'){
     chips.push({label:'Provider Review',kind:'info',icon:'eye'});
   }
-  if(rw.isOpen){
-    chips.push({label:'Refill Ready',kind:'warn',icon:'refresh'});
-  }
-  if(rw.isExpired){
-    chips.push({label:'Refill Due',kind:'warn',icon:'clock'});
+  if(tx.repurchase){
+    // Antiparasitic = shopping cart, not a refill rail (2026-07-22, founder):
+    // green invitation, never an orange gate.
+    chips.push({label:'Repurchase anytime',kind:'ok',icon:'refresh'});
+  } else {
+    if(rw.isOpen){
+      chips.push({label:'Refill Ready',kind:'warn',icon:'refresh'});
+    }
+    if(rw.isExpired){
+      chips.push({label:'Refill Due',kind:'warn',icon:'clock'});
+    }
   }
   if(enc.pharmacyStatus==='shipped'){
     chips.push({label:'Shipping',kind:'info',icon:'truck'});
@@ -1124,6 +1130,17 @@ function renderChipsForTreatment(tx){
 function renderRefillSummaryForTreatment(tx){
   const rw=tx.refillWindow||{};
   if(!rw)return '';
+  if(tx.repurchase){
+    // Antiparasitic shopping-cart model (2026-07-22, founder — the Tex lesson):
+    // no windows, no days-math (dosing varies; "90-day supply" was 18 days for
+    // a 5-cap/day protocol). Quantity language + green buy-anytime CTA straight
+    // into the checkout lane (openProductDetail — same as Shop).
+    const qty=tx.quantityLabel?tx.quantityLabel+' shipped at once':'Shipped in one box';
+    return `<div style="display:flex;justify-content:space-between;align-items:center;gap:14px;background:rgba(74,222,128,0.07);border:1px solid rgba(74,222,128,0.35);border-radius:12px;padding:12px 14px">
+      <div><div style="font-size:14px;font-weight:700;margin-bottom:2px;color:#15803d">Buy more anytime</div><div style="font-size:13px;color:var(--gray-500)">${qty} — no waiting period, no refill windows. Order whenever you're ready.</div></div>
+      <button class="btn" style="background:#16a34a;color:#fff;border:none" onclick="openProductDetail('${escapeAttr(tx.product)}')">Repurchase →</button>
+    </div>`;
+  }
   if(AUTO_REFILL_PENDING.includes(tx.product)){
     return `<div style="display:flex;justify-content:space-between;align-items:center;gap:14px">
       <div><div style="font-size:14px;font-weight:700;margin-bottom:2px">Auto-refill in progress</div><div style="font-size:13px;color:var(--gray-500)">Our care team is handling your next refill. Questions? <a href="mailto:contact@clyr.health" style="color:var(--teal);font-weight:600">contact@clyr.health</a></div></div>
@@ -1260,7 +1277,8 @@ function renderOrderHistoryForTreatment(tx){
 }
 
 function renderTreatmentCardHtml(tx){
-  const planLabel=({monthly:'Monthly','3month':'3 months','6month':'6 months','12month':'12 months'})[tx.plan]||tx.plan||'';
+  // Antiparasitic: quantity language, never days ("90 capsules", not "3 months")
+  const planLabel=(tx.repurchase&&tx.quantityLabel)?tx.quantityLabel:(({monthly:'Monthly','3month':'3 months','6month':'6 months','12month':'12 months'})[tx.plan]||tx.plan||'');
   const img=resolveProductThumb(tx);
   const cancelPending=!!tx.cancelAt;
   const productKey=escapeAttr(tx.product||'');
@@ -1746,6 +1764,10 @@ function startRefill(product){
   const txs=(portalData.treatments||[]);
   window._refillTx = (product && txs.find(function(t){return t.product===product})) || null;
   const tx=(window._refillTx&&window._refillTx.product)||(portalData.patient&&portalData.patient.treatment)||'';
+  // Antiparasitic = shopping cart (2026-07-22, founder): EVERY refill entry
+  // point routes these products straight to the repurchase checkout lane —
+  // no questionnaire, no windows, no gates.
+  if(window._refillTx&&window._refillTx.repurchase){ openProductDetail(tx); return; }
   if(AUTO_REFILL_PENDING.includes(tx)){
     $('refillSection').style.display='block';
     $('refillFormArea').innerHTML=`
