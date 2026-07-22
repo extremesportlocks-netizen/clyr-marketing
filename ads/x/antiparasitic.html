@@ -587,7 +587,9 @@ body {
 // products). Fail-open: no IntersectionObserver -> sticky stays.
 try {
   var stickyEl = document.querySelector(".sticky-cta");
-  var flowCtas = [].slice.call(document.querySelectorAll(".cta")).filter(function (el) { return !stickyEl.contains(el); });
+  // In-flow CTAs are .hero-cta (x2) and .mid-cta — the page's only .cta IS the
+  // sticky's own link, so observing just ".cta" attached to nothing (sticky never hid).
+  var flowCtas = [].slice.call(document.querySelectorAll(".cta, .hero-cta, .mid-cta")).filter(function (el) { return !stickyEl.contains(el); });
   if (stickyEl && flowCtas.length && "IntersectionObserver" in window) {
     var visibleCount = 0;
     var io = new IntersectionObserver(function (entries) {
