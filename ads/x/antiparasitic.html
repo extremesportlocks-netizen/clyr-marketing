@@ -506,7 +506,7 @@ body {
 (function () {
   var cards = document.querySelectorAll('.card');
   var ctas = document.querySelectorAll('#cta, #hero-cta, #mid-cta, .card-cta');
-  var selected = 'ivermectin';
+  var selected = 'ivermectin-mebendazole';
   var selectedPlan = '';
 
   function intakeUrl(product, plan) {
@@ -576,7 +576,7 @@ body {
   });
 
   var params = new URLSearchParams(window.location.search);
-  var preset = params.get('product') || (params.get('utm_campaign') === 'combo-jun26' ? 'ivermectin-mebendazole' : 'ivermectin');
+  var preset = params.get('product') || 'ivermectin-mebendazole'; // default = combo, the flagship (founder 7/22 — generic CTAs were funneling everyone to plain 18mg)
   applyProduct(preset, params.get('plan') || '');
   track('AdLPView', { product: preset });
 })();
