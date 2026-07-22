@@ -337,6 +337,9 @@ body {
   justify-content: center;
   padding: 20px;
 }
+/* display:flex above beats the UA's [hidden]{display:none} — without this the
+   modal renders OPEN on page load and Cancel can't close it. */
+.chooser-overlay[hidden] { display: none !important; }
 .chooser-sheet {
   background: var(--white);
   border-radius: 18px;
@@ -670,6 +673,7 @@ body {
     chooser.addEventListener('click', function (e) { if (e.target === chooser) chooser.hidden = true; });
     var cc = document.getElementById('chooserClose');
     if (cc) cc.addEventListener('click', function () { chooser.hidden = true; });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') chooser.hidden = true; });
   }
 
   var preset = params.get('product') || 'ivermectin-mebendazole'; // default = combo, the flagship (founder 7/22 — generic CTAs were funneling everyone to plain 18mg)
