@@ -1643,7 +1643,22 @@ function goToStep(step) {
     if(window.clyrTrack)clyrTrack('IntakeStep',{step:step,stepName:stepNames[step]||'Step'+step,treatment:formData.treatment,plan:formData.plan});
     if(window.posthog)posthog.capture('intake_step_viewed',{step:step,step_name:stepNames[step]||'Step'+step,treatment:formData.treatment,plan:formData.plan});
     if(step===1&&!window._pvFired&&window.posthog){window._pvFired=true;posthog.capture('product_viewed',{source:'intake',treatment:formData.treatment,plan:formData.plan});}
+    // Plan C / P1: non-PII position marker (flow + step only) for reload measurement.
+    try { localStorage.setItem('clyr_intake_pos', JSON.stringify({ flow: 'glp', step: step, t: Date.now() })); } catch (e) {}
   }
+  // Plan C / P1: reload instrumentation — one event on boot if a prior deep-step
+  // marker exists (reload/back-return wiped the in-memory form; sizes C2).
+  // Deferred to window load: clyr-tracking.js loads after this inline script.
+  window.addEventListener('load', function () {
+    try {
+      var _pos = JSON.parse(localStorage.getItem('clyr_intake_pos') || 'null');
+      if (_pos && _pos.flow === 'glp' && _pos.step > 1 && (Date.now() - (_pos.t || 0)) < 24 * 3600 * 1000) {
+        var _hadDraft = false;
+        try { _hadDraft = !!localStorage.getItem('clyr_intake_draft_glp'); } catch (e) {}
+        if (window.clyrTrack) clyrTrack('intake_reload', { flow: 'glp', priorStep: _pos.step, hadDraft: _hadDraft });
+      }
+    } catch (e) {}
+  });
 
   // ── Brain of the patient: per-step server persist ──────────────────
   // Historically every clinical answer (screening, medical history, meds,

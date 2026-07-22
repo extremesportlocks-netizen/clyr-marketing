@@ -1303,7 +1303,24 @@ function goToStep(n) {
   document.getElementById('progressLabel').textContent = 'Step ' + n + ' of ' + totalSteps + ', ' + labels[n];
   window.scrollTo({top:0, behavior:'smooth'});
   if (n === 5) populateReview();
+  // Plan C / P1: non-PII position marker (flow + step only) so a reload/return
+  // can be measured (intake_reload event on boot). Fail-open.
+  try { localStorage.setItem('clyr_intake_pos', JSON.stringify({ flow: 'wellness', step: n, t: Date.now() })); } catch (e) {}
 }
+// Plan C / P1: reload instrumentation — fire once on boot if a prior deep-step
+// marker exists (a reload/back-return wiped the in-memory form; this sizes C2).
+// Deferred to window load: clyr-tracking.js is included at the bottom, so
+// clyrTrack doesn't exist yet at parse time.
+window.addEventListener('load', function () {
+  try {
+    var _pos = JSON.parse(localStorage.getItem('clyr_intake_pos') || 'null');
+    if (_pos && _pos.flow === 'wellness' && _pos.step > 1 && (Date.now() - (_pos.t || 0)) < 24 * 3600 * 1000) {
+      var _hadDraft = false;
+      try { _hadDraft = !!localStorage.getItem('clyr_intake_draft_wellness'); } catch (e) {}
+      if (window.clyrTrack) clyrTrack('intake_reload', { flow: 'wellness', priorStep: _pos.step, hadDraft: _hadDraft });
+    }
+  } catch (e) {}
+});
 
 // ── Brain of the patient: per-step server persist ──────────────────
 // Screening/meds/allergies/shipping used to be transmitted for the FIRST time
