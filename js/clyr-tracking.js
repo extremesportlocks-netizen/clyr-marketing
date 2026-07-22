@@ -7,8 +7,20 @@
   'use strict';
 
   var API = 'https://clyr-backend.onrender.com';
-  var vid = localStorage.getItem('clyr_vid');
-  if (!vid) { vid = crypto.randomUUID(); localStorage.setItem('clyr_vid', vid); }
+
+  // ── Storage-safe accessors (2026-07-22) ────────────────────
+  // Hardened privacy browsers THROW on any localStorage access — which used to
+  // kill this whole script at the vid line: no pixel, no events, no visitor id
+  // (the Stephen #659 class: a real buyer invisible to analytics). Falls back
+  // to in-memory storage so tracking still runs for the session; the server's
+  // email-keyed lead fallback stitches identity once they give an email.
+  var _mem = {};
+  function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return (k in _mem) ? _mem[k] : null; } }
+  function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) { _mem[k] = v; } }
+  function mkid() { try { return crypto.randomUUID(); } catch (e) { return 'v-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10); } }
+
+  var vid = lsGet('clyr_vid');
+  if (!vid) { vid = mkid(); lsSet('clyr_vid', vid); }
 
   // ── X (Twitter) pixel base ─────────────────────────────────
   // Loads the X universal tag site-wide and fires PageView. This is what builds
@@ -32,7 +44,7 @@
     var ref = document.referrer || '';
     var hasUtm = params.get('utm_source') || params.get('utm_content') || params.get('gclid') || params.get('fbclid') || params.get('twclid');
     var existing = null;
-    try { existing = JSON.parse(localStorage.getItem('clyr_attribution')); } catch (e) {}
+    try { existing = JSON.parse(lsGet('clyr_attribution')); } catch (e) {}
 
     // Derive a source from referrer when no explicit UTM is present.
     function deriveSource() {
@@ -78,7 +90,7 @@
         landing_page: window.location.pathname,
         captured_at: new Date().toISOString()
       };
-      try { localStorage.setItem('clyr_attribution', JSON.stringify(attribution)); } catch (e) {}
+      try { lsSet('clyr_attribution', JSON.stringify(attribution)); } catch (e) {}
     } else if (hasUtm && existing) {
       // Last-touch: if a NEW explicit campaign click arrives, record it separately
       // without clobbering first-touch. Useful for retargeting / email re-clicks.
@@ -87,7 +99,7 @@
         existing.last_utm_campaign = params.get('utm_campaign') || existing.last_utm_campaign;
         existing.last_utm_content = params.get('utm_content') || existing.last_utm_content;
         existing.last_touch_at = new Date().toISOString();
-        localStorage.setItem('clyr_attribution', JSON.stringify(existing));
+        lsSet('clyr_attribution', JSON.stringify(existing));
       } catch (e) {}
     }
   }
@@ -95,7 +107,7 @@
 
   // Helper the intake forms call to retrieve stored first-touch attribution.
   window.clyrAttribution = function() {
-    try { return JSON.parse(localStorage.getItem('clyr_attribution')) || {}; }
+    try { return JSON.parse(lsGet('clyr_attribution')) || {}; }
     catch (e) { return {}; }
   };
 
@@ -183,7 +195,7 @@
     if (_phReady && window.posthog) {
       window.posthog.identify(email, t);
     }
-    localStorage.setItem('clyr_email', email);
+    lsSet('clyr_email', email);
   };
 
   // ── Auto page view to internal DB ──────────────────────────
@@ -253,11 +265,11 @@
   function seenKey(code) { return 'clyr_promo_card_' + code; }
   function recentlySeen(code) {
     try {
-      var t = parseInt(localStorage.getItem(seenKey(code)) || '0', 10);
+      var t = parseInt(lsGet(seenKey(code)) || '0', 10);
       return t && (Date.now() - t) < 24 * 60 * 60 * 1000; // 24h cap
     } catch (e) { return false; }
   }
-  function markSeen(code) { try { localStorage.setItem(seenKey(code), String(Date.now())); } catch (e) {} }
+  function markSeen(code) { try { lsSet(seenKey(code), String(Date.now())); } catch (e) {} }
   function track(ev, props) { try { if (window.clyrTrack) window.clyrTrack(ev, props || {}); } catch (e) {} }
 
   function discountLabel(p) {

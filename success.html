@@ -153,8 +153,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <footer class="footer">&copy; 2026 CLYR Health. All rights reserved. <a href="/">clyr.health</a></footer>
 <script>
 (function(){
-  var vid = localStorage.getItem('clyr_vid');
-  if (!vid) { vid = crypto.randomUUID(); localStorage.setItem('clyr_vid', vid); }
+  // storage-safe (2026-07-22): privacy browsers throw on localStorage — never
+  // let the conversion page's tracking die over it.
+  var vid = null;
+  try { vid = localStorage.getItem('clyr_vid'); } catch (e) {}
+  if (!vid) {
+    try { vid = crypto.randomUUID(); } catch (e) { vid = 'v-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10); }
+    try { localStorage.setItem('clyr_vid', vid); } catch (e) {}
+  }
   // Plan C / C2: checkout completed — clear BOTH intake drafts + the position
   // marker so no stale PII lingers client-side (hosted-checkout returns land
   // here too; the server webhook cannot clear localStorage).
