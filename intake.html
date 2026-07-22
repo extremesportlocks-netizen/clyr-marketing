@@ -1414,6 +1414,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </button>
   </div>
 </div>
+<script src="/js/intake-draft.js"></script>
 <script>
   // STATE
   let currentStep = 1;
@@ -1645,6 +1646,18 @@ function goToStep(step) {
     if(step===1&&!window._pvFired&&window.posthog){window._pvFired=true;posthog.capture('product_viewed',{source:'intake',treatment:formData.treatment,plan:formData.plan});}
     // Plan C / P1: non-PII position marker (flow + step only) for reload measurement.
     try { localStorage.setItem('clyr_intake_pos', JSON.stringify({ flow: 'glp', step: step, t: Date.now() })); } catch (e) {}
+    // Plan C / C2: persist the NON-CLINICAL draft (contact + shipping read from
+    // the DOM — GLP keeps them there until submit; clinical NEVER persisted).
+    try {
+      if (window.ClyrDraft) {
+        var _gv = function (id) { var e = document.getElementById(id); return e ? String(e.value || '').trim() : ''; };
+        ClyrDraft.save('glp', {
+          product: formData.treatment, plan: formData.plan, step: step,
+          details: { firstName: _gv('firstName'), lastName: _gv('lastName'), email: _gv('email'), phone: _gv('phone'), sex: _gv('sex'), dobMonth: _gv('dobMonth'), dobDay: _gv('dobDay'), dobYear: _gv('dobYear') },
+          shipping: { address: _gv('address'), apt: _gv('apt'), city: _gv('city'), state: _gv('state'), zip: _gv('zip') }
+        });
+      }
+    } catch (e) {}
   }
   // Plan C / P1: reload instrumentation — one event on boot if a prior deep-step
   // marker exists (reload/back-return wiped the in-memory form; sizes C2).
@@ -1659,6 +1672,40 @@ function goToStep(step) {
       }
     } catch (e) {}
   });
+
+  // ── Plan C / C2: restore the NON-CLINICAL GLP draft (fail-open) ───────────
+  // Clinical steps (2 screening / 4 history / 5 preferences) are NEVER stored,
+  // so the only safe deep-restore target is SCREENING (step 2) — and only when
+  // the URL-preselected treatment+plan match the draft. Otherwise stay on
+  // step 1 with contact + shipping prefilled (still kills the re-typing).
+  // (Contract Sec 4: "the safe restore rule is to land them at screening".)
+  function restoreGlpDraft() {
+    try {
+      if (!window.ClyrDraft) return;
+      var d = ClyrDraft.load('glp');
+      if (!d || !d.details || !d.details.email) return;
+      var PAINT = {
+        firstName: d.details.firstName, lastName: d.details.lastName, email: d.details.email,
+        phone: d.details.phone, sex: d.details.sex, dobMonth: d.details.dobMonth,
+        dobDay: d.details.dobDay, dobYear: d.details.dobYear,
+        address: d.shipping && d.shipping.address, apt: d.shipping && d.shipping.apt,
+        city: d.shipping && d.shipping.city, state: d.shipping && d.shipping.state,
+        zip: d.shipping && d.shipping.zip
+      };
+      Object.keys(PAINT).forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el && PAINT[id]) el.value = PAINT[id];
+      });
+      var step = Number(d.step) || 1;
+      var target = 1;
+      if (step > 1 && formData.treatment && formData.plan && d.product && formData.treatment === d.product) target = 2;
+      if (target > 1) goToStep(target);
+      window.addEventListener('load', function () {
+        try { if (window.clyrTrack) clyrTrack('intake_resumed', { flow: 'glp', priorStep: step, target: target, hadDraft: true }); } catch (e) {}
+      });
+    } catch (e) { /* fail-open */ }
+  }
+  document.addEventListener('DOMContentLoaded', function () { try { restoreGlpDraft(); } catch (e) {} });
 
   // ── Brain of the patient: per-step server persist ──────────────────
   // Historically every clinical answer (screening, medical history, meds,
@@ -2343,6 +2390,9 @@ function goToStep(step) {
           firstName: payload.firstName, lastName: payload.lastName, checkoutMode: 'hosted'
         }, API + '/api/checkout');
         console.log('[CLYR] Stripe checkout mounted successfully');
+        // Plan C / C2: mark the embed open (refresh here must never remount a
+        // dead clientSecret — restore lands pre-payment instead).
+        try { if (window.ClyrDraft) ClyrDraft.setPaymentOpen('glp', true); } catch (e) {}
       }).catch(function(err) {
         console.error('[CLYR Checkout Error]', err);
         showCheckoutStatus('');
