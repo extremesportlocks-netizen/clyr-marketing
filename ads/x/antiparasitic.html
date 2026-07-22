@@ -369,7 +369,7 @@ body {
     <li class="proof-item"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#10B981"/><path d="M7 12.5l3 3 7-7" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Ships to all 50 states</li>
   </ul>
 
-  <div class="cards" role="radiogroup" aria-label="Choose your protocol">
+  <div class="cards" id="protocols" role="radiogroup" aria-label="Choose your protocol">
     <div class="card selected" data-product="ivermectin" aria-pressed="true">
       <div class="card-visual"><img src="/img/card/ivermectin.png" alt="" width="40" height="44"></div>
       <h2>Ivermectin protocol</h2>
@@ -407,7 +407,7 @@ body {
     </div>
   </div>
 
-  <a href="/intake-wellness.html?product=ivermectin-mebendazole" class="hero-cta" id="hero-cta">
+  <a href="#protocols" class="hero-cta" id="hero-cta">
     Start your consultation
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
   </a>
@@ -446,7 +446,7 @@ body {
   </div>
 
   <div class="mid-cta">
-    <a href="/intake-wellness.html?product=ivermectin-mebendazole" class="hero-cta" id="mid-cta" style="margin-bottom:0">
+    <a href="#protocols" class="hero-cta" id="mid-cta" style="margin-bottom:0">
       Check your eligibility
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
@@ -493,7 +493,7 @@ body {
 
 <div class="sticky-cta">
   <div class="sticky-cta-inner">
-    <a href="/intake-wellness.html?product=ivermectin-mebendazole" class="cta" id="cta">
+    <a href="#protocols" class="cta" id="cta">
       Start your consultation
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
@@ -536,8 +536,10 @@ body {
     });
     ctas.forEach(function (el) {
       var p = el.getAttribute('data-cta-product');
-      if (!p) el.href = intakeUrl(selected, selectedPlan);
-      else el.href = intakeUrl(p, el.getAttribute('data-cta-plan') || '');
+      // Generic bars (hero/mid/sticky) route to the #protocols picker — never a
+      // preselected product (founder 7/22: pick protocol first, then plans).
+      if (!p) return;
+      el.href = intakeUrl(p, el.getAttribute('data-cta-plan') || '');
     });
   }
 
@@ -557,7 +559,7 @@ body {
 
   ctas.forEach(function (el) {
     el.addEventListener('click', function () {
-      var product = el.getAttribute('data-cta-product') || selected;
+      var product = el.getAttribute('data-cta-product') || 'chooser';
       track('AdLPCTAClick', { product: product, location: el.id || 'card-cta' });
       if (window.clyrTrack) window.clyrTrack('ProductCTAClick', { product: product, location: 'x-adlp-' + (el.id || 'card') });
     });
@@ -589,7 +591,7 @@ try {
   var stickyEl = document.querySelector(".sticky-cta");
   // In-flow CTAs are .hero-cta (x2) and .mid-cta — the page's only .cta IS the
   // sticky's own link, so observing just ".cta" attached to nothing (sticky never hid).
-  var flowCtas = [].slice.call(document.querySelectorAll(".cta, .hero-cta, .mid-cta")).filter(function (el) { return !stickyEl.contains(el); });
+  var flowCtas = [].slice.call(document.querySelectorAll(".cta, .hero-cta, .mid-cta, #protocols")).filter(function (el) { return !stickyEl.contains(el); });
   if (stickyEl && flowCtas.length && "IntersectionObserver" in window) {
     var visibleCount = 0;
     var io = new IntersectionObserver(function (entries) {
