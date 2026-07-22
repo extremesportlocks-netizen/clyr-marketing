@@ -204,7 +204,10 @@
         utm_term: _ap.utm_term || null,
         gclid: _ap.gclid || null,
         fbclid: _ap.fbclid || null,
-        twclid: _ap.twclid || null
+        twclid: _ap.twclid || null,
+        // Plan C / P1: page_view rows landed with NULL metadata (no URL), making
+        // intake reload/restart rates unmeasurable (funnel blind spot, Sec 11).
+        metadata: { page: window.location.pathname, url: window.location.href }
       })
     }).catch(function() {});
   } catch(e) {}
