@@ -97,8 +97,10 @@ body {
 }
 .card-badge {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(15,157,107,0.35);
   background: var(--green);
   color: var(--white);
   font-size: 9.5px;
@@ -491,7 +493,7 @@ body {
 
 <div class="sticky-cta">
   <div class="sticky-cta-inner">
-    <a href="/intake-wellness.html?product=ivermectin" class="cta" id="cta">
+    <a href="/intake-wellness.html?product=ivermectin-mebendazole" class="cta" id="cta">
       Start your consultation
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
@@ -578,6 +580,26 @@ body {
   applyProduct(preset, params.get('plan') || '');
   track('AdLPView', { product: preset });
 })();
+</script>
+<script>
+// Hide the sticky CTA whenever an in-flow CTA is on screen (2026-07-22, founder:
+// two stacked identical buttons looked broken - and previously went to DIFFERENT
+// products). Fail-open: no IntersectionObserver -> sticky stays.
+try {
+  var stickyEl = document.querySelector(".sticky-cta");
+  var flowCtas = [].slice.call(document.querySelectorAll(".cta")).filter(function (el) { return !stickyEl.contains(el); });
+  if (stickyEl && flowCtas.length && "IntersectionObserver" in window) {
+    var visibleCount = 0;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { visibleCount += en.isIntersecting ? 1 : -1; });
+      if (visibleCount < 0) visibleCount = 0;
+      stickyEl.style.opacity = visibleCount > 0 ? "0" : "1";
+      stickyEl.style.pointerEvents = visibleCount > 0 ? "none" : "auto";
+      stickyEl.style.transition = "opacity 0.25s";
+    }, { threshold: 0.4 });
+    flowCtas.forEach(function (el) { io.observe(el); });
+  }
+} catch (e) {}
 </script>
 </body>
 </html>
