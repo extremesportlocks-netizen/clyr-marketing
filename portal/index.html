@@ -1225,6 +1225,37 @@ function resolveCatalogThumb(p){
 
 // Render a single treatment card. Used both on the home stack and the
 // Treatments tab — the layout is identical so we don't fork the HTML.
+// Paid line: single order keeps the classic "$X paid"; a repeat buyer sees
+// "N orders · $total paid" so their second purchase is visibly acknowledged
+// (Tex #237 paid twice and saw one "$270 paid" — founder-caught 2026-07-22).
+function renderPaidMeta(tx){
+  const orders=Array.isArray(tx.orders)?tx.orders.filter(o=>o&&o.status==='paid'||o&&['prescribed','fulfilled','shipped','delivered'].includes(o.status)):[];
+  if(orders.length>1){
+    const total=orders.reduce((s,o)=>s+(o.amount||0),0);
+    return ` · ${orders.length} orders · ${$fmtMoney(total)} paid`;
+  }
+  return tx.amount!=null?` · ${$fmtMoney(tx.amount)} paid`:'';
+}
+
+// Order history: one compact line per order, newest first. Only renders when
+// the treatment has 2+ orders (single-order patients keep the clean card).
+function renderOrderHistoryForTreatment(tx){
+  const orders=Array.isArray(tx.orders)?tx.orders:[];
+  if(orders.length<2)return '';
+  const rows=orders.map(o=>{
+    const st=o.pharmacyStatus==='delivered'?'Delivered':o.pharmacyStatus==='shipped'?'Shipped':o.pharmacyStatus?'Processing':({paid:'Processing',prescribed:'Prescribed',fulfilled:'Processing',shipped:'Shipped',delivered:'Delivered'})[o.status]||'Processing';
+    const planTxt=({monthly:'Monthly','2month':'2-month','3month':'3-month','6month':'6-month',onetime:'One-time'})[o.plan]||o.plan||'';
+    return `<div style="display:flex;justify-content:space-between;gap:10px;font-size:12.5px;color:var(--gray-600);padding:4px 0">
+      <span>${fmtDate(o.createdAt)}${planTxt?' · '+escapeHtml(planTxt):''}</span>
+      <span style="white-space:nowrap">${$fmtMoney(o.amount)} · <span style="color:${st==='Delivered'?'var(--teal)':'var(--gray-500)'};font-weight:600">${st}</span></span>
+    </div>`;
+  }).join('');
+  return `<div style="margin-top:12px;padding-top:10px;border-top:1px dashed var(--gray-100)">
+    <div style="font-size:11px;font-weight:700;letter-spacing:0.06em;color:var(--gray-400);text-transform:uppercase;margin-bottom:4px">Order history (${orders.length})</div>
+    ${rows}
+  </div>`;
+}
+
 function renderTreatmentCardHtml(tx){
   const planLabel=({monthly:'Monthly','3month':'3 months','6month':'6 months','12month':'12 months'})[tx.plan]||tx.plan||'';
   const img=resolveProductThumb(tx);
@@ -1236,7 +1267,7 @@ function renderTreatmentCardHtml(tx){
         <div class="treatment-card-img"><img src="${img}" alt="" onerror="this.style.display='none'"></div>
         <div class="treatment-card-info">
           <div class="treatment-card-name">${escapeHtml(tx.productDisplay||tx.product||'Treatment')}</div>
-          <div class="treatment-card-meta">${escapeHtml(planLabel)}${tx.amount!=null?` · ${$fmtMoney(tx.amount)} paid`:''} · ${escapeHtml(verticalLabel(tx.vertical||'wellness'))}</div>
+          <div class="treatment-card-meta">${escapeHtml(planLabel)}${renderPaidMeta(tx)} · ${escapeHtml(verticalLabel(tx.vertical||'wellness'))}</div>
           ${renderChipsForTreatment(tx)}
           ${cancelPending?`<div style="margin-top:6px;font-size:12px;color:var(--gray-500)">Ends ${fmtDate(tx.cancelAt)} \u00b7 <a href="#" onclick="event.preventDefault();resumeTreatment('${productKey}')" style="color:var(--teal);font-weight:600">Resume</a></div>`:''}
         </div>
@@ -1244,6 +1275,7 @@ function renderTreatmentCardHtml(tx){
       </div>
       <div class="treatment-card-body">
         ${renderRefillSummaryForTreatment(tx)}
+        ${renderOrderHistoryForTreatment(tx)}
       </div>
       <div style="border-top:1px solid var(--gray-100);padding-top:10px;margin-top:12px;display:flex;justify-content:flex-end">
         <button onclick="openTreatmentActions('${productKey}')" style="background:none;border:none;color:var(--gray-500);font-size:13px;font-weight:600;cursor:pointer;padding:4px 8px;border-radius:6px;display:inline-flex;align-items:center;gap:6px" onmouseover="this.style.background='var(--gray-50)'" onmouseout="this.style.background='none'">
