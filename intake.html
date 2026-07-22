@@ -1714,9 +1714,10 @@ function goToStep(step) {
   // the hardcoded numbers stand. Re-renders the visible plan cards on arrival.
   (function hydrateGlpPrices() {
     try {
-      fetch('https://clyr-backend.onrender.com/api/prices').then(function (r) { return r.json(); }).then(function (P) {
-        if (!P) return;
-        window._clyrPrices = P;
+      fetch('https://clyr-backend.onrender.com/api/prices').then(function (r) { return r.json(); }).then(function (P0) {
+        if (!P0) return;
+        window._clyrPrices = P0;
+        var P = P0.products || P0; // live shape: {generatedAt, products:{base:{plan:{amount}}}}
         var patched = false;
         Object.keys(planData || {}).forEach(function (treatment) {
           var feed = P[treatment]; if (!feed) return;

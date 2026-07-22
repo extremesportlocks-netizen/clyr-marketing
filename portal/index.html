@@ -1937,7 +1937,7 @@ function submitGlp1Refill(){
   // /api/prices (override-aware, the dev command center's lane) with the
   // hardcoded strings below as fail-open fallbacks. rp(product,plan,fallback$)
   // returns the live total dollars; rpm = live per-month for a given term.
-  const _P=(window._clyrPrices||{});
+  const _P=((window._clyrPrices&&(window._clyrPrices.products||window._clyrPrices))||{});
   const rp=(prod,plan,fb)=>{try{const v=_P[prod]&&_P[prod][plan];return v&&v.amount!=null?v.amount:fb;}catch(e){return fb;}};
   const rpm=(prod,plan,months,fb)=>{const t=rp(prod,plan,null);return t!=null?Math.round(t/months):fb;};
   const card=(plan,name,badge,caps,price,suffix,hl)=>`

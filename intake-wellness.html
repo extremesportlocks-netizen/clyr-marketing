@@ -877,9 +877,10 @@ function init() {
 // propagates to these plan cards + review totals with NO page edit. Fail-open.
 function hydrateWellnessPrices() {
   try {
-    fetch(API + '/api/prices').then(function (r) { return r.json(); }).then(function (P) {
-      if (!P) return;
-      window._clyrPrices = P;
+    fetch(API + '/api/prices').then(function (r) { return r.json(); }).then(function (P0) {
+      if (!P0) return;
+      window._clyrPrices = P0;
+      var P = P0.products || P0; // live shape: {generatedAt, products:{base:{plan:{amount}}}}
       var patched = false;
       Object.keys(CATALOG || {}).forEach(function (key) {
         var feed = P[key]; if (!feed) return;
