@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Your refill · CLYR Health</title>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--teal:#00B4C5;--teal-dark:#009BA8;--dark:#1a1a2e;--gray-50:#f8fafb;--gray-100:#f1f4f7;--gray-200:#e5e9ee;--gray-400:#9ca3af;--gray-500:#6b7280;--gray-600:#4b5563;--green:#0F9D6B}
+body{font-family:'DM Sans',sans-serif;background:linear-gradient(165deg,#eef6f0 0%,#f8fafb 60%);color:var(--dark);min-height:100vh;min-height:100svh}
+.page{max-width:480px;margin:0 auto;padding:32px 20px 48px}
+.logo{text-align:center;font-size:26px;font-weight:800;letter-spacing:-0.5px;margin-bottom:28px}
+.logo span{color:var(--teal)}
+.card{background:#fff;border:1px solid rgba(0,0,0,0.05);border-radius:20px;padding:30px 26px;box-shadow:0 8px 40px rgba(0,0,0,0.05);text-align:center}
+h1{font-family:'Instrument Serif',serif;font-weight:400;font-size:27px;line-height:1.25;margin-bottom:8px}
+h1 em{font-style:italic;color:var(--teal)}
+.sub{font-size:14.5px;color:var(--gray-500);line-height:1.6;margin-bottom:20px}
+.price-row{display:flex;align-items:baseline;justify-content:center;gap:8px;margin-bottom:6px}
+.price{font-size:42px;font-weight:800;letter-spacing:-1px}
+.price-was{font-size:18px;color:var(--gray-400);text-decoration:line-through;font-weight:600}
+.qty{font-size:13px;font-weight:600;color:var(--gray-500);margin-bottom:20px}
+.discount-chip{display:inline-block;background:rgba(15,157,107,0.1);border:1px solid rgba(15,157,107,0.25);color:var(--green);font-size:12.5px;font-weight:700;border-radius:100px;padding:6px 14px;margin-bottom:18px}
+.cta{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:16px 24px;background:linear-gradient(135deg,#0ea5a0 0%,var(--teal) 100%);color:#fff;font-size:17px;font-weight:700;border:none;border-radius:12px;cursor:pointer;box-shadow:0 10px 28px rgba(0,168,158,0.35);font-family:inherit}
+.cta:disabled{opacity:0.6;cursor:wait}
+.reassure{margin-top:14px;font-size:12px;color:var(--gray-400);line-height:1.7}
+.shelf{margin-top:28px}
+.shelf-title{font-size:11px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray-400);text-align:center;margin-bottom:12px}
+.shelf-cards{display:flex;flex-direction:column;gap:10px}
+.shelf-card{display:flex;justify-content:space-between;align-items:center;gap:12px;background:#fff;border:1px solid var(--gray-200);border-radius:14px;padding:14px 16px;text-decoration:none;color:inherit}
+.shelf-card:active{border-color:var(--teal)}
+.shelf-name{font-size:14.5px;font-weight:700}
+.shelf-sub{font-size:12px;color:var(--gray-500)}
+.shelf-price{font-size:15px;font-weight:800;color:var(--teal);white-space:nowrap}
+.err{background:#fff;border:1px solid var(--gray-200);border-radius:16px;padding:28px 22px;text-align:center;font-size:14.5px;color:var(--gray-600);line-height:1.6}
+.err a{color:var(--teal);font-weight:700}
+.legal{margin-top:26px;text-align:center;font-size:11px;color:var(--gray-400);line-height:1.7}
+.legal a{color:var(--gray-500)}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="logo">CLY<span>R</span></div>
+  <div id="app"><div class="err">Loading your refill…</div></div>
+  <div class="legal">Compounded products not FDA-approved. Prescription required when clinically appropriate.<br>
+    <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="mailto:contact@clyr.health">contact@clyr.health</a></div>
+</div>
+<script>
+'use strict';
+var API = 'https://clyr-backend.onrender.com';
+var qs = new URLSearchParams(location.search);
+var T = qs.get('t'), P = qs.get('p');
+
+// Curated cross-sell shelf per product family (prices hydrate from /api/prices).
+var SHELF = {
+  nad:          [['sermorelin','Sermorelin','Growth-hormone peptide'],['glutathione','Glutathione','Master antioxidant']],
+  sermorelin:   [['nad','NAD+','Cellular energy'],['glutathione','Glutathione','Master antioxidant']],
+  glutathione:  [['nad','NAD+','Cellular energy'],['micc','MICC + B12','Metabolism support']],
+  micc:         [['lipo_mino','Lipo-Mino','Fat metabolism'],['nad','NAD+','Cellular energy']],
+  lipo_mino:    [['micc','MICC + B12','Metabolism support'],['nad','NAD+','Cellular energy']],
+  tadalafil:    [['sild_tadal_oxy','Sild/Tadal/Oxy ODT','Dual PDE5 + oxytocin'],['sildenafil_gummy','Sildenafil Gummy','On-demand']],
+  sildenafil_gummy:[['tadalafil','Tadalafil Daily','Daily readiness'],['sild_tadal_oxy','Sild/Tadal/Oxy ODT','Dual PDE5 + oxytocin']],
+  pt141:        [['sild_tadal_oxy','Sild/Tadal/Oxy ODT','Dual PDE5 + oxytocin'],['tadalafil','Tadalafil Daily','Daily readiness']],
+  sild_tadal_oxy:[['pt141','PT-141 + Oxytocin','Desire support'],['tadalafil','Tadalafil Daily','Daily readiness']],
+  ivermectin:   [['ivermectin_mebendazole','Ivermectin + Mebendazole','Dual-mechanism combo'],['ivermectin_30mg','Ivermectin 30mg','Higher strength']],
+  ivermectin_30mg:[['ivermectin_mebendazole','Ivermectin + Mebendazole','Dual-mechanism combo'],['glutathione','Glutathione','Master antioxidant']],
+  ivermectin_mebendazole:[['ivermectin_30mg','Ivermectin 30mg','Higher strength'],['glutathione','Glutathione','Master antioxidant']],
+  ghk_cu_cream: [['glutathione','Glutathione','Master antioxidant'],['nad','NAD+','Cellular energy']],
+  tadalafil_5mg:[['sild_tadal_oxy','Sild/Tadal/Oxy ODT','Dual PDE5 + oxytocin'],['pt141','PT-141 + Oxytocin','Desire support']]
+};
+
+function el(id){return document.getElementById(id);}
+function esc(s){var d=document.createElement('div');d.textContent=s==null?'':s;return d.innerHTML;}
+
+function renderError(msg){
+  el('app').innerHTML='<div class="err">'+msg+'</div>';
+}
+
+function shelfPrice(prices, key){
+  try{
+    var P2=prices.products||prices; var f=P2[key]; if(!f) return '';
+    var v=f.monthly||f.onetime||f['3month']||f['2month']||Object.values(f)[0];
+    return v&&v.amount!=null?('from $'+v.amount):'';
+  }catch(e){return '';}
+}
+
+function boot(){
+  if(!T){ renderError('This link is missing its key. Check the email link, or head to <a href="/portal/">your portal</a>.'); return; }
+  Promise.all([
+    fetch(API+'/api/refill/info?t='+encodeURIComponent(T)+'&p='+encodeURIComponent(P||'')).then(function(r){return r.json().then(function(j){return {code:r.status, j:j};});}),
+    fetch(API+'/api/prices').then(function(r){return r.json();}).catch(function(){return null;})
+  ]).then(function(res){
+    var info=res[0], prices=res[1];
+    if(info.code===401){ renderError('This refill link has expired (links last 7 days). Log in to <a href="/portal/">your portal</a> to reorder, or reply to your email and we’ll send a fresh one.'); return; }
+    if(info.code!==200){ renderError('We couldn’t load your refill. Head to <a href="/portal/">your portal</a> or email <a href="mailto:contact@clyr.health">contact@clyr.health</a>.'); return; }
+    var d=info.j;
+    var net=d.discountCents?Math.max(0,d.priceCents-d.discountCents):d.priceCents;
+    var isFill=d.mode==='refill_fill';
+    var html='<div class="card">'
+      +'<h1>'+(d.firstName?esc(d.firstName)+', your':'Your')+' <em>'+esc(d.displayName)+'</em> '+(isFill?'refill':'reorder')+' is ready.</h1>'
+      +'<p class="sub">'+(isFill
+          ? 'Your provider already authorized this refill'+(d.refillsRemaining>1?' ('+d.refillsRemaining+' left on your prescription)':'')+'. One tap and the pharmacy takes it from here — no forms, no questionnaire.'
+          : 'Everything’s on file — one tap, secure checkout, shipped from our licensed U.S. pharmacy.')+'</p>'
+      +(d.discountCents?'<div class="discount-chip">$'+Math.round(d.discountCents/100)+' off applied — no code needed</div>':'')
+      +'<div class="price-row">'+(d.discountCents?'<span class="price-was">$'+Math.round(d.priceCents/100)+'</span>':'')+'<span class="price">$'+Math.round(net/100)+'</span></div>'
+      +'<div class="qty">'+esc(d.quantityLabel||'')+(d.rail==='direct-rx'?' · shipped at once · repurchase anytime':'')+'</div>'
+      +'<button class="cta" id="go">Refill now →</button>'
+      +'<div class="reassure">Secure Stripe checkout · discreet packaging · tracked 2-3 day shipping</div>'
+      +'</div>';
+    var shelf=SHELF[d.product]||[];
+    if(shelf.length){
+      html+='<div class="shelf"><div class="shelf-title">Patients also add</div><div class="shelf-cards">';
+      shelf.forEach(function(s){
+        html+='<a class="shelf-card" href="/intake-wellness.html?product='+encodeURIComponent(s[0])+'&utm_source=refill-onetap&utm_medium=email&utm_campaign=cross-sell">'
+          +'<span><span class="shelf-name">'+esc(s[1])+'</span><br><span class="shelf-sub">'+esc(s[2])+'</span></span>'
+          +'<span class="shelf-price">'+shelfPrice(prices,s[0])+'</span></a>';
+      });
+      html+='</div></div>';
+    }
+    el('app').innerHTML=html;
+    try{ if(window.clyrTrack) clyrTrack('refill_onetap_view',{product:d.product,mode:d.mode}); }catch(e){}
+    el('go').onclick=function(){
+      var b=el('go'); b.disabled=true; b.textContent='Opening secure checkout…';
+      try{ if(window.clyrTrack) clyrTrack('refill_onetap_cta',{product:d.product,mode:d.mode}); }catch(e){}
+      fetch(API+'/api/refill/checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({t:T,p:d.product})})
+        .then(function(r){return r.json();})
+        .then(function(j){ if(j.url){ location.href=j.url; } else { b.disabled=false; b.textContent='Refill now →'; alert(j.error==='link_expired'?'This link expired — reply to your email for a fresh one.':'Could not open checkout. Please try again or email contact@clyr.health.'); } })
+        .catch(function(){ b.disabled=false; b.textContent='Refill now →'; alert('Connection issue — please try again.'); });
+    };
+  }).catch(function(){ renderError('Something went wrong loading your refill. Head to <a href="/portal/">your portal</a>.'); });
+}
+boot();
+</script>
+<script src="/js/clyr-tracking.js"></script>
+</body>
+</html>
