@@ -868,6 +868,35 @@ function init() {
   // Async, fills fields if patient is signed into portal. Non-blocking.
   prefillFromPortal();
   restoreWellnessDraft();
+  hydrateWellnessPrices();
+}
+
+// ── Dev-portal price connectivity (2026-07-22, founder) ─────────────────────
+// CATALOG priceCents above are hardcoded fallbacks; live prices come from
+// /api/prices (override-aware — dev command center lane). A price change there
+// propagates to these plan cards + review totals with NO page edit. Fail-open.
+function hydrateWellnessPrices() {
+  try {
+    fetch(API + '/api/prices').then(function (r) { return r.json(); }).then(function (P) {
+      if (!P) return;
+      window._clyrPrices = P;
+      var patched = false;
+      Object.keys(CATALOG || {}).forEach(function (key) {
+        var feed = P[key]; if (!feed) return;
+        var prod = CATALOG[key];
+        (prod.plans || []).forEach(function (pl) {
+          var v = feed[pl.key];
+          if (v && v.amount != null && pl.priceCents !== v.amount * 100) { pl.priceCents = v.amount * 100; patched = true; }
+        });
+        var def = (prod.plans && prod.plans[0]) ? prod.plans[0].priceCents : null;
+        if (def != null) prod.priceCents = def;
+      });
+      if (patched) {
+        try { if (state.productKey && CATALOG[state.productKey]) renderProduct(); } catch (e) {}
+        try { if (typeof currentStep !== 'undefined' && currentStep === 5) populateReview(); } catch (e) {}
+      }
+    }).catch(function () {});
+  } catch (e) {}
 }
 
 // ── Plan C / C2: restore the NON-CLINICAL draft (fail-open) ────────────────

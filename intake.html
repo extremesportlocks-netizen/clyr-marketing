@@ -1707,6 +1707,36 @@ function goToStep(step) {
   }
   document.addEventListener('DOMContentLoaded', function () { try { restoreGlpDraft(); } catch (e) {} });
 
+  // ── Dev-portal price connectivity (2026-07-22, founder) ──────────────────
+  // planData/price strings above are hardcoded fallbacks; live prices come from
+  // /api/prices (override-aware — the dev command center's lane), so a price
+  // change there propagates here with NO page edit. Fail-open: fetch fails →
+  // the hardcoded numbers stand. Re-renders the visible plan cards on arrival.
+  (function hydrateGlpPrices() {
+    try {
+      fetch('https://clyr-backend.onrender.com/api/prices').then(function (r) { return r.json(); }).then(function (P) {
+        if (!P) return;
+        window._clyrPrices = P;
+        var patched = false;
+        Object.keys(planData || {}).forEach(function (treatment) {
+          var feed = P[treatment]; if (!feed) return;
+          (planData[treatment] || []).forEach(function (pl) {
+            var v = feed[pl.type];
+            if (v && v.amount != null && pl.price) {
+              var live = '$' + v.amount;
+              if (pl.price.replace(/[^$0-9.]/g, '') !== live) patched = true;
+              pl.price = pl.price.replace(/\$[0-9,.]+/, live);
+              if (pl.total) pl.total = pl.total.replace(/\$[0-9,.]+/, live);
+            }
+          });
+        });
+        if (patched && typeof showPlanCards === 'function' && formData && formData.treatment && currentStep === 1) {
+          try { showPlanCards(formData.treatment); } catch (e) {}
+        }
+      }).catch(function () {});
+    } catch (e) {}
+  })();
+
   // ── Brain of the patient: per-step server persist ──────────────────
   // Historically every clinical answer (screening, medical history, meds,
   // allergies, consent, doctor message) lived ONLY in the browser until the
