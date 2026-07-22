@@ -155,6 +155,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 (function(){
   var vid = localStorage.getItem('clyr_vid');
   if (!vid) { vid = crypto.randomUUID(); localStorage.setItem('clyr_vid', vid); }
+  // Plan C / C2: checkout completed — clear BOTH intake drafts + the position
+  // marker so no stale PII lingers client-side (hosted-checkout returns land
+  // here too; the server webhook cannot clear localStorage).
+  try { localStorage.removeItem('clyr_intake_draft_glp'); } catch (e) {}
+  try { localStorage.removeItem('clyr_intake_draft_wellness'); } catch (e) {}
+  try { localStorage.removeItem('clyr_intake_pos'); } catch (e) {}
   var sid = new URLSearchParams(window.location.search).get('session_id');
 
   // Hide content until we verify payment status
