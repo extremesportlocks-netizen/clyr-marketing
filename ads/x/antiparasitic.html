@@ -12,7 +12,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="icon" href="/favicon.ico">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Antiparasitic Protocols · CLYR Health</title>
-<meta name="description" content="Doctor-prescribed ivermectin protocols from licensed U.S. providers. From $139.">
+<meta name="description" content="Doctor-prescribed ivermectin protocols from licensed U.S. providers. From $99.">
 <meta name="robots" content="noindex,nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -81,6 +81,7 @@ body {
   margin-bottom: 16px;
 }
 .card {
+  position: relative;
   background: var(--white);
   border: 2px solid rgba(0, 180, 197, 0.35);
   border-radius: 16px;
@@ -94,6 +95,20 @@ body {
   color: inherit;
   width: 100%;
 }
+.card-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--green);
+  color: var(--white);
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 100px;
+}
+.card .caps { font-size: 11.5px; font-weight: 600; color: var(--gray-500); margin-bottom: 4px; }
 .card.selected {
   border-color: var(--teal);
   box-shadow: 0 8px 28px rgba(0, 180, 197, 0.18);
@@ -351,13 +366,15 @@ body {
     <div class="card selected" data-product="ivermectin" aria-pressed="true">
       <div class="card-visual"><img src="/img/card/ivermectin.png" alt="" width="40" height="44"></div>
       <h2>Ivermectin protocol</h2>
-      <p class="price">from $139</p>
+      <p class="caps">30 caps</p>
+      <p class="price">from <span data-clyr-price="ivermectin:onetime">$99</span></p>
       <a href="/intake-wellness.html?product=ivermectin" class="card-cta" data-cta-product="ivermectin">Start consultation</a>
     </div>
     <div class="card" data-product="ivermectin_30mg" aria-pressed="false">
       <div class="card-visual"><img src="/img/card/ivermectin.png" alt="" width="40" height="44"></div>
       <h2>Ivermectin 30mg</h2>
-      <p class="price">from $139</p>
+      <p class="caps">30 caps &middot; higher strength</p>
+      <p class="price">from <span data-clyr-price="ivermectin_30mg:onetime">$139</span></p>
       <a href="/intake-wellness.html?product=ivermectin_30mg" class="card-cta" data-cta-product="ivermectin_30mg">Start consultation</a>
     </div>
     <div class="card" data-product="ivermectin-mebendazole" aria-pressed="false">
@@ -366,8 +383,20 @@ body {
         <img src="/img/card/ivermectin.png" alt="" width="36" height="40">
       </div>
       <h2>Combo protocol</h2>
-      <p class="price">from $169</p>
+      <p class="caps">30 caps &middot; broader coverage</p>
+      <p class="price">from <span data-clyr-price="ivermectin_mebendazole:onetime">$139</span></p>
       <a href="/intake-wellness.html?product=ivermectin-mebendazole" class="card-cta" data-cta-product="ivermectin-mebendazole">Start consultation</a>
+    </div>
+    <div class="card" data-product="ivermectin-mebendazole" data-plan="3month" aria-pressed="false">
+      <span class="card-badge">Best value</span>
+      <div class="card-visual combo">
+        <img src="/img/card/mebendazole.png" alt="" width="36" height="40">
+        <img src="/img/card/ivermectin.png" alt="" width="36" height="40">
+      </div>
+      <h2>Combo 90 Caps</h2>
+      <p class="caps">90 caps</p>
+      <p class="price"><span data-clyr-price="ivermectin_mebendazole:3month">$379</span></p>
+      <a href="/intake-wellness.html?product=ivermectin-mebendazole&amp;plan=3month" class="card-cta" data-cta-product="ivermectin-mebendazole" data-cta-plan="3month">Start consultation</a>
     </div>
   </div>
 
@@ -396,14 +425,15 @@ body {
         <tr><th>Plan</th><th>Ivermectin</th><th>Ivermectin 30mg</th><th class="lead">Combo</th></tr>
       </thead>
       <tbody>
-        <tr><td>Monthly</td><td class="val">$139</td><td class="val">$169</td><td class="val lead">$169</td></tr>
-        <tr><td>3-month prepay</td><td class="val">$259</td><td class="val">$379</td><td class="val lead">$379</td></tr>
-        <tr><td>You save</td><td class="save">$158</td><td class="save">$128</td><td class="save lead">$128</td></tr>
+        <tr><td>30 Caps</td><td class="val"><span data-clyr-price="ivermectin:onetime">$99</span></td><td class="val"><span data-clyr-price="ivermectin_30mg:onetime">$139</span></td><td class="val lead"><span data-clyr-price="ivermectin_mebendazole:onetime">$139</span></td></tr>
+        <tr><td>60 Caps</td><td class="val"><span data-clyr-price="ivermectin:2month">$179</span></td><td class="val"><span data-clyr-price="ivermectin_30mg:2month">$259</span></td><td class="val lead"><span data-clyr-price="ivermectin_mebendazole:2month">$259</span></td></tr>
+        <tr><td>90 Caps</td><td class="val"><span data-clyr-price="ivermectin:3month">$259</span></td><td class="val"><span data-clyr-price="ivermectin_30mg:3month">$379</span></td><td class="val lead"><span data-clyr-price="ivermectin_mebendazole:3month">$379</span></td></tr>
+        <tr><td>You save (90 caps)</td><td class="save">$38</td><td class="save">$38</td><td class="save lead">$38</td></tr>
         <tr><td>Medications</td><td>Ivermectin</td><td>Ivermectin</td><td class="lead">Ivermectin + Mebendazole</td></tr>
         <tr><td>Dosing</td><td>18 mg capsules</td><td>30 mg capsules</td><td class="lead">25 mg / 250 mg</td></tr>
         <tr><td>Coverage</td><td>Single mechanism</td><td>Single mechanism</td><td class="lead">Dual mechanism</td></tr>
         <tr><td>Shipping</td><td>Discreet 2-day</td><td>Discreet 2-day</td><td class="lead">Discreet 2-day</td></tr>
-        <tr><td>Commitment</td><td>Cancel anytime</td><td>Cancel anytime</td><td class="lead">Cancel anytime</td></tr>
+        <tr><td>Commitment</td><td>One-time &mdash; no auto-renew</td><td>One-time &mdash; no auto-renew</td><td class="lead">One-time &mdash; no auto-renew</td></tr>
       </tbody>
     </table>
   </div>
@@ -464,18 +494,21 @@ body {
 </div>
 
 <script src="/js/clyr-tracking.js"></script>
+<script src="/js/clyr-pricing.v2.js" defer></script>
 <script>
 (function () {
   var cards = document.querySelectorAll('.card');
   var ctas = document.querySelectorAll('#cta, #hero-cta, #mid-cta, .card-cta');
   var selected = 'ivermectin';
+  var selectedPlan = '';
 
-  function intakeUrl(product) {
+  function intakeUrl(product, plan) {
     var params = new URLSearchParams(window.location.search);
     if (!params.get('utm_source')) params.set('utm_source', 'twitter');
     if (!params.get('utm_medium')) params.set('utm_medium', 'paid');
     if (!params.get('utm_campaign')) params.set('utm_campaign', 'ivermectin-x');
     params.set('product', product);
+    if (plan) params.set('plan', plan); else params.delete('plan');
     params.set('lp', 'x-antiparasitic');
     return '/intake-wellness.html?' + params.toString();
   }
@@ -486,24 +519,26 @@ body {
     } catch (e) {}
   }
 
-  function applyProduct(product) {
+  function applyProduct(product, plan) {
     selected = product;
+    selectedPlan = plan || '';
     cards.forEach(function (c) {
-      var on = c.getAttribute('data-product') === product;
+      var on = c.getAttribute('data-product') === product && (c.getAttribute('data-plan') || '') === selectedPlan;
       c.classList.toggle('selected', on);
       c.setAttribute('aria-pressed', on ? 'true' : 'false');
     });
     ctas.forEach(function (el) {
-      var p = el.getAttribute('data-cta-product') || selected;
-      if (!el.getAttribute('data-cta-product')) el.href = intakeUrl(selected);
-      else el.href = intakeUrl(p);
+      var p = el.getAttribute('data-cta-product');
+      if (!p) el.href = intakeUrl(selected, selectedPlan);
+      else el.href = intakeUrl(p, el.getAttribute('data-cta-plan') || '');
     });
   }
 
   function select(card, fromUser) {
     var product = card.getAttribute('data-product');
-    applyProduct(product);
-    if (fromUser) track('AdLPProductSelect', { product: product });
+    var plan = card.getAttribute('data-plan') || '';
+    applyProduct(product, plan);
+    if (fromUser) track('AdLPProductSelect', { product: product, plan: plan || 'default' });
   }
 
   cards.forEach(function (card) {
@@ -535,7 +570,7 @@ body {
 
   var params = new URLSearchParams(window.location.search);
   var preset = params.get('product') || (params.get('utm_campaign') === 'combo-jun26' ? 'ivermectin-mebendazole' : 'ivermectin');
-  applyProduct(preset);
+  applyProduct(preset, params.get('plan') || '');
   track('AdLPView', { product: preset });
 })();
 </script>
