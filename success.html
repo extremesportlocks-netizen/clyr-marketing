@@ -193,7 +193,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         // twice into each sink under two spellings and double-counted every conversion.
         // localStorage guard: page refresh / reopened tab must not re-count the conversion.
         var _ckKey='clyr_ckc_'+sid;
-        if(window.clyrTrack && !localStorage.getItem(_ckKey)){
+        var _ckSeen=null; try{_ckSeen=localStorage.getItem(_ckKey);}catch(e){}
+        if(window.clyrTrack && !_ckSeen){
           try{localStorage.setItem(_ckKey,'1');}catch(e){}
           clyrTrack('checkout_completed',{page:'/success',referrer:document.referrer,session_id:sid,value:data.amount_total?data.amount_total/100:0,currency:'USD',treatment:data.treatment||''});
         }

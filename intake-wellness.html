@@ -434,6 +434,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>
 'use strict';
 var API = 'https://clyr-backend.onrender.com';
+// storage-safe read (2026-07-22): private browsers can THROW on localStorage —
+// a bare read inside checkout/progress paths must never kill the flow.
+function safeLS(k){ try { return localStorage.getItem(k); } catch (e) { return null; } }
 
 // ── PRODUCT CATALOG (mirrors backend services/product-catalog.js) ─────
 var CATALOG = {
@@ -700,7 +703,7 @@ function switchGhkToOnetime() {
 // have to re-enter info they've already given us.
 function prefillFromPortal() {
   try {
-    var token = localStorage.getItem('clyr_portal_token');
+    var token = safeLS('clyr_portal_token');
     if (!token) return Promise.resolve(false);
     return fetch('https://clyr-backend.onrender.com/api/portal/me', {
       headers: { 'Authorization': 'Bearer ' + token }
@@ -914,7 +917,7 @@ function hydrateWellnessPrices() {
 function restoreWellnessDraft() {
   try {
     if (!window.ClyrDraft) return;
-    if (localStorage.getItem('clyr_portal_token')) { ClyrDraft.clear('wellness'); return; }
+    if (safeLS('clyr_portal_token')) { ClyrDraft.clear('wellness'); return; }
     var d = ClyrDraft.load('wellness');
     if (!d || !d.details || !d.details.email) return;
     if (!state.productKey || !CATALOG[state.productKey]) return; // waitlist/unknown-product screens: leave alone
@@ -1553,7 +1556,7 @@ function onStep3Continue() {
         phone: state.details.phone,
         treatment: state.productKey || null,
         planType: state.planKey || null,
-        visitor_id: localStorage.getItem('clyr_vid') || null,
+        visitor_id: safeLS('clyr_vid') || null,
         utm_source: _attr.utm_source || _p.get('utm_source') || null,
         utm_medium: _attr.utm_medium || _p.get('utm_medium') || null,
         utm_campaign: _attr.utm_campaign || _p.get('utm_campaign') || null,
@@ -1703,7 +1706,7 @@ function initCheckout() {
 
   stripePromise.then(function() {
     // ── 2) POST /api/intake to save customer ──
-    var visitor_id = localStorage.getItem('clyr_vid') || null;
+    var visitor_id = safeLS('clyr_vid') || null;
     var params = new URLSearchParams(window.location.search);
     var payload = {
       firstName: state.details.firstName,
