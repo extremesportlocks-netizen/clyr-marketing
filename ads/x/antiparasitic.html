@@ -327,6 +327,60 @@ body {
 }
 .legal a { color: var(--gray-500); text-decoration: none; font-weight: 600; }
 .legal a:hover { color: var(--teal); }
+.chooser-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(13, 27, 42, 0.5);
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.chooser-sheet {
+  background: var(--white);
+  border-radius: 18px;
+  width: 100%;
+  max-width: 380px;
+  padding: 22px 18px 16px;
+  box-shadow: 0 20px 60px rgba(13, 27, 42, 0.3);
+}
+.chooser-title {
+  font-size: 17px;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 14px;
+}
+.chooser-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 12px;
+  border: 1.5px solid rgba(0, 180, 197, 0.35);
+  border-radius: 12px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: var(--navy);
+  background: var(--white);
+}
+.chooser-row:active { background: var(--gray-100); }
+.chooser-row img { height: 34px; width: auto; }
+.chooser-row .cr-text { flex: 1; }
+.chooser-row .cr-text strong { display: block; font-size: 14px; font-weight: 700; }
+.chooser-row .cr-text span { font-size: 12px; color: var(--gray-500); font-weight: 600; }
+.chooser-row .cr-price { font-size: 13px; font-weight: 800; color: var(--teal-mid); white-space: nowrap; }
+.chooser-close {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background: none;
+  border: none;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gray-500);
+  cursor: pointer;
+}
 .sticky-cta {
   position: fixed;
   left: 0;
@@ -491,6 +545,27 @@ body {
   </footer>
 </main>
 
+<div class="chooser-overlay" id="chooser" hidden>
+  <div class="chooser-sheet" role="dialog" aria-modal="true" aria-label="Choose your protocol">
+    <div class="chooser-title">Choose your protocol</div>
+    <a class="chooser-row" href="/intake-wellness.html?product=ivermectin" data-cta-product="ivermectin">
+      <img src="/img/card/ivermectin.png" alt="">
+      <span class="cr-text"><strong>Ivermectin 18mg</strong><span>30 caps</span></span>
+      <span class="cr-price">from <span data-clyr-price="ivermectin:onetime">$99</span></span>
+    </a>
+    <a class="chooser-row" href="/intake-wellness.html?product=ivermectin_30mg" data-cta-product="ivermectin_30mg">
+      <img src="/img/card/ivermectin.png" alt="">
+      <span class="cr-text"><strong>Ivermectin 30mg</strong><span>30 caps &middot; higher strength</span></span>
+      <span class="cr-price">from <span data-clyr-price="ivermectin_30mg:onetime">$139</span></span>
+    </a>
+    <a class="chooser-row" href="/intake-wellness.html?product=ivermectin-mebendazole" data-cta-product="ivermectin-mebendazole">
+      <img src="/img/card/mebendazole.png" alt="">
+      <span class="cr-text"><strong>Ivermectin + Mebendazole</strong><span>30 caps &middot; broader coverage</span></span>
+      <span class="cr-price">from <span data-clyr-price="ivermectin_mebendazole:onetime">$139</span></span>
+    </a>
+    <button type="button" class="chooser-close" id="chooserClose">Cancel</button>
+  </div>
+</div>
 <div class="sticky-cta">
   <div class="sticky-cta-inner">
     <a href="#protocols" class="cta" id="cta">
@@ -505,7 +580,7 @@ body {
 <script>
 (function () {
   var cards = document.querySelectorAll('.card');
-  var ctas = document.querySelectorAll('#cta, #hero-cta, #mid-cta, .card-cta');
+  var ctas = document.querySelectorAll('#cta, #hero-cta, #mid-cta, .card-cta, .chooser-row');
   var selected = 'ivermectin-mebendazole';
   var selectedPlan = '';
 
@@ -578,6 +653,25 @@ body {
   });
 
   var params = new URLSearchParams(window.location.search);
+  // Generic bars (hero/mid/sticky) open the protocol chooser popup (founder 7/22:
+  // pick 18mg / 30mg / combo first, THEN that product's plan selection — never a
+  // preselected product). The #protocols href stays as a no-JS fallback.
+  var chooser = document.getElementById('chooser');
+  ['cta', 'hero-cta', 'mid-cta'].forEach(function (id) {
+    var el = document.getElementById(id);
+    if (!el || !chooser) return;
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+      chooser.hidden = false;
+      track('AdLPChooserOpen', { from: id });
+    });
+  });
+  if (chooser) {
+    chooser.addEventListener('click', function (e) { if (e.target === chooser) chooser.hidden = true; });
+    var cc = document.getElementById('chooserClose');
+    if (cc) cc.addEventListener('click', function () { chooser.hidden = true; });
+  }
+
   var preset = params.get('product') || 'ivermectin-mebendazole'; // default = combo, the flagship (founder 7/22 — generic CTAs were funneling everyone to plain 18mg)
   applyProduct(preset, params.get('plan') || '');
   track('AdLPView', { product: preset });
