@@ -2095,13 +2095,15 @@ function goToStep(step) {
   var planData = {
     tirzepatide: [
       { type: 't1_starter', name: 'Starter Month', desc: '20 units/wk, one vial. Rolls to $199/mo cycles', price: '$149', period: ' first month', total: null },
-      { type: 't1_3start', name: 'Tier 1, 3-Month Starter', desc: 'Titrate 20 to 70 units/wk. Pay once, doses ship monthly', price: '$569', period: '', total: null },
-      { type: 't1_2month', name: 'Tier 1, 8-Week cycle', desc: 'Up to 70 units/wk. 2 vials, one box. Billed every 8 weeks', price: '$398', period: '', total: null },
-      { type: 't1_monthly', name: 'Tier 1 Monthly', desc: 'Up to 70 units/wk. Cancel anytime', price: '$249', period: '/mo', total: null },
-      { type: 't1_3month', name: 'Tier 1, 3-Month', desc: 'Up to 70 units/wk. Billed once', price: '$597', period: '', total: null },
-      { type: 't2_2month', name: 'Tier 2, 8-Week cycle', desc: '90+ units/wk. 2 vials, one box. Billed every 8 weeks', price: '$698', period: '', total: null },
-      { type: 't2_monthly', name: 'Tier 2 Monthly', desc: '90+ units/wk. Cancel anytime', price: '$399', period: '/mo', total: null },
-      { type: 't2_3month', name: 'Tier 2, 3-Month', desc: '90+ units/wk. Billed once', price: '$999', period: '', total: null }
+      { type: 't1_3start', name: 'Tier 1, 3-Month Starter', desc: 'Titrate 20 → 40 → 70 units/wk. Pay once, doses ship monthly', price: '$569', period: '', total: null },
+      { type: 't1_2month', name: 'Tier 1, 8-Week cycle', desc: 'Up to 40 units/wk. 2 vials, one box. Billed every 8 weeks', price: '$398', period: '', total: null },
+      { type: 't1_monthly', name: 'Tier 1 Monthly', desc: 'Up to 40 units/wk. Cancel anytime', price: '$249', period: '/mo', total: null },
+      // hi: collapsed under "Maintaining 70–90 units a week" (founder 7/23) —
+      // 70u lives ONLY on the 3-month commitment; 90+ is Tier 2 territory.
+      { type: 't1_3month', name: 'Tier 1, 3-Month', desc: 'Up to 70 units/wk. Billed once', price: '$597', period: '', total: null, hi: true },
+      { type: 't2_2month', name: 'Tier 2, 8-Week cycle', desc: '90+ units/wk. 2 vials, one box. Billed every 8 weeks', price: '$698', period: '', total: null, hi: true },
+      { type: 't2_monthly', name: 'Tier 2 Monthly', desc: '90+ units/wk. Cancel anytime', price: '$399', period: '/mo', total: null, hi: true },
+      { type: 't2_3month', name: 'Tier 2, 3-Month', desc: '90+ units/wk. Billed once', price: '$999', period: '', total: null, hi: true }
     ],
     semaglutide: [
       { type: 't1_monthly', name: 'Monthly', desc: 'Any dose, one price. Cancel anytime', price: '$229', period: '/mo', total: null },
@@ -2115,14 +2117,26 @@ function goToStep(step) {
     var plans = planData[treatment];
     if (!plans) { section.style.display = 'none'; return; }
     section.style.display = 'block';
-    container.innerHTML = plans.map(function(p) {
+    function cardHtml(p) {
       return '<div class="plan-card" onclick="selectPlan(this, \'' + p.type + '\')" data-plan="' + p.type + '">' +
         (p.best ? '<div class="plan-card-best">Best Value</div>' : '') +
         '<div class="plan-card-left"><div class="plan-card-radio"></div><div><div class="plan-card-name">' + p.name + '</div><div class="plan-card-desc">' + p.desc + '</div></div></div>' +
         '<div class="plan-card-right"><div class="plan-card-price">' + p.price + '<span class="plan-card-period">' + p.period + '</span></div>' +
         (p.savings ? '<div class="plan-card-savings">' + p.savings + '</div>' : '') +
         '</div></div>';
-    }).join('');
+    }
+    // Core plans up front; higher-dose/3-month tiers fold under a labeled
+    // expander (founder 7/23) so the first read is Starter → T1 Monthly.
+    var core = plans.filter(function(p){ return !p.hi; });
+    var hi = plans.filter(function(p){ return p.hi; });
+    var html = core.map(cardHtml).join('');
+    if (hi.length) {
+      html += '<button type="button" id="hiTiersToggle" onclick="var w=document.getElementById(\'hiTiersWrap\');var on=w.style.display===\'none\';w.style.display=on?\'block\':\'none\';this.querySelector(\'span\').textContent=on?\'▴\':\'▾\';" ' +
+        'style="display:flex;align-items:center;justify-content:space-between;width:100%;margin:4px 0 10px;padding:13px 16px;background:none;border:1.5px dashed rgba(0,180,197,0.45);border-radius:12px;font:inherit;font-size:14px;font-weight:700;color:#00a89e;cursor:pointer">' +
+        'Maintaining 70–90 units a week? Higher tiers <span>▾</span></button>' +
+        '<div id="hiTiersWrap" style="display:none">' + hi.map(cardHtml).join('') + '</div>';
+    }
+    container.innerHTML = html;
     if (plans.length === 1) { var only = container.querySelector('.plan-card'); if (only) selectPlan(only, plans[0].type); }
   }
 
