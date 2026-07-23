@@ -54,6 +54,9 @@ h1 em{font-style:italic;color:var(--teal)}
 var API = 'https://clyr-backend.onrender.com';
 var qs = new URLSearchParams(location.search);
 var T = qs.get('t'), P = qs.get('p');
+// Optional tier override (admin upsell emails: 60/90-cap offers) — server
+// whitelists values and only honors it on the Direct-Rx rail.
+var PLAN = qs.get('plan') || '';
 
 // Curated cross-sell shelf per product family (prices hydrate from /api/prices).
 var SHELF = {
@@ -91,7 +94,7 @@ function shelfPrice(prices, key){
 function boot(){
   if(!T){ renderError('This link is missing its key. Check the email link, or head to <a href="/portal/">your portal</a>.'); return; }
   Promise.all([
-    fetch(API+'/api/refill/info?t='+encodeURIComponent(T)+'&p='+encodeURIComponent(P||'')).then(function(r){return r.json().then(function(j){return {code:r.status, j:j};});}),
+    fetch(API+'/api/refill/info?t='+encodeURIComponent(T)+'&p='+encodeURIComponent(P||'')+(PLAN?'&plan='+encodeURIComponent(PLAN):'')).then(function(r){return r.json().then(function(j){return {code:r.status, j:j};});}),
     fetch(API+'/api/prices').then(function(r){return r.json();}).catch(function(){return null;})
   ]).then(function(res){
     var info=res[0], prices=res[1];
@@ -126,7 +129,7 @@ function boot(){
     el('go').onclick=function(){
       var b=el('go'); b.disabled=true; b.textContent='Opening secure checkout…';
       try{ if(window.clyrTrack) clyrTrack('refill_onetap_cta',{product:d.product,mode:d.mode}); }catch(e){}
-      fetch(API+'/api/refill/checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({t:T,p:d.product})})
+      fetch(API+'/api/refill/checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({t:T,p:d.product,plan:PLAN||undefined})})
         .then(function(r){return r.json();})
         .then(function(j){ if(j.url){ location.href=j.url; } else { b.disabled=false; b.textContent='Refill now →'; alert(j.error==='link_expired'?'This link expired — reply to your email for a fresh one.':'Could not open checkout. Please try again or email contact@clyr.health.'); } })
         .catch(function(){ b.disabled=false; b.textContent='Refill now →'; alert('Connection issue — please try again.'); });
