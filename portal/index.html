@@ -3590,7 +3590,25 @@ async function handleReorderParam(){
     var ro=new URLSearchParams(location.search).get('reorder');
     if(!ro) return;
     showPage('treatments');
-    setTimeout(function(){ try{ startRefill(ro); }catch(_){} }, 400);
+    // BUG FIX (Brandon #87): startRefill(ro) couldn't find his LAPSED tirzepatide
+    // in his active treatments, so it fell back to his ACTIVE GHK sub and opened
+    // the wrong refill. Honor the EXACT product from the link. GLP reorder = a
+    // fresh intake for that specific product (provider re-encounter).
+    setTimeout(function(){
+      try{
+        if(/tirzep|semaglu|glp/i.test(ro)){
+          var disp=ro.replace(/tirzepatide/i,'Tirzepatide').replace(/semaglutide/i,'Semaglutide').replace(/_.*/,'');
+          var rs=document.getElementById('refillSection'); if(rs) rs.style.display='block';
+          var fa=document.getElementById('refillFormArea');
+          if(fa){
+            fa.innerHTML='<div class="empty"><div class="empty-icon">🔄</div><div class="empty-title">Reorder your '+disp+'</div><div class="empty-msg">Your last supply is finished. Start a fresh order — a quick check-in confirms your dose with your provider, then it ships.</div><a href="/intake.html?product='+encodeURIComponent(ro)+'" class="btn btn-primary" style="margin-top:14px;text-decoration:none;display:inline-block">Reorder now →</a></div>';
+            fa.scrollIntoView({behavior:'smooth',block:'start'});
+          }
+        } else {
+          startRefill(ro);
+        }
+      }catch(_){}
+    }, 400);
   }catch(_){}
 }
 
