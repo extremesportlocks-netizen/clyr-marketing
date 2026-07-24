@@ -2106,18 +2106,46 @@ function goToStep(step) {
       { type: 't1_3start', name: 'Tier 1, 3-Month Starter', desc: 'Titrate 20 → 40 → 70 units/wk. Pay once, doses ship monthly', price: '$569', period: '', total: null },
       { type: 't1_2month', name: 'Tier 1, 8-Week cycle', desc: 'Up to 40 units/wk. 2 vials, one box. Billed every 8 weeks', price: '$398', period: '', total: null },
       { type: 't1_monthly', name: 'Tier 1 Monthly', desc: 'Up to 40 units/wk. Cancel anytime', price: '$249', period: '/mo', total: null },
-      // hi: collapsed under "Maintaining 70–90 units a week" (founder 7/23) —
-      // 70u lives ONLY on the 3-month commitment; 90+ is Tier 2 territory.
+      // hi: folded under "Maintaining 70+ units a week? Higher tiers" (founder 7/24).
+      // 70u lives ONLY on the 3-month commitment (bridge plan); 90+ is Tier 2.
+      // Order: bridge first, then T2 by value: 8-week (Best Value), 3-month, monthly.
       { type: 't1_3month', name: 'Tier 1, 3-Month', desc: 'Up to 70 units/wk. Billed once', price: '$597', period: '', total: null, hi: true },
-      { type: 't2_2month', name: 'Tier 2, 8-Week cycle', desc: '90+ units/wk. 2 vials, one box. Billed every 8 weeks', price: '$698', period: '', total: null, hi: true },
-      { type: 't2_monthly', name: 'Tier 2 Monthly', desc: '90+ units/wk. Cancel anytime', price: '$399', period: '/mo', total: null, hi: true },
-      { type: 't2_3month', name: 'Tier 2, 3-Month', desc: '90+ units/wk. Billed once', price: '$999', period: '', total: null, hi: true }
+      { type: 't2_2month', name: 'Tier 2, 8-Week cycle', desc: '90+ units/wk. 2 vials, one box. Billed every 8 weeks', price: '$698', period: '', total: null, hi: true, best: true },
+      { type: 't2_3month', name: 'Tier 2, 3-Month', desc: '90+ units/wk. Billed once', price: '$999', period: '', total: null, hi: true },
+      { type: 't2_monthly', name: 'Tier 2 Monthly', desc: '90+ units/wk. Cancel anytime', price: '$399', period: '/mo', total: null, hi: true }
     ],
     semaglutide: [
       { type: 't1_monthly', name: 'Monthly', desc: 'Any dose, one price. Cancel anytime', price: '$229', period: '/mo', total: null },
       { type: 't1_3month', name: '3-Month', desc: 'Any dose, one price. Billed once', price: '$567', period: '', total: null }
     ]
   };
+
+  // Tier-group accordion (founder 7/24): exactly one group open at a time.
+  // State survives price-hydration re-renders; deep links open the right group.
+  var _tierView = 'core';
+  function tierBar(id, label) {
+    var view = (id === 'coreTiersBar') ? 'core' : 'hi';
+    return '<button type="button" id="' + id + '" onclick="setTierView(\'' + view + '\')" ' +
+      'style="display:flex;align-items:center;justify-content:space-between;width:100%;margin:4px 0 10px;padding:13px 16px;background:none;border:1.5px dashed rgba(0,180,197,0.45);border-radius:12px;font:inherit;font-size:14px;font-weight:700;color:#00a89e;cursor:pointer;text-align:left;transition:all .15s">' +
+      '<span>' + label + '</span><span class="tv-arrow" style="margin-left:12px;flex-shrink:0">\u25be</span></button>';
+  }
+  function setTierView(v) {
+    var cw = document.getElementById('coreTiersWrap'), hw = document.getElementById('hiTiersWrap');
+    var cb = document.getElementById('coreTiersBar'), hb = document.getElementById('hiTiersBar');
+    if (!cw || !hw) return;
+    _tierView = v;
+    cw.style.display = (v === 'core') ? 'block' : 'none';
+    hw.style.display = (v === 'hi') ? 'block' : 'none';
+    function paint(bar, open) {
+      if (!bar) return;
+      var ar = bar.querySelector('.tv-arrow');
+      if (ar) ar.textContent = open ? '\u25b4' : '\u25be';
+      bar.style.borderStyle = open ? 'solid' : 'dashed';
+      bar.style.background = open ? 'rgba(0,180,197,0.07)' : 'none';
+    }
+    paint(cb, v === 'core');
+    paint(hb, v === 'hi');
+  }
 
   function showPlanCards(treatment) {
     var container = document.getElementById('planCards');
@@ -2133,18 +2161,29 @@ function goToStep(step) {
         (p.savings ? '<div class="plan-card-savings">' + p.savings + '</div>' : '') +
         '</div></div>';
     }
-    // Core plans up front; higher-dose/3-month tiers fold under a labeled
-    // expander (founder 7/23) so the first read is Starter → T1 Monthly.
+    // Two-group accordion (founder 7/24): Standard dose (T1 core) and Higher
+    // tiers (70u bridge + T2). Semaglutide has no hi plans and renders flat.
     var core = plans.filter(function(p){ return !p.hi; });
     var hi = plans.filter(function(p){ return p.hi; });
-    var html = core.map(cardHtml).join('');
+    var html;
     if (hi.length) {
-      html += '<button type="button" id="hiTiersToggle" onclick="var w=document.getElementById(\'hiTiersWrap\');var on=w.style.display===\'none\';w.style.display=on?\'block\':\'none\';this.querySelector(\'span\').textContent=on?\'▴\':\'▾\';" ' +
-        'style="display:flex;align-items:center;justify-content:space-between;width:100%;margin:4px 0 10px;padding:13px 16px;background:none;border:1.5px dashed rgba(0,180,197,0.45);border-radius:12px;font:inherit;font-size:14px;font-weight:700;color:#00a89e;cursor:pointer">' +
-        'Maintaining 70–90 units a week? Higher tiers <span>▾</span></button>' +
+      html = tierBar('coreTiersBar', 'Standard dose &middot; Up to 40 units/week') +
+        '<div id="coreTiersWrap">' + core.map(cardHtml).join('') + '</div>' +
+        tierBar('hiTiersBar', 'Maintaining 70+ units a week? Higher tiers') +
         '<div id="hiTiersWrap" style="display:none">' + hi.map(cardHtml).join('') + '</div>';
+    } else {
+      html = plans.map(cardHtml).join('');
     }
     container.innerHTML = html;
+    // Re-apply selection + open group (survives price-hydration re-renders).
+    if (!formData.plan) _tierView = 'core';
+    if (formData.plan) {
+      var selCard = container.querySelector('.plan-card[data-plan="' + formData.plan + '"]');
+      if (selCard) selCard.classList.add('selected');
+      var selPlan = plans.filter(function(p){ return p.type === formData.plan; })[0];
+      if (selPlan) _tierView = selPlan.hi ? 'hi' : 'core';
+    }
+    if (hi.length) setTierView(_tierView);
     if (plans.length === 1) { var only = container.querySelector('.plan-card'); if (only) selectPlan(only, plans[0].type); }
   }
 
@@ -2152,6 +2191,9 @@ function goToStep(step) {
     document.querySelectorAll('.plan-card').forEach(function(c) { c.classList.remove('selected'); });
     card.classList.add('selected');
     formData.plan = plan;
+    // Deep links can select a card inside a folded group; open that group.
+    var _grp = (planData[formData.treatment] || []).filter(function(x){ return x.type === plan; })[0];
+    if (_grp && document.getElementById('hiTiersWrap')) setTierView(_grp.hi ? 'hi' : 'core');
     validateStep();
     if(window.clyrTrack)clyrTrack('PlanSelected',{treatment:formData.treatment,plan:plan});
   }
