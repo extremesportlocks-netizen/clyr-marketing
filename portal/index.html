@@ -344,7 +344,7 @@ window.track = function(event, props){ try { if (window.posthog && window.postho
     <div id="loginStepCode" style="display:none">
       <div class="login-field">
         <label class="login-label" for="codeInput">6-digit code</label>
-        <input class="login-input login-input-code" type="text" id="codeInput" maxlength="6" inputmode="numeric" placeholder="000000">
+        <input class="login-input login-input-code" type="text" id="codeInput" maxlength="6" inputmode="numeric" autocomplete="one-time-code" placeholder="000000">
       </div>
       <button class="login-btn" id="btnVerifyCode">Verify and sign in</button>
       <button class="login-back" id="btnBackToEmail">← Use a different email</button>
@@ -3547,9 +3547,40 @@ $('msgInput').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.
 $('btnSendMsg').addEventListener('click',sendMessage);
 $('shopSearch').addEventListener('input',renderShop);
 
+// ═══ MAGIC LINK (2026-07-24): ?e=<email>&c=<code> in the login email logs
+// them straight in — no code to copy, no context switch that kills the tab.
+// Single-use (server deletes the code on verify) + 10-min expiry.
+async function tryMagicLogin(){
+  var qp=new URLSearchParams(location.search);
+  var e=qp.get('e'), c=qp.get('c');
+  if(!e||!c||!/^\d{6}$/.test(c)) return false;
+  try{
+    var data=await api('/api/portal/auth/verify',{method:'POST',body:JSON.stringify({email:e,code:c})});
+    token=data.token; localStorage.setItem(TOKEN_KEY,token); localStorage.setItem(EMAIL_KEY,e);
+    // strip the code from the URL/history so it isn't re-used or shoulder-surfed
+    try{ history.replaceState(null,'',location.pathname); }catch(_){}
+    await enterApp();
+    return true;
+  }catch(err){
+    // link expired/used → fall through to the normal login, email pre-filled
+    try{ $('emailInput').value=e; localStorage.setItem(EMAIL_KEY,e); }catch(_){}
+    return false;
+  }
+}
+
 // ═══ INIT ═══
-if(token){enterApp().catch(()=>signOut());}
-else{$('loginView').style.display='grid';}
+(async function(){
+  if(token){ enterApp().catch(()=>signOut()); return; }
+  // magic-link auto-login before showing the form
+  var mp=new URLSearchParams(location.search);
+  if(mp.get('e')&&mp.get('c')){
+    $('loginView').style.display='grid';
+    if(await tryMagicLogin()) return;
+  }
+  $('loginView').style.display='grid';
+  // returning visitor: pre-fill their email so a re-code is one tap, not a retype
+  try{ var savedEmail=localStorage.getItem(EMAIL_KEY); if(savedEmail&&$('emailInput')&&!$('emailInput').value) $('emailInput').value=savedEmail; }catch(_){}
+})();
 
 </script>
 </body>
