@@ -1636,6 +1636,14 @@ function armEmbedWatchdog(retryBody, endpoint){
 }
 
 function goToStep(step) {
+    // STALE-SESSION GUARD (2026-07-24): any nav away from the payment step with
+    // a live embed tears it down — a plan/dose change must never leave the old
+    // Stripe session mounted (wellness had this bug; GLP's Change button already
+    // destroyed the embed, this guard covers every other backward path).
+    if (step !== 8 && typeof embeddedCheckout !== 'undefined' && embeddedCheckout) {
+      try { embeddedCheckout.destroy(); } catch (e) {}
+      embeddedCheckout = null;
+    }
     document.querySelectorAll('.step').forEach(function(s) { s.classList.remove('active'); });
     document.getElementById('step' + step).classList.add('active');
     currentStep = step;
