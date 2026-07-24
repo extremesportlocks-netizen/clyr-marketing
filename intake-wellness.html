@@ -1721,6 +1721,22 @@ function armEmbedWatchdog(retryBody, endpoint){
   setTimeout(showEscape, 5000);
 }
 
+// MOBILE + IN-APP → HOSTED CHECKOUT (2026-07-24, founder: Android/iPad drop-off).
+// Stripe's EMBEDDED checkout (and Apple/Google Pay) is fragile inside mobile
+// browsers and email in-app webviews (Gmail/AOL/Facebook/Instagram apps — where
+// older Android users open our links). The backend already supports
+// checkoutMode:'hosted' (full checkout.stripe.com page); route mobile + webview
+// traffic there instead of mounting the embed. Desktop stays embedded.
+function preferHostedCheckout() {
+  try {
+    var ua = navigator.userAgent || '';
+    var inApp = /(FBAN|FBAV|Instagram|Line|Twitter|GSA|EdgiOS|; wv\)|AOLApp|YahooMobile)/i.test(ua);
+    var mobile = /(Android|iPhone|iPad|iPod|Mobile|Silk|BlackBerry|Opera Mini|IEMobile)/i.test(ua);
+    var narrow = (window.innerWidth || document.documentElement.clientWidth || 0) <= 820; // phones + iPad portrait
+    return inApp || mobile || narrow;
+  } catch (e) { return false; }
+}
+
 function initCheckout() {
   if(window.clyrTrack)clyrTrack('checkout_started',{product:(typeof state!=='undefined'&&state.productKey)||null});
   var btn = document.getElementById('btnCheckout');
@@ -1785,6 +1801,7 @@ function initCheckout() {
     }).then(function(intakeResult) {
       state.customerId = intakeResult.customerId;
       // ── 3) Create Stripe checkout session ──
+      var wantHosted = preferHostedCheckout();
       return fetch(API + '/api/checkout', {
         method:'POST',
         headers:{'Content-Type':'application/json'},
@@ -1793,13 +1810,20 @@ function initCheckout() {
           productType: state.productKey,
           planType: state.planKey,
           firstName: state.details.firstName,
-          lastName: state.details.lastName
+          lastName: state.details.lastName,
+          checkoutMode: wantHosted ? 'hosted' : undefined
         })
       });
     }).then(function(r){
       if (!r.ok) return r.json().then(function(d){throw new Error(d.error || 'Checkout error '+r.status)});
       return r.json();
     }).then(function(checkoutResult) {
+      // Mobile/in-app → full-page Stripe checkout (no fragile embed to mount).
+      if (checkoutResult.hostedUrl) {
+        if(window.clyrTrack)clyrTrack('checkout_hosted_redirect',{product:state.productKey,plan:state.planKey});
+        window.location.href = checkoutResult.hostedUrl;
+        return;
+      }
       if (!checkoutResult.clientSecret) throw new Error('Unable to create payment session');
       // ── 4) Mount embedded checkout ──
       document.getElementById('checkoutPanel').style.display = 'block';
