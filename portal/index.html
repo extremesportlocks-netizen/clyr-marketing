@@ -1878,6 +1878,15 @@ async function submitGenericRefill(){
         $('refillFormArea').innerHTML='<div class="empty"><div class="empty-icon">\ud83d\udd0c</div><div class="empty-title">Your '+esc(_disp)+' plan is inactive</div><div class="empty-msg">'+_left+'Reactivate your plan and your provider-authorized refills pick right back up \u2014 no new consultation needed.</div><button class="btn btn-primary" style="margin-top:14px" onclick="openProductDetail(\''+_rp+'\')">Reactivate '+(_mo?'\u2014 '+_mo:'')+' \u2192</button></div>';
         return;
       }
+      // GLP re-buy (2026-07-24, founder: "they just need to buy again, not a refill").
+      // A lapsed GLP patient re-purchasing needs a FRESH provider re-encounter
+      // (updated dose/weight) \u2014 route them straight to the GLP intake, not the
+      // switch-plan maze that excluded their own prior tier. Checkout allows it
+      // (their supply window is long expired). Non-GLP keeps the switch modal.
+      if(/tirzep|semaglu|glp/i.test(_rp)){
+        $('refillFormArea').innerHTML='<div class="empty"><div class="empty-icon">\ud83d\udd04</div><div class="empty-title">Ready to reorder your '+esc(_disp)+'?</div><div class="empty-msg">Your last supply is finished. Start a fresh order \u2014 a quick check-in so your provider can confirm your dose, then it ships.</div><a href="/intake.html?product='+encodeURIComponent(_rp)+'" class="btn btn-primary" style="margin-top:14px;text-decoration:none;display:inline-block">Reorder now \u2192</a></div>';
+        return;
+      }
       $('refillFormArea').innerHTML='<div class="empty"><div class="empty-icon">\ud83d\udd12</div><div class="empty-title">Your prepaid fills are used up</div><div class="empty-msg">Renew your plan to continue treatment. Your provider reviews every renewal before it ships.</div><button class="btn btn-primary" style="margin-top:14px" onclick="openSwitchPlanModal(\''+_rp+'\')">Renew my plan \u2192</button></div>';
       return;
     }
