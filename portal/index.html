@@ -1001,7 +1001,13 @@ function renderActionBanner(){
   const hasTreatments = (portalData?.treatments||[]).length > 0;
   const isAbandoned = !hasTreatments && /aband/i.test(intakeStatus);
   if (isAbandoned) {
-    el.innerHTML=`<div class="action-banner"><div class="action-banner-dot" style="background:#f59e0b"></div><div class="action-banner-body"><div class="action-banner-label">Finish your CLYR intake</div><div class="action-banner-msg">You started signing up but didn't complete checkout. Pick up where you left off to see a provider and get your medication shipped.</div></div><a href="/intake.html" class="action-banner-cta" style="text-decoration:none;display:inline-flex;align-items:center;justify-content:center">Resume intake</a></div>`;
+    // Route to the RIGHT intake for their product (2026-07-24, founder-caught:
+    // an ivermectin abandoner was dumped into the GLP intake). GLP → intake.html;
+    // everything else → intake-wellness. Carry the product so it preselects.
+    const prod = (portalData?.patient?.treatment || '').toLowerCase();
+    const isGlp = /tirzep|semaglu|glp/i.test(prod);
+    const resumeUrl = (isGlp ? '/intake.html' : '/intake-wellness.html') + (prod ? ('?product=' + encodeURIComponent(prod)) : '');
+    el.innerHTML=`<div class="action-banner"><div class="action-banner-dot" style="background:#f59e0b"></div><div class="action-banner-body"><div class="action-banner-label">Finish your CLYR intake</div><div class="action-banner-msg">You started signing up but didn't complete checkout. Pick up where you left off to see a provider and get your medication shipped.</div></div><a href="${resumeUrl}" class="action-banner-cta" style="text-decoration:none;display:inline-flex;align-items:center;justify-content:center">Resume intake</a></div>`;
     return;
   }
   if(!requiredActions.length){el.innerHTML='';return;}
