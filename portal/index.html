@@ -3572,8 +3572,8 @@ async function tryMagicLogin(){
   try{
     var data=await api('/api/portal/auth/verify',{method:'POST',body:JSON.stringify({email:e,code:c})});
     token=data.token; localStorage.setItem(TOKEN_KEY,token); localStorage.setItem(EMAIL_KEY,e);
-    // strip the code from the URL/history so it isn't re-used or shoulder-surfed
-    try{ history.replaceState(null,'',location.pathname); }catch(_){}
+    // strip the code but KEEP the reorder intent so the post-login handler sees it
+    try{ var ro=qp.get('reorder'); history.replaceState(null,'',location.pathname+(ro?('?reorder='+encodeURIComponent(ro)):'')); }catch(_){}
     await enterApp();
     return true;
   }catch(err){
@@ -3583,14 +3583,25 @@ async function tryMagicLogin(){
   }
 }
 
+// After login, honor ?reorder=<product> from the win-back email — drop the
+// patient on their treatment so they reorder from the portal (founder 2026-07-24).
+async function handleReorderParam(){
+  try{
+    var ro=new URLSearchParams(location.search).get('reorder');
+    if(!ro) return;
+    showPage('treatments');
+    setTimeout(function(){ try{ startRefill(ro); }catch(_){} }, 400);
+  }catch(_){}
+}
+
 // ═══ INIT ═══
 (async function(){
-  if(token){ enterApp().catch(()=>signOut()); return; }
+  if(token){ enterApp().then(handleReorderParam).catch(()=>signOut()); return; }
   // magic-link auto-login before showing the form
   var mp=new URLSearchParams(location.search);
   if(mp.get('e')&&mp.get('c')){
     $('loginView').style.display='grid';
-    if(await tryMagicLogin()) return;
+    if(await tryMagicLogin()){ await handleReorderParam(); return; }
   }
   $('loginView').style.display='grid';
   // returning visitor: pre-fill their email so a re-code is one tap, not a retype
