@@ -1801,7 +1801,6 @@ function initCheckout() {
     }).then(function(intakeResult) {
       state.customerId = intakeResult.customerId;
       // ── 3) Create Stripe checkout session ──
-      var wantHosted = preferHostedCheckout();
       return fetch(API + '/api/checkout', {
         method:'POST',
         headers:{'Content-Type':'application/json'},
@@ -1810,20 +1809,17 @@ function initCheckout() {
           productType: state.productKey,
           planType: state.planKey,
           firstName: state.details.firstName,
-          lastName: state.details.lastName,
-          checkoutMode: wantHosted ? 'hosted' : undefined
+          lastName: state.details.lastName
         })
       });
     }).then(function(r){
       if (!r.ok) return r.json().then(function(d){throw new Error(d.error || 'Checkout error '+r.status)});
       return r.json();
     }).then(function(checkoutResult) {
-      // Mobile/in-app → full-page Stripe checkout (no fragile embed to mount).
-      if (checkoutResult.hostedUrl) {
-        if(window.clyrTrack)clyrTrack('checkout_hosted_redirect',{product:state.productKey,plan:state.planKey});
-        window.location.href = checkoutResult.hostedUrl;
-        return;
-      }
+      // REVERTED 2026-07-24: the mobile→hosted-redirect switch (62809a1) cratered
+      // checkout — orders 8-11/day → 1, zero checkout_starts after it deployed.
+      // Back to EMBEDDED for everyone (the known-good path); the backend hosted
+      // watchdog still catches a genuinely-blank embed.
       if (!checkoutResult.clientSecret) throw new Error('Unable to create payment session');
       // ── 4) Mount embedded checkout ──
       document.getElementById('checkoutPanel').style.display = 'block';

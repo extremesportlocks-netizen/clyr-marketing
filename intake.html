@@ -2459,7 +2459,6 @@ function goToStep(step) {
       }).then(function() {
         // ── Step 3: Create Stripe checkout session ──
         showCheckoutStatus('Creating secure payment session...');
-        var wantHosted = preferHostedCheckout();
         return fetch(API + '/api/checkout', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -2468,19 +2467,15 @@ function goToStep(step) {
             productType: formData.treatment,
             planType: formData.plan,
             firstName: payload.firstName,
-            lastName: payload.lastName,
-            checkoutMode: wantHosted ? 'hosted' : undefined
+            lastName: payload.lastName
           })
         });
       }).then(function(r) {
         if (!r.ok) return r.json().then(function(d) { throw new Error(d.error || 'Checkout error ' + r.status); });
         return r.json();
       }).then(function(checkoutResult) {
-        if (checkoutResult.hostedUrl) {
-          try { track('checkout_hosted_redirect', { product: formData.treatment, plan: formData.plan }); } catch(e) {}
-          window.location.href = checkoutResult.hostedUrl;
-          return;
-        }
+        // REVERTED 2026-07-24: mobile→hosted-redirect cratered checkout (orders
+        // 8-11/day → 1). Back to EMBEDDED for everyone (known-good).
         if (!checkoutResult.clientSecret) {
           throw new Error(checkoutResult.error || 'Unable to create payment session');
         }
