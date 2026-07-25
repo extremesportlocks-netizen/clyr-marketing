@@ -1087,16 +1087,14 @@ var WL_SHARED = [
   { id:'acute', q:'Right now, do you have a fever, severe abdominal pain, persistent vomiting, or blood in your stool?',
     follow:{ q:'Are any of these severe or getting worse right now?', dqOn:'yes' } }
 ];
-var WL_COMBO = [
-  { id:'blood', q:'Have you ever had a low white-blood-cell count, low platelets, or any bone-marrow or blood disorder?',
-    follow:{ q:'Is it active, currently being treated, or are your counts low right now?', dqOn:'yes' } },
-  { id:'metronidazole', q:'Are you currently taking metronidazole (Flagyl)?',
-    follow:{ q:'Are you taking it now or within the next 2 weeks and unable to space it apart?', dqOn:'yes' } }
-];
 var wlPending = null;
 
+// The live combo (ivermectin_mebendazole) is a CATALOG product → it uses the
+// SCREENING.protocol 4-question screen, NOT this waitlist tree. So WL_COMBO
+// (blood/metronidazole) never rendered for it — removed 2026-07-25 (dead code
+// that made an audit falsely flag "combo under-screened").
 function wlQuestions(){
-  return WL_SHARED.concat(state.productKey === 'ivermectin_mebendazole' ? WL_COMBO : []);
+  return WL_SHARED;
 }
 function wlEsc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 function renderWaitlistScreening(){
