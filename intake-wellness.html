@@ -1664,16 +1664,7 @@ function populateReview() {
   var plan = p.plans.find(function(x){return x.key === state.planKey}) || p.plans[0];
   document.getElementById('reviewProduct').textContent = p.name;
   document.getElementById('reviewPlan').textContent = plan.label + (plan.key === 'monthly' ? ' subscription' : ' (one-time)');
-  // Claimed weekend promo (combo 3-month): the review must show the price the
-  // buyer was promised — Stripe applies the coupon at the session, but a $379
-  // review after claiming $349 reads like a bait (founder walk, 2026-07-18).
-  var qs = new URLSearchParams(location.search);
-  var claimedWeekend = qs.get('code') === 'WEEKEND30' && state.productKey === 'ivermectin-mebendazole' && plan.key === '3month';
-  if (claimedWeekend) {
-    document.getElementById('reviewTotal').innerHTML = '<span style="text-decoration:line-through;color:var(--gray-400);font-weight:500;margin-right:8px">$' + (plan.priceCents / 100).toFixed(0) + '</span>$349 <span style="font-size:12px;color:#0F9D6B;font-weight:700">Weekend price applied</span>';
-  } else {
-    document.getElementById('reviewTotal').textContent = '$' + (plan.priceCents / 100).toFixed(0) + (plan.key === 'monthly' ? '/mo' : '');
-  }
+  document.getElementById('reviewTotal').textContent = '$' + (plan.priceCents / 100).toFixed(0) + (plan.key === 'monthly' ? '/mo' : '');
   document.getElementById('reviewName').textContent = state.details.firstName + ' ' + state.details.lastName;
   document.getElementById('reviewEmail').textContent = state.details.email;
   document.getElementById('reviewPhone').textContent = state.details.phone;
@@ -1770,7 +1761,7 @@ function initCheckout() {
       sex: state.details.sex,
       treatment: state.productKey,
       plan: state.planKey,
-      screeningClear: state.flaggedConditions.length === 0,
+      screeningClear: state._screeningDone ? (state.flaggedConditions.length === 0) : false,
       flaggedConditions: state.flaggedConditions,
       consents: Object.keys(state.consents).map(function(k){return {text:k,accepted:state.consents[k],timestamp:new Date().toISOString()}}),
       address: state.shipping.address,
