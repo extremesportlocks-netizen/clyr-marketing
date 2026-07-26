@@ -1692,8 +1692,8 @@ function armEmbedWatchdog(retryBody, endpoint){
     if(redirecting || document.getElementById('hostedEscape')) return;
     var w=document.createElement('div');
     w.id='hostedEscape';
-    w.style.cssText='text-align:center;margin:14px 0 2px;font-size:13px;color:#6B7C8A';
-    w.innerHTML='Payment form not loading? <a href="#" id="hostedEscapeLink" style="color:#00B4C5;font-weight:700;text-decoration:underline;cursor:pointer">Continue to secure checkout →</a>';
+    w.style.cssText='text-align:center;margin:18px 0 2px';
+    w.innerHTML='<div style="font-size:13px;color:#6B7C8A;margin-bottom:8px">Payment form not loading?</div><a href="#" id="hostedEscapeLink" style="display:inline-block;background:#00B4C5;color:#fff;font-weight:700;font-size:14px;padding:12px 24px;border-radius:100px;text-decoration:none;cursor:pointer">Continue to secure checkout →</a>';
     host.parentNode.insertBefore(w, host.nextSibling);
     document.getElementById('hostedEscapeLink').onclick=function(e){ e.preventDefault(); this.textContent='Opening secure checkout…'; goHosted('manual'); };
   }
@@ -1707,7 +1707,7 @@ function armEmbedWatchdog(retryBody, endpoint){
     setTimeout(check, 2000);
   }
   setTimeout(check, 3000);
-  setTimeout(showEscape, 5000);
+  setTimeout(showEscape, 4000);
 }
 
 // MOBILE + IN-APP → HOSTED CHECKOUT (2026-07-24, founder: Android/iPad drop-off).

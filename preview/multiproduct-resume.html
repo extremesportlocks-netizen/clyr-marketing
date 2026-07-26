@@ -92,6 +92,15 @@ body{font-family:var(--sans);color:var(--dark);background:var(--gray-50);line-he
 .cat-head{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-400);margin:22px 2px 12px}
 .cat-head:first-of-type{margin-top:4px}
 
+/* full-catalog dropdown */
+.picker-dd{background:linear-gradient(180deg,#fff,#f7fdfd);border:1px solid #BEE6E9;border-radius:var(--radius);padding:18px 20px;margin-bottom:8px}
+.picker-dd-label{display:block;font-size:14px;font-weight:700;color:var(--gray-700);margin-bottom:10px}
+.picker-dd-row{display:flex;gap:10px;align-items:stretch}
+.picker-select{flex:1;min-width:0;font-family:var(--sans);font-size:15px;font-weight:500;color:var(--dark);background:var(--white);border:1.5px solid var(--gray-200);border-radius:12px;padding:14px 40px 14px 16px;cursor:pointer;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%236B7C8A' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+.picker-select:focus{border-color:var(--teal);outline:none;box-shadow:0 0 0 3px var(--teal-glow)}
+.picker-dd-go{flex:none;padding:14px 24px;margin-top:0}
+@media(max-width:640px){.picker-dd-row{flex-direction:column}.picker-dd-go{width:100%}}
+
 .carry{list-style:none;padding:4px 0}
 .carry li{display:flex;align-items:flex-start;gap:13px;padding:13px 0;border-bottom:1px solid var(--gray-100);font-size:14.5px}
 .carry li:last-child{border-bottom:none}
@@ -189,7 +198,18 @@ body{font-family:var(--sans);color:var(--dark);background:var(--gray-50);line-he
   <section class="step" id="s-picker">
     <div class="step-label">Choose your treatment</div>
     <h1 class="step-title">What would you <span class="serif">like</span> to start?</h1>
-    <p class="step-sub" id="pickerSub">Pick a treatment and we'll take you straight into its consultation. Your contact details are already on file.</p>
+    <p class="step-sub" id="pickerSub">Pick any treatment and we'll take you straight into its consultation. Your contact details are already on file.</p>
+
+    <div class="picker-dd">
+      <label class="picker-dd-label" for="productSelect">Start a new intake for any treatment</label>
+      <div class="picker-dd-row">
+        <select id="productSelect" class="picker-select" aria-label="Choose a treatment"><option value="">Choose a treatment…</option></select>
+        <button class="btn btn-primary picker-dd-go" id="dropdownGo" disabled>Start
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+
+    <div class="cat-head" id="popularHead" style="display:none">Popular</div>
     <div id="pickerGrid"></div>
     <div class="btn-row" id="pickerBackRow">
       <button class="btn btn-secondary" onclick="go('s-resume')">
@@ -257,16 +277,35 @@ body{font-family:var(--sans);color:var(--dark);background:var(--gray-50);line-he
   // so a pick can never dead-end on an "unknown product" screen. GLP routes to the
   // medication-first funnel (/intake.html); everything else to /intake-wellness.
   var GLP = { tirzepatide:1, semaglutide:1, wegovy_tablets:1, zepbound:1, foundayo:1 };
+  // FULL catalog — every slug is a product the intakes actually handle (GLP -> /intake.html,
+  // the rest -> /intake-wellness). `popular` cards surface as quick-picks; ALL show in the
+  // dropdown so a new intake can be started for ANY treatment, not just the antiparasitics.
   var PRODUCTS = [
-    { slug:'ivermectin',            name:'Ivermectin 18mg',        tag:'Single-agent antiparasitic protocol',      img:'/img/card/ivermectin.png',  cat:'Antiparasitic' },
-    { slug:'ivermectin_30mg',       name:'Ivermectin 30mg',        tag:'Higher-strength antiparasitic protocol',   img:'/img/card/ivermectin.png',  cat:'Antiparasitic' },
-    { slug:'ivermectin_mebendazole',name:'Ivermectin + Mebendazole',tag:'Dual antiparasitic · broader coverage',   img:'/img/card/mebendazole.png', cat:'Antiparasitic' },
-    { slug:'tirzepatide',           name:'Tirzepatide',            tag:'GLP-1 weight management',                  img:'/img/card/tirzepatide.png', cat:'Weight' },
-    { slug:'semaglutide',           name:'Semaglutide',            tag:'GLP-1 weight management',                  img:'/img/card/semaglutide.png', cat:'Weight' },
-    { slug:'tadalafil_5mg',         name:'Tadalafil 5mg Daily',    tag:'Daily ED support · discreet',              img:'/img/card/tadalafil.png',   cat:'Sexual health' },
-    { slug:'ghk_cu_cream',          name:'GHK-Cu Cream',           tag:'Prescription copper-peptide skin therapy', img:'/img/ghk-cu-pump.svg',      cat:'Skin' },
-    { slug:'glutathione',           name:'Glutathione',            tag:'Master antioxidant · detox & skin',        img:'/img/card/glutathione.png', cat:'Wellness' },
-    { slug:'nad',                   name:'NAD+',                   tag:'Cellular energy & longevity',              img:'/img/card/nad.png',         cat:'Wellness' }
+    // Weight (GLP-1)
+    { slug:'tirzepatide',           name:'Tirzepatide',             cat:'Weight (GLP-1)',       tag:'GLP-1 weight management',                  img:'/img/card/tirzepatide.png', popular:true },
+    { slug:'semaglutide',           name:'Semaglutide',             cat:'Weight (GLP-1)',       tag:'GLP-1 weight management',                  img:'/img/card/semaglutide.png', popular:true },
+    // Antiparasitic
+    { slug:'ivermectin',            name:'Ivermectin 18mg',         cat:'Antiparasitic',        tag:'Single-agent antiparasitic protocol',      img:'/img/card/ivermectin.png' },
+    { slug:'ivermectin_30mg',       name:'Ivermectin 30mg',         cat:'Antiparasitic',        tag:'Higher-strength antiparasitic protocol',   img:'/img/card/ivermectin.png' },
+    { slug:'ivermectin_mebendazole',name:'Ivermectin + Mebendazole',cat:'Antiparasitic',        tag:'Dual antiparasitic · broader coverage',    img:'/img/card/mebendazole.png', popular:true },
+    // Sexual health
+    { slug:'tadalafil_5mg',         name:'Tadalafil 5mg Daily',     cat:'Sexual health',        tag:'Daily ED support · discreet',              img:'/img/card/tadalafil.png', popular:true },
+    { slug:'tadalafil',             name:'Tadalafil + Vardenafil',  cat:'Sexual health',        tag:'Dual-agent ED therapy',                    img:'/img/card/tadalafil.png' },
+    { slug:'sildenafil_gummy',      name:'Sildenafil 50mg Gummy',   cat:'Sexual health',        tag:'Fast-acting ED gummy',                     img:'/img/card/sildenafil-gummy.png' },
+    { slug:'sild_tadal_oxy',        name:'Sildenafil + Tadalafil + Oxytocin ODT', cat:'Sexual health', tag:'Triple-action dissolvable tab',        img:'/img/card/sild-tadal-oxy.png' },
+    { slug:'pt141',                 name:'PT-141 + Oxytocin',       cat:'Sexual health',        tag:'Libido & arousal peptide',                 img:'/img/card/pt141.png' },
+    // Hair
+    { slug:'minoxidil',             name:'Hair Regrowth Spray (Men)',   cat:'Hair',             tag:'Topical regrowth · men' },
+    { slug:'hair_spray_women',      name:'Hair Regrowth Spray (Women)', cat:'Hair',             tag:'Topical regrowth · women' },
+    // Skin
+    { slug:'ghk_cu_cream',          name:'GHK-Cu 3% Cream',         cat:'Skin',                 tag:'Prescription copper-peptide skin therapy', img:'/img/ghk-cu-pump.svg', popular:true },
+    // Wellness & longevity
+    { slug:'nad',                   name:'NAD+ Injections',         cat:'Wellness & longevity', tag:'Cellular energy & longevity',              img:'/img/card/nad.png' },
+    { slug:'niagen',                name:'Injectable Niagen',       cat:'Wellness & longevity', tag:'NAD+ precursor' },
+    { slug:'glutathione',           name:'Glutathione',             cat:'Wellness & longevity', tag:'Master antioxidant · detox & skin',        img:'/img/card/glutathione.png' },
+    { slug:'micc',                  name:'MICC + B12',              cat:'Wellness & longevity', tag:'Metabolism & energy blend',                img:'/img/card/micc.png' },
+    { slug:'lipo_mino',             name:'Lipo-Mino + L-Carnitine', cat:'Wellness & longevity', tag:'Lipotropic fat-metabolism blend',          img:'/img/card/lipo-mino.png' },
+    { slug:'sermorelin',            name:'Sermorelin',              cat:'Wellness & longevity', tag:'Growth-hormone support peptide' }
   ];
   var BY_SLUG = {}; PRODUCTS.forEach(function(p){ BY_SLUG[p.slug] = p; });
   // Combo cards get a second capsule image.
@@ -310,32 +349,41 @@ body{font-family:var(--sans);color:var(--dark);background:var(--gray-50);line-he
     return '<img src="' + src + '" alt="' + alt + '" onerror="this.onerror=null;this.src=\'' + FALLBACK + '\'">';
   }
 
-  // ── Build the product picker (grouped by category) ──
+  // ── Build the product picker: a full-catalog dropdown + popular quick-pick cards ──
   function buildPicker(){
-    var grid = document.getElementById('pickerGrid');
-    var html = '', lastCat = '';
-    PRODUCTS.forEach(function(p){
-      if (p.cat !== lastCat){ html += '<div class="cat-head">' + p.cat + '</div>'; lastCat = p.cat; }
-      var isCurrent = current && norm(current.slug) === norm(p.slug);
-      if (isCurrent){
-        html += '<div class="opt current" aria-disabled="true">' +
-          imgTag(p.img, p.name) +
-          '<span class="opt-body"><span class="opt-name">' + p.name + ' <span class="tagpill cur">Your saved cart</span></span>' +
-          '<span class="opt-tag">' + p.tag + '</span></span></div>';
-      } else {
-        var seen = (alsoSlug && norm(alsoSlug) === norm(p.slug)) ? ' <span class="tagpill seen">You viewed this</span>' : '';
-        html += '<button class="opt" data-slug="' + p.slug + '">' +
-          imgTag(p.img, p.name) +
-          '<span class="opt-body"><span class="opt-name">' + p.name + seen + '</span>' +
-          '<span class="opt-tag">' + p.tag + '</span></span>' +
-          '<span class="opt-view">View plans</span>' +
-          '<span class="opt-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M9 6l6 6-6 6"/></svg></span></button>';
-      }
+    var isCur = function(p){ return current && norm(current.slug) === norm(p.slug); };
+
+    // (a) Dropdown — EVERY product, grouped by category (current one excluded, it's the saved cart).
+    var sel = document.getElementById('productSelect');
+    var cats = [], byCat = {};
+    PRODUCTS.forEach(function(p){ if (isCur(p)) return; if (!byCat[p.cat]){ byCat[p.cat] = []; cats.push(p.cat); } byCat[p.cat].push(p); });
+    var dd = '<option value="">Choose a treatment…</option>';
+    cats.forEach(function(cat){
+      dd += '<optgroup label="' + cat + '">';
+      byCat[cat].forEach(function(p){ dd += '<option value="' + p.slug + '">' + p.name + '</option>'; });
+      dd += '</optgroup>';
     });
-    grid.innerHTML = html;
-    grid.querySelectorAll('.opt[data-slug]').forEach(function(b){
+    sel.innerHTML = dd;
+    var goBtn = document.getElementById('dropdownGo');
+    sel.onchange = function(){ goBtn.disabled = !sel.value; };
+    goBtn.onclick = function(){ if (sel.value) startSwitch(sel.value); };
+
+    // (b) Popular quick-pick cards (a fast path for the common treatments).
+    var pops = PRODUCTS.filter(function(p){ return p.popular && !isCur(p); });
+    document.getElementById('popularHead').style.display = pops.length ? 'block' : 'none';
+    document.getElementById('pickerGrid').innerHTML = pops.map(function(p){
+      var seen = (alsoSlug && norm(alsoSlug) === norm(p.slug)) ? ' <span class="tagpill seen">You viewed this</span>' : '';
+      return '<button class="opt" data-slug="' + p.slug + '">' +
+        imgTag(p.img || FALLBACK, p.name) +
+        '<span class="opt-body"><span class="opt-name">' + p.name + seen + '</span>' +
+        '<span class="opt-tag">' + p.tag + '</span></span>' +
+        '<span class="opt-view">Start</span>' +
+        '<span class="opt-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M9 6l6 6-6 6"/></svg></span></button>';
+    }).join('');
+    document.getElementById('pickerGrid').querySelectorAll('.opt[data-slug]').forEach(function(b){
       b.addEventListener('click', function(){ startSwitch(b.getAttribute('data-slug')); });
     });
+
     // No saved cart to return to → hide the "back to my cart" affordance.
     document.getElementById('pickerBackRow').style.display = current ? 'flex' : 'none';
   }
