@@ -282,6 +282,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var cid   = P.get('cid');
   var email = P.get('email');
   var alsoSlug = (P.get('also') || '').toLowerCase().trim();
+  var pSlug = (P.get('p') || '').toLowerCase().trim();  // recovery links carry the saved product slug
   var track = function(ev, props){ try{ if(window.clyrTrack) window.clyrTrack(ev, props||{}); }catch(e){} };
 
   // Curated picker — every slug is a product the intake funnels actually handle,
@@ -463,6 +464,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     track('resume_hub_view', { product: current.slug, mode: 'saved_cart' });
   }
 
+  // Grok audit A: when we can't resume a saved cart (peek 'incomplete' — a consult abandoner
+  // with an empty saved profile — or a lookup failure), but the recovery link carried ?p=<slug>,
+  // take them into THAT product's intake (so "Finish My Consultation" resumes their product)
+  // instead of dropping to the generic picker. Falls back to the picker if p is missing/unknown.
+  function resumeProductOrPicker(){
+    if (pSlug && BY_SLUG[pSlug]) { track('resume_hub_deeplink', { p: pSlug }); startSwitch(pSlug); return; }
+    buildPicker(); go('s-picker');
+  }
+
   // ── Boot ──
   buildPicker(); // safe default (no current) in case resume fails
   document.getElementById('pickerSub').textContent = 'Pick a treatment and we\'ll take you straight into its consultation.';
@@ -490,11 +500,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         track('resume_hub_view', { mode:'expired' });
         buildPicker(); go('s-error'); return;
       }
-      // Any other failure — don't dead-end; drop them into the picker hub.
-      track('resume_hub_view', { mode:'lookup_failed', detail: d.error || res.status });
-      buildPicker(); go('s-picker');
+      // Any other failure — incl. peek 'incomplete' (consult abandoner, empty saved cart).
+      // Honor ?p= so they resume THEIR product's intake, not the generic picker (Grok audit A).
+      track('resume_hub_view', { mode: d.status || 'lookup_failed', detail: d.error || res.status });
+      resumeProductOrPicker();
     })
-    .catch(function(){ buildPicker(); go('s-picker'); });
+    .catch(function(){ resumeProductOrPicker(); });
 })();
 </script>
 <script src="/js/clyr-tracking.js"></script>
