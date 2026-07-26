@@ -323,7 +323,9 @@ body{font-family:var(--sans);color:var(--dark);background:var(--gray-50);line-he
     if (email) carry.push('email=' + encodeURIComponent(email));
     carry.push('from=resume');
     var pr = norm(slug);
-    if (GLP[pr] || GLP[slug]) return '/intake.html' + (carry.length ? ('?' + carry.join('&')) : '');
+    // intake.html preselects the GLP from ?product= (see intake.html PREFILL block); pass it
+    // so a Tirzepatide/Semaglutide pick lands preselected, not back on the 2-option chooser.
+    if (GLP[pr] || GLP[slug]) return '/intake.html?product=' + encodeURIComponent(slug) + '&' + carry.join('&');
     return '/intake-wellness.html?product=' + encodeURIComponent(slug) + '&' + carry.join('&');
   }
 
@@ -436,7 +438,9 @@ body{font-family:var(--sans);color:var(--dark);background:var(--gray-50);line-he
     // Multi-interest nudge (only when we actually have a second-interest signal).
     if (alsoSlug && BY_SLUG[norm(alsoSlug)] && norm(alsoSlug) !== norm(c.treatment)){
       var np = BY_SLUG[norm(alsoSlug)];
-      document.getElementById('nudgeImg').src = np.img;
+      var nudgeImg = document.getElementById('nudgeImg');
+      nudgeImg.onerror = function(){ this.onerror=null; this.src=FALLBACK; };
+      nudgeImg.src = np.img || FALLBACK;
       document.getElementById('nudgeName').textContent = np.name;
       document.getElementById('nudgeCta').onclick = function(){ startSwitch(np.slug); };
       document.getElementById('nudge').style.display = 'flex';
