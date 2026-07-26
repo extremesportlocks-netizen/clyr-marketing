@@ -277,11 +277,10 @@ body{font-family:var(--sans);color:var(--dark);background:var(--gray-50);line-he
   // so a pick can never dead-end on an "unknown product" screen. GLP routes to the
   // medication-first funnel (/intake.html); everything else to /intake-wellness.
   var GLP = { tirzepatide:1, semaglutide:1, wegovy_tablets:1, zepbound:1, foundayo:1 };
-  // LIVE, SELLABLE products only — this list is the set we actually sell (each has real paid
-  // orders), NOT the full intake CATALOG. Do NOT add coded-but-unlaunched products here
-  // (e.g. hair sprays / niagen had 0 sales as of 2026-07-26) — a dropdown pick must route to
-  // a treatment we can actually fulfil. GLP -> /intake.html, the rest -> /intake-wellness.
-  // `popular` cards surface as quick-picks; all live products show in the dropdown.
+  // All CLYR products, grouped by category. The ONE hard rule: every slug must route to a
+  // funnel that actually handles it (GLP -> /intake.html, the rest -> /intake-wellness) so a
+  // pick never dead-ends — that's the gate, NOT sales volume (a live product with 0 sales yet
+  // still belongs here). `popular` cards surface as quick-picks; all products show in the dropdown.
   var PRODUCTS = [
     // Weight (GLP-1)
     { slug:'tirzepatide',           name:'Tirzepatide',             cat:'Weight (GLP-1)',       tag:'GLP-1 weight management',                  img:'/img/card/tirzepatide.png', popular:true },
@@ -296,10 +295,14 @@ body{font-family:var(--sans);color:var(--dark);background:var(--gray-50);line-he
     { slug:'sildenafil_gummy',      name:'Sildenafil 50mg Gummy',   cat:'Sexual health',        tag:'Fast-acting ED gummy',                     img:'/img/card/sildenafil-gummy.png' },
     { slug:'sild_tadal_oxy',        name:'Sildenafil + Tadalafil + Oxytocin ODT', cat:'Sexual health', tag:'Triple-action dissolvable tab',        img:'/img/card/sild-tadal-oxy.png' },
     { slug:'pt141',                 name:'PT-141 + Oxytocin',       cat:'Sexual health',        tag:'Libido & arousal peptide',                 img:'/img/card/pt141.png' },
+    // Hair
+    { slug:'minoxidil',             name:'Hair Regrowth Spray (Men)',   cat:'Hair',             tag:'Topical regrowth · men' },
+    { slug:'hair_spray_women',      name:'Hair Regrowth Spray (Women)', cat:'Hair',             tag:'Topical regrowth · women' },
     // Skin
     { slug:'ghk_cu_cream',          name:'GHK-Cu 3% Cream',         cat:'Skin',                 tag:'Prescription copper-peptide skin therapy', img:'/img/ghk-cu-pump.svg', popular:true },
     // Wellness & longevity
     { slug:'nad',                   name:'NAD+ Injections',         cat:'Wellness & longevity', tag:'Cellular energy & longevity',              img:'/img/card/nad.png' },
+    { slug:'niagen',                name:'Injectable Niagen',       cat:'Wellness & longevity', tag:'NAD+ precursor' },
     { slug:'glutathione',           name:'Glutathione',             cat:'Wellness & longevity', tag:'Master antioxidant · detox & skin',        img:'/img/card/glutathione.png' },
     { slug:'micc',                  name:'MICC + B12',              cat:'Wellness & longevity', tag:'Metabolism & energy blend',                img:'/img/card/micc.png' },
     { slug:'lipo_mino',             name:'Lipo-Mino + L-Carnitine', cat:'Wellness & longevity', tag:'Lipotropic fat-metabolism blend',          img:'/img/card/lipo-mino.png' },
