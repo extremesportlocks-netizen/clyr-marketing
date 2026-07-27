@@ -115,10 +115,7 @@ body::before{content:'';position:fixed;top:-140px;left:50%;transform:translateX(
     <h1 class="etitle">Start your <span class="serif" style="color:#bfe2ff">visit.</span></h1>
     <p class="esub">A short questionnaire, reviewed by a licensed US provider. If you are not eligible, you pay nothing.</p>
     <div class="pcards">
-      <div class="pcard" data-plan="monthly" onclick="setPlan('monthly')"><span class="pc-badge">Suggested</span><div class="pc-top"><span class="pc-name">Monthly Auto-Renew</span><span class="pc-price">$329<small>/mo</small></span></div><div class="pc-sub">Auto-renews monthly. Cancel anytime.</div></div>
-      <div class="pcard" data-plan="30day" onclick="setPlan('30day')"><div class="pc-top"><span class="pc-name">30-Day</span><span class="pc-price">$369</span></div><div class="pc-sub">One-time, 30-day supply.</div></div>
-      <div class="pcard" data-plan="90day" onclick="setPlan('90day')"><div class="pc-top"><span class="pc-name">90-Day</span><span class="pc-price">$899</span></div><div class="pc-sub">One-time. 3 vials, 2 refills. Best value.</div></div>
-      <div class="pcard" data-plan="180day" onclick="setPlan('180day')"><div class="pc-top"><span class="pc-name">180-Day</span><span class="pc-price">$1,499</span></div><div class="pc-sub">One-time. 6 vials, 5 refills. Max value.</div></div>
+      <div class="pcard" data-plan="monthly" onclick="setPlan('monthly')"><span class="pc-badge">Includes 2 refills</span><div class="pc-top"><span class="pc-name">Monthly + 2 Refills</span><span class="pc-price">$239<small>/fill</small></span></div><div class="pc-sub">1-month supply + 2 provider-authorized refills. One-time payment, no auto-renew &mdash; $239 per fill when you reorder.</div></div>
     </div>
     <div class="nav-row"><button class="btn-i btn-p" onclick="go(1)">Begin <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
   </section>
@@ -237,10 +234,7 @@ body::before{content:'';position:fixed;top:-140px;left:50%;transform:translateX(
 <script>
 var API = 'https://clyr-backend.onrender.com';
 var PLANS = {
-  monthly: { name: 'Monthly', price: '$329/mo', sub: 'Auto-renews monthly. Cancel anytime.' },
-  '30day': { name: '30-Day', price: '$369', sub: 'One-time, 30-day supply.' },
-  '90day': { name: '90-Day', price: '$899', sub: 'One-time. 3 vials, 2 refills. Best value.' },
-  '180day': { name: '180-Day', price: '$1,499', sub: 'One-time. 6 vials, 5 refills. Max value.' }
+  monthly: { name: 'Monthly + 2 Refills', price: '$239', sub: 'One-time. 1-month supply + 2 provider-authorized refills ($239/fill).' },
 };
 var DQ = [
   { key: 'pregnancy',  q: 'Are you currently pregnant, breastfeeding, or trying to conceive?' },
