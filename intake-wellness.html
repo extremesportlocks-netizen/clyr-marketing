@@ -1023,11 +1023,11 @@ function restoreWellnessDraft() {
     try {
       if (!window.ClyrDraft) return;
       var gv = function (id) { var e = document.getElementById(id); return e ? String(e.value || '').trim() : ''; };
-      ClyrDraft.save('wellness', {
+      ClyrDraft.save('wellness', Object.assign({
         product: state.productKey, plan: state.planKey, step: (typeof currentStep !== 'undefined' ? currentStep : 1),
         details: { firstName: gv('firstName'), lastName: gv('lastName'), email: gv('email'), phone: gv('phone'), sex: gv('sex'), dobMonth: gv('dobMonth'), dobDay: gv('dobDay'), dobYear: gv('dobYear') },
         shipping: { address: gv('address'), apt: gv('apt'), city: gv('city'), state: gv('state'), zip: gv('zip'), currentMeds: gv('currentMeds'), drugAllergies: gv('drugAllergies') }
-      });
+      }, screeningMarker()));
     } catch (e) {}
   }
   try {
@@ -1491,10 +1491,10 @@ function goToStep(n) {
   // ClyrDraft itself refuses to save without an email (identity guard) and
   // excludes clinical/consents/clientSecret by construction.
   try {
-    if (window.ClyrDraft) ClyrDraft.save('wellness', {
+    if (window.ClyrDraft) ClyrDraft.save('wellness', Object.assign({
       product: state.productKey, plan: state.planKey, step: n,
       details: state.details, shipping: state.shipping
-    });
+    }, screeningMarker()));
   } catch (e) {}
 }
 // Plan C / P1: reload instrumentation — fire once on boot if a prior deep-step
@@ -1550,6 +1550,13 @@ function sendWellnessProgress(step, isUnload) {
 }
 window.addEventListener('pagehide', function(){ sendWellnessProgress('unload', true); });
 
+// Screening marker payload from live state (2026-07-28): rides EVERY draft save so the
+// marker exists as soon as the draft does (at step 2 the email isn't typed yet, so a
+// standalone setScreening no-ops — save-time attachment is the reliable path).
+function screeningMarker() {
+  var clear = !!(state._screeningDone && (state.flaggedConditions || []).length === 0);
+  return { screeningDone: clear, screeningClear: clear, screeningProduct: clear ? state.productKey : null };
+}
 function onStep2Continue() {
   state._screeningDone = true; // patient affirmatively finished the health screen
   // Screening-persistence (2026-07-28, Scott/Wade class): store a PROCEDURAL marker so a
