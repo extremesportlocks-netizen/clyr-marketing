@@ -1872,14 +1872,31 @@ function initCheckout() {
     });
   }).catch(function(err) {
     console.error('[CLYR Checkout]', err);
-    // Write error UI into the loading slot (never into mount target, Stripe requires it empty)
+    // Always re-enable the CTA first — on mobile/in-app the error panel can be
+    // off-screen (checkoutPanel still hidden if intake POST failed), so a silent
+    // stuck "Preparing checkout…" is worse than a visible error on the button row.
+    btn.disabled = false;
+    btn.innerHTML = 'Continue to payment →';
+    var errMsg = (err && err.message) ? String(err.message) : 'Please try again.';
+    // Prefer an in-flow error above the buttons (visible even when checkoutPanel is hidden)
+    var host = document.getElementById('step5Btns') || document.getElementById('checkoutPanel');
+    var banner = document.getElementById('checkoutInlineError');
+    if (!banner && host) {
+      banner = document.createElement('div');
+      banner.id = 'checkoutInlineError';
+      banner.style.cssText = 'background:#FEF2F2;border:1px solid #FECACA;color:#B91C1C;border-radius:12px;padding:12px 14px;margin:0 0 12px;font-size:13.5px;line-height:1.45;font-weight:600';
+      host.parentNode.insertBefore(banner, host);
+    }
+    if (banner) {
+      banner.style.display = 'block';
+      banner.textContent = 'Unable to start payment: ' + errMsg;
+      try { banner.scrollIntoView({ block: 'center', behavior: 'smooth' }); } catch (e) {}
+    }
     var loadingEl = document.getElementById('checkout-loading-state');
     if (loadingEl) {
       loadingEl.style.display = 'block';
-      loadingEl.innerHTML = '<div style="text-align:center;padding:32px 20px;color:var(--gray-600)"><p style="font-size:15px;color:var(--red);margin-bottom:8px;font-weight:600">Unable to load payment form</p><p style="font-size:13px;color:var(--gray-500);margin-bottom:16px">'+(err.message || 'Please try again.')+'</p><button onclick="location.reload()" style="padding:10px 24px;background:var(--teal);color:#fff;border:none;border-radius:100px;cursor:pointer;font-size:14px;font-weight:600">Try again</button></div>';
+      loadingEl.innerHTML = '<div style="text-align:center;padding:32px 20px;color:var(--gray-600)"><p style="font-size:15px;color:var(--red);margin-bottom:8px;font-weight:600">Unable to load payment form</p><p style="font-size:13px;color:var(--gray-500);margin-bottom:16px">'+errMsg+'</p><button onclick="location.reload()" style="padding:10px 24px;background:var(--teal);color:#fff;border:none;border-radius:100px;cursor:pointer;font-size:14px;font-weight:600">Try again</button></div>';
     }
-    btn.disabled = false;
-    btn.innerHTML = 'Continue to payment →';
   });
 }
 
