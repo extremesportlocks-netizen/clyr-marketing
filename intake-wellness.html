@@ -986,11 +986,23 @@ function restoreWellnessDraft() {
     try { validateStep3(); } catch (e) {}
     try { validateStep4(); } catch (e) {}
 
-    // Target step per the precedence rule above.
+    // Target step per the precedence rule above — now marker-aware (2026-07-28):
+    // a valid PROCEDURAL marker (all-clear screen for THIS product) restores the
+    // affirmed state, so deep resumes stop downgrading to "unaffirmed" (Scott #790 /
+    // Wade #795 sat in provider-review purgatory with clean screens). No marker
+    // (flagged, pre-marker draft, or product mismatch) -> re-affirm at step 2, ALWAYS —
+    // including the paymentOpen/step>=5 path that used to skip straight to review.
     var step = Number(d.step) || 1;
+    var markerValid = !!(d.screeningDone && d.screeningClear && d.screeningProduct === state.productKey);
+    if (markerValid) {
+      state._screeningDone = true;
+      state.flaggedConditions = [];
+    }
     var target;
-    if (d.paymentOpen || step >= 5) target = 5;
-    else if (step > 2) target = 2;
+    if (d.paymentOpen || step >= 5) target = 5; // payment-hot path: NEVER add friction — marker
+                                                // restores truth when present; marker-less keeps
+                                                // today's safe honest-false -> provider review.
+    else if (step > 2) target = markerValid ? Math.min(step, 4) : 2;
     else target = step;
     if (!sameProduct) target = Math.min(target, 2); // never skip screening for a different product
     if (target > 1) goToStep(target);
@@ -1540,6 +1552,19 @@ window.addEventListener('pagehide', function(){ sendWellnessProgress('unload', t
 
 function onStep2Continue() {
   state._screeningDone = true; // patient affirmatively finished the health screen
+  // Screening-persistence (2026-07-28, Scott/Wade class): store a PROCEDURAL marker so a
+  // reload/resume can restore an all-clear screen truthfully. Clear screens save
+  // {done, clear, product}; flagged screens ERASE the marker (must re-affirm on resume) —
+  // no clinical payload ever touches localStorage (draft-engine contract).
+  try {
+    if (window.ClyrDraft) {
+      if ((state.flaggedConditions || []).length === 0) {
+        ClyrDraft.setScreening('wellness', { done: true, clear: true, product: state.productKey });
+      } else {
+        ClyrDraft.setScreening('wellness', { done: false });
+      }
+    }
+  } catch (e) {}
   if(window.clyrTrack)clyrTrack('screening_passed',{product:(typeof state!=='undefined'&&state.productKey)||null});
   goToStep(3);
 }

@@ -4,6 +4,11 @@
 // HARD RULES (locked in the execution contract — do not relax here):
 //   * NO clinical data: never mdiAnswers, flaggedConditions, or any screening
 //     payload. PHI does not belong in unencrypted localStorage.
+//     2026-07-28 amendment (Scott #790 / Wade #795 class): a PROCEDURAL marker
+//     is allowed — {screeningDone, screeningClear, screeningProduct} — and it is
+//     only ever written for an all-clear screen ("none of the above"). It carries
+//     zero clinical content (the step number already implied completion); flagged
+//     screens store NOTHING and must re-affirm on resume.
 //   * NO clientSecret / Stripe session ids / anything payment-method-shaped.
 //   * NO consents: the buyer must re-tick on review (never a "ready-looking"
 //     state with a dead Continue).
@@ -37,6 +42,10 @@
           // deepest progress wins (restore precedence caps it later)
           step: Math.max(Number(data.step) || 1, Number(prev.step) || 1),
           paymentOpen: (data.paymentOpen != null) ? !!data.paymentOpen : !!prev.paymentOpen,
+          // procedural screening marker (see header amendment) — carried through merges
+          screeningDone: (data.screeningDone != null) ? !!data.screeningDone : !!prev.screeningDone,
+          screeningClear: (data.screeningClear != null) ? !!data.screeningClear : !!prev.screeningClear,
+          screeningProduct: data.screeningProduct || prev.screeningProduct || null,
           details: {},
           shipping: {}
         };
@@ -65,6 +74,22 @@
         }
         return d;
       } catch (e) { return null; }
+    },
+
+    // Record the procedural screening marker. Clear screens ({done:true, clear:true,
+    // product}) enable truthful deep-resume; ANY flagged screen calls this with
+    // {done:false} which ERASES the marker — flagged patients always re-affirm.
+    setScreening: function (flow, m) {
+      try {
+        var key = keyFor(flow);
+        var d = this.load(flow);
+        if (!key || !d) return;
+        d.screeningDone = !!(m && m.done);
+        d.screeningClear = !!(m && m.clear);
+        d.screeningProduct = (m && m.done && m.product) || null;
+        d.savedAt = Date.now();
+        localStorage.setItem(key, JSON.stringify(d));
+      } catch (e) { /* fail-open */ }
     },
 
     // Flag whether the embedded checkout was open when the draft was last live.
