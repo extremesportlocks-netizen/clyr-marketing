@@ -179,6 +179,11 @@ function armEmbedWatchdog(retryBody, endpoint){
   //     looks broken to them even if it reports height.
   var host = document.getElementById('checkout-mount');
   if(!host) return;
+  // IN-APP WEBVIEW (2026-07-28, Wade #795 class): Twitter/FB/IG WebViews are where
+  // tall-but-dead embeds live, and the auto-bail only fires under 300px. For in-app
+  // UAs show the hosted escape IMMEDIATELY and ABOVE the form — nobody is redirected,
+  // embedded stays primary, but a dead frame has an obvious exit in one glance.
+  var _inApp = /(FBAN|FBAV|Instagram|Line|Twitter|GSA|EdgiOS|; wv\)|AOLApp|YahooMobile)/i.test(navigator.userAgent || '');
   var redirecting = false, tries = 0;
   function goHosted(reason){
     if(redirecting) return; redirecting = true;
@@ -194,7 +199,7 @@ function armEmbedWatchdog(retryBody, endpoint){
     w.id='hostedEscape';
     w.style.cssText='text-align:center;margin:18px 0 2px';
     w.innerHTML='<div style="font-size:13px;color:#6B7C8A;margin-bottom:8px">Payment form not loading?</div><a href="#" id="hostedEscapeLink" style="display:inline-block;background:#00B4C5;color:#fff;font-weight:700;font-size:14px;padding:12px 24px;border-radius:100px;text-decoration:none;cursor:pointer">Continue to secure checkout →</a>';
-    host.parentNode.insertBefore(w, host.nextSibling);
+    host.parentNode.insertBefore(w, _inApp ? host : host.nextSibling);
     document.getElementById('hostedEscapeLink').onclick=function(e){ e.preventDefault(); this.textContent='Opening secure checkout…'; goHosted('manual'); };
   }
   function check(){
@@ -207,7 +212,7 @@ function armEmbedWatchdog(retryBody, endpoint){
     setTimeout(check, 2000);
   }
   setTimeout(check, 3000);
-  setTimeout(showEscape, 4000);
+  if (_inApp) { showEscape(); } else { setTimeout(showEscape, 4000); }
 }
 
   fetch(API + '/api/checkout/resume', {
