@@ -231,6 +231,13 @@ function armEmbedWatchdog(retryBody, endpoint){
     if (!result.ok) {
       if (result.data.status === 'already_paid') {
         showAlreadyPaid();
+      } else if (result.data.status === 'invalid_pair') {
+        // Jerry #802 class: mixed product/plan slots. Auto-route into the intake for
+        // the product the server DID find (or the email's ?p=) — never a dead end.
+        var ip = (result.data.product || recoveryProduct || '').toLowerCase();
+        document.getElementById('loadingText') && (document.getElementById('loadingText').textContent = 'One moment — taking you to the right checkout…');
+        location.replace(intakeUrlFor(ip, null) || '/continue.html');
+        return;
       } else if (result.data.status === 'token_expired') {
         showError('This link has expired', result.data.error || 'For your security, checkout links expire after 7 days. Please start the intake form to continue.');
       } else {

@@ -439,6 +439,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       .then(function(r){ return r.json(); })
       .then(function(d){
         if (d && d.hostedUrl){ location.replace(d.hostedUrl); return; }
+        if (d && d.status === 'invalid_pair'){
+          // Mixed slots (Jerry class): route into the found product's intake.
+          var ip = String(d.product || pSlug || '').toLowerCase();
+          if (ip) { startSwitch(ip); return; }
+          buildPicker(); go('s-picker'); return;
+        }
         // Fall back to the standalone resume page (embedded + its own hosted watchdog).
         location.href = fallbackResumeUrl();
       })
