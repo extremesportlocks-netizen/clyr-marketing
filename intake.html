@@ -1865,18 +1865,20 @@ function goToStep(step) {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(leadData)
         }).then(function(r) { return r.json(); }).then(function(data) {
+          // Slice 3: prefill contact from server identity when returning (parity with wellness).
+          if (data && data.identity) applyGlpIdentityPrefill(data.identity);
           if (data.status === 'existing_active') {
             // Active/paid patient: never patch their canonical record from this funnel.
             window._intakeReturningActive = true;
-            showReturningCustomerModal(data.firstName || leadData.firstName, 'active', leadData.email);
+            showReturningCustomerModal(data.firstName || leadData.firstName, 'active', leadData.email, data);
           } else if (data.status === 'existing_incomplete') {
-            showReturningCustomerModal(data.firstName || leadData.firstName, 'incomplete', leadData.email);
+            showReturningCustomerModal(data.firstName || leadData.firstName, 'incomplete', leadData.email, data);
           } else if (data.status === 'existing_partial') {
-            // Started intake but bailed mid-flow, route to intake.html, not
-            // resume.html (resume.html would 4xx on incomplete intake data).
-            showReturningCustomerModal(data.firstName || leadData.firstName, 'partial', leadData.email);
+            // Started intake but bailed mid-flow — never offer blind checkout.
+            showReturningCustomerModal(data.firstName || leadData.firstName, 'partial', leadData.email, data);
+          } else if (data.status === 'existing_lead' && data.identity) {
+            // No modal (must finish full intake) but contact fields stay prefilled.
           }
-          // existing_lead: No modal, lead must complete full intake (patient safety)
           // New leads also continue silently
           // Row exists now — patch the step-2 screening onto it (skipped for active patients).
           sendIntakeProgress(3);
@@ -1896,6 +1898,50 @@ function goToStep(step) {
     if (currentStep < totalSteps) goToStep(currentStep + 1);
   }
 
+  // ── Slice 3: GLP contact prefill from save-lead identity (or later portal) ──
+  function applyGlpIdentityPrefill(id) {
+    if (!id) return;
+    function set(elId, val) {
+      var el = document.getElementById(elId);
+      if (!el || val == null || val === '') return;
+      if (el.value && String(el.value).trim()) return; // don't clobber what user typed
+      el.value = val;
+      try { el.dispatchEvent(new Event('input', { bubbles: true })); } catch (e) {}
+      try { el.dispatchEvent(new Event('change', { bubbles: true })); } catch (e) {}
+    }
+    set('firstName', id.firstName);
+    set('lastName', id.lastName);
+    set('email', id.email);
+    set('phone', id.phone);
+    set('sex', id.sex);
+    if (id.heightFt != null) set('heightFt', id.heightFt);
+    if (id.heightIn != null) set('heightIn', id.heightIn);
+    if (id.weightLbs != null) set('weight', id.weightLbs);
+    if (id.dob) {
+      try {
+        var d = new Date(id.dob);
+        if (!isNaN(d.getTime())) {
+          var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+          var mEl = document.getElementById('dobMonth');
+          var dEl = document.getElementById('dobDay');
+          var yEl = document.getElementById('dobYear');
+          if (mEl && !mEl.value) mEl.value = months[d.getUTCMonth()];
+          if (dEl && !dEl.value) dEl.value = String(d.getUTCDate());
+          if (yEl && !yEl.value) yEl.value = String(d.getUTCFullYear());
+        }
+      } catch (e) {}
+    }
+    try { if (typeof validateStep === 'function') validateStep(); } catch (e) {}
+  }
+
+  // Display name for the CURRENT URL intake product (primary CTA).
+  function currentIntakeLabel() {
+    var t = formData.treatment || '';
+    if (t === 'tirzepatide') return 'Tirzepatide';
+    if (t === 'semaglutide') return 'Semaglutide';
+    return t ? (t.charAt(0).toUpperCase() + t.slice(1).replace(/_/g, ' ')) : 'this';
+  }
+
   // Tokenized resume: mint an opaque token so no email rides in the URL (?t= not ?email=).
   function clyrResumeToCheckout(el) {
     var email = '';
@@ -1913,30 +1959,55 @@ function goToStep(step) {
     return false;
   }
 
-  function showReturningCustomerModal(firstName, mode, email) {
+  // Slice 2: named CTAs + validity gate (Jerry #802 class).
+  // Primary ALWAYS = continue THIS intake (URL product).
+  // Resume checkout ONLY when savedCart.cartValid (resolvable SKU) AND we have a product name.
+  // Never blind "Go to Checkout."
+  function showReturningCustomerModal(firstName, mode, email, meta) {
+    meta = meta || {};
     var overlay = document.createElement('div');
     overlay.id = 'returningModal';
     overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:999;display:flex;align-items:center;justify-content:center;padding:24px;animation:fadeUp 0.3s ease';
     var msg, buttons;
+    var btnPrimary = 'display:inline-block;background:#2bbcb3;color:#fff;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:600;font-size:15px;margin-bottom:12px;width:100%;box-sizing:border-box;border:none;cursor:pointer;font-family:inherit;';
+    var btnSecondary = 'display:inline-block;background:#fff;color:#1a1a2e;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:600;font-size:15px;margin-bottom:12px;width:100%;box-sizing:border-box;border:1.5px solid #e5e7eb;cursor:pointer;font-family:inherit;';
+    var btnGhost = 'background:none;border:none;color:#9ca3af;font-size:14px;cursor:pointer;padding:8px 16px;margin-top:4px;font-family:inherit;';
+
     if (mode === 'active') {
       msg = '<p style="color:#4b5563;font-size:15px;line-height:1.6;margin-bottom:24px;">It looks like you already have an active CLYR Health account. Log into your patient portal to manage your treatment, view your prescription status, and more.</p>';
-      buttons = '<a href="/portal/" style="display:inline-block;background:#2bbcb3;color:#fff;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:600;font-size:15px;margin-bottom:12px;width:100%;box-sizing:border-box;">Go to Patient Portal</a><br>' +
-        '<button onclick="document.getElementById(\'returningModal\').remove()" style="background:none;border:none;color:#9ca3af;font-size:14px;cursor:pointer;padding:8px 16px;margin-top:4px;">Continue as new patient</button>';
+      buttons = '<a href="/portal/" style="' + btnPrimary + '">Go to Patient Portal</a><br>' +
+        '<button type="button" onclick="document.getElementById(\'returningModal\').remove()" style="' + btnGhost + '">Continue as new patient</button>';
     } else if (mode === 'partial') {
-      // Bailed mid-intake. Don't suggest checkout, they don't have enough
-      // data on file for /api/checkout/resume to succeed. Send them back into
-      // the intake form to finish what's missing.
-      msg = '<p style="color:#4b5563;font-size:15px;line-height:1.6;margin-bottom:24px;">It looks like you started your consultation but didn\'t finish. Pick up where you left off, we\'ll skip the parts you\'ve already filled in.</p>';
-      buttons = '<button onclick="document.getElementById(\'returningModal\').remove()" style="display:inline-block;background:#2bbcb3;color:#fff;border:none;padding:14px 32px;border-radius:10px;font-weight:600;font-size:15px;margin-bottom:12px;width:100%;box-sizing:border-box;cursor:pointer;font-family:inherit;">Continue my consultation</button>';
+      msg = '<p style="color:#4b5563;font-size:15px;line-height:1.6;margin-bottom:24px;">It looks like you started your consultation but didn\'t finish. Continue <strong>' + currentIntakeLabel() + '</strong> below — we\'ll keep what we already have on file.</p>';
+      buttons = '<button type="button" onclick="document.getElementById(\'returningModal\').remove()" style="' + btnPrimary + '">Continue this ' + currentIntakeLabel() + ' intake</button>' +
+        '<a href="/continue.html" style="' + btnSecondary + '">See all treatments</a>';
     } else {
-      // 'incomplete', completed intake, just didn't pay. resume.html works.
-      // Tokenized on click so no email sits in the URL (→ /resume.html?t=<token>).
-      var resumeAttrs = email
-        ? 'href="/intake.html" data-clyr-email="' + encodeURIComponent(email) + '" onclick="return clyrResumeToCheckout(this)"'
-        : 'href="/intake.html"';
-      msg = '<p style="color:#4b5563;font-size:15px;line-height:1.6;margin-bottom:24px;">It looks like you already started your consultation. Your information is saved, you can go straight to checkout or continue updating your details.</p>';
-      buttons = '<a ' + resumeAttrs + ' style="display:inline-block;background:#2bbcb3;color:#fff;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:600;font-size:15px;margin-bottom:12px;width:100%;box-sizing:border-box;">Go to Checkout</a><br>' +
-        '<button onclick="document.getElementById(\'returningModal\').remove()" style="background:none;border:none;color:#9ca3af;font-size:14px;cursor:pointer;padding:8px 16px;margin-top:4px;">Update my details first</button>';
+      // incomplete: prior completed intake, unpaid. Offer named resume ONLY if cartValid.
+      var cart = meta.savedCart || {};
+      var cartValid = !!cart.cartValid && !!cart.product;
+      var urlProduct = (formData.treatment || '').toLowerCase();
+      var savedProduct = (cart.product || '').toLowerCase();
+      var sameProduct = urlProduct && savedProduct && urlProduct === savedProduct;
+      var savedLabel = cart.productName || savedProduct || 'saved treatment';
+      var planBit = cart.planName ? (' · ' + cart.planName) : '';
+
+      msg = '<p style="color:#4b5563;font-size:15px;line-height:1.6;margin-bottom:20px;">Your information is on file. Choose how you\'d like to continue:</p>';
+      // ① Continue THIS intake (always primary)
+      buttons = '<button type="button" onclick="document.getElementById(\'returningModal\').remove()" style="' + btnPrimary + '">Continue this ' + currentIntakeLabel() + ' intake</button>';
+
+      // ② Resume named saved cart — only if resolvable SKU (never blind checkout)
+      if (cartValid) {
+        var resumeLabel = sameProduct
+          ? ('Resume checkout — ' + savedLabel + planBit)
+          : ('Resume your ' + savedLabel + planBit + ' checkout');
+        var resumeAttrs = email
+          ? 'href="#" data-clyr-email="' + encodeURIComponent(email) + '" onclick="return clyrResumeToCheckout(this)"'
+          : 'href="/resume.html"';
+        buttons += '<a ' + resumeAttrs + ' style="' + btnSecondary + '">' + resumeLabel + '</a>';
+      }
+      // ③ Hub
+      buttons += '<a href="/continue.html" style="' + btnSecondary + '">See all treatments</a>';
+      buttons += '<br><button type="button" onclick="document.getElementById(\'returningModal\').remove()" style="' + btnGhost + '">Update my details first</button>';
     }
     overlay.innerHTML = '<div style="background:#fff;border-radius:20px;padding:36px 32px;max-width:440px;width:100%;text-align:center;box-shadow:0 24px 80px rgba(0,0,0,0.15)">' +
       '<div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,rgba(43,188,179,0.15),rgba(43,188,179,0.05));display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:24px;">👋</div>' +
