@@ -1037,7 +1037,7 @@ function restoreWellnessDraft() {
 function csSubmit() {
   var emailEl = document.getElementById('csEmail');
   var email = (emailEl.value || '').trim();
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  if (!email || !isPlausibleEmail(email)) {
     emailEl.focus();
     return;
   }
@@ -1171,7 +1171,7 @@ function csCheckEligibility(){
 function csJoinWaitlist(){
   var email = (document.getElementById('wlEmail').value || '').trim();
   var err = document.getElementById('wlErr');
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ err.textContent = 'Please enter a valid email.'; err.style.display = 'block'; return; }
+  if (!email || !isPlausibleEmail(email)){ err.textContent = 'Please check your email — it looks like a typo.'; err.style.display = 'block'; return; }
   if (!document.getElementById('wlConsent').checked){ err.textContent = 'Please check the consent box to continue.'; err.style.display = 'block'; return; }
   err.style.display = 'none';
   var btn = document.getElementById('wlSubmitBtn'); btn.disabled = true; btn.textContent = 'Adding you...';
@@ -1303,12 +1303,16 @@ function attachListeners() {
     el.addEventListener('change', validateStep3);
     el.addEventListener('blur', validateStep3);
   });
-  // Email validation
+  // Email validation (incl. fat-finger TLDs like .con — Siobhan #854 class)
   document.getElementById('email').addEventListener('blur', function() {
     var v = this.value.trim();
-    var ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    var ok = isPlausibleEmail(v);
     this.classList.toggle('err', !ok && v.length > 3);
-    document.getElementById('errEmail').classList.toggle('vis', !ok && v.length > 3);
+    var errEl = document.getElementById('errEmail');
+    if (errEl) {
+      errEl.textContent = ok ? 'Please enter a valid email' : 'Please check your email — it looks like a typo';
+      errEl.classList.toggle('vis', !ok && v.length > 3);
+    }
   });
 
   // Step 4 inputs
@@ -1401,11 +1405,28 @@ document.addEventListener('click', function(e){
   }
 }, true);
 
+// Blocks common fat-finger domains that pass bare regex but never deliver
+// (hotmail.con, gmal.com, etc.). Keep in sync with backend services/email-validate.js.
+function isPlausibleEmail(v) {
+  if (!v || !/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(v)) return false;
+  var domain = (v.split('@')[1] || '').toLowerCase();
+  var tld = domain.split('.').pop() || '';
+  var badTld = { con:1, cpm:1, vom:1, xom:1, comm:1, coom:1, ocm:1, comn:1, cmo:1 };
+  var badDomain = {
+    'gmal.com':1, 'gmial.com':1, 'gamil.com':1, 'gnail.com':1, 'gmaill.com':1,
+    'hotmial.com':1, 'hotmal.com':1, 'hotamil.com':1,
+    'yahooo.com':1, 'yaho.com':1, 'yhoo.com':1,
+    'outlok.com':1, 'outloo.com':1
+  };
+  if (badTld[tld] || badDomain[domain]) return false;
+  return true;
+}
+
 function validateStep3() {
   var fn = document.getElementById('firstName').value.trim().length >= 2;
   var ln = document.getElementById('lastName').value.trim().length >= 2;
   var email = document.getElementById('email').value.trim();
-  var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  var emailOk = isPlausibleEmail(email);
   var phone = document.getElementById('phone').value.replace(/\D/g, '').length === 10;
   var sex = document.getElementById('sex').value;
   var dob = document.getElementById('dobMonth').value && document.getElementById('dobDay').value && document.getElementById('dobYear').value;
