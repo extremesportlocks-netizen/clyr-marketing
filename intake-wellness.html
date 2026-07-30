@@ -390,17 +390,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <h3 style="font-size:14px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.08em;margin:24px 0 12px">Please confirm</h3>
     <div class="consent-list">
-      <label class="consent-item" data-consent="terms">
+      <label class="consent-item" data-consent="all">
         <span class="check-box"></span>
-        <span class="check-label">I agree to CLYR Health's <a href="/terms.html" target="_blank">Terms of Service</a> and <a href="/privacy.html" target="_blank">Privacy Policy</a>.</span>
-      </label>
-      <label class="consent-item" data-consent="telehealth">
-        <span class="check-box"></span>
-        <span class="check-label">I consent to a <a href="/telehealth-consent.html" target="_blank">telehealth evaluation</a> by a licensed provider. I understand medication is dispensed only if the provider determines it is appropriate.</span>
-      </label>
-      <label class="consent-item" data-consent="compound">
-        <span class="check-box"></span>
-        <span class="check-label">I understand my medication may be compounded by a state-licensed 503A pharmacy. Compounded medications are not FDA-approved.</span>
+        <span class="check-label">I agree to CLYR Health's <a href="/terms.html" target="_blank">Terms of Service</a> and <a href="/privacy.html" target="_blank">Privacy Policy</a>, consent to a <a href="/telehealth-consent.html" target="_blank">telehealth evaluation</a> by a licensed provider (medication is dispensed only if the provider determines it is appropriate), and understand my medication may be compounded by a state-licensed 503A pharmacy and that compounded medications are not FDA-approved.</span>
       </label>
       <label class="consent-item" data-consent="sms">
         <span class="check-box"></span>
@@ -1376,7 +1368,14 @@ function attachListeners() {
     el.addEventListener('click', function(e) {
       e.preventDefault();
       el.classList.toggle('checked');
-      state.consents[el.dataset.consent] = el.classList.contains('checked');
+      if (el.dataset.consent === 'all') {
+        // One tap covers the three required consents; the recorded artifact keeps
+        // the same three keys the completion POST has always written (founder 7/30,
+        // consent friction). SMS stays its own optional toggle.
+        state.consents.terms = state.consents.telehealth = state.consents.compound = el.classList.contains('checked');
+      } else {
+        state.consents[el.dataset.consent] = el.classList.contains('checked');
+      }
       validateConsents();
       var hint = document.getElementById('consentHint');
       if (hint && document.getElementById('btnCheckout') && !document.getElementById('btnCheckout').disabled) hint.style.display = 'none';
