@@ -40,20 +40,20 @@ a{text-decoration:none;color:inherit}
 /* ============ HERO FIELD ============ */
 .field{background:linear-gradient(168deg,var(--field) 0%,var(--field-2) 100%);color:var(--field-ink);padding:0 0 64px;position:relative;overflow:hidden}
 .field::after{content:'';position:absolute;top:-15%;left:50%;transform:translateX(-50%);width:130%;height:70%;background:radial-gradient(ellipse at center,rgba(255,255,255,0.10) 0%,transparent 62%);pointer-events:none}
-.stage{position:relative;width:100%;aspect-ratio:1/1;max-height:560px;display:flex;align-items:center;justify-content:center;z-index:2}
-.stage img{width:78%;max-width:520px;filter:drop-shadow(0 40px 60px rgba(0,0,0,0.42)) saturate(0.72) contrast(1.04);transform:rotate(-4deg)}
+.stage{position:relative;width:100%;aspect-ratio:20/13;max-height:420px;display:flex;align-items:center;justify-content:center;z-index:2;padding:0 4px}
+.stage img{width:104%;max-width:none;filter:drop-shadow(0 34px 46px rgba(0,0,0,0.5)) contrast(1.06) brightness(1.03);transform:rotate(-6deg) scale(1.02)}
 /* annotation callouts */
 .anno{position:absolute;z-index:3;display:flex;align-items:center;gap:0}
-.anno .chip{background:rgba(20,32,38,0.52);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,0.10);border-radius:10px;padding:11px 15px;max-width:220px}
-.anno .chip b{display:block;font-size:15.5px;font-weight:700;letter-spacing:-0.015em;line-height:1.2}
-.anno .chip span{display:block;font-size:12.5px;color:rgba(255,255,255,0.62);margin-top:4px;line-height:1.35;padding-left:8px;border-left:2px solid rgba(255,255,255,0.28)}
+.anno .chip{background:rgba(14,24,30,0.60);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,0.10);border-radius:10px;padding:11px 15px;max-width:172px}
+.anno .chip b{display:block;font-size:14px;font-weight:700;letter-spacing:-0.015em;line-height:1.2}
+.anno .chip span{display:block;font-size:11.5px;color:rgba(255,255,255,0.62);margin-top:4px;line-height:1.35;padding-left:8px;border-left:2px solid rgba(255,255,255,0.28)}
 .anno .lead{height:1px;background:rgba(255,255,255,0.5);position:relative}
 .anno .lead::after{content:'';position:absolute;width:6px;height:6px;border-radius:50%;background:#fff;top:-2.5px}
-.anno-a{top:15%;right:5%;flex-direction:row-reverse}
-.anno-a .lead{width:60px}
+.anno-a{top:6%;right:3%;flex-direction:row-reverse}
+.anno-a .lead{width:34px}
 .anno-a .lead::after{left:-3px}
-.anno-b{bottom:22%;left:5%}
-.anno-b .lead{width:52px}
+.anno-b{bottom:8%;left:3%}
+.anno-b .lead{width:30px}
 .anno-b .lead::after{right:-3px}
 
 .field-copy{position:relative;z-index:4;text-align:center;padding:6px 26px 0;max-width:620px;margin:0 auto}
@@ -81,19 +81,28 @@ a{text-decoration:none;color:inherit}
 .alt b span[data-clyr-price]{font-size:inherit;font-weight:inherit}
 .alt em{display:block;font-style:normal;font-size:12.5px;color:var(--ink-3);margin-top:3px}
 
-/* ============ EDITORIAL STEPS ============ */
-.ed{padding:20px 0 84px;background:var(--paper)}
-.ed-h{padding:0 26px;max-width:720px;margin:0 auto 34px}
-.ed-h h2{font-size:44px;font-weight:700;letter-spacing:-0.04em;line-height:1.02}
-.ed-h h2 .serif{font-family:var(--serif);font-style:italic;font-weight:400}
-.ed-block{padding:0 26px;max-width:720px;margin:0 auto 52px}
-.ed-fig{width:100%;aspect-ratio:4/5;border-radius:26px;overflow:hidden;margin-bottom:24px;position:relative;background:linear-gradient(150deg,#E9EEF0,#D6DFE3);display:flex;align-items:center;justify-content:center}
-.ed-fig img{width:100%;height:100%;object-fit:cover}
-.ed-fig.tint{background:linear-gradient(150deg,var(--field),var(--field-2))}
-.ed-fig.tint img{width:70%;height:auto;object-fit:contain;filter:drop-shadow(0 26px 40px rgba(0,0,0,0.4)) saturate(0.75)}
-.ed-num{position:absolute;top:18px;left:18px;z-index:2;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.9);color:var(--ink);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800}
-.ed-block h3{font-size:31px;font-weight:700;letter-spacing:-0.032em;line-height:1.1;margin-bottom:10px}
-.ed-block p{font-size:17px;line-height:1.55;color:var(--ink-2);max-width:520px}
+/* ============ SPEC PANEL + STEPS (typographic, no stock photography) ============ */
+.spec{background:linear-gradient(168deg,var(--field) 0%,var(--field-2) 100%);color:#fff;padding:74px 26px}
+.spec-in{max-width:720px;margin:0 auto}
+.spec h2{font-size:42px;font-weight:700;letter-spacing:-0.04em;line-height:1.03;margin-bottom:34px}
+.spec h2 .serif{font-family:var(--serif);font-style:italic;font-weight:400}
+.agent{padding:24px 0;border-top:1px solid rgba(255,255,255,0.14);display:grid;grid-template-columns:1fr auto;gap:16px;align-items:start}
+.agent:last-child{border-bottom:1px solid rgba(255,255,255,0.14)}
+.agent b{font-size:22px;font-weight:700;letter-spacing:-0.025em;display:block;margin-bottom:6px}
+.agent p{font-size:15px;line-height:1.55;color:rgba(255,255,255,0.6);max-width:400px}
+.agent .dose{font-size:13px;font-weight:700;letter-spacing:0.05em;color:rgba(255,255,255,0.5);white-space:nowrap;padding-top:5px}
+.spec-foot{margin-top:22px;font-size:13px;line-height:1.6;color:rgba(255,255,255,0.4)}
+
+.steps{padding:74px 26px;background:var(--paper)}
+.steps-in{max-width:720px;margin:0 auto}
+.steps h2{font-size:42px;font-weight:700;letter-spacing:-0.04em;line-height:1.03;margin-bottom:8px}
+.steps h2 .serif{font-family:var(--serif);font-style:italic;font-weight:400}
+.steps .lede{font-size:16.5px;color:var(--ink-2);margin-bottom:34px;max-width:460px}
+.st{display:grid;grid-template-columns:38px 1fr;gap:18px;padding:22px 0;border-top:1px solid var(--line)}
+.st:last-child{border-bottom:1px solid var(--line)}
+.st .n{font-size:13px;font-weight:800;letter-spacing:0.04em;color:var(--teal);padding-top:5px}
+.st h3{font-size:22px;font-weight:700;letter-spacing:-0.025em;margin-bottom:7px;line-height:1.15}
+.st p{font-size:16px;line-height:1.6;color:var(--ink-2)}
 
 /* ============ CONTRAST TABLE ============ */
 .vs{background:var(--paper-2);padding:76px 26px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -143,19 +152,18 @@ body{padding-bottom:0}
 
 @media(min-width:900px){
   .field{padding-bottom:84px}
-  .stage{aspect-ratio:16/9;max-height:520px}
-  .stage img{width:44%}
-  .anno-a{right:16%}
-  .anno-b{left:16%}
+  .stage{aspect-ratio:24/9;max-height:460px}
+  .stage img{width:58%}
+  .anno-a{right:14%;top:12%}
+  .anno-b{left:14%;bottom:14%}
   .field-copy h1{font-size:68px}
   .field-copy p{font-size:18.5px}
   .cta-white{display:inline-flex;padding:19px 46px}
   .slab .num{font-size:112px}
-  .ed-h h2{font-size:56px}
-  .ed-block{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;max-width:1080px;margin-bottom:78px}
-  .ed-block:nth-child(even) .ed-fig{order:2}
-  .ed-fig{aspect-ratio:1/1;margin-bottom:0}
-  .ed-block h3{font-size:38px}
+  .spec h2,.steps h2{font-size:52px}
+  .st{grid-template-columns:52px 1fr;padding:26px 0}
+  .st h3{font-size:25px}
+  .agent b{font-size:25px}
   .vs h2,.q h2{font-size:48px}
   .close h2{font-size:58px}
   .dock{display:none}
@@ -211,39 +219,29 @@ body{padding-bottom:0}
   </div>
 </section>
 
-<section class="ed">
-  <div class="ed-h"><h2>How it <span class="serif">actually</span> works</h2></div>
-
-  <div class="ed-block">
-    <div class="ed-fig tint"><div class="ed-num">1</div><img src="/img/pill-tadalafil-5mg-cutout.png" alt=""></div>
-    <div>
-      <h3>Answer the questionnaire</h3>
-      <p>Symptoms, medical history, current medications. It takes a few minutes and no card is required to finish it.</p>
+<section class="spec">
+  <div class="spec-in">
+    <h2>What is <span class="serif">in it</span></h2>
+    <div class="agent">
+      <div><b>Tadalafil</b><p>A long acting PDE5 inhibitor. It is the daily base, which is why there is no window to time.</p></div>
+      <div class="dose">Provider dosed</div>
     </div>
+    <div class="agent">
+      <div><b>Vardenafil</b><p>A second PDE5 inhibitor with a different onset and duration profile, compounded into the same tablet.</p></div>
+      <div class="dose">Provider dosed</div>
+    </div>
+    <div class="spec-foot">Strengths are set by the licensed provider who reviews your questionnaire and can be changed at any refill. Combining two agents is not appropriate for everyone.</div>
   </div>
+</section>
 
-  <div class="ed-block">
-    <div class="ed-fig"><div class="ed-num">2</div><img src="/img/pill-tadalafil-5mg-photo-wide.jpg" alt=""></div>
-    <div>
-      <h3>A licensed provider reviews it</h3>
-      <p>They decide whether treatment is appropriate and set your dose. If something in your history rules it out, they will tell you and you are not charged.</p>
-    </div>
-  </div>
-
-  <div class="ed-block">
-    <div class="ed-fig tint"><div class="ed-num">3</div><img src="/img/pill-tadalafil-vardenafil.png" alt=""></div>
-    <div>
-      <h3>The pharmacy compounds it</h3>
-      <p>A state-licensed compounding pharmacy prepares your tablet at the dose your provider wrote, then ships the full term in plain packaging.</p>
-    </div>
-  </div>
-
-  <div class="ed-block">
-    <div class="ed-fig"><div class="ed-num">4</div><img src="/img/pill-tadalafil-5mg-tilted-wide.jpg" alt=""></div>
-    <div>
-      <h3>Adjust it from your portal</h3>
-      <p>Message your provider about dose or side effects at any point. Changes apply to the next fill. There is no charge to ask.</p>
-    </div>
+<section class="steps">
+  <div class="steps-in">
+    <h2>How it <span class="serif">actually</span> works</h2>
+    <div class="lede">No phone calls, no office visit, and no card required until a prescription exists.</div>
+    <div class="st"><div class="n">01</div><div><h3>Answer the questionnaire</h3><p>Symptoms, medical history, current medications. A few minutes, and finishing it costs nothing.</p></div></div>
+    <div class="st"><div class="n">02</div><div><h3>A licensed provider reviews it</h3><p>They decide whether treatment is appropriate and set your dose. If your history rules it out, they tell you and you are not charged.</p></div></div>
+    <div class="st"><div class="n">03</div><div><h3>The pharmacy compounds it</h3><p>A state-licensed compounding pharmacy prepares the tablet at the written dose and ships the full term in plain packaging.</p></div></div>
+    <div class="st"><div class="n">04</div><div><h3>Adjust it from your portal</h3><p>Message your provider about dose or side effects whenever. Changes apply to the next fill and there is no charge to ask.</p></div></div>
   </div>
 </section>
 
