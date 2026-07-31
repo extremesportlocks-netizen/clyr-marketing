@@ -25,6 +25,33 @@
 html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
 body{font-family:var(--sans);color:var(--ink);background:var(--paper);overflow-x:hidden;line-height:1.5}
 img{display:block;max-width:100%}
+svg{flex:none}
+.cta-white svg,.promo svg{width:17px;height:17px;flex:none}
+/* ===== Canonical footer (injected) ===== */
+.footer{background:#0A0A0A;padding:60px 40px 36px;color:#94A3B0}
+.footer-inner{max-width:1280px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.footer-brand-text{font-size:14px;line-height:1.6;color:#6B7C8A;max-width:280px;margin-top:16px}
+.footer-col h4{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:#94A3B0;margin-bottom:16px}
+.footer-col a{display:block;font-size:14px;color:#6B7C8A;text-decoration:none;padding:5px 0;transition:color 0.2s}
+.footer-col a:hover{color:#FFFFFF}
+.footer-bottom{padding-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-bottom p{font-size:13px;color:#6B7C8A}
+.footer-legal{display:flex;gap:24px}
+.footer-legal a{font-size:13px;color:#6B7C8A;text-decoration:none;transition:color 0.2s}
+.footer-legal a:hover{color:#FFFFFF}
+.footer-disclaimer{margin-top:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.06);font-size:11px;line-height:1.7;color:#6B7C8A;opacity:0.7}
+.footer-seals{display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-top:20px}
+.footer-seals a{display:inline-block;opacity:0.85;transition:opacity 0.2s}
+.footer-seals a:hover{opacity:1}
+.footer-trust{display:flex;align-items:center;gap:20px;padding-top:24px;margin-top:24px;border-top:1px solid rgba(255,255,255,0.06);flex-wrap:wrap}
+.trust-chip{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:10px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);font-size:12px;font-weight:500;color:rgba(255,255,255,0.75);transition:all 0.25s}
+.trust-chip:hover{background:rgba(0,180,197,0.08);border-color:rgba(0,180,197,0.2);color:rgba(255,255,255,0.95)}
+.trust-chip svg{width:14px;height:14px;color:#00B4C5;flex-shrink:0}
+@media (max-width:1024px){.footer-top{grid-template-columns:1fr 1fr}}
+@media (max-width:768px){.footer{padding:40px 20px 28px}.footer-top{grid-template-columns:1fr;gap:28px}.footer-bottom{flex-direction:column;text-align:center}.footer-legal{justify-content:center}.trust-chip{padding:6px 12px;font-size:11px}}
+/* ===== end canonical footer ===== */
+
 a{text-decoration:none;color:inherit}
 
 /* promo bar */
@@ -40,21 +67,21 @@ a{text-decoration:none;color:inherit}
 /* ============ HERO FIELD ============ */
 .field{background:linear-gradient(168deg,var(--field) 0%,var(--field-2) 100%);color:var(--field-ink);padding:0 0 64px;position:relative;overflow:hidden}
 .field::after{content:'';position:absolute;top:-15%;left:50%;transform:translateX(-50%);width:130%;height:70%;background:radial-gradient(ellipse at center,rgba(255,255,255,0.10) 0%,transparent 62%);pointer-events:none}
-.stage{position:relative;width:100%;aspect-ratio:20/13;max-height:420px;display:flex;align-items:center;justify-content:center;z-index:2;padding:0 4px}
-.stage img{width:104%;max-width:none;filter:drop-shadow(0 34px 46px rgba(0,0,0,0.5)) contrast(1.06) brightness(1.03);transform:rotate(-6deg) scale(1.02)}
+.stage{position:relative;width:100%;aspect-ratio:1/1;max-height:400px;display:flex;align-items:center;justify-content:center;z-index:2;padding:0 18px}
+.stage img{width:100%;max-width:430px;filter:drop-shadow(0 26px 40px rgba(0,0,0,0.45)) contrast(1.05) brightness(1.02);transform:rotate(-4deg)}
 /* annotation callouts */
 .anno{position:absolute;z-index:3;display:flex;align-items:center;gap:0}
-.anno .chip{background:rgba(14,24,30,0.60);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,0.10);border-radius:10px;padding:11px 15px;max-width:172px}
+.anno .chip{background:rgba(14,24,30,0.60);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,0.10);border-radius:10px;padding:11px 15px;max-width:184px}
 .anno .chip b{display:block;font-size:14px;font-weight:700;letter-spacing:-0.015em;line-height:1.2}
 .anno .chip span{display:block;font-size:11.5px;color:rgba(255,255,255,0.62);margin-top:4px;line-height:1.35;padding-left:8px;border-left:2px solid rgba(255,255,255,0.28)}
 .anno .lead{height:1px;background:rgba(255,255,255,0.5);position:relative}
-.anno .lead::after{content:'';position:absolute;width:6px;height:6px;border-radius:50%;background:#fff;top:-2.5px}
-.anno-a{top:6%;right:3%;flex-direction:row-reverse}
-.anno-a .lead{width:34px}
-.anno-a .lead::after{left:-3px}
-.anno-b{bottom:8%;left:3%}
-.anno-b .lead{width:30px}
-.anno-b .lead::after{right:-3px}
+.anno .lead::after{content:'';position:absolute;width:6px;height:6px;border-radius:50%;background:#fff;left:-2.5px}
+.anno-a{top:7%;right:4%;flex-direction:column-reverse;align-items:flex-end;gap:0}
+.anno-a .lead{width:1px;height:26px}
+.anno-a .lead::after{bottom:-3px}
+.anno-b{bottom:7%;left:4%;flex-direction:column;align-items:flex-start;gap:0}
+.anno-b .lead{width:1px;height:26px}
+.anno-b .lead::after{top:-3px}
 
 .field-copy{position:relative;z-index:4;text-align:center;padding:6px 26px 0;max-width:620px;margin:0 auto}
 .eyebrow{font-size:12px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:16px}
@@ -74,12 +101,12 @@ a{text-decoration:none;color:inherit}
 .slab .num span[data-clyr-price]{font-size:inherit;font-weight:inherit;letter-spacing:inherit}
 .slab .term{font-size:17px;font-weight:600;color:var(--ink-2);margin-bottom:8px}
 .slab .sub{font-size:15.5px;color:var(--ink-3);line-height:1.6;max-width:400px;margin:0 auto}
-.slab-alt{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:30px}
-.alt{border:1px solid var(--line);border-radius:14px;padding:14px 20px;min-width:132px;transition:border-color 0.2s}
+.slab-alt{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:30px}
+.alt{border:1px solid var(--line);border-radius:14px;padding:14px 8px;transition:border-color 0.2s}
 .alt:hover{border-color:var(--ink)}
-.alt b{display:block;font-size:22px;font-weight:800;letter-spacing:-0.03em}
+.alt b{display:block;font-size:20px;font-weight:800;letter-spacing:-0.03em}
 .alt b span[data-clyr-price]{font-size:inherit;font-weight:inherit}
-.alt em{display:block;font-style:normal;font-size:12.5px;color:var(--ink-3);margin-top:3px}
+.alt em{display:block;font-style:normal;font-size:11.5px;color:var(--ink-3);margin-top:3px}
 
 /* ============ SPEC PANEL + STEPS (typographic, no stock photography) ============ */
 .spec{background:linear-gradient(168deg,var(--field) 0%,var(--field-2) 100%);color:#fff;padding:74px 26px}
@@ -152,10 +179,10 @@ body{padding-bottom:0}
 
 @media(min-width:900px){
   .field{padding-bottom:84px}
-  .stage{aspect-ratio:24/9;max-height:460px}
-  .stage img{width:58%}
-  .anno-a{right:14%;top:12%}
-  .anno-b{left:14%;bottom:14%}
+  .stage{aspect-ratio:21/9;max-height:440px}
+  .stage img{width:52%;max-width:620px}
+  .anno-a{right:15%;top:10%}
+  .anno-b{left:15%;bottom:10%}
   .field-copy h1{font-size:68px}
   .field-copy p{font-size:18.5px}
   .cta-white{display:inline-flex;padding:19px 46px}
@@ -173,11 +200,11 @@ body{padding-bottom:0}
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T4FVQ87G" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-<div class="promo"><a href="#plans">One daily tablet. The price is on this page. <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+<div class="promo"><a href="#plans">One daily tablet. The price is on this page. <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
 
 <div class="brand">
   <a href="/" aria-label="CLYR Health home">
-    <svg viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg" height="26">
+    <svg viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="86" height="26">
       <text x="0" y="26" font-family="DM Sans, sans-serif" font-weight="700" font-size="28" letter-spacing="-1"><tspan fill="#1A1A1A">CLY</tspan><tspan fill="#00B4C5">R</tspan></text>
     </svg>
   </a>
@@ -200,7 +227,7 @@ body{padding-bottom:0}
     <div class="eyebrow">Compounded for CLYR</div>
     <h1>Two agents. <span class="serif">One</span> daily tablet.</h1>
     <p>Prepared by a state-licensed compounding pharmacy, dosed by a licensed provider, and priced on this page before you answer anything.</p>
-    <a class="cta-white" href="/intake-wellness.html?product=tadalafil&amp;plan=3month">See if I am eligible <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <a class="cta-white" href="/intake-wellness.html?product=tadalafil&amp;plan=3month">See if I am eligible <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     <div class="field-fine">Prescription products require an online consultation with a licensed provider who determines whether treatment is appropriate. <a href="#isi">Important safety information</a></div>
   </div>
 </section>
@@ -270,7 +297,7 @@ body{padding-bottom:0}
 <section class="close">
   <h2>Start with the <span class="serif">questionnaire</span></h2>
   <p>Free, online, and no card required to finish it.</p>
-  <a class="cta-white" href="/intake-wellness.html?product=tadalafil&amp;plan=3month">See if I am eligible <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  <a class="cta-white" href="/intake-wellness.html?product=tadalafil&amp;plan=3month">See if I am eligible <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 </section>
 
 <section class="isi" id="isi">
