@@ -2091,10 +2091,10 @@ function goToStep(step) {
         var baseExcluded = [];
         // Per-product shipping restrictions for compounded GLP-1 injectables.
         // Updated 2026-07-10 per Erin Halligan (pharmacy): CA now OPEN for
-        // Strive per-product exclusions (Erin 2026-06-26): sema AR/IN/MN/SC; tirz adds CA.
+        // Strive exclusions per Erin 2026-07-10 (latest email wins): both GLPs AR/IN/MN/SC. CA is OPEN.
         var glpRestricted = {
           semaglutide: ['AR', 'IN', 'MN', 'SC'],
-          tirzepatide: ['AR', 'CA', 'IN', 'MN', 'SC']
+          tirzepatide: ['AR', 'IN', 'MN', 'SC']
         };
         var productExtra = glpRestricted[formData.treatment] || [];
         var baseHit = baseExcluded.indexOf(selectedState) !== -1;
