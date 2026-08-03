@@ -453,20 +453,18 @@ body {
       <a href="/intake-wellness.html?product=ivermectin_30mg" class="card-cta" data-cta-product="ivermectin_30mg">Start consultation</a>
     </div>
     <div class="card" data-product="ivermectin-mebendazole" aria-pressed="false">
-      <div class="card-visual combo">
-        <img src="/img/card/mebendazole.png" alt="" width="36" height="40">
-        <img src="/img/card/ivermectin.png" alt="" width="36" height="40">
+      <div class="card-visual">
+        <img src="/img/capsule-ivermectin.svg" alt="One combined ivermectin and mebendazole capsule" width="40" height="44">
       </div>
       <h2>Ivermectin + Mebendazole</h2>
-      <p class="caps">30 caps &middot; broader coverage</p>
+      <p class="caps">30 caps &middot; both medications in one combined capsule</p>
       <p class="price">from <span data-clyr-price="ivermectin_mebendazole:onetime">$139</span></p>
       <a href="/intake-wellness.html?product=ivermectin-mebendazole" class="card-cta" data-cta-product="ivermectin-mebendazole">Start consultation</a>
     </div>
     <div class="card" data-product="ivermectin-mebendazole" data-plan="3month" aria-pressed="false">
       <span class="card-badge">Best value</span>
-      <div class="card-visual combo">
-        <img src="/img/card/mebendazole.png" alt="" width="36" height="40">
-        <img src="/img/card/ivermectin.png" alt="" width="36" height="40">
+      <div class="card-visual">
+        <img src="/img/capsule-ivermectin.svg" alt="One combined ivermectin and mebendazole capsule" width="40" height="44">
       </div>
       <h2>Ivermectin + Mebendazole</h2>
       <p class="caps">90 caps</p>
@@ -538,6 +536,7 @@ body {
     <div class="faq-item"><button type="button" class="faq-q">Which protocol is right for me?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><div class="faq-a"><p>Ivermectin on its own is a single-mechanism antiparasitic. Adding mebendazole introduces a second mechanism for broader coverage. Which one fits you is your reviewing provider&rsquo;s decision based on your history.</p></div></div>
     <div class="faq-item"><button type="button" class="faq-q">Is this an actual prescription?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><div class="faq-a"><p>Yes. A licensed U.S. provider reviews your case and writes the prescription, which a licensed 503A pharmacy compounds and labels for you. It is not a supplement or a generic mail-order product.</p></div></div>
     <div class="faq-item"><button type="button" class="faq-q">How is this different from online or overseas sellers?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><div class="faq-a"><p>Marketplace and offshore sellers operate without a U.S. provider or pharmacy on record. With CLYR, a named provider and a licensed U.S. pharmacy stand behind every order.</p></div></div>
+    <div class="faq-item"><button type="button" class="faq-q">Is the combo two capsules?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><div class="faq-a"><p>No. Ivermectin and mebendazole are compounded together into a single capsule, so each dose is one capsule, not two.</p></div></div>
     <div class="faq-item"><button type="button" class="faq-q">Where do you ship?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><div class="faq-a"><p>All 50 U.S. states.</p></div></div>
     <div class="faq-item"><button type="button" class="faq-q">What if I am not approved?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><div class="faq-a"><p>If the reviewing provider decides it is not right for you, you are not charged for medication. You only pay once a prescription is written.</p></div></div>
   </div>
@@ -715,6 +714,39 @@ try {
     flowCtas.forEach(function (el) { io.observe(el); });
   }
 } catch (e) {}
+</script>
+<script>
+/* X in-app browser eject (founder hard rule, 2026-08-03): X's WebView traps users at
+   checkout. On CTA tap (never on load — ad-policy safe), bounce to the system browser:
+   iOS x-safari- scheme, Android intent://. Fallback to normal nav if the scheme fails. */
+(function(){
+  var ua = navigator.userAgent || '';
+  var inX = /Twitter|TwitterAndroid|X11;.*TwitteriPhone/i.test(ua) || /\bTwitter for/i.test(ua);
+  if (!inX) return;
+  var isAndroid = /android/i.test(ua);
+  function eject(url){
+    var full = url.indexOf('http') === 0 ? url : (location.origin + url);
+    if (isAndroid) {
+      location.href = 'intent://' + full.replace(/^https?:\/\//,'') + '#Intent;scheme=https;end';
+    } else {
+      location.href = 'x-safari-' + full;
+    }
+    return full;
+  }
+  var bar = document.createElement('div');
+  bar.style.cssText = 'position:sticky;top:0;z-index:999;background:#07333a;color:#fff;padding:10px 14px;font-size:14px;text-align:center;cursor:pointer';
+  bar.textContent = 'For the smoothest checkout, tap here to open in your browser';
+  bar.addEventListener('click', function(){ eject(location.pathname + location.search); });
+  document.body.insertBefore(bar, document.body.firstChild);
+  document.querySelectorAll('a.card-cta, a.cta, a.hero-cta').forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var dest = a.getAttribute('href');
+      var full = eject(dest);
+      setTimeout(function(){ location.href = full; }, 1400); /* fallback: normal nav */
+    });
+  });
+})();
 </script>
 </body>
 </html>
