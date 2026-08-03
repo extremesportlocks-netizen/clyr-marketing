@@ -438,7 +438,22 @@ body {
   </ul>
 
   <div class="cards" id="protocols" role="radiogroup" aria-label="Choose your protocol">
-    <div class="card selected" data-product="ivermectin" aria-pressed="true">
+    <div class="card" data-product="ivermectin-mebendazole" aria-pressed="false">
+      <div class="card-visual"><img src="/img/card/ivermectin.png" alt="" width="40" height="44"></div>
+      <h2>Ivermectin + Mebendazole</h2>
+      <p class="caps">30 caps &middot; both medications in one combined capsule</p>
+      <p class="price">from <span data-clyr-price="ivermectin_mebendazole:onetime">$139</span></p>
+      <a href="/intake-wellness.html?product=ivermectin-mebendazole" class="card-cta" data-cta-product="ivermectin-mebendazole">Start consultation</a>
+    </div>
+    <div class="card selected" data-product="ivermectin-mebendazole" data-plan="3month" aria-pressed="true">
+      <span class="card-badge">Best value</span>
+      <div class="card-visual"><img src="/img/card/ivermectin.png" alt="" width="40" height="44"></div>
+      <h2>Ivermectin + Mebendazole</h2>
+      <p class="caps">90 caps &middot; both medications in one combined capsule</p>
+      <p class="price"><span data-clyr-price="ivermectin_mebendazole:3month">$379</span></p>
+      <a href="/intake-wellness.html?product=ivermectin-mebendazole&amp;plan=3month" class="card-cta" data-cta-product="ivermectin-mebendazole" data-cta-plan="3month">Start consultation</a>
+    </div>
+    <div class="card" data-product="ivermectin" aria-pressed="false">
       <div class="card-visual"><img src="/img/card/ivermectin.png" alt="" width="40" height="44"></div>
       <h2>Ivermectin 18mg</h2>
       <p class="caps">30 caps</p>
@@ -451,21 +466,6 @@ body {
       <p class="caps">30 caps &middot; higher strength</p>
       <p class="price">from <span data-clyr-price="ivermectin_30mg:onetime">$139</span></p>
       <a href="/intake-wellness.html?product=ivermectin_30mg" class="card-cta" data-cta-product="ivermectin_30mg">Start consultation</a>
-    </div>
-    <div class="card" data-product="ivermectin-mebendazole" aria-pressed="false">
-      <div class="card-visual"><img src="/img/card/ivermectin.png" alt="" width="40" height="44"></div>
-      <h2>Ivermectin + Mebendazole</h2>
-      <p class="caps">30 caps &middot; both medications in one combined capsule</p>
-      <p class="price">from <span data-clyr-price="ivermectin_mebendazole:onetime">$139</span></p>
-      <a href="/intake-wellness.html?product=ivermectin-mebendazole" class="card-cta" data-cta-product="ivermectin-mebendazole">Start consultation</a>
-    </div>
-    <div class="card" data-product="ivermectin-mebendazole" data-plan="3month" aria-pressed="false">
-      <span class="card-badge">Best value</span>
-      <div class="card-visual"><img src="/img/card/ivermectin.png" alt="" width="40" height="44"></div>
-      <h2>Ivermectin + Mebendazole</h2>
-      <p class="caps">90 caps</p>
-      <p class="price"><span data-clyr-price="ivermectin_mebendazole:3month">$379</span></p>
-      <a href="/intake-wellness.html?product=ivermectin-mebendazole&amp;plan=3month" class="card-cta" data-cta-product="ivermectin-mebendazole" data-cta-plan="3month">Start consultation</a>
     </div>
   </div>
 
@@ -593,7 +593,7 @@ body {
   var cards = document.querySelectorAll('.card');
   var ctas = document.querySelectorAll('#cta, #hero-cta, #mid-cta, .card-cta, .chooser-row');
   var selected = 'ivermectin-mebendazole';
-  var selectedPlan = '';
+  var selectedPlan = '3month'; // founder 2026-08-03: 90-cap Best Value is the default highlight + CTA
 
   function intakeUrl(product, plan) {
     var params = new URLSearchParams(window.location.search);
