@@ -685,7 +685,9 @@ body {
   }
 
   var preset = params.get('product') || 'ivermectin-mebendazole'; // default = combo, the flagship (founder 7/22 — generic CTAs were funneling everyone to plain 18mg)
-  applyProduct(preset, params.get('plan') || '');
+  // Founder 2026-08-03: default highlight = the 90-cap Best Value. URL params still win;
+  // the 3month default only applies when the preset is the combo (other products have no 3month card).
+  applyProduct(preset, params.get('plan') || (preset === 'ivermectin-mebendazole' ? '3month' : ''));
   track('AdLPView', { product: preset });
 })();
 </script>
