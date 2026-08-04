@@ -334,15 +334,6 @@ body {
   .proof-item { font-size: 13px; }
   .trust-chip { font-size: 12px; padding: 9px 13px; }
 
-  /* Two data columns fit a 390px viewport, so the chart no longer scrolls at
-     all: no hidden columns, no swipe, no sticky-column seam. */
-  .chart-wrap { overflow-x: hidden; }
-  .chart { font-size: 12.5px; min-width: 0; width: 100%; table-layout: fixed; }
-  .chart th:first-child, .chart td:first-child {
-    width: 86px; padding-right: 8px; box-shadow: none;
-  }
-  .chart th, .chart td { padding-left: 11px; padding-right: 11px; }
-  .swipe-hint { display: none; }
 }
 
 .chart-wrap {
@@ -536,6 +527,28 @@ body {
   text-decoration: none;
   border-radius: 12px;
   box-shadow: 0 10px 28px rgba(0, 168, 158, 0.35);
+}
+
+/* ===== MOBILE CHART OVERRIDES (must stay last) ========================
+   These have to sit after the base .chart rules. Media queries add no
+   specificity, so an earlier @media min-width:0 loses to a later
+   .chart{min-width:480px}. Two data columns fit 390px exactly, so the
+   chart does not scroll at all on mobile. */
+@media (max-width: 479px) {
+  .chart-wrap { overflow-x: hidden; }
+  .chart {
+    font-size: 12.5px;
+    min-width: 0;
+    width: 100%;
+    table-layout: fixed;
+  }
+  .chart th, .chart td { padding-left: 11px; padding-right: 11px; }
+  .chart th:first-child, .chart td:first-child {
+    width: 84px;
+    padding-right: 8px;
+    box-shadow: none;
+  }
+  .swipe-hint { display: none; }
 }
 </style>
 </head>
