@@ -309,9 +309,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     { slug:'tirzepatide',           name:'Tirzepatide',             cat:'Weight (GLP-1)',       tag:'GLP-1 weight management',                  img:'/img/card/tirzepatide.png', popular:true },
     { slug:'semaglutide',           name:'Semaglutide',             cat:'Weight (GLP-1)',       tag:'GLP-1 weight management',                  img:'/img/card/semaglutide.png', popular:true },
     // Antiparasitic
-    { slug:'ivermectin',            name:'Ivermectin 18mg',         cat:'Antiparasitic',        tag:'Single-agent antiparasitic protocol',      img:'/img/card/ivermectin.png' },
-    { slug:'ivermectin_30mg',       name:'Ivermectin 30mg',         cat:'Antiparasitic',        tag:'Higher-strength antiparasitic protocol',   img:'/img/card/ivermectin.png' },
-    { slug:'ivermectin_mebendazole',name:'Ivermectin + Mebendazole',cat:'Antiparasitic',        tag:'Dual antiparasitic · broader coverage',    img:'/img/card/mebendazole.png', popular:true },
+    { slug:'ivermectin',            name:'Ivermectin 18mg',         cat:'Antiparasitic',        tag:'Single-agent antiparasitic protocol',      img:'/img/capsule-clyr-canva.png' },
+    { slug:'ivermectin_30mg',       name:'Ivermectin 30mg',         cat:'Antiparasitic',        tag:'Higher-strength antiparasitic protocol',   img:'/img/capsule-clyr-canva.png' },
+    { slug:'ivermectin_mebendazole',name:'Ivermectin + Mebendazole',cat:'Antiparasitic',        tag:'Dual antiparasitic · broader coverage',    img:'/img/capsule-clyr-canva.png', popular:true },
     // Sexual health
     { slug:'tadalafil_5mg',         name:'Tadalafil 5mg Daily',     cat:'Sexual health',        tag:'Daily ED support · discreet',              img:'/img/card/tadalafil.png', popular:true },
     { slug:'tadalafil',             name:'Tadalafil + Vardenafil',  cat:'Sexual health',        tag:'Dual-agent ED therapy',                    img:'/img/card/tadalafil.png' },
@@ -333,7 +333,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   ];
   var BY_SLUG = {}; PRODUCTS.forEach(function(p){ BY_SLUG[p.slug] = p; });
   // Combo cards get a second capsule image.
-  var IMGS = { ivermectin_mebendazole:['/img/card/ivermectin.png','/img/card/mebendazole.png'] };
+  var IMGS = { ivermectin_mebendazole:['/img/capsule-clyr-canva.png'] };
   // Neutral inline fallback so a missing asset never shows a broken image.
   var FALLBACK = 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%2394A3B0" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M8 12h8"/></svg>');
 
