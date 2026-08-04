@@ -495,6 +495,26 @@ body {
   background: var(--white);
 }
 .chooser-row:active { background: var(--gray-100); }
+.chooser-row.is-best {
+  position: relative;
+  border-color: var(--teal);
+  box-shadow: 0 6px 20px rgba(0, 180, 197, 0.16);
+}
+.cr-flag {
+  position: absolute;
+  top: -9px;
+  left: 14px;
+  background: var(--green);
+  color: var(--white);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 100px;
+  box-shadow: 0 2px 8px rgba(15, 157, 107, 0.35);
+}
+.chooser-row.is-best .cr-price { font-size: 16px; }
 .chooser-row img { height: 34px; width: auto; }
 .chooser-row .cr-text { flex: 1; }
 .chooser-row .cr-text strong { display: block; font-size: 14px; font-weight: 700; }
@@ -709,6 +729,12 @@ body {
 <div class="chooser-overlay" id="chooser" hidden>
   <div class="chooser-sheet" role="dialog" aria-modal="true" aria-label="Choose your protocol">
     <div class="chooser-title">Choose your protocol</div>
+    <a class="chooser-row is-best" href="/intake-wellness.html?product=ivermectin-mebendazole&amp;plan=3month" data-cta-product="ivermectin-mebendazole" data-cta-plan="3month">
+      <span class="cr-flag">Best value</span>
+      <img src="/img/capsule-clyr-canva.png" alt="">
+      <span class="cr-text"><strong>Ivermectin + Mebendazole</strong><span>90 caps &middot; one combined capsule</span></span>
+      <span class="cr-price"><span data-clyr-price="ivermectin_mebendazole:3month">$379</span></span>
+    </a>
     <a class="chooser-row" href="/intake-wellness.html?product=ivermectin" data-cta-product="ivermectin">
       <img src="/img/capsule-clyr-canva.png" alt="">
       <span class="cr-text"><strong>Ivermectin 18mg</strong><span>30 caps</span></span>
@@ -718,11 +744,6 @@ body {
       <img src="/img/capsule-clyr-canva.png" alt="">
       <span class="cr-text"><strong>Ivermectin 30mg</strong><span>30 caps &middot; higher strength</span></span>
       <span class="cr-price">from <span data-clyr-price="ivermectin_30mg:onetime">$139</span></span>
-    </a>
-    <a class="chooser-row" href="/intake-wellness.html?product=ivermectin-mebendazole" data-cta-product="ivermectin-mebendazole">
-      <img src="/img/capsule-clyr-canva.png" alt="">
-      <span class="cr-text"><strong>Ivermectin + Mebendazole</strong><span>30 caps &middot; one combined capsule</span></span>
-      <span class="cr-price">from <span data-clyr-price="ivermectin_mebendazole:onetime">$139</span></span>
     </a>
     <button type="button" class="chooser-close" id="chooserClose">Cancel</button>
   </div>
