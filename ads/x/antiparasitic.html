@@ -271,39 +271,75 @@ body {
 }
 
 @media (max-width: 479px) {
-  /* one card per row, laid out horizontally: art, name, price, then CTA */
-  .cards { grid-template-columns: 1fr; gap: 10px; }
-  .card {
+  /* Hierarchy: the two combo protocols are the product, so they get full-width
+     rows. The two single-drug options drop to a compact 2-up pair underneath. */
+  .cards { grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  .card:nth-child(1),
+  .card:nth-child(2) {
+    grid-column: 1 / -1;
     display: grid;
-    grid-template-columns: 58px minmax(0, 1fr) auto;
+    grid-template-columns: 56px minmax(0, 1fr) auto;
     grid-template-areas:
       "visual title price"
-      "visual caps  price"
+      "visual caps  caps"
       "cta    cta   cta";
     column-gap: 12px;
-    row-gap: 2px;
+    row-gap: 3px;
     align-items: center;
     text-align: left;
     padding: 14px 14px 12px;
   }
-  .card-visual { grid-area: visual; height: 52px; margin-bottom: 0; }
-  .card-visual img { height: 48px; }
-  .card h2 { grid-area: title; font-size: 15px; margin-bottom: 0; }
-  .card .caps { grid-area: caps; font-size: 12.5px; margin-bottom: 0; line-height: 1.35; }
-  .card .price { grid-area: price; font-size: 18px; text-align: right; white-space: nowrap; }
-  .card .price span { font-size: 13px; }
-  .card-cta {
-    grid-area: cta;
-    margin-top: 12px;
-    min-height: 46px;
-    font-size: 15px;
-    padding: 12px 10px;
+  .card:nth-child(1) .card-visual,
+  .card:nth-child(2) .card-visual { grid-area: visual; height: 50px; margin-bottom: 0; }
+  .card:nth-child(1) .card-visual img,
+  .card:nth-child(2) .card-visual img { height: 46px; }
+  .card:nth-child(1) h2,
+  .card:nth-child(2) h2 { grid-area: title; font-size: 15.5px; margin-bottom: 0; align-self: end; }
+  .card:nth-child(1) .caps,
+  .card:nth-child(2) .caps {
+    grid-area: caps; font-size: 12.5px; margin-bottom: 0;
+    line-height: 1.35; align-self: start;
   }
+  .card:nth-child(1) .price,
+  .card:nth-child(2) .price {
+    grid-area: price; font-size: 19px; white-space: nowrap;
+    text-align: right; align-self: end;
+  }
+  .card:nth-child(1) .price span,
+  .card:nth-child(2) .price span { font-size: 13px; }
+  .card:nth-child(1) .card-cta,
+  .card:nth-child(2) .card-cta {
+    grid-area: cta; margin-top: 12px; min-height: 46px;
+    font-size: 15px; padding: 12px 10px;
+  }
+
+  /* single-drug options, compact and clearly secondary */
+  .card:nth-child(3),
+  .card:nth-child(4) { padding: 12px 10px 11px; }
+  .card:nth-child(3) .card-visual,
+  .card:nth-child(4) .card-visual { height: 40px; margin-bottom: 6px; }
+  .card:nth-child(3) .card-visual img,
+  .card:nth-child(4) .card-visual img { height: 34px; }
+  .card:nth-child(3) h2,
+  .card:nth-child(4) h2 { font-size: 13.5px; }
+  .card:nth-child(3) .caps,
+  .card:nth-child(4) .caps { font-size: 12px; }
+  .card:nth-child(3) .price,
+  .card:nth-child(4) .price { font-size: 15.5px; }
+  .card:nth-child(3) .card-cta,
+  .card:nth-child(4) .card-cta { min-height: 44px; font-size: 13.5px; margin-top: 10px; }
+
   .card-badge { font-size: 10.5px; top: -8px; right: 12px; padding: 4px 9px; }
   .proof-item { font-size: 13px; }
   .trust-chip { font-size: 12px; padding: 9px 13px; }
-  .chart { font-size: 12.5px; }
+
+  /* Combo is now the first data column, so nothing that sells the product is
+     ever behind a swipe. Narrow the label column to buy it more room. */
+  .chart { font-size: 12.5px; min-width: 430px; }
+  .chart th:first-child, .chart td:first-child { width: 88px; padding-right: 8px; }
 }
+
 .chart-wrap {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
@@ -565,22 +601,22 @@ body {
   <div class="block">
     <div class="section-label">Compare</div>
     <h2 class="section-title">Pick the coverage<br><span class="serif">that fits.</span></h2>
-    <p class="swipe-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Swipe the table to compare all four protocols</p>
+    <p class="swipe-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Combo shown first · swipe for single-drug options</p>
     <div class="chart-wrap">
     <table class="chart">
       <thead>
-        <tr><th>Plan</th><th>Ivermectin 18mg</th><th>Ivermectin 30mg</th><th class="lead">Combo</th></tr>
+        <tr><th>Plan</th><th class="lead">Combo</th><th>Ivermectin 30mg</th><th>Ivermectin 18mg</th></tr>
       </thead>
       <tbody>
-        <tr><td>30 Caps</td><td class="val"><span data-clyr-price="ivermectin:onetime">$99</span></td><td class="val"><span data-clyr-price="ivermectin_30mg:onetime">$139</span></td><td class="val lead"><span data-clyr-price="ivermectin_mebendazole:onetime">$139</span></td></tr>
-        <tr><td>60 Caps</td><td class="val"><span data-clyr-price="ivermectin:2month">$179</span></td><td class="val"><span data-clyr-price="ivermectin_30mg:2month">$259</span></td><td class="val lead"><span data-clyr-price="ivermectin_mebendazole:2month">$259</span></td></tr>
-        <tr><td>90 Caps</td><td class="val"><span data-clyr-price="ivermectin:3month">$259</span></td><td class="val"><span data-clyr-price="ivermectin_30mg:3month">$379</span></td><td class="val lead"><span data-clyr-price="ivermectin_mebendazole:3month">$379</span></td></tr>
-        <tr><td>You save (90 caps)</td><td class="save">$38</td><td class="save">$38</td><td class="save lead">$38</td></tr>
-        <tr><td>Medications</td><td>Ivermectin</td><td>Ivermectin</td><td class="lead">Ivermectin + Mebendazole</td></tr>
-        <tr><td>Dosing</td><td>18 mg capsules</td><td>30 mg capsules</td><td class="lead">25 mg / 250 mg</td></tr>
-        <tr><td>Coverage</td><td>Single mechanism</td><td>Single mechanism</td><td class="lead">Dual mechanism</td></tr>
-        <tr><td>Shipping</td><td>Discreet 2-3 day</td><td>Discreet 2-3 day</td><td class="lead">Discreet 2-3 day</td></tr>
-        <tr><td>Commitment</td><td>One-time, no auto-renew</td><td>One-time, no auto-renew</td><td class="lead">One-time, no auto-renew</td></tr>
+        <tr><td>30 Caps</td><td class="val lead"><span data-clyr-price="ivermectin_mebendazole:onetime">$139</span></td><td class="val"><span data-clyr-price="ivermectin_30mg:onetime">$139</span></td><td class="val"><span data-clyr-price="ivermectin:onetime">$99</span></td></tr>
+        <tr><td>60 Caps</td><td class="val lead"><span data-clyr-price="ivermectin_mebendazole:2month">$259</span></td><td class="val"><span data-clyr-price="ivermectin_30mg:2month">$259</span></td><td class="val"><span data-clyr-price="ivermectin:2month">$179</span></td></tr>
+        <tr><td>90 Caps</td><td class="val lead"><span data-clyr-price="ivermectin_mebendazole:3month">$379</span></td><td class="val"><span data-clyr-price="ivermectin_30mg:3month">$379</span></td><td class="val"><span data-clyr-price="ivermectin:3month">$259</span></td></tr>
+        <tr><td>You save (90 caps)</td><td class="save lead">$38</td><td class="save">$38</td><td class="save">$38</td></tr>
+        <tr><td>Medications</td><td class="lead">Ivermectin + Mebendazole</td><td>Ivermectin</td><td>Ivermectin</td></tr>
+        <tr><td>Dosing</td><td class="lead">25 mg / 250 mg</td><td>30 mg capsules</td><td>18 mg capsules</td></tr>
+        <tr><td>Coverage</td><td class="lead">Dual mechanism</td><td>Single mechanism</td><td>Single mechanism</td></tr>
+        <tr><td>Shipping</td><td class="lead">Discreet 2-3 day</td><td>Discreet 2-3 day</td><td>Discreet 2-3 day</td></tr>
+        <tr><td>Commitment</td><td class="lead">One-time, no auto-renew</td><td>One-time, no auto-renew</td><td>One-time, no auto-renew</td></tr>
       </tbody>
     </table>
     </div>
