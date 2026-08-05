@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
-<title>The CLYR Daily &middot; One tablet, dosed by your provider | CLYR Health</title>
-<meta name="description" content="A compounded daily tablet for erections and endurance. Price published before the questionnaire. Provider reviewed, plain packaging.">
+<title>The CLYR ODT &middot; Three actives, one dissolving tablet | CLYR Health</title>
+<meta name="description" content="A compounded orally dissolving tablet with sildenafil, tadalafil, and oxytocin. Price published before the questionnaire. Provider reviewed, plain packaging.">
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-T4FVQ87G');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,6 +20,7 @@
   --teal:#00B4C5; --teal-dark:#009BAA;
   --serif:'Instrument Serif',Georgia,serif;
   --sans:'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+  --dock-h:78px;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
@@ -65,27 +66,33 @@ a{text-decoration:none;color:inherit}
 .brand a.back{font-size:14px;font-weight:600;color:var(--ink-2)}
 
 /* ============ HERO FIELD ============ */
-.field{background:linear-gradient(168deg,var(--field) 0%,var(--field-2) 100%);color:var(--field-ink);padding:0 0 64px;position:relative;overflow:hidden}
-.field::after{content:'';position:absolute;top:-15%;left:50%;transform:translateX(-50%);width:130%;height:70%;background:radial-gradient(ellipse at center,rgba(255,255,255,0.10) 0%,transparent 62%);pointer-events:none}
-.stage{position:relative;width:100%;aspect-ratio:1/1;max-height:400px;display:flex;align-items:center;justify-content:center;z-index:2;padding:0 18px}
-.stage img{width:88%;max-width:390px;filter:drop-shadow(0 26px 40px rgba(0,0,0,0.45)) contrast(1.05) brightness(1.02);transform:rotate(-4deg)}
-/* annotation callouts */
-.anno{position:absolute;z-index:3;display:flex;align-items:center;gap:0}
-.anno .chip{background:rgba(14,24,30,0.60);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,0.10);border-radius:10px;padding:11px 15px;max-width:184px}
-.anno .chip b{display:block;font-size:14px;font-weight:700;letter-spacing:-0.015em;line-height:1.2}
-.anno .chip span{display:block;font-size:11.5px;color:rgba(255,255,255,0.62);margin-top:4px;line-height:1.35;padding-left:8px;border-left:2px solid rgba(255,255,255,0.28)}
-.anno .lead{height:1px;background:rgba(255,255,255,0.5);position:relative}
-.anno .lead::after{content:'';position:absolute;width:6px;height:6px;border-radius:50%;background:#fff;left:-2.5px}
-.anno-a{top:3%;right:4%;flex-direction:column-reverse;align-items:flex-end;gap:0}
-.anno-a .lead{width:1px;height:16px}
-.anno-a .lead::after{bottom:-3px}
-.anno-b{bottom:3%;left:4%;flex-direction:column;align-items:flex-start;gap:0}
-.anno-b .lead{width:1px;height:16px}
-.anno-b .lead::after{top:-3px}
+/* --tw is the rendered tablet width. The hero image is cropped tight to the
+   tablet silhouette, so every leader line below is a fixed ratio of --tw and
+   each pin lands on the tablet's actual edge at any viewport. The three ratios
+   are measured off the alpha mask at x = 1/6, 1/2, 5/6 (the disc is rendered at
+   an angle, so the right edge genuinely sits higher than the left). */
+.field{--tw:min(58vw,232px);background:linear-gradient(168deg,var(--field) 0%,var(--field-2) 100%);color:var(--field-ink);padding:0 0 60px;position:relative;overflow:hidden}
+.field::after{content:'';position:absolute;top:-14%;left:50%;transform:translateX(-50%);width:130%;height:66%;background:radial-gradient(ellipse at center,rgba(255,255,255,0.08) 0%,transparent 62%);pointer-events:none}
 
-.field-copy{position:relative;z-index:4;text-align:center;padding:6px 26px 0;max-width:620px;margin:0 auto}
+.stage{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;padding:40px 18px 0}
+.stage::before{content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:calc(var(--tw)*1.72);aspect-ratio:1.46/1;border-radius:50%;background:radial-gradient(ellipse at center,rgba(236,150,174,0.30) 0%,rgba(236,150,174,0.11) 42%,rgba(236,150,174,0) 70%);pointer-events:none}
+.stage img{position:relative;width:var(--tw);filter:drop-shadow(0 18px 30px rgba(0,0,0,0.44))}
+
+/* annotation row: three pins on the tablet edge, leader lines down to the labels */
+.anno-row{position:relative;z-index:4;display:grid;grid-template-columns:repeat(3,1fr);width:calc(var(--tw)*1.10);margin:calc(var(--tw)*-0.1343) auto 0}
+.anno{display:flex;flex-direction:column;align-items:center;text-align:center}
+.anno .leadwrap{height:calc(var(--tw)*0.2193);display:flex;align-items:flex-end;justify-content:center}
+.anno .lead{width:1px;background:linear-gradient(180deg,rgba(255,255,255,0.66) 0%,rgba(255,255,255,0.14) 100%);position:relative}
+.anno .lead::before{content:'';position:absolute;top:-2.5px;left:-2.5px;width:5px;height:5px;border-radius:50%;background:#fff;box-shadow:0 0 0 3.5px rgba(255,255,255,0.15)}
+.anno:nth-child(1) .lead{height:calc(var(--tw)*0.1652)}
+.anno:nth-child(2) .lead{height:calc(var(--tw)*0.0990)}
+.anno:nth-child(3) .lead{height:calc(var(--tw)*0.2193)}
+.anno b{display:block;font-size:13px;font-weight:700;letter-spacing:-0.02em;line-height:1.15;margin-top:12px;white-space:nowrap}
+.anno em{display:block;font-style:normal;font-size:10.5px;line-height:1.3;letter-spacing:0.01em;color:rgba(255,255,255,0.48);margin-top:4px;white-space:nowrap}
+
+.field-copy{position:relative;z-index:4;text-align:center;padding:30px 26px 0;max-width:620px;margin:0 auto}
 .eyebrow{font-size:12px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:16px}
-.field-copy h1{font-size:52px;font-weight:700;letter-spacing:-0.04em;line-height:1.0;margin-bottom:18px}
+.field-copy h1{font-size:46px;font-weight:700;letter-spacing:-0.04em;line-height:1.02;margin-bottom:18px}
 .field-copy h1 .serif{font-family:var(--serif);font-style:italic;font-weight:400}
 .field-copy p{font-size:17px;line-height:1.55;color:rgba(255,255,255,0.68);max-width:430px;margin:0 auto 30px}
 .cta-white{display:flex;align-items:center;justify-content:center;gap:9px;background:#fff;color:var(--ink);border-radius:100px;padding:19px 34px;font-size:17px;font-weight:700;letter-spacing:-0.01em;transition:transform 0.18s,box-shadow 0.18s}
@@ -102,19 +109,22 @@ a{text-decoration:none;color:inherit}
 .slab .term{font-size:17px;font-weight:600;color:var(--ink-2);margin-bottom:8px}
 .slab .sub{font-size:15.5px;color:var(--ink-3);line-height:1.6;max-width:400px;margin:0 auto}
 .slab-alt{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:30px}
-.alt{border:1px solid var(--line);border-radius:14px;padding:14px 8px;transition:border-color 0.2s}
+.alt{border:1px solid var(--line);border-radius:14px;padding:14px 7px;transition:border-color 0.2s}
 .alt:hover{border-color:var(--ink)}
+.alt.on{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
 .alt b{display:block;font-size:20px;font-weight:800;letter-spacing:-0.03em}
 .alt b span[data-clyr-price]{font-size:inherit;font-weight:inherit}
-.alt em{display:block;font-style:normal;font-size:11.5px;color:var(--ink-3);margin-top:3px}
+.alt em{display:block;font-style:normal;font-size:11.5px;color:var(--ink-2);margin-top:4px;font-weight:600}
+.alt i{display:block;font-style:normal;font-size:10.5px;color:var(--ink-3);margin-top:2px}
 
 /* ============ SPEC PANEL + STEPS (typographic, no stock photography) ============ */
 .spec{background:linear-gradient(168deg,var(--field) 0%,var(--field-2) 100%);color:#fff;padding:74px 26px}
 .spec-in{max-width:720px;margin:0 auto}
-.spec h2{font-size:42px;font-weight:700;letter-spacing:-0.04em;line-height:1.03;margin-bottom:34px}
+.spec h2{font-size:42px;font-weight:700;letter-spacing:-0.04em;line-height:1.03;margin-bottom:10px}
 .spec h2 .serif{font-family:var(--serif);font-style:italic;font-weight:400}
+.spec .lede{font-size:16.5px;line-height:1.55;color:rgba(255,255,255,0.6);max-width:440px;margin-bottom:32px}
 .agent{padding:24px 0;border-top:1px solid rgba(255,255,255,0.14);display:grid;grid-template-columns:1fr auto;gap:16px;align-items:start}
-.agent:last-child{border-bottom:1px solid rgba(255,255,255,0.14)}
+.agent:last-of-type{border-bottom:1px solid rgba(255,255,255,0.14)}
 .agent b{font-size:22px;font-weight:700;letter-spacing:-0.025em;display:block;margin-bottom:6px}
 .agent p{font-size:15px;line-height:1.55;color:rgba(255,255,255,0.6);max-width:400px}
 .agent .dose{font-size:13px;font-weight:700;letter-spacing:0.05em;color:rgba(255,255,255,0.5);white-space:nowrap;padding-top:5px}
@@ -136,9 +146,9 @@ a{text-decoration:none;color:inherit}
 .vs-in{max-width:720px;margin:0 auto}
 .vs h2{font-size:40px;font-weight:700;letter-spacing:-0.04em;line-height:1.05;margin-bottom:30px}
 .vs h2 .serif{font-family:var(--serif);font-style:italic;font-weight:400}
-.vs-row{display:grid;grid-template-columns:1fr 92px 92px;gap:0;align-items:center;padding:17px 0;border-bottom:1px solid var(--line)}
+.vs-row{display:grid;grid-template-columns:minmax(0,1fr) 92px 92px;gap:0;align-items:center;padding:17px 0;border-bottom:1px solid var(--line)}
 .vs-row:first-of-type{border-bottom:1px solid #C9D2D6;padding-bottom:12px}
-.vs-row span{font-size:15.5px;color:var(--ink-2);line-height:1.4;padding-right:14px}
+.vs-row span{font-size:15.5px;color:var(--ink-2);line-height:1.4;padding-right:14px;min-width:0;overflow-wrap:break-word}
 .vs-row .hd{font-size:12px;font-weight:800;letter-spacing:0.09em;text-transform:uppercase;text-align:center;color:var(--ink)}
 .vs-row .hd.dim{color:var(--ink-3)}
 .vs-cell{text-align:center;font-size:19px;font-weight:700}
@@ -176,17 +186,29 @@ a{text-decoration:none;color:inherit}
 .dock-p em{display:block;font-style:normal;font-size:11.5px;color:var(--ink-3);margin-top:3px}
 .dock a{flex:1;background:var(--ink);color:#fff;text-align:center;padding:15px;border-radius:100px;font-size:15.5px;font-weight:700}
 body{padding-bottom:0}
+/* the dock is fixed over the page, so the footer needs to clear it at max scroll */
+@media(max-width:899px){
+  .footer{padding-bottom:calc(var(--dock-h) + 26px + env(safe-area-inset-bottom))}
+}
+@media(max-width:360px){
+  .vs{padding-left:18px;padding-right:18px}
+  .vs-row{grid-template-columns:minmax(0,1fr) 66px 66px}
+  .vs-row span{font-size:14.5px;padding-right:10px}
+  .slab{padding-left:18px;padding-right:18px}
+}
 
 @media(min-width:900px){
-  .field{padding-bottom:84px}
-  .stage{aspect-ratio:21/9;max-height:440px}
-  .stage img{width:52%;max-width:620px}
-  .anno-a{right:15%;top:10%}
-  .anno-b{left:15%;bottom:10%}
-  .field-copy h1{font-size:68px}
+  .field{--tw:min(30vw,392px);padding-bottom:84px}
+  .stage{padding-top:44px}
+  .anno b{font-size:15px;margin-top:15px}
+  .anno em{font-size:12px}
+  .field-copy{padding-top:34px;max-width:800px}
+  .field-copy h1{font-size:64px}
   .field-copy p{font-size:18.5px}
   .cta-white{display:inline-flex;padding:19px 46px}
   .slab .num{font-size:112px}
+  .alt em{font-size:13px}
+  .alt i{font-size:11.5px}
   .spec h2,.steps h2{font-size:52px}
   .st{grid-template-columns:52px 1fr;padding:26px 0}
   .st h3{font-size:25px}
@@ -200,7 +222,7 @@ body{padding-bottom:0}
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T4FVQ87G" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-<div class="promo"><a href="#plans">One daily tablet. The price is on this page. <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+<div class="promo"><a href="#plans">One dissolving tablet. The price is on this page. <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
 
 <div class="brand">
   <a href="/" aria-label="CLYR Health home">
@@ -213,21 +235,27 @@ body{padding-bottom:0}
 
 <section class="field">
   <div class="stage">
-    <img src="/img/pill-tadalafil-vardenafil.png" alt="Compounded daily tablet">
-    <div class="anno anno-a">
-      <div class="chip"><b>Vardenafil</b><span>A second PDE5 agent in the same tablet</span></div>
-      <div class="lead"></div>
+    <img src="/img/odt-sild-tadal-oxy-hero.png" alt="The CLYR orally dissolving tablet" width="499" height="328">
+  </div>
+  <div class="anno-row">
+    <div class="anno">
+      <div class="leadwrap"><div class="lead"></div></div>
+      <b>Sildenafil</b><em>Short acting</em>
     </div>
-    <div class="anno anno-b">
-      <div class="chip"><b>Tadalafil</b><span>The daily base your provider doses</span></div>
-      <div class="lead"></div>
+    <div class="anno">
+      <div class="leadwrap"><div class="lead"></div></div>
+      <b>Tadalafil</b><em>Long acting</em>
+    </div>
+    <div class="anno">
+      <div class="leadwrap"><div class="lead"></div></div>
+      <b>Oxytocin</b><em>Peptide</em>
     </div>
   </div>
   <div class="field-copy">
     <div class="eyebrow">Compounded for CLYR</div>
-    <h1>Two agents. <span class="serif">One</span> daily tablet.</h1>
-    <p>Prepared by a state-licensed compounding pharmacy, dosed by a licensed provider, and priced on this page before you answer anything.</p>
-    <a class="cta-white" href="/intake-wellness.html?product=tadalafil&amp;plan=3month">See if I am eligible <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <h1>Three actives. <span class="serif">One</span> tablet that dissolves.</h1>
+    <p>Sildenafil, tadalafil, and oxytocin in a single orally dissolving tablet. Compounded by a state-licensed pharmacy, dosed by a licensed provider, and priced on this page before you answer anything.</p>
+    <a class="cta-white" href="/intake-wellness.html?product=sild_tadal_oxy&amp;plan=3month">See if I am eligible <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     <div class="field-fine">Prescription products require an online consultation with a licensed provider who determines whether treatment is appropriate. <a href="#isi">Important safety information</a></div>
   </div>
 </section>
@@ -235,13 +263,13 @@ body{padding-bottom:0}
 <section class="slab" id="plans">
   <div class="slab-in">
     <div class="kick">The whole price</div>
-    <div class="num"><span data-clyr-price="tadalafil:3month">&nbsp;</span></div>
+    <div class="num"><span data-clyr-price="sild_tadal_oxy:3month">$299</span></div>
     <div class="term">Three month supply, paid once</div>
     <div class="sub">Nothing renews on its own. When the term ends you decide whether to continue.</div>
     <div class="slab-alt">
-      <a class="alt" href="/intake-wellness.html?product=tadalafil&amp;plan=monthly"><b><span data-clyr-price="tadalafil:monthly">&nbsp;</span></b><em>Month to month</em></a>
-      <a class="alt" href="/intake-wellness.html?product=tadalafil&amp;plan=6month"><b><span data-clyr-price="tadalafil:6month">&nbsp;</span></b><em>Six months</em></a>
-      <a class="alt" href="/intake-wellness.html?product=tadalafil&amp;plan=12month"><b><span data-clyr-price="tadalafil:12month">&nbsp;</span></b><em>Twelve months</em></a>
+      <a class="alt" href="/intake-wellness.html?product=sild_tadal_oxy&amp;plan=monthly"><b><span data-clyr-price="sild_tadal_oxy:monthly">$129</span></b><em>Month to month</em><i>Billed monthly</i></a>
+      <a class="alt on" href="/intake-wellness.html?product=sild_tadal_oxy&amp;plan=3month"><b><span data-clyr-price="sild_tadal_oxy:3month">$299</span></b><em>Three months</em><i><span data-clyr-price="sild_tadal_oxy:3month" data-clyr-fmt="permo2:3">$99.67</span> a month</i></a>
+      <a class="alt" href="/intake-wellness.html?product=sild_tadal_oxy&amp;plan=6month"><b><span data-clyr-price="sild_tadal_oxy:6month">$549</span></b><em>Six months</em><i><span data-clyr-price="sild_tadal_oxy:6month" data-clyr-fmt="permo2:6">$91.50</span> a month</i></a>
     </div>
   </div>
 </section>
@@ -249,15 +277,20 @@ body{padding-bottom:0}
 <section class="spec">
   <div class="spec-in">
     <h2>What is <span class="serif">in it</span></h2>
+    <div class="lede">One tablet that dissolves in the mouth. No water, and nothing to swallow whole.</div>
     <div class="agent">
-      <div><b>Tadalafil</b><p>A long acting PDE5 inhibitor. It is the daily base, which is why there is no window to time.</p></div>
+      <div><b>Sildenafil</b><p>A PDE5 inhibitor with a comparatively short onset and duration profile.</p></div>
       <div class="dose">Provider dosed</div>
     </div>
     <div class="agent">
-      <div><b>Vardenafil</b><p>A second PDE5 inhibitor with a different onset and duration profile, compounded into the same tablet.</p></div>
+      <div><b>Tadalafil</b><p>A PDE5 inhibitor that stays in the body considerably longer than sildenafil does.</p></div>
       <div class="dose">Provider dosed</div>
     </div>
-    <div class="spec-foot">Strengths are set by the licensed provider who reviews your questionnaire and can be changed at any refill. Combining two agents is not appropriate for everyone.</div>
+    <div class="agent">
+      <div><b>Oxytocin</b><p>A peptide the body produces on its own, compounded into the same tablet at a strength your provider sets.</p></div>
+      <div class="dose">Provider dosed</div>
+    </div>
+    <div class="spec-foot">Strengths are set by the licensed provider who reviews your questionnaire and can be changed at any refill. A combination formula is not appropriate for everyone.</div>
   </div>
 </section>
 
@@ -267,7 +300,7 @@ body{padding-bottom:0}
     <div class="lede">No phone calls, no office visit, and no card required until a prescription exists.</div>
     <div class="st"><div class="n">01</div><div><h3>Answer the questionnaire</h3><p>Symptoms, medical history, current medications. A few minutes, and finishing it costs nothing.</p></div></div>
     <div class="st"><div class="n">02</div><div><h3>A licensed provider reviews it</h3><p>They decide whether treatment is appropriate and set your dose. If your history rules it out, they tell you and you are not charged.</p></div></div>
-    <div class="st"><div class="n">03</div><div><h3>The pharmacy compounds it</h3><p>A state-licensed compounding pharmacy prepares the tablet at the written dose and ships the full term in plain packaging.</p></div></div>
+    <div class="st"><div class="n">03</div><div><h3>The pharmacy compounds it</h3><p>A state-licensed compounding pharmacy prepares the dissolving tablet at the written dose and ships the full term in plain packaging.</p></div></div>
     <div class="st"><div class="n">04</div><div><h3>Adjust it from your portal</h3><p>Message your provider about dose or side effects whenever. Changes apply to the next fill and there is no charge to ask.</p></div></div>
   </div>
 </section>
@@ -286,9 +319,10 @@ body{padding-bottom:0}
 
 <section class="q">
   <h2>Questions, <span class="serif">answered plainly</span></h2>
-  <div class="qi"><button class="qb">Why is this more than the ads offering twenty dollars a month?<span class="i">+</span></button><div class="qa"><p>Those headline numbers are usually the lowest dose of a single generic on the longest commitment, shown before the questionnaire changes what you actually pay. This is a compounded two agent tablet, and the number on this page is the number you pay.</p></div></div>
+  <div class="qi"><button class="qb">What does orally dissolving mean?<span class="i">+</span></button><div class="qa"><p>The tablet is made to break down in the mouth instead of being swallowed whole, so it does not need water. You take it on your own schedule, the same way you would any tablet your provider prescribes.</p></div></div>
+  <div class="qi"><button class="qb">Why is this more than the ads offering twenty dollars a month?<span class="i">+</span></button><div class="qa"><p>Those headline numbers are usually the lowest dose of a single generic on the longest commitment, shown before the questionnaire changes what you actually pay. This is a compounded tablet with three actives, and the number on this page is the number you pay.</p></div></div>
   <div class="qi"><button class="qb">Will I be charged again automatically?<span class="i">+</span></button><div class="qa"><p>No. Term plans are paid once for the full term. Month to month bills monthly and can be stopped from your portal at any time.</p></div></div>
-  <div class="qi"><button class="qb">Why two agents instead of one?<span class="i">+</span></button><div class="qa"><p>They are both PDE5 inhibitors with different onset and duration profiles. Combining them in one compounded tablet is a decision your provider makes based on your history, and it is not right for everyone.</p></div></div>
+  <div class="qi"><button class="qb">Why three actives instead of one?<span class="i">+</span></button><div class="qa"><p>Sildenafil and tadalafil are both PDE5 inhibitors with different onset and duration profiles, and oxytocin is a peptide the body already makes. Putting them in one compounded tablet is a decision your provider makes based on your history, and it is not right for everyone.</p></div></div>
   <div class="qi"><button class="qb">What if the provider says no?<span class="i">+</span></button><div class="qa"><p>You are not charged. Payment happens after a prescription is written, not when you finish the questionnaire.</p></div></div>
   <div class="qi"><button class="qb">Where do you ship?<span class="i">+</span></button><div class="qa"><p>Most states. We cannot currently ship to Alaska, Mississippi, or Louisiana.</p></div></div>
   <div class="qi"><button class="qb">How discreet is the package?<span class="i">+</span></button><div class="qa"><p>Plain outer box with no product or condition anywhere on the label. Your statement shows CLYR Health.</p></div></div>
@@ -297,19 +331,19 @@ body{padding-bottom:0}
 <section class="close">
   <h2>Start with the <span class="serif">questionnaire</span></h2>
   <p>Free, online, and no card required to finish it.</p>
-  <a class="cta-white" href="/intake-wellness.html?product=tadalafil&amp;plan=3month">See if I am eligible <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  <a class="cta-white" href="/intake-wellness.html?product=sild_tadal_oxy&amp;plan=3month">See if I am eligible <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 </section>
 
 <section class="isi" id="isi">
   <div class="isi-in">
     <h3>Important Safety Information</h3>
-    <p>Tadalafil and Vardenafil are prescription PDE5 inhibitors. Common side effects include headache, flushing, nasal congestion, back pain, and indigestion. Do not take with nitrates or alpha-blockers. Seek immediate medical attention for erections lasting more than 4 hours (priapism) or sudden vision or hearing changes. Compounded medications are prepared by licensed pharmacies and have not been reviewed by the FDA for safety or effectiveness. Always consult your healthcare provider.</p>
+    <p>Sildenafil and tadalafil are prescription PDE5 inhibitors. Common side effects include headache, flushing, nasal congestion, back pain, and indigestion. Do not take with nitrates or alpha-blockers. Seek immediate medical attention for erections lasting more than 4 hours (priapism) or for sudden vision or hearing changes. Oxytocin is included in this compounded formula at a strength determined by your provider. Tell your provider about every medication and medical condition you have before starting. Compounded medications are prepared by licensed pharmacies and have not been reviewed by the FDA for safety or effectiveness. Always consult your healthcare provider.</p>
   </div>
 </section>
 
 <div class="dock" id="dock">
-  <div class="dock-p"><b><span data-clyr-price="tadalafil:3month">&nbsp;</span></b><em>3 month supply</em></div>
-  <a href="/intake-wellness.html?product=tadalafil&amp;plan=3month">See if I am eligible</a>
+  <div class="dock-p"><b><span data-clyr-price="sild_tadal_oxy:3month">$299</span></b><em>3 month supply</em></div>
+  <a href="/intake-wellness.html?product=sild_tadal_oxy&amp;plan=3month">See if I am eligible</a>
 </div>
 
 <footer class="footer">
