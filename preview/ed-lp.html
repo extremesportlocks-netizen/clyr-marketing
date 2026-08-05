@@ -90,9 +90,6 @@ a{text-decoration:none;color:inherit}
 .stage-disc::before{content:'';position:absolute;inset:6% -4%;border-radius:50%;background:radial-gradient(ellipse at 50% 46%,var(--blush-2) 0%,rgba(240,205,210,0.42) 48%,rgba(240,205,210,0) 72%)}
 .stage-img{position:relative;z-index:2;width:min(62vw,330px);height:auto;filter:drop-shadow(0 26px 34px rgba(80,50,40,0.30))}
 .stage-floor{position:absolute;z-index:1;bottom:9%;left:50%;transform:translateX(-50%);width:46%;height:26px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(60,35,25,0.20) 0%,rgba(60,35,25,0) 70%)}
-.stage-mini{position:absolute;z-index:1;width:16%;height:auto;opacity:0.9;filter:blur(0.5px) drop-shadow(0 10px 14px rgba(80,50,40,0.16))}
-.mini-1{top:-1%;left:10%;transform:rotate(-25deg)}
-.mini-2{bottom:5%;right:6%;transform:rotate(19deg);width:12%}
 /* floating ingredient chips */
 .chip{position:absolute;z-index:4;background:rgba(255,255,255,0.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(34,29,24,0.08);border-radius:14px;padding:10px 15px;box-shadow:0 10px 26px rgba(60,40,25,0.14);text-align:left}
 .chip b{display:block;font-size:13.5px;font-weight:700;letter-spacing:-0.02em;line-height:1.1}
@@ -204,15 +201,9 @@ h2.disp em{font-style:italic}
 .arrive-in{max-width:1080px;margin:0 auto}
 .arrive-grid{display:grid;grid-template-columns:1fr;gap:44px;align-items:center;margin-top:6px}
 /* CSS parcel */
-.box-wrap{display:flex;justify-content:center;padding:34px 0 10px}
-.parcel{position:relative;width:min(74vw,330px)}
-.parcel .top{height:54px;background:linear-gradient(180deg,#F0E7D8 0%,#E6D9C2 100%);border:1px solid var(--line-2);border-bottom:none;border-radius:16px 16px 0 0;transform:perspective(600px) rotateX(38deg);transform-origin:bottom}
-.parcel .face{background:linear-gradient(180deg,#EDE2CE 0%,#E2D3B8 100%);border:1px solid var(--line-2);border-radius:0 0 16px 16px;padding:44px 26px 40px;text-align:center;box-shadow:0 30px 60px rgba(60,40,25,0.22)}
-.parcel .face .wm{font-weight:800;font-size:26px;letter-spacing:-0.04em;color:var(--ink)}
-.parcel .face .wm span{color:var(--teal)}
-.parcel .face .ln{margin:16px auto 0;width:60%;height:1px;background:var(--line-2)}
-.parcel .face .addr{margin-top:14px;font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-3)}
-.parcel .tape{position:absolute;top:44px;left:50%;transform:translateX(-50%);width:56%;height:14px;background:rgba(255,255,255,0.5);border-left:1px solid var(--line-2);border-right:1px solid var(--line-2)}
+.box-wrap{display:flex;justify-content:center;padding:18px 0 4px}
+.parcel{width:min(82vw,440px)}
+.parcel svg{width:100%;height:auto;display:block}
 .arr-list{display:flex;flex-direction:column}
 .arr{display:flex;gap:16px;padding:20px 0;border-top:1px solid var(--line-2)}
 .arr:last-child{border-bottom:1px solid var(--line-2)}
@@ -338,10 +329,8 @@ h2.disp em{font-style:italic}
     </div>
     <div class="stage">
       <div class="stage-disc">
-        <img class="stage-mini mini-1" src="/img/odt-sild-tadal-oxy-hero.png" alt="" aria-hidden="true" loading="lazy">
-        <img class="stage-mini mini-2" src="/img/odt-sild-tadal-oxy-hero.png" alt="" aria-hidden="true" loading="lazy">
         <div class="stage-floor"></div>
-        <img class="stage-img" src="/img/odt-sild-tadal-oxy-hero.png" alt="The CLYR orally dissolving tablet" width="499" height="328">
+        <img class="stage-img" src="/img/clyr-oval-hero.png" alt="The CLYR orally dissolving tablet" width="1000" height="780">
         <div class="chip chip-1"><b>Sildenafil</b><em>Short acting</em></div>
         <div class="chip chip-2"><b>Tadalafil</b><em>Long acting</em></div>
         <div class="chip chip-3"><b>Oxytocin</b><em>Peptide</em></div>
@@ -485,14 +474,31 @@ h2.disp em{font-style:italic}
     <h2 class="disp">A plain box. <em>On purpose.</em></h2>
     <div class="arrive-grid">
       <div class="box-wrap" aria-hidden="true">
-        <div class="parcel">
-          <div class="top"></div>
-          <div class="tape"></div>
-          <div class="face">
-            <div class="wm">CLY<span>R</span></div>
-            <div class="ln"></div>
-            <div class="addr">Nothing else on the label</div>
-          </div>
+        <div class="parcel" role="img" aria-label="A plain CLYR shipping box">
+          <svg viewBox="30 132 420 268" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="bxf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EFE3CE"/><stop offset="1" stop-color="#E3D2B3"/></linearGradient>
+              <linearGradient id="bxs" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D7C29D"/><stop offset="1" stop-color="#C9B187"/></linearGradient>
+              <linearGradient id="bxt" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F7EFDF"/><stop offset="1" stop-color="#EEE2CB"/></linearGradient>
+              <filter id="bxblur" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="10"/></filter>
+            </defs>
+            <ellipse cx="234" cy="372" rx="196" ry="24" fill="rgba(60,35,25,0.18)" filter="url(#bxblur)"/>
+            <polygon points="62,206 324,206 402,156 140,156" fill="url(#bxt)"/>
+            <polygon points="324,206 402,156 402,302 324,352" fill="url(#bxs)"/>
+            <rect x="62" y="206" width="262" height="146" fill="url(#bxf)"/>
+            <polygon points="180,206 216,206 294,156 258,156" fill="#FFFFFF" opacity="0.5"/>
+            <rect x="180" y="206" width="36" height="24" fill="#FFFFFF" opacity="0.42"/>
+            <polyline points="62,206 324,206 324,352" fill="none" stroke="#B99F76" stroke-opacity="0.45" stroke-width="1.5"/>
+            <polyline points="324,206 402,156" fill="none" stroke="#B99F76" stroke-opacity="0.35" stroke-width="1.5"/>
+            <text x="86" y="262" font-family="DM Sans,sans-serif" font-weight="800" font-size="27" letter-spacing="-1"><tspan fill="#221D18">CLY</tspan><tspan fill="#00B4C5">R</tspan></text>
+            <text x="86" y="282" font-family="DM Sans,sans-serif" font-weight="600" font-size="9" letter-spacing="2.2" fill="#A6906B">HEALTH</text>
+            <rect x="204" y="238" width="102" height="78" rx="6" fill="#FFFFFF" stroke="#DACBAE"/>
+            <text x="214" y="254" font-family="DM Sans,sans-serif" font-weight="700" font-size="8" letter-spacing="1" fill="#8A8378">FROM: CLYR HEALTH</text>
+            <rect x="214" y="262" width="80" height="5" rx="2.5" fill="#E7DECC"/>
+            <rect x="214" y="272" width="62" height="5" rx="2.5" fill="#E7DECC"/>
+            <rect x="214" y="282" width="72" height="5" rx="2.5" fill="#E7DECC"/>
+            <g fill="#3A342C"><rect x="214" y="296" width="2.5" height="12"/><rect x="219" y="296" width="1.5" height="12"/><rect x="223" y="296" width="3" height="12"/><rect x="229" y="296" width="1.5" height="12"/><rect x="233" y="296" width="2.5" height="12"/><rect x="238" y="296" width="1.5" height="12"/><rect x="242" y="296" width="3" height="12"/><rect x="248" y="296" width="2" height="12"/><rect x="253" y="296" width="1.5" height="12"/><rect x="257" y="296" width="3" height="12"/><rect x="263" y="296" width="1.5" height="12"/><rect x="267" y="296" width="2.5" height="12"/></g>
+          </svg>
         </div>
       </div>
       <div class="arr-list">
