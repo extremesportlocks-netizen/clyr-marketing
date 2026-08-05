@@ -433,10 +433,15 @@ window.track = function(event, props){ try { if (window.posthog && window.postho
       <!-- CHAT -->
       <div class="page" id="pageChat">
         <h1 class="page-title">Chat</h1>
-        <p class="page-sub">Two channels. Doctor goes to your provider. Support goes to the CLYR team.</p>
+        <!-- Copy is deliberately honest about who reads this first. Medical
+             messages now land with the CLYR care team, who answer what they can
+             and bring the provider in when a question genuinely needs a
+             clinician. Telling a patient "this goes straight to your provider"
+             when a non-clinician reads it first would not be true. -->
+        <p class="page-sub">Medical questions reach our care team, who bring in your provider whenever a question needs one. Support handles billing, shipping and account questions.</p>
         <div class="tabs" style="max-width:360px;margin-bottom:16px">
           <button class="tab active" data-chat-tab="doctor">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" style="vertical-align:-2px;margin-right:5px"><path d="M19 14V8a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4z"/><path d="M9 14h.01M15 14h.01"/></svg>Doctor</button>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" style="vertical-align:-2px;margin-right:5px"><path d="M19 14V8a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4z"/><path d="M9 14h.01M15 14h.01"/></svg>Medical</button>
           <button class="tab" data-chat-tab="support">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" style="vertical-align:-2px;margin-right:5px"><path d="M21 11.5a8.38 8.38 0 0 1-9 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.2A8.38 8.38 0 0 1 3 11.5 8.5 8.5 0 0 1 12 3a8.38 8.38 0 0 1 9 8.5z"/></svg>Support</button>
         </div>
@@ -1646,20 +1651,27 @@ function setChatChannel(channel){
   // Re-skin the input placeholder for context
   const inp = $('msgInput');
   if (inp) inp.placeholder = channel === 'doctor'
-    ? 'Type a message to your provider...'
+    ? 'Ask a medical question about your treatment...'
     : 'Type a message to the CLYR support team...';
   loadMessages();
 }
+
+// Both channels now use the support-messages rail. The old '/api/portal/messages'
+// MDI proxy is no longer called: it could never work for the 83% of patients with
+// no MDI record, and it was erroring for the ones that had one. 'medical' rows
+// land in the Command Center Messages tab tagged MEDICAL, where the team triages
+// and forwards to the provider only when a question actually needs a clinician.
+function chatApiChannel(){ return (chatChannel === 'support') ? 'support' : 'medical'; }
 
 async function loadMessages(){
   const list=$('msgList');
   list.innerHTML='<div class="loading"><div class="spinner"></div>Loading messages...</div>';
   const channel = chatChannel || 'doctor';
-  const url = channel === 'support' ? '/api/portal/support-messages' : '/api/portal/messages';
-  const emptyTitle = channel === 'support' ? 'No support messages yet' : 'No messages yet';
+  const url = '/api/portal/support-messages?channel=' + chatApiChannel();
+  const emptyTitle = channel === 'support' ? 'No support messages yet' : 'No medical messages yet';
   const emptyMsg = channel === 'support'
     ? 'Ask the CLYR team anything about billing, shipping, or your account. Non-medical questions go here.'
-    : 'Send a message below to start a conversation with your provider.';
+    : 'Ask anything about your treatment. Our care team reads every message and brings in your provider when a question needs one.';
   try{
     const data=await api(url);
     const msgs=data.messages||[];
@@ -1684,9 +1696,8 @@ async function sendMessage(){
   const text=$('msgInput').value.trim();
   if(!text)return;
   const btn=$('btnSendMsg');btn.disabled=true;
-  const url = chatChannel === 'support' ? '/api/portal/support-messages' : '/api/portal/messages';
   try{
-    await api(url,{method:'POST',body:JSON.stringify({text})});
+    await api('/api/portal/support-messages',{method:'POST',body:JSON.stringify({text,channel:chatApiChannel()})});
     $('msgInput').value='';
     await loadMessages();
   }catch(e){
