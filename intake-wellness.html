@@ -779,7 +779,9 @@ function init() {
   for (var i = 1; i <= 31; i++) { var o = document.createElement('option'); o.value = i; o.textContent = i; dayEl.appendChild(o); }
   var yearEl = document.getElementById('dobYear');
   var thisYear = new Date().getFullYear();
-  for (var y = thisYear - 18; y >= thisYear - 90; y--) { var o2 = document.createElement('option'); o2.value = y; o2.textContent = y; yearEl.appendChild(o2); }
+  // Floor is 110 years, not 90: CLYR has patients over 90 and the old range
+  // stopped at 1936, so they physically could not enter their birth year.
+  for (var y = thisYear - 18; y >= thisYear - 110; y--) { var o2 = document.createElement('option'); o2.value = y; o2.textContent = y; yearEl.appendChild(o2); }
 
   // Parse ?product= and optional ?plan=
   var params = new URLSearchParams(window.location.search);

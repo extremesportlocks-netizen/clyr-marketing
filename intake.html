@@ -1441,7 +1441,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   for (let i = 1; i <= 31; i++) { const opt = document.createElement('option'); opt.textContent = i; opt.value = i; daySelect.appendChild(opt); }
   const yearSelect = document.getElementById('dobYear');
   const currentYear = new Date().getFullYear();
-  for (let y = currentYear - 18; y >= currentYear - 90; y--) { const opt = document.createElement('option'); opt.textContent = y; opt.value = y; yearSelect.appendChild(opt); }
+  // Floor is 110 years, not 90: CLYR has patients over 90 and the old range
+  // stopped at 1936, so they physically could not enter their birth year and
+  // could not complete intake.
+  for (let y = currentYear - 18; y >= currentYear - 110; y--) { const opt = document.createElement('option'); opt.textContent = y; opt.value = y; yearSelect.appendChild(opt); }
 
   // ─── PHONE AUTO-FORMAT ─────────────────────
   document.getElementById('phone').addEventListener('input', function(e) {

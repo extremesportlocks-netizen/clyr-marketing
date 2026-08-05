@@ -44,7 +44,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--gray-50);color:var(--dark
 .card-content{text-align:center;background:#fff;border-radius:24px;padding:48px 40px;box-shadow:0 1px 3px rgba(0,0,0,0.04),0 8px 40px rgba(0,0,0,0.03);border:1px solid rgba(0,0,0,0.04)}
 .title{font-family:'Instrument Serif',serif;font-size:36px;font-weight:400;line-height:1.2;margin-bottom:8px;color:var(--dark);letter-spacing:-0.5px}
 .title em{font-style:italic;color:var(--teal)}
-.subtitle{font-size:16px;color:var(--gray-600);line-height:1.6;margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto}
+.subtitle{font-size:16px;color:var(--gray-600);line-height:1.6;margin-bottom:24px;max-width:480px;margin-left:auto;margin-right:auto}
+.order-line{display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;background:var(--gray-50,#f8fafc);border:1px solid rgba(0,0,0,0.07);border-radius:12px;padding:12px 20px;margin:0 auto 36px;font-size:14px;color:var(--gray-600)}
+.order-line .ol-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gray-500,#94a3b8)}
+.order-line .ol-name{font-weight:800;color:var(--gray-900,#0f172a)}
+.order-line .ol-plan{color:var(--gray-600)}
 .paid-badge{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(34,197,94,0.1),rgba(34,197,94,0.05));border:1px solid rgba(34,197,94,0.2);border-radius:100px;padding:8px 20px;margin-bottom:24px;font-size:13px;font-weight:700;color:#16a34a}
 .paid-badge svg{width:16px;height:16px}
 .journey{background:var(--gray-50);border-radius:16px;padding:28px 32px;margin-bottom:32px;border:1px solid rgba(0,0,0,0.04)}
@@ -113,8 +117,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
         Payment confirmed
       </div>
-      <h1 class="title">Your provider will review<br>your profile <em>within 1 hour</em></h1>
+      <h1 class="title">Your provider will review<br>your profile <em>within 24 hours</em></h1>
       <p class="subtitle">Your payment has been processed and your health profile has been sent to a licensed provider for review.</p>
+      <!-- Filled from the checkout session (product_type/plan_type). The page
+           used to be identical for every product, which is how an Ivermectin
+           patient came to phone and ask whether he had bought the wrong
+           medication. Hidden until we know what they actually bought. -->
+      <div class="order-line" id="orderLine" style="display:none"></div>
       <div class="journey">
         <div class="journey-title">What happens next</div>
         <div class="steps">
@@ -128,16 +137,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
           <div class="j-step">
             <div class="step-dot active">3</div>
-            <div class="step-info"><div class="step-label">Provider review</div><div class="step-desc">A board-certified physician will review your health profile and determine if treatment is appropriate</div></div>
+            <div class="step-info"><div class="step-label">Provider review</div><div class="step-desc" id="stepReviewDesc">A licensed provider will review your health profile and determine if treatment is appropriate. If they need anything else from you first, they will reach out by email.</div></div>
           </div>
           <div class="j-step">
             <div class="step-dot pending">4</div>
-            <div class="step-info"><div class="step-label">Prescription &amp; shipping</div><div class="step-desc">If approved, your medication ships from our licensed pharmacy directly to your door</div></div>
+            <div class="step-info"><div class="step-label">Prescription &amp; shipping</div><div class="step-desc" id="stepShipDesc">If approved, your order ships from our licensed pharmacy directly to your door</div></div>
           </div>
         </div>
       </div>
       <div class="expect">
-        <div class="expect-item"><div class="expect-icon">&#9201;</div><div><div class="expect-label">Under 1 hour</div><div class="expect-desc">Physician review typically completes within 1 hour</div></div></div>
+        <div class="expect-item"><div class="expect-icon">&#9201;</div><div><div class="expect-label">Within 24 hours</div><div class="expect-desc">Your provider reviews new profiles at least once a day</div></div></div>
         <div class="expect-item"><div class="expect-icon">&#128232;</div><div><div class="expect-label">Check your email</div><div class="expect-desc">Updates and next steps sent to your inbox</div></div></div>
         <div class="expect-item"><div class="expect-icon">&#128176;</div><div><div class="expect-label">Full refund guarantee</div><div class="expect-desc">Not eligible? You pay nothing, full refund</div></div></div>
         <div class="expect-item"><div class="expect-icon">&#128172;</div><div><div class="expect-label">Questions?</div><div class="expect-desc">Reach us at <a href="mailto:contact@clyr.health" style="color:var(--teal)">contact@clyr.health</a></div></div></div>
@@ -188,6 +197,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         // Real successful payment, show success page
         if (cardContent) cardContent.style.opacity = '1';
         if (successBadge) successBadge.style.opacity = '1';
+
+        // ── Product-specific content ──────────────────────────────
+        // Name what they actually bought. Everything here degrades to the
+        // generic page if the session has no product metadata: an older
+        // session must never render a blank or wrong product.
+        try {
+          var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c]; }); };
+          if (data.product_name) {
+            var ol = document.getElementById('orderLine');
+            if (ol) {
+              ol.innerHTML = '<span class="ol-label">Your order</span>' +
+                '<span class="ol-name">' + esc(data.product_name) + '</span>' +
+                (data.plan_label ? '<span class="ol-plan">' + esc(data.plan_label) + '</span>' : '');
+              ol.style.display = 'inline-flex';
+            }
+          }
+          // Shipping wording differs by rail. GLP-1 ships cold-chain with the
+          // supplies needed to dose; topicals are not "medication ships", they
+          // are a cream. Cosmetic-only language for skincare (compliance).
+          var shipEl = document.getElementById('stepShipDesc');
+          if (shipEl) {
+            if (data.rail === 'glp1') {
+              shipEl.textContent = 'If approved, your medication ships from our licensed pharmacy with everything you need to start, including syringes and alcohol wipes.';
+            } else if (data.product_type === 'ghk_cu_cream') {
+              shipEl.textContent = 'If approved, your cream ships from our licensed pharmacy directly to your door in discreet packaging.';
+            }
+          }
+        } catch (e) { /* never let cosmetic copy break the conversion page */ }
+
         // Track confirmed checkout — ONE canonical emit. clyrTrack fans out to PostHog + internal DB
         // (with UTM attribution); snake_case matches the funnel taxonomy. This block previously fired
         // twice into each sink under two spellings and double-counted every conversion.
