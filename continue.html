@@ -438,6 +438,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     fetch(API + '/api/checkout/resume', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body) })
       .then(function(r){ return r.json(); })
       .then(function(d){
+        // CONSENT GATE (2026-08-08). This was the last thing keeping RESUME_CONSENT_GATE
+        // switched off: the backend returns a 200 { needsConsent:true } body with no
+        // hostedUrl, and this handler fell through to fallbackResumeUrl() — which happens
+        // to be the right destination, but only by accident, and the 7/30 incident
+        // (Kelly #846 / Diana #841) proved an unhandled needsConsent body hard-sticks the
+        // page. Handle it explicitly.
+        //
+        // Deliberately a redirect, NOT a second copy of the gate UI. resume.html already
+        // renders it correctly; duplicating consent copy is how legal text drifts out of
+        // sync between two pages. resume.html records the consents, reloads, and mints
+        // the session, which is exactly where this button was sending them anyway.
+        if (d && d.needsConsent){
+          track('resume_consent_gate_redirect', { product: current && current.slug });
+          location.href = fallbackResumeUrl();
+          return;
+        }
         if (d && d.hostedUrl){ location.replace(d.hostedUrl); return; }
         if (d && d.status === 'invalid_pair'){
           // Mixed slots (Jerry class): route into the found product's intake.
